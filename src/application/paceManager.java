@@ -2,7 +2,11 @@ package application;
 
 import java.util.List;
 import classes.*;
-import debugdev.importTeams;;
+import debugdev.importTeams;
+
+/*
+ * https://code.makery.ch/blog/javafx-dialogs-official/ --> dialoges
+ */
 
 public class paceManager {
 	
