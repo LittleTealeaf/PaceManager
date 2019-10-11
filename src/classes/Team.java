@@ -56,21 +56,15 @@ public class Team {
 		return r;
 	}
 	
-	// Getters and Setters
+	// Integration for fxMain
+	private String startFXM;
+	private String finishFXM;
 	public String getTeam() {
 		return team;
 	}
-	public void setTeam(String a) {
-		team = a;
-	}
-	
 	public String getDivision() {
 		return division;
 	}
-	public void setDivision(String a) {
-		division = a;
-	}
-	
 	public String getNames() {
 		String r = "";
 		for(String n : names) {
@@ -79,18 +73,13 @@ public class Team {
 		}
 		return r;
 	}
+	public String getStartFXM() {
+		if(start != null) return start.toString();
+		else return "";
+	}
+	public String getFinishFXM() {
+		if(finish != null) return finish.toString();
+		else return "";
+	}
 	
-	public Time getStart() {
-		return start;
-	}
-	public void setStart(Time a) {
-		start = a;
-	}
-	
-	public Time getFinish() {
-		return finish;
-	}
-	public void setFinish(Time a) {
-		finish = a;
-	}
 }

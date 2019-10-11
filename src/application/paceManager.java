@@ -2,7 +2,7 @@ package application;
 
 import java.util.List;
 import classes.*;
-import debugdev.importTeams;
+import debugdev.importTeams;;
 
 public class paceManager {
 	
@@ -13,7 +13,7 @@ public class paceManager {
 	public static void main(String[] args) {
 		//Debug Only
 		teams = importTeams.importTeams();
-		
+		importTeams.randomizeTimes();
 		
 		fxMain.open(args);
 	}

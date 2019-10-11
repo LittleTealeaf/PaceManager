@@ -61,7 +61,7 @@ public class importTeams {
 			if(Math.random() < 0.5) {
 				a.start = new Time((float) (Math.random() * (endRange.time - startRange.time) + startRange.time));
 				if(Math.random() < 0.5) {
-					a.finish = new Time((float) (Math.random() * (maxElapsed.time - minElapsed.time) + a.finish.time));
+					a.finish = new Time((float) (Math.random() * (maxElapsed.time - minElapsed.time) + a.start.time));
 				}
 			}
 		}		

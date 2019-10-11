@@ -1,26 +1,16 @@
 package application;
 
+import classes.*;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.Scene; 
-import javafx.scene.control.Button; 
+import javafx.scene.Scene;  
 import javafx.scene.layout.*; 
 import javafx.event.ActionEvent; 
 import javafx.event.EventHandler; 
 import javafx.scene.control.*; 
 import javafx.stage.Stage; 
-import javafx.scene.control.Alert.AlertType; 
-import java.time.LocalDate;
 import javafx.scene.control.cell.PropertyValueFactory;
-import classes.*;
-import javafx.geometry.Insets;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.text.Font;
 
 /*
  * Notes only displays the first line of the notes
@@ -72,9 +62,12 @@ public class fxMain extends Application {
 		
 		TableColumn cTeamName = new TableColumn("Team");
 		cTeamName.setCellValueFactory(new PropertyValueFactory<Team,String>("team"));
+		cTeamName.setMinWidth(50);
+		
 		
 		TableColumn cDivision = new TableColumn("Division");
 		cDivision.setCellValueFactory(new PropertyValueFactory<Team,String>("division"));
+		cDivision.setMinWidth(70);
 		
 		TableColumn cNames = new TableColumn("Riders");
 		cNames.setEditable(false);
@@ -82,9 +75,9 @@ public class fxMain extends Application {
 		
 		TableColumn cTime = new TableColumn("Times");
 		TableColumn cTStart = new TableColumn("Start");
-		cTStart.setCellValueFactory(new PropertyValueFactory<Team,Time>("start"));
+		cTStart.setCellValueFactory(new PropertyValueFactory<Team,String>("startFXM"));
 		TableColumn cTFinish = new TableColumn("Finish");
-		cTFinish.setCellValueFactory(new PropertyValueFactory<Team,Time>("finish"));
+		cTFinish.setCellValueFactory(new PropertyValueFactory<Team,String>("finishFXM"));
 		
 		cTime.getColumns().addAll(cTStart,cTFinish);
 		TableColumn cNotes = new TableColumn("Notes");
@@ -112,6 +105,15 @@ public class fxMain extends Application {
 		for(Team a : paceManager.teams) {
 			table.getItems().add(a);
 		}
+	}
+	
+	private static void updateWidths() {
+		/*
+		 * Team Name = 50
+		 * Division = 70
+		 * Names = (50% remaining)
+		 * 
+		 */
 	}
 	
 }
