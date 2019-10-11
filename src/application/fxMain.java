@@ -8,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler; 
 import javafx.scene.control.*; 
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TableColumn;
@@ -30,7 +29,7 @@ public class fxMain extends Application {
 		launch(args);
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({ "rawtypes", "unchecked", "exports" })
 	@Override
 	public void start(Stage sMain) {
 		sMain.setTitle("Pace Manager " + paceManager.version);
@@ -62,15 +61,15 @@ public class fxMain extends Application {
 		table = new TableView<Team>();
 		table.setEditable(false);
 		/*
-		 * https://stackoverflow.com/questions/12499269/javafx-tableview-detect-a-doubleclick-on-a-cell/12591417
+		 * https://stackoverflow.com/a/32442449
 		 */
 		table.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent click) {
 				if (click.getClickCount() == 2) {
-					@SuppressWarnings("rawtypes")
 					TablePosition pos = table.getSelectionModel().getSelectedCells().get(0);
 					int row = pos.getRow();
+					System.out.println(row);
 					int col = pos.getColumn();
 					if(col == 4) {
 						//TODO opens a window for just the notes
@@ -129,6 +128,7 @@ public class fxMain extends Application {
 		for(Team a : paceManager.teams) {
 			table.getItems().add(a);
 		}
+		updateWidths();
 	}
 	
 	private static void updateWidths() {
@@ -137,6 +137,7 @@ public class fxMain extends Application {
 		 * Division = 70
 		 * Names = (50% remaining)
 		 * 
+		 * Times = 80
 		 */
 	}
 	

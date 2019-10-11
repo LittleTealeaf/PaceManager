@@ -10,7 +10,7 @@ public class importTeams {
 	
 	private static List<String> lines = new ArrayList<String>();
 	
-	public static List<Team> importTeams() {
+	public static List<Team> getTeams() {
 		List<Team> teams = new ArrayList<Team>();
 		Scanner scanner = null;
 		
