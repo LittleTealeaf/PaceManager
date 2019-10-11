@@ -57,8 +57,6 @@ public class Team {
 	}
 	
 	// Integration for fxMain
-	private String startFXM;
-	private String finishFXM;
 	public String getTeam() {
 		return team;
 	}

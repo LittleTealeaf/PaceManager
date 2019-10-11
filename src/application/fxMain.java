@@ -7,8 +7,10 @@ import javafx.scene.layout.*;
 import javafx.event.ActionEvent; 
 import javafx.event.EventHandler; 
 import javafx.scene.control.*; 
-import javafx.stage.Stage; 
+import javafx.stage.Stage;
+import javafx.util.Callback;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -58,7 +60,27 @@ public class fxMain extends Application {
 		
 		//Table 
 		table = new TableView<Team>();
-		table.setEditable(true);
+		table.setEditable(false);
+		/*
+		 * https://stackoverflow.com/questions/12499269/javafx-tableview-detect-a-doubleclick-on-a-cell/12591417
+		 */
+		table.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent click) {
+				if (click.getClickCount() == 2) {
+					@SuppressWarnings("rawtypes")
+					TablePosition pos = table.getSelectionModel().getSelectedCells().get(0);
+					int row = pos.getRow();
+					int col = pos.getColumn();
+					if(col == 4) {
+						//TODO opens a window for just the notes
+					} else {
+						//TODO opens a window for everything
+					}
+				}
+			}
+		});
+
 		
 		TableColumn cTeamName = new TableColumn("Team");
 		cTeamName.setCellValueFactory(new PropertyValueFactory<Team,String>("team"));
@@ -76,7 +98,9 @@ public class fxMain extends Application {
 		TableColumn cTime = new TableColumn("Times");
 		TableColumn cTStart = new TableColumn("Start");
 		cTStart.setCellValueFactory(new PropertyValueFactory<Team,String>("startFXM"));
+		cTStart.setMinWidth(80);
 		TableColumn cTFinish = new TableColumn("Finish");
+		cTFinish.setMinWidth(80);
 		cTFinish.setCellValueFactory(new PropertyValueFactory<Team,String>("finishFXM"));
 		
 		cTime.getColumns().addAll(cTStart,cTFinish);
