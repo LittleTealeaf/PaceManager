@@ -1,16 +1,117 @@
 package application;
 
 import javafx.application.Application;
-import javafx.stage.Stage;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.Scene; 
+import javafx.scene.control.Button; 
+import javafx.scene.layout.*; 
+import javafx.event.ActionEvent; 
+import javafx.event.EventHandler; 
+import javafx.scene.control.*; 
+import javafx.stage.Stage; 
+import javafx.scene.control.Alert.AlertType; 
+import java.time.LocalDate;
+import javafx.scene.control.cell.PropertyValueFactory;
+import classes.*;
+import javafx.geometry.Insets;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.text.Font;
+
+/*
+ * Notes only displays the first line of the notes
+ * windows:
+ * fxMainNotes
+ * fxEditTeam
+ */
 
 public class fxMain extends Application {
-
-	@Override
-	public void start(Stage primaryStage) {
-		
-	}
+	
+	private static TableView<Team> table;
+	
 
 	public static void open(String[] args) {
 		launch(args);
 	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@Override
+	public void start(Stage sMain) {
+		sMain.setTitle("Pace Manager " + paceManager.version);
+		
+		//Menus
+		Menu m1 = new Menu("File");
+		MenuItem miOpen = new MenuItem("Open");
+		MenuItem miSave = new MenuItem("Save");
+		MenuItem miSaveAs = new MenuItem("Save As");
+		MenuItem miClose = new MenuItem("Close");
+		MenuItem miExit = new MenuItem("Exit");
+		miExit.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				//TODO check for if saved
+				System.exit(0);
+			}
+		});
+		
+		m1.getItems().add(miOpen);
+		m1.getItems().add(miSave);
+		m1.getItems().add(miSaveAs);
+		m1.getItems().add(miClose);
+		m1.getItems().add(miExit);
+		
+		MenuBar mb = new MenuBar();
+		mb.getMenus().add(m1);
+		
+		//Table 
+		table = new TableView<Team>();
+		table.setEditable(true);
+		
+		TableColumn cTeamName = new TableColumn("Team");
+		cTeamName.setCellValueFactory(new PropertyValueFactory<Team,String>("team"));
+		
+		TableColumn cDivision = new TableColumn("Division");
+		cDivision.setCellValueFactory(new PropertyValueFactory<Team,String>("division"));
+		
+		TableColumn cNames = new TableColumn("Riders");
+		cNames.setEditable(false);
+		cNames.setCellValueFactory(new PropertyValueFactory<Team,String>("names"));
+		
+		TableColumn cTime = new TableColumn("Times");
+		TableColumn cTStart = new TableColumn("Start");
+		cTStart.setCellValueFactory(new PropertyValueFactory<Team,Time>("start"));
+		TableColumn cTFinish = new TableColumn("Finish");
+		cTFinish.setCellValueFactory(new PropertyValueFactory<Team,Time>("finish"));
+		
+		cTime.getColumns().addAll(cTStart,cTFinish);
+		TableColumn cNotes = new TableColumn("Notes");
+		cNotes.setEditable(false);
+		
+		table.getColumns().addAll(cTeamName,cDivision,cNames,cTime,cNotes);
+		
+		table.prefHeightProperty().bind(sMain.heightProperty());
+        table.prefWidthProperty().bind(sMain.widthProperty());
+		
+		
+		VBox vb = new VBox(mb);
+		vb.getChildren().add(table);
+		
+		Scene sc = new Scene(vb, 500, 300);
+		sMain.setMaximized(true);
+		sMain.setScene(sc); 
+		sMain.show();
+		
+		updateTable();
+	}
+	
+	public static void updateTable() {
+		table.getItems().clear();
+		for(Team a : paceManager.teams) {
+			table.getItems().add(a);
+		}
+	}
+	
 }
