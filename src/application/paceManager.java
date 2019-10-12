@@ -21,5 +21,9 @@ public class paceManager {
 		
 		fxMain.open(args);
 	}
-
+	
+	public static Team getTeam(String tmName) {
+		for(Team t : teams) if(t.team == tmName) return t;
+		return null;
+	}
 }

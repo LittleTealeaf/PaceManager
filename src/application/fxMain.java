@@ -1,5 +1,7 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.List;
 import classes.*;
 import javafx.application.Application;
 import javafx.scene.Scene;  
@@ -8,10 +10,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler; 
 import javafx.scene.control.*; 
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 
 /*
  * Notes only displays the first line of the notes
@@ -23,7 +26,6 @@ import javafx.scene.control.TableView;
 public class fxMain extends Application {
 	
 	private static TableView<Team> table;
-	
 
 	public static void open(String[] args) {
 		launch(args);
@@ -43,7 +45,6 @@ public class fxMain extends Application {
 		MenuItem miExit = new MenuItem("Exit");
 		miExit.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				//TODO check for if saved
 				System.exit(0);
 			}
 		});
@@ -68,11 +69,12 @@ public class fxMain extends Application {
 			public void handle(MouseEvent click) {
 				if (click.getClickCount() == 2) {
 					TablePosition pos = table.getSelectionModel().getSelectedCells().get(0);
-					int row = pos.getRow();
-					System.out.println(row);
+					//int row = pos.getRow();
+					//System.out.println(row);
 					int col = pos.getColumn();
-					if(col == 4) {
-						//TODO opens a window for just the notes
+					Team sel = table.getSelectionModel().getSelectedItem();
+					if(col == 5) {
+						openNotes(sel, click.getScreenX(), click.getScreenY());
 					} else {
 						//TODO opens a window for everything
 					}
@@ -104,7 +106,7 @@ public class fxMain extends Application {
 		
 		cTime.getColumns().addAll(cTStart,cTFinish);
 		TableColumn cNotes = new TableColumn("Notes");
-		cNotes.setEditable(false);
+		cNotes.setCellValueFactory(new PropertyValueFactory<Team,String>("notesDisplay"));
 		
 		table.getColumns().addAll(cTeamName,cDivision,cNames,cTime,cNotes);
 		
@@ -125,9 +127,7 @@ public class fxMain extends Application {
 	
 	public static void updateTable() {
 		table.getItems().clear();
-		for(Team a : paceManager.teams) {
-			table.getItems().add(a);
-		}
+		for(Team a : paceManager.teams) table.getItems().add(a);
 		updateWidths();
 	}
 	
@@ -139,6 +139,77 @@ public class fxMain extends Application {
 		 * 
 		 * Times = 80
 		 */
+	}
+	
+	public static void closeSubWindows() {
+		if(mNotes.isShowing()) mNotes.close();
+	}
+	
+	private static Stage mNotes;
+	private static TextArea nText;
+	private static Team nTeam;
+	
+	private static void openNotes(Team t, double x, double y) {
+		nTeam = t;
+		if(mNotes == null) {
+			mNotes = new Stage();
+			mNotes.setAlwaysOnTop(true);
+			mNotes.initStyle(StageStyle.UNDECORATED);
+			mNotes.setResizable(true);
+			mNotes.focusedProperty().addListener((obs,wasFocused,isNowFocused) -> {
+				if(!isNowFocused) {
+					mNotes.close();
+				}
+			});
+			mNotes.setWidth(300);
+			mNotes.setHeight(300);
+		}
+		mNotes.setX(x);
+		mNotes.setY(y);
+		
+		nText = new TextArea();
+		nText.textProperty().addListener((observable, oldValue, newValue) -> {
+			List<String> notes = new ArrayList<String>();
+			String tmp = "";
+			for(char c : nText.getText().toCharArray()) {
+				if(c == '\n') {
+					notes.add(tmp);
+					tmp = "";
+				} else tmp+=c;
+			}
+			notes.add(tmp);
+			if(notes.get(0) == "") notes.remove(0);
+			paceManager.teams.get(paceManager.teams.indexOf(nTeam)).notes = notes;
+		});
+		nText.prefWidthProperty().bind(mNotes.maxWidthProperty());
+		nText.prefHeightProperty().bind(mNotes.heightProperty());
+		
+		int pos = 0;
+		for(String l : t.notes) {
+			if(pos == 0) nText.setText(l);
+			else nText.setText(nText.getText() + "\n" + l);
+		}
+		
+		Button nbClose = new Button();
+		nbClose.setText("Close");
+		nbClose.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent click) {
+				mNotes.close();
+				updateTable();
+			}
+		});
+		
+		VBox vb = new VBox();
+		vb.getChildren().addAll(nText, nbClose);
+		Scene sc = new Scene(vb,mNotes.getWidth(),mNotes.getHeight());
+		sc.addEventHandler(KeyEvent.ANY, keyEvent -> {
+			if(keyEvent.getCode() == KeyCode.ESCAPE) {
+				mNotes.close();
+				updateTable();
+			}
+		});
+		mNotes.setScene(sc);
+		mNotes.show();
 	}
 	
 }

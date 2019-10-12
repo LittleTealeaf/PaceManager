@@ -79,5 +79,11 @@ public class Team {
 		if(finish != null) return finish.toString();
 		else return "";
 	}
+	public String getNotesDisplay() {
+		if(notes != null && notes.size() > 0) {
+			return notes.get(0);
+		}
+		return "";
+	}
 	
 }
