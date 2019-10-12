@@ -34,6 +34,12 @@ public class fxMain extends Application {
 	@Override
 	public void start(Stage sMain) {
 		sMain.setTitle("Pace Manager " + paceManager.version);
+		sMain.widthProperty().addListener((obs,oldv,newv) -> {
+			resizeColumns();
+		});
+		sMain.maximizedProperty().addListener((obs,oldv,newv) -> {
+			resizeColumns();
+		});
 		
 		//Menus
 		Menu m1 = new Menu("File");
@@ -66,16 +72,18 @@ public class fxMain extends Application {
 			@Override
 			public void handle(MouseEvent click) {
 				if (click.getClickCount() == 2) {
-					TablePosition pos = table.getSelectionModel().getSelectedCells().get(0);
-					//int row = pos.getRow();
-					//System.out.println(row);
-					int col = pos.getColumn();
-					Team sel = table.getSelectionModel().getSelectedItem();
-					if(col == 5) {
-						openNotes(sel, click.getScreenX(), click.getScreenY());
-					} else {
-						//TODO opens a window for everything
-					}
+					try {
+						TablePosition pos = table.getSelectionModel().getSelectedCells().get(0);
+						//int row = pos.getRow();
+						//System.out.println(row);
+						int col = pos.getColumn();
+						Team sel = table.getSelectionModel().getSelectedItem();
+						if(col == 5) {
+							openNotes(sel, click.getScreenX(), click.getScreenY());
+						} else {
+							//TODO opens a window for everything
+						}
+					} catch(IndexOutOfBoundsException e) {}
 				}
 			}
 		});
@@ -83,12 +91,9 @@ public class fxMain extends Application {
 		
 		TableColumn cTeamName = new TableColumn("Team");
 		cTeamName.setCellValueFactory(new PropertyValueFactory<Team,String>("team"));
-		cTeamName.setMinWidth(50);
-		
 		
 		TableColumn cDivision = new TableColumn("Division");
 		cDivision.setCellValueFactory(new PropertyValueFactory<Team,String>("division"));
-		cDivision.setMinWidth(70);
 		
 		TableColumn cNames = new TableColumn("Riders");
 		cNames.setEditable(false);
@@ -97,9 +102,7 @@ public class fxMain extends Application {
 		TableColumn cTime = new TableColumn("Times");
 		TableColumn cTStart = new TableColumn("Start");
 		cTStart.setCellValueFactory(new PropertyValueFactory<Team,String>("startFXM"));
-		cTStart.setMinWidth(80);
 		TableColumn cTFinish = new TableColumn("Finish");
-		cTFinish.setMinWidth(80);
 		cTFinish.setCellValueFactory(new PropertyValueFactory<Team,String>("finishFXM"));
 		
 		cTime.getColumns().addAll(cTStart,cTFinish);
@@ -126,17 +129,23 @@ public class fxMain extends Application {
 	public static void updateTable() {
 		table.getItems().clear();
 		for(Team a : paceManager.teams) table.getItems().add(a);
-		updateWidths();
+		table.sort();
+		resizeColumns();
 	}
 	
-	private static void updateWidths() {
-		/*
-		 * Team Name = 50
-		 * Division = 70
-		 * Names = (50% remaining)
-		 * 
-		 * Times = 80
-		 */
+	private static void resizeColumns() {
+		final double wTeam = 50;
+		final double wDiv = 70;
+		final double wTime = 80;
+		if(table.getWidth() > 420) {
+			table.getColumns().get(0).setPrefWidth(wTeam);
+			table.getColumns().get(1).setPrefWidth(wDiv);
+			table.getColumns().get(3).getColumns().get(0).setPrefWidth(wTime);
+			table.getColumns().get(3).getColumns().get(1).setPrefWidth(wTime);
+			double remSpace = table.getWidth() - wTeam - wDiv - wTime * 2;
+			table.getColumns().get(2).setPrefWidth(remSpace * 0.6);
+			table.getColumns().get(4).setPrefWidth(remSpace * 0.4);
+		}
 	}
 	
 	public static void closeSubWindows() {
