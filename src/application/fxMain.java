@@ -19,7 +19,6 @@ import javafx.scene.input.MouseEvent;
 /*
  * Notes only displays the first line of the notes
  * windows:
- * fxMainNotes
  * fxEditTeam
  */
 
@@ -38,25 +37,24 @@ public class fxMain extends Application {
 		
 		//Menus
 		Menu m1 = new Menu("File");
-		MenuItem miOpen = new MenuItem("Open");
-		MenuItem miSave = new MenuItem("Save");
-		MenuItem miSaveAs = new MenuItem("Save As");
-		MenuItem miClose = new MenuItem("Close");
-		MenuItem miExit = new MenuItem("Exit");
-		miExit.setOnAction(new EventHandler<ActionEvent>() {
+		MenuItem m1Open = new MenuItem("Open");
+		MenuItem m1Save = new MenuItem("Save");
+		MenuItem m1SaveAs = new MenuItem("Save As");
+		MenuItem m1Close = new MenuItem("Close");
+		MenuItem m1Exit = new MenuItem("Exit");
+		m1Exit.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				System.exit(0);
 			}
 		});
+		m1.getItems().addAll(m1Open,m1Save,m1SaveAs,m1Close,m1Exit);
 		
-		m1.getItems().add(miOpen);
-		m1.getItems().add(miSave);
-		m1.getItems().add(miSaveAs);
-		m1.getItems().add(miClose);
-		m1.getItems().add(miExit);
+		Menu m2 = new Menu("Pace");
+		MenuItem m2Goals = new MenuItem("Goal Times");
+		m2.getItems().add(m2Goals);
 		
 		MenuBar mb = new MenuBar();
-		mb.getMenus().add(m1);
+		mb.getMenus().addAll(m1,m2);
 		
 		//Table 
 		table = new TableView<Team>();
