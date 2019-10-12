@@ -2,19 +2,27 @@ package application;
 
 import java.util.ArrayList;
 import java.util.List;
-import classes.*;
+
+import classes.Team;
 import javafx.application.Application;
-import javafx.scene.Scene;  
-import javafx.scene.layout.*; 
-import javafx.event.ActionEvent; 
-import javafx.event.EventHandler; 
-import javafx.scene.control.*; 
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /*
  * Notes only displays the first line of the notes

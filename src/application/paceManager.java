@@ -1,7 +1,8 @@
 package application;
 
 import java.util.List;
-import classes.*;
+import classes.Goal;
+import classes.Team;
 import debugdev.importTeams;
 
 /*
