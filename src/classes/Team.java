@@ -26,6 +26,9 @@ public class Team {
 	public Team() {
 		construct("","",null,null,null,null);
 	}
+	public Team(String tm) {
+		construct(tm,null,null,null,null,null);
+	}
 	public Team(String tm, String div) {
 		construct(tm,div,null,null,null,null);
 	}

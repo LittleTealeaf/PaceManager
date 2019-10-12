@@ -64,13 +64,19 @@ public class fxMain extends Application {
 		m1.getItems().addAll(m1Open,m1Save,m1SaveAs,m1Close,m1Exit);
 		
 		Menu m2 = new Menu("Pace");
+		MenuItem m2Import = new MenuItem("Import");
+		m2Import.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				fxImport.open();
+			}
+		});
 		MenuItem m2Goals = new MenuItem("Goal Times");
 		m2Goals.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				fxGoals.open();
 			}
 		});
-		m2.getItems().add(m2Goals);
+		m2.getItems().addAll(m2Import,m2Goals);
 		
 		MenuBar mb = new MenuBar();
 		mb.getMenus().addAll(m1,m2);

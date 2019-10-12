@@ -20,12 +20,17 @@ public class paceManager {
 		//Debug Only
 		teams = importTeams.getTeams();
 		importTeams.randomizeTimes();
+		System.out.println(getTeam("441"));
 		
 		fxMain.open(args);
 	}
 	
 	public static Team getTeam(String tmName) {
-		for(Team t : teams) if(t.team == tmName) return t;
+		for(Team t : teams) {
+			String a = t.team.toLowerCase().replace(" ", "").replace("\n", "").replace("\r","");
+			String b = tmName.toLowerCase().replace(" ", "").replace("\n", "").replace("\r","");
+			if(a == b) return t;
+		}
 		return null;
 	}
 }

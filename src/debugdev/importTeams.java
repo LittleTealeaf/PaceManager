@@ -19,7 +19,7 @@ public class importTeams {
 		for(String line : lines) {
 			scanner = new Scanner(line);
 			Team a = new Team();
-			a.team = scanner.nextInt() + "";
+			a.team = scanner.next();
 			a.division = scanner.next();
 			a.names = new ArrayList<String>();
 			String name = "";
