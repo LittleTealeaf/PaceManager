@@ -5,7 +5,7 @@ import classes.*;
 import debugdev.importTeams;
 
 /*
- * https://code.makery.ch/blog/javafx-dialogs-official/ --> dialoges
+ * https://code.makery.ch/blog/javafx-dialogs-official/ --> dialogues
  */
 
 public class paceManager {
@@ -13,6 +13,7 @@ public class paceManager {
 	public static final String version = "0.1";
 
 	public static List<Team> teams;
+	public static List<Goal> goals;
 	
 	public static void main(String[] args) {
 		//Debug Only
