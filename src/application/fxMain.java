@@ -65,6 +65,11 @@ public class fxMain extends Application {
 		
 		Menu m2 = new Menu("Pace");
 		MenuItem m2Goals = new MenuItem("Goal Times");
+		m2Goals.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				fxGoals.open();
+			}
+		});
 		m2.getItems().add(m2Goals);
 		
 		MenuBar mb = new MenuBar();
