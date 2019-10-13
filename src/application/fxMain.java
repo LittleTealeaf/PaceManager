@@ -150,7 +150,7 @@ public class fxMain extends Application {
 	
 	public static void updateTable() {
 		table.getItems().clear();
-		for(Team a : paceManager.teams) table.getItems().add(a);
+		table.getItems().addAll(paceManager.teams);
 		table.sort();
 		resizeColumns();
 	}
@@ -190,6 +190,7 @@ public class fxMain extends Application {
 			mNotes.focusedProperty().addListener((obs,wasFocused,isNowFocused) -> {
 				if(!isNowFocused) {
 					mNotes.close();
+					updateTable();
 				}
 			});
 			mNotes.setWidth(WIDTH);

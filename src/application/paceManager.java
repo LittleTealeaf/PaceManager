@@ -1,5 +1,6 @@
 package application;
 
+import java.util.ArrayList;
 import java.util.List;
 import classes.Goal;
 import classes.Team;
@@ -17,6 +18,7 @@ public class paceManager {
 	public static List<Goal> goals;
 	
 	public static void main(String[] args) {
+		paceManager.goals = new ArrayList<Goal>();
 		//Debug Only
 		teams = importTeams.getTeams();
 		importTeams.randomizeTimes();

@@ -18,10 +18,13 @@ public class Goal {
 		return division;
 	}
 	public String getDisplayTime() {
-		return time.toString();
+		if(time == null) return "";
+		return time.toString(true);
 	}
 	
 	public String toString() {
-		return division + ": " + time.toString();
+		String s = division;
+		if(time != null) s+=": " + time.toString(true);
+		return s;
 	}
 }
