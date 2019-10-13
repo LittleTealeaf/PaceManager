@@ -26,6 +26,9 @@ public class Team {
 	public Team() {
 		construct("","",null,null,null,null);
 	}
+	public Team(Team t) {
+		construct(t.team,t.division,t.names,t.start,t.finish,t.notes);
+	}
 	public Team(String tm) {
 		construct(tm,null,null,null,null,null);
 	}

@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 import classes.*;
 import javafx.collections.FXCollections;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -27,7 +28,6 @@ public class fxImport {
 	/**
 	 * 0 Start, 1 End
 	 */
-	private static int mSel;
 	
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -42,9 +42,9 @@ public class fxImport {
 		
 		tTeam = new TextField();
 		tTeam.setEditable(true);
-		tTeam.addEventHandler(KeyEvent.ANY, keyEvent -> {
+		tTeam.addEventHandler(KeyEvent.KEY_PRESSED, keyEvent -> {
 			if(keyEvent.getCode() == KeyCode.ENTER) {
-				if(mSel != -1) {
+				if(cMethod.getSelectionModel().getSelectedIndex() != -1) {
 					tData.requestFocus();
 				} else cMethod.requestFocus();
 			}
@@ -52,18 +52,16 @@ public class fxImport {
 		
 		Label lChoice = new Label("Import Option:");
 		
-		mSel = -1;
 		cMethod = new ChoiceBox(FXCollections.observableArrayList("Start Time", "End Time"));
 		cMethod.getSelectionModel().selectedIndexProperty().addListener((obs,oldv,newv) -> {
-			mSel = newv.intValue();
-			if(mSel != -1) {
+			if(cMethod.getSelectionModel().getSelectedIndex() != -1) {
 				tData.setEditable(true);
 				tData.setPromptText("");
 			}
 		});
-		cMethod.addEventHandler(KeyEvent.ANY, keyEvent -> {
+		cMethod.addEventHandler(KeyEvent.KEY_PRESSED, keyEvent -> {
 			if(keyEvent.getCode() == KeyCode.ENTER) {
-				if(mSel != -1) {
+				if(cMethod.getSelectionModel().getSelectedIndex() != -1) {
 					tData.requestFocus();
 				}
 			}
@@ -73,9 +71,9 @@ public class fxImport {
 		tData = new TextField();
 		tData.setEditable(false);
 		tData.setPromptText("Select an Import Option");
-		tData.addEventHandler(KeyEvent.ANY, keyEvent -> {
+		tData.addEventHandler(KeyEvent.KEY_PRESSED, keyEvent -> {
 			if(keyEvent.getCode() == KeyCode.ENTER) {
-				save(tTeam.getText(),mSel,tData.getText());
+				saveImport();
 			}
 		});
 		
@@ -90,7 +88,40 @@ public class fxImport {
 		sImport.show();
 	}
 	
-	private static void save(String team, int sel, String data) {
-        System.out.println(paceManager.getTeam(team));
+	private static void saveImport() {
+		if(tTeam.getText() == "") {
+			tTeam.setPromptText("Please Type a Team Identifier");
+			return;
+		}
+		Team t = paceManager.getTeam(tTeam.getText());
+		Boolean isNew = t == null;
+		if(isNew) t = new Team(tTeam.getText());
+		Time v;
+		switch(cMethod.getSelectionModel().getSelectedIndex()) {
+		case 0:
+			v = new Time(tData.getText());
+			if(v.error == 0) t.start = v;
+			else {
+				lData.setText("Could not Parse");
+				return;
+			}
+			break;
+		case 1:
+			v = new Time(tData.getText());
+			if(v.error == 0) t.finish = v;
+			else {
+				lData.setText("Could not Parse");
+				return;
+			}
+			break;
+		default:
+			lData.setText("Variable Selection not valid");
+			return;
+		}
+		if(isNew) paceManager.teams.add(t);
+		tTeam.setText("");
+		tData.setText("");
+		fxMain.updateTable();
+		tTeam.requestFocus();
 	}
 }
