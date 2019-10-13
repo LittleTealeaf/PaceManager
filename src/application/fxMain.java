@@ -33,6 +33,8 @@ import javafx.stage.StageStyle;
 public class fxMain extends Application {
 	
 	private static TableView<Team> table;
+	
+	private static Stage sMRef;
 
 	public static void open(String[] args) {
 		launch(args);
@@ -41,6 +43,7 @@ public class fxMain extends Application {
 	@SuppressWarnings({ "rawtypes", "unchecked", "exports" })
 	@Override
 	public void start(Stage sMain) {
+		sMRef = sMain;
 		sMain.setTitle("Pace Manager " + paceManager.version);
 		sMain.widthProperty().addListener((obs,oldv,newv) -> {
 			resizeColumns();
@@ -177,6 +180,8 @@ public class fxMain extends Application {
 	
 	private static void openNotes(Team t, double x, double y) {
 		nTeam = t;
+		final double WIDTH = 300;
+		final double HEIGHT = 300;
 		if(mNotes == null) {
 			mNotes = new Stage();
 			mNotes.setAlwaysOnTop(true);
@@ -187,11 +192,13 @@ public class fxMain extends Application {
 					mNotes.close();
 				}
 			});
-			mNotes.setWidth(300);
-			mNotes.setHeight(300);
+			mNotes.setWidth(WIDTH);
+			mNotes.setHeight(HEIGHT);
 		}
-		mNotes.setX(x);
-		mNotes.setY(y);
+		
+		mNotes.setX(Math.min(sMRef.getWidth() - WIDTH, x));
+		mNotes.setY(Math.min(sMRef.getHeight() - HEIGHT, y));
+		
 		
 		nText = new TextArea();
 		nText.textProperty().addListener((observable, oldValue, newValue) -> {
