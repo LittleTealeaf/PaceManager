@@ -1,11 +1,7 @@
 package application;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import classes.*;
 import javafx.collections.FXCollections;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
