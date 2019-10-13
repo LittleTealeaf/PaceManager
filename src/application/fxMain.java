@@ -20,6 +20,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -81,6 +84,13 @@ public class fxMain extends Application {
 		});
 		m2.getItems().addAll(m2Import,m2Goals);
 		
+		Button bCreate = new Button("Create Team");
+		bCreate.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				fxTeam.open(null);
+			}
+		});
+		
 		MenuBar mb = new MenuBar();
 		mb.getMenus().addAll(m1,m2);
 		
@@ -103,7 +113,7 @@ public class fxMain extends Application {
 						if(col == 5) {
 							openNotes(sel, click.getScreenX(), click.getScreenY());
 						} else {
-							//TODO opens a window for everything
+							fxTeam.open(sel);
 						}
 					} catch(IndexOutOfBoundsException e) {}
 				}
@@ -147,8 +157,7 @@ public class fxMain extends Application {
         table.prefWidthProperty().bind(sMain.widthProperty());
 		
 		
-		VBox vb = new VBox(mb);
-		vb.getChildren().add(table);
+		VBox vb = new VBox(mb,bCreate,table);
 		
 		Scene sc = new Scene(vb, 500, 300);
 		sMain.setMaximized(true);
@@ -176,7 +185,7 @@ public class fxMain extends Application {
 			table.getColumns().get(3).getColumns().get(1).setPrefWidth(wTime);
 			double remSpace = table.getWidth() - wTeam - wDiv - wTime * 2;
 			table.getColumns().get(2).setPrefWidth(remSpace * 0.6);
-			table.getColumns().get(4).setPrefWidth(remSpace * 0.4 - 5);
+			table.getColumns().get(4).setPrefWidth(remSpace * 0.39);
 		}
 	}
 	
@@ -229,7 +238,6 @@ public class fxMain extends Application {
 			notes.add(tmp);
 			if(notes.get(0).contentEquals("")) notes.remove(0);
 			nTeam.notes = notes;
-			System.out.println(notes);
 		});
 		nText.prefWidthProperty().bind(mNotes.maxWidthProperty());
 		nText.prefHeightProperty().bind(mNotes.heightProperty());

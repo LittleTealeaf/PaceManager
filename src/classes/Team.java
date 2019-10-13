@@ -11,14 +11,18 @@ public class Team {
 	public List<String> notes;
 	public Time start;
 	public Time finish;
+	public Boolean excluded;
 	
 	private void construct(String teamName, String div, List<String> nms, Time Start, Time Finish, List<String> note) {
+		excluded = false;
 		team = teamName;
 		division = div;
 		names = nms;
 		start = Start;
 		finish = Finish;
 		notes = note;
+		if(division == null) division = "";
+		if(team == null) team = "";
 		if(notes == null) notes = new ArrayList<String>();
 		if(names == null) names = new ArrayList<String>();
 	}

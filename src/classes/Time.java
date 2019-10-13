@@ -95,4 +95,7 @@ public class Time {
 		retString+=suf;
 		return(retString);
 	}
+	public boolean tEquals(Time t) {
+		return time == t.time;
+	}
 }

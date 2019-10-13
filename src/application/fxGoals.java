@@ -26,6 +26,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class fxGoals {
@@ -146,6 +147,7 @@ public class fxGoals {
 		Label leTime = new Label("Optimal Time");
 		
 		leError = new Label("");
+		leError.setTextFill(Color.RED);
 		
 		HBox v1h1 = new HBox(teDiv,leDiv);
 		v1h1.setSpacing(10);

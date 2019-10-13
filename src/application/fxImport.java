@@ -10,6 +10,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class fxImport {
@@ -71,6 +72,7 @@ public class fxImport {
 		});
 		
 		lData = new Label("");
+		lData.setTextFill(Color.RED);
 		tData = new TextField();
 		tData.setEditable(false);
 		tData.setPromptText("Select an Import Option");
