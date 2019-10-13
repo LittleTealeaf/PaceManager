@@ -109,6 +109,16 @@ public class fxMain extends Application {
 				}
 			}
 		});
+		table.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent k) {
+				if(k.getCode() == KeyCode.DELETE) {
+					try {
+						paceManager.deleteTeam(table.getSelectionModel().getSelectedItem());
+					} catch(IndexOutOfBoundsException e) {}
+				}
+			}
+		});
 
 		
 		TableColumn cTeamName = new TableColumn("Team");

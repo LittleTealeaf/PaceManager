@@ -16,7 +16,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -252,8 +251,6 @@ public class fxGoals {
 	}
 	
 	private static void resizeWindow() {
-		double w = sGoals.getWidth();
-		double h = sGoals.getHeight();
 		//System.out.println(w + " " + h);
 
 		table.getColumns().get(0).setPrefWidth(0.5*table.getWidth());
