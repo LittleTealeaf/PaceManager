@@ -176,7 +176,7 @@ public class fxMain extends Application {
 			table.getColumns().get(3).getColumns().get(1).setPrefWidth(wTime);
 			double remSpace = table.getWidth() - wTeam - wDiv - wTime * 2;
 			table.getColumns().get(2).setPrefWidth(remSpace * 0.6);
-			table.getColumns().get(4).setPrefWidth(remSpace * 0.4);
+			table.getColumns().get(4).setPrefWidth(remSpace * 0.4 - 5);
 		}
 	}
 	
@@ -210,29 +210,29 @@ public class fxMain extends Application {
 		mNotes.setX(Math.min(sMRef.getWidth() - WIDTH, x));
 		mNotes.setY(Math.min(sMRef.getHeight() - HEIGHT, y));
 		
-		
 		nText = new TextArea();
+		int pos = 0;
+		for(String l : t.notes) {
+			if(pos == 0) nText.setText(l);
+			else nText.setText(nText.getText() + "\n" + l);
+			pos++;
+		}
 		nText.textProperty().addListener((observable, oldValue, newValue) -> {
 			List<String> notes = new ArrayList<String>();
 			String tmp = "";
 			for(char c : nText.getText().toCharArray()) {
-				if(c == '\n') {
+				if(c == '\n' || c == '\r') {
 					notes.add(tmp);
 					tmp = "";
 				} else tmp+=c;
 			}
 			notes.add(tmp);
-			if(notes.get(0) == "") notes.remove(0);
-			paceManager.teams.get(paceManager.teams.indexOf(nTeam)).notes = notes;
+			if(notes.get(0).contentEquals("")) notes.remove(0);
+			nTeam.notes = notes;
+			System.out.println(notes);
 		});
 		nText.prefWidthProperty().bind(mNotes.maxWidthProperty());
 		nText.prefHeightProperty().bind(mNotes.heightProperty());
-		
-		int pos = 0;
-		for(String l : t.notes) {
-			if(pos == 0) nText.setText(l);
-			else nText.setText(nText.getText() + "\n" + l);
-		}
 		
 		Button nbClose = new Button();
 		nbClose.setText("Close");
