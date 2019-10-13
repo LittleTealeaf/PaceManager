@@ -35,8 +35,14 @@ public class fxImport {
 		if(sImport != null) sImport.close();
 		sImport = new Stage();
 		sImport.setWidth(500);
-		sImport.setHeight(200);
+		sImport.setHeight(100);
 		sImport.setTitle("Import Data");
+		sImport.setAlwaysOnTop(true);
+		sImport.addEventFilter(KeyEvent.KEY_PRESSED, keyEvent -> {
+			if(keyEvent.getCode() == KeyCode.ESCAPE) {
+				sImport.close();
+			}
+		});
 		
 		Label lTeam = new Label("Team");
 		
