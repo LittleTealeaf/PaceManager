@@ -29,7 +29,7 @@ public class paceManager {
 		for(Team t : teams) {
 			String a = t.team.toLowerCase().replace(" ", "").replace("\n", "").replace("\r","");
 			String b = tmName.toLowerCase().replace(" ", "").replace("\n", "").replace("\r","");
-			if(a == b) return t;
+			if(a.contentEquals(b)) return t;
 		}
 		return null;
 	}

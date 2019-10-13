@@ -91,13 +91,6 @@ public class fxImport {
 	}
 	
 	private static void save(String team, int sel, String data) {
-		Pattern pt = Pattern.compile("[^a-zA-Z0-9]");
-        Matcher match= pt.matcher(team);
-        while(match.find())
-        {
-            String s= match.group();
-        team=team.replaceAll("\\"+s, "");
-        }
         System.out.println(paceManager.getTeam(team));
 	}
 }
