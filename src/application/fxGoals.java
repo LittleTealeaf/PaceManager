@@ -113,6 +113,7 @@ public class fxGoals {
 		sGoals.setScene(sc);
 		resizeWindow();
 		sGoals.show();
+		updateTable();
 	}
 	
 	private static Stage sgEdit;

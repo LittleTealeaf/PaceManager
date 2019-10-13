@@ -21,8 +21,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -69,30 +67,32 @@ public class fxMain extends Application {
 		});
 		m1.getItems().addAll(m1Open,m1Save,m1SaveAs,m1Close,m1Exit);
 		
-		Menu m2 = new Menu("Pace");
+		Menu m2 = new Menu("Teams");
+		MenuItem m2Create = new MenuItem("Create Team");
+		m2Create.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				fxTeam.open(null);
+			}
+		});
 		MenuItem m2Import = new MenuItem("Import");
 		m2Import.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				fxImport.open();
 			}
 		});
-		MenuItem m2Goals = new MenuItem("Goal Times");
-		m2Goals.setOnAction(new EventHandler<ActionEvent>() {
+		m2.getItems().addAll(m2Create,m2Import);
+
+		Menu m3 = new Menu("Pace");
+		MenuItem m3Goals = new MenuItem("Goal Times");
+		m3Goals.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				fxGoals.open();
 			}
 		});
-		m2.getItems().addAll(m2Import,m2Goals);
-		
-		Button bCreate = new Button("Create Team");
-		bCreate.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				fxTeam.open(null);
-			}
-		});
+		m3.getItems().addAll(m3Goals);
 		
 		MenuBar mb = new MenuBar();
-		mb.getMenus().addAll(m1,m2);
+		mb.getMenus().addAll(m1,m2,m3);
 		
 		//Table 
 		table = new TableView<Team>();
@@ -157,7 +157,8 @@ public class fxMain extends Application {
         table.prefWidthProperty().bind(sMain.widthProperty());
 		
 		
-		VBox vb = new VBox(mb,bCreate,table);
+        //TODO add hbox with est arrivals and such
+		VBox vb = new VBox(mb,table);
 		
 		Scene sc = new Scene(vb, 500, 300);
 		sMain.setMaximized(true);
