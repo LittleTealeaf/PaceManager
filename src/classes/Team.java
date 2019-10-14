@@ -95,5 +95,9 @@ public class Team {
 		}
 		return "";
 	}
+	public String getElapsedFXM() {
+		if(finish != null && start != null) return new Time(finish.time - start.time).toString(true);
+		return "";
+	}
 	
 }

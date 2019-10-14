@@ -189,8 +189,10 @@ public class fxMain extends Application {
 		cTStart.setCellValueFactory(new PropertyValueFactory<Team,String>("startFXM"));
 		TableColumn cTFinish = new TableColumn("Finish");
 		cTFinish.setCellValueFactory(new PropertyValueFactory<Team,String>("finishFXM"));
+		TableColumn cTElapsed = new TableColumn("Elapsed");
+		cTElapsed.setCellValueFactory(new PropertyValueFactory<Team,String>("elapsedFXM"));
 		
-		cTime.getColumns().addAll(cTStart,cTFinish);
+		cTime.getColumns().addAll(cTStart,cTFinish,cTElapsed);
 		TableColumn cNotes = new TableColumn("Notes");
 		cNotes.setCellValueFactory(new PropertyValueFactory<Team,String>("notesDisplay"));
 		
@@ -227,7 +229,8 @@ public class fxMain extends Application {
 			table.getColumns().get(1).setPrefWidth(wDiv);
 			table.getColumns().get(3).getColumns().get(0).setPrefWidth(wTime);
 			table.getColumns().get(3).getColumns().get(1).setPrefWidth(wTime);
-			double remSpace = table.getWidth() - wTeam - wDiv - wTime * 2;
+			table.getColumns().get(3).getColumns().get(2).setPrefWidth(wTime);
+			double remSpace = table.getWidth() - wTeam - wDiv - wTime * 3;
 			table.getColumns().get(2).setPrefWidth(remSpace * 0.6);
 			table.getColumns().get(4).setPrefWidth(remSpace * 0.39);
 		}
