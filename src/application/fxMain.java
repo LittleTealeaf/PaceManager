@@ -2,25 +2,29 @@ package application;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-import classes.Team;
+import classes.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -35,7 +39,7 @@ public class fxMain extends Application {
 	
 	private static TableView<Team> table;
 	
-	private static Stage sMRef;
+	public static Stage sMRef;
 
 	public static void open(String[] args) {
 		launch(args);
@@ -55,17 +59,49 @@ public class fxMain extends Application {
 		
 		//Menus
 		Menu m1 = new Menu("File");
+		MenuItem m1New = new MenuItem("New");
+		m1New.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("Create New?");
+				alert.setHeaderText("Opening a new file will clear the currently loaded file");
+				alert.setContentText("Make sure that you've saved the loaded one before accepting");
+				Optional<ButtonType> result = alert.showAndWait();
+				if(result.get() != ButtonType.OK) {
+					return;
+				}
+				fileManager.loadedFile = null;
+				paceManager.goals = new ArrayList<Goal>();
+				paceManager.teams = new ArrayList<Team>();
+				updateTable();
+			}
+		});
 		MenuItem m1Open = new MenuItem("Open");
+		m1Open.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				fileManager.open();
+			}
+		});
 		MenuItem m1Save = new MenuItem("Save");
+		m1Save.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				fileManager.save();
+			}
+		});
 		MenuItem m1SaveAs = new MenuItem("Save As");
-		MenuItem m1Close = new MenuItem("Close");
+		m1SaveAs.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				fileManager.saveAs();
+			}
+		});
+		SeparatorMenuItem m1Separator1 = new SeparatorMenuItem();
 		MenuItem m1Exit = new MenuItem("Exit");
 		m1Exit.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				System.exit(0);
 			}
 		});
-		m1.getItems().addAll(m1Open,m1Save,m1SaveAs,m1Close,m1Exit);
+		m1.getItems().addAll(m1New,m1Open,m1Save,m1SaveAs,m1Separator1,m1Exit);
 		
 		Menu m2 = new Menu("Teams");
 		MenuItem m2Create = new MenuItem("Create Team");
@@ -74,13 +110,20 @@ public class fxMain extends Application {
 				fxTeam.open(null);
 			}
 		});
+		SeparatorMenuItem m2Separator1 = new SeparatorMenuItem();
 		MenuItem m2Import = new MenuItem("Import");
 		m2Import.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				fxImport.open();
 			}
 		});
-		m2.getItems().addAll(m2Create,m2Import);
+		MenuItem m2ImportFile = new MenuItem("Import from File...");
+		m2ImportFile.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				
+			}
+		});
+		m2.getItems().addAll(m2Create,m2Separator1,m2Import,m2ImportFile);
 
 		Menu m3 = new Menu("Pace");
 		MenuItem m3Goals = new MenuItem("Goal Times");

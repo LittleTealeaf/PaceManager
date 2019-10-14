@@ -5,6 +5,10 @@ public class Goal {
 	public String division;
 	public Time time;
 	
+	public Goal() {
+		division = "";
+		time = null;
+	}	
 	public Goal(String div) {
 		division = div;
 		time = null;

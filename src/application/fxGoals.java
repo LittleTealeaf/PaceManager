@@ -30,8 +30,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class fxGoals {
-	
-	public static boolean alertOnDelete = false;
 
 	private static Stage sGoals;
 	private static TableView<Goal> table;
@@ -242,7 +240,7 @@ public class fxGoals {
 	}
 	
 	public static void deleteDiv(Goal g) {
-		if(alertOnDelete) {
+		if(pacePreferences.alertOnDelete) {
 			Alert conf = new Alert(AlertType.CONFIRMATION);
 			conf.setTitle("Delete " + g.division + "?");
 			conf.setHeaderText("Do you really want to delete " + g.division + "?");

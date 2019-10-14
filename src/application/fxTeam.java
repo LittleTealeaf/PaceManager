@@ -137,7 +137,7 @@ public class fxTeam {
 		r.division = tDiv.getText();
 		r.start = new Time(tStart.getText());
 		if(r.start.error != 0) r.start = null;
-		r.finish = new Time(tStart.getText());
+		r.finish = new Time(tFinish.getText());
 		if(r.finish.error != 0) r.finish = null;
 		String tmp = "";
 		List<String> tmpRid = new ArrayList<String>();
@@ -169,6 +169,7 @@ public class fxTeam {
 			lError.setText("Must include a Team Identifier");
 			return false;
 		}
+		
 		if(team == null) {
 			Team existingTeam = paceManager.getTeam(tTeam.getText());
 			if(existingTeam != null) {

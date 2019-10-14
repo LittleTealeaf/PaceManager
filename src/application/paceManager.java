@@ -18,14 +18,14 @@ import javafx.scene.control.Alert.AlertType;
 public class paceManager {
 	
 	public static final String version = "0.1";
-	
-	public static final boolean alertOnDelete = true;
 
 	public static List<Team> teams;
 	public static List<Goal> goals;
 	
 	public static void main(String[] args) {
-		paceManager.goals = new ArrayList<Goal>();
+		pacePreferences.alertOnDelete = true;
+		teams = new ArrayList<Team>();
+		goals = new ArrayList<Goal>();
 		//Debug Only
 		teams = importTeams.getTeams();
 		importTeams.randomizeTimes();
@@ -44,7 +44,7 @@ public class paceManager {
 	}
 	
 	public static void deleteTeam(Team t) {
-		if(alertOnDelete) {
+		if(pacePreferences.alertOnDelete) {
 			Alert conf = new Alert(AlertType.CONFIRMATION);
 			conf.setTitle("Delete " + t.team + "?");
 			conf.setHeaderText("Do you really want to delete " + t.team + "?");
