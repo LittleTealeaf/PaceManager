@@ -21,6 +21,9 @@ public class fileManager {
 	
 	public static File loadedFile;
 
+	/**
+	 * Saves the currently loaded file, if there is no file or the file does not exist it will use the save-as script
+	 */
 	public static void save() {
 		if(loadedFile == null || !Files.exists(loadedFile.toPath(), null)) {
 			saveAs();
@@ -29,12 +32,18 @@ public class fileManager {
 			fileSave(loadedFile);
 		}
 	}
+	/**
+	 * Opens a "save-as" dialog
+	 */
 	public static void saveAs() {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Save File");
 		fileChooser.getExtensionFilters().add(new ExtensionFilter("Pace Files","*.pace"));
 		fileSave(fileChooser.showSaveDialog(fxMain.sMRef));
 	}
+	/**
+	 * Opens an "open file" dialog to pass to the openFile method
+	 */
 	public static void open() {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open Pace File");
@@ -42,6 +51,10 @@ public class fileManager {
 		openFile(fileChooser.showOpenDialog(fxMain.sMRef));	
 	}
 	
+	/**
+	 * Opens a specific file
+	 * @param file file to open (should be a *.pace file)
+	 */
 	private static void openFile(File file) {
 		try {
 			Path filePath = file.toPath();
@@ -53,6 +66,10 @@ public class fileManager {
 		} catch (NullPointerException e) {}
 	}
 
+	/**
+	 * Saves pace data to a file
+	 * @param file the file to save data to
+	 */
 	private static void fileSave(File file) {
 		if(file != null) {
 			try {
@@ -70,7 +87,11 @@ public class fileManager {
 			}
 		}
 	}
-
+	
+	/**
+	 * Compiles all the data into a single string
+	 * @return A String of all the data in the pace
+	 */
 	private static String saveData() {
 		String ret = "";
 		ret+="<goaltime>";
@@ -106,6 +127,11 @@ public class fileManager {
 		ret+="</teams>";
 		return(ret);
 	}
+	
+	/**
+	 * Parses data from a save (from saveData method)
+	 * @param data from saveData()
+	 */
 	public static void getData(String data) {
 		//Method: Split everything into a list of strings, then go from there
 		List<String> parData = new ArrayList<String>();
