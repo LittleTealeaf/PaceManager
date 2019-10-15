@@ -220,22 +220,31 @@ public class fxMain extends Application {
 		resizeColumns();
 	}
 	
+	/**
+	 * Automatically resizes the columns to the table
+	 */
 	private static void resizeColumns() {
 		final double wTeam = 50;
 		final double wDiv = 70;
 		final double wTime = 80;
+		
+		//Min width to apply the proper formatting
 		if(table.getWidth() > 420) {
 			table.getColumns().get(0).setPrefWidth(wTeam);
 			table.getColumns().get(1).setPrefWidth(wDiv);
 			table.getColumns().get(3).getColumns().get(0).setPrefWidth(wTime);
 			table.getColumns().get(3).getColumns().get(1).setPrefWidth(wTime);
 			table.getColumns().get(3).getColumns().get(2).setPrefWidth(wTime);
+			
+			//Remaining columns have variable width
 			double remSpace = table.getWidth() - wTeam - wDiv - wTime * 3;
 			table.getColumns().get(2).setPrefWidth(remSpace * 0.6);
 			table.getColumns().get(4).setPrefWidth(remSpace * 0.39);
 		}
 	}
-	
+	/**
+	 * Closes the sub-windows to this class
+	 */
 	public static void closeSubWindows() {
 		if(mNotes.isShowing()) mNotes.close();
 	}
@@ -244,11 +253,20 @@ public class fxMain extends Application {
 	private static TextArea nText;
 	private static Team nTeam;
 	
+	/**
+	 * Method to open the sub-notes window
+	 * @param t Team to open notes
+	 * @param x The x position of the mouse
+	 * @param y The y position of the mouse
+	 */
 	private static void openNotes(Team t, double x, double y) {
 		nTeam = t;
+		// WIDTH and HEIGHT are the set width and height of the box
 		final double WIDTH = 300;
 		final double HEIGHT = 300;
+		
 		if(mNotes == null) {
+			//Stage setup, only needs to happen once
 			mNotes = new Stage();
 			mNotes.setAlwaysOnTop(true);
 			mNotes.initStyle(StageStyle.UNDECORATED);
@@ -263,16 +281,20 @@ public class fxMain extends Application {
 			mNotes.setHeight(HEIGHT);
 		}
 		
+		//Keeps from window showing off-screen
 		mNotes.setX(Math.min(sMRef.getWidth() - WIDTH, x));
 		mNotes.setY(Math.min(sMRef.getHeight() - HEIGHT, y));
 		
 		nText = new TextArea();
+		
+		//Get and display the notes
 		int pos = 0;
 		for(String l : t.notes) {
 			if(pos == 0) nText.setText(l);
 			else nText.setText(nText.getText() + "\n" + l);
 			pos++;
 		}
+		//Add a listener that saves the data (reverses the display) whenever the field is edited. A bit cumbersome but it works nonetheless
 		nText.textProperty().addListener((observable, oldValue, newValue) -> {
 			List<String> notes = new ArrayList<String>();
 			String tmp = "";
@@ -286,6 +308,7 @@ public class fxMain extends Application {
 			if(notes.get(0).equals("")) notes.remove(0);
 			nTeam.notes = notes;
 		});
+		
 		nText.prefWidthProperty().bind(mNotes.maxWidthProperty());
 		nText.prefHeightProperty().bind(mNotes.heightProperty());
 		
@@ -301,12 +324,14 @@ public class fxMain extends Application {
 		VBox vb = new VBox();
 		vb.getChildren().addAll(nText, nbClose);
 		Scene sc = new Scene(vb,mNotes.getWidth(),mNotes.getHeight());
+		
 		sc.addEventHandler(KeyEvent.ANY, keyEvent -> {
 			if(keyEvent.getCode() == KeyCode.ESCAPE) {
 				mNotes.close();
 				updateTable();
 			}
 		});
+		
 		mNotes.setScene(sc);
 		mNotes.show();
 	}

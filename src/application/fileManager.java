@@ -17,7 +17,7 @@ import java.nio.file.Path;
 public class fileManager {
 
 	private static final String ind = "|";
-	
+	private static final char[] ILLEGAL_CHARS = {'/','<','>','[',']','/','\\','=','|'};
 	
 	public static File loadedFile;
 
@@ -97,7 +97,6 @@ public class fileManager {
 		ret+="<goaltime>";
 		for(Goal a : paceManager.goals) {
 			ret+="<division><name>" + a.division + "</name>";
-			// + a.goal.ToString() + "</Time></division>";
 			if(a.time != null) ret+="<time>" + a.time.toString() + "</time>";
 			ret+="</division>";
 		}
@@ -119,7 +118,6 @@ public class fileManager {
 			for(String b : a.notes) {
 				ret+="<nline>";
 				ret+=b;
-				if(b == "") System.out.println("NAOWEFNOAWFAEW");
 				ret+="</nline>";
 			}
 			ret+="</notes></team>";
@@ -133,7 +131,7 @@ public class fileManager {
 	 * @param data from saveData()
 	 */
 	public static void getData(String data) {
-		//Method: Split everything into a list of strings, then go from there
+		//Splits the "data" string into a list of strings (by separation)
 		List<String> parData = new ArrayList<String>();
 		String parWord = "";
 		int pos = 0;
@@ -158,21 +156,23 @@ public class fileManager {
 				}
 			}
 		}
-		//while(parData.contains("")) parData.remove("");
-		while(parData.contains(ind + "rname")) parData.remove(ind + "rname");
-		while(parData.contains(ind + "/rname")) parData.remove(ind + "/rname");
-		while(parData.contains(ind + "nline")) parData.remove(ind + "nline");
-		while(parData.contains(ind + "/nline")) parData.remove(ind + "/nline");
-		//System.out.println(parData);
-		
+		//remove any unnecessary lines
+		for(String s : new String[]{"rname","/rname","nline","/nline"}) {
+			while(parData.contains(ind + s)) parData.remove(ind + s);
+		}
+		//new lists to set the teams/goals to
 		List<Goal> setGoalTimes = new ArrayList<Goal>();
 		List<Team> setTeams = new ArrayList<Team>();
 		
 		String loc = "/";
+		//Temporary Values
+		
 		Goal tmGoal = new Goal();
 		Team tmTeam = new Team();
+		/*
+		 * The following code is just a set of instructions on what to do at each index (or path that it's currently in)
+		 */
 		for(String a : parData) {
-			//System.out.print("\n" + loc + " | ");
 			switch(loc) {
 			case "/goaltime":
 				// Looking for Divisions
@@ -216,11 +216,11 @@ public class fileManager {
 			loc = setLoc(loc,a);
 		}
 		// Setting the Data
-		System.out.println(setTeams);
 		paceManager.teams = setTeams;
 		paceManager.goals = setGoalTimes;
 		fxMain.updateTable();
 	}
+	//Sets the current location depending on what's stated
 	private static String setLoc(String curLoc, String a) {
 		String ret = curLoc;
 		if(a.contains(ind)) {
@@ -234,12 +234,16 @@ public class fileManager {
 		}
 		return ret;
 	}
-	
+
+	/**
+	 * Checks if a string is valid
+	 * @param s The String to be checked
+	 * @return True if it works, false if it contains invalid characters
+	 */
 	public static boolean checkValid(String s) {
-		char[] illegalChars = {'/','<','>','[',']','/','\\','='};
 		List<Character> chars = new ArrayList<Character>();
 		for(char c : s.toCharArray()) chars.add(c);
-		for(char c : illegalChars) {
+		for(char c : ILLEGAL_CHARS) {
 			if(chars.contains(c)) return false;
 		}
 		return true;

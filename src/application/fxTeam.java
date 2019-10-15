@@ -26,6 +26,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class fxTeam {
+	@SuppressWarnings("exports")
 	public static Stage sTeam;
 	
 	private static Team team;
@@ -104,6 +105,7 @@ public class fxTeam {
 			tTeam.requestFocus();
 		}
 		else {
+			//Loads the current team details
 			sTeam.setTitle("Edit Team");
 			tTeam.setText(t.team);
 			tDiv.setText(t.division);
@@ -169,10 +171,11 @@ public class fxTeam {
 			lError.setText("Must include a Team Identifier");
 			return false;
 		}
-		
+		//If it's "making a team"
 		if(team == null) {
 			Team existingTeam = paceManager.getTeam(tTeam.getText());
 			if(existingTeam != null) {
+				//Confirms if the user would want to override the details
 				Alert alert = new Alert(AlertType.NONE);
 				alert.setTitle("Team ID Taken");
 				alert.setHeaderText("Would you like to overwrite this team?");

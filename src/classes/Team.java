@@ -13,6 +13,15 @@ public class Team {
 	public Time finish;
 	public Boolean excluded;
 	
+	/**
+	 * Central Construction of the class
+	 * @param teamName Team Identifier
+	 * @param div Division 
+	 * @param nms List<String> of Names
+	 * @param Start Start Time using the Time class
+	 * @param Finish Finish Time using the Time class
+	 * @param note Notes in a List<String>
+	 */
 	private void construct(String teamName, String div, List<String> nms, Time Start, Time Finish, List<String> note) {
 		excluded = false;
 		team = teamName;
@@ -49,10 +58,14 @@ public class Team {
 		construct(tm,div,riders,start,finish,note);
 	}
 	
+	/**
+	 * Gets the elapsed time
+	 * @return Time between start and finish, returns null if either start or finish is null
+	 */
 	public Time elapsed() {
 		Time r = new Time();
 		if(start == null || finish == null) {
-			r.error = 2;
+			return null;
 		} else r.time = finish.time - start.time;
 		return r;
 	}
@@ -66,7 +79,7 @@ public class Team {
 		return r;
 	}
 	
-	// Integration for fxMain
+	// The following lines of codes are gets for specific parts of the class used with JavaFX's table display
 	public String getTeam() {
 		return team;
 	}

@@ -1,6 +1,5 @@
 package application;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -46,10 +45,10 @@ public class fxGoals {
 			resizeWindow();
 		});
 		
+		//Creating the Table
 		table = new TableView<Goal>();
 		table.setEditable(false);
 		table.prefWidthProperty().bind(sGoals.widthProperty());
-		
 		
 		TableColumn tDiv = new TableColumn("Division");
 		tDiv.setCellValueFactory(new PropertyValueFactory<Goal,String>("division"));
@@ -80,6 +79,7 @@ public class fxGoals {
 			}
 		});
 		
+		//Adding buttons to the bottom of the window
 		HBox hBottom = new HBox();
 		hBottom.setSpacing(10);
 		Button bCreate = new Button("New");
@@ -163,12 +163,21 @@ public class fxGoals {
 			}
 		});
 		Button bCancel = new Button("Cancel");
+		bCancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent e) {
+				
+			}
+		});
+		
 		VBox vb2 = new VBox(bSave,new Label(""),bCancel);
 		vb2.setSpacing(10);
+		
 		HBox hb = new HBox(vb1,vb2);
 		hb.setSpacing(20);
 		hb.setPadding(new Insets(15, 12, 15, 12));
+		
 		Scene sc = new Scene(hb);
+		
 		sgEdit.setScene(sc);
 		sgEdit.show();
 		if(g != null) {
@@ -178,8 +187,13 @@ public class fxGoals {
 		} else teDiv.requestFocus();
 	}
 	private static void eSave(Goal g) {
+		//Clears Error Message
+		leError.setText("");
+		//Checks for any basic error
 		if(teDiv.getText() == "") {
 			leError.setText("Please include a division name");
+		} else if(!fileManager.checkValid(teDiv.getText())) {
+			leError.setText("String cannot include the following characters:");
 		} else {
 			Time t = new Time(teTime.getText());
 			if(t.error == 1) {
@@ -195,6 +209,7 @@ public class fxGoals {
 				Goal v = new Goal(teDiv.getText());
 				if(t.error == 0) v.time = t;
 				for(Goal a : paceManager.goals) if(a.division.toLowerCase().equals(v.division.toLowerCase())) {
+					//Confirmation message if 
 					Alert conf = new Alert(AlertType.CONFIRMATION);
 					conf.setTitle("Divison Exists");
 					conf.setHeaderText("Would you like to update the existing division?");

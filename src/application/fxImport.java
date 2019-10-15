@@ -93,6 +93,10 @@ public class fxImport {
 		sImport.show();
 	}
 	
+	/**
+	 * Method to save the data put into the text fields according to the import method
+	 * Once it completes successfully, will clear fields
+	 */
 	private static void saveImport() {
 		if(tTeam.getText() == "") {
 			tTeam.setPromptText("Please Type a Team Identifier");
