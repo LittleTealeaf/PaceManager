@@ -22,7 +22,7 @@ public class fileManager {
 	public static File loadedFile;
 
 	public static void save() {
-		if(loadedFile == null) {
+		if(loadedFile == null || !Files.exists(loadedFile.toPath(), null)) {
 			saveAs();
 			return;
 		} else {

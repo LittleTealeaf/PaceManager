@@ -160,6 +160,7 @@ public class fxTeam {
 		tmpNot.add(tmp);
 		r.notes = tmpNot;
 		r.excluded = cExclude.isArmed();
+		while(r.names.contains("")) r.names.contains("");
 		return r;
 	}
 	

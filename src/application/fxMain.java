@@ -283,7 +283,7 @@ public class fxMain extends Application {
 				} else tmp+=c;
 			}
 			notes.add(tmp);
-			if(notes.get(0).contentEquals("")) notes.remove(0);
+			if(notes.get(0).equals("")) notes.remove(0);
 			nTeam.notes = notes;
 		});
 		nText.prefWidthProperty().bind(mNotes.maxWidthProperty());
