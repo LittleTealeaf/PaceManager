@@ -29,7 +29,6 @@ public class fxTeam {
 	public static Stage sTeam;
 	
 	private static Team team;
-	private static boolean edited;
 	
 	private static TextField tTeam;
 	private static TextField tDiv;
