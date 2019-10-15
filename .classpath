@@ -16,7 +16,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/POI4.1.0">
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/POI(made from school)">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
