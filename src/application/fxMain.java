@@ -153,7 +153,7 @@ public class fxMain extends Application {
 						//System.out.println(row);
 						int col = pos.getColumn();
 						Team sel = table.getSelectionModel().getSelectedItem();
-						if(col == 5) {
+						if(col == 6) {
 							openNotes(sel, click.getScreenX(), click.getScreenY());
 						} else {
 							fxTeam.open(sel);
