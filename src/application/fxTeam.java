@@ -110,7 +110,7 @@ public class fxTeam {
 			tTeam.setText(t.team);
 			tDiv.setText(t.division);
 			tRiders.requestFocus();
-			if(t.excluded) cExclude.arm();
+			cExclude.setSelected(t.excluded);
 			if(t.start != null) tStart.setText(t.start.toString());
 			if(t.finish != null) tFinish.setText(t.finish.toString());
 			if(t.names.size()>0) {
@@ -160,8 +160,11 @@ public class fxTeam {
 		}
 		tmpNot.add(tmp);
 		r.notes = tmpNot;
-		r.excluded = cExclude.isArmed();
+		r.excluded = cExclude.isSelected();
+		
+		//Remove any empty names
 		while(r.names.contains("")) r.names.contains("");
+		
 		return r;
 	}
 	
