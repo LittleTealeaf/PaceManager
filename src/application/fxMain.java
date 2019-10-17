@@ -120,7 +120,7 @@ public class fxMain extends Application {
 		MenuItem m2ImportFile = new MenuItem("Import from File...");
 		m2ImportFile.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				
+				fileImport.importFile();
 			}
 		});
 		m2.getItems().addAll(m2Create,m2Separator1,m2Import,m2ImportFile);

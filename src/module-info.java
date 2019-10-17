@@ -7,4 +7,6 @@ module paceManager {
 	requires javafx.base;
 	requires javafx.graphics;
 	requires javafx.controls;
+	requires poi.ooxml;
+	requires poi;
 }

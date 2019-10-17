@@ -25,7 +25,7 @@ public class fileManager {
 	 * Saves the currently loaded file, if there is no file or the file does not exist it will use the save-as script
 	 */
 	public static void save() {
-		if(loadedFile == null || !Files.exists(loadedFile.toPath(), null)) {
+		if(loadedFile == null || !loadedFile.exists()) {
 			saveAs();
 			return;
 		} else {

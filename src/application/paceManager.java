@@ -29,7 +29,6 @@ public class paceManager {
 		//Debug Only
 		teams = importTeams.getTeams();
 		importTeams.randomizeTimes();
-		System.out.println(getTeam("441"));
 		
 		fxMain.open(args);
 	}
