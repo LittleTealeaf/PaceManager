@@ -14,7 +14,20 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import classes.Team;
+import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.Separator;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Tooltip;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class fileImport {
 	
@@ -35,13 +48,14 @@ public class fileImport {
 		}
 		
 		/*
-		 * WINDOW: import options
-		 * options include:
-		 * 	"delete unused teams" - selected unused teams
-		 * 	"Overwrite Values of teams? (or select which ones to overwrite)
+		 * Options:
+		 * unused teams: keep or remove
+		 * overwrite options: names? division? <-- not really an option tho, might not need?
 		 */
-		
 	}
+	
+	
+
 	
 	private static List<Team> getTeams(File file) {
 		if(file == null) return null;
@@ -87,7 +101,7 @@ public class fileImport {
 						}
 					}
 				}
-				
+				workbook.close();
 			} catch (IOException e) {
 				return null;
 			}
