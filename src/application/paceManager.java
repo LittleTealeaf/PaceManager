@@ -53,4 +53,14 @@ public class paceManager {
 		paceManager.teams.remove(t);
 		fxMain.updateTable();
 	}
+	
+	public static List<Team> getTeams(String division) {
+		List<Team> ret = new ArrayList<Team>();
+		for(Team t : teams) {
+			if(t.division.contentEquals(division)) {
+				ret.add(t);
+			}
+		}
+		return ret;
+	}
 }

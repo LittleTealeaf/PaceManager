@@ -113,4 +113,13 @@ public class Team {
 		return "";
 	}
 	
+	//Runtime Calculations
+	//Includes stuff like difference etc.
+	
+	public Time getDifference(Time goalTime) {
+		if(goalTime != null) {
+			return new Time(Math.abs(goalTime.time - elapsed().time));
+		} else return null;
+	}
+	
 }
