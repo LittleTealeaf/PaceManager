@@ -25,6 +25,10 @@ public class fileImport {
 		
 		//Get team script with results from file dialog
 		List<Team> teams = getTeams(fileChooser.showOpenDialog(fxMain.sMRef));
+		//File could not open
+		if(teams == null) return;
+		
+		//No Teams (add a test to make sure that the file is the valid file)
 		if(teams.size() == 0) {
 			// Alert that file could not open
 			return;
@@ -40,6 +44,7 @@ public class fileImport {
 	}
 	
 	private static List<Team> getTeams(File file) {
+		if(file == null) return null;
 		List<Team> teams = new ArrayList<Team>();
 		try {
 			FileInputStream stream = new FileInputStream(file);
