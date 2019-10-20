@@ -164,7 +164,7 @@ public class fxGoals {
 		Button bCancel = new Button("Cancel");
 		bCancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent e) {
-				
+				sgEdit.close();
 			}
 		});
 		
@@ -279,5 +279,7 @@ public class fxGoals {
 			table.getItems().addAll(paceManager.goals);
 			table.sort();
 		}
+		//Updates fxScores
+		fxScores.updateTabs();
 	}
 }

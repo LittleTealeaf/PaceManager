@@ -89,6 +89,6 @@ public class ScoreTab {
 		
 		double remSpace = width - (wTeam + wTime * 2);
 		table.getColumns().get(1).setPrefWidth(remSpace * 0.6);
-		table.getColumns().get(4).setPrefWidth(remSpace * 0.4 - 15);
+		table.getColumns().get(4).setPrefWidth(remSpace * 0.4 - 20);
 	}
 }
