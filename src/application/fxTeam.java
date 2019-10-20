@@ -40,6 +40,30 @@ public class fxTeam {
 	private static Label lError;
 	private static CheckBox cExclude;
 	
+	public static void open(Team t, int column) {
+		open(t);
+		//sets the focused field according to the column selected
+		switch(column) {
+		case 0:
+			tTeam.requestFocus();
+			break;
+		case 1:
+			tDiv.requestFocus();
+			break;
+		case 2:
+			tRiders.requestFocus();
+			break;
+		case 3:
+			tStart.requestFocus();
+			break;
+		case 4:
+			tFinish.requestFocus();
+			break;
+		default:
+			break;
+		}
+	}
+	
 	public static void open(Team t) {
 		team = t;
 		if(sTeam != null) sTeam.close();

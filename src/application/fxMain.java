@@ -156,7 +156,7 @@ public class fxMain extends Application {
 						if(col == 6) {
 							openNotes(sel, click.getScreenX(), click.getScreenY());
 						} else {
-							fxTeam.open(sel);
+							fxTeam.open(sel,col);
 						}
 					} catch(IndexOutOfBoundsException e) {}
 				}
