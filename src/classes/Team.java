@@ -3,6 +3,8 @@ package classes;
 import java.util.ArrayList;
 import java.util.List;
 
+import application.paceManager;
+
 public class Team {
 	
 	public String team;
@@ -116,10 +118,21 @@ public class Team {
 	//Runtime Calculations
 	//Includes stuff like difference etc.
 	
-	public Time getDifference(Time goalTime) {
+	public Time getTimeDifference(Time goalTime) {
 		if(goalTime != null) {
 			return new Time(Math.abs(goalTime.time - elapsed().time));
 		} else return null;
+	}
+	
+	public String getDifference() {
+		if(elapsed() != null) {
+			for(Goal g : paceManager.goals) {
+				if(g.division.contentEquals(division)) {
+					return new Time(Math.abs(g.getGoalTime().time - elapsed().time)).toString(true);
+				}
+			}
+		}
+		return "";
 	}
 	
 }

@@ -52,11 +52,10 @@ public class fxGoals {
 		
 		TableColumn tDiv = new TableColumn("Division");
 		tDiv.setCellValueFactory(new PropertyValueFactory<Goal,String>("division"));
-		tDiv.widthProperty().addListener((obs,oldv,newv) -> {
-			
-		});
+		tDiv.setReorderable(false);
 		TableColumn tGoal = new TableColumn("Optimal Time");
 		tGoal.setCellValueFactory(new PropertyValueFactory<Goal,String>("displayTime"));
+		tGoal.setReorderable(false);
 		table.getColumns().addAll(tDiv,tGoal);
 		table.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override

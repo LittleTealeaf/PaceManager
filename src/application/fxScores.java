@@ -4,19 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import classes.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
 public class fxScores {
 	
 	public static Stage sScores;
-	public static List<TableView<Team>> tables = new ArrayList<TableView<Team>>();
 	private static TabPane tabPane;
+	
+	private static List<ScoreTab> scoreTabs;
 	
 	public static void open() {
 		//Close any currently opened stages
@@ -24,10 +32,11 @@ public class fxScores {
 		sScores = new Stage();
 		sScores.setTitle("Score Leaderboard");
 		//Dynamic Custom Resizing
-		sScores.widthProperty().addListener((obs) -> {
+		sScores.widthProperty().addListener((obs,newv,oldv) -> {
+			System.out.println("resize");
 			resizeWindow();
 		});
-		sScores.heightProperty().addListener((obs) -> {
+		sScores.heightProperty().addListener((obs,newv,oldv) -> {
 			resizeWindow();
 		});
 		
@@ -37,53 +46,53 @@ public class fxScores {
 		 * Then tabs using javafx tabs (1 for each division)
 		 */
 		updateTabs();
+
+		Button bGoals = new Button("Goals");
+		bGoals.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				fxGoals.open();
+			}
+		});
+		HBox hTop = new HBox(bGoals);
 		
+		Button bClose = new Button("Close");
+		bClose.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				sScores.close();
+			}
+		});
+		HBox hBottom = new HBox(bClose);
+		
+		VBox vb = new VBox(hTop,tabPane,hBottom);
+		
+		Scene sc = new Scene(vb,500,300);
+		sScores.setScene(sc);
+		sScores.show();
 		
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void updateTabs() {
 		tabPane = new TabPane();
-		tables = new ArrayList<TableView<Team>>();
-		if(paceManager.goals.size() > 0) for(Goal g : paceManager.goals) {
-			//Creates the Tab Page
-			Tab tab = new Tab(g.division);
-			
-			TableView<Team> table = new TableView<Team>();
-			table.setEditable(false);
-			
-			
-			TableColumn cTeamName = new TableColumn("Team");
-			cTeamName.setCellValueFactory(new PropertyValueFactory<Team,String>("team"));
-			
-			//TableColumn cDivision = new TableColumn("Division");
-			//cDivision.setCellValueFactory(new PropertyValueFactory<Team,String>("division"));
-			
-			TableColumn cNames = new TableColumn("Riders");
-			cNames.setEditable(false);
-			cNames.setCellValueFactory(new PropertyValueFactory<Team,String>("names"));
-			
-			TableColumn cElapsed = new TableColumn("Elapsed Time");
-			cElapsed.setCellValueFactory(new PropertyValueFactory<Team,String>("elapsedFXM"));
-
-			TableColumn cNotes = new TableColumn("Notes");
-			cNotes.setCellValueFactory(new PropertyValueFactory<Team,String>("notesDisplay"));
-			
-			table.getColumns().addAll(cTeamName,cNames,cElapsed,cNotes);
-			
+		scoreTabs = new ArrayList<ScoreTab>();
+		
+		if(paceManager.goals.size() > 0) {
+			for(Goal g : paceManager.goals) {
+				scoreTabs.add(new ScoreTab(g));
+			}
+			updateTables();
+			for(ScoreTab t : scoreTabs) {
+				tabPane.getTabs().add(t.getTab());
+			}
 			
 		}
 	}
 	
-	private static void updateTables() {
-		for(TableView<Team> table : tables) {
-			table.getItems().clear();
-			//table.getItems().addAll(paceManager.getTeams(division)) FIND A WAY TO GET DIVISION
-			table.sort();
-		}
+	public static void updateTables() {
+		for(ScoreTab t : scoreTabs) t.updateTable(sScores.getWidth());
 	}
 	
 	private static void resizeWindow() {
-		
+		updateTables();
 	}
 }

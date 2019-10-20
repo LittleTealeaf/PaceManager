@@ -1,5 +1,7 @@
 package classes;
 
+import application.paceManager;
+
 public class Goal {
 	//Division is required
 	public String division;
@@ -30,5 +32,22 @@ public class Goal {
 		String s = division;
 		if(time != null) s+=": " + time.toString(true);
 		return s;
+	}
+	
+	public Time getGoalTime() {
+		if(time != null) return time;
+		else {
+			int teams = 0;
+			float elapsedAvg = 0;
+			for(Team t : paceManager.teams) if(t.division.contentEquals(division)) {
+				Time elapsed = t.elapsed();
+				if(elapsed != null) {
+					teams++;
+					elapsedAvg+=elapsed.time;
+				}
+			}
+			elapsedAvg/=teams;
+			return new Time(elapsedAvg);
+		}
 	}
 }

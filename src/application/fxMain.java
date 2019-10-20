@@ -132,7 +132,13 @@ public class fxMain extends Application {
 				fxGoals.open();
 			}
 		});
-		m3.getItems().addAll(m3Goals);
+		MenuItem m3Scores = new MenuItem("Scores");
+		m3Scores.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				fxScores.open();
+			}
+		});
+		m3.getItems().addAll(m3Goals,m3Scores);
 		
 		MenuBar mb = new MenuBar();
 		mb.getMenus().addAll(m1,m2,m3);
@@ -176,25 +182,33 @@ public class fxMain extends Application {
 		
 		TableColumn cTeamName = new TableColumn("Team");
 		cTeamName.setCellValueFactory(new PropertyValueFactory<Team,String>("team"));
+		cTeamName.setReorderable(false);
 		
 		TableColumn cDivision = new TableColumn("Division");
 		cDivision.setCellValueFactory(new PropertyValueFactory<Team,String>("division"));
+		cDivision.setReorderable(false);
 		
 		TableColumn cNames = new TableColumn("Riders");
 		cNames.setEditable(false);
 		cNames.setCellValueFactory(new PropertyValueFactory<Team,String>("names"));
+		cNames.setReorderable(false);
 		
 		TableColumn cTime = new TableColumn("Times");
+		cTime.setReorderable(false);
 		TableColumn cTStart = new TableColumn("Start");
 		cTStart.setCellValueFactory(new PropertyValueFactory<Team,String>("startFXM"));
+		cTStart.setReorderable(false);
 		TableColumn cTFinish = new TableColumn("Finish");
 		cTFinish.setCellValueFactory(new PropertyValueFactory<Team,String>("finishFXM"));
+		cTFinish.setReorderable(false);
 		TableColumn cTElapsed = new TableColumn("Elapsed");
 		cTElapsed.setCellValueFactory(new PropertyValueFactory<Team,String>("elapsedFXM"));
+		cTElapsed.setReorderable(false);
 		
 		cTime.getColumns().addAll(cTStart,cTFinish,cTElapsed);
 		TableColumn cNotes = new TableColumn("Notes");
 		cNotes.setCellValueFactory(new PropertyValueFactory<Team,String>("notesDisplay"));
+		cNotes.setReorderable(false);
 		
 		table.getColumns().addAll(cTeamName,cDivision,cNames,cTime,cNotes);
 		
@@ -239,7 +253,7 @@ public class fxMain extends Application {
 			//Remaining columns have variable width
 			double remSpace = table.getWidth() - wTeam - wDiv - wTime * 3;
 			table.getColumns().get(2).setPrefWidth(remSpace * 0.6);
-			table.getColumns().get(4).setPrefWidth(remSpace * 0.39);
+			table.getColumns().get(4).setPrefWidth(remSpace * 0.4 - 15);
 		}
 	}
 	/**
