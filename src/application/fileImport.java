@@ -14,16 +14,16 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import classes.Team;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Separator;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -31,13 +31,15 @@ import javafx.stage.Stage;
 
 public class fileImport {
 	
+	private static List<Team> teams;
+	
 	public static void importFile() {
 		//Creates a file dialogue
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open Pace File");
 		
 		//Get team script with results from file dialog
-		List<Team> teams = getTeams(fileChooser.showOpenDialog(fxMain.sMRef));
+		teams = getTeams(fileChooser.showOpenDialog(fxMain.sMRef));
 		//File could not open
 		if(teams == null) return;
 		
@@ -50,11 +52,90 @@ public class fileImport {
 		/*
 		 * Options:
 		 * unused teams: keep or remove
-		 * overwrite options: names? division? <-- not really an option tho, might not need?
 		 */
+		openOptions();
 	}
 	
+	private static Stage sOptions;
 	
+	private static CheckBox cClearTeams;
+	private static CheckBox cKeepExisting;
+	
+	
+	private static void openOptions() {
+		if(sOptions != null) sOptions.close();
+		sOptions = new Stage();
+		sOptions.setTitle("Import Options");
+		//Makes it a popup-like window (can't select main stage?)
+		sOptions.initModality(Modality.APPLICATION_MODAL);
+
+		//Option Nodes
+		
+		cClearTeams = new CheckBox("Clear Teams");
+		cClearTeams.setTooltip(new Tooltip("Clear the team list before importing teams?"));
+		cClearTeams.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				cKeepExisting.setDisable(cClearTeams.isSelected());
+			}
+		});
+		
+		cKeepExisting = new CheckBox("Keep Existing");
+		cKeepExisting.setSelected(true);
+		cKeepExisting.setTooltip(new Tooltip("Keep Teams that the imported teams doesn't update"));
+		
+		//HBottom Nodes
+		Button bCancel = new Button("Cancel");
+		bCancel.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				sOptions.close();
+			}
+		});
+		Region rb = new Region();
+		Button bImport = new Button("Import");
+		bImport.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				importTeams(teams, cClearTeams.isSelected(),cKeepExisting.isSelected());
+				sOptions.close();
+			}
+		});
+		
+		// Creating HBottom
+		HBox hBottom = new HBox(bCancel,rb,bImport);
+		HBox.setHgrow(rb, Priority.ALWAYS);
+		
+		VBox dt = new VBox(cClearTeams,cKeepExisting,hBottom);
+		dt.setSpacing(10);
+		dt.setPadding(new Insets(10,10,10,10));
+		
+		Scene sc = new Scene(dt,500,100);
+		sOptions.setScene(sc);
+		sOptions.show();
+	}
+	
+	private static void importTeams(List<Team> tms, boolean clearTeams, boolean keepExisting) {
+		//Clears Teams if configured to do so
+		if(clearTeams) {
+			paceManager.teams = tms;
+		} else {
+			//Only used if set to not keep unique
+			List<Team> setTeams = new ArrayList<Team>();
+			
+			for(Team a : tms) {
+				for(Team b : paceManager.teams) {
+					if(a.team.contentEquals(b.team)) {
+						b.names = a.names;
+						b.division = a.division;
+						if(!keepExisting) {
+							setTeams.add(b);
+						}
+					}
+				}
+			}
+			
+			if(!keepExisting) paceManager.teams = setTeams;
+		}
+		fxMain.updateTable();
+	}	
 
 	
 	private static List<Team> getTeams(File file) {
