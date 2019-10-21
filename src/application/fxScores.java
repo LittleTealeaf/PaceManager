@@ -33,7 +33,6 @@ public class fxScores {
 		sScores.setTitle("Score Leaderboard");
 		//Dynamic Custom Resizing
 		sScores.widthProperty().addListener((obs,newv,oldv) -> {
-			System.out.println("resize");
 			resizeWindow();
 		});
 		sScores.heightProperty().addListener((obs,newv,oldv) -> {

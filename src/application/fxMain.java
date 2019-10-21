@@ -214,6 +214,9 @@ public class fxMain extends Application {
 		
 		table.prefHeightProperty().bind(sMain.heightProperty());
         table.prefWidthProperty().bind(sMain.widthProperty());
+        
+        //Disables horizontal scrollbar
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		
 		
         //TODO add hbox with est arrivals and such

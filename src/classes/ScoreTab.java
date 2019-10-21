@@ -52,6 +52,9 @@ public class ScoreTab {
 		
 		table.getColumns().addAll(cTeamName,cNames,cElapsed,cDifference,cNotes);
 		table.getSortOrder().add(cDifference);
+
+		//Disables Horizontal Scrollbar
+		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		
 		label = new Label("Division Optimum Time: " + goal.getGoalTime().toString(true));
 	}

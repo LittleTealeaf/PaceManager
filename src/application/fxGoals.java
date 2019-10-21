@@ -78,6 +78,9 @@ public class fxGoals {
 			}
 		});
 		
+		//Disable the horizontal scrollbar
+		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		
 		//Adding buttons to the bottom of the window
 		HBox hBottom = new HBox();
 		hBottom.setSpacing(10);
