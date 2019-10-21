@@ -2,6 +2,8 @@ package debugdev;
 
 import java.util.*;
 import java.util.ArrayList;
+
+import classes.Goal;
 import classes.Team;
 import classes.Time;
 import application.paceManager;
@@ -49,6 +51,25 @@ public class importTeams {
 		}
 		teams.get(0).notes.add("NOT A AWEF");
 		return(teams);
+	}
+	
+	public static void importGoals() {
+		Time shortestTime = null;
+		Time longestTime = null;
+		for(Team t : paceManager.teams) if(t.elapsed() != null) {
+			if(shortestTime == null || shortestTime.time > t.elapsed().time) {
+				shortestTime = t.elapsed();
+			}
+			if(longestTime == null || longestTime.time < t.elapsed().time) {
+				longestTime = t.elapsed();
+			}
+		}
+		String[] divs = {"Pleasure","Hunt","Western","Junior"};
+		for(String s : divs) {
+			Goal g = new Goal(s);
+			g.time = new Time((float) Math.random() * (longestTime.time - shortestTime.time) + shortestTime.time);
+			paceManager.goals.add(g);
+		}
 	}
 	
 	public static void randomizeTimes() {
