@@ -1,11 +1,15 @@
 package classes;
 
+import application.fxTeam;
 import application.paceManager;
+import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 public class ScoreTab {
@@ -19,6 +23,18 @@ public class ScoreTab {
 		
 		table = new TableView<Team>();
 		table.setEditable(false);
+		
+		table.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent click) {
+				if (click.getClickCount() == 2) {
+					try {
+						//Opens the table
+						fxTeam.open(table.getSelectionModel().getSelectedItem(),table.getSelectionModel().getSelectedCells().get(0).getColumn());
+					} catch(IndexOutOfBoundsException e) {}
+				}
+			}
+		});
 				
 		TableColumn cTeamName = new TableColumn("Team");
 		cTeamName.setEditable(false);

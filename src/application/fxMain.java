@@ -235,6 +235,7 @@ public class fxMain extends Application {
 		table.getItems().addAll(paceManager.teams);
 		table.sort();
 		resizeColumns();
+		fxScores.updateTables();
 	}
 	
 	/**

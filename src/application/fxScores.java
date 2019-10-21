@@ -90,7 +90,7 @@ public class fxScores {
 	}
 	
 	public static void updateTables() {
-		for(ScoreTab t : scoreTabs) t.updateTable(sScores.getWidth());
+		if(scoreTabs != null && scoreTabs.size() > 0) for(ScoreTab t : scoreTabs) t.updateTable(sScores.getWidth());
 	}
 	
 	private static void resizeWindow() {
