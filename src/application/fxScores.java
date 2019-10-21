@@ -65,7 +65,6 @@ public class fxScores {
 		
 	}
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void updateTabs() {
 		if(sScores != null) {
 			tabPane = new TabPane();
