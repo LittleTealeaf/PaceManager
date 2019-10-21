@@ -22,14 +22,18 @@ public class paceManager {
 	public static List<Team> teams;
 	public static List<Goal> goals;
 	
+	private static final boolean development = true;
+	
 	public static void main(String[] args) {
 		pacePreferences.alertOnDelete = true;
 		teams = new ArrayList<Team>();
 		goals = new ArrayList<Goal>();
 		//Debug Only
-		teams = importTeams.getTeams();
-		importTeams.randomizeTimes();
-		importTeams.importGoals();
+		if(development) {
+			teams = importTeams.getTeams();
+			importTeams.randomizeTimes();
+			importTeams.importGoals();	
+		}
 		
 		fxMain.open(args);
 	}
