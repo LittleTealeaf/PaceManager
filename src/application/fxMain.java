@@ -247,16 +247,21 @@ public class fxMain extends Application {
 		
 		//Min width to apply the proper formatting
 		if(table.getWidth() > 420) {
-			table.getColumns().get(0).setPrefWidth(wTeam);
-			table.getColumns().get(1).setPrefWidth(wDiv);
-			table.getColumns().get(3).getColumns().get(0).setPrefWidth(wTime);
-			table.getColumns().get(3).getColumns().get(1).setPrefWidth(wTime);
-			table.getColumns().get(3).getColumns().get(2).setPrefWidth(wTime);
-			
-			//Remaining columns have variable width
-			double remSpace = table.getWidth() - wTeam - wDiv - wTime * 3;
-			table.getColumns().get(2).setPrefWidth(remSpace * 0.6);
-			table.getColumns().get(4).setPrefWidth(remSpace * 0.4 - 15);
+			//Team
+			table.getColumns().get(0).setMaxWidth(wTeam);
+			table.getColumns().get(0).setMinWidth(wTeam);
+			//Division
+			table.getColumns().get(1).setMaxWidth(wDiv);
+			table.getColumns().get(1).setMinWidth(wDiv);
+			//Start Time
+			table.getColumns().get(3).getColumns().get(0).setMaxWidth(wTime);
+			table.getColumns().get(3).getColumns().get(0).setMinWidth(wTime);
+			//End Time
+			table.getColumns().get(3).getColumns().get(1).setMaxWidth(wTime);
+			table.getColumns().get(3).getColumns().get(1).setMinWidth(wTime);
+			//Elapsed Time
+			table.getColumns().get(3).getColumns().get(2).setMaxWidth(wTime);
+			table.getColumns().get(3).getColumns().get(2).setMinWidth(wTime);
 		}
 	}
 	/**

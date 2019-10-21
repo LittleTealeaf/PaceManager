@@ -86,12 +86,13 @@ public class ScoreTab {
 		if(width == 0) return;
 		final double wTeam = 50;
 		final double wTime = 80;
-		table.getColumns().get(0).setPrefWidth(wTeam);
-		table.getColumns().get(2).setPrefWidth(wTime);
-		table.getColumns().get(3).setPrefWidth(wTime);
+		table.getColumns().get(0).setMinWidth(wTeam);
+		table.getColumns().get(0).setMaxWidth(wTeam);
 		
-		double remSpace = width - (wTeam + wTime * 2);
-		table.getColumns().get(1).setPrefWidth(remSpace * 0.6);
-		table.getColumns().get(4).setPrefWidth(remSpace * 0.4 - 20);
+		table.getColumns().get(2).setMinWidth(wTime);
+		table.getColumns().get(2).setMaxWidth(wTime);
+		
+		table.getColumns().get(3).setMinWidth(wTime);
+		table.getColumns().get(3).setMaxWidth(wTime);
 	}
 }

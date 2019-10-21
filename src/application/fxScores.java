@@ -64,7 +64,7 @@ public class fxScores {
 		
 		VBox vb = new VBox(hTop,tabPane,hBottom);
 		
-		Scene sc = new Scene(vb,500,300);
+		Scene sc = new Scene(vb,800,400);
 		sScores.setScene(sc);
 		sScores.show();
 		
