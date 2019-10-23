@@ -41,7 +41,9 @@ public class fxTeam {
 	private static CheckBox cExclude;
 	
 	public static void open(Team t, int column) {
+		//Regular open script
 		open(t);
+		
 		//sets the focused field according to the column selected
 		switch(column) {
 		case 0:
@@ -109,6 +111,7 @@ public class fxTeam {
 		bSave.setPrefWidth(75);
 		bSave.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent e) {
+				//Saves the script, if successfully saved, closes fxTeam 
 				if(save()) sTeam.close();
 			}
 		});
@@ -133,7 +136,6 @@ public class fxTeam {
 			sTeam.setTitle("Edit Team");
 			tTeam.setText(t.team);
 			tDiv.setText(t.division);
-			tRiders.requestFocus();
 			cExclude.setSelected(t.excluded);
 			if(t.start != null) tStart.setText(t.start.toString());
 			if(t.finish != null) tFinish.setText(t.finish.toString());
@@ -153,6 +155,8 @@ public class fxTeam {
 					pos++;
 				}
 			}
+			//Set default request focus
+			tNotes.requestFocus();
 		}
 	}
 
