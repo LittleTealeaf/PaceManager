@@ -73,27 +73,41 @@ public class fxTeam {
 		sTeam.setWidth(500);
 		sTeam.setAlwaysOnTop(true);
 		
+		//First Row
 		Label lTeam = new Label("Team");
 		tTeam = new TextField();
+		
 		Label lDiv = new Label("Division");
 		tDiv = new TextField();
+		
 		cExclude = new CheckBox();
 		cExclude.setText("Exclude");
-		cExclude.setTooltip(new Tooltip("Exclude from Rankings"));
+		cExclude.setTooltip(new Tooltip("Exclude this team from final scores."));
+		
 		HBox h1 = new HBox(lTeam,tTeam,lDiv,tDiv,cExclude);
 		h1.setSpacing(10);
 		
+		//Second Row
 		Label lStart = new Label("Start Time:");
 		tStart = new TextField();
+		tStart.setTooltip(new Tooltip("Start time of the rider\nHH:MM:SS (AM/PM) format"));
+		
 		Label lFinish = new Label("Finish Time:");
 		tFinish = new TextField();
+		tStart.setTooltip(new Tooltip("Finish time of the rider\nHH:MM:SS (AM/PM) format"));
+		
 		HBox h2 = new HBox(lStart,tStart,lFinish,tFinish);
 		h2.setSpacing(10);
 		
+		//Bottom Row
 		Label lRiders = new Label("Riders");
 		tRiders = new TextArea();
+		tRiders.setTooltip(new Tooltip("List of members of the team (full name)\nEach Rider on a separate line"));
+		
 		Label lNotes = new Label("Notes");
 		tNotes = new TextArea();
+		tNotes.setTooltip(new Tooltip("Separate Team Notes\nFirst line only will appear on table"));
+		
 		HBox h3 = new HBox(new VBox(lRiders,tRiders),new VBox(lNotes,tNotes));
 		h3.setSpacing(10);
 		
@@ -104,9 +118,12 @@ public class fxTeam {
 				sTeam.close();
 			}
 		});
+		
 		lError = new Label();
 		lError.setTextFill(Color.RED);
+		
 		Region rb = new Region();
+		
 		Button bSave = new Button("Save");
 		bSave.setPrefWidth(75);
 		bSave.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -115,10 +132,12 @@ public class fxTeam {
 				if(save()) sTeam.close();
 			}
 		});
+		
 		HBox h4 = new HBox(bCancel,lError,rb,bSave);
 		HBox.setHgrow(rb, Priority.ALWAYS);
 		h4.setSpacing(10);
 		
+		//Adding the rows together
 		VBox v = new VBox(h1,h2,h3,h4);
 		v.setSpacing(10);
 		v.setPadding(new Insets(5,5,5,5));

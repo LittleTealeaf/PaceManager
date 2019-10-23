@@ -179,6 +179,17 @@ public class fxMain extends Application {
 			}
 		});
 
+		/*
+		 * How the following works:
+		 * - Creates the Column
+		 * TableColumn cTeamName = new TableColumn("Team");
+		 * 
+		 * - Routs the column to the specified variable (using get____(); ) of Team
+		 * cTeamName.setCellValueFactory(new PropertyValueFactory<Team,String>("team"));
+		 * 
+		 * - Any of the custom variables to set
+		 * cTeamName.setReorderable(false);
+		 */
 		
 		TableColumn cTeamName = new TableColumn("Team");
 		cTeamName.setCellValueFactory(new PropertyValueFactory<Team,String>("team"));

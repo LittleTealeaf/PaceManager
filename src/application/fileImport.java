@@ -143,52 +143,49 @@ public class fileImport {
 		List<Team> teams = new ArrayList<Team>();
 		try {
 			FileInputStream stream = new FileInputStream(file);
-			try {
-				// Finds the workbook instance for XLSX file and gets the first spreadsheet
-				XSSFWorkbook workbook = new XSSFWorkbook (stream);
-				XSSFSheet sheet = workbook.getSheetAt(0);
+			// Finds the workbook instance for XLSX file and gets the first spreadsheet
+			XSSFWorkbook workbook = new XSSFWorkbook (stream);
+			XSSFSheet sheet = workbook.getSheetAt(0);
+			
+			int posRow = 0;
+			int posCol = 0;
+			//Goes through each row
+			Iterator<Row> rowIterator = sheet.iterator();
+			while (rowIterator.hasNext()) {
+				posRow++;
+				Row row = rowIterator.next();
 				
-				int posRow = 0;
-				int posCol = 0;
-				//Goes through each row
-				Iterator<Row> rowIterator = sheet.iterator();
-				while (rowIterator.hasNext()) {
-					posRow++;
-					Row row = rowIterator.next();
-					
-					//Goes through each column
-					if(posRow > 2) {
-						Team r = new Team();
-						posCol = 0;
-						Iterator<Cell> cellIterator = row.cellIterator();
-						while(cellIterator.hasNext()) {
-							posCol++;
-							Cell cell = cellIterator.next();
-							//System.out.println("Col " + posCol + " cell: " + getString(cell));
-							
-							if(posCol == 2) {
-								r.division = getString(cell).toLowerCase();
-								if(r.division.length() > 1) r.division = r.division.substring(0, 1).toUpperCase() + r.division.substring(1);
-							} else if (posCol == 3) {
-								r.team = getString(cell);
-							} else if (posCol == 4 || posCol == 5 || posCol == 6) {
-								r.names.add(getString(cell));
-							}
-							
+				//Goes through each column
+				if(posRow > 2) {
+					Team r = new Team();
+					posCol = 0;
+					Iterator<Cell> cellIterator = row.cellIterator();
+					while(cellIterator.hasNext()) {
+						posCol++;
+						Cell cell = cellIterator.next();
+						//System.out.println("Col " + posCol + " cell: " + getString(cell));
+						
+						if(posCol == 2) {
+							r.division = getString(cell).toLowerCase();
+							if(r.division.length() > 1) r.division = r.division.substring(0, 1).toUpperCase() + r.division.substring(1);
+						} else if (posCol == 3) {
+							r.team = getString(cell);
+						} else if (posCol == 4 || posCol == 5 || posCol == 6) {
+							r.names.add(getString(cell));
 						}
-						while(r.names.contains("")) r.names.remove("");
-						if(r.names.size() > 0 && !r.team.contentEquals("")) {
-							teams.add(r);
-						}
+						
+					}
+					while(r.names.contains("")) r.names.remove("");
+					if(r.names.size() > 0 && !r.team.contentEquals("")) {
+						teams.add(r);
 					}
 				}
-				workbook.close();
-			} catch (IOException e) {
-				return null;
 			}
-		} catch (FileNotFoundException e) {
+			workbook.close();
+		} catch(IOException e) {
 			return null;
 		}
+		
 		return teams;
 	}
 	
