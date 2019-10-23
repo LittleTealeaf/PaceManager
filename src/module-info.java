@@ -9,4 +9,5 @@ module paceManager {
 	requires javafx.controls;
 	requires poi.ooxml;
 	requires poi;
+	requires java.desktop;
 }

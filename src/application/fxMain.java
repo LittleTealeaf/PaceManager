@@ -144,7 +144,7 @@ public class fxMain extends Application {
 				fxPrint.open();
 			}
 		});
-		m3.getItems().addAll(m3Goals,m3Scores);
+		m3.getItems().addAll(m3Goals,m3Scores,m3Print);
 		
 		MenuBar mb = new MenuBar();
 		mb.getMenus().addAll(m1,m2,m3);

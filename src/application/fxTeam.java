@@ -236,6 +236,7 @@ public class fxTeam {
 				sTeam.setAlwaysOnTop(false);
 				Optional<ButtonType> result = alert.showAndWait();
 				sTeam.setAlwaysOnTop(true);
+				//TODO check this logic, check what closing does
 				if(result.get() == bCancel) {
 					return false;
 				} else if (result.get() == bOverwrite) {
