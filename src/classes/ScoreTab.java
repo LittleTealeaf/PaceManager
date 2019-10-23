@@ -91,7 +91,8 @@ public class ScoreTab {
 		label = new Label("Division Optimum Time: " + goal.getGoalTime().toString(true));
 		table.getItems().clear();
 		for(Team t : paceManager.teams) {
-			if(t.division.contentEquals(goal.division) && t.elapsed() != null) table.getItems().add(t);
+			//If team isn't excluded, is the same division, and has an elapsed time, add it to the list
+			if(!t.excluded && t.division.contentEquals(goal.division) && t.elapsed() != null) table.getItems().add(t);
 		}
 		table.autosize();
 		table.sort();
