@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -47,15 +49,34 @@ public class fxScores {
 				fxGoals.open();
 			}
 		});
+		
+		Region regTop1 = new Region();
+		HBox.setHgrow(regTop1, Priority.ALWAYS);
+		
+		Button bPrint = new Button("Print");
+		bPrint.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				fxPrint.open();
+			}
+		});
+		
 		HBox hTop = new HBox(bGoals);
 		
+		
+		
+		Region regBottom1 = new Region();
+		HBox.setHgrow(regBottom1, Priority.ALWAYS);
+		
 		Button bClose = new Button("Close");
+		
 		bClose.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				sScores.close();
 			}
 		});
-		HBox hBottom = new HBox(bClose);
+		
+		HBox hBottom = new HBox(regBottom1,bClose);
+		
 		
 		VBox vb = new VBox(hTop,tabPane,hBottom);
 		

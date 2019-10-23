@@ -138,6 +138,12 @@ public class fxMain extends Application {
 				fxScores.open();
 			}
 		});
+		MenuItem m3Print = new MenuItem("Print");
+		m3Print.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				fxPrint.open();
+			}
+		});
 		m3.getItems().addAll(m3Goals,m3Scores);
 		
 		MenuBar mb = new MenuBar();
