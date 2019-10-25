@@ -21,7 +21,7 @@ These are the user-libraries and what jars you need to include
 
 * javafx-swt.jar
 
-### POI
+### POI (labeled "POI")
 * activation-1.1.1.jar
 
 * commons-codec-1.12.jar
