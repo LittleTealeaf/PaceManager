@@ -2,44 +2,35 @@ package application;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-import classes.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import classes.Goal;
+import classes.Team;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.print.JobSettings;
 import javafx.print.PageLayout;
 import javafx.print.PageOrientation;
-import javafx.print.Paper;
 import javafx.print.Printer;
 import javafx.print.PrinterJob;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.SingleSelectionModel;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
 
 public class fxPrint {
@@ -224,13 +215,13 @@ public class fxPrint {
 		
 	}
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	/**
 	 * 
 	 * @param columns Valid Columns: team, division, names, startFXM, finishFXM, elapsedFXM, notesDisplay
 	 * @param teams List of teams to be included
 	 * @return
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static TableView getTeamTable(String[] columns, List<Team> teams) {
 		TableView<Team> tview = new TableView<Team>();
 		
@@ -280,11 +271,13 @@ public class fxPrint {
 		//Presets
 		switch((String) setContent.getValue()) {
 		case "All Teams":
-			
+			job.printPage(layout, getTeamTable(new String[] {"team","division","names","startFXM","finishFXM","elapsedFXM","notesDisplay"},paceManager.teams));
 			break;
 		case "Announcement":
+			
 			break;
 		case "Scoreboard":
+			
 			break;
 		case "Custom":
 			
