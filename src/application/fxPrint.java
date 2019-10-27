@@ -5,6 +5,7 @@ import java.util.List;
 
 import classes.Goal;
 import classes.Team;
+import solutions.TablePrinter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
@@ -27,12 +28,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+@SuppressWarnings("rawtypes")
 public class fxPrint {
 	
 	/*
@@ -222,11 +225,21 @@ public class fxPrint {
 	 * @return
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public static TableView getTeamTable(String[] columns, List<Team> teams) {
+	public static TableView<Team> getTeamTable(String[] columns, List<Team> teams) {
 		TableView<Team> tview = new TableView<Team>();
 		
 		for(String s : columns) {
-			TableColumn col = new TableColumn(s);
+			TableColumn col = new TableColumn();
+			switch(s) {
+			case "team": col.setText("Team"); break;
+			case "division": col.setText("Division"); break;
+			case "names": col.setText("Names"); break;
+			case "startFXM": col.setText("Start"); break;
+			case "finishFXM": col.setText("Finish"); break;
+			case "elapsedFXM": col.setText("Elapsed"); break;
+			case "notesDisplay": col.setText("Notes"); break;
+			default: break;
+			}
 			col.setCellValueFactory(new PropertyValueFactory<Team,String>(s));
 			tview.getColumns().add(col);
 		}
@@ -252,8 +265,8 @@ public class fxPrint {
 		rtSelect.setDisable(eTeams);
 		rtSeparate.setDisable(eTeams);
 		
-
 	}
+
 	
 	private static void print() {
 		//Gets selected printer
@@ -266,12 +279,15 @@ public class fxPrint {
 		
 		job.getJobSettings().setPageLayout(layout);
 		
-		String[] columns = null;
-		
 		//Presets
+		
+		BorderPane scr = new BorderPane();
+		
 		switch((String) setContent.getValue()) {
 		case "All Teams":
-			job.printPage(layout, getTeamTable(new String[] {"team","division","names","startFXM","finishFXM","elapsedFXM","notesDisplay"},paceManager.teams));
+			
+			scr.setCenter(getTeamTable(new String[] {"team","division","names","startFXM","finishFXM","elapsedFXM"},paceManager.teams));
+			
 			break;
 		case "Announcement":
 			
@@ -282,7 +298,27 @@ public class fxPrint {
 		case "Custom":
 			
 			break;
-		} 
+		}
+		if(job.printPage(scr)) {
+			//New Scene
+			Label l = new Label("Printing...");
+			Button bCancel = new Button("Cancel");
+			bCancel.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent e) {
+					job.cancelJob();
+				}
+			});
+			
+			Region r = new Region();
+			VBox.setVgrow(r, Priority.ALWAYS);
+			
+			VBox vb = new VBox(l,r,bCancel);
+			vb.setPadding(new Insets(20,20,20,20));
+			
+			Scene sc = new Scene(vb,sPrint.getWidth(),sPrint.getHeight());
+			
+			sPrint.setScene(sc);
+		}
 	}
 	
 }
