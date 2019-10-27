@@ -10,4 +10,5 @@ module paceManager {
 	requires poi.ooxml;
 	requires poi;
 	requires java.desktop;
+	requires java.base;
 }

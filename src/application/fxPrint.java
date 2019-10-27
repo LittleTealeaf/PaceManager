@@ -2,19 +2,25 @@ package application;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import classes.Goal;
 import classes.Team;
 import solutions.TablePrinter;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.print.PageLayout;
 import javafx.print.PageOrientation;
+import javafx.print.Paper;
 import javafx.print.Printer;
 import javafx.print.PrinterJob;
+import javafx.print.PrinterJob.JobStatus;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -33,6 +39,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.transform.Scale;
+import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 
 @SuppressWarnings("rawtypes")
@@ -280,13 +288,14 @@ public class fxPrint {
 		job.getJobSettings().setPageLayout(layout);
 		
 		//Presets
-		
+		/*
 		BorderPane scr = new BorderPane();
 		
 		switch((String) setContent.getValue()) {
 		case "All Teams":
+			TableView table = getTeamTable(new String[] {"team","division","names","startFXM","finishFXM","elapsedFXM"},paceManager.teams);
 			
-			scr.setCenter(getTeamTable(new String[] {"team","division","names","startFXM","finishFXM","elapsedFXM"},paceManager.teams));
+			scr.setCenter(table);
 			
 			break;
 		case "Announcement":
@@ -299,25 +308,29 @@ public class fxPrint {
 			
 			break;
 		}
-		if(job.printPage(scr)) {
-			//New Scene
-			Label l = new Label("Printing...");
-			Button bCancel = new Button("Cancel");
-			bCancel.setOnAction(new EventHandler<ActionEvent>() {
-				public void handle(ActionEvent e) {
-					job.cancelJob();
-				}
-			});
+		Scene sc = new Scene(scr,layout.getPaper().getWidth(),layout.getPaper().getHeight());
+		if(job.printPage(scr) && job.endJob()) {
+			sPrint.close();
+		}
+		*/
+		TableView table = null;
+		switch((String) setContent.getValue()) {
+		case "All Teams":
+			table = getTeamTable(new String[] {"team","division","names","startFXM","finishFXM","elapsedFXM"},paceManager.teams);
 			
-			Region r = new Region();
-			VBox.setVgrow(r, Priority.ALWAYS);
+			break;
+		case "Announcement":
 			
-			VBox vb = new VBox(l,r,bCancel);
-			vb.setPadding(new Insets(20,20,20,20));
+			break;
+		case "Scoreboard":
 			
-			Scene sc = new Scene(vb,sPrint.getWidth(),sPrint.getHeight());
+			break;
+		case "Custom":
 			
-			sPrint.setScene(sc);
+			break;
+		}
+		if(table != null) {
+			
 		}
 	}
 	
