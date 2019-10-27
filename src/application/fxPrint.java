@@ -67,6 +67,8 @@ public class fxPrint {
 	private static CheckBox cFinish;
 	private static CheckBox cElapsed;
 	private static CheckBox cNotes;
+	//Content Selection:
+	private static ChoiceBox setDivision;
 	
 	//Default Insets
 	private static final Insets DEFAULTINSETS = new Insets(10,10,10,10);
@@ -145,11 +147,33 @@ public class fxPrint {
 		
 		//Team Selection
 		
+		//Creating the radio buttons
+		ToggleGroup tgTeamSelection = new ToggleGroup();
+		RadioButton rtAll = new RadioButton("All Teams");
+		RadioButton rtSelect = new RadioButton("Select Division:");
+		RadioButton rtSeparate = new RadioButton("Separate Divisions");
+		//Setting them all to the toggle group
+		rtAll.setToggleGroup(tgTeamSelection);
+		rtSelect.setToggleGroup(tgTeamSelection);
+		rtSeparate.setToggleGroup(tgTeamSelection);
+		
+		List<String> goals = new ArrayList<String>();
+		//Add the drop-down for select division:
+		if(paceManager.goals.size() > 0) for(Goal g : paceManager.goals) {
+			goals.add(g.division);
+		} 
+		setDivision = new ChoiceBox(FXCollections.observableArrayList(goals));
+		
+		HBox hbContentOptionsRTSelect = new HBox(rtSelect,setDivision);
+		hbContentOptionsRTSelect.setSpacing(10);
+		
+		VBox hbContentOptionsTeamSelect = new VBox(rtAll,hbContentOptionsRTSelect,rtSeparate);
+		hbContentOptionsTeamSelect.setSpacing(10);
 		
 		
 		//rest
 		
-		HBox hbContentOptions = new HBox(vbContentOptionsColumns);
+		HBox hbContentOptions = new HBox(vbContentOptionsColumns, hbContentOptionsTeamSelect);
 		
 		VBox vbContentOptions = new VBox(setContent,hbContentOptions);
 		vbContentOptions.setSpacing(10);
@@ -223,6 +247,21 @@ public class fxPrint {
 		cFinish.setDisable(eCustom);
 		cElapsed.setDisable(eCustom);
 		cNotes.setDisable(eCustom);
+		
+		switch((String) setContent.getValue()) {
+		case "All Teams":
+			
+			break;
+		case "Announcement":
+			
+			break;
+		case "Scoreboard":
+			
+			break;
+		case "Custom":
+			
+			break;
+		} 
 
 	}
 	
