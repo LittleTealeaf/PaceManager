@@ -2,25 +2,18 @@ package application;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import classes.Goal;
 import classes.Team;
-import solutions.TablePrinter;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.print.PageLayout;
 import javafx.print.PageOrientation;
-import javafx.print.Paper;
 import javafx.print.Printer;
 import javafx.print.PrinterJob;
-import javafx.print.PrinterJob.JobStatus;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -34,13 +27,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.transform.Scale;
-import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 
 @SuppressWarnings("rawtypes")
