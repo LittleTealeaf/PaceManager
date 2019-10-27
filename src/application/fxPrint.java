@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import classes.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
@@ -31,8 +33,11 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.SingleSelectionModel;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
@@ -106,7 +111,17 @@ public class fxPrint {
 		hbOrientation.setSpacing(10);
 		hbOrientation.setPadding(DEFAULTINSETS);
 		
-		VBox vbPrintSettings = new VBox(hbSelPrinter,hbOrientation);
+		
+		Label lCopies = new Label("No. of Copies: ");
+		lCopies.setTooltip(new Tooltip("Number of copies to print"));
+		Spinner<Integer> sCopies = new Spinner<Integer>();
+		sCopies.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 1));
+		
+		HBox hbCopies = new HBox(lCopies,sCopies);
+		hbCopies.setSpacing(10);
+		hbCopies.setPadding(DEFAULTINSETS);
+		
+		VBox vbPrintSettings = new VBox(hbSelPrinter,hbOrientation,hbCopies);
 		
 		//CONTENT OPTIONS
 		
