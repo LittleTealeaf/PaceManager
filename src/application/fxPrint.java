@@ -69,6 +69,9 @@ public class fxPrint {
 	private static CheckBox cNotes;
 	//Content Selection:
 	private static ChoiceBox setDivision;
+	private static RadioButton rtAll;
+	private static RadioButton rtSelect;
+	private static RadioButton rtSeparate;
 	
 	//Default Insets
 	private static final Insets DEFAULTINSETS = new Insets(10,10,10,10);
@@ -149,9 +152,12 @@ public class fxPrint {
 		
 		//Creating the radio buttons
 		ToggleGroup tgTeamSelection = new ToggleGroup();
-		RadioButton rtAll = new RadioButton("All Teams");
-		RadioButton rtSelect = new RadioButton("Select Division:");
-		RadioButton rtSeparate = new RadioButton("Separate Divisions");
+		rtAll = new RadioButton("All Teams");
+		rtSelect = new RadioButton("Select Division:");
+		rtSelect.selectedProperty().addListener((obs,oldv,newv) -> {
+			setDivision.setDisable(!newv.booleanValue());
+		});
+		rtSeparate = new RadioButton("Separate Divisions");
 		//Setting them all to the toggle group
 		rtAll.setToggleGroup(tgTeamSelection);
 		rtSelect.setToggleGroup(tgTeamSelection);
@@ -163,6 +169,7 @@ public class fxPrint {
 			goals.add(g.division);
 		} 
 		setDivision = new ChoiceBox(FXCollections.observableArrayList(goals));
+		setDivision.setDisable(true);
 		
 		HBox hbContentOptionsRTSelect = new HBox(rtSelect,setDivision);
 		hbContentOptionsRTSelect.setSpacing(10);
@@ -211,6 +218,7 @@ public class fxPrint {
 		rVertical.fire();
 		orientation = PageOrientation.PORTRAIT;
 		setContent.setValue("All Teams");
+		rtAll.setSelected(true);
 		
 		sPrint.show();
 		
@@ -240,28 +248,19 @@ public class fxPrint {
 	}
 	
 	private static void updateStage() {
-		boolean eCustom = !setContent.getValue().equals("Custom");
-		cTeam.setDisable(eCustom);
-		cNames.setDisable(eCustom);
-		cStart.setDisable(eCustom);
-		cFinish.setDisable(eCustom);
-		cElapsed.setDisable(eCustom);
-		cNotes.setDisable(eCustom);
+		boolean eColumns = !setContent.getValue().equals("Custom");
+		cTeam.setDisable(eColumns);
+		cNames.setDisable(eColumns);
+		cStart.setDisable(eColumns);
+		cFinish.setDisable(eColumns);
+		cElapsed.setDisable(eColumns);
+		cNotes.setDisable(eColumns);
 		
-		switch((String) setContent.getValue()) {
-		case "All Teams":
-			
-			break;
-		case "Announcement":
-			
-			break;
-		case "Scoreboard":
-			
-			break;
-		case "Custom":
-			
-			break;
-		} 
+		boolean eTeams = !(setContent.getValue().equals("All Teams") || !eColumns);
+		rtAll.setDisable(eTeams);
+		rtSelect.setDisable(eTeams);
+		rtSeparate.setDisable(eTeams);
+		
 
 	}
 	
@@ -277,8 +276,11 @@ public class fxPrint {
 		job.getJobSettings().setPageLayout(layout);
 		
 		String[] columns = null;
+		
+		//Presets
 		switch((String) setContent.getValue()) {
 		case "All Teams":
+			
 			break;
 		case "Announcement":
 			break;
