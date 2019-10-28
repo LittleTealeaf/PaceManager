@@ -148,7 +148,7 @@ public class Team {
 		for(Goal a : paceManager.goals) {
 			if(a.division.contentEquals(division)) g = a.time;
 		}
-		System.out.println(g);
+	
 		//Returns null if can't find
 		if(g == null) return nStr;
 		
