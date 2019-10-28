@@ -230,7 +230,7 @@ public class fxPrint {
 	public static TableView<Team> getTeamTable(String[] columns, List<Team> teams, boolean sortByScores) {
 		TableView<Team> tview = new TableView<Team>();
 		//Table Column for Places
-		if(sortByScores) {
+		/*if(sortByScores) {
 			TableColumn col = new TableColumn();
 			col.setText("Place");
 			//Sets the value to positionInDivision
@@ -257,7 +257,16 @@ public class fxPrint {
 			col.setCellValueFactory(new PropertyValueFactory<Team,String>(s));
 			tview.getColumns().add(col);
 		}
-		tview.getItems().setAll(teams);
+		tview.getItems().setAll(teams);*/
+	
+		List<String> cols = new ArrayList<String>();
+		for(String s : columns) cols.add(s);
+		
+		if(sortByScores) {
+			if(!cols.contains("positionInDivision")) cols.add(0, "positionInDivision");
+			
+			//Get the specific one
+		}
 		
 		tview.sort();
 		
