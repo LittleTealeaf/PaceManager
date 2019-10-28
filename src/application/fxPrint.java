@@ -5,6 +5,9 @@ import java.util.List;
 
 import classes.Goal;
 import classes.Team;
+import classes.Time;
+import javafx.beans.binding.StringExpression;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
@@ -27,6 +30,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -223,8 +227,20 @@ public class fxPrint {
 	 * @return
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public static TableView<Team> getTeamTable(String[] columns, List<Team> teams) {
+	public static TableView<Team> getTeamTable(String[] columns, List<Team> teams, boolean sortByScores) {
 		TableView<Team> tview = new TableView<Team>();
+		//Table Column for Places
+		if(sortByScores) {
+			TableColumn col = new TableColumn();
+			col.setText("Place");
+			//Sets the value to positionInDivision
+			col.setCellValueFactory(new PropertyValueFactory<Team,String>("positionInDivision"));
+			//Sets the sorting to reversed
+			col.setComparator(col.getComparator().reversed());
+			//Add to columns and set as the sorting method
+			tview.getColumns().add(col);
+			tview.getSortOrder().add(col);
+		}
 		
 		for(String s : columns) {
 			TableColumn col = new TableColumn();
@@ -243,10 +259,15 @@ public class fxPrint {
 		}
 		tview.getItems().setAll(teams);
 		
+		tview.sort();
+		
 		return tview;
 	}
 	public static TableView getTeamTable(List<String> columns, List<Team> teams) {
 		return getTeamTable((String[]) columns.toArray(),teams);
+	}
+	public static TableView getTeamTable(String[] columns, List<Team> teams) {
+		return getTeamTable(columns, teams, false);
 	}
 	
 	private static void updateStage() {
@@ -303,11 +324,11 @@ public class fxPrint {
 			sPrint.close();
 		}
 		*/
-		TableView table = null;
+		BorderPane bp = new BorderPane();
 		switch((String) setContent.getValue()) {
 		case "All Teams":
-			table = getTeamTable(new String[] {"team","division","names","startFXM","finishFXM","elapsedFXM"},paceManager.teams);
-			
+			bp.setTop(new Label("All Teams"));
+			bp.setCenter(getTeamTable(new String[] {"team","division","names","startFXM","finishFXM","elapsedFXM"},paceManager.teams));
 			break;
 		case "Announcement":
 			
@@ -319,7 +340,7 @@ public class fxPrint {
 			
 			break;
 		}
-		if(table != null) {
+		if(bp.getCenter() != null) {
 			
 		}
 	}

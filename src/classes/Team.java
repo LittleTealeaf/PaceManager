@@ -3,6 +3,7 @@ package classes;
 import java.util.ArrayList;
 import java.util.List;
 
+import application.fxGoals;
 import application.paceManager;
 
 public class Team {
@@ -133,6 +134,35 @@ public class Team {
 			}
 		}
 		return "";
+	}
+	
+	public String getPositionInDivision() {
+		final String nStr = "";
+		
+		//Returns nothing if no elapsed
+		if(elapsed() == null) return nStr;
+		
+		int pos = 1;
+		Time g = null;
+		//gets the division time (for this team)
+		for(Goal a : paceManager.goals) {
+			if(a.division.contentEquals(division)) g = a.time;
+		}
+		System.out.println(g);
+		//Returns null if can't find
+		if(g == null) return nStr;
+		
+		//Gets the current difference time
+		Time dif = getTimeDifference(g);
+		
+		//Cycles through each in the same team
+		for(Team a : paceManager.getTeams(division)) {
+			//If it's higher, add 1 to the position
+			if(a.elapsed() != null && a.getTimeDifference(g).time < dif.time) pos++;
+		}
+		
+		//Returns a human readable version
+		return util.readablePlace(pos);
 	}
 	
 }
