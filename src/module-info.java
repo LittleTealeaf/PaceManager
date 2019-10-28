@@ -5,8 +5,8 @@ module paceManager {
 	opens classes to javafx.base;
 
 	requires javafx.base;
-	requires javafx.graphics;
-	requires javafx.controls;
+	requires transitive javafx.graphics;
+	requires transitive javafx.controls;
 	requires poi.ooxml;
 	requires poi;
 	requires java.desktop;

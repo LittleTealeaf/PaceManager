@@ -5,6 +5,7 @@ import java.util.List;
 
 import classes.Goal;
 import classes.Team;
+import classes.util;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
@@ -30,6 +31,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 
 @SuppressWarnings("rawtypes")
@@ -172,6 +174,7 @@ public class fxPrint {
 		//rest
 		
 		HBox hbContentOptions = new HBox(vbContentOptionsColumns, hbContentOptionsTeamSelect);
+	
 		
 		VBox vbContentOptions = new VBox(setContent,hbContentOptions);
 		vbContentOptions.setSpacing(10);
@@ -215,65 +218,6 @@ public class fxPrint {
 		
 	}
 	
-	/**
-	 * 
-	 * @param columns Valid Columns: team, division, names, startFXM, finishFXM, elapsedFXM, notesDisplay
-	 * @param teams List of teams to be included
-	 * @return
-	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public static TableView<Team> getTeamTable(String[] columns, List<Team> teams, boolean sortByScores) {
-		TableView<Team> tview = new TableView<Team>();
-		//Table Column for Places
-		/*if(sortByScores) {
-			TableColumn col = new TableColumn();
-			col.setText("Place");
-			//Sets the value to positionInDivision
-			col.setCellValueFactory(new PropertyValueFactory<Team,String>("positionInDivision"));
-			//Sets the sorting to reversed
-			col.setComparator(col.getComparator().reversed());
-			//Add to columns and set as the sorting method
-			tview.getColumns().add(col);
-			tview.getSortOrder().add(col);
-		}
-		
-		for(String s : columns) {
-			TableColumn col = new TableColumn();
-			switch(s) {
-			case "team": col.setText("Team"); break;
-			case "division": col.setText("Division"); break;
-			case "names": col.setText("Names"); break;
-			case "startFXM": col.setText("Start"); break;
-			case "finishFXM": col.setText("Finish"); break;
-			case "elapsedFXM": col.setText("Elapsed"); break;
-			case "notesDisplay": col.setText("Notes"); break;
-			default: break;
-			}
-			col.setCellValueFactory(new PropertyValueFactory<Team,String>(s));
-			tview.getColumns().add(col);
-		}
-		tview.getItems().setAll(teams);*/
-	
-		List<String> cols = new ArrayList<String>();
-		for(String s : columns) cols.add(s);
-		
-		if(sortByScores) {
-			if(!cols.contains("positionInDivision")) cols.add(0, "positionInDivision");
-			
-			//Get the specific one
-		}
-		
-		tview.sort();
-		
-		return tview;
-	}
-	public static TableView getTeamTable(List<String> columns, List<Team> teams) {
-		return getTeamTable((String[]) columns.toArray(),teams);
-	}
-	public static TableView getTeamTable(String[] columns, List<Team> teams) {
-		return getTeamTable(columns, teams, false);
-	}
-	
 	private static void updateStage() {
 		boolean eColumns = !setContent.getValue().equals("Custom");
 		cTeam.setDisable(eColumns);
@@ -292,49 +236,35 @@ public class fxPrint {
 
 	
 	private static void print() {
+		sPrint.setAlwaysOnTop(false);
 		//Gets selected printer
 		Printer printer = (Printer) setPrinter.getValue();
 		//Sets the printer job
 		job = PrinterJob.createPrinterJob(printer);
 		
 		//Create a layout using the printer's default paper, the set orientation, and equal margin type
-		PageLayout layout = printer.createPageLayout(printer.getDefaultPageLayout().getPaper(), orientation, Printer.MarginType.EQUAL);
+		PageLayout layout = printer.getDefaultPageLayout();
 		
 		job.getJobSettings().setPageLayout(layout);
 		
-		//Presets
-		/*
-		BorderPane scr = new BorderPane();
 		
-		switch((String) setContent.getValue()) {
-		case "All Teams":
-			TableView table = getTeamTable(new String[] {"team","division","names","startFXM","finishFXM","elapsedFXM"},paceManager.teams);
-			
-			scr.setCenter(table);
-			
-			break;
-		case "Announcement":
-			
-			break;
-		case "Scoreboard":
-			
-			break;
-		case "Custom":
-			
-			break;
-		}
-		Scene sc = new Scene(scr,layout.getPaper().getWidth(),layout.getPaper().getHeight());
-		if(job.printPage(scr) && job.endJob()) {
-			sPrint.close();
-		}
-		*/
 		BorderPane bp = new BorderPane();
+		TableView table = null;
 		switch((String) setContent.getValue()) {
 		case "All Teams":
-			bp.setTop(new Label("All Teams"));
-			bp.setCenter(getTeamTable(new String[] {"team","division","names","startFXM","finishFXM","elapsedFXM"},paceManager.teams));
+			table = util.teamTable(paceManager.teams,new String[] {"team","division","names","startFXM","finishFXM","elapsedFXM"});
+			bp = getTablePages(job,table,"All Teams");
+			Scene sc = new Scene(bp,bp.getWidth(),bp.getHeight());
+			Stage s = new Stage();
+			s.setScene(sc);
+			s.show();
+			
+			job.printPage(bp);
+			job.endJob();
+			
 			break;
 		case "Announcement":
+			table = util.teamTable(paceManager.teams,new String[] {"team","division","names","startFXM","finishFXM","elapsedFXM"});
 			
 			break;
 		case "Scoreboard":
@@ -344,9 +274,24 @@ public class fxPrint {
 			
 			break;
 		}
-		if(bp.getCenter() != null) {
-			
-		}
+		
 	}
-	
+	public static BorderPane getTablePages(PrinterJob job, TableView table, String header) {
+		BorderPane r = new BorderPane();
+		
+		//Set size to printer page
+		r.resize(job.getJobSettings().getPageLayout().getPaper().getHeight(), job.getJobSettings().getPageLayout().getPaper().getHeight());
+		
+		Label l = new Label(header);
+		table.autosize();
+		//TODO table has no width at this point, need to get it a width of all the tables
+		
+		
+		table.getTransforms().add(new Scale(r.getWidth() / table.getWidth(),1));
+		
+		r.setTop(l);
+		r.setCenter(table);
+		
+		return r;
+	}
 }

@@ -1,5 +1,6 @@
 package classes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.control.TableColumn;
@@ -26,8 +27,10 @@ public class util {
 	 * @param columns Valid columns include anything in {@link Team} that has a get(obj) function. Make sure the first letter is lowercase
 	 * @return Table of everything!
 	 */
-	public static TableView<Team> teamTable(List<Team> teams, List<Team> columns) {
-		return teamTable(teams, (String[]) columns.toArray());
+	public static TableView<Team> teamTable(List<Team> teams, String[] columns) {
+		List<String> cols = new ArrayList<String>();
+		for(String s : columns) cols.add(s);
+		return teamTable(teams,cols);
 	}
 	/**
 	 * Returns a table with teams and columns
@@ -36,7 +39,7 @@ public class util {
 	 * @return Table of everything!
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public static TableView<Team> teamTable(List<Team> teams, String[] columns) {
+	public static TableView<Team> teamTable(List<Team> teams, List<String> columns) {
 		TableView<Team> r = new TableView<Team>();
 		
 		//Adds columns
