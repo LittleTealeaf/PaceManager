@@ -23,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
@@ -276,18 +277,40 @@ public class fxPrint {
 		}
 		
 	}
+	@SuppressWarnings("unchecked")
 	public static BorderPane getTablePages(PrinterJob job, TableView table, String header) {
 		BorderPane r = new BorderPane();
 		
-		//Set size to printer page
-		r.resize(job.getJobSettings().getPageLayout().getPaper().getHeight(), job.getJobSettings().getPageLayout().getPaper().getHeight());
+		//Gets the printable size and sets the BorderPane to that size
+		double pWidth = job.getJobSettings().getPageLayout().getPrintableWidth();
+		double pHeight = job.getJobSettings().getPageLayout().getPrintableHeight();
+		r.resize(pWidth,pHeight);
 		
+		//Create Header
 		Label l = new Label(header);
+		
+		//Autosize the Table
 		table.autosize();
-		//TODO table has no width at this point, need to get it a width of all the tables
+		
+		//Get total width of all the columns
+		List<TableColumn> cols = table.getColumns();
+		double initialWidth = 0;
+		for(TableColumn c : cols) {
+			initialWidth+=c.getWidth();
+		}
+		
+		//Resize table to the total column width and proper height (prior to this the table had 0 width and 0 height)
+		table.resize(initialWidth, r.getHeight() - l.getHeight());
+
+		//Down-scale the width to fit the screen
+		for(TableColumn c : cols) {
+			double ratio = c.getWidth() / initialWidth;
+			c.setPrefWidth(ratio * r.getWidth());
+		}
+		
+		//Customize Table
 		
 		
-		table.getTransforms().add(new Scale(r.getWidth() / table.getWidth(),1));
 		
 		r.setTop(l);
 		r.setCenter(table);

@@ -42,16 +42,35 @@ public class util {
 	public static TableView<Team> teamTable(List<Team> teams, List<String> columns) {
 		TableView<Team> r = new TableView<Team>();
 		
+		final double timeWidth = 50;
+		final double divisionWidth = 70;
+		final double teamWidth = 50;
+		
 		//Adds columns
 		for(String s : columns) {
 			TableColumn col = new TableColumn();
 			switch(s) {
-			case "team": col.setText("Team"); break;
-			case "division": col.setText("Division"); break;
+			case "team": 
+				col.setText("Team");
+				col.setPrefWidth(teamWidth);
+				break;
+			case "division": 
+				col.setText("Division");
+				col.setPrefWidth(divisionWidth);
+				break;
 			case "names": col.setText("Names"); break;
-			case "startFXM": col.setText("Start"); break;
-			case "finishFXM": col.setText("Finish"); break;
-			case "elapsedFXM": col.setText("Elapsed"); break;
+			case "startFXM": 
+				col.setText("Start");
+				col.setPrefWidth(timeWidth);
+				break;
+			case "finishFXM": 
+				col.setText("Finish");
+				col.setPrefWidth(timeWidth);
+				break;
+			case "elapsedFXM": 
+				col.setText("Elapsed");
+				col.setPrefWidth(timeWidth);
+				break;
 			case "notesDisplay": col.setText("Notes"); break;
 			case "positionInDivision": col.setText("Place"); break;
 			default: break;
