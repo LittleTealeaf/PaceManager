@@ -6,6 +6,7 @@ import java.util.List;
 import classes.Goal;
 import classes.Team;
 import classes.util;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
@@ -21,6 +22,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TableColumn;
@@ -254,6 +256,7 @@ public class fxPrint {
 		switch((String) setContent.getValue()) {
 		case "All Teams":
 			table = util.teamTable(paceManager.teams,new String[] {"team","division","names","startFXM","finishFXM","elapsedFXM"});
+			
 			bp = getTablePages(job,table,"All Teams");
 			Scene sc = new Scene(bp,bp.getWidth(),bp.getHeight());
 			Stage s = new Stage();
@@ -276,21 +279,21 @@ public class fxPrint {
 			break;
 		}
 		
+		sPrint.close();
 	}
 	@SuppressWarnings("unchecked")
 	public static BorderPane getTablePages(PrinterJob job, TableView table, String header) {
-		BorderPane r = new BorderPane();
+		//Gets printable size
+		final double pWidth = job.getJobSettings().getPageLayout().getPrintableWidth();
+		final double pHeight = job.getJobSettings().getPageLayout().getPrintableHeight();
 		
-		//Gets the printable size and sets the BorderPane to that size
-		double pWidth = job.getJobSettings().getPageLayout().getPrintableWidth();
-		double pHeight = job.getJobSettings().getPageLayout().getPrintableHeight();
-		r.resize(pWidth,pHeight);
+		
 		
 		//Create Header
 		Label l = new Label(header);
 		
 		//Autosize the Table
-		table.autosize();
+		//table.autosize();
 		
 		//Get total width of all the columns
 		List<TableColumn> cols = table.getColumns();
@@ -299,21 +302,35 @@ public class fxPrint {
 			initialWidth+=c.getWidth();
 		}
 		
+	
+				
 		//Resize table to the total column width and proper height (prior to this the table had 0 width and 0 height)
-		table.resize(initialWidth, r.getHeight() - l.getHeight());
+		table.resize(initialWidth, pHeight - l.getHeight());
+		
+		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		
 
 		//Down-scale the width to fit the screen
 		for(TableColumn c : cols) {
 			double ratio = c.getWidth() / initialWidth;
-			c.setPrefWidth(ratio * r.getWidth());
+			c.setPrefWidth(ratio * pWidth);
 		}
 		
-		//Customize Table
+		
+		table.setFixedCellSize(20);
+		
+		table.prefHeightProperty().bind(Bindings.size(table.getItems()).multiply(table.getFixedCellSize()));
 		
 		
+		
+		//Border Pane
+		BorderPane r = new BorderPane();
+		r.resize(pWidth,pHeight);
 		
 		r.setTop(l);
 		r.setCenter(table);
+		
+		List<BorderPane> borderPanes = new ArrayList<BorderPane>();
 		
 		return r;
 	}

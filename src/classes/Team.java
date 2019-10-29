@@ -163,6 +163,5 @@ public class Team {
 		
 		//Returns a human readable version
 		return util.readablePlace(pos);
-	}
-	
+	}	
 }

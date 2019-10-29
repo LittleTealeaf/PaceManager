@@ -3,9 +3,12 @@ package classes;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 public class util {
 	/**
@@ -42,9 +45,9 @@ public class util {
 	public static TableView<Team> teamTable(List<Team> teams, List<String> columns) {
 		TableView<Team> r = new TableView<Team>();
 		
-		final double timeWidth = 50;
+		final double timeWidth = 30;
 		final double divisionWidth = 70;
-		final double teamWidth = 50;
+		final double teamWidth = 25;
 		
 		//Adds columns
 		for(String s : columns) {
@@ -79,6 +82,7 @@ public class util {
 			r.getColumns().add(col);
 		}
 		r.getItems().setAll(teams);
+		
 		
 		
 		return r;
