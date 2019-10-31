@@ -3,9 +3,7 @@ package application;
 import java.util.ArrayList;
 import java.util.List;
 
-import classes.Goal;
-import classes.Team;
-import classes.util;
+import classes.*;
 import solutions.ZoomableScrollPane;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
