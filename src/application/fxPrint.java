@@ -258,10 +258,6 @@ public class fxPrint {
 			table = util.teamTable(paceManager.teams,new String[] {"team","division","names","startFXM","finishFXM","elapsedFXM"});
 			
 			bp = getTablePages(job,table,"All Teams");
-			Scene sc = new Scene(bp,bp.getWidth(),bp.getHeight());
-			Stage s = new Stage();
-			s.setScene(sc);
-			s.show();
 			
 			job.printPage(bp);
 			job.endJob();
@@ -287,13 +283,13 @@ public class fxPrint {
 		final double pWidth = job.getJobSettings().getPageLayout().getPrintableWidth();
 		final double pHeight = job.getJobSettings().getPageLayout().getPrintableHeight();
 		
+		final double cellSize = 20;
+		
 		
 		
 		//Create Header
 		Label l = new Label(header);
 		
-		//Autosize the Table
-		//table.autosize();
 		
 		//Get total width of all the columns
 		List<TableColumn> cols = table.getColumns();
@@ -301,25 +297,32 @@ public class fxPrint {
 		for(TableColumn c : cols) {
 			initialWidth+=c.getWidth();
 		}
-		
 	
 				
 		//Resize table to the total column width and proper height (prior to this the table had 0 width and 0 height)
 		table.resize(initialWidth, pHeight - l.getHeight());
 		
-		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		//table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		
 
+		System.out.println(table.getWidth());
+		
 		//Down-scale the width to fit the screen
 		for(TableColumn c : cols) {
+			System.out.print(c.getText() + " " + c.getWidth());
+			//Ratio of the current width to the initial width
 			double ratio = c.getWidth() / initialWidth;
-			c.setPrefWidth(ratio * pWidth);
+			
+			//Set the width to the same ratio in relation to the total width
+			c.setPrefWidth(ratio * (pWidth - 5));
+			System.out.println(" " + c.getWidth());
 		}
 		
 		
-		table.setFixedCellSize(20);
+		table.setFixedCellSize(cellSize);
 		
-		table.prefHeightProperty().bind(Bindings.size(table.getItems()).multiply(table.getFixedCellSize()));
+		//table.prefHeightProperty().bind(Bindings.size(table.getItems()).multiply(table.getFixedCellSize()));
+		
 		
 		
 		
@@ -329,6 +332,14 @@ public class fxPrint {
 		
 		r.setTop(l);
 		r.setCenter(table);
+		
+		Scene sc = new Scene(r,pWidth,cellSize*(table.getItems().size()+4) + l.getHeight());
+		r.autosize();
+		//table.autosize();
+		
+		Stage s = new Stage();
+		s.setScene(sc);
+		s.show();
 		
 		List<BorderPane> borderPanes = new ArrayList<BorderPane>();
 		

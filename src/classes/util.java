@@ -46,7 +46,7 @@ public class util {
 		TableView<Team> r = new TableView<Team>();
 		
 		final double timeWidth = 30;
-		final double divisionWidth = 70;
+		final double divisionWidth = 35;
 		final double teamWidth = 25;
 		
 		//Adds columns
