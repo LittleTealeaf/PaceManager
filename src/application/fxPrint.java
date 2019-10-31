@@ -6,6 +6,7 @@ import java.util.List;
 import classes.Goal;
 import classes.Team;
 import classes.util;
+import solutions.ZoomableScrollPane;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
@@ -251,15 +252,15 @@ public class fxPrint {
 		job.getJobSettings().setPageLayout(layout);
 		
 		
-		BorderPane bp = new BorderPane();
+		ZoomableScrollPane zsp = null;
 		TableView table = null;
 		switch((String) setContent.getValue()) {
 		case "All Teams":
 			table = util.teamTable(paceManager.teams,new String[] {"team","division","names","startFXM","finishFXM","elapsedFXM"});
 			
-			bp = getTablePages(job,table,"All Teams");
+			zsp = getTablePages(job,table,"All Teams");
 			
-			job.printPage(bp);
+			job.printPage(zsp);
 			job.endJob();
 			
 			break;
@@ -278,7 +279,7 @@ public class fxPrint {
 		sPrint.close();
 	}
 	@SuppressWarnings("unchecked")
-	public static BorderPane getTablePages(PrinterJob job, TableView table, String header) {
+	public static ZoomableScrollPane getTablePages(PrinterJob job, TableView table, String header) {
 		//Gets printable size
 		final double pWidth = job.getJobSettings().getPageLayout().getPrintableWidth();
 		final double pHeight = job.getJobSettings().getPageLayout().getPrintableHeight();
@@ -333,16 +334,17 @@ public class fxPrint {
 		r.setTop(l);
 		r.setCenter(table);
 		
-		Scene sc = new Scene(r,pWidth,cellSize*(table.getItems().size()+4) + l.getHeight());
-		r.autosize();
-		//table.autosize();
-		
-		Stage s = new Stage();
-		s.setScene(sc);
-		s.show();
+//		Scene sc = new Scene(r,pWidth,cellSize*(table.getItems().size()+4) + l.getHeight());
+//		r.autosize();
+//		
+//		Stage s = new Stage();
+//		s.setScene(sc);
+//		s.show();
 		
 		List<BorderPane> borderPanes = new ArrayList<BorderPane>();
 		
-		return r;
+		ZoomableScrollPane b = new ZoomableScrollPane(r);
+		
+		return b;
 	}
 }
