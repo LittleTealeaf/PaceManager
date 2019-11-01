@@ -15,6 +15,7 @@ import javafx.print.PageLayout;
 import javafx.print.PageOrientation;
 import javafx.print.Printer;
 import javafx.print.PrinterJob;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -33,6 +34,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 
@@ -250,15 +252,15 @@ public class fxPrint {
 		job.getJobSettings().setPageLayout(layout);
 		
 		
-		ZoomableScrollPane zsp = null;
+		ScrollPane scrollPane = null;
 		TableView table = null;
 		switch((String) setContent.getValue()) {
 		case "All Teams":
 			table = util.teamTable(paceManager.teams,new String[] {"team","division","names","startFXM","finishFXM","elapsedFXM"});
 			
-			zsp = getTablePages(job,table,"All Teams");
+			scrollPane = getTablePages(job,table,"All Teams");
 			
-			job.printPage(zsp);
+			job.printPage(scrollPane);
 			job.endJob();
 			
 			break;
@@ -276,73 +278,115 @@ public class fxPrint {
 		
 		sPrint.close();
 	}
+	
+	//http://tutorials.jenkov.com/javafx/scrollpane.html
+	
 	@SuppressWarnings("unchecked")
-	public static ZoomableScrollPane getTablePages(PrinterJob job, TableView table, String header) {
+	public static ScrollPane getTablePages(PrinterJob job, TableView table, String headerText) {
+		//PRE DETERMINED SETTINGS
+		final double cellSize = 20;
+		
+		
 		//Gets printable size
 		final double pWidth = job.getJobSettings().getPageLayout().getPrintableWidth();
 		final double pHeight = job.getJobSettings().getPageLayout().getPrintableHeight();
 		
-		final double cellSize = 20;
-		
-		
-		
-		//Create Header
-		Label l = new Label(header);
-		
-		
-		//Get total width of all the columns
-		List<TableColumn> cols = table.getColumns();
-		double initialWidth = 0;
-		for(TableColumn c : cols) {
-			initialWidth+=c.getWidth();
-		}
-	
-				
-		//Resize table to the total column width and proper height (prior to this the table had 0 width and 0 height)
-		table.resize(initialWidth, pHeight - l.getHeight());
-		
-		//table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-		
-
-		System.out.println(table.getWidth());
-		
-		//Down-scale the width to fit the screen
-		for(TableColumn c : cols) {
-			System.out.print(c.getText() + " " + c.getWidth());
-			//Ratio of the current width to the initial width
-			double ratio = c.getWidth() / initialWidth;
-			
-			//Set the width to the same ratio in relation to the total width
-			c.setPrefWidth(ratio * (pWidth - 5));
-			System.out.println(" " + c.getWidth());
-		}
-		
-		
+		//Format Table
 		table.setFixedCellSize(cellSize);
 		
-		//table.prefHeightProperty().bind(Bindings.size(table.getItems()).multiply(table.getFixedCellSize()));
+		//Get the default table width (sum of all the columns)
+		double colWidth = 0;
+		List<TableColumn> cols = table.getColumns();
+		for(TableColumn col : cols) {
+			colWidth+=col.getWidth();
+		}
+		
+		//Resizes Table
+		table.resize(colWidth, table.getItems().size() * (cellSize + 2));
+		
+		//Adds a scale factor to the table to fit in the page width
+		//table.getTransforms().add(new Scale(pWidth / colWidth,1));
+		
+		// might need to add a custom table(?)
 		
 		
 		
+		//Create a header
+		Label header = new Label(headerText);
 		
-		//Border Pane
-		BorderPane r = new BorderPane();
-		r.resize(pWidth,pHeight);
+		VBox content = new VBox(header,table);
 		
-		r.setTop(l);
-		r.setCenter(table);
+		ScrollPane z = new ScrollPane(content);
+		z.resize(pWidth, pHeight);
+		z.setFitToWidth(true);
 		
-//		Scene sc = new Scene(r,pWidth,cellSize*(table.getItems().size()+4) + l.getHeight());
-//		r.autosize();
+		Scene sc = new Scene(z,pWidth,pHeight);
+		Stage s = new Stage();
+		s.setScene(sc);
+		s.show();
+		
+		return z;
+//		//Create Header
+//		Label l = new Label(header);
 //		
-//		Stage s = new Stage();
-//		s.setScene(sc);
-//		s.show();
-		
-		List<BorderPane> borderPanes = new ArrayList<BorderPane>();
-		
-		ZoomableScrollPane b = new ZoomableScrollPane(r);
-		
-		return b;
+//		
+//		//Get total width of all the columns
+//		List<TableColumn> cols = table.getColumns();
+//		double initialWidth = 0;
+//		for(TableColumn c : cols) {
+//			initialWidth+=c.getWidth();
+//		}
+//	
+//				
+//		//Resize table to the total column width and proper height (prior to this the table had 0 width and 0 height)
+//		table.resize(initialWidth, pHeight - l.getHeight());
+//		
+//		//table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+//		
+//
+//		System.out.println(table.getWidth());
+//		
+//		//Down-scale the width to fit the screen
+//		for(TableColumn c : cols) {
+//			System.out.print(c.getText() + " " + c.getWidth());
+//			//Ratio of the current width to the initial width
+//			double ratio = c.getWidth() / initialWidth;
+//			
+//			//Set the width to the same ratio in relation to the total width
+//			c.setPrefWidth(ratio * (pWidth - 5));
+//			System.out.println(" " + c.getWidth());
+//		}
+//		
+//		
+//		table.setFixedCellSize(cellSize);
+//		
+//		//table.prefHeightProperty().bind(Bindings.size(table.getItems()).multiply(table.getFixedCellSize()));
+//		
+//		
+//		
+//		
+//		//Border Pane
+//		BorderPane r = new BorderPane();
+//		
+//		r.setTop(l);
+//		r.setCenter(table);
+//		
+////		Scene sc = new Scene(r,pWidth,cellSize*(table.getItems().size()+4) + l.getHeight());
+////		r.autosize();
+////		
+////		Stage s = new Stage();
+////		s.setScene(sc);
+////		s.show();
+//		
+//		ZoomableScrollPane b = new ZoomableScrollPane(r);
+//		
+//		b.resize(r.getWidth(), r.getHeight());
+//		
+//		r.resize(pWidth,table.getHeight());
+//		
+//		//Scene sc = new Scene(b,pWidth,cellSize*(table.getItems().size() + 4) + l.getHeight());
+//		
+//		
+//		return b;
 	}
 }
