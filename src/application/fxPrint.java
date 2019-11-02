@@ -313,9 +313,15 @@ public class fxPrint {
 		for(TableColumn c : cols) totalColumnSize+=c.getPrefWidth();
 		table.resize(totalColumnSize, cellSize * (table.getItems().size() + 1));
 		
-		//Scaling table to the width of the paper
-		table.setScaleX(pWidth / table.getWidth());
+		//Scaling table to the width of the paper, does not allow scaling when it's already fitted
+//		if(table.getWidth() < pWidth) table.setScaleX(pWidth / table.getWidth());
 		
+		
+		//Debug:
+		Scene sc = new Scene(table);
+		Stage s = new Stage();
+		s.setScene(sc);
+		s.show();
 		
 		return ret;
 	}
@@ -329,11 +335,11 @@ public class fxPrint {
 	 */
 	@SuppressWarnings("unchecked")
 	private static TableView getTable(List<Team> teams, String[] columns, String sortColumn) {
-		final double colSizeTeam = 25;
-		final double colSizeDiv = 30;
-		final double colSizeTime = 30;
+		final double colSizeTeam = 35;
+		final double colSizeDiv = 60;
+		final double colSizeTime = 75;
 		final double colSizePlace = 10;
-		final double colSizeNames = 100;
+		final double colSizeNames = 200;
 		final double colSizeNotes = 50;
 		
 		TableView<Team> table = new TableView<Team>();
@@ -345,7 +351,7 @@ public class fxPrint {
 				col.setText("Team");
 				col.setPrefWidth(colSizeTeam);
 				break;
-			case "div":
+			case "division":
 				col.setText("Division");
 				col.setPrefWidth(colSizeDiv);
 				break;
@@ -357,19 +363,19 @@ public class fxPrint {
 				// Then set the default cell size to 3 times its current height! 
 				
 				break;
-			case "startFXM":
+			case "startfxm":
 				col.setText("Start");
 				col.setPrefWidth(colSizeTime);
 				break;
-			case "finishFXM":
+			case "finishfxm":
 				col.setText("Finish");
 				col.setPrefWidth(colSizeTime);
 				break;
-			case "elapsedFXM":
+			case "elapsedfxm":
 				col.setText("Elapsed");
 				col.setPrefWidth(colSizeTime);
 				break;
-			case "positionInDivision":
+			case "positionindivision":
 				col.setText("Pl.");
 				col.setPrefWidth(colSizePlace);
 				break;
