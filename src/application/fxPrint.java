@@ -1,14 +1,11 @@
 package application;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Dictionary;
-import java.util.Hashtable;
 import java.util.List;
 
-import classes.*;
-import solutions.ZoomableScrollPane;
-import javafx.beans.binding.Bindings;
+import classes.Goal;
+import classes.Team;
+import classes.util;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
@@ -18,17 +15,15 @@ import javafx.print.PageLayout;
 import javafx.print.PageOrientation;
 import javafx.print.Printer;
 import javafx.print.PrinterJob;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.SortEvent;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
@@ -39,8 +34,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 
 @SuppressWarnings("rawtypes")
@@ -264,11 +257,16 @@ public class fxPrint {
 			borderPanes.addAll(getTablePages(job,"",paceManager.teams,new String[] {"team","division","names","startFXM","finishFXM"}, "team"));
 			break;
 		case "Announcement":
-			
-			
+			if(!paceManager.goals.isEmpty()) for(Goal g : paceManager.goals) {
+				String header = g.division + "  " + g.time.toString();
+				String[] columns = {"positionInDivision","team","names","elapsedFXM"};
+				borderPanes.addAll(getTablePages(job,header,paceManager.getTeams(g.division),columns, "positionInDivision"));
+			}
 			break;
 		case "Scoreboard":
-			
+			String header = "Scoreboard:";
+			String[] columns = {"team","division","elapsedFXM"};
+			borderPanes.addAll(getTablePages(job,header,paceManager.teams,columns, "team"));
 			break;
 		case "Custom":
 			
@@ -340,15 +338,13 @@ public class fxPrint {
 		final double colSizeTeam = 35;
 		final double colSizeDiv = 60;
 		final double colSizeTime = 75;
-		final double colSizePlace = 10;
+		final double colSizePlace = 35;
 		final double colSizeNames = 200;
 		final double colSizeNotes = 50;
 		
 		TableView<Team> table = new TableView<Team>();
 		table.getItems().setAll(teams);
-		boolean customCellFactory = false;
 		for(String s : columns) {
-			customCellFactory = false;
 			TableColumn col = new TableColumn(s);
 			switch(s.toLowerCase()) {
 			case "team":
@@ -362,7 +358,6 @@ public class fxPrint {
 			case "names":
 				col.setText("Names");
 				col.setPrefWidth(colSizeNames);
-				customCellFactory = true;
 				
 				//Custom Cell Factory
 				col.setCellFactory(column -> { return util.getTeamCell(); });
@@ -383,6 +378,7 @@ public class fxPrint {
 			case "positionindivision":
 				col.setText("Pl.");
 				col.setPrefWidth(colSizePlace);
+				col.setSortType(col.getSortType().DESCENDING);
 				break;
 			case "printableNotes":
 				col.setText("Notes");
@@ -393,9 +389,9 @@ public class fxPrint {
 			table.getColumns().add(col);
 			if(s.contentEquals(sortColumn)) table.getSortOrder().add(col);
 		}
+		table.getSortOrder().clear();
 		return table;
 	}
-	
 	
 	
 	//http://tutorials.jenkov.com/javafx/scrollpane.html
