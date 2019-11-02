@@ -15,13 +15,13 @@ import javafx.print.PageLayout;
 import javafx.print.PageOrientation;
 import javafx.print.Printer;
 import javafx.print.PrinterJob;
+import javafx.print.Printer.MarginType;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.SortEvent;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TableColumn;
@@ -244,7 +244,7 @@ public class fxPrint {
 		//Sets the printer job
 		job = PrinterJob.createPrinterJob(printer);
 		
-		//Create a layout using the printer's default paper, the set orientation, and equal margin type
+		//Create a layout using the printer's default paper
 		PageLayout layout = printer.getDefaultPageLayout();
 		
 		job.getJobSettings().setPageLayout(layout);

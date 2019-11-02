@@ -45,7 +45,7 @@ public class fxMain extends Application {
 		launch(args);
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked", "exports" })
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void start(Stage sMain) {
 		sMRef = sMain;

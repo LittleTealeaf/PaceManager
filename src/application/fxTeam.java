@@ -26,7 +26,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class fxTeam {
-	@SuppressWarnings("exports")
 	public static Stage sTeam;
 	
 	private static Team team;

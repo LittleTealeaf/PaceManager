@@ -74,7 +74,6 @@ public class ScoreTab {
 		label = new Label("Division Optimum Time: " + goal.getGoalTime().toString(true));
 	}
 	
-	@SuppressWarnings("exports")
 	public Tab getTab() {
 		Tab tab = new Tab(goal.division);
 		tab.setClosable(false);
