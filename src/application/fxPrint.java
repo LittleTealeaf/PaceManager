@@ -1,6 +1,7 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
@@ -27,6 +28,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
@@ -296,7 +298,7 @@ public class fxPrint {
 		}
 		
 		//PRESETS
-		final double cellSize = 20;
+		final double cellSize = 20 * 3;
 		
 		//Gets Printable Size
 		final double pWidth = job.getJobSettings().getPageLayout().getPrintableWidth();
@@ -307,7 +309,7 @@ public class fxPrint {
 		
 		//Creating the Table
 		TableView table = getTable(teams,columns,sortColumn);
-		table.setFixedCellSize(cellSize);
+		//table.setFixedCellSize(cellSize);
 		List<TableColumn> cols = table.getColumns();
 		double totalColumnSize = 0;
 		for(TableColumn c : cols) totalColumnSize+=c.getPrefWidth();
@@ -344,7 +346,9 @@ public class fxPrint {
 		
 		TableView<Team> table = new TableView<Team>();
 		table.getItems().setAll(teams);
+		boolean customCellFactory = false;
 		for(String s : columns) {
+			customCellFactory = false;
 			TableColumn col = new TableColumn(s);
 			switch(s.toLowerCase()) {
 			case "team":
@@ -358,9 +362,12 @@ public class fxPrint {
 			case "names":
 				col.setText("Names");
 				col.setPrefWidth(colSizeNames);
+				customCellFactory = true;
 				
-				//TODO re-incorporate multiple lines (it actually worked)
-				// Then set the default cell size to 3 times its current height! 
+				//Custom Cell Factory
+				col.setCellFactory(column -> {
+					return util.getTeamCell();
+				});
 				
 				break;
 			case "startfxm":

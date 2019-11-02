@@ -207,6 +207,9 @@ public class fxMain extends Application {
 		
 		TableColumn cNames = new TableColumn("Riders");
 		cNames.setEditable(false);
+		cNames.setCellFactory(column -> {
+			return util.getTeamCell();
+		});
 		cNames.setCellValueFactory(new PropertyValueFactory<Team,String>("names"));
 		cNames.setReorderable(false);
 		
