@@ -365,9 +365,7 @@ public class fxPrint {
 				customCellFactory = true;
 				
 				//Custom Cell Factory
-				col.setCellFactory(column -> {
-					return util.getTeamCell();
-				});
+				col.setCellFactory(column -> { return util.getTeamCell(); });
 				
 				break;
 			case "startfxm":
