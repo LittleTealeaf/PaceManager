@@ -352,6 +352,10 @@ public class fxPrint {
 			case "names":
 				col.setText("Names");
 				col.setPrefWidth(colSizeNames);
+				
+				//TODO re-incorporate multiple lines (it actually worked)
+				// Then set the default cell size to 3 times its current height! 
+				
 				break;
 			case "startFXM":
 				col.setText("Start");
