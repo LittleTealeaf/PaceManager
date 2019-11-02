@@ -320,6 +320,7 @@ public class fxPrint {
 		final double colSizeTime = 30;
 		final double colSizePlace = 10;
 		final double colSizeNames = 100;
+		final double colSizeNotes = 50;
 		
 		TableView<Team> table = new TableView<Team>();
 		table.getItems().setAll(teams);
@@ -356,6 +357,7 @@ public class fxPrint {
 				break;
 			case "printableNotes":
 				col.setText("Notes");
+				col.setPrefWidth(colSizeNotes);
 			default: break;
 			}
 			col.setCellValueFactory(new PropertyValueFactory<Team,String>(s));
