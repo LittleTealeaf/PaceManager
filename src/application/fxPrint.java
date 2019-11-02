@@ -285,7 +285,7 @@ public class fxPrint {
 	 * @param sortColumn Column, specified above, to sort by (will return null if set column does not)
 	 * @return
 	 */
-	@SuppressWarnings("unused")
+	@SuppressWarnings({ "unused", "unchecked" })
 	private static List<BorderPane> getTablePages(PrinterJob job, String header, List<Team> teams, String[] columns, String sortColumn) {
 		//Checks if the sort column is in the columns
 		boolean bError = true;
@@ -307,7 +307,14 @@ public class fxPrint {
 		
 		//Creating the Table
 		TableView table = getTable(teams,columns,sortColumn);
-		table.autosize();
+		table.setFixedCellSize(cellSize);
+		List<TableColumn> cols = table.getColumns();
+		double totalColumnSize = 0;
+		for(TableColumn c : cols) totalColumnSize+=c.getPrefWidth();
+		table.resize(totalColumnSize, cellSize * (table.getItems().size() + 1));
+		
+		//Scaling table to the width of the paper
+		table.setScaleX(pWidth / table.getWidth());
 		
 		
 		return ret;
