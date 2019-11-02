@@ -3,7 +3,6 @@ package classes;
 import java.util.ArrayList;
 import java.util.List;
 
-import application.fxGoals;
 import application.paceManager;
 
 public class Team {

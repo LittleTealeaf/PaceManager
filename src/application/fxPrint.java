@@ -15,7 +15,6 @@ import javafx.print.PageLayout;
 import javafx.print.PageOrientation;
 import javafx.print.Printer;
 import javafx.print.PrinterJob;
-import javafx.print.Printer.MarginType;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -333,7 +332,7 @@ public class fxPrint {
 	 * @param sortColumn Column to sort, will not set sort if it's not included
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "static-access" })
 	private static TableView getTable(List<Team> teams, String[] columns, String sortColumn) {
 		final double colSizeTeam = 35;
 		final double colSizeDiv = 60;
