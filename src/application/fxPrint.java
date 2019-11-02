@@ -259,7 +259,7 @@ public class fxPrint {
 		
 		switch((String) setContent.getValue()) {
 		case "All Teams":
-			
+			borderPanes.addAll(getTablePages(job,"",paceManager.teams,new String[] {"team","division","names","startFXM","finishFXM"}, "team"));
 			break;
 		case "Announcement":
 			
@@ -306,8 +306,8 @@ public class fxPrint {
 		List<BorderPane> ret = new ArrayList<BorderPane>();
 		
 		//Creating the Table
-		TableView table = getTable(teams,columns,sortColumn);		
-		
+		TableView table = getTable(teams,columns,sortColumn);
+		table.autosize();
 		
 		
 		return ret;
@@ -319,6 +319,7 @@ public class fxPrint {
 		final double colSizeDiv = 30;
 		final double colSizeTime = 30;
 		final double colSizePlace = 10;
+		final double colSizeNames = 100;
 		
 		TableView<Team> table = new TableView<Team>();
 		table.getItems().setAll(teams);
@@ -334,7 +335,8 @@ public class fxPrint {
 				col.setPrefWidth(colSizeDiv);
 				break;
 			case "names":
-				col.setText("Division");
+				col.setText("Names");
+				col.setPrefWidth(colSizeNames);
 				break;
 			case "startFXM":
 				col.setText("Start");
