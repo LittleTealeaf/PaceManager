@@ -313,6 +313,13 @@ public class fxPrint {
 		return ret;
 	}
 	
+	/**
+	 * Creating a Table
+	 * @param teams List of Teams
+	 * @param columns Columns as described in {@link getTablePages} 
+	 * @param sortColumn Column to sort, will not set sort if it's not included
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	private static TableView getTable(List<Team> teams, String[] columns, String sortColumn) {
 		final double colSizeTeam = 25;
