@@ -1,14 +1,12 @@
 package application;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import classes.Goal;
 import classes.Team;
 import classes.util;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
