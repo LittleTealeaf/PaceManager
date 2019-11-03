@@ -141,7 +141,7 @@ public class fxPrint {
 		CheckBox cElapsed = new CheckBox("Elapsed Time");
 		CheckBox cDifference = new CheckBox("Difference");
 		CheckBox cNotes = new CheckBox("Notes");
-		cColumns = new CheckBox[] {cPosition, cTeam, cNames, cStart, cFinish, cElapsed, cNotes};
+		cColumns = new CheckBox[] {cPosition, cTeam, cNames, cStart, cFinish, cElapsed, cDifference, cNotes};
 		
 		//Selecting a new row will update the list of columns
 		for(CheckBox c : cColumns) {
