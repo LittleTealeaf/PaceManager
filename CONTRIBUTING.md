@@ -1,8 +1,8 @@
 This is an individual project, so I will be programming everything myself.
 
-That being said, feel free to add any suggestions, whether it be adding some ability, optimising a set of code, or anything else by making a branch and adding a pull request!
+That being said, feel free to add any suggestions, whether it be adding some ability, optimising a set of code, or anything else by making a branch and adding a pull request! I'm relatively new to working with this code, so any and all help is greatly appreciated.
 
-This program is written using Eclipse, and I have a couple user-libraries set up for javaFX and POI.
+This program is written using Eclipse (generally the latest edition), and I have a couple user-libraries set up for javaFX and POI.
 
 ## Build Paths (User)
 These are the user-libraries and what jars you need to include
