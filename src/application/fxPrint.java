@@ -1,12 +1,14 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import classes.Goal;
 import classes.Team;
 import classes.util;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -55,17 +57,15 @@ public class fxPrint {
 	private static PageOrientation orientation;
 	
 	//Check Boxes
-	private static CheckBox cTeam;
-	private static CheckBox cNames;
-	private static CheckBox cStart;
-	private static CheckBox cFinish;
-	private static CheckBox cElapsed;
-	private static CheckBox cNotes;
+	private static CheckBox[] cColumns;
+	
 	//Content Selection:
 	private static ChoiceBox setDivision;
 	private static RadioButton rtAll;
 	private static RadioButton rtSelect;
 	private static RadioButton rtSeparate;
+	//Sort Selection
+	private static ChoiceBox<String> setSortCol;
 	
 	//Default Insets
 	private static final Insets DEFAULTINSETS = new Insets(10,10,10,10);
@@ -124,21 +124,31 @@ public class fxPrint {
 		
 		//CONTENT OPTIONS
 		
-		setContent = new ChoiceBox(FXCollections.observableArrayList("All Teams", "Announcement", "Scoreboard", "Custom"));
+		setContent = new ChoiceBox(FXCollections.observableArrayList("Announcement", "Scoreboard", "Custom"));
 		setContent.valueProperty().addListener((obs) -> {
 			updateStage();
 		});
 		
 		//columns
 		
-		cTeam = new CheckBox("Teams");
-		cNames = new CheckBox("Names");
-		cStart = new CheckBox("Start Time");
-		cFinish = new CheckBox("Finish Time");
-		cElapsed = new CheckBox("Elapsed Time");
-		cNotes = new CheckBox("Notes");
+		CheckBox cPosition = new CheckBox("Position");
+		CheckBox cTeam = new CheckBox("Team");
+		CheckBox cNames = new CheckBox("Names");
+		CheckBox cStart = new CheckBox("Start Time");
+		CheckBox cFinish = new CheckBox("Finish Time");
+		CheckBox cElapsed = new CheckBox("Elapsed Time");
+		CheckBox cNotes = new CheckBox("Notes");
+		cColumns = new CheckBox[] {cPosition, cTeam, cNames, cStart, cFinish, cElapsed, cNotes};
 		
-		VBox vbContentOptionsColumns = new VBox(cTeam,cNames,cStart,cFinish,cElapsed,cNotes);
+		//Selecting a new row will update the list of columns
+		for(CheckBox c : cColumns) {
+			c.selectedProperty().addListener((obs) -> {
+				setSortCol.getItems().setAll(getSortColumns());
+				setSortCol.setValue(setSortCol.getItems().get(0));
+			});
+		}
+		
+		VBox vbContentOptionsColumns = new VBox(cColumns);
 		vbContentOptionsColumns.setSpacing(3);
 		vbContentOptionsColumns.setPadding(DEFAULTINSETS);
 		
@@ -168,13 +178,19 @@ public class fxPrint {
 		HBox hbContentOptionsRTSelect = new HBox(rtSelect,setDivision);
 		hbContentOptionsRTSelect.setSpacing(10);
 		
-		VBox hbContentOptionsTeamSelect = new VBox(rtAll,hbContentOptionsRTSelect,rtSeparate);
-		hbContentOptionsTeamSelect.setSpacing(10);
+		setSortCol = new ChoiceBox();
+		setSortCol.setDisable(true);
+		
+		HBox hbContentOptionsSort = new HBox(setSortCol);
+		hbContentOptionsSort.setSpacing(10);
+		
+		VBox vbContentOptionsTeamSelect = new VBox(rtAll,hbContentOptionsRTSelect,rtSeparate,hbContentOptionsSort);
+		vbContentOptionsTeamSelect.setSpacing(10);
 		
 		
 		//rest
 		
-		HBox hbContentOptions = new HBox(vbContentOptionsColumns, hbContentOptionsTeamSelect);
+		HBox hbContentOptions = new HBox(vbContentOptionsColumns, vbContentOptionsTeamSelect);
 	
 		
 		VBox vbContentOptions = new VBox(setContent,hbContentOptions);
@@ -212,27 +228,76 @@ public class fxPrint {
 		//Set Defaults
 		rVertical.fire();
 		orientation = PageOrientation.PORTRAIT;
-		setContent.setValue("All Teams");
+		setContent.setValue("");
 		rtAll.setSelected(true);
 
 		
 		sPrint.show();
 	}
 	
+	/**
+	 * Updates the Stage (disabled fields, etc)
+	 */
 	private static void updateStage() {
-		boolean eColumns = !setContent.getValue().equals("Custom");
-		cTeam.setDisable(eColumns);
-		cNames.setDisable(eColumns);
-		cStart.setDisable(eColumns);
-		cFinish.setDisable(eColumns);
-		cElapsed.setDisable(eColumns);
-		cNotes.setDisable(eColumns);
+		boolean eCustom = !setContent.getValue().equals("Custom");
+		for(CheckBox c : cColumns) {
+			c.setDisable(eCustom);
+		}
 		
-		boolean eTeams = !(setContent.getValue().equals("All Teams") || !eColumns);
-		rtAll.setDisable(eTeams);
-		rtSelect.setDisable(eTeams);
-		rtSeparate.setDisable(eTeams);
+		rtAll.setDisable(eCustom);
+		rtSelect.setDisable(eCustom);
+		rtSeparate.setDisable(eCustom);
 		
+		setSortCol.setDisable(setContent.getValue().equals("Announcement"));
+		setSortCol.getItems().setAll(getSortColumns());
+		if(setSortCol.getItems().size() > 0) setSortCol.setValue(setSortCol.getItems().get(0));
+	}
+	
+	private static List<String> getSortColumns() {
+		List<String> ret = new ArrayList<String>();
+		switch((String) setContent.getValue()) {
+		case "Custom":
+			for(CheckBox c : cColumns) {
+				if(!c.isDisabled() && c.isSelected()) ret.add(c.getText());
+			}
+			break;
+		case "Scoreboard":
+			for(String s : new String[] {"Team","Division","Elapsed Time"}) ret.add(s);
+		}
+		return ret;
+	}
+	
+	/**
+	 * Gets the columns for the custom print columns for table creation
+	 * @return
+	 */
+	private static String[] getCustomPrintColumns() {
+		List<String> s = new ArrayList<String>();
+		for(CheckBox c : cColumns) {
+			if(c.isSelected()) switch(c.getText()) {
+			case "Position": s.add("positionInDivision");
+			case "Start Time": s.add("startFXM");
+			case "Finish Time": s.add("finishFXM");
+			case "Elapsed Time": s.add("elapsedFXM");
+			default: s.add(c.getText().toLowerCase());
+			}
+		}
+		String[] ret = new String[s.size()];
+		s.toArray(ret);
+		return ret;
+	}
+	/**
+	 * Gets the custom sorting option for printing in the form that works for the table generation
+	 * @return
+	 */
+	private static String getCustomPrintSort() {
+		switch((String) setSortCol.getValue()) {
+		case "Position": return "positionInDivision";
+		case "Start Time": return "startFXM";
+		case "Finish Time": return "finishFXM";
+		case "Elapsed Time": return "elapsedFXM";
+		default: return (String) setSortCol.getValue().toLowerCase();
+		}
 	}
 
 	
@@ -251,24 +316,44 @@ public class fxPrint {
 		
 		List<BorderPane> borderPanes = new ArrayList<BorderPane>();
 		
+		String header = "";
+		String[] columns = null;
+		List<Team> teams = null;
 		switch((String) setContent.getValue()) {
-		case "All Teams":
-			borderPanes.addAll(getTablePages(job,"",paceManager.teams,new String[] {"team","division","names","startFXM","finishFXM"}, "team"));
-			break;
 		case "Announcement":
 			if(!paceManager.goals.isEmpty()) for(Goal g : paceManager.goals) {
-				String header = g.division + "  " + g.time.toString();
-				String[] columns = {"positionInDivision","team","names","elapsedFXM"};
+				header = g.division + "  " + g.time.toString();
+				columns = new String[] {"positionInDivision","team","names","elapsedFXM"};
 				borderPanes.addAll(getTablePages(job,header,paceManager.getTeams(g.division),columns, "positionInDivision"));
-			}
+			} else return; //TODO error
 			break;
 		case "Scoreboard":
-			String header = "Scoreboard:";
-			String[] columns = {"team","division","elapsedFXM"};
+			header = "Scoreboard:";
+			columns = new String[] {"team","division","elapsedFXM"};
 			borderPanes.addAll(getTablePages(job,header,paceManager.teams,columns, "team"));
 			break;
 		case "Custom":
-			
+			//Selected Columns
+			columns = getCustomPrintColumns();
+			//Get selected Teams
+			if(rtAll.isSelected()) { //
+				teams = paceManager.teams;
+			} else if (rtSelect.isSelected()) { //Specifically Selected Division
+				String selDiv = (String) setDivision.getValue();
+				if(!selDiv.contentEquals("")) {
+					teams = paceManager.getTeams(selDiv);
+				}
+			} else if(rtSeparate.isSelected()) { //Each division in its own respective list, uses custom script as mulitple pages are needed
+				if(!paceManager.goals.isEmpty()) {
+					for(Goal g : paceManager.goals) {
+						header = g.division + "  " + g.time.toString();
+					
+						borderPanes.addAll(getTablePages(job,header,paceManager.getTeams(g.division),columns, getCustomPrintSort()));
+					}
+					break;
+				} else return; //TODO error
+			}
+			borderPanes.addAll(getTablePages(job,header,teams,columns, getCustomPrintSort()));
 			break;
 		}
 		
