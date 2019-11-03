@@ -326,10 +326,10 @@ public class fxPrint {
 		List<String> s = new ArrayList<String>();
 		for(CheckBox c : cColumns) {
 			if(c.isSelected()) switch(c.getText()) {
-			case "Position": s.add("positionInDivision");
-			case "Start Time": s.add("startFXM");
-			case "Finish Time": s.add("finishFXM");
-			case "Elapsed Time": s.add("elapsedFXM");
+			case "Position": s.add("positionInDivision"); break;
+			case "Start Time": s.add("startFXM"); break;
+			case "Finish Time": s.add("finishFXM"); break;
+			case "Elapsed Time": s.add("elapsedFXM"); break;
 			default: s.add(c.getText().toLowerCase());
 			}
 		}
@@ -518,6 +518,10 @@ public class fxPrint {
 			case "printableNotes":
 				col.setText("Notes");
 				col.setPrefWidth(colSizeNotes);
+				break;
+			case "difference":
+				col.setText("Difference");
+				col.setPrefWidth(colSizeTime);
 			default: break;
 			}
 			col.setCellValueFactory(new PropertyValueFactory<Team,String>(s));
