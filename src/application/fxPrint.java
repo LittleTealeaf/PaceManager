@@ -70,8 +70,12 @@ public class fxPrint {
 	//Default Insets
 	private static final Insets DEFAULTINSETS = new Insets(10,10,10,10);
 	
+	public static void open() {
+		open("");
+	}
+	
 	@SuppressWarnings("unchecked")
-	public static void open() {	
+	public static void open(String preset) {	
 		if(sPrint != null) sPrint.close();
 		sPrint = new Stage();
 		
@@ -137,6 +141,7 @@ public class fxPrint {
 		CheckBox cStart = new CheckBox("Start Time");
 		CheckBox cFinish = new CheckBox("Finish Time");
 		CheckBox cElapsed = new CheckBox("Elapsed Time");
+		CheckBox cDifference = new CheckBox("Difference");
 		CheckBox cNotes = new CheckBox("Notes");
 		cColumns = new CheckBox[] {cPosition, cTeam, cNames, cStart, cFinish, cElapsed, cNotes};
 		
@@ -230,9 +235,48 @@ public class fxPrint {
 		orientation = PageOrientation.PORTRAIT;
 		setContent.setValue("");
 		rtAll.setSelected(true);
-
+		
+		//PRESETS
+		// 'if(preset == "") {} else ' makes sure nothing happens if the preset is left blank
+		if(preset == "") {} else if(preset.contentEquals("All Teams")) {
+			//All Teams
+			setContent.setValue("Custom");
+			rtAll.setSelected(true);
+			setAllColumnValues(false);
+			setColumnValue("Team");
+			setColumnValue("Division");
+			setColumnValue("Names");
+			setColumnValue("Start Time");
+			setColumnValue("End Time");
+			setColumnValue("Elapsed Time");
+			setSortCol.setValue("Team");
+		} else if(preset.toCharArray()[0] == 'g') {
+			//Specific Division
+			String div = "";
+			//Tries to parse the division, if errors then will just return
+			//TODO perhaps push this logic of trying to parse it up to the top to optimize computer work
+			try {
+				div = preset.substring(1);
+			} catch (Exception e) {return;}
+			
+			setContent.setValue("Custom");
+			rtSelect.setSelected(true);
+			setDivision.setValue(div);
+			setAllColumnValues(false);
+			setColumnValue("Position");
+			setColumnValue("Team");
+			setColumnValue("Elapsed Time");
+			setColumnValue("Difference");
+		}
 		
 		sPrint.show();
+	}
+	private static void setColumnValue(String colName) {setColumnValue(colName,true);}
+	private static void setColumnValue(String colName, boolean var) {
+		for(CheckBox c : cColumns) if(c.getText().contentEquals(colName)) c.setSelected(var);
+	}
+	private static void setAllColumnValues(boolean var) {
+		for(CheckBox c : cColumns) c.setSelected(var);
 	}
 	
 	/**
@@ -329,7 +373,7 @@ public class fxPrint {
 			break;
 		case "Scoreboard":
 			header = "Scoreboard:";
-			columns = new String[] {"team","division","elapsedFXM"};
+			columns = new String[] {"team","division","elapsedFXM","difference"};
 			borderPanes.addAll(getTablePages(job,header,paceManager.teams,columns, "team"));
 			break;
 		case "Custom":

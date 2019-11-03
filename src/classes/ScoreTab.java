@@ -1,5 +1,6 @@
 package classes;
 
+import application.fxPrint;
 import application.fxTeam;
 import application.paceManager;
 import javafx.event.EventHandler;
@@ -8,6 +9,8 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
@@ -31,6 +34,14 @@ public class ScoreTab {
 						//Opens the table
 						fxTeam.open(table.getSelectionModel().getSelectedItem(),table.getSelectionModel().getSelectedCells().get(0).getColumn());
 					} catch(IndexOutOfBoundsException e) {}
+				}
+			}
+		});
+		table.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent e) {
+				if(e.getCode() == KeyCode.P && e.isControlDown()) {
+					fxPrint.open("g" + g.division);
 				}
 			}
 		});

@@ -181,6 +181,8 @@ public class fxMain extends Application {
 					try {
 						paceManager.deleteTeam(table.getSelectionModel().getSelectedItem());
 					} catch(IndexOutOfBoundsException e) {}
+				} else if(k.getCode() == KeyCode.P && k.isControlDown()) {
+					fxPrint.open("All Teams");
 				}
 			}
 		});
