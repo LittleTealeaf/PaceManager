@@ -51,7 +51,7 @@ public class ScoreTab {
 		TableColumn cPlace = new TableColumn("Place");
 		cPlace.setEditable(false);
 		cPlace.setSortable(true);
-		cPlace.setReordable(false);
+		cPlace.setReorderable(false);
 		cPlace.setCellValueFactory(new PropertyValueFactory<Team,String>("difference"));
     
 		TableColumn cTeamName = new TableColumn("Team");
