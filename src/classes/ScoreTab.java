@@ -1,5 +1,6 @@
 package classes;
 
+import application.fxPrint;
 import application.fxTeam;
 import application.paceManager;
 import javafx.event.EventHandler;
@@ -8,6 +9,8 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
@@ -34,13 +37,23 @@ public class ScoreTab {
 				}
 			}
 		});
+    
+    table.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent e) {
+				if(e.getCode() == KeyCode.P && e.isControlDown()) {
+					fxPrint.open("g" + g.division);
+				}
+			}
+		});
+        
 		
 		TableColumn cPlace = new TableColumn("Place");
 		cPlace.setEditable(false);
 		cPlace.setSortable(true);
 		cPlace.setReordable(false);
 		cPlace.setCellValueFactory(new PropertyValueFactory<Team,String>("difference"));
-		
+    
 		TableColumn cTeamName = new TableColumn("Team");
 		cTeamName.setEditable(false);
 		cTeamName.setSortable(false);
@@ -80,7 +93,6 @@ public class ScoreTab {
 		label = new Label("Division Optimum Time: " + goal.getGoalTime().toString(true));
 	}
 	
-	@SuppressWarnings("exports")
 	public Tab getTab() {
 		Tab tab = new Tab(goal.division);
 		tab.setClosable(false);

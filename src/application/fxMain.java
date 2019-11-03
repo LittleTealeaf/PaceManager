@@ -45,7 +45,7 @@ public class fxMain extends Application {
 		launch(args);
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked", "exports" })
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void start(Stage sMain) {
 		sMRef = sMain;
@@ -181,6 +181,8 @@ public class fxMain extends Application {
 					try {
 						paceManager.deleteTeam(table.getSelectionModel().getSelectedItem());
 					} catch(IndexOutOfBoundsException e) {}
+				} else if(k.getCode() == KeyCode.P && k.isControlDown()) {
+					fxPrint.open("All Teams");
 				}
 			}
 		});
@@ -207,6 +209,7 @@ public class fxMain extends Application {
 		
 		TableColumn cNames = new TableColumn("Riders");
 		cNames.setEditable(false);
+		cNames.setCellFactory(column -> { return util.getTeamCell(); });
 		cNames.setCellValueFactory(new PropertyValueFactory<Team,String>("names"));
 		cNames.setReorderable(false);
 		

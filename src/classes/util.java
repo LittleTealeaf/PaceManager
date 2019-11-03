@@ -1,14 +1,15 @@
 package classes;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 public class util {
 	/**
@@ -83,8 +84,27 @@ public class util {
 		}
 		r.getItems().setAll(teams);
 		
-		
-		
 		return r;
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public static TableCell getTeamCell() {
+		return new TableCell<Team, String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if(item==null || empty) {
+                    setGraphic(null);
+                } else {
+                    VBox vbox = new VBox();
+                    List<String> textList = Arrays.asList(item.split(", "));
+                    for(int i=0;i<textList.size();i++) {
+                        Label lbl = new Label(textList.get(i));
+                        vbox.getChildren().add(lbl);
+                    }
+                    setGraphic(vbox);
+                }
+            }
+        };
 	}
 }

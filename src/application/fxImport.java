@@ -20,7 +20,6 @@ public class fxImport {
 	private static TextField tData;
 	@SuppressWarnings("rawtypes")
 	private static ChoiceBox cMethod;
-	@SuppressWarnings("exports")
 	public static Label lData;
 	
 	/**
