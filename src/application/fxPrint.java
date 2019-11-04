@@ -1,14 +1,10 @@
 package application;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import classes.Goal;
-import classes.Team;
-import classes.util;
+import classes.*;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -143,7 +139,7 @@ public class fxPrint {
 		CheckBox cElapsed = new CheckBox("Elapsed Time");
 		CheckBox cDifference = new CheckBox("Difference");
 		CheckBox cNotes = new CheckBox("Notes");
-		cColumns = new CheckBox[] {cPosition, cTeam, cNames, cStart, cFinish, cElapsed, cNotes};
+		cColumns = new CheckBox[] {cPosition, cTeam, cNames, cStart, cFinish, cElapsed, cDifference, cNotes};
 		
 		//Selecting a new row will update the list of columns
 		for(CheckBox c : cColumns) {
@@ -151,6 +147,7 @@ public class fxPrint {
 				setSortCol.getItems().setAll(getSortColumns());
 				setSortCol.setValue(setSortCol.getItems().get(0));
 			});
+			c.setTooltip(new Tooltip("Include the '" + c.getText() + "' column in the table?"));
 		}
 		
 		VBox vbContentOptionsColumns = new VBox(cColumns);
@@ -171,6 +168,10 @@ public class fxPrint {
 		rtAll.setToggleGroup(tgTeamSelection);
 		rtSelect.setToggleGroup(tgTeamSelection);
 		rtSeparate.setToggleGroup(tgTeamSelection);
+		//Adding tooltips
+		rtAll.setTooltip(new Tooltip("Include all recorded teams"));
+		rtAll.setTooltip(new Tooltip("Include only a specific division"));
+		rtSeparate.setTooltip(new Tooltip("Separate each division into a new table"));
 		
 		List<String> goals = new ArrayList<String>();
 		//Add the drop-down for select division:
@@ -179,12 +180,14 @@ public class fxPrint {
 		} 
 		setDivision = new ChoiceBox(FXCollections.observableArrayList(goals));
 		setDivision.setDisable(true);
+		setDivision.setTooltip(new Tooltip("Specified Division to print"));
 		
 		HBox hbContentOptionsRTSelect = new HBox(rtSelect,setDivision);
 		hbContentOptionsRTSelect.setSpacing(10);
 		
 		setSortCol = new ChoiceBox();
 		setSortCol.setDisable(true);
+		setSortCol.setTooltip(new Tooltip("Column in which the table should be sorted by"));
 		
 		HBox hbContentOptionsSort = new HBox(setSortCol);
 		hbContentOptionsSort.setSpacing(10);
@@ -319,10 +322,10 @@ public class fxPrint {
 		List<String> s = new ArrayList<String>();
 		for(CheckBox c : cColumns) {
 			if(c.isSelected()) switch(c.getText()) {
-			case "Position": s.add("positionInDivision");
-			case "Start Time": s.add("startFXM");
-			case "Finish Time": s.add("finishFXM");
-			case "Elapsed Time": s.add("elapsedFXM");
+			case "Position": s.add("positionInDivision"); break;
+			case "Start Time": s.add("startFXM"); break;
+			case "Finish Time": s.add("finishFXM"); break;
+			case "Elapsed Time": s.add("elapsedFXM"); break;
 			default: s.add(c.getText().toLowerCase());
 			}
 		}
@@ -445,6 +448,8 @@ public class fxPrint {
 //		if(table.getWidth() < pWidth) table.setScaleX(pWidth / table.getWidth());
 		
 		
+		//TODO Add method to print this into a border pane list
+		
 		//Debug:
 		Scene sc = new Scene(table);
 		Stage s = new Stage();
@@ -511,6 +516,10 @@ public class fxPrint {
 			case "printableNotes":
 				col.setText("Notes");
 				col.setPrefWidth(colSizeNotes);
+				break;
+			case "difference":
+				col.setText("Difference");
+				col.setPrefWidth(colSizeTime);
 			default: break;
 			}
 			col.setCellValueFactory(new PropertyValueFactory<Team,String>(s));
