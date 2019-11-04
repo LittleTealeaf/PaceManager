@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>paceManager</groupId>
   <artifactId>paceManager</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1-DEBUG</version>
   <name>Pace Manager</name>
   <dependencies>
   <dependency>
