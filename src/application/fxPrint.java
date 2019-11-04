@@ -3,9 +3,7 @@ package application;
 import java.util.ArrayList;
 import java.util.List;
 
-import classes.Goal;
-import classes.Team;
-import classes.util;
+import classes.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
@@ -449,6 +447,8 @@ public class fxPrint {
 		//Scaling table to the width of the paper, does not allow scaling when it's already fitted
 //		if(table.getWidth() < pWidth) table.setScaleX(pWidth / table.getWidth());
 		
+		
+		//TODO Add method to print this into a border pane list
 		
 		//Debug:
 		Scene sc = new Scene(table);
