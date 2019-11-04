@@ -191,19 +191,19 @@ public class fileImport {
 	
 	//Returns the string data of the cell, regardless of the cell type
 	private static String getString(Cell cell) {
-		switch (cell.getCellType()) {
-        case STRING:
-            return cell.getStringCellValue();
-        case NUMERIC:
-            double r = cell.getNumericCellValue();
-            if((int) r == (double) r) {
-            	return (int) r + "";
-            } else return r + "";
-        case BOOLEAN:
-            return cell.getBooleanCellValue() + "";
-        default :
-        	return "";
-        }
+		try {
+			return cell.getStringCellValue();
+			
+		} catch(Exception e) {
+			try {
+				return cell.getNumericCellValue() + "";
+			} catch(Exception f) {
+				try {
+					return cell.getBooleanCellValue() + "";
+				} catch(Exception g) {}
+			}
+		}
+		return "";
 	}
 	
 	/*
