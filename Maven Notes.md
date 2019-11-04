@@ -5,3 +5,6 @@ Helpful Sites to figure out Maven and Javafx and EVERYTHING!!!
 - http://www.loop81.com/2012/03/javafx-2-get-started-with-maven-eclipse.html
 - https://www.youtube.com/watch?v=r_tdK8zWr_w Has auto-generated subtitles
 - https://www.youtube.com/watch?v=wbjW8rYlook Has auto-generated subtitles
+
+Seems to be specifically between javafx and maven:
+- https://dzone.com/articles/javafx-on-jdk-11
