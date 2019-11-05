@@ -442,7 +442,7 @@ public class fxPrint {
 		}
 		
 		//PRESETS
-		final double cellSize = 20 * 3;
+		final double cellSize = 25;
 		
 		//Gets Printable Size
 		final double pWidth = job.getJobSettings().getPageLayout().getPrintableWidth();
@@ -451,12 +451,23 @@ public class fxPrint {
 		//Return value
 		List<BorderPane> ret = new ArrayList<BorderPane>();
 		
+		//Check if columns has the names part
+		boolean hasNames = false;
+		for(String s : columns) if(s.toLowerCase().contentEquals("names")) hasNames = true;
+		
+		//Get the total cell height
+		double totalCellHeight = cellSize * 1.2;
+		if(hasNames) {
+			for(Team t : teams) {
+				if(t.names != null) totalCellHeight+=t.names.size() * cellSize;
+			}
+		} else totalCellHeight+=teams.size() * cellSize;
+		final double cellTotal = totalCellHeight;
+		
 		//Creating the Table
-		TableView table = getTable(teams,columns,sortColumn, pWidth);
-		table.resize(pWidth, cellSize * (table.getItems().size() + 1));
-		
-		
-		//TODO Add method to print this into a border pane list
+		TableView table = getTable(teams,columns,sortColumn, pWidth - 5);	
+		table.resize(pWidth, totalCellHeight);
+		table.setPrefSize(pWidth, totalCellHeight);
 		
 		//Debug:
 		Scene sc = new Scene(table);
