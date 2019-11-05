@@ -566,6 +566,6 @@ public class fxPrint {
 		
 		return table;
 	}
-	
+}
 	
 	//http://tutorials.jenkov.com/javafx/scrollpane.html
