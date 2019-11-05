@@ -356,7 +356,8 @@ public class fxPrint {
 		job = PrinterJob.createPrinterJob(printer);
 		
 		//Create a layout using the printer's default paper
-		PageLayout layout = printer.getDefaultPageLayout();
+		//PageLayout layout = printer.getDefaultPageLayout();
+		PageLayout layout = printer.createPageLayout(printer.getDefaultPageLayout().getPaper(), orientation, Printer.MarginType.DEFAULT);
 		
 		job.getJobSettings().setPageLayout(layout);
 		
