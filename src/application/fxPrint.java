@@ -26,6 +26,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -79,6 +81,7 @@ public class fxPrint {
 		
 		sPrint.setTitle("Print");
 		sPrint.setAlwaysOnTop(true);
+		
 		
 		// PRINTING OPTIONS
 		
@@ -231,6 +234,13 @@ public class fxPrint {
 		VBox vb = new VBox(hbMid,hbBottom);
 		
 		Scene sc = new Scene(vb);
+		sc.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			public void handle(KeyEvent e) {
+				if(e.isControlDown() && e.getCode() == KeyCode.ENTER) {
+					print();
+				}
+			}
+		});
 		sPrint.setScene(sc);
 		
 		//Set Defaults
