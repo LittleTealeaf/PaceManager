@@ -349,6 +349,11 @@ public class fxPrint {
 
 	
 	private static void print() {
+		//Cancel Scripts
+		if((String) setContent.getValue() == "") return;
+		else if((String) setSortCol.getValue() == "") return;
+		else if(rtSelect.isSelected() && (String) setDivision.getValue() == "") return;
+		
 		sPrint.setAlwaysOnTop(false);
 		//Gets selected printer
 		Printer printer = (Printer) setPrinter.getValue();
