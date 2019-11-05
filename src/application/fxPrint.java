@@ -488,6 +488,8 @@ public class fxPrint {
 		table.getItems().setAll(teams);
 		for(String s : columns) {
 			TableColumn col = new TableColumn(s);
+			
+			//Variable Settings for each column
 			switch(s.toLowerCase()) {
 			case "team":
 				col.setText("Team");
@@ -531,9 +533,13 @@ public class fxPrint {
 				col.setPrefWidth(colSizeTime);
 			default: break;
 			}
+			//Adds to total size
 			totalSize += col.getPrefWidth();
+			//Sets the cell factory
 			col.setCellValueFactory(new PropertyValueFactory<Team,String>(s));
+			//Adds it to the table
 			table.getColumns().add(col);
+			//If it's the sort column, set it as the sort column
 			if(s.contentEquals(sortColumn)) table.getSortOrder().add(col);
 		}
 		
@@ -549,7 +555,9 @@ public class fxPrint {
 			}
 		}
 		
+		//Removes the arrow
 		table.getSortOrder().clear();
+		
 		return table;
 	}
 	
