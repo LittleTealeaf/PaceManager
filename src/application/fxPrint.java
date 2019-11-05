@@ -536,15 +536,12 @@ public class fxPrint {
 		}
 		
 		//If smaller than scale
-		if(totalSize < pWidth) {
+		if(totalSize == pWidth) {
 			//Take the difference left over
-			double rem = pWidth - totalSize;
-			
-			//Get number of columns
-			int size = table.getColumns().size();
+			double difference = pWidth - totalSize;
 			
 			//Split remainder up and add that amount to each column
-			double colAdd = rem / (double) size;
+			double colAdd = difference / table.getColumns().size();
 			for(TableColumn a : table.getColumns()) {
 				a.setPrefWidth(a.getPrefWidth() + colAdd);
 			}
