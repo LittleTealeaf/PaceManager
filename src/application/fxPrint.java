@@ -442,7 +442,7 @@ public class fxPrint {
 		List<BorderPane> ret = new ArrayList<BorderPane>();
 		
 		//Creating the Table
-		TableView table = getTable(teams,columns,sortColumn);
+		TableView table = getTable(teams,columns,sortColumn, pWidth);
 		//table.setFixedCellSize(cellSize);
 		List<TableColumn> cols = table.getColumns();
 		double totalColumnSize = 0;
@@ -450,6 +450,7 @@ public class fxPrint {
 		table.resize(totalColumnSize, cellSize * (table.getItems().size() + 1));
 		
 		//Scaling table to the width of the paper, does not allow scaling when it's already fitted
+		System.out.println(table.getWidth() + " " + pWidth);
 //		if(table.getWidth() < pWidth) table.setScaleX(pWidth / table.getWidth());
 		
 		
@@ -472,7 +473,7 @@ public class fxPrint {
 	 * @return
 	 */
 	@SuppressWarnings({ "unchecked", "static-access" })
-	private static TableView getTable(List<Team> teams, String[] columns, String sortColumn) {
+	private static TableView getTable(List<Team> teams, String[] columns, String sortColumn, double pWidth) {
 		final double colSizeTeam = 35;
 		final double colSizeDiv = 60;
 		final double colSizeTime = 75;
@@ -481,6 +482,7 @@ public class fxPrint {
 		final double colSizeNotes = 50;
 		
 		TableView<Team> table = new TableView<Team>();
+		double totalSize = 0;
 		table.getItems().setAll(teams);
 		for(String s : columns) {
 			TableColumn col = new TableColumn(s);
@@ -518,7 +520,7 @@ public class fxPrint {
 				col.setPrefWidth(colSizePlace);
 				col.setSortType(col.getSortType().DESCENDING);
 				break;
-			case "printableNotes":
+			case "printablenotes":
 				col.setText("Notes");
 				col.setPrefWidth(colSizeNotes);
 				break;
@@ -527,10 +529,27 @@ public class fxPrint {
 				col.setPrefWidth(colSizeTime);
 			default: break;
 			}
+			totalSize += col.getPrefWidth();
 			col.setCellValueFactory(new PropertyValueFactory<Team,String>(s));
 			table.getColumns().add(col);
 			if(s.contentEquals(sortColumn)) table.getSortOrder().add(col);
 		}
+		
+		//If smaller than scale
+		if(totalSize < pWidth) {
+			//Take the difference left over
+			double rem = pWidth - totalSize;
+			
+			//Get number of columns
+			int size = table.getColumns().size();
+			
+			//Split remainder up and add that amount to each column
+			double colAdd = rem / (double) size;
+			for(TableColumn a : table.getColumns()) {
+				a.setPrefWidth(a.getPrefWidth() + colAdd);
+			}
+		}
+		
 		table.getSortOrder().clear();
 		return table;
 	}
