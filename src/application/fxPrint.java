@@ -356,7 +356,6 @@ public class fxPrint {
 		job = PrinterJob.createPrinterJob(printer);
 		
 		//Create a layout using the printer's default paper
-		//PageLayout layout = printer.getDefaultPageLayout();
 		PageLayout layout = printer.createPageLayout(printer.getDefaultPageLayout().getPaper(), orientation, Printer.MarginType.DEFAULT);
 		
 		job.getJobSettings().setPageLayout(layout);
@@ -391,7 +390,7 @@ public class fxPrint {
 				if(!selDiv.contentEquals("")) {
 					teams = paceManager.getTeams(selDiv);
 				}
-			} else if(rtSeparate.isSelected()) { //Each division in its own respective list, uses custom script as mulitple pages are needed
+			} else if(rtSeparate.isSelected()) { //Each division in its own respective list, uses custom script as multiple pages are needed
 				if(!paceManager.goals.isEmpty()) {
 					for(Goal g : paceManager.goals) {
 						header = g.division + "  " + g.time.toString();
