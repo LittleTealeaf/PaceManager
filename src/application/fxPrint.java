@@ -453,15 +453,7 @@ public class fxPrint {
 		
 		//Creating the Table
 		TableView table = getTable(teams,columns,sortColumn, pWidth);
-		//table.setFixedCellSize(cellSize);
-		List<TableColumn> cols = table.getColumns();
-		double totalColumnSize = 0;
-		for(TableColumn c : cols) totalColumnSize+=c.getPrefWidth();
-		table.resize(totalColumnSize, cellSize * (table.getItems().size() + 1));
-		
-		//Scaling table to the width of the paper, does not allow scaling when it's already fitted
-		System.out.println(table.getWidth() + " " + pWidth);
-//		if(table.getWidth() < pWidth) table.setScaleX(pWidth / table.getWidth());
+		table.resize(pWidth, cellSize * (table.getItems().size() + 1));
 		
 		
 		//TODO Add method to print this into a border pane list
@@ -546,7 +538,7 @@ public class fxPrint {
 		}
 		
 		//If smaller than scale
-		if(totalSize == pWidth) {
+		if(totalSize != pWidth) {
 			//Take the difference left over
 			double difference = pWidth - totalSize;
 			
