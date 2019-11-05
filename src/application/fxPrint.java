@@ -33,6 +33,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 @SuppressWarnings("rawtypes")
@@ -443,6 +444,7 @@ public class fxPrint {
 		
 		//PRESETS
 		final double cellSize = 25;
+		final double textSize = 15.9609375;
 		
 		//Gets Printable Size
 		final double pWidth = job.getJobSettings().getPageLayout().getPrintableWidth();
@@ -462,15 +464,25 @@ public class fxPrint {
 				if(t.names != null) totalCellHeight+=t.names.size() * cellSize;
 			}
 		} else totalCellHeight+=teams.size() * cellSize;
-		final double cellTotal = totalCellHeight;
+		
+		Text top = new Text(header);
+		double tableHeight = pHeight - top.getText().lines().count() * textSize;
+		int pages = (int) (totalCellHeight / tableHeight) + 1;
+		double setTableHeight = tableHeight * pages;
 		
 		//Creating the Table
 		TableView table = getTable(teams,columns,sortColumn, pWidth - 5);	
-		table.resize(pWidth, totalCellHeight);
-		table.setPrefSize(pWidth, totalCellHeight);
+		table.resize(pWidth, setTableHeight);
+		table.setPrefSize(pWidth, setTableHeight);
+		
+		//TODO Add the screen panner
+		
+		BorderPane bp = new BorderPane();
+		bp.setTop(top);
+		bp.setCenter(table);
 		
 		//Debug:
-		Scene sc = new Scene(table);
+		Scene sc = new Scene(bp);
 		Stage s = new Stage();
 		s.setScene(sc);
 		s.show();
