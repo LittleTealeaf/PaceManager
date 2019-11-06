@@ -112,10 +112,8 @@ public class fxTeam {
 		
 		Button bCancel = new Button("Cancel");
 		bCancel.setPrefWidth(75);
-		bCancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent e) {
-				sTeam.close();
-			}
+		bCancel.setOnAction(event -> {
+			sTeam.close();
 		});
 		
 		lError = new Label();
@@ -125,11 +123,8 @@ public class fxTeam {
 		
 		Button bSave = new Button("Save");
 		bSave.setPrefWidth(75);
-		bSave.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent e) {
-				//Saves the script, if successfully saved, closes fxTeam 
-				if(save()) sTeam.close();
-			}
+		bSave.setOnAction(event -> {
+			if(save()) sTeam.close();
 		});
 		
 		HBox h4 = new HBox(bCancel,lError,rb,bSave);

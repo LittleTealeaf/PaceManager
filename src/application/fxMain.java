@@ -77,72 +77,52 @@ public class fxMain extends Application {
 			}
 		});
 		MenuItem m1Open = new MenuItem("Open");
-		m1Open.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				fileManager.open();
-			}
+		m1Open.setOnAction(event -> {
+			fileManager.open();
 		});
 		MenuItem m1Save = new MenuItem("Save");
-		m1Save.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				fileManager.save();
-			}
+		m1Save.setOnAction(event -> {
+			fileManager.save();
 		});
 		MenuItem m1SaveAs = new MenuItem("Save As");
-		m1SaveAs.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				fileManager.saveAs();
-			}
+		m1SaveAs.setOnAction(event -> {
+			fileManager.saveAs();
 		});
 		SeparatorMenuItem m1Separator1 = new SeparatorMenuItem();
 		MenuItem m1Exit = new MenuItem("Exit");
-		m1Exit.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				System.exit(0);
-			}
+		m1Exit.setOnAction(event -> {
+			System.exit(0);
 		});
 		m1.getItems().addAll(m1New,m1Open,m1Save,m1SaveAs,m1Separator1,m1Exit);
 		
 		Menu m2 = new Menu("Teams");
 		MenuItem m2Create = new MenuItem("Create Team");
-		m2Create.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				fxTeam.open(null);
-			}
+		m2Create.setOnAction(event -> {
+			fxTeam.open(null);
 		});
 		SeparatorMenuItem m2Separator1 = new SeparatorMenuItem();
 		MenuItem m2Import = new MenuItem("Import");
-		m2Import.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				fxImport.open();
-			}
+		m2Import.setOnAction(event -> {
+			fxImport.open();
 		});
 		MenuItem m2ImportFile = new MenuItem("Import from File...");
-		m2ImportFile.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				fileImport.importFile();
-			}
+		m2ImportFile.setOnAction(even -> {
+			fileImport.importFile();
 		});
 		m2.getItems().addAll(m2Create,m2Separator1,m2Import,m2ImportFile);
 
 		Menu m3 = new Menu("Pace");
 		MenuItem m3Goals = new MenuItem("Goal Times");
-		m3Goals.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				fxGoals.open();
-			}
+		m3Goals.setOnAction(event -> {
+			fxGoals.open();
 		});
 		MenuItem m3Scores = new MenuItem("Scores");
-		m3Scores.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				fxScores.open();
-			}
+		m3Scores.setOnAction(event -> {
+			fxScores.open();
 		});
 		MenuItem m3Print = new MenuItem("Print");
-		m3Print.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				fxPrint.open();
-			}
+		m3Print.setOnAction(event -> {
+			fxPrint.open();
 		});
 		m3.getItems().addAll(m3Goals,m3Scores,m3Print);
 		

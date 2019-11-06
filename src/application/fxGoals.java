@@ -85,22 +85,16 @@ public class fxGoals {
 		HBox hBottom = new HBox();
 		hBottom.setSpacing(10);
 		Button bCreate = new Button("New");
-		bCreate.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent e) {
-				editDiv(null);
-			}
+		bCreate.setOnAction(event -> {
+			editDiv(null);
 		});
 		Button bImport = new Button("Import");
-		bImport.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent e) {
-				importDivs();
-			}
+		bImport.setOnAction(event -> {
+			importDivs();
 		});
 		Button bClose = new Button("Close");
-		bClose.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent e) {
-				sGoals.close();
-			}
+		bClose.setOnAction(event -> {
+			sGoals.close();
 		});
 		Region botRegion = new Region();
 		HBox.setHgrow(botRegion, Priority.ALWAYS);
