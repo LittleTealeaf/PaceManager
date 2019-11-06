@@ -3,9 +3,8 @@ package application;
 import java.util.ArrayList;
 import java.util.List;
 
-import classes.*;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import classes.Goal;
+import classes.ScoreTab;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
