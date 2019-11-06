@@ -2,10 +2,10 @@ package classes;
 
 import java.util.List;
 
-public class FileJSON {
+public class PaceData {
 	public List<Team> teams;
 	public List<Goal> goals;
-	public FileJSON(List<Team> listTeams, List<Goal> listGoals) {
+	public PaceData(List<Team> listTeams, List<Goal> listGoals) {
 		teams = listTeams;
 		goals = listGoals;
 	}

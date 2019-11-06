@@ -54,7 +54,7 @@ public class fileManager {
 	//http://tutorials.jenkov.com/java-json/gson.html
 	public static void fileSave(File saveFile) {
 		Gson gson = new Gson();
-		FileJSON data = new FileJSON(paceManager.teams,paceManager.goals);
+		PaceData data = new PaceData(paceManager.teams,paceManager.goals);
 		
 	}
 
