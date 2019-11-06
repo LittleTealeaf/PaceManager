@@ -599,6 +599,35 @@ public class fxPrint {
 		
 		return table;
 	}
+	
+	private static List<Team> getPrintTeams() {return getPrintTeams("",paceManager.teams);	}
+	private static List<Team> getPrintTeams(List<Team> teams) {return getPrintTeams("",teams);	}
+	
+	private static List<Team> getPrintTeams(String setting, List<Team> teams) {
+		if(setting.contentEquals("")) setting = (String) setValidTeams.getValue();
+		List<Team> ret = new ArrayList<Team>();
+		for(Team t : teams) {
+			switch(setting) {
+			case "Valid Only":
+				if(!t.excluded && t.elapsed() != null) ret.add(t);
+				break;
+			case "Arrived Only":
+				if(t.elapsed() != null) ret.add(t);
+				break;
+			case "Departed Only":
+				if(t.start != null && t.finish == null) ret.add(t);
+				break;
+			case "Stale Only":
+				if(t.start == null && t.finish == null) ret.add(t);
+				break;
+			default:
+				ret.add(t);
+				break;
+			}
+		}
+		return ret;
+	}
+	//"All Teams", "Valid Only", "Arrived Only","Departed Only","Stale Only"));
 }
 	
 	//http://tutorials.jenkov.com/javafx/scrollpane.html
