@@ -11,6 +11,9 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.OpenOption;
 import java.io.FileReader;
 
 public class fileManager {
@@ -47,7 +50,7 @@ public class fileManager {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open Pace File");
 		fileChooser.getExtensionFilters().add(new ExtensionFilter("Pace Files","*.pace"));
-		//openFile(fileChooser.showOpenDialog(fxMain.sMRef));	
+		fileOpen(fileChooser.showOpenDialog(fxMain.sMRef));	
 	}
 	
 	
@@ -56,6 +59,22 @@ public class fileManager {
 		Gson gson = new Gson();
 		PaceData data = new PaceData(paceManager.teams,paceManager.goals);
 		
+		try {
+			if(!saveFile.exists()) saveFile.createNewFile();
+			FileWriter writer = new FileWriter(saveFile);
+			writer.write(gson.toJson(data));
+		} catch(Exception e) {}
+	}
+	
+	public static void fileOpen(File openFile) {
+		if(!openFile.exists()) return;
+		Gson gson = new Gson();
+		try {
+			FileReader reader = new FileReader(openFile);
+			List<String> lines = Files.readAllLines(openFile.toPath());
+			PaceData data = new PaceData();
+			data = gson.fromJson(lines.get(0), (Type) data);
+		} catch (Exception e) {}
 	}
 
 	
