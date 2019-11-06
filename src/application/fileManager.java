@@ -75,8 +75,10 @@ public class fileManager {
 		try {
 			FileReader reader = new FileReader(openFile);
 			List<String> lines = Files.readAllLines(openFile.toPath());
-			if(lines.size() == 0) return; //TODO add a script and possibly a popup here?
-			PaceData data = gson.fromJson(lines.get(0), PaceData.class);
+			if(lines.size() == 0) return;
+			String jsonString = "";
+			for(String l : lines) jsonString+=l;
+			PaceData data = gson.fromJson(jsonString, PaceData.class);
 			System.out.println(data.teams.size());
 		} catch (Exception e) {
 			e.printStackTrace();
