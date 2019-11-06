@@ -212,20 +212,16 @@ public class fxPrint {
 		//BOTTOM
 		
 		Button bCancel = new Button("Cancel");
-		bCancel.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				sPrint.close();
-			}
+		bCancel.setOnAction(event -> {
+			sPrint.close();
 		});
 		
 		Region rBottom = new Region();
 		HBox.setHgrow(rBottom, Priority.ALWAYS);
 		
 		Button bPrint = new Button("Print");
-		bPrint.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				print();
-			}
+		bPrint.setOnAction(event -> {
+			print();
 		});
 		
 		HBox hbMid = new HBox(vbPrintSettings, vbContentOptions);		
@@ -432,7 +428,7 @@ public class fxPrint {
 	 * @param sortColumn Column, specified above, to sort by (will return null if set column does not)
 	 * @return
 	 */
-	@SuppressWarnings({ "unused", "unchecked" })
+
 	private static List<BorderPane> getTablePages(PrinterJob job, String header, List<Team> teams, String[] columns, String sortColumn) {
 		//Checks if the sort column is in the columns
 		boolean bError = true;
