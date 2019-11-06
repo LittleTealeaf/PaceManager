@@ -57,9 +57,6 @@ public class fileManager {
 	//http://tutorials.jenkov.com/java-json/gson.html
 	public static void fileSave(File saveFile) {
 		try {
-			//If the file doesn't exist, create it
-			if(!saveFile.exists()) saveFile.createNewFile();
-			
 			//Create a writer
 			FileWriter writer = new FileWriter(saveFile);
 			
