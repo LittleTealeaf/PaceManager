@@ -56,6 +56,7 @@ public class fxPrint {
 	
 	//Check Boxes
 	private static CheckBox[] cColumns;
+	private static ChoiceBox setValidTeams;
 	
 	//Content Selection:
 	private static ChoiceBox setDivision;
@@ -188,14 +189,25 @@ public class fxPrint {
 		HBox hbContentOptionsRTSelect = new HBox(rtSelect,setDivision);
 		hbContentOptionsRTSelect.setSpacing(10);
 		
+		Text lValid = new Text("Valid Teams");
+		
+		setValidTeams = new ChoiceBox(FXCollections.observableArrayList("All Teams", "Valid Only", "Arrived Only","Departed Only","Stale Only"));
+		setValidTeams.setTooltip(new Tooltip("Which specific teams should we include?"));
+		
+		
+		HBox hbContentValidTeams = new HBox(lValid,setValidTeams);
+		hbContentValidTeams.setSpacing(10);
+		
+		Text lSort = new Text("Sort Method:");
+		
 		setSortCol = new ChoiceBox();
-		setSortCol.setDisable(true);
 		setSortCol.setTooltip(new Tooltip("Column in which the table should be sorted by"));
 		
-		HBox hbContentOptionsSort = new HBox(setSortCol);
+		HBox hbContentOptionsSort = new HBox(lSort,setSortCol);
 		hbContentOptionsSort.setSpacing(10);
 		
-		VBox vbContentOptionsTeamSelect = new VBox(rtAll,hbContentOptionsRTSelect,rtSeparate,hbContentOptionsSort);
+		
+		VBox vbContentOptionsTeamSelect = new VBox(rtAll,hbContentOptionsRTSelect,rtSeparate,hbContentValidTeams,hbContentOptionsSort);
 		vbContentOptionsTeamSelect.setSpacing(10);
 		
 		
@@ -239,7 +251,10 @@ public class fxPrint {
 		rVertical.fire();
 		orientation = PageOrientation.PORTRAIT;
 		setContent.setValue("");
+		
 		rtAll.setSelected(true);
+		setValidTeams.setDisable(true);
+		setSortCol.setDisable(true);
 		
 		//PRESETS
 		// 'if(preset == "") {} else ' makes sure nothing happens if the preset is left blank
@@ -254,6 +269,7 @@ public class fxPrint {
 			setColumnValue("Start Time");
 			setColumnValue("End Time");
 			setColumnValue("Elapsed Time");
+			setValidTeams.setValue("All Teams");
 			setSortCol.setValue("Team");
 		} else if(preset.toCharArray()[0] == 'g') {
 			//Specific Division
@@ -264,6 +280,7 @@ public class fxPrint {
 				div = preset.substring(1);
 			} catch (Exception e) {return;}
 			
+			setValidTeams.setValue("Arrived Only");
 			setContent.setValue("Custom");
 			rtSelect.setSelected(true);
 			setDivision.setValue(div);
@@ -297,7 +314,9 @@ public class fxPrint {
 		rtSelect.setDisable(eCustom);
 		rtSeparate.setDisable(eCustom);
 		
-		setSortCol.setDisable(setContent.getValue().equals("Announcement"));
+		boolean isAnnounce = setContent.getValue().equals("Announcement");
+		setValidTeams.setDisable(isAnnounce);
+		setSortCol.setDisable(isAnnounce);
 		setSortCol.getItems().setAll(getSortColumns());
 		if(setSortCol.getItems().size() > 0) setSortCol.setValue(setSortCol.getItems().get(0));
 	}
