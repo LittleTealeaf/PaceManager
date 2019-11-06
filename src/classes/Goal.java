@@ -1,8 +1,11 @@
 package classes;
 
+import java.io.Serializable;
+
 import application.paceManager;
 
-public class Goal {
+
+public class Goal implements Serializable {
 	//Division is required
 	public String division;
 	public Time time;
