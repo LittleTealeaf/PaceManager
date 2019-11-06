@@ -56,13 +56,15 @@ public class fileManager {
 	
 	//http://tutorials.jenkov.com/java-json/gson.html
 	public static void fileSave(File saveFile) {
-		Gson gson = new Gson();
-		PaceData data = new PaceData(paceManager.teams,paceManager.goals);
-		
 		try {
+			//If the file doesn't exist, create it
 			if(!saveFile.exists()) saveFile.createNewFile();
+			
+			//Create a writer
 			FileWriter writer = new FileWriter(saveFile);
-			writer.write(gson.toJson(data));
+			
+			//Write the JSON file, using the GSON library
+			writer.write(new Gson().toJson(new PaceData(paceManager.teams,paceManager.goals)));
 			writer.close();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -70,15 +72,22 @@ public class fileManager {
 	}
 	
 	public static void fileOpen(File openFile) {
+		//Cancel if file doesn't exist
 		if(!openFile.exists()) return;
-		Gson gson = new Gson();
 		try {
+			//Create reader to read lines into a list
 			FileReader reader = new FileReader(openFile);
 			List<String> lines = Files.readAllLines(openFile.toPath());
-			if(lines.size() == 0) return;
+			
+			//Cancel if file is empty
+			if(lines.size() == 0) return; 
+			
+			//Concatenate list of strings into a single string
 			String jsonString = "";
 			for(String l : lines) jsonString+=l;
-			gson.fromJson(jsonString, PaceData.class).updatePace();
+			
+			//Import JSON into the pace
+			new Gson().fromJson(jsonString, PaceData.class).updatePace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
