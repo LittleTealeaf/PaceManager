@@ -63,7 +63,10 @@ public class fileManager {
 			if(!saveFile.exists()) saveFile.createNewFile();
 			FileWriter writer = new FileWriter(saveFile);
 			writer.write(gson.toJson(data));
-		} catch(Exception e) {}
+			writer.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static void fileOpen(File openFile) {
@@ -72,9 +75,11 @@ public class fileManager {
 		try {
 			FileReader reader = new FileReader(openFile);
 			List<String> lines = Files.readAllLines(openFile.toPath());
-			PaceData data = new PaceData();
-			data = gson.fromJson(lines.get(0), (Type) data);
-		} catch (Exception e) {}
+			PaceData data = gson.fromJson(lines.get(0), PaceData.class);
+			System.out.println(data.teams.size());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	
