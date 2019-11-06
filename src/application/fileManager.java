@@ -1,20 +1,17 @@
 package application;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
 
-import classes.*;
+import classes.PaceData;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.lang.reflect.Type;
-import java.nio.file.Files;
-import java.nio.file.OpenOption;
-import java.io.FileReader;
 
 public class fileManager {
 
