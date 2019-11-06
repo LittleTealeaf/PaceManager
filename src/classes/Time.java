@@ -15,7 +15,7 @@ public class Time {
 	 * 1: Could not Parse
 	 * 2: No Text
 	 */
-	public float error;
+	public transient float error;
 	
 	public Time() {
 		time = 0;
