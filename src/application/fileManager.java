@@ -75,6 +75,7 @@ public class fileManager {
 		try {
 			FileReader reader = new FileReader(openFile);
 			List<String> lines = Files.readAllLines(openFile.toPath());
+			if(lines.size() == 0) return;
 			PaceData data = gson.fromJson(lines.get(0), PaceData.class);
 			System.out.println(data.teams.size());
 		} catch (Exception e) {
