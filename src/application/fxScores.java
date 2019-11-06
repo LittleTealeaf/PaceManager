@@ -29,10 +29,10 @@ public class fxScores {
 		sScores = new Stage();
 		sScores.setTitle("Score Leaderboard");
 		//Dynamic Custom Resizing
-		sScores.widthProperty().addListener((obs,newv,oldv) -> {
+		sScores.widthProperty().addListener(obs -> {
 			resizeWindow();
 		});
-		sScores.heightProperty().addListener((obs,newv,oldv) -> {
+		sScores.heightProperty().addListener(obs -> {
 			resizeWindow();
 		});
 		

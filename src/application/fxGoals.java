@@ -38,10 +38,10 @@ public class fxGoals {
 		if(sGoals != null) sGoals.close();
 		sGoals = new Stage();
 		sGoals.setTitle("Goal Times");
-		sGoals.widthProperty().addListener((obs,oldv,newv) -> {
+		sGoals.widthProperty().addListener(obs -> {
 			resizeWindow();
 		});
-		sGoals.heightProperty().addListener((obs,oldv,newv) -> {
+		sGoals.heightProperty().addListener(obs -> {
 			resizeWindow();
 		});
 		
@@ -57,24 +57,18 @@ public class fxGoals {
 		tGoal.setCellValueFactory(new PropertyValueFactory<Goal,String>("displayTime"));
 		tGoal.setReorderable(false);
 		table.getColumns().addAll(tDiv,tGoal);
-		table.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent click) {
-				if (click.getClickCount() == 2) {
-					try {
-						editDiv(table.getSelectionModel().getSelectedItem());
-					} catch(IndexOutOfBoundsException e) {}
-				}
+		table.setOnMouseClicked(click -> {
+			if (click.getClickCount() == 2) {
+				try {
+					editDiv(table.getSelectionModel().getSelectedItem());
+				} catch(IndexOutOfBoundsException e) {}
 			}
 		});
-		table.setOnKeyPressed(new EventHandler<KeyEvent>() {
-			@Override
-			public void handle(KeyEvent k) {
-				if(k.getCode() == KeyCode.DELETE) {
-					try {
-						deleteDiv(table.getSelectionModel().getSelectedItem());
-					} catch(IndexOutOfBoundsException e) {}
-				}
+		table.setOnKeyPressed(k -> {
+			if(k.getCode() == KeyCode.DELETE) {
+				try {
+					deleteDiv(table.getSelectionModel().getSelectedItem());
+				} catch(IndexOutOfBoundsException e) {}
 			}
 		});
 		
@@ -123,7 +117,7 @@ public class fxGoals {
 		else sgEdit.setTitle("Edit Goal");
 		
 		teDiv = new TextField();
-		teDiv.addEventHandler(KeyEvent.KEY_PRESSED, keyEvent -> {
+		teDiv.setOnKeyPressed(keyEvent -> {
 			if(keyEvent.getCode() == KeyCode.ENTER) {
 				leError.setText("");
 				if(teDiv.getText() == "") {
@@ -134,7 +128,7 @@ public class fxGoals {
 		Label leDiv = new Label("Division");
 		
 		teTime = new TextField();
-		teTime.addEventHandler(KeyEvent.KEY_PRESSED, keyEvent -> {
+		teTime.setOnKeyPressed(keyEvent -> {
 			if(keyEvent.getCode() == KeyCode.ENTER) {
 				eSave(g);
 			}
@@ -153,16 +147,12 @@ public class fxGoals {
 		vb1.setSpacing(10);
 		
 		Button bSave = new Button("Save");
-		bSave.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent e) {
-				eSave(g);
-			}
+		bSave.setOnMouseClicked(click -> {
+			eSave(g);
 		});
 		Button bCancel = new Button("Cancel");
-		bCancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent e) {
-				sgEdit.close();
-			}
+		bCancel.setOnMouseClicked(click -> {
+			sgEdit.close();
 		});
 		
 		VBox vb2 = new VBox(bSave,new Label(""),bCancel);

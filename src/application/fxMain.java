@@ -50,10 +50,10 @@ public class fxMain extends Application {
 	public void start(Stage sMain) {
 		sMRef = sMain;
 		sMain.setTitle("Pace Manager " + paceManager.version);
-		sMain.widthProperty().addListener((obs,oldv,newv) -> {
+		sMain.widthProperty().addListener(obs -> {
 			resizeColumns();
 		});
-		sMain.maximizedProperty().addListener((obs,oldv,newv) -> {
+		sMain.maximizedProperty().addListener(obs -> {
 			resizeColumns();
 		});
 		
@@ -135,35 +135,29 @@ public class fxMain extends Application {
 		/*
 		 * https://stackoverflow.com/a/32442449
 		 */
-		table.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent click) {
-				if (click.getClickCount() == 2) {
-					try {
-						TablePosition pos = table.getSelectionModel().getSelectedCells().get(0);
-						//int row = pos.getRow();
-						//System.out.println(row);
-						int col = pos.getColumn();
-						Team sel = table.getSelectionModel().getSelectedItem();
-						if(col == 6) {
-							openNotes(sel, click.getScreenX(), click.getScreenY());
-						} else {
-							fxTeam.open(sel,col);
-						}
-					} catch(IndexOutOfBoundsException e) {}
-				}
+		table.setOnMouseClicked(click -> {
+			if (click.getClickCount() == 2) {
+				try {
+					TablePosition pos = table.getSelectionModel().getSelectedCells().get(0);
+					//int row = pos.getRow();
+					//System.out.println(row);
+					int col = pos.getColumn();
+					Team sel = table.getSelectionModel().getSelectedItem();
+					if(col == 6) {
+						openNotes(sel, click.getScreenX(), click.getScreenY());
+					} else {
+						fxTeam.open(sel,col);
+					}
+				} catch(IndexOutOfBoundsException e) {}
 			}
 		});
-		table.setOnKeyPressed(new EventHandler<KeyEvent>() {
-			@Override
-			public void handle(KeyEvent k) {
-				if(k.getCode() == KeyCode.DELETE) {
-					try {
-						paceManager.deleteTeam(table.getSelectionModel().getSelectedItem());
-					} catch(IndexOutOfBoundsException e) {}
-				} else if(k.getCode() == KeyCode.P && k.isControlDown()) {
-					fxPrint.open("All Teams");
-				}
+		table.setOnKeyPressed(k -> {
+			if(k.getCode() == KeyCode.DELETE) {
+				try {
+					paceManager.deleteTeam(table.getSelectionModel().getSelectedItem());
+				} catch(IndexOutOfBoundsException e) {}
+			} else if(k.getCode() == KeyCode.P && k.isControlDown()) {
+				fxPrint.open("All Teams");
 			}
 		});
 
@@ -337,11 +331,9 @@ public class fxMain extends Application {
 		
 		Button nbClose = new Button();
 		nbClose.setText("Close");
-		nbClose.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent click) {
-				mNotes.close();
-				updateTable();
-			}
+		nbClose.setOnMouseClicked(click -> {
+			mNotes.close();
+			updateTable();
 		});
 		
 		VBox vb = new VBox();

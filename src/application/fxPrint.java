@@ -231,12 +231,8 @@ public class fxPrint {
 		VBox vb = new VBox(hbMid,hbBottom);
 		
 		Scene sc = new Scene(vb);
-		sc.setOnKeyPressed(new EventHandler<KeyEvent>() {
-			public void handle(KeyEvent e) {
-				if(e.isControlDown() && e.getCode() == KeyCode.ENTER) {
-					print();
-				}
-			}
+		sc.setOnKeyPressed(key -> {
+			if(key.isControlDown() && key.getCode() == KeyCode.ENTER) print();
 		});
 		sPrint.setScene(sc);
 		
