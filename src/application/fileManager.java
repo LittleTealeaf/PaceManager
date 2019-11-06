@@ -3,6 +3,8 @@ package application;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.Gson;
+
 import classes.*;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -26,7 +28,7 @@ public class fileManager {
 			saveAs();
 			return;
 		} else {
-			//fileSave(loadedFile);
+			fileSave(loadedFile);
 		}
 	}
 	/**
@@ -36,7 +38,7 @@ public class fileManager {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Save File");
 		fileChooser.getExtensionFilters().add(new ExtensionFilter("Pace Files","*.pace"));
-		//fileSave(fileChooser.showSaveDialog(fxMain.sMRef));
+		fileSave(fileChooser.showSaveDialog(fxMain.sMRef));
 	}
 	/**
 	 * Opens an "open file" dialog to pass to the openFile method
@@ -46,6 +48,12 @@ public class fileManager {
 		fileChooser.setTitle("Open Pace File");
 		fileChooser.getExtensionFilters().add(new ExtensionFilter("Pace Files","*.pace"));
 		//openFile(fileChooser.showOpenDialog(fxMain.sMRef));	
+	}
+	
+	
+	//http://tutorials.jenkov.com/java-json/gson.html
+	public static void fileSave(File saveFile) {
+		Gson gson = new Gson();
 	}
 	
 	
