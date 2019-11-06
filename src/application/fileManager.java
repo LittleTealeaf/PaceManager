@@ -78,8 +78,7 @@ public class fileManager {
 			if(lines.size() == 0) return;
 			String jsonString = "";
 			for(String l : lines) jsonString+=l;
-			PaceData data = gson.fromJson(jsonString, PaceData.class);
-			System.out.println(data.teams.size());
+			gson.fromJson(jsonString, PaceData.class).updatePace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
