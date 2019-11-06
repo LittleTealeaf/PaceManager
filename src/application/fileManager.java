@@ -87,9 +87,6 @@ public class fileManager {
 		}
 	}
 
-	
-	
-
 	/**
 	 * Checks if a string is valid
 	 * @param s The String to be checked
