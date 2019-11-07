@@ -16,7 +16,9 @@ import javafx.scene.control.Alert.AlertType;
 
 public class paceManager {
 	
-	public static final String version = "0.1";
+	public static final String version = "0.0.1-DEV";
+	
+	public static String title;
 
 	public static List<Team> teams;
 	public static List<Goal> goals;
@@ -48,7 +50,7 @@ public class paceManager {
 	}
 	
 	public static void deleteTeam(Team t) {
-		if(settings.alertOnDelete) {
+		if(settings.alertOnDeleteTeam) {
 			Alert conf = new Alert(AlertType.CONFIRMATION);
 			conf.setTitle("Delete " + t.team + "?");
 			conf.setHeaderText("Do you really want to delete " + t.team + "?");

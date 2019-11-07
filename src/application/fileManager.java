@@ -1,21 +1,24 @@
 package application;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.google.gson.Gson;
 
 import classes.PaceData;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
 public class fileManager {
 
-	private static final String ind = "|";
+	//TODO test if I can still include illegal chars with the program
 	private static final char[] ILLEGAL_CHARS = {'/','<','>','[',']','/','\\','=','|'};
 	
 	public static File loadedFile;
@@ -58,7 +61,7 @@ public class fileManager {
 			FileWriter writer = new FileWriter(saveFile);
 			
 			//Write the JSON file, using the GSON library
-			writer.write(new Gson().toJson(new PaceData(paceManager.teams,paceManager.goals,paceManager.settings)));
+			writer.write(new Gson().toJson(new PaceData()));
 			writer.close();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -70,7 +73,6 @@ public class fileManager {
 		if(!openFile.exists()) return;
 		try {
 			//Create reader to read lines into a list
-			FileReader reader = new FileReader(openFile);
 			List<String> lines = Files.readAllLines(openFile.toPath());
 			
 			//Cancel if file is empty
@@ -80,8 +82,17 @@ public class fileManager {
 			String jsonString = "";
 			for(String l : lines) jsonString+=l;
 			
+			PaceData data = new Gson().fromJson(jsonString, PaceData.class);
 			//Import JSON into the pace
-			new Gson().fromJson(jsonString, PaceData.class).updatePace();
+			if(!data.updatePace()) {
+				//Versions don't match up
+				Alert conf = new Alert(AlertType.CONFIRMATION);
+				conf.setTitle("Version Mismatch");
+				conf.setHeaderText("File Save is on version " + data.version + " and you're running version " + paceManager.version);
+				conf.setContentText("Would you like to import anyways? Some features may not be imported.");
+				Optional<ButtonType> result = conf.showAndWait();
+				if(result.get() == ButtonType.OK) data.updatePaceForce();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
