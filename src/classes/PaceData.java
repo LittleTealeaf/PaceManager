@@ -5,20 +5,18 @@ import java.util.List;
 import application.*;
 
 public class PaceData {
+	
+	public String version;
+	
 	public List<Team> teams;
 	public List<Goal> goals;
 	public Settings settings;
-	
-	public PaceData() {}
-	public PaceData(List<Team> listTeams, List<Goal> listGoals) {
-		teams = listTeams;
-		goals = listGoals;
-		settings = null;
-	}
+
 	public PaceData(List<Team> listTeams, List<Goal> listGoals, Settings getSettings) {
 		teams = listTeams;
 		goals = listGoals;
 		settings = getSettings;
+		version = "0.0.1";
 	}
 	
 	public void updatePace() {
