@@ -1,7 +1,6 @@
 package application;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -12,8 +11,8 @@ import com.google.gson.Gson;
 
 import classes.PaceData;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
