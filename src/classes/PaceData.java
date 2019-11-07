@@ -16,7 +16,7 @@ public class PaceData {
 		teams = listTeams;
 		goals = listGoals;
 		settings = getSettings;
-		version = "0.0.1";
+		version = paceManager.version;
 	}
 	
 	public void updatePace() {

@@ -17,7 +17,6 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 public class fileManager {
 
-	private static final String ind = "|";
 	private static final char[] ILLEGAL_CHARS = {'/','<','>','[',']','/','\\','=','|'};
 	
 	public static File loadedFile;
@@ -72,7 +71,6 @@ public class fileManager {
 		if(!openFile.exists()) return;
 		try {
 			//Create reader to read lines into a list
-			FileReader reader = new FileReader(openFile);
 			List<String> lines = Files.readAllLines(openFile.toPath());
 			
 			//Cancel if file is empty
@@ -83,7 +81,9 @@ public class fileManager {
 			for(String l : lines) jsonString+=l;
 			
 			//Import JSON into the pace
-			new Gson().fromJson(jsonString, PaceData.class).updatePace();
+			if(!new Gson().fromJson(jsonString, PaceData.class).updatePace()) {
+				
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
