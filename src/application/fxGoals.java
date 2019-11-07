@@ -257,7 +257,7 @@ public class fxGoals {
 	}
 	
 	public static void deleteDiv(Goal g) {
-		if(pacePreferences.alertOnDelete) {
+		if(paceManager.settings.alertOnDelete) {
 			Alert conf = new Alert(AlertType.CONFIRMATION);
 			conf.setTitle("Delete " + g.division + "?");
 			conf.setHeaderText("Do you really want to delete " + g.division + "?");
