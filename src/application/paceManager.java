@@ -17,6 +17,8 @@ import javafx.scene.control.Alert.AlertType;
 public class paceManager {
 	
 	public static final String version = "0.0.1-DEV";
+	
+	public static String title;
 
 	public static List<Team> teams;
 	public static List<Goal> goals;
