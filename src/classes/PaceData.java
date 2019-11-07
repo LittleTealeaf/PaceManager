@@ -19,7 +19,10 @@ public class PaceData {
 		version = paceManager.version;
 	}
 	
-	public void updatePace() {
+	public void updatePaceForce() { updatePace(true); }
+	public boolean updatePace() { return updatePace(false); }
+	public boolean updatePace(boolean force) {
+		if(!version.contentEquals(paceManager.version) && !force) return false;
 		//Update Values
 		paceManager.teams = teams;
 		paceManager.goals = goals;
@@ -28,6 +31,6 @@ public class PaceData {
 		//Update Windows
 		fxMain.updateTable();
 		if(fxScores.sScores != null) fxScores.updateTables();
-		
+		return true;
 	}
 }
