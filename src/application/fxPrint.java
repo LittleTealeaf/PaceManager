@@ -251,6 +251,7 @@ public class fxPrint {
 		rVertical.fire();
 		orientation = PageOrientation.PORTRAIT;
 		setContent.setValue("");
+		setValidTeams.setValue("All Teams");
 		
 		rtAll.setSelected(true);
 		setValidTeams.setDisable(true);
