@@ -471,28 +471,13 @@ public class fxPrint {
 		boolean hasNames = false;
 		for(String s : columns) if(s.toLowerCase().contentEquals("names")) hasNames = true;
 		
-		//Get the total cell height
-		double totalCellHeight = cellSize * 1.2;
-		if(hasNames) {
-			for(Team t : teams) {
-				if(t.names != null) totalCellHeight+=t.names.size() * cellSize;
-			}
-		} else totalCellHeight+=teams.size() * cellSize;
-		
 		Text top = new Text(header);
-		double tableHeight = pHeight - top.getText().lines().count() * textSize;
-		int pages = (int) (totalCellHeight / tableHeight) + 1;
-		double setTableHeight = tableHeight * pages;
 		
 		//Creating the Table
-		TableView table = getTable(columns,sortColumn, pWidth - 5);	
-		table.resize(pWidth, setTableHeight);
-		table.setPrefSize(pWidth, setTableHeight);
+//		TableView table = getTable(teams,columns,sortColumn, pWidth - 5);	
+//		table.resize(pWidth, setTableHeight);
+//		table.setPrefSize(pWidth, setTableHeight);
 		
-		
-		for(int i = 0;i < pages; i++) {
-			
-		}
 		
 		return ret;
 	}
@@ -501,12 +486,13 @@ public class fxPrint {
 	
 	/**
 	 * Creating a Table
+	 * @param teams List of Teams
 	 * @param columns Columns as described in {@link getTablePages} 
 	 * @param sortColumn Column to sort, will not set sort if it's not included
 	 * @return
 	 */
 	@SuppressWarnings({ "unchecked", "static-access" })
-	private static TableView getTable( String[] columns, String sortColumn, double pWidth) {
+	private static TableView getTable(List<Team> teams, String[] columns, String sortColumn, double pWidth) {
 		//Preset Variables
 		final double colSizeTeam = 35;
 		final double colSizeDiv = 60;
@@ -519,6 +505,8 @@ public class fxPrint {
 		
 		//Create a table
 		TableView<Team> table = new TableView<Team>();
+		//Add teams
+		table.getItems().setAll(teams);
 		
 		//Cycle through each requested column
 		for(String s : columns) {
