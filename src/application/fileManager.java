@@ -16,8 +16,6 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
-//TODO Add a version checker and error message
-
 public class fileManager {
 
 	//TODO test if I can still include illegal chars with the program
