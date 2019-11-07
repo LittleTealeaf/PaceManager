@@ -12,6 +12,14 @@ public class PaceData {
 	public List<Team> teams;
 	public List<Goal> goals;
 	public Settings settings;
+	
+	public PaceData() {
+		title = paceManager.title;
+		teams = paceManager.teams;
+		goals = paceManager.goals;
+		settings = paceManager.settings;
+		version = paceManager.version;
+	}
 
 	public PaceData(String setTitle, List<Team> listTeams, List<Goal> listGoals, Settings getSettings) {
 		title = setTitle;

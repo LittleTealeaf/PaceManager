@@ -64,7 +64,7 @@ public class fileManager {
 			FileWriter writer = new FileWriter(saveFile);
 			
 			//Write the JSON file, using the GSON library
-			writer.write(new Gson().toJson(new PaceData(paceManager.title,paceManager.teams,paceManager.goals,paceManager.settings)));
+			writer.write(new Gson().toJson(new PaceData()));
 			writer.close();
 		} catch(Exception e) {
 			e.printStackTrace();
