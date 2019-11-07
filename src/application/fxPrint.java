@@ -373,8 +373,9 @@ public class fxPrint {
 	private static void print() {
 		//Cancel Scripts
 		if((String) setContent.getValue() == "") return;
-		else if((String) setSortCol.getValue() == "") return;
-		else if(rtSelect.isSelected() && (String) setDivision.getValue() == "") return;
+		if((String) setSortCol.getValue() == "") return;
+		if(rtSelect.isSelected() && (String) setDivision.getValue() == "") return;
+		if(setValidTeams.getValue() == "") return;
 		
 		sPrint.setAlwaysOnTop(false);
 		//Gets selected printer
