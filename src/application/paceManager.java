@@ -48,7 +48,7 @@ public class paceManager {
 	}
 	
 	public static void deleteTeam(Team t) {
-		if(settings.alertOnDelete) {
+		if(settings.alertOnDeleteTeam) {
 			Alert conf = new Alert(AlertType.CONFIRMATION);
 			conf.setTitle("Delete " + t.team + "?");
 			conf.setHeaderText("Do you really want to delete " + t.team + "?");
