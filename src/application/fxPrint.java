@@ -1,6 +1,7 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import classes.Goal;
@@ -19,6 +20,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TableColumn;
@@ -483,34 +485,28 @@ public class fxPrint {
 		double setTableHeight = tableHeight * pages;
 		
 		//Creating the Table
-		TableView table = getTable(teams,columns,sortColumn, pWidth - 5);	
+		TableView table = getTable(columns,sortColumn, pWidth - 5);	
 		table.resize(pWidth, setTableHeight);
 		table.setPrefSize(pWidth, setTableHeight);
 		
-		//TODO Add the screen panner
 		
-		BorderPane bp = new BorderPane();
-		bp.setTop(top);
-		bp.setCenter(table);
-		
-		//Debug:
-		Scene sc = new Scene(bp);
-		Stage s = new Stage();
-		s.setScene(sc);
-		s.show();
+		for(int i = 0;i < pages; i++) {
+			
+		}
 		
 		return ret;
 	}
 	
+
+	
 	/**
 	 * Creating a Table
-	 * @param teams List of Teams
 	 * @param columns Columns as described in {@link getTablePages} 
 	 * @param sortColumn Column to sort, will not set sort if it's not included
 	 * @return
 	 */
 	@SuppressWarnings({ "unchecked", "static-access" })
-	private static TableView getTable(List<Team> teams, String[] columns, String sortColumn, double pWidth) {
+	private static TableView getTable( String[] columns, String sortColumn, double pWidth) {
 		//Preset Variables
 		final double colSizeTeam = 35;
 		final double colSizeDiv = 60;
@@ -523,8 +519,6 @@ public class fxPrint {
 		
 		//Create a table
 		TableView<Team> table = new TableView<Team>();
-		//Add teams
-		table.getItems().setAll(teams);
 		
 		//Cycle through each requested column
 		for(String s : columns) {
