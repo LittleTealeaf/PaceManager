@@ -26,7 +26,6 @@ public class paceManager {
 	
 	public static void main(String[] args) {
 		settings = new Settings();
-		pacePreferences.alertOnDelete = true;
 		teams = new ArrayList<Team>();
 		goals = new ArrayList<Goal>();
 		//Debug Only
