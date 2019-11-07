@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import classes.Goal;
-import classes.Team;
+import classes.*;
 import debugdev.importTeams;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -21,11 +20,12 @@ public class paceManager {
 
 	public static List<Team> teams;
 	public static List<Goal> goals;
+	public static Settings settings;
 	
 	private static final boolean development = true;
 	
 	public static void main(String[] args) {
-		pacePreferences.alertOnDelete = true;
+		settings = new Settings();
 		teams = new ArrayList<Team>();
 		goals = new ArrayList<Goal>();
 		//Debug Only
@@ -48,7 +48,7 @@ public class paceManager {
 	}
 	
 	public static void deleteTeam(Team t) {
-		if(pacePreferences.alertOnDelete) {
+		if(settings.alertOnDelete) {
 			Alert conf = new Alert(AlertType.CONFIRMATION);
 			conf.setTitle("Delete " + t.team + "?");
 			conf.setHeaderText("Do you really want to delete " + t.team + "?");
