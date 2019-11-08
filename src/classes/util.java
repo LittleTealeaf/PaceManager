@@ -56,23 +56,37 @@ public class util {
 	public static List<Team> sortTeams(List<Team> teams, String sortCol) {return sortTeams(teams,sortCol,false);}
 	public static List<Team> sortTeamsReverse(List<Team> teams, String sortCol) { return sortTeams(teams,sortCol,true);}
 	
-	private static List<Team> sortTeams(List<Team> teams, String sortCol, boolean reverse) {
-		List<Team> ret = new ArrayList<Team>();
+	private static List<Team> sortTeams(List<Team> listTeams, String sortCol, boolean reverse) {
+		List<Team> teams = listTeams;
 		Collections.sort(teams, (a, b) -> {
-			
 			int r = 1;
 			if(reverse) r = -1;
 			
 			switch(sortCol) {
-			case "team": return a.team.compareTo(b.team) * r;
-			case "division": return a.division.compareTo(b.division) * r;
-			case "startFXM": return Float.compare(a.start.time, b.start.time) * r;
-			case "finishFXM": return Float.compare(a.finish.time, b.finish.time) * r;
-			case "elapsedFXM": return Float.compare(a.elapsed().time, b.elapsed().time) * r;
-			case "positionInDivision": return a.getPositionInDivision().compareTo(b.getPositionInDivision()) * r;
-			default: return 0;
+			case "team": r *= a.team.compareTo(b.team); break;
+			case "division": r *= a.division.compareTo(b.division); break;
+			case "startFXM":
+				if(a.start == null) { r *= 1; break; } 
+				if(b.start == null) { r *= -1; break; }
+				r *= Float.compare(a.start.time, b.start.time); 
+				break;
+			case "finishFXM": 
+				if(a.finish == null) { r *= 1; break; } 
+				if(b.finish == null) { r *= -1; break; }
+				r*= Float.compare(a.finish.time, b.finish.time); 
+				break;
+			case "elapsedFXM": 
+				if(a.elapsed() == null) { r *= 1; break; } 
+				if(b.elapsed() == null) { r *= -1; break; }
+				r*= Float.compare(a.elapsed().time, b.elapsed().time); 
+				break;
+			case "positionInDivision": r*= a.getPositionInDivision().compareTo(b.getPositionInDivision()); break;
+			default: break;
 			}
+			//System.out.println(r + " " + sortCol + " " + a + " " + b);
+			return r;
 		});
-		return ret;
+		for(Team t : teams) System.out.println(t);
+		return teams;
 	}
 }
