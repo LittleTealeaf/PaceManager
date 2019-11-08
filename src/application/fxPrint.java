@@ -469,7 +469,7 @@ public class fxPrint {
 		//TODO include a reverse method
 		
 		//PRESETS
-		final double cellSize = 25; //TODO make cell size into a function
+		final double cellSize = 20; //TODO make cell size into a function
 		final double headerSize = cellSize * 1.2;
 		final double textSize = 15.9609375;
 		
