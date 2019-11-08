@@ -151,7 +151,7 @@ public class fxPrint {
 		for(CheckBox c : cColumns) {
 			c.selectedProperty().addListener((obs) -> {
 				setSortCol.getItems().setAll(getSortColumns());
-				setSortCol.setValue(setSortCol.getItems().get(0));
+				if(setSortCol.getItems().size() > 0) setSortCol.setValue(setSortCol.getItems().get(0));
 			});
 			c.setTooltip(new Tooltip("Include the '" + c.getText() + "' column in the table?"));
 		}
@@ -447,7 +447,8 @@ public class fxPrint {
 	 * @return
 	 */
 
-	private static List<BorderPane> getTablePages(PrinterJob job, String header, List<Team> teams, String[] columns, String sortColumn) {
+	@SuppressWarnings("unchecked")
+	private static List<BorderPane> getTablePages(PrinterJob job, String header, List<Team> getTeams, String[] columns, String sortColumn) {
 		//Checks if the sort column is in the columns
 		boolean bError = true;
 		for(String s : columns) if(s.contentEquals(sortColumn)) bError = false;
@@ -456,13 +457,20 @@ public class fxPrint {
 			return null;
 		}
 		
+		
+		//Sorts Tables
+		List<Team> teams = util.sortTeams(getTeams, sortColumn);
+		//TODO include a reverse method
+		
 		//PRESETS
-		final double cellSize = 25;
+		final double cellSize = 25; //TODO make cell size into a function
+		final double headerSize = cellSize * 1.2;
 		final double textSize = 15.9609375;
 		
 		//Gets Printable Size
 		final double pWidth = job.getJobSettings().getPageLayout().getPrintableWidth();
 		final double pHeight = job.getJobSettings().getPageLayout().getPrintableHeight();
+		double setTableHeight = pHeight - textSize;
 		
 		//Return value
 		List<BorderPane> ret = new ArrayList<BorderPane>();
@@ -480,6 +488,41 @@ public class fxPrint {
 		
 		//USING https://stackoverflow.com/questions/31918959/javafx-print-tableview-on-multiple-pages
 		//Method: make a separate table for each page and return those
+		
+		
+		//Get a list of all teams for each page
+		List<TableView> pageTeams = new ArrayList<TableView>();
+		List<Team> tempTm = new ArrayList<Team>();
+		double tmpHeight = headerSize;
+		
+		for(Team t : teams) {
+			//System.out.println(t);
+			//Get cell size
+			double tSize = cellSize;
+			if(hasNames) tSize = cellSize * t.names.size();
+			
+			//Test if cell size will push it to the limit
+			if(tmpHeight + tSize > setTableHeight) {
+				//Hard Copy
+				List<Team> ts = new ArrayList<Team>();
+				for(Team a : tempTm) ts.add(a);
+				
+				//Make the table
+				TableView<Team> tble = getTable(columns, sortColumn, pWidth - 5);
+				tble.getItems().addAll(ts);
+				tble.resize(pWidth, setTableHeight);
+				pageTeams.add(tble);
+				
+				tmpHeight = headerSize;
+				tempTm = new ArrayList<Team>();
+			} else {
+				//Add the team
+				tmpHeight+=tSize;
+				tempTm.add(t);
+			}
+		}
+
+		
 		
 		return ret;
 	}
