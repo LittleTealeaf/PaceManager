@@ -475,11 +475,13 @@ public class fxPrint {
 		//Return value
 		List<BorderPane> ret = new ArrayList<BorderPane>();
 		
+		//Clear List of any nulls, then adds a null at the end
+		if(teams.contains(null)) teams.remove(null);
+		teams.add(null);
+		
 		//Check if columns has the names part
 		boolean hasNames = false;
 		for(String s : columns) if(s.toLowerCase().contentEquals("names")) hasNames = true;
-		
-		Text top = new Text(header);
 		
 		//Creating the Table
 //		TableView table = getTable(columns,sortColumn, pWidth - 5);	
@@ -491,18 +493,16 @@ public class fxPrint {
 		
 		
 		//Get a list of all teams for each page
-		List<TableView> pageTeams = new ArrayList<TableView>();
 		List<Team> tempTm = new ArrayList<Team>();
 		double tmpHeight = headerSize;
 		
 		for(Team t : teams) {
-			//System.out.println(t);
 			//Get cell size
 			double tSize = cellSize;
-			if(hasNames) tSize = cellSize * t.names.size();
+			if(t != null && hasNames) tSize = cellSize * t.names.size();
 			
 			//Test if cell size will push it to the limit
-			if(tmpHeight + tSize > setTableHeight) {
+			if((tmpHeight + tSize > setTableHeight) || t == null) {
 				//Hard Copy
 				List<Team> ts = new ArrayList<Team>();
 				for(Team a : tempTm) ts.add(a);
@@ -511,8 +511,17 @@ public class fxPrint {
 				TableView<Team> tble = getTable(columns, sortColumn, pWidth - 5);
 				tble.getItems().addAll(ts);
 				tble.resize(pWidth, setTableHeight);
-				pageTeams.add(tble);
 				
+				//Create the Border Pane
+				BorderPane bp = new BorderPane();
+				bp.resize(pWidth, pHeight);
+				bp.setTop(new Text(header));
+				bp.setCenter(tble);
+				
+				//Add to the list
+				ret.add(bp);
+
+				//Reset Variables
 				tmpHeight = headerSize;
 				tempTm = new ArrayList<Team>();
 			} else {
@@ -521,9 +530,6 @@ public class fxPrint {
 				tempTm.add(t);
 			}
 		}
-
-		
-		
 		return ret;
 	}
 	
