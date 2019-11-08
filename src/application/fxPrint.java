@@ -246,6 +246,7 @@ public class fxPrint {
 		Scene sc = new Scene(vb);
 		sc.setOnKeyPressed(key -> {
 			if(key.isControlDown() && key.getCode() == KeyCode.ENTER) print();
+			if(key.getCode() == KeyCode.ESCAPE) sPrint.close();
 		});
 		sPrint.setScene(sc);
 		
