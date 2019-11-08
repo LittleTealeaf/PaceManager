@@ -484,11 +484,6 @@ public class fxPrint {
 		boolean hasNames = false;
 		for(String s : columns) if(s.toLowerCase().contentEquals("names")) hasNames = true;
 		
-		//Creating the Table
-//		TableView table = getTable(columns,sortColumn, pWidth - 5);	
-//		table.resize(pWidth, setTableHeight);
-//		table.setPrefSize(pWidth, setTableHeight);
-		
 		//USING https://stackoverflow.com/questions/31918959/javafx-print-tableview-on-multiple-pages
 		//Method: make a separate table for each page and return those
 		
