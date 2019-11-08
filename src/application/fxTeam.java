@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import classes.*;
-import javafx.event.EventHandler;
+import classes.Team;
+import classes.Time;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
@@ -16,8 +17,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -112,10 +111,8 @@ public class fxTeam {
 		
 		Button bCancel = new Button("Cancel");
 		bCancel.setPrefWidth(75);
-		bCancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent e) {
-				sTeam.close();
-			}
+		bCancel.setOnAction(event -> {
+			sTeam.close();
 		});
 		
 		lError = new Label();
@@ -125,11 +122,8 @@ public class fxTeam {
 		
 		Button bSave = new Button("Save");
 		bSave.setPrefWidth(75);
-		bSave.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent e) {
-				//Saves the script, if successfully saved, closes fxTeam 
-				if(save()) sTeam.close();
-			}
+		bSave.setOnAction(event -> {
+			if(save()) sTeam.close();
 		});
 		
 		HBox h4 = new HBox(bCancel,lError,rb,bSave);
