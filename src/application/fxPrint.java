@@ -1,7 +1,6 @@
 package application;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import classes.Goal;
@@ -20,7 +19,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TableColumn;
