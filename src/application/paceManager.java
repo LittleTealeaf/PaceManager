@@ -28,6 +28,7 @@ public class paceManager {
 	
 	public static void main(String[] args) {
 		settings = new Settings();
+		title = "";
 		teams = new ArrayList<Team>();
 		goals = new ArrayList<Goal>();
 		//Debug Only
