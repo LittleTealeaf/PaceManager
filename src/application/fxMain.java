@@ -51,7 +51,7 @@ public class fxMain extends Application {
 	@Override
 	public void start(Stage sMain) {
 		sMRef = sMain;
-		sMain.setTitle("Pace Manager " + paceManager.version);
+		sMain.setTitle("Pace Manager " + paceManager.version + " " + paceManager.title);
 		sMain.widthProperty().addListener((obs,oldv,newv) -> {
 			resizeColumns();
 		});
