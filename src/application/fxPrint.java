@@ -515,7 +515,8 @@ public class fxPrint {
 				
 				//Create the Border Pane
 				BorderPane bp = new BorderPane();
-				bp.resize(pWidth, pHeight);
+				bp.setPrefSize(pWidth, pHeight);
+				bp.autosize();
 				bp.setTop(new Text(header));
 				bp.setCenter(tble);
 				
