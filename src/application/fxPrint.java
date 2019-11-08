@@ -613,7 +613,6 @@ public class fxPrint {
 		}
 		return ret;
 	}
-	//"All Teams", "Valid Only", "Arrived Only","Departed Only","Stale Only"));
 }
 	
 	//http://tutorials.jenkov.com/javafx/scrollpane.html
