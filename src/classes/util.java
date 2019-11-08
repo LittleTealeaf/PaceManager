@@ -81,7 +81,7 @@ public class util {
 				if(b.elapsed() == null) { r *= -1; break; }
 				r*= Float.compare(a.elapsed().time, b.elapsed().time); 
 				break;
-			case "positionInDivision": r*= a.getPositionInDivision().compareTo(b.getPositionInDivision()); break;
+			case "positionInDivision": r*= -1 * a.getPositionInDivision().compareTo(b.getPositionInDivision()); break;
 			default: break;
 			}
 			//System.out.println(r + " " + sortCol + " " + a + " " + b);
