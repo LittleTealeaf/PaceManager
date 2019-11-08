@@ -479,6 +479,7 @@ public class fxPrint {
 //		table.setPrefSize(pWidth, setTableHeight);
 		
 		//USING https://stackoverflow.com/questions/31918959/javafx-print-tableview-on-multiple-pages
+		//Method: make a separate table for each page and return those
 		
 		return ret;
 	}
