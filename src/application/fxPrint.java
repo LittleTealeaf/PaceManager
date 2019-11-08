@@ -434,6 +434,11 @@ public class fxPrint {
 			borderPanes.addAll(getTablePages(job,header,teams,columns, getCustomPrintSort()));
 			break;
 		}
+		for(BorderPane bp : borderPanes) {
+			if(!job.printPage(bp)) return; //TODO add error
+		}
+		
+		job.endJob();
 		
 		sPrint.close();
 	}
