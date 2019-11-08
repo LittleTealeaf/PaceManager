@@ -402,7 +402,11 @@ public class fxPrint {
 			if(!paceManager.goals.isEmpty()) for(Goal g : paceManager.goals) {
 				header = g.division + "  " + g.time.toString();
 				columns = new String[] {"positionInDivision","team","names","elapsedFXM"};
-				borderPanes.addAll(getTablePages(job,header,paceManager.getTeams(g.division),columns, "positionInDivision"));
+				List<Team> tms = new ArrayList<Team>();
+				for(Team t : paceManager.getTeams(g.division)) {
+					if(!t.getPositionInDivision().contentEquals("")) tms.add(t);
+				}
+				borderPanes.addAll(getTablePages(job,header,tms,columns, "positionInDivision"));
 			} else return; //TODO error
 			break;
 		case "Scoreboard":
