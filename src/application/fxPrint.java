@@ -474,7 +474,7 @@ public class fxPrint {
 		Text top = new Text(header);
 		
 		//Creating the Table
-//		TableView table = getTable(teams,columns,sortColumn, pWidth - 5);	
+//		TableView table = getTable(columns,sortColumn, pWidth - 5);	
 //		table.resize(pWidth, setTableHeight);
 //		table.setPrefSize(pWidth, setTableHeight);
 		
@@ -494,7 +494,7 @@ public class fxPrint {
 	 * @return
 	 */
 	@SuppressWarnings({ "unchecked", "static-access" })
-	private static TableView getTable(List<Team> teams, String[] columns, String sortColumn, double pWidth) {
+	private static TableView getTable(String[] columns, String sortColumn, double pWidth) {
 		//Preset Variables
 		final double colSizeTeam = 35;
 		final double colSizeDiv = 60;
@@ -507,8 +507,6 @@ public class fxPrint {
 		
 		//Create a table
 		TableView<Team> table = new TableView<Team>();
-		//Add teams
-		table.getItems().setAll(teams);
 		
 		//Cycle through each requested column
 		for(String s : columns) {
