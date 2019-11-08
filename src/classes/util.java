@@ -57,7 +57,8 @@ public class util {
 	public static List<Team> sortTeamsReverse(List<Team> teams, String sortCol) { return sortTeams(teams,sortCol,true);}
 	
 	private static List<Team> sortTeams(List<Team> listTeams, String sortCol, boolean reverse) {
-		List<Team> teams = listTeams;
+		List<Team> teams = new ArrayList<Team>();
+		for(Team t : listTeams) teams.add(t);
 		Collections.sort(teams, (a, b) -> {
 			int r = 1;
 			if(reverse) r = -1;
