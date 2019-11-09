@@ -1,8 +1,8 @@
 package classes;
 
 import java.io.Serializable;
-import application.*;
 
+@SuppressWarnings("serial")
 public class Settings implements Serializable {
 	public boolean alertOnDeleteTeam;
 	public boolean alertOnDeleteGoal;
