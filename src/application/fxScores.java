@@ -3,9 +3,8 @@ package application;
 import java.util.ArrayList;
 import java.util.List;
 
-import classes.*;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import classes.Goal;
+import classes.ScoreTab;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
@@ -29,10 +28,10 @@ public class fxScores {
 		sScores = new Stage();
 		sScores.setTitle("Score Leaderboard");
 		//Dynamic Custom Resizing
-		sScores.widthProperty().addListener((obs,newv,oldv) -> {
+		sScores.widthProperty().addListener(obs -> {
 			resizeWindow();
 		});
-		sScores.heightProperty().addListener((obs,newv,oldv) -> {
+		sScores.heightProperty().addListener(obs -> {
 			resizeWindow();
 		});
 		
@@ -44,20 +43,16 @@ public class fxScores {
 		updateTabs();
 
 		Button bGoals = new Button("Goals");
-		bGoals.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				fxGoals.open();
-			}
+		bGoals.setOnAction(event -> {
+			fxGoals.open();
 		});
 		
 		Region regTop1 = new Region();
 		HBox.setHgrow(regTop1, Priority.ALWAYS);
 		
 		Button bPrint = new Button("Print");
-		bPrint.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				fxPrint.open();
-			}
+		bPrint.setOnAction(event -> {
+			fxPrint.open();
 		});
 		
 		HBox hTop = new HBox(bGoals);
@@ -69,10 +64,8 @@ public class fxScores {
 		
 		Button bClose = new Button("Close");
 		
-		bClose.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				sScores.close();
-			}
+		bClose.setOnAction(event -> {
+			sScores.close();
 		});
 		
 		HBox hBottom = new HBox(regBottom1,bClose);

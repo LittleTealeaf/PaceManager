@@ -2,6 +2,7 @@ package classes;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javafx.scene.control.Label;
@@ -25,68 +26,6 @@ public class util {
 		else return position + "";
 	}
 	
-	/**
-	 * Returns a table with teams and columns
-	 * @param teams Teams you want
-	 * @param columns Valid columns include anything in {@link Team} that has a get(obj) function. Make sure the first letter is lowercase
-	 * @return Table of everything!
-	 */
-	public static TableView<Team> teamTable(List<Team> teams, String[] columns) {
-		List<String> cols = new ArrayList<String>();
-		for(String s : columns) cols.add(s);
-		return teamTable(teams,cols);
-	}
-	/**
-	 * Returns a table with teams and columns
-	 * @param teams Teams you want
-	 * @param columns Valid columns include anything in {@link Team} that has a get(obj) function. Make sure the first letter is lowercase
-	 * @return Table of everything!
-	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public static TableView<Team> teamTable(List<Team> teams, List<String> columns) {
-		TableView<Team> r = new TableView<Team>();
-		
-		final double timeWidth = 30;
-		final double divisionWidth = 35;
-		final double teamWidth = 25;
-		
-		//Adds columns
-		for(String s : columns) {
-			TableColumn col = new TableColumn();
-			switch(s) {
-			case "team": 
-				col.setText("Team");
-				col.setPrefWidth(teamWidth);
-				break;
-			case "division": 
-				col.setText("Division");
-				col.setPrefWidth(divisionWidth);
-				break;
-			case "names": col.setText("Names"); break;
-			case "startFXM": 
-				col.setText("Start");
-				col.setPrefWidth(timeWidth);
-				break;
-			case "finishFXM": 
-				col.setText("Finish");
-				col.setPrefWidth(timeWidth);
-				break;
-			case "elapsedFXM": 
-				col.setText("Elapsed");
-				col.setPrefWidth(timeWidth);
-				break;
-			case "notesDisplay": col.setText("Notes"); break;
-			case "positionInDivision": col.setText("Place"); break;
-			default: break;
-			}
-			col.setCellValueFactory(new PropertyValueFactory<Team,String>(s));
-			r.getColumns().add(col);
-		}
-		r.getItems().setAll(teams);
-		
-		return r;
-	}
-	
 	@SuppressWarnings("rawtypes")
 	public static TableCell getTeamCell() {
 		return new TableCell<Team, String>() {
@@ -106,5 +45,49 @@ public class util {
                 }
             }
         };
+	}
+	
+	/**
+	 * Sorts teams by a certain method
+	 * @param teams List of Teams to sort
+	 * @param sortCol Valid Columns: team (team number), division (team division), startFXM (start time), finishFXM (end time), elapsedFXM (elapsed time) positionInDivision (team place)
+	 * @return
+	 */
+	public static List<Team> sortTeams(List<Team> teams, String sortCol) {return sortTeams(teams,sortCol,false);}
+	public static List<Team> sortTeamsReverse(List<Team> teams, String sortCol) { return sortTeams(teams,sortCol,true);}
+	
+	private static List<Team> sortTeams(List<Team> listTeams, String sortCol, boolean reverse) {
+		List<Team> teams = new ArrayList<Team>();
+		for(Team t : listTeams) teams.add(t);
+		Collections.sort(teams, (a, b) -> {
+			int r = 1;
+			if(reverse) r = -1;
+			
+			switch(sortCol) {
+			case "team": r *= a.team.compareTo(b.team); break;
+			case "division": r *= a.division.compareTo(b.division); break;
+			case "startFXM":
+				if(a.start == null) { r *= 1; break; } 
+				if(b.start == null) { r *= -1; break; }
+				r *= Float.compare(a.start.time, b.start.time); 
+				break;
+			case "finishFXM": 
+				if(a.finish == null) { r *= 1; break; } 
+				if(b.finish == null) { r *= -1; break; }
+				r*= Float.compare(a.finish.time, b.finish.time); 
+				break;
+			case "elapsedFXM": 
+				if(a.elapsed() == null) { r *= 1; break; } 
+				if(b.elapsed() == null) { r *= -1; break; }
+				r*= Float.compare(a.elapsed().time, b.elapsed().time); 
+				break;
+			case "positionInDivision": r*= -1 * a.getPositionInDivision().compareTo(b.getPositionInDivision()); break;
+			default: break;
+			}
+			//System.out.println(r + " " + sortCol + " " + a + " " + b);
+			return r;
+		});
+		for(Team t : teams) System.out.println(t);
+		return teams;
 	}
 }

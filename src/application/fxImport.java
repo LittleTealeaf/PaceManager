@@ -35,7 +35,7 @@ public class fxImport {
 		sImport.setHeight(100);
 		sImport.setTitle("Import Data");
 		sImport.setAlwaysOnTop(true);
-		sImport.addEventFilter(KeyEvent.KEY_PRESSED, keyEvent -> {
+		sImport.addEventHandler(KeyEvent.KEY_PRESSED, keyEvent -> {
 			if(keyEvent.getCode() == KeyCode.ESCAPE) {
 				sImport.close();
 			}
@@ -45,7 +45,7 @@ public class fxImport {
 		
 		tTeam = new TextField();
 		tTeam.setEditable(true);
-		tTeam.addEventHandler(KeyEvent.KEY_PRESSED, keyEvent -> {
+		tTeam.setOnKeyPressed(keyEvent -> {
 			if(keyEvent.getCode() == KeyCode.ENTER) {
 				if(cMethod.getSelectionModel().getSelectedIndex() != -1) {
 					tData.requestFocus();
@@ -56,13 +56,13 @@ public class fxImport {
 		Label lChoice = new Label("Import Option:");
 		
 		cMethod = new ChoiceBox(FXCollections.observableArrayList("Start Time", "End Time"));
-		cMethod.getSelectionModel().selectedIndexProperty().addListener((obs,oldv,newv) -> {
+		cMethod.getSelectionModel().selectedIndexProperty().addListener(obs -> {
 			if(cMethod.getSelectionModel().getSelectedIndex() != -1) {
 				tData.setEditable(true);
 				tData.setPromptText("");
 			}
 		});
-		cMethod.addEventHandler(KeyEvent.KEY_PRESSED, keyEvent -> {
+		cMethod.setOnKeyPressed(keyEvent -> {
 			if(keyEvent.getCode() == KeyCode.ENTER) {
 				if(cMethod.getSelectionModel().getSelectedIndex() != -1) {
 					tData.requestFocus();
@@ -75,7 +75,7 @@ public class fxImport {
 		tData = new TextField();
 		tData.setEditable(false);
 		tData.setPromptText("Select an Import Option");
-		tData.addEventHandler(KeyEvent.KEY_PRESSED, keyEvent -> {
+		tData.setOnKeyPressed(keyEvent -> {
 			if(keyEvent.getCode() == KeyCode.ENTER) {
 				saveImport();
 			}

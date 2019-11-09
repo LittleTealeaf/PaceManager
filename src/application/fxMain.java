@@ -24,7 +24,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -51,11 +50,12 @@ public class fxMain extends Application {
 	@Override
 	public void start(Stage sMain) {
 		sMRef = sMain;
+
 		sMain.setTitle("Pace Manager " + paceManager.version + " " + Pace.title);
-		sMain.widthProperty().addListener((obs,oldv,newv) -> {
+		sMain.widthProperty().addListener(obs -> {
 			resizeColumns();
 		});
-		sMain.maximizedProperty().addListener((obs,oldv,newv) -> {
+		sMain.maximizedProperty().addListener(obs -> {
 			resizeColumns();
 		});
 		
@@ -79,72 +79,52 @@ public class fxMain extends Application {
 			}
 		});
 		MenuItem m1Open = new MenuItem("Open");
-		m1Open.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				fileManager.open();
-			}
+		m1Open.setOnAction(event -> {
+			fileManager.open();
 		});
 		MenuItem m1Save = new MenuItem("Save");
-		m1Save.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				fileManager.save();
-			}
+		m1Save.setOnAction(event -> {
+			fileManager.save();
 		});
 		MenuItem m1SaveAs = new MenuItem("Save As");
-		m1SaveAs.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				fileManager.saveAs();
-			}
+		m1SaveAs.setOnAction(event -> {
+			fileManager.saveAs();
 		});
 		SeparatorMenuItem m1Separator1 = new SeparatorMenuItem();
 		MenuItem m1Exit = new MenuItem("Exit");
-		m1Exit.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				System.exit(0);
-			}
+		m1Exit.setOnAction(event -> {
+			System.exit(0);
 		});
 		m1.getItems().addAll(m1New,m1Open,m1Save,m1SaveAs,m1Separator1,m1Exit);
 		
 		Menu m2 = new Menu("Teams");
 		MenuItem m2Create = new MenuItem("Create Team");
-		m2Create.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				fxTeam.open(null);
-			}
+		m2Create.setOnAction(event -> {
+			fxTeam.open(null);
 		});
 		SeparatorMenuItem m2Separator1 = new SeparatorMenuItem();
 		MenuItem m2Import = new MenuItem("Import");
-		m2Import.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				fxImport.open();
-			}
+		m2Import.setOnAction(event -> {
+			fxImport.open();
 		});
 		MenuItem m2ImportFile = new MenuItem("Import from File...");
-		m2ImportFile.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				fileImport.importFile();
-			}
+		m2ImportFile.setOnAction(even -> {
+			fileImport.importFile();
 		});
 		m2.getItems().addAll(m2Create,m2Separator1,m2Import,m2ImportFile);
 
 		Menu m3 = new Menu("Pace");
 		MenuItem m3Goals = new MenuItem("Goal Times");
-		m3Goals.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				fxGoals.open();
-			}
+		m3Goals.setOnAction(event -> {
+			fxGoals.open();
 		});
 		MenuItem m3Scores = new MenuItem("Scores");
-		m3Scores.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				fxScores.open();
-			}
+		m3Scores.setOnAction(event -> {
+			fxScores.open();
 		});
 		MenuItem m3Print = new MenuItem("Print");
-		m3Print.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				fxPrint.open();
-			}
+		m3Print.setOnAction(event -> {
+			fxPrint.open();
 		});
 		m3.getItems().addAll(m3Goals,m3Scores,m3Print);
 		
@@ -157,35 +137,29 @@ public class fxMain extends Application {
 		/*
 		 * https://stackoverflow.com/a/32442449
 		 */
-		table.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent click) {
-				if (click.getClickCount() == 2) {
-					try {
-						TablePosition pos = table.getSelectionModel().getSelectedCells().get(0);
-						//int row = pos.getRow();
-						//System.out.println(row);
-						int col = pos.getColumn();
-						Team sel = table.getSelectionModel().getSelectedItem();
-						if(col == 6) {
-							openNotes(sel, click.getScreenX(), click.getScreenY());
-						} else {
-							fxTeam.open(sel,col);
-						}
-					} catch(IndexOutOfBoundsException e) {}
-				}
+		table.setOnMouseClicked(click -> {
+			if (click.getClickCount() == 2) {
+				try {
+					TablePosition pos = table.getSelectionModel().getSelectedCells().get(0);
+					//int row = pos.getRow();
+					//System.out.println(row);
+					int col = pos.getColumn();
+					Team sel = table.getSelectionModel().getSelectedItem();
+					if(col == 6) {
+						openNotes(sel, click.getScreenX(), click.getScreenY());
+					} else {
+						fxTeam.open(sel,col);
+					}
+				} catch(IndexOutOfBoundsException e) {}
 			}
 		});
-		table.setOnKeyPressed(new EventHandler<KeyEvent>() {
-			@Override
-			public void handle(KeyEvent k) {
-				if(k.getCode() == KeyCode.DELETE) {
-					try {
-						paceManager.deleteTeam(table.getSelectionModel().getSelectedItem());
-					} catch(IndexOutOfBoundsException e) {}
-				} else if(k.getCode() == KeyCode.P && k.isControlDown()) {
-					fxPrint.open("All Teams");
-				}
+		table.setOnKeyPressed(k -> {
+			if(k.getCode() == KeyCode.DELETE) {
+				try {
+					paceManager.deleteTeam(table.getSelectionModel().getSelectedItem());
+				} catch(IndexOutOfBoundsException e) {}
+			} else if(k.getCode() == KeyCode.P && k.isControlDown()) {
+				fxPrint.open("All Teams");
 			}
 		});
 
@@ -359,11 +333,9 @@ public class fxMain extends Application {
 		
 		Button nbClose = new Button();
 		nbClose.setText("Close");
-		nbClose.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent click) {
-				mNotes.close();
-				updateTable();
-			}
+		nbClose.setOnMouseClicked(click -> {
+			mNotes.close();
+			updateTable();
 		});
 		
 		VBox vb = new VBox();

@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import classes.*;
-import javafx.event.EventHandler;
+import classes.Goal;
+import classes.Team;
+import classes.Time;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -19,8 +20,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -38,10 +37,10 @@ public class fxGoals {
 		if(sGoals != null) sGoals.close();
 		sGoals = new Stage();
 		sGoals.setTitle("Goal Times");
-		sGoals.widthProperty().addListener((obs,oldv,newv) -> {
+		sGoals.widthProperty().addListener(obs -> {
 			resizeWindow();
 		});
-		sGoals.heightProperty().addListener((obs,oldv,newv) -> {
+		sGoals.heightProperty().addListener(obs -> {
 			resizeWindow();
 		});
 		
@@ -57,24 +56,18 @@ public class fxGoals {
 		tGoal.setCellValueFactory(new PropertyValueFactory<Goal,String>("displayTime"));
 		tGoal.setReorderable(false);
 		table.getColumns().addAll(tDiv,tGoal);
-		table.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent click) {
-				if (click.getClickCount() == 2) {
-					try {
-						editDiv(table.getSelectionModel().getSelectedItem());
-					} catch(IndexOutOfBoundsException e) {}
-				}
+		table.setOnMouseClicked(click -> {
+			if (click.getClickCount() == 2) {
+				try {
+					editDiv(table.getSelectionModel().getSelectedItem());
+				} catch(IndexOutOfBoundsException e) {}
 			}
 		});
-		table.setOnKeyPressed(new EventHandler<KeyEvent>() {
-			@Override
-			public void handle(KeyEvent k) {
-				if(k.getCode() == KeyCode.DELETE) {
-					try {
-						deleteDiv(table.getSelectionModel().getSelectedItem());
-					} catch(IndexOutOfBoundsException e) {}
-				}
+		table.setOnKeyPressed(k -> {
+			if(k.getCode() == KeyCode.DELETE) {
+				try {
+					deleteDiv(table.getSelectionModel().getSelectedItem());
+				} catch(IndexOutOfBoundsException e) {}
 			}
 		});
 		
@@ -85,22 +78,16 @@ public class fxGoals {
 		HBox hBottom = new HBox();
 		hBottom.setSpacing(10);
 		Button bCreate = new Button("New");
-		bCreate.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent e) {
-				editDiv(null);
-			}
+		bCreate.setOnAction(event -> {
+			editDiv(null);
 		});
 		Button bImport = new Button("Import");
-		bImport.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent e) {
-				importDivs();
-			}
+		bImport.setOnAction(event -> {
+			importDivs();
 		});
 		Button bClose = new Button("Close");
-		bClose.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent e) {
-				sGoals.close();
-			}
+		bClose.setOnAction(event -> {
+			sGoals.close();
 		});
 		Region botRegion = new Region();
 		HBox.setHgrow(botRegion, Priority.ALWAYS);
@@ -129,7 +116,7 @@ public class fxGoals {
 		else sgEdit.setTitle("Edit Goal");
 		
 		teDiv = new TextField();
-		teDiv.addEventHandler(KeyEvent.KEY_PRESSED, keyEvent -> {
+		teDiv.setOnKeyPressed(keyEvent -> {
 			if(keyEvent.getCode() == KeyCode.ENTER) {
 				leError.setText("");
 				if(teDiv.getText() == "") {
@@ -140,7 +127,7 @@ public class fxGoals {
 		Label leDiv = new Label("Division");
 		
 		teTime = new TextField();
-		teTime.addEventHandler(KeyEvent.KEY_PRESSED, keyEvent -> {
+		teTime.setOnKeyPressed(keyEvent -> {
 			if(keyEvent.getCode() == KeyCode.ENTER) {
 				eSave(g);
 			}
@@ -159,16 +146,12 @@ public class fxGoals {
 		vb1.setSpacing(10);
 		
 		Button bSave = new Button("Save");
-		bSave.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent e) {
-				eSave(g);
-			}
+		bSave.setOnMouseClicked(click -> {
+			eSave(g);
 		});
 		Button bCancel = new Button("Cancel");
-		bCancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent e) {
-				sgEdit.close();
-			}
+		bCancel.setOnMouseClicked(click -> {
+			sgEdit.close();
 		});
 		
 		VBox vb2 = new VBox(bSave,new Label(""),bCancel);
