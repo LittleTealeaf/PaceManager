@@ -249,6 +249,30 @@ public class fxMain extends Application {
 	}
 	
 	public static void updateTable() {
+		//Get first and last out
+		Team firstOut = null;
+		Team lastLeft = null;
+		Team lastOut = null;
+		double avgTime = 0;
+		int count = 0;
+		for(Team t : Pace.teams) {
+			if(t.start != null) {
+				if(firstOut == null || firstOut.start.time > t.start.time) firstOut = t;
+				if(lastLeft == null || lastOut.start.time < t.start.time) lastLeft = t;
+				if(lastOut == null || (t.finish == null && lastOut.start.time < t.start.time)) lastOut = t;
+				if(t.finish != null) {
+					avgTime+=t.elapsed().time;
+					count++;
+				}
+			}
+		}
+		avgTime/=count;
+		
+		headerTexts.get(0).setText("First Out: " + firstOut.team + " " + firstOut.start.toString());
+		headerTexts.get(1).setText("Last Out: " + lastLeft.team + " " + lastLeft.start.toString());
+		headerTexts.get(2).setText("Average Time: " + new Time(avgTime).toString(true));
+		headerTexts.get(3).setText("Estimated Last In: " + lastOut.team + " " + new Time(lastOut.start.time + avgTime));
+		
 		table.getItems().clear();
 		table.getItems().addAll(Pace.teams);
 		table.sort();
