@@ -32,6 +32,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 @SuppressWarnings("rawtypes")
 public class fxPrint {
@@ -51,6 +52,8 @@ public class fxPrint {
 	private static ChoiceBox setContent;
 	private static PrinterJob job;
 	private static PageOrientation orientation;
+	
+	private static Spinner<Integer> sCopies;
 	
 	//Check Boxes
 	private static CheckBox[] cColumns;
@@ -115,8 +118,8 @@ public class fxPrint {
 		
 		Label lCopies = new Label("No. of Copies: ");
 		lCopies.setTooltip(new Tooltip("Number of copies to print"));
-		Spinner<Integer> sCopies = new Spinner<Integer>();
-		sCopies.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 1));
+		sCopies = new Spinner<Integer>();
+		sCopies.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 1));
 		
 		HBox hbCopies = new HBox(lCopies,sCopies);
 		hbCopies.setSpacing(10);
@@ -387,8 +390,25 @@ public class fxPrint {
 		
 		job.getJobSettings().setPageLayout(layout);
 		
+		//Create a "printing progress" window
+		sPrint.close();
+		Stage sProgress = new Stage();
+		Text progressText = new Text("Printing...");
+		Button bCancel = new Button("Cancel");
+		bCancel.setOnAction(action -> {
+			job.cancelJob();
+			sProgress.close();
+			sPrint.close();
+		});
+		VBox vb = new VBox(progressText,bCancel);
+		vb.setSpacing(20);
+		vb.setPadding(DEFAULTINSETS);
+		sProgress.setScene(new Scene(vb,200,75));
+		sProgress.show();
 		
-		List<BorderPane> borderPanes = new ArrayList<BorderPane>();
+		
+		//Printing Script
+		List<BorderPane> borderPanes = new ArrayList<BorderPane>();		
 		
 		String header = "";
 		String[] columns = null;
@@ -408,7 +428,7 @@ public class fxPrint {
 		case "Scoreboard":
 			header = "Scoreboard:";
 			columns = new String[] {"team","division","elapsedFXM","difference"};
-			borderPanes.addAll(getTablePages(job,header,Pace.teams,columns, "team"));
+			borderPanes.addAll(getTablePages(job,header,getPrintTeams(Pace.teams),columns, "team"));
 			break;
 		case "Custom":
 			//Selected Columns
@@ -426,23 +446,27 @@ public class fxPrint {
 					for(Goal g : Pace.goals) {
 						header = g.division + "  " + g.time.toString(true);
 					
-						borderPanes.addAll(getTablePages(job,header,paceManager.getTeams(g.division),columns, getCustomPrintSort()));
+						borderPanes.addAll(getTablePages(job,header,getPrintTeams(paceManager.getTeams(g.division)),columns, getCustomPrintSort()));
 					}
 					break;
 				} else return; //TODO error
 			}
-			borderPanes.addAll(getTablePages(job,header,teams,columns, getCustomPrintSort()));
+			borderPanes.addAll(getTablePages(job,header,getPrintTeams(teams),columns, getCustomPrintSort()));
 			break;
 		}
-		for(BorderPane bp : borderPanes) {
-			if(!job.printPage(bp)) return; //TODO add error
+		
+		for(int i = 0; i < sCopies.getValue();i++) {
+			for(BorderPane bp : borderPanes) {
+				if(!job.printPage(bp)) return; //TODO add error
+			}
 		}
 		
-		
-		//TODO progress bar / printing page
-		job.endJob();
-		
-		sPrint.close();
+		if(job.endJob()) {
+			sProgress.close();
+		} else {
+			progressText.setText("Print Failed");
+			bCancel.setText("Close");
+		}
 	}
 	
 	/**
@@ -637,11 +661,11 @@ public class fxPrint {
 		return table;
 	}
 
-	private static List<Team> getPrintTeams(String setting, List<Team> teams) {
-		if(setting.contentEquals("")) setting = (String) setValidTeams.getValue();
+
+	private static List<Team> getPrintTeams(List<Team> teams) {
 		List<Team> ret = new ArrayList<Team>();
 		for(Team t : teams) {
-			switch(setting) {
+			switch((String) setValidTeams.getValue()) {
 			case "Valid Only":
 				if(!t.excluded && t.elapsed() != null) ret.add(t);
 				break;
