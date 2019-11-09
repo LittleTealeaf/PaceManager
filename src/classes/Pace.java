@@ -27,26 +27,25 @@ public class Pace {
 		Teams = teams;
 		Goals = goals;
 		Settings = settings;
-		updateStatics();
 	}
 
 	public Pace(String setTitle, List<Team> listTeams, List<Goal> listGoals, Settings getSettings) {
-		title = setTitle;
-		teams = listTeams;
-		goals = listGoals;
-		settings = getSettings;
-		version = paceManager.version;
-		updateStatics();
+		Title = setTitle;
+		Teams = listTeams;
+		Goals = listGoals;
+		Settings = getSettings;
+		Version = paceManager.version;
+		loadPace();
 	}
 	
-	public void updateStatics() {
+	public void loadPace() {
 		title = Title;
 		version = Version;
 		teams = Teams;
 		goals = Goals;
 		settings = Settings;
 	}
-	public void updateLocals() {
+	public void savePace() {
 		Title = title;
 		Version  = version;
 		Teams = teams;
