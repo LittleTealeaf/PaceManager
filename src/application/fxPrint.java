@@ -428,7 +428,7 @@ public class fxPrint {
 			} else if(rtSeparate.isSelected()) { //Each division in its own respective list, uses custom script as multiple pages are needed
 				if(!paceManager.goals.isEmpty()) {
 					for(Goal g : paceManager.goals) {
-						header = g.division + "  " + g.time.toString();
+						header = g.division + "  " + g.time.toString(true);
 					
 						borderPanes.addAll(getTablePages(job,header,paceManager.getTeams(g.division),columns, getCustomPrintSort()));
 					}
