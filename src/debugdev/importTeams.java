@@ -4,7 +4,6 @@ import java.util.*;
 import java.util.ArrayList;
 
 import classes.*;
-import application.paceManager;
 
 public class importTeams {
 	

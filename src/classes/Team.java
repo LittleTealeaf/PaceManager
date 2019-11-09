@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import application.paceManager;
+import application.*;
 
+@SuppressWarnings("serial")
 public class Team implements Serializable{
 	
 	public String team;

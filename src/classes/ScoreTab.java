@@ -1,8 +1,6 @@
 package classes;
 
-import application.fxPrint;
-import application.fxTeam;
-import application.paceManager;
+import application.*;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
