@@ -53,6 +53,8 @@ public class fxPrint {
 	private static PrinterJob job;
 	private static PageOrientation orientation;
 	
+	private static Spinner<Integer> sCopies;
+	
 	//Check Boxes
 	private static CheckBox[] cColumns;
 	private static ChoiceBox setValidTeams;
@@ -116,8 +118,8 @@ public class fxPrint {
 		
 		Label lCopies = new Label("No. of Copies: ");
 		lCopies.setTooltip(new Tooltip("Number of copies to print"));
-		Spinner<Integer> sCopies = new Spinner<Integer>();
-		sCopies.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 1));
+		sCopies = new Spinner<Integer>();
+		sCopies.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 1));
 		
 		HBox hbCopies = new HBox(lCopies,sCopies);
 		hbCopies.setSpacing(10);
@@ -452,8 +454,11 @@ public class fxPrint {
 			borderPanes.addAll(getTablePages(job,header,teams,columns, getCustomPrintSort()));
 			break;
 		}
-		for(BorderPane bp : borderPanes) {
-			if(!job.printPage(bp)) return; //TODO add error
+		
+		for(int i = 0; i < sCopies.getValue();i++) {
+			for(BorderPane bp : borderPanes) {
+				if(!job.printPage(bp)) return; //TODO add error
+			}
 		}
 		
 		if(job.endJob()) {
