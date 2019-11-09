@@ -143,13 +143,15 @@ public class fxMain extends Application {
 		//"First Out", fout, "Last Out", lout, 
 		headerTexts = new ArrayList<Text>();
 		HBox hbHeader = new HBox();
+		hbHeader.setSpacing(30);
 		int textFieldNumber = 4; // First Out, Last Out, Average Time, Estimated Last In
 		for(int i = 0; i < textFieldNumber; i++) {
 			Text t = new Text();
 			headerTexts.add(t);
-			if(i != 0) hbHeader.getChildren().add(new Separator(Orientation.VERTICAL));
+			hbHeader.getChildren().add(new Separator(Orientation.VERTICAL));
 			hbHeader.getChildren().add(t);
 		}
+		hbHeader.getChildren().add(new Separator(Orientation.VERTICAL));
 		
 		
 		//Table 
