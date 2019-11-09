@@ -636,10 +636,7 @@ public class fxPrint {
 		
 		return table;
 	}
-	
-	private static List<Team> getPrintTeams() {return getPrintTeams("",Pace.teams);	}
-	private static List<Team> getPrintTeams(List<Team> teams) {return getPrintTeams("",teams);	}
-	
+
 	private static List<Team> getPrintTeams(String setting, List<Team> teams) {
 		if(setting.contentEquals("")) setting = (String) setValidTeams.getValue();
 		List<Team> ret = new ArrayList<Team>();
