@@ -45,11 +45,20 @@ public class Pace {
 		goals = Goals;
 		settings = Settings;
 	}
+	
 	public void savePace() {
 		Title = title;
 		Version  = version;
 		Teams = teams;
 		Goals = goals;
 		Settings = settings;
+	}
+	
+	public static void newPace() {
+		title = "";
+		version = paceManager.version;
+		teams = new ArrayList<Team>();
+		goals = new ArrayList<Goal>();
+		settings = new Settings();
 	}
 }

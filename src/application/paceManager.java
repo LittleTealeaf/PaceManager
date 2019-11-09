@@ -21,7 +21,9 @@ public class paceManager {
 	private static final boolean development = true;
 	
 	public static void main(String[] args) {
-		Pace pace = new Pace();
+		
+		Pace.newPace();
+		
 		//Debug Only
 		if(development) {
 			Pace.teams = importTeams.getTeams();
