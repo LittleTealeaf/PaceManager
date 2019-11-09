@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import classes.Goal;
-import classes.Team;
-import classes.util;
+import classes.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.geometry.Insets;
@@ -181,7 +179,7 @@ public class fxPrint {
 		
 		List<String> goals = new ArrayList<String>();
 		//Add the drop-down for select division:
-		if(paceManager.goals.size() > 0) for(Goal g : paceManager.goals) {
+		if(Pace.goals.size() > 0) for(Goal g : Pace.goals) {
 			goals.add(g.division);
 		} 
 		setDivision = new ChoiceBox(FXCollections.observableArrayList(goals));
@@ -399,7 +397,7 @@ public class fxPrint {
 		List<Team> teams = null;
 		switch((String) setContent.getValue()) {
 		case "Announcement":
-			if(!paceManager.goals.isEmpty()) for(Goal g : paceManager.goals) {
+			if(!Pace.goals.isEmpty()) for(Goal g : Pace.goals) {
 				header = g.division + "  " + g.time.toString();
 				columns = new String[] {"positionInDivision","team","names","elapsedFXM"};
 				List<Team> tms = new ArrayList<Team>();
@@ -412,22 +410,22 @@ public class fxPrint {
 		case "Scoreboard":
 			header = "Scoreboard:";
 			columns = new String[] {"team","division","elapsedFXM","difference"};
-			borderPanes.addAll(getTablePages(job,header,paceManager.teams,columns, "team"));
+			borderPanes.addAll(getTablePages(job,header,Pace.teams,columns, "team"));
 			break;
 		case "Custom":
 			//Selected Columns
 			columns = getCustomPrintColumns();
 			//Get selected Teams
 			if(rtAll.isSelected()) { //
-				teams = paceManager.teams;
+				teams = Pace.teams;
 			} else if (rtSelect.isSelected()) { //Specifically Selected Division
 				String selDiv = (String) setDivision.getValue();
 				if(!selDiv.contentEquals("")) {
 					teams = paceManager.getTeams(selDiv);
 				}
 			} else if(rtSeparate.isSelected()) { //Each division in its own respective list, uses custom script as multiple pages are needed
-				if(!paceManager.goals.isEmpty()) {
-					for(Goal g : paceManager.goals) {
+				if(!Pace.goals.isEmpty()) {
+					for(Goal g : Pace.goals) {
 						header = g.division + "  " + g.time.toString(true);
 					
 						borderPanes.addAll(getTablePages(job,header,paceManager.getTeams(g.division),columns, getCustomPrintSort()));
@@ -641,7 +639,7 @@ public class fxPrint {
 		return table;
 	}
 	
-	private static List<Team> getPrintTeams() {return getPrintTeams("",paceManager.teams);	}
+	private static List<Team> getPrintTeams() {return getPrintTeams("",Pace.teams);	}
 	private static List<Team> getPrintTeams(List<Team> teams) {return getPrintTeams("",teams);	}
 	
 	private static List<Team> getPrintTeams(String setting, List<Team> teams) {
