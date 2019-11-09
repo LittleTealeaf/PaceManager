@@ -661,12 +661,11 @@ public class fxPrint {
 		return table;
 	}
 
-	private static List<Team> getPrintTeams(List<Team> teams) { return getPrintTeams("",teams); }
-	private static List<Team> getPrintTeams(String setting, List<Team> teams) {
-		if(setting.contentEquals("")) setting = (String) setValidTeams.getValue();
+
+	private static List<Team> getPrintTeams(List<Team> teams) {
 		List<Team> ret = new ArrayList<Team>();
 		for(Team t : teams) {
-			switch(setting) {
+			switch((String) setValidTeams.getValue()) {
 			case "Valid Only":
 				if(!t.excluded && t.elapsed() != null) ret.add(t);
 				break;
