@@ -1,8 +1,10 @@
 package classes;
 
-import application.paceManager;
+import java.io.Serializable;
 
-public class Goal {
+
+@SuppressWarnings("serial")
+public class Goal implements Serializable {
 	//Division is required
 	public String division;
 	public Time time;
@@ -39,7 +41,7 @@ public class Goal {
 		else {
 			int teams = 0;
 			float elapsedAvg = 0;
-			for(Team t : paceManager.teams) if(t.division.contentEquals(division)) {
+			for(Team t : Pace.teams) if(t.division.contentEquals(division)) {
 				Time elapsed = t.elapsed();
 				if(elapsed != null) {
 					teams++;

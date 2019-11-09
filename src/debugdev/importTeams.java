@@ -3,10 +3,7 @@ package debugdev;
 import java.util.*;
 import java.util.ArrayList;
 
-import classes.Goal;
-import classes.Team;
-import classes.Time;
-import application.paceManager;
+import classes.*;
 
 public class importTeams {
 	
@@ -56,7 +53,7 @@ public class importTeams {
 	public static void importGoals() {
 		Time shortestTime = null;
 		Time longestTime = null;
-		for(Team t : paceManager.teams) if(t.elapsed() != null) {
+		for(Team t : Pace.teams) if(t.elapsed() != null) {
 			if(shortestTime == null || shortestTime.time > t.elapsed().time) {
 				shortestTime = t.elapsed();
 			}
@@ -68,7 +65,7 @@ public class importTeams {
 		for(String s : divs) {
 			Goal g = new Goal(s);
 			g.time = new Time((float) Math.random() * (longestTime.time - shortestTime.time) + shortestTime.time);
-			paceManager.goals.add(g);
+			Pace.goals.add(g);
 		}
 	}
 	
@@ -78,7 +75,7 @@ public class importTeams {
 		Time endRange = new Time("13:00:00");
 		Time minElapsed = new Time("1:00:00");
 		Time maxElapsed = new Time("2:00:00");
-		for(Team a : paceManager.teams) {
+		for(Team a : Pace.teams) {
 			if(Math.random() < 0.5) {
 				a.start = new Time((float) (Math.random() * (endRange.time - startRange.time) + startRange.time));
 				if(Math.random() < 0.5) {

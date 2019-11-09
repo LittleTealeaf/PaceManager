@@ -1,11 +1,13 @@
 package classes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import application.paceManager;
+import application.*;
 
-public class Team {
+@SuppressWarnings("serial")
+public class Team implements Serializable{
 	
 	public String team;
 	public List<String> names;
@@ -126,7 +128,7 @@ public class Team {
 	
 	public String getDifference() {
 		if(elapsed() != null) {
-			for(Goal g : paceManager.goals) {
+			for(Goal g : Pace.goals) {
 				if(g.division.contentEquals(division)) {
 					return new Time(Math.abs(g.getGoalTime().time - elapsed().time)).toString(true);
 				}
@@ -144,7 +146,7 @@ public class Team {
 		int pos = 1;
 		Time g = null;
 		//gets the division time (for this team)
-		for(Goal a : paceManager.goals) {
+		for(Goal a : Pace.goals) {
 			if(a.division.contentEquals(division)) g = a.time;
 		}
 	

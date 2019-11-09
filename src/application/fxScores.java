@@ -3,8 +3,7 @@ package application;
 import java.util.ArrayList;
 import java.util.List;
 
-import classes.Goal;
-import classes.ScoreTab;
+import classes.*;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
@@ -84,8 +83,8 @@ public class fxScores {
 			tabPane = new TabPane();
 			scoreTabs = new ArrayList<ScoreTab>();
 			
-			if(paceManager.goals.size() > 0) {
-				for(Goal g : paceManager.goals) {
+			if(Pace.goals.size() > 0) {
+				for(Goal g : Pace.goals) {
 					scoreTabs.add(new ScoreTab(g));
 				}
 				updateTables();
