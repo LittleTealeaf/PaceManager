@@ -13,6 +13,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import classes.Team;
+import classes.Pace;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -114,13 +115,13 @@ public class fileImport {
 	private static void importTeams(List<Team> tms, boolean clearTeams, boolean keepExisting) {
 		//Clears Teams if configured to do so
 		if(clearTeams) {
-			paceManager.teams = tms;
+			Pace.teams = tms;
 		} else {
 			//Only used if set to not keep unique
 			List<Team> setTeams = new ArrayList<Team>();
 			
 			for(Team a : tms) {
-				for(Team b : paceManager.teams) {
+				for(Team b : Pace.teams) {
 					if(a.team.contentEquals(b.team)) {
 						b.names = a.names;
 						b.division = a.division;
@@ -131,7 +132,7 @@ public class fileImport {
 				}
 			}
 			
-			if(!keepExisting) paceManager.teams = setTeams;
+			if(!keepExisting) Pace.teams = setTeams;
 		}
 		fxMain.updateTable();
 	}	

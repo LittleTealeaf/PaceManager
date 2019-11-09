@@ -51,7 +51,7 @@ public class fxMain extends Application {
 	@Override
 	public void start(Stage sMain) {
 		sMRef = sMain;
-		sMain.setTitle("Pace Manager " + paceManager.version + " " + paceManager.title);
+		sMain.setTitle("Pace Manager " + paceManager.version + " " + Pace.title);
 		sMain.widthProperty().addListener((obs,oldv,newv) -> {
 			resizeColumns();
 		});
@@ -73,8 +73,8 @@ public class fxMain extends Application {
 					return;
 				}
 				fileManager.loadedFile = null;
-				paceManager.goals = new ArrayList<Goal>();
-				paceManager.teams = new ArrayList<Team>();
+				Pace.goals = new ArrayList<Goal>();
+				Pace.teams = new ArrayList<Team>();
 				updateTable();
 			}
 		});
@@ -254,7 +254,7 @@ public class fxMain extends Application {
 	
 	public static void updateTable() {
 		table.getItems().clear();
-		table.getItems().addAll(paceManager.teams);
+		table.getItems().addAll(Pace.teams);
 		table.sort();
 		resizeColumns();
 		fxScores.updateTables();

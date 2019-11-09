@@ -127,7 +127,7 @@ public class Team implements Serializable{
 	
 	public String getDifference() {
 		if(elapsed() != null) {
-			for(Goal g : paceManager.goals) {
+			for(Goal g : Pace.goals) {
 				if(g.division.contentEquals(division)) {
 					return new Time(Math.abs(g.getGoalTime().time - elapsed().time)).toString(true);
 				}
@@ -145,7 +145,7 @@ public class Team implements Serializable{
 		int pos = 1;
 		Time g = null;
 		//gets the division time (for this team)
-		for(Goal a : paceManager.goals) {
+		for(Goal a : Pace.goals) {
 			if(a.division.contentEquals(division)) g = a.time;
 		}
 	

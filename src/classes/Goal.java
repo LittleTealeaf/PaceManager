@@ -42,7 +42,7 @@ public class Goal implements Serializable {
 		else {
 			int teams = 0;
 			float elapsedAvg = 0;
-			for(Team t : paceManager.teams) if(t.division.contentEquals(division)) {
+			for(Team t : Pace.teams) if(t.division.contentEquals(division)) {
 				Time elapsed = t.elapsed();
 				if(elapsed != null) {
 					teams++;

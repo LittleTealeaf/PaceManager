@@ -239,11 +239,11 @@ public class fxTeam {
 				if(result.get() == bCancel) {
 					return false;
 				} else if (result.get() == bOverwrite) {
-					paceManager.teams.set(paceManager.teams.indexOf(paceManager.getTeam(tTeam.getText())), compileTeam());
+					Pace.teams.set(Pace.teams.indexOf(paceManager.getTeam(tTeam.getText())), compileTeam());
 				}
-			} else paceManager.teams.add(compileTeam());
+			} else Pace.teams.add(compileTeam());
 		} else {
-			paceManager.teams.set(paceManager.teams.indexOf(paceManager.getTeam(tTeam.getText())), compileTeam());
+			Pace.teams.set(Pace.teams.indexOf(paceManager.getTeam(tTeam.getText())), compileTeam());
 		}
 		fxMain.updateTable();
 		return true;

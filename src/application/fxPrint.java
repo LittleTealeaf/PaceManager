@@ -1,13 +1,14 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-import classes.*;
+import classes.Goal;
+import classes.Team;
+import classes.util;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.print.PageLayout;
 import javafx.print.PageOrientation;
@@ -19,6 +20,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TableColumn;
@@ -26,11 +28,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 @SuppressWarnings("rawtypes")
@@ -54,6 +58,7 @@ public class fxPrint {
 	
 	//Check Boxes
 	private static CheckBox[] cColumns;
+	private static ChoiceBox setValidTeams;
 	
 	//Content Selection:
 	private static ChoiceBox setDivision;
@@ -79,6 +84,7 @@ public class fxPrint {
 		
 		sPrint.setTitle("Print");
 		sPrint.setAlwaysOnTop(true);
+		
 		
 		// PRINTING OPTIONS
 		
@@ -145,7 +151,7 @@ public class fxPrint {
 		for(CheckBox c : cColumns) {
 			c.selectedProperty().addListener((obs) -> {
 				setSortCol.getItems().setAll(getSortColumns());
-				setSortCol.setValue(setSortCol.getItems().get(0));
+				if(setSortCol.getItems().size() > 0) setSortCol.setValue(setSortCol.getItems().get(0));
 			});
 			c.setTooltip(new Tooltip("Include the '" + c.getText() + "' column in the table?"));
 		}
@@ -185,14 +191,25 @@ public class fxPrint {
 		HBox hbContentOptionsRTSelect = new HBox(rtSelect,setDivision);
 		hbContentOptionsRTSelect.setSpacing(10);
 		
+		Text lValid = new Text("Valid Teams");
+		
+		setValidTeams = new ChoiceBox(FXCollections.observableArrayList("All Teams", "Valid Only", "Arrived Only","Departed Only","Stale Only"));
+		setValidTeams.setTooltip(new Tooltip("Which specific teams should we include?"));
+		
+		
+		HBox hbContentValidTeams = new HBox(lValid,setValidTeams);
+		hbContentValidTeams.setSpacing(10);
+		
+		Text lSort = new Text("Sort Method:");
+		
 		setSortCol = new ChoiceBox();
-		setSortCol.setDisable(true);
 		setSortCol.setTooltip(new Tooltip("Column in which the table should be sorted by"));
 		
-		HBox hbContentOptionsSort = new HBox(setSortCol);
+		HBox hbContentOptionsSort = new HBox(lSort,setSortCol);
 		hbContentOptionsSort.setSpacing(10);
 		
-		VBox vbContentOptionsTeamSelect = new VBox(rtAll,hbContentOptionsRTSelect,rtSeparate,hbContentOptionsSort);
+		
+		VBox vbContentOptionsTeamSelect = new VBox(rtAll,hbContentOptionsRTSelect,rtSeparate,hbContentValidTeams,hbContentOptionsSort);
 		vbContentOptionsTeamSelect.setSpacing(10);
 		
 		
@@ -208,20 +225,16 @@ public class fxPrint {
 		//BOTTOM
 		
 		Button bCancel = new Button("Cancel");
-		bCancel.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				sPrint.close();
-			}
+		bCancel.setOnAction(event -> {
+			sPrint.close();
 		});
 		
 		Region rBottom = new Region();
 		HBox.setHgrow(rBottom, Priority.ALWAYS);
 		
 		Button bPrint = new Button("Print");
-		bPrint.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				print();
-			}
+		bPrint.setOnAction(event -> {
+			print();
 		});
 		
 		HBox hbMid = new HBox(vbPrintSettings, vbContentOptions);		
@@ -231,13 +244,21 @@ public class fxPrint {
 		VBox vb = new VBox(hbMid,hbBottom);
 		
 		Scene sc = new Scene(vb);
+		sc.setOnKeyPressed(key -> {
+			if(key.isControlDown() && key.getCode() == KeyCode.ENTER) print();
+			if(key.getCode() == KeyCode.ESCAPE) sPrint.close();
+		});
 		sPrint.setScene(sc);
 		
 		//Set Defaults
 		rVertical.fire();
 		orientation = PageOrientation.PORTRAIT;
 		setContent.setValue("");
+		setValidTeams.setValue("All Teams");
+		
 		rtAll.setSelected(true);
+		setValidTeams.setDisable(true);
+		setSortCol.setDisable(true);
 		
 		//PRESETS
 		// 'if(preset == "") {} else ' makes sure nothing happens if the preset is left blank
@@ -252,6 +273,7 @@ public class fxPrint {
 			setColumnValue("Start Time");
 			setColumnValue("End Time");
 			setColumnValue("Elapsed Time");
+			setValidTeams.setValue("All Teams");
 			setSortCol.setValue("Team");
 		} else if(preset.toCharArray()[0] == 'g') {
 			//Specific Division
@@ -262,6 +284,7 @@ public class fxPrint {
 				div = preset.substring(1);
 			} catch (Exception e) {return;}
 			
+			setValidTeams.setValue("Arrived Only");
 			setContent.setValue("Custom");
 			rtSelect.setSelected(true);
 			setDivision.setValue(div);
@@ -295,7 +318,9 @@ public class fxPrint {
 		rtSelect.setDisable(eCustom);
 		rtSeparate.setDisable(eCustom);
 		
-		setSortCol.setDisable(setContent.getValue().equals("Announcement"));
+		boolean isAnnounce = setContent.getValue().equals("Announcement");
+		setValidTeams.setDisable(isAnnounce);
+		setSortCol.setDisable(isAnnounce);
 		setSortCol.getItems().setAll(getSortColumns());
 		if(setSortCol.getItems().size() > 0) setSortCol.setValue(setSortCol.getItems().get(0));
 	}
@@ -349,6 +374,12 @@ public class fxPrint {
 
 	
 	private static void print() {
+		//Cancel Scripts
+		if((String) setContent.getValue() == "") return;
+		if((String) setSortCol.getValue() == "") return;
+		if(rtSelect.isSelected() && (String) setDivision.getValue() == "") return;
+		if(setValidTeams.getValue() == "") return;
+		
 		sPrint.setAlwaysOnTop(false);
 		//Gets selected printer
 		Printer printer = (Printer) setPrinter.getValue();
@@ -356,7 +387,7 @@ public class fxPrint {
 		job = PrinterJob.createPrinterJob(printer);
 		
 		//Create a layout using the printer's default paper
-		PageLayout layout = printer.getDefaultPageLayout();
+		PageLayout layout = printer.createPageLayout(printer.getDefaultPageLayout().getPaper(), orientation, Printer.MarginType.DEFAULT);
 		
 		job.getJobSettings().setPageLayout(layout);
 		
@@ -371,7 +402,11 @@ public class fxPrint {
 			if(!paceManager.goals.isEmpty()) for(Goal g : paceManager.goals) {
 				header = g.division + "  " + g.time.toString();
 				columns = new String[] {"positionInDivision","team","names","elapsedFXM"};
-				borderPanes.addAll(getTablePages(job,header,paceManager.getTeams(g.division),columns, "positionInDivision"));
+				List<Team> tms = new ArrayList<Team>();
+				for(Team t : paceManager.getTeams(g.division)) {
+					if(!t.getPositionInDivision().contentEquals("")) tms.add(t);
+				}
+				borderPanes.addAll(getTablePages(job,header,tms,columns, "positionInDivision"));
 			} else return; //TODO error
 			break;
 		case "Scoreboard":
@@ -390,10 +425,10 @@ public class fxPrint {
 				if(!selDiv.contentEquals("")) {
 					teams = paceManager.getTeams(selDiv);
 				}
-			} else if(rtSeparate.isSelected()) { //Each division in its own respective list, uses custom script as mulitple pages are needed
+			} else if(rtSeparate.isSelected()) { //Each division in its own respective list, uses custom script as multiple pages are needed
 				if(!paceManager.goals.isEmpty()) {
 					for(Goal g : paceManager.goals) {
-						header = g.division + "  " + g.time.toString();
+						header = g.division + "  " + g.time.toString(true);
 					
 						borderPanes.addAll(getTablePages(job,header,paceManager.getTeams(g.division),columns, getCustomPrintSort()));
 					}
@@ -403,6 +438,13 @@ public class fxPrint {
 			borderPanes.addAll(getTablePages(job,header,teams,columns, getCustomPrintSort()));
 			break;
 		}
+		for(BorderPane bp : borderPanes) {
+			if(!job.printPage(bp)) return; //TODO add error
+		}
+		
+		
+		//TODO progress bar / printing page
+		job.endJob();
 		
 		sPrint.close();
 	}
@@ -416,8 +458,9 @@ public class fxPrint {
 	 * @param sortColumn Column, specified above, to sort by (will return null if set column does not)
 	 * @return
 	 */
-	@SuppressWarnings({ "unused", "unchecked" })
-	private static List<BorderPane> getTablePages(PrinterJob job, String header, List<Team> teams, String[] columns, String sortColumn) {
+
+	@SuppressWarnings("unchecked")
+	private static List<BorderPane> getTablePages(PrinterJob job, String header, List<Team> getTeams, String[] columns, String sortColumn) {
 		//Checks if the sort column is in the columns
 		boolean bError = true;
 		for(String s : columns) if(s.contentEquals(sortColumn)) bError = false;
@@ -426,38 +469,79 @@ public class fxPrint {
 			return null;
 		}
 		
+		
+		//Sorts Tables
+		List<Team> teams = util.sortTeams(getTeams, sortColumn);
+		//TODO include a reverse method
+		
 		//PRESETS
-		final double cellSize = 20 * 3;
+		final double cellSize = 20; //TODO make cell size into a function
+		final double headerSize = cellSize * 1.2;
+		final double textSize = 15.9609375;
 		
 		//Gets Printable Size
 		final double pWidth = job.getJobSettings().getPageLayout().getPrintableWidth();
 		final double pHeight = job.getJobSettings().getPageLayout().getPrintableHeight();
+		double setTableHeight = pHeight - textSize;
 		
 		//Return value
 		List<BorderPane> ret = new ArrayList<BorderPane>();
 		
-		//Creating the Table
-		TableView table = getTable(teams,columns,sortColumn);
-		//table.setFixedCellSize(cellSize);
-		List<TableColumn> cols = table.getColumns();
-		double totalColumnSize = 0;
-		for(TableColumn c : cols) totalColumnSize+=c.getPrefWidth();
-		table.resize(totalColumnSize, cellSize * (table.getItems().size() + 1));
+		//Clear List of any nulls, then adds a null at the end
+		if(teams.contains(null)) teams.remove(null);
+		teams.add(null);
 		
-		//Scaling table to the width of the paper, does not allow scaling when it's already fitted
-//		if(table.getWidth() < pWidth) table.setScaleX(pWidth / table.getWidth());
+		//Check if columns has the names part
+		boolean hasNames = false;
+		for(String s : columns) if(s.toLowerCase().contentEquals("names")) hasNames = true;
+		
+		//USING https://stackoverflow.com/questions/31918959/javafx-print-tableview-on-multiple-pages
+		//Method: make a separate table for each page and return those
 		
 		
-		//TODO Add method to print this into a border pane list
+		//Get a list of all teams for each page
+		List<Team> tempTm = new ArrayList<Team>();
+		double tmpHeight = headerSize;
 		
-		//Debug:
-		Scene sc = new Scene(table);
-		Stage s = new Stage();
-		s.setScene(sc);
-		s.show();
-		
+		for(Team t : teams) {
+			//Get cell size
+			double tSize = cellSize;
+			if(t != null && hasNames) tSize = cellSize * t.names.size();
+			
+			//Test if cell size will push it to the limit
+			if((tmpHeight + tSize > setTableHeight) || t == null) {
+				//Hard Copy
+				List<Team> ts = new ArrayList<Team>();
+				for(Team a : tempTm) ts.add(a);
+				
+				//Make the table
+				TableView<Team> tble = getTable(columns, sortColumn, pWidth - 5);
+				tble.getItems().addAll(ts);
+				tble.resize(pWidth, setTableHeight);
+				
+				//Create the Border Pane
+				BorderPane bp = new BorderPane();
+				bp.setPrefSize(pWidth, pHeight);
+				bp.autosize();
+				bp.setTop(new Text(header));
+				bp.setCenter(tble);
+				
+				//Add to the list
+				ret.add(bp);
+
+				//Reset Variables
+				tmpHeight = headerSize;
+				tempTm = new ArrayList<Team>();
+			} else {
+				//Add the team
+				tmpHeight+=tSize;
+				tempTm.add(t);
+			}
+		}
 		return ret;
 	}
+	
+
 	
 	/**
 	 * Creating a Table
@@ -467,18 +551,25 @@ public class fxPrint {
 	 * @return
 	 */
 	@SuppressWarnings({ "unchecked", "static-access" })
-	private static TableView getTable(List<Team> teams, String[] columns, String sortColumn) {
+	private static TableView getTable(String[] columns, String sortColumn, double pWidth) {
+		//Preset Variables
 		final double colSizeTeam = 35;
 		final double colSizeDiv = 60;
 		final double colSizeTime = 75;
 		final double colSizePlace = 35;
 		final double colSizeNames = 200;
 		final double colSizeNotes = 50;
+		//Variables
+		double totalSize = 0;
 		
+		//Create a table
 		TableView<Team> table = new TableView<Team>();
-		table.getItems().setAll(teams);
+		
+		//Cycle through each requested column
 		for(String s : columns) {
 			TableColumn col = new TableColumn(s);
+			
+			//Variable Settings for each column
 			switch(s.toLowerCase()) {
 			case "team":
 				col.setText("Team");
@@ -513,7 +604,7 @@ public class fxPrint {
 				col.setPrefWidth(colSizePlace);
 				col.setSortType(col.getSortType().DESCENDING);
 				break;
-			case "printableNotes":
+			case "printablenotes":
 				col.setText("Notes");
 				col.setPrefWidth(colSizeNotes);
 				break;
@@ -522,123 +613,61 @@ public class fxPrint {
 				col.setPrefWidth(colSizeTime);
 			default: break;
 			}
+			//Adds to total size
+			totalSize += col.getPrefWidth();
+			//Sets the cell factory
 			col.setCellValueFactory(new PropertyValueFactory<Team,String>(s));
+			//Adds it to the table
 			table.getColumns().add(col);
+			//If it's the sort column, set it as the sort column
 			if(s.contentEquals(sortColumn)) table.getSortOrder().add(col);
 		}
+		
+		//If smaller than scale
+		if(totalSize != pWidth) {
+			//Take the difference left over
+			double difference = pWidth - totalSize;
+			
+			//Split remainder up and add that amount to each column
+			double colAdd = difference / table.getColumns().size();
+			for(TableColumn a : table.getColumns()) {
+				a.setPrefWidth(a.getPrefWidth() + colAdd);
+			}
+		}
+		
+		//Removes the arrow
 		table.getSortOrder().clear();
+		
 		return table;
 	}
 	
+	private static List<Team> getPrintTeams() {return getPrintTeams("",paceManager.teams);	}
+	private static List<Team> getPrintTeams(List<Team> teams) {return getPrintTeams("",teams);	}
+	
+	private static List<Team> getPrintTeams(String setting, List<Team> teams) {
+		if(setting.contentEquals("")) setting = (String) setValidTeams.getValue();
+		List<Team> ret = new ArrayList<Team>();
+		for(Team t : teams) {
+			switch(setting) {
+			case "Valid Only":
+				if(!t.excluded && t.elapsed() != null) ret.add(t);
+				break;
+			case "Arrived Only":
+				if(t.elapsed() != null) ret.add(t);
+				break;
+			case "Departed Only":
+				if(t.start != null && t.finish == null) ret.add(t);
+				break;
+			case "Stale Only":
+				if(t.start == null && t.finish == null) ret.add(t);
+				break;
+			default:
+				ret.add(t);
+				break;
+			}
+		}
+		return ret;
+	}
+}
 	
 	//http://tutorials.jenkov.com/javafx/scrollpane.html
-	
-//	@SuppressWarnings("unchecked")
-//	public static ScrollPane getTablePages(PrinterJob job, TableView table, String headerText) {
-//		//PRE DETERMINED SETTINGS
-//		final double cellSize = 20;
-//		
-//		
-//		//Gets printable size
-//		final double pWidth = job.getJobSettings().getPageLayout().getPrintableWidth();
-//		final double pHeight = job.getJobSettings().getPageLayout().getPrintableHeight();
-//		
-//		//Format Table
-//		table.setFixedCellSize(cellSize);
-//		
-//		//Get the default table width (sum of all the columns)
-//		double colWidth = 0;
-//		List<TableColumn> cols = table.getColumns();
-//		for(TableColumn col : cols) {
-//			colWidth+=col.getWidth();
-//		}
-//		
-//		//Resizes Table
-//		table.resize(colWidth, table.getItems().size() * (cellSize + 2));
-//		
-//		//Adds a scale factor to the table to fit in the page width
-//		//table.getTransforms().add(new Scale(pWidth / colWidth,1));
-//		
-//		// might need to add a custom table(?)
-//		
-//		
-//		
-//		//Create a header
-//		Label header = new Label(headerText);
-//		
-//		VBox content = new VBox(header,table);
-//		
-//		ScrollPane z = new ScrollPane(content);
-//		z.resize(pWidth, pHeight);
-//		z.setFitToWidth(true);
-//		
-//		Scene sc = new Scene(z,pWidth,pHeight);
-//		Stage s = new Stage();
-//		s.setScene(sc);
-//		s.show();
-//		
-//		return z;
-////		//Create Header
-////		Label l = new Label(header);
-////		
-////		
-////		//Get total width of all the columns
-////		List<TableColumn> cols = table.getColumns();
-////		double initialWidth = 0;
-////		for(TableColumn c : cols) {
-////			initialWidth+=c.getWidth();
-////		}
-////	
-////				
-////		//Resize table to the total column width and proper height (prior to this the table had 0 width and 0 height)
-////		table.resize(initialWidth, pHeight - l.getHeight());
-////		
-////		//table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-////		
-////
-////		System.out.println(table.getWidth());
-////		
-////		//Down-scale the width to fit the screen
-////		for(TableColumn c : cols) {
-////			System.out.print(c.getText() + " " + c.getWidth());
-////			//Ratio of the current width to the initial width
-////			double ratio = c.getWidth() / initialWidth;
-////			
-////			//Set the width to the same ratio in relation to the total width
-////			c.setPrefWidth(ratio * (pWidth - 5));
-////			System.out.println(" " + c.getWidth());
-////		}
-////		
-////		
-////		table.setFixedCellSize(cellSize);
-////		
-////		//table.prefHeightProperty().bind(Bindings.size(table.getItems()).multiply(table.getFixedCellSize()));
-////		
-////		
-////		
-////		
-////		//Border Pane
-////		BorderPane r = new BorderPane();
-////		
-////		r.setTop(l);
-////		r.setCenter(table);
-////		
-//////		Scene sc = new Scene(r,pWidth,cellSize*(table.getItems().size()+4) + l.getHeight());
-//////		r.autosize();
-//////		
-//////		Stage s = new Stage();
-//////		s.setScene(sc);
-//////		s.show();
-////		
-////		ZoomableScrollPane b = new ZoomableScrollPane(r);
-////		
-////		b.resize(r.getWidth(), r.getHeight());
-////		
-////		r.resize(pWidth,table.getHeight());
-////		
-////		//Scene sc = new Scene(b,pWidth,cellSize*(table.getItems().size() + 4) + l.getHeight());
-////		
-////		
-////		return b;
-//	}
-}

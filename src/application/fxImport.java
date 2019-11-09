@@ -126,7 +126,7 @@ public class fxImport {
 			lData.setText("Variable Selection not valid");
 			return;
 		}
-		if(isNew) paceManager.teams.add(t);
+		if(isNew) Pace.teams.add(t);
 		tTeam.setText("");
 		tData.setText("");
 		fxMain.updateTable();
