@@ -239,7 +239,6 @@ public class fxMain extends Application {
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		
 		
-        //TODO add hbox with est arrivals and such
 		VBox vb = new VBox(mb,hbHeader,table);
 		
 		Scene sc = new Scene(vb, 500, 300);
