@@ -38,20 +38,15 @@ public class Pace {
 		loadPace();
 	}
 	
+	/**
+	 * Applies object-values to the pace main values
+	 */
 	public void loadPace() {
 		title = Title;
 		version = Version;
 		teams = Teams;
 		goals = Goals;
 		settings = Settings;
-	}
-	
-	public void savePace() {
-		Title = title;
-		Version  = version;
-		Teams = teams;
-		Goals = goals;
-		Settings = settings;
 	}
 	
 	public static void newPace() {
