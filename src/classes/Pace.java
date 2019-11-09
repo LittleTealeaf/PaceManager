@@ -1,6 +1,7 @@
 package classes;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import application.*;
@@ -49,8 +50,9 @@ public class Pace {
 		settings = Settings;
 	}
 	
-	public static void newPace() {
-		title = "";
+	public static void newPace() { newPace(""); }
+	public static void newPace(String setTitle) {
+		title = setTitle;
 		version = paceManager.version;
 		teams = new ArrayList<Team>();
 		goals = new ArrayList<Goal>();
