@@ -23,9 +23,13 @@ public class Time {
 	}
 	
 	public Time(float seconds) { time = seconds; }
+	public Time(double seconds) { time = (float) seconds; }
 	
 	public Time(float hours, float minutes, float seconds) {
 		time = (3600 * hours) + (60 * minutes) + seconds;
+	}
+	public Time(double hours, double minutes, double seconds) {
+		time = (float) ((3600 * hours) + (60 * minutes) + seconds); 
 	}
 	
 	public Time(String par) {

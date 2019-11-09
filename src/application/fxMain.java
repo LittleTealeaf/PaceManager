@@ -8,6 +8,7 @@ import classes.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -15,6 +16,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Separator;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
@@ -24,7 +26,9 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -39,6 +43,9 @@ import javafx.stage.StageStyle;
 public class fxMain extends Application {
 	
 	private static TableView<Team> table;
+	
+	//Header Texts
+	private static List<Text> headerTexts;
 	
 	public static Stage sMRef;
 
@@ -131,7 +138,24 @@ public class fxMain extends Application {
 		MenuBar mb = new MenuBar();
 		mb.getMenus().addAll(m1,m2,m3);
 		
+		
+		//Header Text
+		//"First Out", fout, "Last Out", lout, 
+		headerTexts = new ArrayList<Text>();
+		HBox hbHeader = new HBox();
+		hbHeader.setSpacing(30);
+		int textFieldNumber = 4; // First Out, Last Out, Average Time, Estimated Last In
+		for(int i = 0; i < textFieldNumber; i++) {
+			Text t = new Text();
+			headerTexts.add(t);
+			hbHeader.getChildren().add(new Separator(Orientation.VERTICAL));
+			hbHeader.getChildren().add(t);
+		}
+		hbHeader.getChildren().add(new Separator(Orientation.VERTICAL));
+		
+		
 		//Table 
+		
 		table = new TableView<Team>();
 		table.setEditable(false);
 		/*
@@ -215,8 +239,7 @@ public class fxMain extends Application {
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		
 		
-        //TODO add hbox with est arrivals and such
-		VBox vb = new VBox(mb,table);
+		VBox vb = new VBox(mb,hbHeader,table);
 		
 		Scene sc = new Scene(vb, 500, 300);
 		sMain.setMaximized(true);
@@ -227,6 +250,30 @@ public class fxMain extends Application {
 	}
 	
 	public static void updateTable() {
+		//Get first and last out
+		Team firstOut = null;
+		Team lastLeft = null;
+		Team lastOut = null;
+		double avgTime = 0;
+		int count = 0;
+		for(Team t : Pace.teams) {
+			if(t.start != null) {
+				if(firstOut == null || firstOut.start.time > t.start.time) firstOut = t;
+				if(lastLeft == null || lastOut.start.time < t.start.time) lastLeft = t;
+				if(lastOut == null || (t.finish == null && lastOut.start.time < t.start.time)) lastOut = t;
+				if(t.finish != null) {
+					avgTime+=t.elapsed().time;
+					count++;
+				}
+			}
+		}
+		avgTime/=count;
+		
+		headerTexts.get(0).setText("First Out: " + firstOut.team + " at " + firstOut.start.toString());
+		headerTexts.get(1).setText("Last Out: " + lastLeft.team + " at " + lastLeft.start.toString());
+		headerTexts.get(2).setText("Average Time: " + new Time(avgTime).toString(true));
+		headerTexts.get(3).setText("Estimated Last In: " + lastOut.team + " at " + new Time(lastOut.start.time + avgTime));
+		
 		table.getItems().clear();
 		table.getItems().addAll(Pace.teams);
 		table.sort();
