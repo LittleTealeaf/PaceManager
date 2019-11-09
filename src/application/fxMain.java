@@ -270,10 +270,10 @@ public class fxMain extends Application {
 		}
 		avgTime/=count;
 		
-		headerTexts.get(0).setText("First Out: " + firstOut.team + " " + firstOut.start.toString());
-		headerTexts.get(1).setText("Last Out: " + lastLeft.team + " " + lastLeft.start.toString());
+		headerTexts.get(0).setText("First Out: " + firstOut.team + " at " + firstOut.start.toString());
+		headerTexts.get(1).setText("Last Out: " + lastLeft.team + " at " + lastLeft.start.toString());
 		headerTexts.get(2).setText("Average Time: " + new Time(avgTime).toString(true));
-		headerTexts.get(3).setText("Estimated Last In: " + lastOut.team + " " + new Time(lastOut.start.time + avgTime));
+		headerTexts.get(3).setText("Estimated Last In: " + lastOut.team + " at " + new Time(lastOut.start.time + avgTime));
 		
 		table.getItems().clear();
 		table.getItems().addAll(Pace.teams);
