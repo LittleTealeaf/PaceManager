@@ -32,6 +32,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 @SuppressWarnings("rawtypes")
 public class fxPrint {
@@ -387,8 +388,25 @@ public class fxPrint {
 		
 		job.getJobSettings().setPageLayout(layout);
 		
+		//Create a "printing progress" window
+		sPrint.close();
+		Stage sProgress = new Stage();
+		Text progressText = new Text("Printing...");
+		Button bCancel = new Button("Cancel");
+		bCancel.setOnAction(action -> {
+			job.cancelJob();
+			sProgress.close();
+			sPrint.close();
+		});
+		VBox vb = new VBox(progressText,bCancel);
+		vb.setSpacing(20);
+		vb.setPadding(DEFAULTINSETS);
+		sProgress.setScene(new Scene(vb,200,75));
+		sProgress.show();
 		
-		List<BorderPane> borderPanes = new ArrayList<BorderPane>();
+		
+		//Printing Script
+		List<BorderPane> borderPanes = new ArrayList<BorderPane>();		
 		
 		String header = "";
 		String[] columns = null;
@@ -438,11 +456,12 @@ public class fxPrint {
 			if(!job.printPage(bp)) return; //TODO add error
 		}
 		
-		
-		//TODO progress bar / printing page
-		job.endJob();
-		
-		sPrint.close();
+		if(job.endJob()) {
+			sProgress.close();
+		} else {
+			progressText.setText("Print Failed");
+			bCancel.setText("Close");
+		}
 	}
 	
 	/**
