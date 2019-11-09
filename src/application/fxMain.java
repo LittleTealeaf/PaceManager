@@ -8,6 +8,7 @@ import classes.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -15,6 +16,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Separator;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
@@ -24,7 +26,9 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -39,6 +43,9 @@ import javafx.stage.StageStyle;
 public class fxMain extends Application {
 	
 	private static TableView<Team> table;
+	
+	//Header Texts
+	private static List<Text> headerTexts;
 	
 	public static Stage sMRef;
 
@@ -131,7 +138,22 @@ public class fxMain extends Application {
 		MenuBar mb = new MenuBar();
 		mb.getMenus().addAll(m1,m2,m3);
 		
+		
+		//Header Text
+		//"First Out", fout, "Last Out", lout, 
+		headerTexts = new ArrayList<Text>();
+		HBox hbHeader = new HBox();
+		int textFieldNumber = 4; // First Out, Last Out, Average Time, Estimated Last In
+		for(int i = 0; i < textFieldNumber; i++) {
+			Text t = new Text();
+			headerTexts.add(t);
+			if(i != 0) hbHeader.getChildren().add(new Separator(Orientation.VERTICAL));
+			hbHeader.getChildren().add(t);
+		}
+		
+		
 		//Table 
+		
 		table = new TableView<Team>();
 		table.setEditable(false);
 		/*
@@ -216,7 +238,7 @@ public class fxMain extends Application {
 		
 		
         //TODO add hbox with est arrivals and such
-		VBox vb = new VBox(mb,table);
+		VBox vb = new VBox(mb,hbHeader,table);
 		
 		Scene sc = new Scene(vb, 500, 300);
 		sMain.setMaximized(true);
