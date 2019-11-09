@@ -84,8 +84,8 @@ public class fxScores {
 			tabPane = new TabPane();
 			scoreTabs = new ArrayList<ScoreTab>();
 			
-			if(paceManager.goals.size() > 0) {
-				for(Goal g : paceManager.goals) {
+			if(Pace.goals.size() > 0) {
+				for(Goal g : Pace.goals) {
 					scoreTabs.add(new ScoreTab(g));
 				}
 				updateTables();

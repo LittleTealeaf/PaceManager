@@ -18,21 +18,13 @@ public class paceManager {
 	
 	public static final String version = "0.0.1-DEV";
 	
-	public static String title;
-
-	public static List<Team> teams;
-	public static List<Goal> goals;
-	public static Settings settings;
-	
 	private static final boolean development = true;
 	
 	public static void main(String[] args) {
-		settings = new Settings();
-		teams = new ArrayList<Team>();
-		goals = new ArrayList<Goal>();
+		Pace pace = new Pace();
 		//Debug Only
 		if(development) {
-			teams = importTeams.getTeams();
+			Pace.teams = importTeams.getTeams();
 			importTeams.randomizeTimes();
 			importTeams.importGoals();	
 		}
@@ -41,7 +33,7 @@ public class paceManager {
 	}
 	
 	public static Team getTeam(String tmName) {
-		for(Team t : teams) {
+		for(Team t : Pace.teams) {
 			String a = t.team.toLowerCase().replace(" ", "").replace("\n", "").replace("\r","");
 			String b = tmName.toLowerCase().replace(" ", "").replace("\n", "").replace("\r","");
 			if(a.contentEquals(b)) return t;
@@ -50,20 +42,20 @@ public class paceManager {
 	}
 	
 	public static void deleteTeam(Team t) {
-		if(settings.alertOnDeleteTeam) {
+		if(Pace.settings.alertOnDeleteTeam) {
 			Alert conf = new Alert(AlertType.CONFIRMATION);
 			conf.setTitle("Delete " + t.team + "?");
 			conf.setHeaderText("Do you really want to delete " + t.team + "?");
 			Optional<ButtonType> result = conf.showAndWait();
 			if(result.get() != ButtonType.OK) return;
 		}
-		paceManager.teams.remove(t);
+		Pace.teams.remove(t);
 		fxMain.updateTable();
 	}
 	
 	public static List<Team> getTeams(String division) {
 		List<Team> ret = new ArrayList<Team>();
-		for(Team t : teams) {
+		for(Team t : Pace.teams) {
 			if(t.division.contentEquals(division)) {
 				ret.add(t);
 			}

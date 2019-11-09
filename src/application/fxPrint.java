@@ -1,6 +1,7 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import classes.Goal;
@@ -19,6 +20,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TableColumn;
@@ -426,7 +428,7 @@ public class fxPrint {
 			} else if(rtSeparate.isSelected()) { //Each division in its own respective list, uses custom script as multiple pages are needed
 				if(!paceManager.goals.isEmpty()) {
 					for(Goal g : paceManager.goals) {
-						header = g.division + "  " + g.time.toString();
+						header = g.division + "  " + g.time.toString(true);
 					
 						borderPanes.addAll(getTablePages(job,header,paceManager.getTeams(g.division),columns, getCustomPrintSort()));
 					}
@@ -440,6 +442,8 @@ public class fxPrint {
 			if(!job.printPage(bp)) return; //TODO add error
 		}
 		
+		
+		//TODO progress bar / printing page
 		job.endJob();
 		
 		sPrint.close();

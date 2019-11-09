@@ -9,7 +9,7 @@ import java.util.Optional;
 
 import com.google.gson.Gson;
 
-import classes.PaceData;
+import classes.Pace;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -61,7 +61,7 @@ public class fileManager {
 			FileWriter writer = new FileWriter(saveFile);
 			
 			//Write the JSON file, using the GSON library
-			writer.write(new Gson().toJson(new PaceData()));
+			writer.write(new Gson().toJson(new Pace()));
 			writer.close();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -82,16 +82,15 @@ public class fileManager {
 			String jsonString = "";
 			for(String l : lines) jsonString+=l;
 			
-			PaceData data = new Gson().fromJson(jsonString, PaceData.class);
+			Pace data = new Gson().fromJson(jsonString, Pace.class);
 			//Import JSON into the pace
-			if(!data.updatePace()) {
+			if(!data.version.contentEquals(paceManager.version)) {
 				//Versions don't match up
 				Alert conf = new Alert(AlertType.CONFIRMATION);
 				conf.setTitle("Version Mismatch");
 				conf.setHeaderText("File Save is on version " + data.version + " and you're running version " + paceManager.version);
 				conf.setContentText("Would you like to import anyways? Some features may not be imported.");
 				Optional<ButtonType> result = conf.showAndWait();
-				if(result.get() == ButtonType.OK) data.updatePaceForce();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -184,7 +184,7 @@ public class fxGoals {
 			if(t.error == 1) {
 				leError.setText("Could not Parse Time");
 			} else {
-				if(paceManager.goals.size() > 0 && g != null) for(Goal a : paceManager.goals) if(a == g) {
+				if(Pace.goals.size() > 0 && g != null) for(Goal a : Pace.goals) if(a == g) {
 					a.division = teDiv.getText();
 					a.time = t;
 					updateTable();
@@ -193,7 +193,7 @@ public class fxGoals {
 				}
 				Goal v = new Goal(teDiv.getText());
 				if(t.error == 0) v.time = t;
-				for(Goal a : paceManager.goals) if(a.division.toLowerCase().equals(v.division.toLowerCase())) {
+				for(Goal a : Pace.goals) if(a.division.toLowerCase().equals(v.division.toLowerCase())) {
 					//Confirmation message if 
 					Alert conf = new Alert(AlertType.CONFIRMATION);
 					conf.setTitle("Divison Exists");
@@ -205,7 +205,7 @@ public class fxGoals {
 						eSave(a);
 					} else return;
 				}
-				paceManager.goals.add(v);
+				Pace.goals.add(v);
 				updateTable();
 				sgEdit.close();
 			}
@@ -229,25 +229,25 @@ public class fxGoals {
 		else if(result.get() == bCancel) return;
 		
 		List<String> strDivs = new ArrayList<String>();
-		for(Team t : paceManager.teams) if(!strDivs.contains(t.division)) strDivs.add(t.division);
+		for(Team t : Pace.teams) if(!strDivs.contains(t.division)) strDivs.add(t.division);
 		List<Goal> goals = new ArrayList<Goal>();
-		if(paceManager.goals != null) for(Goal g : paceManager.goals) if(strDivs.remove(g.division)) goals.add(g);
+		if(Pace.goals != null) for(Goal g : Pace.goals) if(strDivs.remove(g.division)) goals.add(g);
 		for(String s : strDivs) goals.add(new Goal(s));
 		//Adds back remaining if set
-		if(!remove) for(Goal g : paceManager.goals) if(!goals.contains(g)) goals.add(g);
-		paceManager.goals = goals;
+		if(!remove) for(Goal g : Pace.goals) if(!goals.contains(g)) goals.add(g);
+		Pace.goals = goals;
 		updateTable();
 	}
 	
 	public static void deleteDiv(Goal g) {
-		if(paceManager.settings.alertOnDeleteGoal) {
+		if(Pace.settings.alertOnDeleteGoal) {
 			Alert conf = new Alert(AlertType.CONFIRMATION);
 			conf.setTitle("Delete " + g.division + "?");
 			conf.setHeaderText("Do you really want to delete " + g.division + "?");
 			Optional<ButtonType> result = conf.showAndWait();
 			if(result.get() != ButtonType.OK) return;
 		}
-		paceManager.goals.remove(g);
+		Pace.goals.remove(g);
 		updateTable();
 	}
 	
@@ -259,10 +259,10 @@ public class fxGoals {
 		//resizeTable();
 	}
 	private static void updateTable() {
-		if(paceManager.goals != null) {
-			System.out.println(paceManager.goals);
+		if(Pace.goals != null) {
+			System.out.println(Pace.goals);
 			table.getItems().clear();
-			table.getItems().addAll(paceManager.goals);
+			table.getItems().addAll(Pace.goals);
 			table.sort();
 		}
 		//Updates fxScores
