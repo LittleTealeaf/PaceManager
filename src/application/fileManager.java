@@ -84,13 +84,14 @@ public class fileManager {
 			
 			Pace data = new Gson().fromJson(jsonString, Pace.class);
 			//Import JSON into the pace
-			if(!data.version.contentEquals(paceManager.version)) {
+			if(!data.Version.contentEquals(paceManager.version)) {
 				//Versions don't match up
 				Alert conf = new Alert(AlertType.CONFIRMATION);
 				conf.setTitle("Version Mismatch");
-				conf.setHeaderText("File Save is on version " + data.version + " and you're running version " + paceManager.version);
+				conf.setHeaderText("File Save is on version " + data.Version + " and you're running version " + paceManager.version);
 				conf.setContentText("Would you like to import anyways? Some features may not be imported.");
 				Optional<ButtonType> result = conf.showAndWait();
+				if(result.get() == ButtonType.OK) data.loadPace();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

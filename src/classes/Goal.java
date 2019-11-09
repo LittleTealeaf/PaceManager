@@ -2,9 +2,8 @@ package classes;
 
 import java.io.Serializable;
 
-import application.paceManager;
 
-
+@SuppressWarnings("serial")
 public class Goal implements Serializable {
 	//Division is required
 	public String division;
