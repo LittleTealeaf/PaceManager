@@ -428,7 +428,7 @@ public class fxPrint {
 		case "Scoreboard":
 			header = "Scoreboard:";
 			columns = new String[] {"team","division","elapsedFXM","difference"};
-			borderPanes.addAll(getTablePages(job,header,Pace.teams,columns, "team"));
+			borderPanes.addAll(getTablePages(job,header,getPrintTeams(Pace.teams),columns, "team"));
 			break;
 		case "Custom":
 			//Selected Columns
@@ -446,12 +446,12 @@ public class fxPrint {
 					for(Goal g : Pace.goals) {
 						header = g.division + "  " + g.time.toString(true);
 					
-						borderPanes.addAll(getTablePages(job,header,paceManager.getTeams(g.division),columns, getCustomPrintSort()));
+						borderPanes.addAll(getTablePages(job,header,getPrintTeams(paceManager.getTeams(g.division)),columns, getCustomPrintSort()));
 					}
 					break;
 				} else return; //TODO error
 			}
-			borderPanes.addAll(getTablePages(job,header,teams,columns, getCustomPrintSort()));
+			borderPanes.addAll(getTablePages(job,header,getPrintTeams(teams),columns, getCustomPrintSort()));
 			break;
 		}
 		
@@ -661,6 +661,7 @@ public class fxPrint {
 		return table;
 	}
 
+	private static List<Team> getPrintTeams(List<Team> teams) { return getPrintTeams("",teams); }
 	private static List<Team> getPrintTeams(String setting, List<Team> teams) {
 		if(setting.contentEquals("")) setting = (String) setValidTeams.getValue();
 		List<Team> ret = new ArrayList<Team>();
