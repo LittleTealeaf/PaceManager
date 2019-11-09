@@ -442,6 +442,8 @@ public class fxPrint {
 			if(!job.printPage(bp)) return; //TODO add error
 		}
 		
+		
+		//TODO progress bar / printing page
 		job.endJob();
 		
 		sPrint.close();
