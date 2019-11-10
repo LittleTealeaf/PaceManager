@@ -63,6 +63,7 @@ public class fileManager {
 			//Write the JSON file, using the GSON library
 			writer.write(new Gson().toJson(new Pace()));
 			writer.close();
+			Pace.title = saveFile.getName();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
