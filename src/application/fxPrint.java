@@ -278,7 +278,6 @@ public class fxPrint {
 			//Specific Division
 			String div = "";
 			//Tries to parse the division, if errors then will just return
-			//TODO perhaps push this logic of trying to parse it up to the top to optimize computer work
 			try {
 				div = preset.substring(1);
 			} catch (Exception e) {return;}
