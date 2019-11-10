@@ -22,6 +22,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
@@ -69,17 +70,18 @@ public class fxMain extends Application {
 		MenuItem m1New = new MenuItem("New");
 		m1New.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("Create New?");
-				alert.setHeaderText("Opening a new file will clear the currently loaded file");
-				alert.setContentText("Make sure that you've saved the loaded one before accepting");
-				Optional<ButtonType> result = alert.showAndWait();
-				if(result.get() != ButtonType.OK) {
-					return;
+				if(fileManager.loadedFile != null) {
+					Alert alert = new Alert(AlertType.CONFIRMATION);
+					alert.setTitle("Create New?");
+					alert.setHeaderText("Opening a new file will clear the currently loaded file");
+					alert.setContentText("Make sure that you've saved the loaded one before accepting");
+					Optional<ButtonType> result = alert.showAndWait();
+					if(result.get() != ButtonType.OK) {
+						return;
+					}
 				}
 				fileManager.loadedFile = null;
-				Pace.goals = new ArrayList<Goal>();
-				Pace.teams = new ArrayList<Team>();
+				Pace.newPace();
 				updateTable();
 			}
 		});
