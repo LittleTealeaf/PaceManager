@@ -18,7 +18,7 @@ public class paceManager {
 	
 	public static final String version = "0.0.1-DEV";
 	
-	private static final boolean development = true;
+	private static final boolean development = false;
 	
 	public static void main(String[] args) {
 		
