@@ -16,9 +16,9 @@ import javafx.scene.control.Alert.AlertType;
 
 public class paceManager {
 	
-	public static final String version = "0.0.1-DEV";
+	public static final String version = "1.0.0";
 	
-	private static final boolean development = true;
+	private static final boolean development = false;
 	
 	public static void main(String[] args) {
 		
