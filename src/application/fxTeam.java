@@ -180,25 +180,29 @@ public class fxTeam {
 		r.finish = new Time(tFinish.getText());
 		if(r.finish.error != 0) r.finish = null;
 		String tmp = "";
-		List<String> tmpRid = new ArrayList<String>();
-		for(char c : tRiders.getText().toCharArray()) {
-			if(c == '\n' || c == '\r') {
-				tmpRid.add(tmp);
-				tmp = "";
-			} else tmp+=c;
+		if(!tRiders.getText().contentEquals("")) {
+			List<String> tmpRid = new ArrayList<String>();
+			for(char c : tRiders.getText().toCharArray()) {
+				if(c == '\n' || c == '\r') {
+					tmpRid.add(tmp);
+					tmp = "";
+				} else tmp+=c;
+			}
+			tmpRid.add(tmp);
+			tmp="";
+			r.names = tmpRid;
 		}
-		tmpRid.add(tmp);
-		tmp="";
-		r.names = tmpRid;
-		List<String> tmpNot = new ArrayList<String>();
-		for(char c : tNotes.getText().toCharArray()) {
-			if(c == '\n' || c == '\r') {
-				tmpNot.add(tmp);
-				tmp = "";
-			} else tmp+=c;
+		if(!tNotes.getText().contentEquals("")) {
+			List<String> tmpNot = new ArrayList<String>();
+			for(char c : tNotes.getText().toCharArray()) {
+				if(c == '\n' || c == '\r') {
+					tmpNot.add(tmp);
+					tmp = "";
+				} else tmp+=c;
+			}
+			tmpNot.add(tmp);
+			r.notes = tmpNot;
 		}
-		tmpNot.add(tmp);
-		r.notes = tmpNot;
 		r.excluded = cExclude.isSelected();
 		
 		//Remove any empty names

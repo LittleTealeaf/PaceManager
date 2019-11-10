@@ -91,6 +91,7 @@ public class Team implements Serializable{
 		return division;
 	}
 	public String getNames() {
+		if(names == null || names.size() == 0) return "";
 		String r = "";
 		for(String n : names) {
 			if(r != "") r+=", ";
