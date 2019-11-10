@@ -80,7 +80,7 @@ public class fxScores {
 	
 	public static void updateTabs() {
 		if(sScores != null) {
-			tabPane = new TabPane();
+			tabPane.getTabs().clear();
 			scoreTabs = new ArrayList<ScoreTab>();
 			
 			if(Pace.goals.size() > 0) {
