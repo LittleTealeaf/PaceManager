@@ -4,7 +4,7 @@
   <groupId>paceManager</groupId>
   <artifactId>paceManager</artifactId>
   <name>Pace Manager</name>
-  <version>0.0.1-DEBUG</version>
+  <version>0.0.1-DEV</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>
