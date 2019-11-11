@@ -28,7 +28,7 @@ public class paceManager {
 		if(development) {
 			Pace.teams = importTeams.getTeams();
 			importTeams.randomizeTimes();
-			importTeams.importGoals();	
+			importTeams.importGoals();
 		}
 		
 		fxMain.open(args);
