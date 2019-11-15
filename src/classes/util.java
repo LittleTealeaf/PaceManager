@@ -23,9 +23,8 @@ public class util {
 		else return position + "";
 	}
 	
-	@SuppressWarnings("rawtypes")
-	public static TableCell getTeamCell() {
-		return new TableCell<Team, String>() {
+	public static TableCell<Team,String> getTeamCell() {
+		return new TableCell<Team,String>() {
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);

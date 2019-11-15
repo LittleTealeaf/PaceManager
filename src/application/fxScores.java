@@ -3,7 +3,9 @@ package application;
 import java.util.ArrayList;
 import java.util.List;
 
-import classes.*;
+import classes.Goal;
+import classes.Pace;
+import classes.ScoreTab;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
@@ -22,10 +24,12 @@ public class fxScores {
 	private static List<ScoreTab> scoreTabs;
 	
 	public static void open() {
+		
 		//Close any currently opened stages
 		if(sScores != null) sScores.close();
 		sScores = new Stage();
 		sScores.setTitle("Score Leaderboard");
+		
 		//Dynamic Custom Resizing
 		sScores.widthProperty().addListener(obs -> {
 			resizeWindow();

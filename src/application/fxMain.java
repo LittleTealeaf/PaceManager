@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import classes.*;
+import classes.Pace;
+import classes.Team;
+import classes.Time;
+import classes.util;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Menu;
@@ -22,8 +26,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextInputDialog;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -52,7 +54,7 @@ public class fxMain extends Application {
 		launch(args);
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings("unchecked")
 	@Override
 	public void start(Stage sMain) {
 		sMRef = sMain;
@@ -164,7 +166,7 @@ public class fxMain extends Application {
 		table.setOnMouseClicked(click -> {
 			if (click.getClickCount() == 2) {
 				try {
-					TablePosition pos = table.getSelectionModel().getSelectedCells().get(0);
+					TablePosition<?, ?> pos = table.getSelectionModel().getSelectedCells().get(0);
 					
 					int col = pos.getColumn();
 					Team sel = table.getSelectionModel().getSelectedItem();
@@ -198,34 +200,34 @@ public class fxMain extends Application {
 		 * cTeamName.setReorderable(false);
 		 */
 		
-		TableColumn cTeamName = new TableColumn("Team");
+		TableColumn<Team,String> cTeamName = new TableColumn<Team,String>("Team");
 		cTeamName.setCellValueFactory(new PropertyValueFactory<Team,String>("team"));
 		cTeamName.setReorderable(false);
 		
-		TableColumn cDivision = new TableColumn("Division");
+		TableColumn<Team,String> cDivision = new TableColumn<Team,String>("Division");
 		cDivision.setCellValueFactory(new PropertyValueFactory<Team,String>("division"));
 		cDivision.setReorderable(false);
 		
-		TableColumn cNames = new TableColumn("Riders");
+		TableColumn<Team,String> cNames = new TableColumn<Team,String>("Riders");
 		cNames.setEditable(false);
 		cNames.setCellFactory(column -> { return util.getTeamCell(); });
 		cNames.setCellValueFactory(new PropertyValueFactory<Team,String>("names"));
 		cNames.setReorderable(false);
 		
-		TableColumn cTime = new TableColumn("Times");
+		TableColumn<Team,String> cTime = new TableColumn<Team,String>("Times");
 		cTime.setReorderable(false);
-		TableColumn cTStart = new TableColumn("Start");
+		TableColumn<Team,String> cTStart = new TableColumn<Team,String>("Start");
 		cTStart.setCellValueFactory(new PropertyValueFactory<Team,String>("startFXM"));
 		cTStart.setReorderable(false);
-		TableColumn cTFinish = new TableColumn("Finish");
+		TableColumn<Team,String> cTFinish = new TableColumn<Team,String>("Finish");
 		cTFinish.setCellValueFactory(new PropertyValueFactory<Team,String>("finishFXM"));
 		cTFinish.setReorderable(false);
-		TableColumn cTElapsed = new TableColumn("Elapsed");
+		TableColumn<Team,String> cTElapsed = new TableColumn<Team,String>("Elapsed");
 		cTElapsed.setCellValueFactory(new PropertyValueFactory<Team,String>("elapsedFXM"));
 		cTElapsed.setReorderable(false);
 		
 		cTime.getColumns().addAll(cTStart,cTFinish,cTElapsed);
-		TableColumn cNotes = new TableColumn("Notes");
+		TableColumn<Team,String> cNotes = new TableColumn<Team,String>("Notes");
 		cNotes.setCellValueFactory(new PropertyValueFactory<Team,String>("notesDisplay"));
 		cNotes.setReorderable(false);
 		
@@ -234,7 +236,7 @@ public class fxMain extends Application {
 		table.prefHeightProperty().bind(sMain.heightProperty());
         table.prefWidthProperty().bind(sMain.widthProperty());
         
-        //Disables horizontal scrollbar
+        //Disables horizontal scroll bar
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		
 		

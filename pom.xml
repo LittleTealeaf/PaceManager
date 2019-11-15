@@ -42,6 +42,9 @@
         <version>3.8.0</version>
         <configuration>
           <release>12</release>
+          <excludes>
+          	<exclude>/src/debugdev/*</exclude>
+          </excludes>
         </configuration>
       </plugin>
       <plugin>

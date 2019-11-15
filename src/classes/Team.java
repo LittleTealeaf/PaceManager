@@ -1,13 +1,12 @@
 package classes;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import application.*;
+import application.paceManager;
 
-@SuppressWarnings("serial")
-public class Team implements Serializable{
+
+public class Team {
 	
 	public String team;
 	public List<String> names;
