@@ -35,12 +35,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-/*
- * Notes only displays the first line of the notes
- * windows:
- * fxEditTeam
- */
-
 public class fxMain extends Application {
 	
 	private static TableView<Team> table;
