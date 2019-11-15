@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>paceManager</groupId>
+  <groupId>Tealeaf</groupId>
   <artifactId>paceManager</artifactId>
   <name>Pace Manager</name>
-  <version>0.0.1-DEBUG</version>
+  <version>0.1.0-Beta</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>
@@ -21,6 +21,9 @@
         <version>3.8.0</version>
         <configuration>
           <release>12</release>
+          <excludes>
+            <exclude>/src/debugdev/*</exclude>
+          </excludes>
         </configuration>
       </plugin>
       <plugin>

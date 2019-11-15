@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import classes.*;
+import classes.Pace;
+import classes.Team;
+import classes.Time;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -38,6 +40,7 @@ public class fxTeam {
 	private static CheckBox cExclude;
 	
 	public static void open(Team t, int column) {
+		
 		//Regular open script
 		open(t);
 		
@@ -232,12 +235,9 @@ public class fxTeam {
 				sTeam.setAlwaysOnTop(false);
 				Optional<ButtonType> result = alert.showAndWait();
 				sTeam.setAlwaysOnTop(true);
-				//TODO check this logic, check what closing does
-				if(result.get() == bCancel) {
-					return false;
-				} else if (result.get() == bOverwrite) {
+				if (result.get() == bOverwrite) {
 					Pace.teams.set(Pace.teams.indexOf(paceManager.getTeam(tTeam.getText())), compileTeam());
-				}
+				} else return false;
 			} else Pace.teams.add(compileTeam());
 		} else {
 			Pace.teams.set(Pace.teams.indexOf(paceManager.getTeam(tTeam.getText())), compileTeam());

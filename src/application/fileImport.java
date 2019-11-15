@@ -12,8 +12,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import classes.Team;
 import classes.Pace;
+import classes.Team;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -32,7 +32,7 @@ import javafx.stage.Stage;
 public class fileImport {
 	
 	private static List<Team> teams;
-	
+
 	public static void importFile() {
 		//Creates a file dialogue
 		FileChooser fileChooser = new FileChooser();
@@ -40,21 +40,16 @@ public class fileImport {
 		
 		//Get team script with results from file dialog
 		teams = getTeams(fileChooser.showOpenDialog(fxMain.sMRef));
-		//File could not open
-		if(teams == null) return;
 		
-		//No Teams (add a test to make sure that the file is the valid file)
+		//If getting teams was not successful
+		if(teams == null) return;
 		if(teams.size() == 0) {
-			// Alert that file could not open
+			//TODO Warning for not able to import file
 			return;
 		}
-		
-		/*
-		 * Options:
-		 * unused teams: keep or remove
-		 */
 		openOptions();
 	}
+	
 	
 	private static Stage sOptions;
 	
@@ -63,10 +58,10 @@ public class fileImport {
 	
 	
 	private static void openOptions() {
+		//TODO convert this to use an Alert
 		if(sOptions != null) sOptions.close();
 		sOptions = new Stage();
 		sOptions.setTitle("Import Options");
-		//Makes it a popup-like window (can't select main stage?)
 		sOptions.initModality(Modality.APPLICATION_MODAL);
 
 		//Option Nodes
@@ -74,6 +69,7 @@ public class fileImport {
 		cClearTeams = new CheckBox("Clear Teams");
 		cClearTeams.setTooltip(new Tooltip("Clear the team list before importing teams?"));
 		cClearTeams.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
 			public void handle(ActionEvent e) {
 				cKeepExisting.setDisable(cClearTeams.isSelected());
 			}
@@ -86,6 +82,7 @@ public class fileImport {
 		//HBottom Nodes
 		Button bCancel = new Button("Cancel");
 		bCancel.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
 			public void handle(ActionEvent event) {
 				sOptions.close();
 			}
@@ -93,6 +90,7 @@ public class fileImport {
 		Region rb = new Region();
 		Button bImport = new Button("Import");
 		bImport.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
 			public void handle(ActionEvent event) {
 				importTeams(teams, cClearTeams.isSelected(),cKeepExisting.isSelected());
 				sOptions.close();
@@ -163,12 +161,12 @@ public class fileImport {
 					while(cellIterator.hasNext()) {
 						posCol++;
 						Cell cell = cellIterator.next();
-						//System.out.println("Col " + posCol + " cell: " + getString(cell));
 						
 						if(posCol == 2) {
 							r.division = getString(cell).toLowerCase();
 							if(r.division.length() > 1) r.division = r.division.substring(0, 1).toUpperCase() + r.division.substring(1);
 						} else if (posCol == 3) {
+							//TODO Import teams includes a .0 at the end of the team number
 							r.team = getString(cell);
 						} else if (posCol == 4 || posCol == 5 || posCol == 6) {
 							r.names.add(getString(cell));
@@ -185,7 +183,6 @@ public class fileImport {
 		} catch(IOException e) {
 			return null;
 		}
-		
 		return teams;
 	}
 	

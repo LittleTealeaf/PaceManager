@@ -3,7 +3,9 @@ package application;
 import java.util.ArrayList;
 import java.util.List;
 
-import classes.*;
+import classes.Goal;
+import classes.Pace;
+import classes.ScoreTab;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
@@ -22,10 +24,12 @@ public class fxScores {
 	private static List<ScoreTab> scoreTabs;
 	
 	public static void open() {
+		
 		//Close any currently opened stages
 		if(sScores != null) sScores.close();
 		sScores = new Stage();
 		sScores.setTitle("Score Leaderboard");
+		
 		//Dynamic Custom Resizing
 		sScores.widthProperty().addListener(obs -> {
 			resizeWindow();
@@ -39,6 +43,7 @@ public class fxScores {
 		 * Menu Bar: includes Print, Reload, Etc. (or buttons) also has ones to open the goals
 		 * Then tabs using javafx tabs (1 for each division)
 		 */
+		tabPane = new TabPane();
 		updateTabs();
 
 		Button bGoals = new Button("Goals");
@@ -79,7 +84,7 @@ public class fxScores {
 	}
 	
 	public static void updateTabs() {
-		if(sScores != null) {
+		if(sScores != null && tabPane != null) {
 			tabPane.getTabs().clear();
 			scoreTabs = new ArrayList<ScoreTab>();
 			

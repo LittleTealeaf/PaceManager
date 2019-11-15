@@ -3,7 +3,7 @@ package classes;
 import java.util.ArrayList;
 import java.util.List;
 
-import application.*;
+import application.paceManager;
 
 public class Pace {
 	
@@ -14,7 +14,6 @@ public class Pace {
 	public List<Goal> Goals;
 	public Settings Settings;
 	
-	//Loaded Variables
 	public static String title;
 	public static String version;
 	public static List<Team> teams;

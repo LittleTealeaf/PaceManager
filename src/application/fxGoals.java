@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import classes.*;
+import classes.Goal;
+import classes.Pace;
+import classes.Team;
+import classes.Time;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -30,7 +33,7 @@ public class fxGoals {
 	private static Stage sGoals;
 	private static TableView<Goal> table;
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings("unchecked") //one unsolvable warning
 	public static void open() {
 		if(sGoals != null) sGoals.close();
 		sGoals = new Stage();
@@ -47,10 +50,10 @@ public class fxGoals {
 		table.setEditable(false);
 		table.prefWidthProperty().bind(sGoals.widthProperty());
 		
-		TableColumn tDiv = new TableColumn("Division");
+		TableColumn<Goal,String> tDiv = new TableColumn<Goal,String>("Division");
 		tDiv.setCellValueFactory(new PropertyValueFactory<Goal,String>("division"));
 		tDiv.setReorderable(false);
-		TableColumn tGoal = new TableColumn("Optimal Time");
+		TableColumn<Goal,String> tGoal = new TableColumn<Goal,String>("Optimal Time");
 		tGoal.setCellValueFactory(new PropertyValueFactory<Goal,String>("displayTime"));
 		tGoal.setReorderable(false);
 		table.getColumns().addAll(tDiv,tGoal);
@@ -169,6 +172,7 @@ public class fxGoals {
 			teTime.requestFocus();
 		} else teDiv.requestFocus();
 	}
+	
 	private static void eSave(Goal g) {
 		//Clears Error Message
 		leError.setText("");
@@ -250,15 +254,12 @@ public class fxGoals {
 	}
 	
 	private static void resizeWindow() {
-		//System.out.println(w + " " + h);
 
 		table.getColumns().get(0).setPrefWidth(0.5*table.getWidth());
 		table.getColumns().get(1).setPrefWidth(0.5*table.getWidth()-5);
-		//resizeTable();
 	}
 	private static void updateTable() {
 		if(Pace.goals != null) {
-			System.out.println(Pace.goals);
 			table.getItems().clear();
 			table.getItems().addAll(Pace.goals);
 			table.sort();

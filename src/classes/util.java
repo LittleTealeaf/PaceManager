@@ -23,9 +23,8 @@ public class util {
 		else return position + "";
 	}
 	
-	@SuppressWarnings("rawtypes")
-	public static TableCell getTeamCell() {
-		return new TableCell<Team, String>() {
+	public static TableCell<Team,String> getTeamCell() {
+		return new TableCell<Team,String>() {
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
@@ -81,7 +80,6 @@ public class util {
 			case "positionInDivision": r*= -1 * a.getPositionInDivision().compareTo(b.getPositionInDivision()); break;
 			default: break;
 			}
-			//System.out.println(r + " " + sortCol + " " + a + " " + b);
 			return r;
 		});
 		for(Team t : teams) System.out.println(t);
