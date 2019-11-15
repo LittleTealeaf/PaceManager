@@ -3,6 +3,8 @@ package classes;
 import java.util.ArrayList;
 import java.util.List;
 
+import application.fxMain;
+import application.fxScores;
 import application.paceManager;
 
 public class Pace {
@@ -46,6 +48,13 @@ public class Pace {
 		teams = Teams;
 		goals = Goals;
 		settings = Settings;
+		System.out.println(title);
+		System.out.println(version);
+		System.out.println(teams);
+		System.out.println(goals);
+		System.out.println(settings);
+		fxMain.updateTable();
+		fxScores.updateTabs();
 	}
 	
 	public static void newPace() { newPace(""); }

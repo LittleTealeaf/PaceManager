@@ -17,9 +17,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
 public class fileManager {
-
-	//TODO test if I can still include illegal chars with the program
-	private static final char[] ILLEGAL_CHARS = {'/','<','>','[',']','/','\\','=','|'};
 	
 	public static File loadedFile;
 
@@ -94,22 +91,10 @@ public class fileManager {
 				Optional<ButtonType> result = conf.showAndWait();
 				if(result.get() == ButtonType.OK) data.loadPace();
 			}
+			data.loadPace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	/**
-	 * Checks if a string is valid
-	 * @param s The String to be checked
-	 * @return True if it works, false if it contains invalid characters
-	 */
-	public static boolean checkValid(String s) {
-		List<Character> chars = new ArrayList<Character>();
-		for(char c : s.toCharArray()) chars.add(c);
-		for(char c : ILLEGAL_CHARS) {
-			if(chars.contains(c)) return false;
-		}
-		return true;
-	}
 }
