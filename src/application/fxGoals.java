@@ -179,8 +179,6 @@ public class fxGoals {
 		//Checks for any basic error
 		if(teDiv.getText() == "") {
 			leError.setText("Please include a division name");
-		} else if(!fileManager.checkValid(teDiv.getText())) {
-			leError.setText("String cannot include the following characters:");
 		} else {
 			Time t = new Time(teTime.getText());
 			if(t.error == 1) {

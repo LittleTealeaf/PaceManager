@@ -166,8 +166,8 @@ public class fileImport {
 							r.division = getString(cell).toLowerCase();
 							if(r.division.length() > 1) r.division = r.division.substring(0, 1).toUpperCase() + r.division.substring(1);
 						} else if (posCol == 3) {
-							//TODO Import teams includes a .0 at the end of the team number
 							r.team = getString(cell);
+							
 						} else if (posCol == 4 || posCol == 5 || posCol == 6) {
 							r.names.add(getString(cell));
 						}
@@ -191,10 +191,11 @@ public class fileImport {
 	private static String getString(Cell cell) {
 		try {
 			return cell.getStringCellValue();
-			
 		} catch(Exception e) {
 			try {
-				return cell.getNumericCellValue() + "";
+				double a = cell.getNumericCellValue();
+				if((int) a == a) return (int) a + "";
+				else return a + "";
 			} catch(Exception f) {
 				try {
 					return cell.getBooleanCellValue() + "";
