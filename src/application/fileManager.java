@@ -71,7 +71,7 @@ public class fileManager {
 	
 	public static void fileOpen(File openFile) {
 		//Cancel if file doesn't exist
-		if(!openFile.exists()) return;
+		if(openFile == null || !openFile.exists()) return;
 		try {
 			//Create reader to read lines into a list
 			List<String> lines = Files.readAllLines(openFile.toPath());
