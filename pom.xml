@@ -4,6 +4,9 @@
   <artifactId>paceManager</artifactId>
   <version>0.1.1</version>
   <name>Pace Manager</name>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
   <dependencies>
   <dependency>
     <groupId>org.openjfx</groupId>
@@ -78,4 +81,13 @@
       </plugin>
     </plugins>
   </build>
+  <issueManagement>
+  	<url>https://github.com/LittleTealeaf/paceManager/issues/new/choose</url>
+  </issueManagement>
+  <url>https://github.com/LittleTealeaf/paceManager</url>
+  <description>A manager for pace-run events.</description>
+  <organization>
+  	<name>Tealeaf</name>
+  	<url>https://github.com/LittleTealeaf</url>
+  </organization>
 </project>
