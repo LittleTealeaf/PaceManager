@@ -13,7 +13,7 @@ import javafx.scene.control.ButtonType;
 
 public class paceManager {
 	
-	public static final String version = "0.1.0-Beta";
+	public static final String version = "0.1.1";
 	
 	private static final boolean development = false;
 	

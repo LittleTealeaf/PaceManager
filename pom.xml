@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>Tealeaf</groupId>
   <artifactId>paceManager</artifactId>
-  <version>0.1.0-Beta</version>
+  <version>0.1.1</version>
   <name>Pace Manager</name>
   <dependencies>
   <dependency>
