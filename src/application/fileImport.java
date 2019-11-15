@@ -163,7 +163,6 @@ public class fileImport {
 					while(cellIterator.hasNext()) {
 						posCol++;
 						Cell cell = cellIterator.next();
-						//System.out.println("Col " + posCol + " cell: " + getString(cell));
 						
 						if(posCol == 2) {
 							r.division = getString(cell).toLowerCase();

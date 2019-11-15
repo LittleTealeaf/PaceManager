@@ -39,6 +39,7 @@ public class fxScores {
 		 * Menu Bar: includes Print, Reload, Etc. (or buttons) also has ones to open the goals
 		 * Then tabs using javafx tabs (1 for each division)
 		 */
+		tabPane = new TabPane();
 		updateTabs();
 
 		Button bGoals = new Button("Goals");
@@ -79,7 +80,7 @@ public class fxScores {
 	}
 	
 	public static void updateTabs() {
-		if(sScores != null) {
+		if(sScores != null && tabPane != null) {
 			tabPane.getTabs().clear();
 			scoreTabs = new ArrayList<ScoreTab>();
 			

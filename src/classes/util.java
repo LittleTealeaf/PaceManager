@@ -81,7 +81,6 @@ public class util {
 			case "positionInDivision": r*= -1 * a.getPositionInDivision().compareTo(b.getPositionInDivision()); break;
 			default: break;
 			}
-			//System.out.println(r + " " + sortCol + " " + a + " " + b);
 			return r;
 		});
 		for(Team t : teams) System.out.println(t);

@@ -165,8 +165,7 @@ public class fxMain extends Application {
 			if (click.getClickCount() == 2) {
 				try {
 					TablePosition pos = table.getSelectionModel().getSelectedCells().get(0);
-					//int row = pos.getRow();
-					//System.out.println(row);
+					
 					int col = pos.getColumn();
 					Team sel = table.getSelectionModel().getSelectedItem();
 					if(col == 6) {

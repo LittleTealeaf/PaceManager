@@ -250,11 +250,9 @@ public class fxGoals {
 	}
 	
 	private static void resizeWindow() {
-		//System.out.println(w + " " + h);
 
 		table.getColumns().get(0).setPrefWidth(0.5*table.getWidth());
 		table.getColumns().get(1).setPrefWidth(0.5*table.getWidth()-5);
-		//resizeTable();
 	}
 	private static void updateTable() {
 		if(Pace.goals != null) {
