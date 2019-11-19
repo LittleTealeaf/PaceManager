@@ -4,39 +4,43 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import classes.*;
+import classes.Pace;
+import classes.Team;
+import classes.Time;
+import classes.util;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Separator;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
-/*
- * Notes only displays the first line of the notes
- * windows:
- * fxEditTeam
- */
 
 public class fxMain extends Application {
 	
 	private static TableView<Team> table;
+	
+	//Header Texts
+	private static List<Text> headerTexts;
 	
 	public static Stage sMRef;
 
@@ -44,7 +48,7 @@ public class fxMain extends Application {
 		launch(args);
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings("unchecked")
 	@Override
 	public void start(Stage sMain) {
 		sMRef = sMain;
@@ -62,17 +66,18 @@ public class fxMain extends Application {
 		MenuItem m1New = new MenuItem("New");
 		m1New.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("Create New?");
-				alert.setHeaderText("Opening a new file will clear the currently loaded file");
-				alert.setContentText("Make sure that you've saved the loaded one before accepting");
-				Optional<ButtonType> result = alert.showAndWait();
-				if(result.get() != ButtonType.OK) {
-					return;
+				if(fileManager.loadedFile != null) {
+					Alert alert = new Alert(AlertType.CONFIRMATION);
+					alert.setTitle("Create New?");
+					alert.setHeaderText("Opening a new file will clear the currently loaded file");
+					alert.setContentText("Make sure that you've saved the loaded one before accepting");
+					Optional<ButtonType> result = alert.showAndWait();
+					if(result.get() != ButtonType.OK) {
+						return;
+					}
 				}
 				fileManager.loadedFile = null;
-				Pace.goals = new ArrayList<Goal>();
-				Pace.teams = new ArrayList<Team>();
+				Pace.newPace();
 				updateTable();
 			}
 		});
@@ -129,7 +134,24 @@ public class fxMain extends Application {
 		MenuBar mb = new MenuBar();
 		mb.getMenus().addAll(m1,m2,m3);
 		
+		
+		//Header Text
+		//"First Out", fout, "Last Out", lout, 
+		headerTexts = new ArrayList<Text>();
+		HBox hbHeader = new HBox();
+		hbHeader.setSpacing(30);
+		int textFieldNumber = 4; // First Out, Last Out, Average Time, Estimated Last In
+		for(int i = 0; i < textFieldNumber; i++) {
+			Text t = new Text();
+			headerTexts.add(t);
+			hbHeader.getChildren().add(new Separator(Orientation.VERTICAL));
+			hbHeader.getChildren().add(t);
+		}
+		hbHeader.getChildren().add(new Separator(Orientation.VERTICAL));
+		
+		
 		//Table 
+		
 		table = new TableView<Team>();
 		table.setEditable(false);
 		/*
@@ -138,9 +160,8 @@ public class fxMain extends Application {
 		table.setOnMouseClicked(click -> {
 			if (click.getClickCount() == 2) {
 				try {
-					TablePosition pos = table.getSelectionModel().getSelectedCells().get(0);
-					//int row = pos.getRow();
-					//System.out.println(row);
+					TablePosition<?, ?> pos = table.getSelectionModel().getSelectedCells().get(0);
+					
 					int col = pos.getColumn();
 					Team sel = table.getSelectionModel().getSelectedItem();
 					if(col == 6) {
@@ -173,34 +194,34 @@ public class fxMain extends Application {
 		 * cTeamName.setReorderable(false);
 		 */
 		
-		TableColumn cTeamName = new TableColumn("Team");
+		TableColumn<Team,String> cTeamName = new TableColumn<Team,String>("Team");
 		cTeamName.setCellValueFactory(new PropertyValueFactory<Team,String>("team"));
 		cTeamName.setReorderable(false);
 		
-		TableColumn cDivision = new TableColumn("Division");
+		TableColumn<Team,String> cDivision = new TableColumn<Team,String>("Division");
 		cDivision.setCellValueFactory(new PropertyValueFactory<Team,String>("division"));
 		cDivision.setReorderable(false);
 		
-		TableColumn cNames = new TableColumn("Riders");
+		TableColumn<Team,String> cNames = new TableColumn<Team,String>("Riders");
 		cNames.setEditable(false);
 		cNames.setCellFactory(column -> { return util.getTeamCell(); });
 		cNames.setCellValueFactory(new PropertyValueFactory<Team,String>("names"));
 		cNames.setReorderable(false);
 		
-		TableColumn cTime = new TableColumn("Times");
+		TableColumn<Team,String> cTime = new TableColumn<Team,String>("Times");
 		cTime.setReorderable(false);
-		TableColumn cTStart = new TableColumn("Start");
+		TableColumn<Team,String> cTStart = new TableColumn<Team,String>("Start");
 		cTStart.setCellValueFactory(new PropertyValueFactory<Team,String>("startFXM"));
 		cTStart.setReorderable(false);
-		TableColumn cTFinish = new TableColumn("Finish");
+		TableColumn<Team,String> cTFinish = new TableColumn<Team,String>("Finish");
 		cTFinish.setCellValueFactory(new PropertyValueFactory<Team,String>("finishFXM"));
 		cTFinish.setReorderable(false);
-		TableColumn cTElapsed = new TableColumn("Elapsed");
+		TableColumn<Team,String> cTElapsed = new TableColumn<Team,String>("Elapsed");
 		cTElapsed.setCellValueFactory(new PropertyValueFactory<Team,String>("elapsedFXM"));
 		cTElapsed.setReorderable(false);
 		
 		cTime.getColumns().addAll(cTStart,cTFinish,cTElapsed);
-		TableColumn cNotes = new TableColumn("Notes");
+		TableColumn<Team,String> cNotes = new TableColumn<Team,String>("Notes");
 		cNotes.setCellValueFactory(new PropertyValueFactory<Team,String>("notesDisplay"));
 		cNotes.setReorderable(false);
 		
@@ -209,12 +230,11 @@ public class fxMain extends Application {
 		table.prefHeightProperty().bind(sMain.heightProperty());
         table.prefWidthProperty().bind(sMain.widthProperty());
         
-        //Disables horizontal scrollbar
+        //Disables horizontal scroll bar
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		
 		
-        //TODO add hbox with est arrivals and such
-		VBox vb = new VBox(mb,table);
+		VBox vb = new VBox(mb,hbHeader,table);
 		
 		Scene sc = new Scene(vb, 500, 300);
 		sMain.setMaximized(true);
@@ -225,6 +245,34 @@ public class fxMain extends Application {
 	}
 	
 	public static void updateTable() {
+		//Get first and last out
+		Team firstOut = null;
+		Team lastLeft = null;
+		Team lastOut = null;
+		double avgTime = 0;
+		int count = 0;
+		for(Team t : Pace.teams) {
+			if(t.start != null) {
+				if(firstOut == null || firstOut.start.time > t.start.time) firstOut = t;
+				if(lastLeft == null || lastOut.start.time < t.start.time) lastLeft = t;
+				if(lastOut == null || (t.finish == null && lastOut.start.time < t.start.time)) lastOut = t;
+				if(t.finish != null) {
+					avgTime+=t.elapsed().time;
+					count++;
+				}
+			}
+		}
+		if(count > 0) avgTime/=count;
+		
+		if(firstOut != null) headerTexts.get(0).setText("First Out: " + firstOut.team + " at " + firstOut.start.toString());
+		else headerTexts.get(0).setText("First Out: -------");
+		if(lastLeft != null) headerTexts.get(1).setText("Last Out: " + lastLeft.team + " at " + lastLeft.start.toString());
+		else headerTexts.get(1).setText("Last Out: -------");
+		if(avgTime != 0) headerTexts.get(2).setText("Average Time: " + new Time(avgTime).toString(true));
+		else headerTexts.get(2).setText("Average Time: -------");
+		if(lastOut != null) headerTexts.get(3).setText("Estimated Last In: " + lastOut.team + " at " + new Time(lastOut.start.time + avgTime));
+		else headerTexts.get(3).setText("Estimated Last In: -------");
+		
 		table.getItems().clear();
 		table.getItems().addAll(Pace.teams);
 		table.sort();

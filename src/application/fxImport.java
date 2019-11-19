@@ -1,6 +1,8 @@
 package application;
 
-import classes.*;
+import classes.Pace;
+import classes.Team;
+import classes.Time;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
@@ -18,8 +20,7 @@ public class fxImport {
 	private static Stage sImport;
 	private static TextField tTeam;
 	private static TextField tData;
-	@SuppressWarnings("rawtypes")
-	private static ChoiceBox cMethod;
+	private static ChoiceBox<String> cMethod;
 	public static Label lData;
 	
 	/**
@@ -27,7 +28,6 @@ public class fxImport {
 	 */
 	
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void open() {
 		if(sImport != null) sImport.close();
 		sImport = new Stage();
@@ -55,7 +55,7 @@ public class fxImport {
 		
 		Label lChoice = new Label("Import Option:");
 		
-		cMethod = new ChoiceBox(FXCollections.observableArrayList("Start Time", "End Time"));
+		cMethod = new ChoiceBox<String>(FXCollections.observableArrayList("Start Time", "End Time"));
 		cMethod.getSelectionModel().selectedIndexProperty().addListener(obs -> {
 			if(cMethod.getSelectionModel().getSelectedIndex() != -1) {
 				tData.setEditable(true);

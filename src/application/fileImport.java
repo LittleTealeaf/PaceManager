@@ -12,27 +12,20 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import classes.Team;
 import classes.Pace;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import classes.Team;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Tooltip;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 public class fileImport {
 	
 	private static List<Team> teams;
-	
+
 	public static void importFile() {
 		//Creates a file dialogue
 		FileChooser fileChooser = new FileChooser();
@@ -40,102 +33,62 @@ public class fileImport {
 		
 		//Get team script with results from file dialog
 		teams = getTeams(fileChooser.showOpenDialog(fxMain.sMRef));
-		//File could not open
-		if(teams == null) return;
 		
-		//No Teams (add a test to make sure that the file is the valid file)
+		//If getting teams was not successful
+		if(teams == null) return;
 		if(teams.size() == 0) {
-			// Alert that file could not open
+			//TODO Warning for not able to import file
 			return;
 		}
-		
-		/*
-		 * Options:
-		 * unused teams: keep or remove
-		 */
-		openOptions();
+		importDialog();
 	}
 	
-	private static Stage sOptions;
-	
-	private static CheckBox cClearTeams;
-	private static CheckBox cKeepExisting;
-	
-	
-	private static void openOptions() {
-		if(sOptions != null) sOptions.close();
-		sOptions = new Stage();
-		sOptions.setTitle("Import Options");
-		//Makes it a popup-like window (can't select main stage?)
-		sOptions.initModality(Modality.APPLICATION_MODAL);
-
-		//Option Nodes
+	private static void importDialog() {
+		Dialog<List<Team>> dialog = new Dialog<List<Team>>();
+		dialog.setTitle("Import Options");
+		dialog.setHeaderText("Choose how you would like to import the teams");
 		
-		cClearTeams = new CheckBox("Clear Teams");
-		cClearTeams.setTooltip(new Tooltip("Clear the team list before importing teams?"));
-		cClearTeams.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				cKeepExisting.setDisable(cClearTeams.isSelected());
-			}
-		});
+		CheckBox cClearTeams = new CheckBox("Clear Teams");
+		cClearTeams.setTooltip(new Tooltip("Clears all currently loaded teams"));
 		
-		cKeepExisting = new CheckBox("Keep Existing");
-		cKeepExisting.setSelected(true);
-		cKeepExisting.setTooltip(new Tooltip("Keep Teams that the imported teams doesn't update"));
+		CheckBox cKeepExisting = new CheckBox("Keep Updated Only");
+		cKeepExisting.setTooltip(new Tooltip("Removes any teams currently listed \nthat are not updated by the import"));
+		cKeepExisting.disableProperty().bind(cClearTeams.selectedProperty());
 		
-		//HBottom Nodes
-		Button bCancel = new Button("Cancel");
-		bCancel.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
-				sOptions.close();
-			}
-		});
-		Region rb = new Region();
-		Button bImport = new Button("Import");
-		bImport.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
-				importTeams(teams, cClearTeams.isSelected(),cKeepExisting.isSelected());
-				sOptions.close();
-			}
-		});
+		GridPane grid = new GridPane();
+		grid.add(cClearTeams, 1, 1);
+		grid.add(cKeepExisting, 1, 2);
+		dialog.getDialogPane().setContent(grid);
 		
-		// Creating HBottom
-		HBox hBottom = new HBox(bCancel,rb,bImport);
-		HBox.setHgrow(rb, Priority.ALWAYS);
+		ButtonType bAccept = new ButtonType("Import", ButtonData.OK_DONE);
+		ButtonType bCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+		dialog.getDialogPane().getButtonTypes().addAll(bAccept,bCancel);
 		
-		VBox dt = new VBox(cClearTeams,cKeepExisting,hBottom);
-		dt.setSpacing(10);
-		dt.setPadding(new Insets(10,10,10,10));
-		
-		Scene sc = new Scene(dt,500,100);
-		sOptions.setScene(sc);
-		sOptions.show();
-	}
-	
-	private static void importTeams(List<Team> tms, boolean clearTeams, boolean keepExisting) {
-		//Clears Teams if configured to do so
-		if(clearTeams) {
-			Pace.teams = tms;
-		} else {
-			//Only used if set to not keep unique
-			List<Team> setTeams = new ArrayList<Team>();
-			
-			for(Team a : tms) {
-				for(Team b : Pace.teams) {
-					if(a.team.contentEquals(b.team)) {
-						b.names = a.names;
-						b.division = a.division;
-						if(!keepExisting) {
-							setTeams.add(b);
+		dialog.setResultConverter(r -> {
+			if(cClearTeams.isSelected()) {
+				return teams;
+			} else {
+				//Only used if set to not keep unique
+				List<Team> setTeams = new ArrayList<Team>();
+				
+				for(Team a : teams) {
+					for(Team b : Pace.teams) {
+						if(a.team.contentEquals(b.team)) {
+							b.names = a.names;
+							b.division = a.division;
+							if(!cKeepExisting.isSelected()) setTeams.add(b);
 						}
 					}
 				}
+				
+				if(!cKeepExisting.isSelected()) return setTeams;
+				else return Pace.teams;
 			}
-			
-			if(!keepExisting) Pace.teams = setTeams;
-		}
+		});
+		
+		Pace.teams = dialog.showAndWait().get();
 		fxMain.updateTable();
-	}	
+	}
 
 	
 	private static List<Team> getTeams(File file) {
@@ -163,13 +116,13 @@ public class fileImport {
 					while(cellIterator.hasNext()) {
 						posCol++;
 						Cell cell = cellIterator.next();
-						//System.out.println("Col " + posCol + " cell: " + getString(cell));
 						
 						if(posCol == 2) {
 							r.division = getString(cell).toLowerCase();
 							if(r.division.length() > 1) r.division = r.division.substring(0, 1).toUpperCase() + r.division.substring(1);
 						} else if (posCol == 3) {
 							r.team = getString(cell);
+							
 						} else if (posCol == 4 || posCol == 5 || posCol == 6) {
 							r.names.add(getString(cell));
 						}
@@ -185,7 +138,6 @@ public class fileImport {
 		} catch(IOException e) {
 			return null;
 		}
-		
 		return teams;
 	}
 	
@@ -194,10 +146,11 @@ public class fileImport {
 	private static String getString(Cell cell) {
 		try {
 			return cell.getStringCellValue();
-			
 		} catch(Exception e) {
 			try {
-				return cell.getNumericCellValue() + "";
+				double a = cell.getNumericCellValue();
+				if((int) a == a) return (int) a + "";
+				else return a + "";
 			} catch(Exception f) {
 				try {
 					return cell.getBooleanCellValue() + "";
@@ -206,76 +159,4 @@ public class fileImport {
 		}
 		return "";
 	}
-	
-	/*
-	 * Headers on row 2
-	 * Reference:
-	 * Columns
-	 *  - Time
-	 *  - Division
-	 *  - Team No
-	 *  - *blank*
-	 *  - Rider 1
-	 *  - Rider 2
-	 *  - Rider 3
-	 *  
-	 */
-	
-	/*
-	public static void open() {
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Open Pace File");
-		 File myFile = fileChooser.showOpenDialog(fxMain.sMRef);
-         FileInputStream fis;
-		try {
-			fis = new FileInputStream(myFile);
-			
-			try {
-	        	// Finds the workbook instance for XLSX file
-	             XSSFWorkbook myWorkBook = new XSSFWorkbook (fis);
-	            
-	             // Return first sheet from the XLSX workbook
-	             XSSFSheet mySheet = myWorkBook.getSheetAt(0);
-	            
-	             // Get iterator to all the rows in current sheet
-	             Iterator<Row> rowIterator = mySheet.iterator();
-	            
-	             // Traversing over each row of XLSX file
-	             while (rowIterator.hasNext()) {
-	                 Row row = rowIterator.next();
-
-	                 // For each row, iterate through each columns
-	                 Iterator<Cell> cellIterator = row.cellIterator();
-	                 while (cellIterator.hasNext()) {
-
-	                     Cell cell = cellIterator.next();
-
-	                     switch (cell.getCellType()) {
-	                     case STRING:
-	                         System.out.print(cell.getStringCellValue() + "\t");
-	                         break;
-	                     case NUMERIC:
-	                         System.out.print(cell.getNumericCellValue() + "\t");
-	                         break;
-	                     case BOOLEAN:
-	                         System.out.print(cell.getBooleanCellValue() + "\t");
-	                         break;
-	                     default :
-	                  
-	                     }
-	                 }
-	                 System.out.println("");
-	             }
-	         } catch(IOException e) {
-	        	 e.printStackTrace();
-	         }
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-         
-	}
-	*/
 }

@@ -1,11 +1,7 @@
 package classes;
 
-import java.io.Serializable;
+public class Goal {
 
-
-@SuppressWarnings("serial")
-public class Goal implements Serializable {
-	//Division is required
 	public String division;
 	public Time time;
 	

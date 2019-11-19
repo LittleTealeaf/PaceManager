@@ -1,13 +1,12 @@
 package classes;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import application.*;
+import application.paceManager;
 
-@SuppressWarnings("serial")
-public class Team implements Serializable{
+
+public class Team {
 	
 	public String team;
 	public List<String> names;
@@ -91,6 +90,7 @@ public class Team implements Serializable{
 		return division;
 	}
 	public String getNames() {
+		if(names == null || names.size() == 0) return "";
 		String r = "";
 		for(String n : names) {
 			if(r != "") r+=", ";

@@ -3,7 +3,10 @@ package application;
 import java.util.ArrayList;
 import java.util.List;
 
-import classes.*;
+import classes.Goal;
+import classes.Pace;
+import classes.Team;
+import classes.util;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.geometry.Insets;
@@ -23,6 +26,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
@@ -33,7 +38,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-@SuppressWarnings("rawtypes")
+
 public class fxPrint {
 	
 	/*
@@ -47,17 +52,19 @@ public class fxPrint {
 	public static Stage sPrint;
 	
 	private static ObservableSet<Printer> printers;
-	private static ChoiceBox setPrinter;
-	private static ChoiceBox setContent;
+	private static ChoiceBox<Printer> setPrinter;
+	private static ChoiceBox<String> setContent;
 	private static PrinterJob job;
 	private static PageOrientation orientation;
 	
+	private static Spinner<Integer> sCopies;
+	
 	//Check Boxes
 	private static CheckBox[] cColumns;
-	private static ChoiceBox setValidTeams;
+	private static ChoiceBox<String> setValidTeams;
 	
 	//Content Selection:
-	private static ChoiceBox setDivision;
+	private static ChoiceBox<String> setDivision;
 	private static RadioButton rtAll;
 	private static RadioButton rtSelect;
 	private static RadioButton rtSeparate;
@@ -71,7 +78,6 @@ public class fxPrint {
 		open("");
 	}
 	
-	@SuppressWarnings("unchecked")
 	public static void open(String preset) {	
 		if(sPrint != null) sPrint.close();
 		sPrint = new Stage();
@@ -86,6 +92,7 @@ public class fxPrint {
 		
 		Label lPrinterSel = new Label("Printer: ");
 		lPrinterSel.setTooltip(new Tooltip("Which printer do you want to print to?"));
+		
 		//Choice Box for Printers
 		setPrinter = new ChoiceBox<Printer>(FXCollections.observableArrayList(printers));
 		setPrinter.setValue(Printer.getDefaultPrinter());
@@ -115,8 +122,8 @@ public class fxPrint {
 		
 		Label lCopies = new Label("No. of Copies: ");
 		lCopies.setTooltip(new Tooltip("Number of copies to print"));
-		Spinner<Integer> sCopies = new Spinner<Integer>();
-		sCopies.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 1));
+		sCopies = new Spinner<Integer>();
+		sCopies.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 1));
 		
 		HBox hbCopies = new HBox(lCopies,sCopies);
 		hbCopies.setSpacing(10);
@@ -126,22 +133,21 @@ public class fxPrint {
 		
 		//CONTENT OPTIONS
 		
-		setContent = new ChoiceBox(FXCollections.observableArrayList("Announcement", "Scoreboard", "Custom"));
+		setContent = new ChoiceBox<String>(FXCollections.observableArrayList("Announcement", "Scoreboard", "Custom"));
 		setContent.valueProperty().addListener((obs) -> {
 			updateStage();
 		});
 		
-		//columns
-		
-		CheckBox cPosition = new CheckBox("Position");
-		CheckBox cTeam = new CheckBox("Team");
-		CheckBox cNames = new CheckBox("Names");
-		CheckBox cStart = new CheckBox("Start Time");
-		CheckBox cFinish = new CheckBox("Finish Time");
-		CheckBox cElapsed = new CheckBox("Elapsed Time");
-		CheckBox cDifference = new CheckBox("Difference");
-		CheckBox cNotes = new CheckBox("Notes");
-		cColumns = new CheckBox[] {cPosition, cTeam, cNames, cStart, cFinish, cElapsed, cDifference, cNotes};
+		cColumns = new CheckBox[] {
+				new CheckBox("Position"),
+				new CheckBox("Team"), 
+				new CheckBox("Names"), 
+				new CheckBox("Start Time"), 
+				new CheckBox("Finish Time"), 
+				new CheckBox("Elapsed Time"), 
+				new CheckBox("Difference"), 
+				new CheckBox("Notes")
+		};
 		
 		//Selecting a new row will update the list of columns
 		for(CheckBox c : cColumns) {
@@ -180,7 +186,7 @@ public class fxPrint {
 		if(Pace.goals.size() > 0) for(Goal g : Pace.goals) {
 			goals.add(g.division);
 		} 
-		setDivision = new ChoiceBox(FXCollections.observableArrayList(goals));
+		setDivision = new ChoiceBox<String>(FXCollections.observableArrayList(goals));
 		setDivision.setDisable(true);
 		setDivision.setTooltip(new Tooltip("Specified Division to print"));
 		
@@ -189,7 +195,7 @@ public class fxPrint {
 		
 		Text lValid = new Text("Valid Teams");
 		
-		setValidTeams = new ChoiceBox(FXCollections.observableArrayList("All Teams", "Valid Only", "Arrived Only","Departed Only","Stale Only"));
+		setValidTeams = new ChoiceBox<String>(FXCollections.observableArrayList("All Teams", "Valid Only", "Arrived Only","Departed Only","Stale Only"));
 		setValidTeams.setTooltip(new Tooltip("Which specific teams should we include?"));
 		
 		
@@ -198,7 +204,7 @@ public class fxPrint {
 		
 		Text lSort = new Text("Sort Method:");
 		
-		setSortCol = new ChoiceBox();
+		setSortCol = new ChoiceBox<String>();
 		setSortCol.setTooltip(new Tooltip("Column in which the table should be sorted by"));
 		
 		HBox hbContentOptionsSort = new HBox(lSort,setSortCol);
@@ -275,7 +281,6 @@ public class fxPrint {
 			//Specific Division
 			String div = "";
 			//Tries to parse the division, if errors then will just return
-			//TODO perhaps push this logic of trying to parse it up to the top to optimize computer work
 			try {
 				div = preset.substring(1);
 			} catch (Exception e) {return;}
@@ -377,8 +382,10 @@ public class fxPrint {
 		if(setValidTeams.getValue() == "") return;
 		
 		sPrint.setAlwaysOnTop(false);
+		
 		//Gets selected printer
 		Printer printer = (Printer) setPrinter.getValue();
+		
 		//Sets the printer job
 		job = PrinterJob.createPrinterJob(printer);
 		
@@ -387,8 +394,25 @@ public class fxPrint {
 		
 		job.getJobSettings().setPageLayout(layout);
 		
+		//Create a "printing progress" window
+		sPrint.close();
+		Stage sProgress = new Stage();
+		Text progressText = new Text("Printing...");
+		Button bCancel = new Button("Cancel");
+		bCancel.setOnAction(action -> {
+			job.cancelJob();
+			sProgress.close();
+			sPrint.close();
+		});
+		VBox vb = new VBox(progressText,bCancel);
+		vb.setSpacing(20);
+		vb.setPadding(DEFAULTINSETS);
+		sProgress.setScene(new Scene(vb,200,75));
+		sProgress.show();
 		
-		List<BorderPane> borderPanes = new ArrayList<BorderPane>();
+		
+		//Printing Script
+		List<BorderPane> borderPanes = new ArrayList<BorderPane>();		
 		
 		String header = "";
 		String[] columns = null;
@@ -403,12 +427,16 @@ public class fxPrint {
 					if(!t.getPositionInDivision().contentEquals("")) tms.add(t);
 				}
 				borderPanes.addAll(getTablePages(job,header,tms,columns, "positionInDivision"));
-			} else return; //TODO error
+			} else {
+				printError("Goal List is empty");
+				sProgress.close();
+				return;
+			}
 			break;
 		case "Scoreboard":
 			header = "Scoreboard:";
 			columns = new String[] {"team","division","elapsedFXM","difference"};
-			borderPanes.addAll(getTablePages(job,header,Pace.teams,columns, "team"));
+			borderPanes.addAll(getTablePages(job,header,getPrintTeams(Pace.teams),columns, "team"));
 			break;
 		case "Custom":
 			//Selected Columns
@@ -425,24 +453,34 @@ public class fxPrint {
 				if(!Pace.goals.isEmpty()) {
 					for(Goal g : Pace.goals) {
 						header = g.division + "  " + g.time.toString(true);
-					
-						borderPanes.addAll(getTablePages(job,header,paceManager.getTeams(g.division),columns, getCustomPrintSort()));
+						borderPanes.addAll(getTablePages(job,header,getPrintTeams(paceManager.getTeams(g.division)),columns, getCustomPrintSort()));
 					}
 					break;
-				} else return; //TODO error
+				} else {
+					printError("Please specify what teams to include");
+					sProgress.close();
+					return;
+				}
 			}
-			borderPanes.addAll(getTablePages(job,header,teams,columns, getCustomPrintSort()));
+			borderPanes.addAll(getTablePages(job,header,getPrintTeams(teams),columns, getCustomPrintSort()));
 			break;
 		}
-		for(BorderPane bp : borderPanes) {
-			if(!job.printPage(bp)) return; //TODO add error
+		
+		for(int i = 0; i < sCopies.getValue();i++) {
+			for(BorderPane bp : borderPanes) {
+				if(!job.printPage(bp)) {
+					printError("Job could not print");
+					return;
+				}
+			}
 		}
 		
-		
-		//TODO progress bar / printing page
-		job.endJob();
-		
-		sPrint.close();
+		if(job.endJob()) {
+			sProgress.close();
+		} else {
+			progressText.setText("Print Failed");
+			bCancel.setText("Close");
+		}
 	}
 	
 	/**
@@ -455,7 +493,6 @@ public class fxPrint {
 	 * @return
 	 */
 
-	@SuppressWarnings("unchecked")
 	private static List<BorderPane> getTablePages(PrinterJob job, String header, List<Team> getTeams, String[] columns, String sortColumn) {
 		//Checks if the sort column is in the columns
 		boolean bError = true;
@@ -546,8 +583,7 @@ public class fxPrint {
 	 * @param sortColumn Column to sort, will not set sort if it's not included
 	 * @return
 	 */
-	@SuppressWarnings({ "unchecked", "static-access" })
-	private static TableView getTable(String[] columns, String sortColumn, double pWidth) {
+	private static TableView<Team> getTable(String[] columns, String sortColumn, double pWidth) {
 		//Preset Variables
 		final double colSizeTeam = 35;
 		final double colSizeDiv = 60;
@@ -563,7 +599,7 @@ public class fxPrint {
 		
 		//Cycle through each requested column
 		for(String s : columns) {
-			TableColumn col = new TableColumn(s);
+			TableColumn<Team,String> col = new TableColumn<Team,String>(s);
 			
 			//Variable Settings for each column
 			switch(s.toLowerCase()) {
@@ -578,10 +614,7 @@ public class fxPrint {
 			case "names":
 				col.setText("Names");
 				col.setPrefWidth(colSizeNames);
-				
-				//Custom Cell Factory
 				col.setCellFactory(column -> { return util.getTeamCell(); });
-				
 				break;
 			case "startfxm":
 				col.setText("Start");
@@ -598,7 +631,7 @@ public class fxPrint {
 			case "positionindivision":
 				col.setText("Pl.");
 				col.setPrefWidth(colSizePlace);
-				col.setSortType(col.getSortType().DESCENDING);
+				col.setSortType(TableColumn.SortType.DESCENDING);
 				break;
 			case "printablenotes":
 				col.setText("Notes");
@@ -609,24 +642,29 @@ public class fxPrint {
 				col.setPrefWidth(colSizeTime);
 			default: break;
 			}
+			
 			//Adds to total size
 			totalSize += col.getPrefWidth();
+			
 			//Sets the cell factory
 			col.setCellValueFactory(new PropertyValueFactory<Team,String>(s));
+			
 			//Adds it to the table
 			table.getColumns().add(col);
+			
 			//If it's the sort column, set it as the sort column
 			if(s.contentEquals(sortColumn)) table.getSortOrder().add(col);
 		}
 		
 		//If smaller than scale
 		if(totalSize != pWidth) {
+			
 			//Take the difference left over
 			double difference = pWidth - totalSize;
 			
 			//Split remainder up and add that amount to each column
 			double colAdd = difference / table.getColumns().size();
-			for(TableColumn a : table.getColumns()) {
+			for(TableColumn<Team,?> a : table.getColumns()) {
 				a.setPrefWidth(a.getPrefWidth() + colAdd);
 			}
 		}
@@ -636,15 +674,12 @@ public class fxPrint {
 		
 		return table;
 	}
-	
-	private static List<Team> getPrintTeams() {return getPrintTeams("",Pace.teams);	}
-	private static List<Team> getPrintTeams(List<Team> teams) {return getPrintTeams("",teams);	}
-	
-	private static List<Team> getPrintTeams(String setting, List<Team> teams) {
-		if(setting.contentEquals("")) setting = (String) setValidTeams.getValue();
+
+
+	private static List<Team> getPrintTeams(List<Team> teams) {
 		List<Team> ret = new ArrayList<Team>();
 		for(Team t : teams) {
-			switch(setting) {
+			switch((String) setValidTeams.getValue()) {
 			case "Valid Only":
 				if(!t.excluded && t.elapsed() != null) ret.add(t);
 				break;
@@ -664,6 +699,12 @@ public class fxPrint {
 		}
 		return ret;
 	}
-}
 	
-	//http://tutorials.jenkov.com/javafx/scrollpane.html
+	private static void printError(String details) {
+		Alert error = new Alert(AlertType.ERROR);
+		error.setTitle("Printing Error");
+		error.setHeaderText("There was an error with your print request");
+		error.setContentText(details);
+		error.showAndWait();
+	}
+}

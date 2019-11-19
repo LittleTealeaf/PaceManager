@@ -3,7 +3,6 @@ package application;
 import java.io.File;
 import java.io.FileWriter;
 import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,9 +16,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
 public class fileManager {
-
-	//TODO test if I can still include illegal chars with the program
-	private static final char[] ILLEGAL_CHARS = {'/','<','>','[',']','/','\\','=','|'};
 	
 	public static File loadedFile;
 
@@ -63,6 +59,7 @@ public class fileManager {
 			//Write the JSON file, using the GSON library
 			writer.write(new Gson().toJson(new Pace()));
 			writer.close();
+			Pace.title = saveFile.getName();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -70,7 +67,7 @@ public class fileManager {
 	
 	public static void fileOpen(File openFile) {
 		//Cancel if file doesn't exist
-		if(!openFile.exists()) return;
+		if(openFile == null || !openFile.exists()) return;
 		try {
 			//Create reader to read lines into a list
 			List<String> lines = Files.readAllLines(openFile.toPath());
@@ -93,22 +90,10 @@ public class fileManager {
 				Optional<ButtonType> result = conf.showAndWait();
 				if(result.get() == ButtonType.OK) data.loadPace();
 			}
+			data.loadPace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	/**
-	 * Checks if a string is valid
-	 * @param s The String to be checked
-	 * @return True if it works, false if it contains invalid characters
-	 */
-	public static boolean checkValid(String s) {
-		List<Character> chars = new ArrayList<Character>();
-		for(char c : s.toCharArray()) chars.add(c);
-		for(char c : ILLEGAL_CHARS) {
-			if(chars.contains(c)) return false;
-		}
-		return true;
-	}
 }

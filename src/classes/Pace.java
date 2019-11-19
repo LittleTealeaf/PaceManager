@@ -3,7 +3,9 @@ package classes;
 import java.util.ArrayList;
 import java.util.List;
 
-import application.*;
+import application.fxMain;
+import application.fxScores;
+import application.paceManager;
 
 public class Pace {
 	
@@ -14,7 +16,6 @@ public class Pace {
 	public List<Goal> Goals;
 	public Settings Settings;
 	
-	//Loaded Variables
 	public static String title;
 	public static String version;
 	public static List<Team> teams;
@@ -47,6 +48,8 @@ public class Pace {
 		teams = Teams;
 		goals = Goals;
 		settings = Settings;
+		fxMain.updateTable();
+		fxScores.updateTabs();
 	}
 	
 	public static void newPace() { newPace(""); }
