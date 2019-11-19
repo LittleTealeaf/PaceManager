@@ -243,9 +243,20 @@ public class fxMain extends Application {
 		Scene sc = new Scene(vb, 500, 300);
 		sMain.setMaximized(true);
 		sMain.setScene(sc); 
-		sMain.show();
 		
 		updateTable();
+		
+		sMain.setOnCloseRequest(event -> {
+			if(mNotes != null && mNotes.isShowing()) mNotes.close();
+			if(fxPrint.sPrint != null && fxPrint.sPrint.isShowing()) fxPrint.sPrint.close();
+			if(fxScores.sScores != null && fxScores.sScores.isShowing()) fxScores.sScores.close();
+			if(fxSettings.sSettings != null && fxSettings.sSettings.isShowing()) fxSettings.sSettings.close();
+			if(fxTeam.sTeam != null && fxTeam.sTeam.isShowing()) fxTeam.sTeam.close();
+			if(fxGoals.sGoals != null && fxGoals.sGoals.isShowing()) fxGoals.sGoals.close();
+			if(fxImport.sImport != null && fxImport.sImport.isShowing()) fxImport.sImport.close();
+		});
+		
+		sMain.show();
 	}
 	
 	public static void updateTable() {
@@ -310,12 +321,6 @@ public class fxMain extends Application {
 			table.getColumns().get(3).getColumns().get(2).setMaxWidth(wTime);
 			table.getColumns().get(3).getColumns().get(2).setMinWidth(wTime);
 		}
-	}
-	/**
-	 * Closes the sub-windows to this class
-	 */
-	public static void closeSubWindows() {
-		if(mNotes.isShowing()) mNotes.close();
 	}
 	
 	private static Stage mNotes;
