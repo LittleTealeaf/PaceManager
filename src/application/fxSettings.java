@@ -1,7 +1,6 @@
 package application;
 
 import classes.Pace;
-import classes.Settings;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
