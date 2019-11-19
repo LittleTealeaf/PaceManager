@@ -129,7 +129,11 @@ public class fxMain extends Application {
 		m3Print.setOnAction(event -> {
 			fxPrint.open();
 		});
-		m3.getItems().addAll(m3Goals,m3Scores,m3Print);
+		MenuItem m3Settings = new MenuItem("Settings");
+		m3Settings.setOnAction(event -> {
+			fxSettings.open();
+		});
+		m3.getItems().addAll(m3Goals,m3Scores,m3Print,m3Settings);
 		
 		MenuBar mb = new MenuBar();
 		mb.getMenus().addAll(m1,m2,m3);
