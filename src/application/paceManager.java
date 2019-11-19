@@ -21,9 +21,6 @@ public class paceManager {
 		
 		Pace.newPace();
 		
-
-		//TODO convert windows to start using the grid format
-		
 		//Debug Only
 		if(development) {
 			Pace.teams = importTeams.getTeams();
