@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import classes.*;
+import classes.Pace;
+import classes.Team;
+import classes.Time;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -38,6 +40,7 @@ public class fxTeam {
 	private static CheckBox cExclude;
 	
 	public static void open(Team t, int column) {
+		
 		//Regular open script
 		open(t);
 		
@@ -180,25 +183,29 @@ public class fxTeam {
 		r.finish = new Time(tFinish.getText());
 		if(r.finish.error != 0) r.finish = null;
 		String tmp = "";
-		List<String> tmpRid = new ArrayList<String>();
-		for(char c : tRiders.getText().toCharArray()) {
-			if(c == '\n' || c == '\r') {
-				tmpRid.add(tmp);
-				tmp = "";
-			} else tmp+=c;
+		if(!tRiders.getText().contentEquals("")) {
+			List<String> tmpRid = new ArrayList<String>();
+			for(char c : tRiders.getText().toCharArray()) {
+				if(c == '\n' || c == '\r') {
+					tmpRid.add(tmp);
+					tmp = "";
+				} else tmp+=c;
+			}
+			tmpRid.add(tmp);
+			tmp="";
+			r.names = tmpRid;
 		}
-		tmpRid.add(tmp);
-		tmp="";
-		r.names = tmpRid;
-		List<String> tmpNot = new ArrayList<String>();
-		for(char c : tNotes.getText().toCharArray()) {
-			if(c == '\n' || c == '\r') {
-				tmpNot.add(tmp);
-				tmp = "";
-			} else tmp+=c;
+		if(!tNotes.getText().contentEquals("")) {
+			List<String> tmpNot = new ArrayList<String>();
+			for(char c : tNotes.getText().toCharArray()) {
+				if(c == '\n' || c == '\r') {
+					tmpNot.add(tmp);
+					tmp = "";
+				} else tmp+=c;
+			}
+			tmpNot.add(tmp);
+			r.notes = tmpNot;
 		}
-		tmpNot.add(tmp);
-		r.notes = tmpNot;
 		r.excluded = cExclude.isSelected();
 		
 		//Remove any empty names
@@ -228,12 +235,9 @@ public class fxTeam {
 				sTeam.setAlwaysOnTop(false);
 				Optional<ButtonType> result = alert.showAndWait();
 				sTeam.setAlwaysOnTop(true);
-				//TODO check this logic, check what closing does
-				if(result.get() == bCancel) {
-					return false;
-				} else if (result.get() == bOverwrite) {
+				if (result.get() == bOverwrite) {
 					Pace.teams.set(Pace.teams.indexOf(paceManager.getTeam(tTeam.getText())), compileTeam());
-				}
+				} else return false;
 			} else Pace.teams.add(compileTeam());
 		} else {
 			Pace.teams.set(Pace.teams.indexOf(paceManager.getTeam(tTeam.getText())), compileTeam());

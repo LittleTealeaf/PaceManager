@@ -1,9 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>paceManager</groupId>
+  <groupId>Tealeaf</groupId>
   <artifactId>paceManager</artifactId>
-  <version>0.0.1-DEV</version>
+  <version>0.1.1</version>
   <name>Pace Manager</name>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
   <dependencies>
   <dependency>
     <groupId>org.openjfx</groupId>
@@ -42,6 +45,9 @@
         <version>3.8.0</version>
         <configuration>
           <release>12</release>
+          <excludes>
+          	<exclude>/src/debugdev/*</exclude>
+          </excludes>
         </configuration>
       </plugin>
       <plugin>
@@ -75,4 +81,13 @@
       </plugin>
     </plugins>
   </build>
+  <issueManagement>
+  	<url>https://github.com/LittleTealeaf/paceManager/issues/new/choose</url>
+  </issueManagement>
+  <url>https://github.com/LittleTealeaf/paceManager</url>
+  <description>A manager for pace-run events.</description>
+  <organization>
+  	<name>Tealeaf</name>
+  	<url>https://github.com/LittleTealeaf</url>
+  </organization>
 </project>

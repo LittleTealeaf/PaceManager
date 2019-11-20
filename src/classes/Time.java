@@ -76,6 +76,7 @@ public class Time {
 	public String toString() {
 		return toString(false);
 	}
+	
 	public String toString(boolean twentyfour) {
 		float second = time;
 		int hour = (int)second/3600;
@@ -99,6 +100,7 @@ public class Time {
 		retString+=suf;
 		return(retString);
 	}
+	
 	public boolean tEquals(Time t) {
 		return time == t.time;
 	}

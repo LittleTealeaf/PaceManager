@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import classes.*;
+import classes.Pace;
+import classes.Team;
+import classes.Time;
+import classes.util;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Menu;
@@ -22,8 +26,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextInputDialog;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -32,12 +34,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
-/*
- * Notes only displays the first line of the notes
- * windows:
- * fxEditTeam
- */
 
 public class fxMain extends Application {
 	
@@ -52,7 +48,7 @@ public class fxMain extends Application {
 		launch(args);
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings("unchecked")
 	@Override
 	public void start(Stage sMain) {
 		sMRef = sMain;
@@ -133,7 +129,11 @@ public class fxMain extends Application {
 		m3Print.setOnAction(event -> {
 			fxPrint.open();
 		});
-		m3.getItems().addAll(m3Goals,m3Scores,m3Print);
+		MenuItem m3Settings = new MenuItem("Settings");
+		m3Settings.setOnAction(event -> {
+			fxSettings.open();
+		});
+		m3.getItems().addAll(m3Goals,m3Scores,m3Print,m3Settings);
 		
 		MenuBar mb = new MenuBar();
 		mb.getMenus().addAll(m1,m2,m3);
@@ -164,9 +164,8 @@ public class fxMain extends Application {
 		table.setOnMouseClicked(click -> {
 			if (click.getClickCount() == 2) {
 				try {
-					TablePosition pos = table.getSelectionModel().getSelectedCells().get(0);
-					//int row = pos.getRow();
-					//System.out.println(row);
+					TablePosition<?, ?> pos = table.getSelectionModel().getSelectedCells().get(0);
+					
 					int col = pos.getColumn();
 					Team sel = table.getSelectionModel().getSelectedItem();
 					if(col == 6) {
@@ -199,34 +198,34 @@ public class fxMain extends Application {
 		 * cTeamName.setReorderable(false);
 		 */
 		
-		TableColumn cTeamName = new TableColumn("Team");
+		TableColumn<Team,String> cTeamName = new TableColumn<Team,String>("Team");
 		cTeamName.setCellValueFactory(new PropertyValueFactory<Team,String>("team"));
 		cTeamName.setReorderable(false);
 		
-		TableColumn cDivision = new TableColumn("Division");
+		TableColumn<Team,String> cDivision = new TableColumn<Team,String>("Division");
 		cDivision.setCellValueFactory(new PropertyValueFactory<Team,String>("division"));
 		cDivision.setReorderable(false);
 		
-		TableColumn cNames = new TableColumn("Riders");
+		TableColumn<Team,String> cNames = new TableColumn<Team,String>("Riders");
 		cNames.setEditable(false);
 		cNames.setCellFactory(column -> { return util.getTeamCell(); });
 		cNames.setCellValueFactory(new PropertyValueFactory<Team,String>("names"));
 		cNames.setReorderable(false);
 		
-		TableColumn cTime = new TableColumn("Times");
+		TableColumn<Team,String> cTime = new TableColumn<Team,String>("Times");
 		cTime.setReorderable(false);
-		TableColumn cTStart = new TableColumn("Start");
+		TableColumn<Team,String> cTStart = new TableColumn<Team,String>("Start");
 		cTStart.setCellValueFactory(new PropertyValueFactory<Team,String>("startFXM"));
 		cTStart.setReorderable(false);
-		TableColumn cTFinish = new TableColumn("Finish");
+		TableColumn<Team,String> cTFinish = new TableColumn<Team,String>("Finish");
 		cTFinish.setCellValueFactory(new PropertyValueFactory<Team,String>("finishFXM"));
 		cTFinish.setReorderable(false);
-		TableColumn cTElapsed = new TableColumn("Elapsed");
+		TableColumn<Team,String> cTElapsed = new TableColumn<Team,String>("Elapsed");
 		cTElapsed.setCellValueFactory(new PropertyValueFactory<Team,String>("elapsedFXM"));
 		cTElapsed.setReorderable(false);
 		
 		cTime.getColumns().addAll(cTStart,cTFinish,cTElapsed);
-		TableColumn cNotes = new TableColumn("Notes");
+		TableColumn<Team,String> cNotes = new TableColumn<Team,String>("Notes");
 		cNotes.setCellValueFactory(new PropertyValueFactory<Team,String>("notesDisplay"));
 		cNotes.setReorderable(false);
 		
@@ -235,7 +234,7 @@ public class fxMain extends Application {
 		table.prefHeightProperty().bind(sMain.heightProperty());
         table.prefWidthProperty().bind(sMain.widthProperty());
         
-        //Disables horizontal scrollbar
+        //Disables horizontal scroll bar
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		
 		
@@ -244,9 +243,20 @@ public class fxMain extends Application {
 		Scene sc = new Scene(vb, 500, 300);
 		sMain.setMaximized(true);
 		sMain.setScene(sc); 
-		sMain.show();
 		
 		updateTable();
+		
+		sMain.setOnCloseRequest(event -> {
+			if(mNotes != null && mNotes.isShowing()) mNotes.close();
+			if(fxPrint.sPrint != null && fxPrint.sPrint.isShowing()) fxPrint.sPrint.close();
+			if(fxScores.sScores != null && fxScores.sScores.isShowing()) fxScores.sScores.close();
+			if(fxSettings.sSettings != null && fxSettings.sSettings.isShowing()) fxSettings.sSettings.close();
+			if(fxTeam.sTeam != null && fxTeam.sTeam.isShowing()) fxTeam.sTeam.close();
+			if(fxGoals.sGoals != null && fxGoals.sGoals.isShowing()) fxGoals.sGoals.close();
+			if(fxImport.sImport != null && fxImport.sImport.isShowing()) fxImport.sImport.close();
+		});
+		
+		sMain.show();
 	}
 	
 	public static void updateTable() {
@@ -272,11 +282,11 @@ public class fxMain extends Application {
 		if(firstOut != null) headerTexts.get(0).setText("First Out: " + firstOut.team + " at " + firstOut.start.toString());
 		else headerTexts.get(0).setText("First Out: -------");
 		if(lastLeft != null) headerTexts.get(1).setText("Last Out: " + lastLeft.team + " at " + lastLeft.start.toString());
-		else headerTexts.get(0).setText("First Out: -------");
+		else headerTexts.get(1).setText("Last Out: -------");
 		if(avgTime != 0) headerTexts.get(2).setText("Average Time: " + new Time(avgTime).toString(true));
-		else headerTexts.get(0).setText("First Out: -------");
+		else headerTexts.get(2).setText("Average Time: -------");
 		if(lastOut != null) headerTexts.get(3).setText("Estimated Last In: " + lastOut.team + " at " + new Time(lastOut.start.time + avgTime));
-		else headerTexts.get(0).setText("First Out: -------");
+		else headerTexts.get(3).setText("Estimated Last In: -------");
 		
 		table.getItems().clear();
 		table.getItems().addAll(Pace.teams);
@@ -311,12 +321,6 @@ public class fxMain extends Application {
 			table.getColumns().get(3).getColumns().get(2).setMaxWidth(wTime);
 			table.getColumns().get(3).getColumns().get(2).setMinWidth(wTime);
 		}
-	}
-	/**
-	 * Closes the sub-windows to this class
-	 */
-	public static void closeSubWindows() {
-		if(mNotes.isShowing()) mNotes.close();
 	}
 	
 	private static Stage mNotes;

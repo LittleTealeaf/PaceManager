@@ -1,6 +1,7 @@
 package classes;
 
-import application.*;
+import application.fxPrint;
+import application.fxTeam;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
@@ -17,7 +18,7 @@ public class ScoreTab {
 	public Label label;
 	public Goal goal;
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings("unchecked")
 	public ScoreTab(Goal g) {
 		goal = g;
 		
@@ -29,7 +30,6 @@ public class ScoreTab {
 			public void handle(MouseEvent click) {
 				if (click.getClickCount() == 2) {
 					try {
-						//Opens the table
 						fxTeam.open(table.getSelectionModel().getSelectedItem(),table.getSelectionModel().getSelectedCells().get(0).getColumn());
 					} catch(IndexOutOfBoundsException e) {}
 				}
@@ -46,41 +46,42 @@ public class ScoreTab {
 		});
         
 		
-		TableColumn cPlace = new TableColumn("Place");
+		TableColumn<Team,String> cPlace = new TableColumn<Team,String>("Place");
 		cPlace.setEditable(false);
 		cPlace.setSortable(true);
 		cPlace.setReorderable(false);
 		cPlace.setCellValueFactory(new PropertyValueFactory<Team,String>("difference"));
     
-		TableColumn cTeamName = new TableColumn("Team");
+		TableColumn<Team,String> cTeamName = new TableColumn<Team,String>("Team");
 		cTeamName.setEditable(false);
 		cTeamName.setSortable(false);
 		cTeamName.setReorderable(false);
 		cTeamName.setCellValueFactory(new PropertyValueFactory<Team,String>("team"));
 		
-		TableColumn cNames = new TableColumn("Riders");
+		TableColumn<Team,String> cNames = new TableColumn<Team,String>("Riders");
 		cNames.setEditable(false);
 		cNames.setSortable(false);
 		cNames.setReorderable(false);
 		cNames.setCellValueFactory(new PropertyValueFactory<Team,String>("names"));
 		
-		TableColumn cElapsed = new TableColumn("Elapsed Time");
+		TableColumn<Team,String> cElapsed = new TableColumn<Team,String>("Elapsed Time");
 		cElapsed.setEditable(false);
 		cElapsed.setSortable(true);
 		cElapsed.setReorderable(false);
 		cElapsed.setCellValueFactory(new PropertyValueFactory<Team,String>("elapsedFXM"));
 		
-		TableColumn cDifference = new TableColumn("Difference");
+		TableColumn<Team,String> cDifference = new TableColumn<Team,String>("Difference");
 		cDifference.setEditable(false);
 		cDifference.setSortable(true);
 		cDifference.setReorderable(false);
 		cDifference.setCellValueFactory(new PropertyValueFactory<Team,String>("difference"));
 
-		TableColumn cNotes = new TableColumn("Notes");
+		TableColumn<Team,String> cNotes = new TableColumn<Team,String>("Notes");
 		cNotes.setEditable(false);
 		cNotes.setSortable(false);
 		cNotes.setReorderable(false);
 		cNotes.setCellValueFactory(new PropertyValueFactory<Team,String>("notesDisplay"));
+		
 		
 		table.getColumns().addAll(cTeamName,cNames,cElapsed,cDifference,cNotes);
 		table.getSortOrder().add(cDifference);
