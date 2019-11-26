@@ -18,6 +18,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -80,12 +82,6 @@ public class fxTeam {
 		Label lDiv = new Label("Division");
 		tDiv = new TextField();
 		
-		cExclude = new CheckBox();
-		cExclude.setText("Exclude");
-		cExclude.setTooltip(new Tooltip("Exclude this team from final scores."));
-		
-		HBox h1 = new HBox(lTeam,tTeam,lDiv,tDiv,cExclude);
-		h1.setSpacing(10);
 		
 		//Second Row
 		Label lStart = new Label("Start Time:");
@@ -96,9 +92,18 @@ public class fxTeam {
 		tFinish = new TextField();
 		tStart.setTooltip(new Tooltip("Finish time of the rider\nHH:MM:SS (AM/PM) format"));
 		
-		HBox h2 = new HBox(lStart,tStart,lFinish,tFinish);
-		h2.setSpacing(10);
-		
+		GridPane grid = new GridPane();
+		grid.add(lTeam, 0, 0);
+		grid.add(tTeam, 1, 0);
+		grid.add(lDiv, 0, 1);
+		grid.add(tDiv, 1, 1);
+		grid.add(lStart, 2, 0);
+		grid.add(tStart, 3, 0);
+		grid.add(lFinish, 2, 1);
+		grid.add(tFinish, 3, 1);
+		grid.setHgap(10);
+		grid.setVgap(10);
+
 		//Bottom Row
 		Label lRiders = new Label("Riders");
 		tRiders = new TextArea();
@@ -108,14 +113,23 @@ public class fxTeam {
 		tNotes = new TextArea();
 		tNotes.setTooltip(new Tooltip("Separate Team Notes\nFirst line only will appear on table"));
 		
-		HBox h3 = new HBox(new VBox(lRiders,tRiders),new VBox(lNotes,tNotes));
-		h3.setSpacing(10);
+		GridPane gridLarge = new GridPane();
+		gridLarge.add(lRiders, 0, 0);
+		gridLarge.add(lNotes, 1, 0);
+		gridLarge.add(tRiders, 0, 1);
+		gridLarge.add(tNotes, 1, 1);
+		gridLarge.setHgap(10);
+		gridLarge.setVgap(10);
 		
 		Button bCancel = new Button("Cancel");
 		bCancel.setPrefWidth(75);
 		bCancel.setOnAction(event -> {
 			sTeam.close();
 		});
+		
+		cExclude = new CheckBox();
+		cExclude.setText("Exclude");
+		cExclude.setTooltip(new Tooltip("Exclude this team from final scores."));
 		
 		lError = new Label();
 		lError.setTextFill(Color.RED);
@@ -128,16 +142,19 @@ public class fxTeam {
 			if(save()) sTeam.close();
 		});
 		
-		HBox h4 = new HBox(bCancel,lError,rb,bSave);
+		HBox hFooter = new HBox(bCancel,cExclude,lError,rb,bSave);
 		HBox.setHgrow(rb, Priority.ALWAYS);
-		h4.setSpacing(10);
+		hFooter.setSpacing(10);
 		
-		//Adding the rows together
-		VBox v = new VBox(h1,h2,h3,h4);
-		v.setSpacing(10);
-		v.setPadding(new Insets(5,5,5,5));
+		VBox hContent = new VBox(grid,gridLarge);
+		hContent.setSpacing(10);
+		hContent.setPadding(new Insets(10));
 		
-		Scene sc = new Scene(v);
+		BorderPane bp = new BorderPane();
+		bp.setBottom(hFooter);
+		bp.setCenter(hContent);
+		
+		Scene sc = new Scene(bp);
 		sTeam.setScene(sc);
 		sTeam.show();
 		
@@ -169,7 +186,6 @@ public class fxTeam {
 					pos++;
 				}
 			}
-			//Set default request focus
 			tNotes.requestFocus();
 		}
 	}

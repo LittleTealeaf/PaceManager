@@ -62,85 +62,10 @@ public class fxMain extends Application {
 		});
 		
 		//Menus
-		Menu m1 = new Menu("File");
-		MenuItem m1New = new MenuItem("New");
-		m1New.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				if(fileManager.loadedFile != null) {
-					Alert alert = new Alert(AlertType.CONFIRMATION);
-					alert.setTitle("Create New?");
-					alert.setHeaderText("Opening a new file will clear the currently loaded file");
-					alert.setContentText("Make sure that you've saved the loaded one before accepting");
-					Optional<ButtonType> result = alert.showAndWait();
-					if(result.get() != ButtonType.OK) {
-						return;
-					}
-				}
-				fileManager.loadedFile = null;
-				Pace.newPace();
-				updateTable();
-			}
-		});
-		MenuItem m1Open = new MenuItem("Open");
-		m1Open.setOnAction(event -> {
-			fileManager.open();
-		});
-		MenuItem m1Save = new MenuItem("Save");
-		m1Save.setOnAction(event -> {
-			fileManager.save();
-		});
-		MenuItem m1SaveAs = new MenuItem("Save As");
-		m1SaveAs.setOnAction(event -> {
-			fileManager.saveAs();
-		});
-		SeparatorMenuItem m1Separator1 = new SeparatorMenuItem();
-		MenuItem m1Exit = new MenuItem("Exit");
-		m1Exit.setOnAction(event -> {
-			System.exit(0);
-		});
-		m1.getItems().addAll(m1New,m1Open,m1Save,m1SaveAs,m1Separator1,m1Exit);
-		
-		Menu m2 = new Menu("Teams");
-		MenuItem m2Create = new MenuItem("Create Team");
-		m2Create.setOnAction(event -> {
-			fxTeam.open(null);
-		});
-		SeparatorMenuItem m2Separator1 = new SeparatorMenuItem();
-		MenuItem m2Import = new MenuItem("Import");
-		m2Import.setOnAction(event -> {
-			fxImport.open();
-		});
-		MenuItem m2ImportFile = new MenuItem("Import from File...");
-		m2ImportFile.setOnAction(even -> {
-			fileImport.importFile();
-		});
-		m2.getItems().addAll(m2Create,m2Separator1,m2Import,m2ImportFile);
-
-		Menu m3 = new Menu("Pace");
-		MenuItem m3Goals = new MenuItem("Goal Times");
-		m3Goals.setOnAction(event -> {
-			fxGoals.open();
-		});
-		MenuItem m3Scores = new MenuItem("Scores");
-		m3Scores.setOnAction(event -> {
-			fxScores.open();
-		});
-		MenuItem m3Print = new MenuItem("Print");
-		m3Print.setOnAction(event -> {
-			fxPrint.open();
-		});
-		MenuItem m3Settings = new MenuItem("Settings");
-		m3Settings.setOnAction(event -> {
-			fxSettings.open();
-		});
-		m3.getItems().addAll(m3Goals,m3Scores,m3Print,m3Settings);
-		
 		MenuBar mb = new MenuBar();
-		mb.getMenus().addAll(m1,m2,m3);
+		mb.getMenus().addAll(getMenuFile(),getMenuTeams(),getMenuPace(),getMenuAbout());
 		
 		
-		//Header Text
-		//"First Out", fout, "Last Out", lout, 
 		headerTexts = new ArrayList<Text>();
 		HBox hbHeader = new HBox();
 		hbHeader.setSpacing(30);
@@ -247,13 +172,7 @@ public class fxMain extends Application {
 		updateTable();
 		
 		sMain.setOnCloseRequest(event -> {
-			if(mNotes != null && mNotes.isShowing()) mNotes.close();
-			if(fxPrint.sPrint != null && fxPrint.sPrint.isShowing()) fxPrint.sPrint.close();
-			if(fxScores.sScores != null && fxScores.sScores.isShowing()) fxScores.sScores.close();
-			if(fxSettings.sSettings != null && fxSettings.sSettings.isShowing()) fxSettings.sSettings.close();
-			if(fxTeam.sTeam != null && fxTeam.sTeam.isShowing()) fxTeam.sTeam.close();
-			if(fxGoals.sGoals != null && fxGoals.sGoals.isShowing()) fxGoals.sGoals.close();
-			if(fxImport.sImport != null && fxImport.sImport.isShowing()) fxImport.sImport.close();
+			paceManager.closeApplication();
 		});
 		
 		sMain.show();
@@ -323,7 +242,7 @@ public class fxMain extends Application {
 		}
 	}
 	
-	private static Stage mNotes;
+	public static Stage mNotes;
 	private static TextArea nText;
 	private static Team nTeam;
 	
@@ -406,6 +325,115 @@ public class fxMain extends Application {
 		
 		mNotes.setScene(sc);
 		mNotes.show();
+	}
+	
+	private static Menu getMenuFile() {
+		Menu r = new Menu("File");
+		
+		MenuItem m1New = new MenuItem("New");
+		m1New.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				if(fileManager.loadedFile != null) {
+					Alert alert = new Alert(AlertType.CONFIRMATION);
+					alert.setTitle("Create New?");
+					alert.setHeaderText("Opening a new file will clear the currently loaded file");
+					alert.setContentText("Make sure that you've saved the loaded one before accepting");
+					Optional<ButtonType> result = alert.showAndWait();
+					if(result.get() != ButtonType.OK) {
+						return;
+					}
+				}
+				fileManager.loadedFile = null;
+				Pace.newPace();
+				updateTable();
+			}
+		});
+		
+		MenuItem m1Open = new MenuItem("Open");
+		m1Open.setOnAction(event -> {
+			fileManager.open();
+		});
+		
+		MenuItem m1Save = new MenuItem("Save");
+		m1Save.setOnAction(event -> {
+			fileManager.save();
+		});
+		
+		MenuItem m1SaveAs = new MenuItem("Save As");
+		m1SaveAs.setOnAction(event -> {
+			fileManager.saveAs();
+		});
+		
+		SeparatorMenuItem m1Separator1 = new SeparatorMenuItem();
+		
+		MenuItem m1Exit = new MenuItem("Exit");
+		m1Exit.setOnAction(event -> {
+			System.exit(0);
+		});
+		
+		r.getItems().addAll(m1New,m1Open,m1Save,m1SaveAs,m1Separator1,m1Exit);
+		return r;
+	}
+	
+	private static Menu getMenuTeams() {
+		Menu r = new Menu("Teams");
+		MenuItem m2Create = new MenuItem("Create Team");
+		m2Create.setOnAction(event -> {
+			fxTeam.open(null);
+		});
+		
+		SeparatorMenuItem m2Separator1 = new SeparatorMenuItem();
+		MenuItem m2Import = new MenuItem("Import");
+		m2Import.setOnAction(event -> {
+			fxImport.open();
+		});
+		
+		MenuItem m2ImportFile = new MenuItem("Import from File...");
+		m2ImportFile.setOnAction(even -> {
+			fileImport.importFile();
+		});
+		
+		r.getItems().addAll(m2Create,m2Separator1,m2Import,m2ImportFile);
+		
+		return r;
+	}
+	
+	private static Menu getMenuPace() {
+		Menu r = new Menu("Pace");
+		
+		MenuItem m3Goals = new MenuItem("Goal Times");
+		m3Goals.setOnAction(event -> {
+			fxGoals.open();
+		});
+		
+		MenuItem m3Scores = new MenuItem("Scores");
+		m3Scores.setOnAction(event -> {
+			fxScores.open();
+		});
+		
+		MenuItem m3Print = new MenuItem("Print");
+		m3Print.setOnAction(event -> {
+			fxPrint.open();
+		});
+		
+		MenuItem m3Settings = new MenuItem("Settings");
+		m3Settings.setOnAction(event -> {
+			fxSettings.open();
+		});
+		
+		r.getItems().addAll(m3Goals,m3Scores,m3Print,m3Settings);
+		return r;
+	}
+	
+	private static Menu getMenuAbout() {
+		Menu r = new Menu("About");
+		
+		MenuItem changeLog = new MenuItem("Change Log");
+		changeLog.setOnAction(e -> fxAbout.openChangeLog());
+		
+		r.getItems().addAll(changeLog);
+		
+		return r;
 	}
 	
 }
