@@ -63,7 +63,7 @@ public class fxMain extends Application {
 		
 		//Menus
 		MenuBar mb = new MenuBar();
-		mb.getMenus().addAll(getMenuFile(),getMenuTeams(),m3);
+		mb.getMenus().addAll(getMenuFile(),getMenuTeams(),getMenuPace());
 		
 		
 		headerTexts = new ArrayList<Text>();
