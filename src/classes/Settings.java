@@ -7,7 +7,7 @@ public class Settings {
 	
 	public Settings() {
 		//Default Settings
-		alertOnDeleteTeam = false;
-		alertOnDeleteGoal = false;
+		alertOnDeleteTeam = true;
+		alertOnDeleteGoal = true;
 	}
 }

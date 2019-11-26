@@ -26,6 +26,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
@@ -425,7 +427,11 @@ public class fxPrint {
 					if(!t.getPositionInDivision().contentEquals("")) tms.add(t);
 				}
 				borderPanes.addAll(getTablePages(job,header,tms,columns, "positionInDivision"));
-			} else return; //TODO error
+			} else {
+				printError("Goal List is empty");
+				sProgress.close();
+				return;
+			}
 			break;
 		case "Scoreboard":
 			header = "Scoreboard:";
@@ -450,7 +456,11 @@ public class fxPrint {
 						borderPanes.addAll(getTablePages(job,header,getPrintTeams(paceManager.getTeams(g.division)),columns, getCustomPrintSort()));
 					}
 					break;
-				} else return; //TODO error
+				} else {
+					printError("Please specify what teams to include");
+					sProgress.close();
+					return;
+				}
 			}
 			borderPanes.addAll(getTablePages(job,header,getPrintTeams(teams),columns, getCustomPrintSort()));
 			break;
@@ -458,7 +468,10 @@ public class fxPrint {
 		
 		for(int i = 0; i < sCopies.getValue();i++) {
 			for(BorderPane bp : borderPanes) {
-				if(!job.printPage(bp)) return; //TODO add error
+				if(!job.printPage(bp)) {
+					printError("Job could not print");
+					return;
+				}
 			}
 		}
 		
@@ -685,5 +698,13 @@ public class fxPrint {
 			}
 		}
 		return ret;
+	}
+	
+	private static void printError(String details) {
+		Alert error = new Alert(AlertType.ERROR);
+		error.setTitle("Printing Error");
+		error.setHeaderText("There was an error with your print request");
+		error.setContentText(details);
+		error.showAndWait();
 	}
 }
