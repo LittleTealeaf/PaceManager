@@ -63,7 +63,7 @@ public class fxMain extends Application {
 		
 		//Menus
 		MenuBar mb = new MenuBar();
-		mb.getMenus().addAll(getMenuFile(),getMenuTeams(),getMenuPace());
+		mb.getMenus().addAll(getMenuFile(),getMenuTeams(),getMenuPace(),getMenuAbout());
 		
 		
 		headerTexts = new ArrayList<Text>();
@@ -172,13 +172,7 @@ public class fxMain extends Application {
 		updateTable();
 		
 		sMain.setOnCloseRequest(event -> {
-			if(mNotes != null && mNotes.isShowing()) mNotes.close();
-			if(fxPrint.sPrint != null && fxPrint.sPrint.isShowing()) fxPrint.sPrint.close();
-			if(fxScores.sScores != null && fxScores.sScores.isShowing()) fxScores.sScores.close();
-			if(fxSettings.sSettings != null && fxSettings.sSettings.isShowing()) fxSettings.sSettings.close();
-			if(fxTeam.sTeam != null && fxTeam.sTeam.isShowing()) fxTeam.sTeam.close();
-			if(fxGoals.sGoals != null && fxGoals.sGoals.isShowing()) fxGoals.sGoals.close();
-			if(fxImport.sImport != null && fxImport.sImport.isShowing()) fxImport.sImport.close();
+			paceManager.closeApplication();
 		});
 		
 		sMain.show();
@@ -248,7 +242,7 @@ public class fxMain extends Application {
 		}
 	}
 	
-	private static Stage mNotes;
+	public static Stage mNotes;
 	private static TextArea nText;
 	private static Team nTeam;
 	
@@ -433,6 +427,10 @@ public class fxMain extends Application {
 	
 	private static Menu getMenuAbout() {
 		Menu r = new Menu("About");
+		
+		MenuItem changeLog = new MenuItem("Change Log");
+		
+		r.getItems().addAll(changeLog);
 		
 		return r;
 	}
