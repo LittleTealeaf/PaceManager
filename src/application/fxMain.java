@@ -429,6 +429,7 @@ public class fxMain extends Application {
 		Menu r = new Menu("About");
 		
 		MenuItem changeLog = new MenuItem("Change Log");
+		changeLog.setOnAction(e -> fxAbout.openChangeLog());
 		
 		r.getItems().addAll(changeLog);
 		
