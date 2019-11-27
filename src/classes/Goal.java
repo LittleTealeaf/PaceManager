@@ -26,6 +26,7 @@ public class Goal {
 		return time.toString(true);
 	}
 	
+	@Override
 	public String toString() {
 		String s = division;
 		if(time != null) s+=": " + time.toString(true);

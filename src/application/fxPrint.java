@@ -328,7 +328,7 @@ public class fxPrint {
 	
 	private static List<String> getSortColumns() {
 		List<String> ret = new ArrayList<String>();
-		switch((String) setContent.getValue()) {
+		switch(setContent.getValue()) {
 		case "Custom":
 			for(CheckBox c : cColumns) {
 				if(!c.isDisabled() && c.isSelected()) ret.add(c.getText());
@@ -364,27 +364,27 @@ public class fxPrint {
 	 * @return
 	 */
 	private static String getCustomPrintSort() {
-		switch((String) setSortCol.getValue()) {
+		switch(setSortCol.getValue()) {
 		case "Position": return "positionInDivision";
 		case "Start Time": return "startFXM";
 		case "Finish Time": return "finishFXM";
 		case "Elapsed Time": return "elapsedFXM";
-		default: return (String) setSortCol.getValue().toLowerCase();
+		default: return setSortCol.getValue().toLowerCase();
 		}
 	}
 
 	
 	private static void print() {
 		//Cancel Scripts
-		if((String) setContent.getValue() == "") return;
-		if((String) setSortCol.getValue() == "") return;
-		if(rtSelect.isSelected() && (String) setDivision.getValue() == "") return;
+		if(setContent.getValue() == "") return;
+		if(setSortCol.getValue() == "") return;
+		if(rtSelect.isSelected() && setDivision.getValue() == "") return;
 		if(setValidTeams.getValue() == "") return;
 		
 		sPrint.setAlwaysOnTop(false);
 		
 		//Gets selected printer
-		Printer printer = (Printer) setPrinter.getValue();
+		Printer printer = setPrinter.getValue();
 		
 		//Sets the printer job
 		job = PrinterJob.createPrinterJob(printer);
@@ -417,7 +417,7 @@ public class fxPrint {
 		String header = "";
 		String[] columns = null;
 		List<Team> teams = null;
-		switch((String) setContent.getValue()) {
+		switch(setContent.getValue()) {
 		case "Announcement":
 			if(!Pace.goals.isEmpty()) for(Goal g : Pace.goals) {
 				header = g.division + "  " + g.time.toString();
@@ -445,7 +445,7 @@ public class fxPrint {
 			if(rtAll.isSelected()) { //
 				teams = Pace.teams;
 			} else if (rtSelect.isSelected()) { //Specifically Selected Division
-				String selDiv = (String) setDivision.getValue();
+				String selDiv = setDivision.getValue();
 				if(!selDiv.contentEquals("")) {
 					teams = paceManager.getTeams(selDiv);
 				}
@@ -679,7 +679,7 @@ public class fxPrint {
 	private static List<Team> getPrintTeams(List<Team> teams) {
 		List<Team> ret = new ArrayList<Team>();
 		for(Team t : teams) {
-			switch((String) setValidTeams.getValue()) {
+			switch(setValidTeams.getValue()) {
 			case "Valid Only":
 				if(!t.excluded && t.elapsed() != null) ret.add(t);
 				break;

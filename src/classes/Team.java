@@ -73,6 +73,7 @@ public class Team {
 		return r;
 	}
 	
+	@Override
 	public String toString() {
 		String r = team;
 		r+=" | " + division;

@@ -332,6 +332,7 @@ public class fxMain extends Application {
 		
 		MenuItem m1New = new MenuItem("New");
 		m1New.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
 			public void handle(ActionEvent e) {
 				if(fileManager.loadedFile != null) {
 					Alert alert = new Alert(AlertType.CONFIRMATION);
