@@ -10,16 +10,17 @@ import classes.Team;
 import classes.Time;
 
 public class importTeams {
-	
+
 	private static List<String> lines = new ArrayList<String>();
-	
+
 	public static List<Team> getTeams() {
 		List<Team> teams = new ArrayList<Team>();
 		Scanner scanner = null;
-		
-		if(lines.isEmpty()) updateDatabase();
-		
-		for(String line : lines) {
+
+		if (lines.isEmpty())
+			updateDatabase();
+
+		for (String line : lines) {
 			scanner = new Scanner(line);
 			Team a = new Team();
 			a.team = scanner.next();
@@ -27,68 +28,70 @@ public class importTeams {
 			a.names = new ArrayList<String>();
 			String name = "";
 			boolean skip = false;
-			for(char ch : scanner.nextLine().toCharArray()) {
-				if(ch == ',') {
+			for (char ch : scanner.nextLine().toCharArray()) {
+				if (ch == ',') {
 					skip = true;
 					a.names.add(name);
 					name = "";
-				} else if(skip) {
+				} else if (skip) {
 					skip = false;
 				} else {
-					name+=ch;
+					name += ch;
 				}
 			}
 			a.names.add(name);
 			name = "";
-			//Remove the first space of the name
+			// Remove the first space of the name
 			boolean swi = false;
-			for(char c : a.names.get(0).toCharArray()) {
-				if(swi) name+=c;
-				swi=true;
+			for (char c : a.names.get(0).toCharArray()) {
+				if (swi)
+					name += c;
+				swi = true;
 			}
 			a.names.set(0, name);
 			teams.add(a);
 			scanner.close();
 		}
 		teams.get(0).notes.add("NOT A AWEF");
-		return(teams);
+		return (teams);
 	}
-	
+
 	public static void importGoals() {
 		Time shortestTime = null;
 		Time longestTime = null;
-		for(Team t : Pace.teams) if(t.elapsed() != null) {
-			if(shortestTime == null || shortestTime.time > t.elapsed().time) {
-				shortestTime = t.elapsed();
+		for (Team t : Pace.teams)
+			if (t.elapsed() != null) {
+				if (shortestTime == null || shortestTime.time > t.elapsed().time) {
+					shortestTime = t.elapsed();
+				}
+				if (longestTime == null || longestTime.time < t.elapsed().time) {
+					longestTime = t.elapsed();
+				}
 			}
-			if(longestTime == null || longestTime.time < t.elapsed().time) {
-				longestTime = t.elapsed();
-			}
-		}
-		String[] divs = {"Pleasure","Hunt","Western","Junior"};
-		for(String s : divs) {
+		String[] divs = { "Pleasure", "Hunt", "Western", "Junior" };
+		for (String s : divs) {
 			Goal g = new Goal(s);
 			g.time = new Time((float) Math.random() * (longestTime.time - shortestTime.time) + shortestTime.time);
 			Pace.goals.add(g);
 		}
 	}
-	
+
 	public static void randomizeTimes() {
-		//Set Variables
+		// Set Variables
 		Time startRange = new Time("7:00:00");
 		Time endRange = new Time("13:00:00");
 		Time minElapsed = new Time("1:00:00");
 		Time maxElapsed = new Time("2:00:00");
-		for(Team a : Pace.teams) {
-			if(Math.random() < 0.5) {
+		for (Team a : Pace.teams) {
+			if (Math.random() < 0.5) {
 				a.start = new Time((float) (Math.random() * (endRange.time - startRange.time) + startRange.time));
-				if(Math.random() < 0.5) {
+				if (Math.random() < 0.5) {
 					a.finish = new Time((float) (Math.random() * (maxElapsed.time - minElapsed.time) + a.start.time));
 				}
 			}
-		}		
+		}
 	}
-	
+
 	private static void updateDatabase() {
 		lines = new ArrayList<String>();
 		lines.add("441	Pleasure Claudia Marcello, Courtney Strout");

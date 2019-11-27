@@ -16,99 +16,102 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class fxImport {
-	
+
 	public static Stage sImport;
 	private static TextField tTeam;
 	private static TextField tData;
 	private static ChoiceBox<String> cMethod;
 	public static Label lData;
-	
+
 	/**
 	 * 0 Start, 1 End
 	 */
-	
-	
+
 	public static void open() {
-		if(sImport != null) sImport.close();
+		if (sImport != null)
+			sImport.close();
 		sImport = new Stage();
 		sImport.setWidth(500);
 		sImport.setHeight(100);
 		sImport.setTitle("Import Data");
 		sImport.setAlwaysOnTop(true);
 		sImport.addEventHandler(KeyEvent.KEY_PRESSED, keyEvent -> {
-			if(keyEvent.getCode() == KeyCode.ESCAPE) {
+			if (keyEvent.getCode() == KeyCode.ESCAPE) {
 				sImport.close();
 			}
 		});
-		
+
 		Label lTeam = new Label("Team");
-		
+
 		tTeam = new TextField();
 		tTeam.setEditable(true);
 		tTeam.setOnKeyPressed(keyEvent -> {
-			if(keyEvent.getCode() == KeyCode.ENTER) {
-				if(cMethod.getSelectionModel().getSelectedIndex() != -1) {
+			if (keyEvent.getCode() == KeyCode.ENTER) {
+				if (cMethod.getSelectionModel().getSelectedIndex() != -1) {
 					tData.requestFocus();
-				} else cMethod.requestFocus();
+				} else
+					cMethod.requestFocus();
 			}
 		});
-		
+
 		Label lChoice = new Label("Import Option:");
-		
+
 		cMethod = new ChoiceBox<String>(FXCollections.observableArrayList("Start Time", "End Time"));
 		cMethod.getSelectionModel().selectedIndexProperty().addListener(obs -> {
-			if(cMethod.getSelectionModel().getSelectedIndex() != -1) {
+			if (cMethod.getSelectionModel().getSelectedIndex() != -1) {
 				tData.setEditable(true);
 				tData.setPromptText("");
 			}
 		});
 		cMethod.setOnKeyPressed(keyEvent -> {
-			if(keyEvent.getCode() == KeyCode.ENTER) {
-				if(cMethod.getSelectionModel().getSelectedIndex() != -1) {
+			if (keyEvent.getCode() == KeyCode.ENTER) {
+				if (cMethod.getSelectionModel().getSelectedIndex() != -1) {
 					tData.requestFocus();
 				}
 			}
 		});
-		
+
 		lData = new Label("");
 		lData.setTextFill(Color.RED);
 		tData = new TextField();
 		tData.setEditable(false);
 		tData.setPromptText("Select an Import Option");
 		tData.setOnKeyPressed(keyEvent -> {
-			if(keyEvent.getCode() == KeyCode.ENTER) {
+			if (keyEvent.getCode() == KeyCode.ENTER) {
 				saveImport();
 			}
 		});
-		
-		VBox h1vb1 = new VBox(lTeam,tTeam);
-		VBox h1vb2 = new VBox(lChoice,cMethod);
-		VBox h1vb3 = new VBox(lData,tData);
-		
-		HBox hb = new HBox(h1vb1,h1vb2,h1vb3);
+
+		VBox h1vb1 = new VBox(lTeam, tTeam);
+		VBox h1vb2 = new VBox(lChoice, cMethod);
+		VBox h1vb3 = new VBox(lData, tData);
+
+		HBox hb = new HBox(h1vb1, h1vb2, h1vb3);
 		VBox vbMain = new VBox(hb);
 		Scene sc = new Scene(vbMain);
 		sImport.setScene(sc);
 		sImport.show();
 	}
-	
+
 	/**
-	 * Method to save the data put into the text fields according to the import method
-	 * Once it completes successfully, will clear fields
+	 * Method to save the data put into the text fields according to the import
+	 * method Once it completes successfully, will clear fields
 	 */
 	private static void saveImport() {
-		if(tTeam.getText() == "") {
+		if (tTeam.getText() == "") {
 			tTeam.setPromptText("Please Type a Team Identifier");
 			return;
 		}
 		Team t = paceManager.getTeam(tTeam.getText());
 		Boolean isNew = t == null;
-		if(isNew) t = new Team(tTeam.getText());
+		if (isNew)
+			t = new Team(tTeam.getText());
 		Time v;
-		switch(cMethod.getSelectionModel().getSelectedIndex()) {
+		switch (cMethod.getSelectionModel().getSelectedIndex()) {
 		case 0:
 			v = new Time(tData.getText());
-			if(v.error == 0) t.start = v;
+			if (v.error == 0)
+				t.start = v;
 			else {
 				lData.setText("Could not Parse");
 				return;
@@ -116,7 +119,8 @@ public class fxImport {
 			break;
 		case 1:
 			v = new Time(tData.getText());
-			if(v.error == 0) t.finish = v;
+			if (v.error == 0)
+				t.finish = v;
 			else {
 				lData.setText("Could not Parse");
 				return;
@@ -126,7 +130,8 @@ public class fxImport {
 			lData.setText("Variable Selection not valid");
 			return;
 		}
-		if(isNew) Pace.teams.add(t);
+		if (isNew)
+			Pace.teams.add(t);
 		tTeam.setText("");
 		tData.setText("");
 		fxMain.updateTable();
