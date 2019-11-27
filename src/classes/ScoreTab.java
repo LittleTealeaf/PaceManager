@@ -1,6 +1,5 @@
 package classes;
 
-import application.fxPrint;
 import application.fxTeam;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
@@ -40,7 +39,7 @@ public class ScoreTab {
 			@Override
 			public void handle(KeyEvent e) {
 				if(e.getCode() == KeyCode.P && e.isControlDown()) {
-					fxPrint.open("g" + g.division);
+					application.fxPrint.open("g" + g.division);
 				}
 			}
 		});

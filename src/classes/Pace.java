@@ -5,7 +5,6 @@ import java.util.List;
 
 import application.fxMain;
 import application.fxScores;
-import application.paceManager;
 
 public class Pace {
 	
@@ -35,7 +34,7 @@ public class Pace {
 		Teams = listTeams;
 		Goals = listGoals;
 		Settings = getSettings;
-		Version = paceManager.version;
+		Version = application.paceManager.version;
 		loadPace();
 	}
 	
@@ -55,7 +54,7 @@ public class Pace {
 	public static void newPace() { newPace(""); }
 	public static void newPace(String setTitle) {
 		title = setTitle;
-		version = paceManager.version;
+		version = application.paceManager.version;
 		teams = new ArrayList<Team>();
 		goals = new ArrayList<Goal>();
 		settings = new Settings();

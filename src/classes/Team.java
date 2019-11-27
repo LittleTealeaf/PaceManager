@@ -3,8 +3,6 @@ package classes;
 import java.util.ArrayList;
 import java.util.List;
 
-import application.paceManager;
-
 
 public class Team {
 	
@@ -158,7 +156,7 @@ public class Team {
 		Time dif = getTimeDifference(g);
 		
 		//Cycles through each in the same team
-		for(Team a : paceManager.getTeams(division)) {
+		for(Team a : application.paceManager.getTeams(division)) {
 			//If it's higher, add 1 to the position
 			if(a.elapsed() != null && a.getTimeDifference(g).time < dif.time) pos++;
 		}
