@@ -31,14 +31,10 @@ public class Team {
 		start = Start;
 		finish = Finish;
 		notes = note;
-		if (division == null)
-			division = "";
-		if (team == null)
-			team = "";
-		if (notes == null)
-			notes = new ArrayList<String>();
-		if (names == null)
-			names = new ArrayList<String>();
+		if(division == null) division = "";
+		if(team == null) team = "";
+		if(notes == null) notes = new ArrayList<String>();
+		if(names == null) names = new ArrayList<String>();
 	}
 
 	public Team() {
@@ -77,10 +73,9 @@ public class Team {
 	 */
 	public Time elapsed() {
 		Time r = new Time();
-		if (start == null || finish == null) {
+		if(start == null || finish == null) {
 			return null;
-		} else
-			r.time = finish.time - start.time;
+		} else r.time = finish.time - start.time;
 		return r;
 	}
 
@@ -89,10 +84,8 @@ public class Team {
 		String r = team;
 		r += " | " + division;
 		r += " | " + names;
-		if (start != null)
-			r += " | Start " + start.toString();
-		if (finish != null)
-			r += " | Finish " + finish.toString();
+		if(start != null) r += " | Start " + start.toString();
+		if(finish != null) r += " | Finish " + finish.toString();
 		return r;
 	}
 
@@ -107,39 +100,32 @@ public class Team {
 	}
 
 	public String getNames() {
-		if (names == null || names.size() == 0)
-			return "";
+		if(names == null || names.size() == 0) return "";
 		String r = "";
-		for (String n : names) {
-			if (r != "")
-				r += ", ";
+		for(String n : names) {
+			if(r != "") r += ", ";
 			r += n;
 		}
 		return r;
 	}
 
 	public String getStartFXM() {
-		if (start != null)
-			return start.toString();
-		else
-			return "";
+		if(start != null) return start.toString();
+		else return "";
 	}
 
 	public String getFinishFXM() {
-		if (finish != null)
-			return finish.toString();
-		else
-			return "";
+		if(finish != null) return finish.toString();
+		else return "";
 	}
 
 	public String getNotesDisplay() {
-		if (notes != null && notes.size() > 0) { return notes.get(0); }
+		if(notes != null && notes.size() > 0) { return notes.get(0); }
 		return "";
 	}
 
 	public String getElapsedFXM() {
-		if (finish != null && start != null)
-			return new Time(finish.time - start.time).toString(true);
+		if(finish != null && start != null) return new Time(finish.time - start.time).toString(true);
 		return "";
 	}
 
@@ -147,16 +133,15 @@ public class Team {
 	// Includes stuff like difference etc.
 
 	public Time getTimeDifference(Time goalTime) {
-		if (goalTime != null) {
+		if(goalTime != null) {
 			return new Time(Math.abs(goalTime.time - elapsed().time));
-		} else
-			return null;
+		} else return null;
 	}
 
 	public String getDifference() {
-		if (elapsed() != null) {
-			for (Goal g : Pace.goals) {
-				if (g.division.contentEquals(division)) {
+		if(elapsed() != null) {
+			for(Goal g : Pace.goals) {
+				if(g.division.contentEquals(division)) {
 					return new Time(Math.abs(g.getGoalTime().time - elapsed().time)).toString(true);
 				}
 			}
@@ -168,29 +153,25 @@ public class Team {
 		final String nStr = "";
 
 		// Returns nothing if no elapsed
-		if (elapsed() == null)
-			return nStr;
+		if(elapsed() == null) return nStr;
 
 		int pos = 1;
 		Time g = null;
 		// gets the division time (for this team)
-		for (Goal a : Pace.goals) {
-			if (a.division.contentEquals(division))
-				g = a.time;
+		for(Goal a : Pace.goals) {
+			if(a.division.contentEquals(division)) g = a.time;
 		}
 
 		// Returns null if can't find
-		if (g == null)
-			return nStr;
+		if(g == null) return nStr;
 
 		// Gets the current difference time
 		Time dif = getTimeDifference(g);
 
 		// Cycles through each in the same team
-		for (Team a : application.paceManager.getTeams(division)) {
+		for(Team a : application.paceManager.getTeams(division)) {
 			// If it's higher, add 1 to the position
-			if (a.elapsed() != null && a.getTimeDifference(g).time < dif.time)
-				pos++;
+			if(a.elapsed() != null && a.getTimeDifference(g).time < dif.time) pos++;
 		}
 
 		// Returns a human readable version

@@ -69,7 +69,7 @@ public class fxMain extends Application {
 		HBox hbHeader = new HBox();
 		hbHeader.setSpacing(30);
 		int textFieldNumber = 4; // First Out, Last Out, Average Time, Estimated Last In
-		for (int i = 0; i < textFieldNumber; i++) {
+		for(int i = 0; i < textFieldNumber; i++) {
 			Text t = new Text();
 			headerTexts.add(t);
 			hbHeader.getChildren().add(new Separator(Orientation.VERTICAL));
@@ -85,26 +85,26 @@ public class fxMain extends Application {
 		 * https://stackoverflow.com/a/32442449
 		 */
 		table.setOnMouseClicked(click -> {
-			if (click.getClickCount() == 2) {
+			if(click.getClickCount() == 2) {
 				try {
 					TablePosition<?, ?> pos = table.getSelectionModel().getSelectedCells().get(0);
 
 					int col = pos.getColumn();
 					Team sel = table.getSelectionModel().getSelectedItem();
-					if (col == 6) {
+					if(col == 6) {
 						openNotes(sel, click.getScreenX(), click.getScreenY());
 					} else {
 						fxTeam.open(sel, col);
 					}
-				} catch (IndexOutOfBoundsException e) {}
+				} catch(IndexOutOfBoundsException e) {}
 			}
 		});
 		table.setOnKeyPressed(k -> {
-			if (k.getCode() == KeyCode.DELETE) {
+			if(k.getCode() == KeyCode.DELETE) {
 				try {
 					paceManager.deleteTeam(table.getSelectionModel().getSelectedItem());
-				} catch (IndexOutOfBoundsException e) {}
-			} else if (k.getCode() == KeyCode.P && k.isControlDown()) {
+				} catch(IndexOutOfBoundsException e) {}
+			} else if(k.getCode() == KeyCode.P && k.isControlDown()) {
 				fxPrint.open("All Teams");
 			}
 		});
@@ -182,40 +182,30 @@ public class fxMain extends Application {
 		Team lastOut = null;
 		double avgTime = 0;
 		int count = 0;
-		for (Team t : Pace.teams) {
-			if (t.start != null) {
-				if (firstOut == null || firstOut.start.time > t.start.time)
-					firstOut = t;
-				if (lastLeft == null || lastOut.start.time < t.start.time)
-					lastLeft = t;
-				if (lastOut == null || (t.finish == null && lastOut.start.time < t.start.time))
-					lastOut = t;
-				if (t.finish != null) {
+		for(Team t : Pace.teams) {
+			if(t.start != null) {
+				if(firstOut == null || firstOut.start.time > t.start.time) firstOut = t;
+				if(lastLeft == null || lastOut.start.time < t.start.time) lastLeft = t;
+				if(lastOut == null || (t.finish == null && lastOut.start.time < t.start.time)) lastOut = t;
+				if(t.finish != null) {
 					avgTime += t.elapsed().time;
 					count++;
 				}
 			}
 		}
-		if (count > 0)
-			avgTime /= count;
+		if(count > 0) avgTime /= count;
 
-		if (firstOut != null)
+		if(firstOut != null)
 			headerTexts.get(0).setText("First Out: " + firstOut.team + " at " + firstOut.start.toString());
-		else
-			headerTexts.get(0).setText("First Out: -------");
-		if (lastLeft != null)
+		else headerTexts.get(0).setText("First Out: -------");
+		if(lastLeft != null)
 			headerTexts.get(1).setText("Last Out: " + lastLeft.team + " at " + lastLeft.start.toString());
-		else
-			headerTexts.get(1).setText("Last Out: -------");
-		if (avgTime != 0)
-			headerTexts.get(2).setText("Average Time: " + new Time(avgTime).toString(true));
-		else
-			headerTexts.get(2).setText("Average Time: -------");
-		if (lastOut != null)
-			headerTexts.get(3)
-					.setText("Estimated Last In: " + lastOut.team + " at " + new Time(lastOut.start.time + avgTime));
-		else
-			headerTexts.get(3).setText("Estimated Last In: -------");
+		else headerTexts.get(1).setText("Last Out: -------");
+		if(avgTime != 0) headerTexts.get(2).setText("Average Time: " + new Time(avgTime).toString(true));
+		else headerTexts.get(2).setText("Average Time: -------");
+		if(lastOut != null) headerTexts.get(3)
+				.setText("Estimated Last In: " + lastOut.team + " at " + new Time(lastOut.start.time + avgTime));
+		else headerTexts.get(3).setText("Estimated Last In: -------");
 
 		table.getItems().clear();
 		table.getItems().addAll(Pace.teams);
@@ -233,7 +223,7 @@ public class fxMain extends Application {
 		final double wTime = 80;
 
 		// Min width to apply the proper formatting
-		if (table.getWidth() > 420) {
+		if(table.getWidth() > 420) {
 			// Team
 			table.getColumns().get(0).setMaxWidth(wTeam);
 			table.getColumns().get(0).setMinWidth(wTeam);
@@ -269,14 +259,14 @@ public class fxMain extends Application {
 		final double WIDTH = 300;
 		final double HEIGHT = 300;
 
-		if (mNotes == null) {
+		if(mNotes == null) {
 			// Stage setup, only needs to happen once
 			mNotes = new Stage();
 			mNotes.setAlwaysOnTop(true);
 			mNotes.initStyle(StageStyle.UNDECORATED);
 			mNotes.setResizable(true);
 			mNotes.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
-				if (!isNowFocused) {
+				if(!isNowFocused) {
 					mNotes.close();
 					updateTable();
 				}
@@ -293,11 +283,9 @@ public class fxMain extends Application {
 
 		// Get and display the notes
 		int pos = 0;
-		for (String l : t.notes) {
-			if (pos == 0)
-				nText.setText(l);
-			else
-				nText.setText(nText.getText() + "\n" + l);
+		for(String l : t.notes) {
+			if(pos == 0) nText.setText(l);
+			else nText.setText(nText.getText() + "\n" + l);
 			pos++;
 		}
 		// Add a listener that saves the data (reverses the display) whenever the field
@@ -305,16 +293,14 @@ public class fxMain extends Application {
 		nText.textProperty().addListener((observable, oldValue, newValue) -> {
 			List<String> notes = new ArrayList<String>();
 			String tmp = "";
-			for (char c : nText.getText().toCharArray()) {
-				if (c == '\n' || c == '\r') {
+			for(char c : nText.getText().toCharArray()) {
+				if(c == '\n' || c == '\r') {
 					notes.add(tmp);
 					tmp = "";
-				} else
-					tmp += c;
+				} else tmp += c;
 			}
 			notes.add(tmp);
-			if (notes.get(0).equals(""))
-				notes.remove(0);
+			if(notes.get(0).equals("")) notes.remove(0);
 			nTeam.notes = notes;
 		});
 
@@ -333,7 +319,7 @@ public class fxMain extends Application {
 		Scene sc = new Scene(vb, mNotes.getWidth(), mNotes.getHeight());
 
 		sc.addEventHandler(KeyEvent.ANY, keyEvent -> {
-			if (keyEvent.getCode() == KeyCode.ESCAPE) {
+			if(keyEvent.getCode() == KeyCode.ESCAPE) {
 				mNotes.close();
 				updateTable();
 			}
@@ -350,13 +336,13 @@ public class fxMain extends Application {
 		m1New.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				if (fileManager.loadedFile != null) {
+				if(fileManager.loadedFile != null) {
 					Alert alert = new Alert(AlertType.CONFIRMATION);
 					alert.setTitle("Create New?");
 					alert.setHeaderText("Opening a new file will clear the currently loaded file");
 					alert.setContentText("Make sure that you've saved the loaded one before accepting");
 					Optional<ButtonType> result = alert.showAndWait();
-					if (result.get() != ButtonType.OK) { return; }
+					if(result.get() != ButtonType.OK) { return; }
 				}
 				fileManager.loadedFile = null;
 				Pace.newPace();

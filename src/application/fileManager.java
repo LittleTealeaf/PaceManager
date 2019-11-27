@@ -24,7 +24,7 @@ public class fileManager {
 	 * exist it will use the save-as script
 	 */
 	public static void save() {
-		if (loadedFile == null || !loadedFile.exists()) {
+		if(loadedFile == null || !loadedFile.exists()) {
 			saveAs();
 			return;
 		} else {
@@ -62,31 +62,28 @@ public class fileManager {
 			writer.write(new Gson().toJson(new Pace()));
 			writer.close();
 			Pace.title = saveFile.getName();
-		} catch (Exception e) {
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	public static void fileOpen(File openFile) {
 		// Cancel if file doesn't exist
-		if (openFile == null || !openFile.exists())
-			return;
+		if(openFile == null || !openFile.exists()) return;
 		try {
 			// Create reader to read lines into a list
 			List<String> lines = Files.readAllLines(openFile.toPath());
 
 			// Cancel if file is empty
-			if (lines.size() == 0)
-				return;
+			if(lines.size() == 0) return;
 
 			// Concatenate list of strings into a single string
 			String jsonString = "";
-			for (String l : lines)
-				jsonString += l;
+			for(String l : lines) jsonString += l;
 
 			Pace data = new Gson().fromJson(jsonString, Pace.class);
 			// Import JSON into the pace
-			if (!data.Version.contentEquals(paceManager.version)) {
+			if(!data.Version.contentEquals(paceManager.version)) {
 				// Versions don't match up
 				Alert conf = new Alert(AlertType.CONFIRMATION);
 				conf.setTitle("Version Mismatch");
@@ -94,11 +91,10 @@ public class fileManager {
 						+ paceManager.version);
 				conf.setContentText("Would you like to import anyways? Some features may not be imported.");
 				Optional<ButtonType> result = conf.showAndWait();
-				if (result.get() == ButtonType.OK)
-					data.loadPace();
+				if(result.get() == ButtonType.OK) data.loadPace();
 			}
 			data.loadPace();
-		} catch (Exception e) {
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}

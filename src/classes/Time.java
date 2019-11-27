@@ -37,13 +37,11 @@ public class Time {
 
 	public Time(String par) {
 		error = 0;
-		if (par.contains("PM"))
-			time = 43200;
-		else
-			time = 0;
+		if(par.contains("PM")) time = 43200;
+		else time = 0;
 		par = par.replace(" ", "").replace("AM", "").replace("PM", "");
 
-		if (par.length() == 0) {
+		if(par.length() == 0) {
 			time = 0;
 			error = 2;
 			return;
@@ -51,27 +49,26 @@ public class Time {
 
 		List<String> nums = new ArrayList<String>();
 		String tmpAdd = "";
-		for (char a : par.toCharArray()) {
-			if (a == ':') {
+		for(char a : par.toCharArray()) {
+			if(a == ':') {
 				nums.add(tmpAdd);
 				tmpAdd = "";
-			} else
-				tmpAdd += a;
+			} else tmpAdd += a;
 		}
 		nums.add(tmpAdd);
 
-		if (nums.size() == 0) {
+		if(nums.size() == 0) {
 			time = 0;
 			error = 2;
 			return;
 		} else {
 			try {
 				float coef = 1;
-				for (int i = 0; i < nums.size(); i++) {
+				for(int i = 0; i < nums.size(); i++) {
 					time += coef * Float.parseFloat(nums.get(nums.size() - 1 - i));
 					coef *= 60;
 				}
-			} catch (NumberFormatException e) {
+			} catch(NumberFormatException e) {
 				error = 1;
 				time = 0;
 			}
@@ -91,13 +88,12 @@ public class Time {
 		int minute = (int) second / 60;
 		second -= minute * 60;
 		String suf = "";
-		if (!twentyfour && time < 86400) {
+		if(!twentyfour && time < 86400) {
 			suf = " AM";
-			if (hour > 12) {
+			if(hour > 12) {
 				hour -= 12;
 			}
-			if (time >= 43200)
-				suf = " PM";
+			if(time >= 43200) suf = " PM";
 		}
 		String retString = "";
 		retString += String.format("%02d", hour);
@@ -106,7 +102,7 @@ public class Time {
 		retString += ":";
 		retString += String.format("%02d", (int) second);
 		retString += suf;
-		return (retString);
+		return(retString);
 	}
 
 	public boolean tEquals(Time t) {

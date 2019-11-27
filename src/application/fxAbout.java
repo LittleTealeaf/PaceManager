@@ -12,8 +12,7 @@ public class fxAbout {
 	public static Stage sChangeLog;
 
 	public static void openChangeLog() {
-		if (sChangeLog != null && sChangeLog.isShowing())
-			sChangeLog.close();
+		if(sChangeLog != null && sChangeLog.isShowing()) sChangeLog.close();
 		sChangeLog = new Stage();
 		sChangeLog.setTitle("Change Log");
 
@@ -31,13 +30,12 @@ public class fxAbout {
 			BufferedReader br = new BufferedReader(
 					new InputStreamReader(ClassLoader.getSystemResourceAsStream("Changelog.txt")));
 			String line = "";
-			while ((line = br.readLine()) != null) {
-				if (!r.contentEquals(""))
-					r += "\n";
+			while((line = br.readLine()) != null) {
+				if(!r.contentEquals("")) r += "\n";
 				r += line;
 			}
 
-		} catch (Exception e) {}
+		} catch(Exception e) {}
 		return r;
 	}
 }

@@ -13,8 +13,7 @@ public class fxSettings {
 	public static Stage sSettings;
 
 	public static void open() {
-		if (sSettings != null)
-			sSettings.close();
+		if(sSettings != null) sSettings.close();
 		sSettings = new Stage();
 		sSettings.setTitle("Settings");
 

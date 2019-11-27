@@ -25,8 +25,7 @@ public class fxScores {
 	public static void open() {
 
 		// Close any currently opened stages
-		if (sScores != null)
-			sScores.close();
+		if(sScores != null) sScores.close();
 		sScores = new Stage();
 		sScores.setTitle("Score Leaderboard");
 
@@ -81,16 +80,16 @@ public class fxScores {
 	}
 
 	public static void updateTabs() {
-		if (sScores != null && tabPane != null) {
+		if(sScores != null && tabPane != null) {
 			tabPane.getTabs().clear();
 			scoreTabs = new ArrayList<ScoreTab>();
 
-			if (Pace.goals.size() > 0) {
-				for (Goal g : Pace.goals) {
+			if(Pace.goals.size() > 0) {
+				for(Goal g : Pace.goals) {
 					scoreTabs.add(new ScoreTab(g));
 				}
 				updateTables();
-				for (ScoreTab t : scoreTabs) {
+				for(ScoreTab t : scoreTabs) {
 					tabPane.getTabs().add(t.getTab());
 				}
 
@@ -99,9 +98,7 @@ public class fxScores {
 	}
 
 	public static void updateTables() {
-		if (scoreTabs != null && scoreTabs.size() > 0)
-			for (ScoreTab t : scoreTabs)
-				t.updateTable(sScores.getWidth());
+		if(scoreTabs != null && scoreTabs.size() > 0) for(ScoreTab t : scoreTabs) t.updateTable(sScores.getWidth());
 	}
 
 	private static void resizeWindow() {

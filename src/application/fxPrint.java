@@ -78,8 +78,7 @@ public class fxPrint {
 	}
 
 	public static void open(String preset) {
-		if (sPrint != null)
-			sPrint.close();
+		if(sPrint != null) sPrint.close();
 		sPrint = new Stage();
 
 		printers = Printer.getAllPrinters();
@@ -141,11 +140,10 @@ public class fxPrint {
 				new CheckBox("Difference"), new CheckBox("Notes") };
 
 		// Selecting a new row will update the list of columns
-		for (CheckBox c : cColumns) {
+		for(CheckBox c : cColumns) {
 			c.selectedProperty().addListener((obs) -> {
 				setSortCol.getItems().setAll(getSortColumns());
-				if (setSortCol.getItems().size() > 0)
-					setSortCol.setValue(setSortCol.getItems().get(0));
+				if(setSortCol.getItems().size() > 0) setSortCol.setValue(setSortCol.getItems().get(0));
 			});
 			c.setTooltip(new Tooltip("Include the '" + c.getText() + "' column in the table?"));
 		}
@@ -175,10 +173,9 @@ public class fxPrint {
 
 		List<String> goals = new ArrayList<String>();
 		// Add the drop-down for select division:
-		if (Pace.goals.size() > 0)
-			for (Goal g : Pace.goals) {
-				goals.add(g.division);
-			}
+		if(Pace.goals.size() > 0) for(Goal g : Pace.goals) {
+			goals.add(g.division);
+		}
 		setDivision = new ChoiceBox<String>(FXCollections.observableArrayList(goals));
 		setDivision.setDisable(true);
 		setDivision.setTooltip(new Tooltip("Specified Division to print"));
@@ -238,10 +235,8 @@ public class fxPrint {
 
 		Scene sc = new Scene(vb);
 		sc.setOnKeyPressed(key -> {
-			if (key.isControlDown() && key.getCode() == KeyCode.ENTER)
-				print();
-			if (key.getCode() == KeyCode.ESCAPE)
-				sPrint.close();
+			if(key.isControlDown() && key.getCode() == KeyCode.ENTER) print();
+			if(key.getCode() == KeyCode.ESCAPE) sPrint.close();
 		});
 		sPrint.setScene(sc);
 
@@ -258,7 +253,7 @@ public class fxPrint {
 		// PRESETS
 		// 'if(preset == "") {} else ' makes sure nothing happens if the preset is left
 		// blank
-		if (preset == "") {} else if (preset.contentEquals("All Teams")) {
+		if(preset == "") {} else if(preset.contentEquals("All Teams")) {
 			// All Teams
 			setContent.setValue("Custom");
 			rtAll.setSelected(true);
@@ -271,13 +266,13 @@ public class fxPrint {
 			setColumnValue("Elapsed Time");
 			setValidTeams.setValue("All Teams");
 			setSortCol.setValue("Team");
-		} else if (preset.toCharArray()[0] == 'g') {
+		} else if(preset.toCharArray()[0] == 'g') {
 			// Specific Division
 			String div = "";
 			// Tries to parse the division, if errors then will just return
 			try {
 				div = preset.substring(1);
-			} catch (Exception e) {
+			} catch(Exception e) {
 				return;
 			}
 
@@ -300,14 +295,11 @@ public class fxPrint {
 	}
 
 	private static void setColumnValue(String colName, boolean var) {
-		for (CheckBox c : cColumns)
-			if (c.getText().contentEquals(colName))
-				c.setSelected(var);
+		for(CheckBox c : cColumns) if(c.getText().contentEquals(colName)) c.setSelected(var);
 	}
 
 	private static void setAllColumnValues(boolean var) {
-		for (CheckBox c : cColumns)
-			c.setSelected(var);
+		for(CheckBox c : cColumns) c.setSelected(var);
 	}
 
 	/**
@@ -315,7 +307,7 @@ public class fxPrint {
 	 */
 	private static void updateStage() {
 		boolean eCustom = !setContent.getValue().equals("Custom");
-		for (CheckBox c : cColumns) {
+		for(CheckBox c : cColumns) {
 			c.setDisable(eCustom);
 		}
 
@@ -327,22 +319,19 @@ public class fxPrint {
 		setValidTeams.setDisable(isAnnounce);
 		setSortCol.setDisable(isAnnounce);
 		setSortCol.getItems().setAll(getSortColumns());
-		if (setSortCol.getItems().size() > 0)
-			setSortCol.setValue(setSortCol.getItems().get(0));
+		if(setSortCol.getItems().size() > 0) setSortCol.setValue(setSortCol.getItems().get(0));
 	}
 
 	private static List<String> getSortColumns() {
 		List<String> ret = new ArrayList<String>();
 		switch (setContent.getValue()) {
 		case "Custom":
-			for (CheckBox c : cColumns) {
-				if (!c.isDisabled() && c.isSelected())
-					ret.add(c.getText());
+			for(CheckBox c : cColumns) {
+				if(!c.isDisabled() && c.isSelected()) ret.add(c.getText());
 			}
 			break;
 		case "Scoreboard":
-			for (String s : new String[] { "Team", "Division", "Elapsed Time" })
-				ret.add(s);
+			for(String s : new String[] { "Team", "Division", "Elapsed Time" }) ret.add(s);
 		}
 		return ret;
 	}
@@ -354,24 +343,23 @@ public class fxPrint {
 	 */
 	private static String[] getCustomPrintColumns() {
 		List<String> s = new ArrayList<String>();
-		for (CheckBox c : cColumns) {
-			if (c.isSelected())
-				switch (c.getText()) {
-				case "Position":
-					s.add("positionInDivision");
-					break;
-				case "Start Time":
-					s.add("startFXM");
-					break;
-				case "Finish Time":
-					s.add("finishFXM");
-					break;
-				case "Elapsed Time":
-					s.add("elapsedFXM");
-					break;
-				default:
-					s.add(c.getText().toLowerCase());
-				}
+		for(CheckBox c : cColumns) {
+			if(c.isSelected()) switch (c.getText()) {
+			case "Position":
+				s.add("positionInDivision");
+				break;
+			case "Start Time":
+				s.add("startFXM");
+				break;
+			case "Finish Time":
+				s.add("finishFXM");
+				break;
+			case "Elapsed Time":
+				s.add("elapsedFXM");
+				break;
+			default:
+				s.add(c.getText().toLowerCase());
+			}
 		}
 		String[] ret = new String[s.size()];
 		s.toArray(ret);
@@ -401,14 +389,10 @@ public class fxPrint {
 
 	private static void print() {
 		// Cancel Scripts
-		if (setContent.getValue() == "")
-			return;
-		if (setSortCol.getValue() == "")
-			return;
-		if (rtSelect.isSelected() && setDivision.getValue() == "")
-			return;
-		if (setValidTeams.getValue() == "")
-			return;
+		if(setContent.getValue() == "") return;
+		if(setSortCol.getValue() == "") return;
+		if(rtSelect.isSelected() && setDivision.getValue() == "") return;
+		if(setValidTeams.getValue() == "") return;
 
 		sPrint.setAlwaysOnTop(false);
 
@@ -448,17 +432,15 @@ public class fxPrint {
 		List<Team> teams = null;
 		switch (setContent.getValue()) {
 		case "Announcement":
-			if (!Pace.goals.isEmpty())
-				for (Goal g : Pace.goals) {
-					header = g.division + "  " + g.time.toString();
-					columns = new String[] { "positionInDivision", "team", "names", "elapsedFXM" };
-					List<Team> tms = new ArrayList<Team>();
-					for (Team t : paceManager.getTeams(g.division)) {
-						if (!t.getPositionInDivision().contentEquals(""))
-							tms.add(t);
-					}
-					borderPanes.addAll(getTablePages(job, header, tms, columns, "positionInDivision"));
+			if(!Pace.goals.isEmpty()) for(Goal g : Pace.goals) {
+				header = g.division + "  " + g.time.toString();
+				columns = new String[] { "positionInDivision", "team", "names", "elapsedFXM" };
+				List<Team> tms = new ArrayList<Team>();
+				for(Team t : paceManager.getTeams(g.division)) {
+					if(!t.getPositionInDivision().contentEquals("")) tms.add(t);
 				}
+				borderPanes.addAll(getTablePages(job, header, tms, columns, "positionInDivision"));
+			}
 			else {
 				printError("Goal List is empty");
 				sProgress.close();
@@ -474,17 +456,17 @@ public class fxPrint {
 			// Selected Columns
 			columns = getCustomPrintColumns();
 			// Get selected Teams
-			if (rtAll.isSelected()) { //
+			if(rtAll.isSelected()) { //
 				teams = Pace.teams;
-			} else if (rtSelect.isSelected()) { // Specifically Selected Division
+			} else if(rtSelect.isSelected()) { // Specifically Selected Division
 				String selDiv = setDivision.getValue();
-				if (!selDiv.contentEquals("")) {
+				if(!selDiv.contentEquals("")) {
 					teams = paceManager.getTeams(selDiv);
 				}
-			} else if (rtSeparate.isSelected()) { // Each division in its own respective list, uses custom script as
+			} else if(rtSeparate.isSelected()) { // Each division in its own respective list, uses custom script as
 													// multiple pages are needed
-				if (!Pace.goals.isEmpty()) {
-					for (Goal g : Pace.goals) {
+				if(!Pace.goals.isEmpty()) {
+					for(Goal g : Pace.goals) {
 						header = g.division + "  " + g.time.toString(true);
 						borderPanes.addAll(getTablePages(job, header, getPrintTeams(paceManager.getTeams(g.division)),
 								columns, getCustomPrintSort()));
@@ -500,16 +482,16 @@ public class fxPrint {
 			break;
 		}
 
-		for (int i = 0; i < sCopies.getValue(); i++) {
-			for (BorderPane bp : borderPanes) {
-				if (!job.printPage(bp)) {
+		for(int i = 0; i < sCopies.getValue(); i++) {
+			for(BorderPane bp : borderPanes) {
+				if(!job.printPage(bp)) {
 					printError("Job could not print");
 					return;
 				}
 			}
 		}
 
-		if (job.endJob()) {
+		if(job.endJob()) {
 			sProgress.close();
 		} else {
 			progressText.setText("Print Failed");
@@ -537,10 +519,8 @@ public class fxPrint {
 			String sortColumn) {
 		// Checks if the sort column is in the columns
 		boolean bError = true;
-		for (String s : columns)
-			if (s.contentEquals(sortColumn))
-				bError = false;
-		if (bError) {
+		for(String s : columns) if(s.contentEquals(sortColumn)) bError = false;
+		if(bError) {
 			System.err.append("Error: sortColumn is not a specified column in columns");
 			return null;
 		}
@@ -563,15 +543,12 @@ public class fxPrint {
 		List<BorderPane> ret = new ArrayList<BorderPane>();
 
 		// Clear List of any nulls, then adds a null at the end
-		if (teams.contains(null))
-			teams.remove(null);
+		if(teams.contains(null)) teams.remove(null);
 		teams.add(null);
 
 		// Check if columns has the names part
 		boolean hasNames = false;
-		for (String s : columns)
-			if (s.toLowerCase().contentEquals("names"))
-				hasNames = true;
+		for(String s : columns) if(s.toLowerCase().contentEquals("names")) hasNames = true;
 
 		// USING
 		// https://stackoverflow.com/questions/31918959/javafx-print-tableview-on-multiple-pages
@@ -581,18 +558,16 @@ public class fxPrint {
 		List<Team> tempTm = new ArrayList<Team>();
 		double tmpHeight = headerSize;
 
-		for (Team t : teams) {
+		for(Team t : teams) {
 			// Get cell size
 			double tSize = cellSize;
-			if (t != null && hasNames)
-				tSize = cellSize * t.names.size();
+			if(t != null && hasNames) tSize = cellSize * t.names.size();
 
 			// Test if cell size will push it to the limit
-			if ((tmpHeight + tSize > setTableHeight) || t == null) {
+			if((tmpHeight + tSize > setTableHeight) || t == null) {
 				// Hard Copy
 				List<Team> ts = new ArrayList<Team>();
-				for (Team a : tempTm)
-					ts.add(a);
+				for(Team a : tempTm) ts.add(a);
 
 				// Make the table
 				TableView<Team> tble = getTable(columns, sortColumn, pWidth - 5);
@@ -644,7 +619,7 @@ public class fxPrint {
 		TableView<Team> table = new TableView<Team>();
 
 		// Cycle through each requested column
-		for (String s : columns) {
+		for(String s : columns) {
 			TableColumn<Team, String> col = new TableColumn<Team, String>(s);
 
 			// Variable Settings for each column
@@ -702,19 +677,18 @@ public class fxPrint {
 			table.getColumns().add(col);
 
 			// If it's the sort column, set it as the sort column
-			if (s.contentEquals(sortColumn))
-				table.getSortOrder().add(col);
+			if(s.contentEquals(sortColumn)) table.getSortOrder().add(col);
 		}
 
 		// If smaller than scale
-		if (totalSize != pWidth) {
+		if(totalSize != pWidth) {
 
 			// Take the difference left over
 			double difference = pWidth - totalSize;
 
 			// Split remainder up and add that amount to each column
 			double colAdd = difference / table.getColumns().size();
-			for (TableColumn<Team, ?> a : table.getColumns()) {
+			for(TableColumn<Team, ?> a : table.getColumns()) {
 				a.setPrefWidth(a.getPrefWidth() + colAdd);
 			}
 		}
@@ -727,23 +701,19 @@ public class fxPrint {
 
 	private static List<Team> getPrintTeams(List<Team> teams) {
 		List<Team> ret = new ArrayList<Team>();
-		for (Team t : teams) {
+		for(Team t : teams) {
 			switch (setValidTeams.getValue()) {
 			case "Valid Only":
-				if (!t.excluded && t.elapsed() != null)
-					ret.add(t);
+				if(!t.excluded && t.elapsed() != null) ret.add(t);
 				break;
 			case "Arrived Only":
-				if (t.elapsed() != null)
-					ret.add(t);
+				if(t.elapsed() != null) ret.add(t);
 				break;
 			case "Departed Only":
-				if (t.start != null && t.finish == null)
-					ret.add(t);
+				if(t.start != null && t.finish == null) ret.add(t);
 				break;
 			case "Stale Only":
-				if (t.start == null && t.finish == null)
-					ret.add(t);
+				if(t.start == null && t.finish == null) ret.add(t);
 				break;
 			default:
 				ret.add(t);

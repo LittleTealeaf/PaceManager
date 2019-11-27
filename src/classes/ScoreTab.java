@@ -27,11 +27,11 @@ public class ScoreTab {
 		table.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent click) {
-				if (click.getClickCount() == 2) {
+				if(click.getClickCount() == 2) {
 					try {
 						fxTeam.open(table.getSelectionModel().getSelectedItem(),
 								table.getSelectionModel().getSelectedCells().get(0).getColumn());
-					} catch (IndexOutOfBoundsException e) {}
+					} catch(IndexOutOfBoundsException e) {}
 				}
 			}
 		});
@@ -39,7 +39,7 @@ public class ScoreTab {
 		table.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent e) {
-				if (e.getCode() == KeyCode.P && e.isControlDown()) {
+				if(e.getCode() == KeyCode.P && e.isControlDown()) {
 					application.fxPrint.open("g" + g.division);
 				}
 			}
@@ -104,11 +104,10 @@ public class ScoreTab {
 	public void updateTable(double width) {
 		label = new Label("Division Optimum Time: " + goal.getGoalTime().toString(true));
 		table.getItems().clear();
-		for (Team t : Pace.teams) {
+		for(Team t : Pace.teams) {
 			// If team isn't excluded, is the same division, and has an elapsed time, add it
 			// to the list
-			if (!t.excluded && t.division.contentEquals(goal.division) && t.elapsed() != null)
-				table.getItems().add(t);
+			if(!t.excluded && t.division.contentEquals(goal.division) && t.elapsed() != null) table.getItems().add(t);
 		}
 		table.autosize();
 		table.sort();
@@ -116,8 +115,7 @@ public class ScoreTab {
 	}
 
 	public void resizeTable(double width) {
-		if (width == 0)
-			return;
+		if(width == 0) return;
 		final double wTeam = 50;
 		final double wTime = 80;
 		table.getColumns().get(0).setMinWidth(wTeam);

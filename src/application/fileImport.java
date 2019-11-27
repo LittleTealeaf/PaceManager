@@ -35,9 +35,8 @@ public class fileImport {
 		teams = getTeams(fileChooser.showOpenDialog(fxMain.sMRef));
 
 		// If getting teams was not successful
-		if (teams == null)
-			return;
-		if (teams.size() == 0) {
+		if(teams == null) return;
+		if(teams.size() == 0) {
 			// TODO Warning for not able to import file
 			return;
 		}
@@ -67,27 +66,24 @@ public class fileImport {
 		dialog.getDialogPane().getButtonTypes().addAll(bAccept, bCancel);
 
 		dialog.setResultConverter(r -> {
-			if (cClearTeams.isSelected()) {
+			if(cClearTeams.isSelected()) {
 				return teams;
 			} else {
 				// Only used if set to not keep unique
 				List<Team> setTeams = new ArrayList<Team>();
 
-				for (Team a : teams) {
-					for (Team b : Pace.teams) {
-						if (a.team.contentEquals(b.team)) {
+				for(Team a : teams) {
+					for(Team b : Pace.teams) {
+						if(a.team.contentEquals(b.team)) {
 							b.names = a.names;
 							b.division = a.division;
-							if (!cKeepExisting.isSelected())
-								setTeams.add(b);
+							if(!cKeepExisting.isSelected()) setTeams.add(b);
 						}
 					}
 				}
 
-				if (!cKeepExisting.isSelected())
-					return setTeams;
-				else
-					return Pace.teams;
+				if(!cKeepExisting.isSelected()) return setTeams;
+				else return Pace.teams;
 			}
 		});
 
@@ -96,8 +92,7 @@ public class fileImport {
 	}
 
 	private static List<Team> getTeams(File file) {
-		if (file == null)
-			return null;
+		if(file == null) return null;
 		List<Team> teams = new ArrayList<Team>();
 		try {
 			FileInputStream stream = new FileInputStream(file);
@@ -109,40 +104,39 @@ public class fileImport {
 			int posCol = 0;
 			// Goes through each row
 			Iterator<Row> rowIterator = sheet.iterator();
-			while (rowIterator.hasNext()) {
+			while(rowIterator.hasNext()) {
 				posRow++;
 				Row row = rowIterator.next();
 
 				// Goes through each column
-				if (posRow > 2) {
+				if(posRow > 2) {
 					Team r = new Team();
 					posCol = 0;
 					Iterator<Cell> cellIterator = row.cellIterator();
-					while (cellIterator.hasNext()) {
+					while(cellIterator.hasNext()) {
 						posCol++;
 						Cell cell = cellIterator.next();
 
-						if (posCol == 2) {
+						if(posCol == 2) {
 							r.division = getString(cell).toLowerCase();
-							if (r.division.length() > 1)
+							if(r.division.length() > 1)
 								r.division = r.division.substring(0, 1).toUpperCase() + r.division.substring(1);
-						} else if (posCol == 3) {
+						} else if(posCol == 3) {
 							r.team = getString(cell);
 
-						} else if (posCol == 4 || posCol == 5 || posCol == 6) {
+						} else if(posCol == 4 || posCol == 5 || posCol == 6) {
 							r.names.add(getString(cell));
 						}
 
 					}
-					while (r.names.contains(""))
-						r.names.remove("");
-					if (r.names.size() > 0 && !r.team.contentEquals("")) {
+					while(r.names.contains("")) r.names.remove("");
+					if(r.names.size() > 0 && !r.team.contentEquals("")) {
 						teams.add(r);
 					}
 				}
 			}
 			workbook.close();
-		} catch (IOException e) {
+		} catch(IOException e) {
 			return null;
 		}
 		return teams;
@@ -152,17 +146,15 @@ public class fileImport {
 	private static String getString(Cell cell) {
 		try {
 			return cell.getStringCellValue();
-		} catch (Exception e) {
+		} catch(Exception e) {
 			try {
 				double a = cell.getNumericCellValue();
-				if ((int) a == a)
-					return (int) a + "";
-				else
-					return a + "";
-			} catch (Exception f) {
+				if((int) a == a) return (int) a + "";
+				else return a + "";
+			} catch(Exception f) {
 				try {
 					return cell.getBooleanCellValue() + "";
-				} catch (Exception g) {}
+				} catch(Exception g) {}
 			}
 		}
 		return "";

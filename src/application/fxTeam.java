@@ -70,8 +70,7 @@ public class fxTeam {
 
 	public static void open(Team t) {
 		team = t;
-		if (sTeam != null)
-			sTeam.close();
+		if(sTeam != null) sTeam.close();
 		sTeam = new Stage();
 		sTeam.setWidth(500);
 		sTeam.setAlwaysOnTop(true);
@@ -139,8 +138,7 @@ public class fxTeam {
 		Button bSave = new Button("Save");
 		bSave.setPrefWidth(75);
 		bSave.setOnAction(event -> {
-			if (save())
-				sTeam.close();
+			if(save()) sTeam.close();
 		});
 
 		HBox hFooter = new HBox(bCancel, cExclude, lError, rb, bSave);
@@ -159,7 +157,7 @@ public class fxTeam {
 		sTeam.setScene(sc);
 		sTeam.show();
 
-		if (t == null) {
+		if(t == null) {
 			sTeam.setTitle("Create Team");
 			tTeam.requestFocus();
 		} else {
@@ -168,27 +166,21 @@ public class fxTeam {
 			tTeam.setText(t.team);
 			tDiv.setText(t.division);
 			cExclude.setSelected(t.excluded);
-			if (t.start != null)
-				tStart.setText(t.start.toString());
-			if (t.finish != null)
-				tFinish.setText(t.finish.toString());
-			if (t.names.size() > 0) {
+			if(t.start != null) tStart.setText(t.start.toString());
+			if(t.finish != null) tFinish.setText(t.finish.toString());
+			if(t.names.size() > 0) {
 				int pos = 0;
-				for (String l : t.names) {
-					if (pos == 0)
-						tRiders.setText(l);
-					else
-						tRiders.setText(tRiders.getText() + "\n" + l);
+				for(String l : t.names) {
+					if(pos == 0) tRiders.setText(l);
+					else tRiders.setText(tRiders.getText() + "\n" + l);
 					pos++;
 				}
 			}
-			if (t.notes.size() > 0) {
+			if(t.notes.size() > 0) {
 				int pos = 0;
-				for (String l : t.notes) {
-					if (pos == 0)
-						tNotes.setText(l);
-					else
-						tNotes.setText(tNotes.getText() + "\n" + l);
+				for(String l : t.notes) {
+					if(pos == 0) tNotes.setText(l);
+					else tNotes.setText(tNotes.getText() + "\n" + l);
 					pos++;
 				}
 			}
@@ -201,33 +193,29 @@ public class fxTeam {
 		r.team = tTeam.getText();
 		r.division = tDiv.getText();
 		r.start = new Time(tStart.getText());
-		if (r.start.error != 0)
-			r.start = null;
+		if(r.start.error != 0) r.start = null;
 		r.finish = new Time(tFinish.getText());
-		if (r.finish.error != 0)
-			r.finish = null;
+		if(r.finish.error != 0) r.finish = null;
 		String tmp = "";
-		if (!tRiders.getText().contentEquals("")) {
+		if(!tRiders.getText().contentEquals("")) {
 			List<String> tmpRid = new ArrayList<String>();
-			for (char c : tRiders.getText().toCharArray()) {
-				if (c == '\n' || c == '\r') {
+			for(char c : tRiders.getText().toCharArray()) {
+				if(c == '\n' || c == '\r') {
 					tmpRid.add(tmp);
 					tmp = "";
-				} else
-					tmp += c;
+				} else tmp += c;
 			}
 			tmpRid.add(tmp);
 			tmp = "";
 			r.names = tmpRid;
 		}
-		if (!tNotes.getText().contentEquals("")) {
+		if(!tNotes.getText().contentEquals("")) {
 			List<String> tmpNot = new ArrayList<String>();
-			for (char c : tNotes.getText().toCharArray()) {
-				if (c == '\n' || c == '\r') {
+			for(char c : tNotes.getText().toCharArray()) {
+				if(c == '\n' || c == '\r') {
 					tmpNot.add(tmp);
 					tmp = "";
-				} else
-					tmp += c;
+				} else tmp += c;
 			}
 			tmpNot.add(tmp);
 			r.notes = tmpNot;
@@ -235,22 +223,21 @@ public class fxTeam {
 		r.excluded = cExclude.isSelected();
 
 		// Remove any empty names
-		while (r.names.contains(""))
-			r.names.contains("");
+		while(r.names.contains("")) r.names.contains("");
 
 		return r;
 	}
 
 	private static boolean save() {
 		lError.setText("");
-		if (tTeam.getText().contentEquals("")) {
+		if(tTeam.getText().contentEquals("")) {
 			lError.setText("Must include a Team Identifier");
 			return false;
 		}
 		// If it's "making a team"
-		if (team == null) {
+		if(team == null) {
 			Team existingTeam = paceManager.getTeam(tTeam.getText());
-			if (existingTeam != null) {
+			if(existingTeam != null) {
 				// Confirms if the user would want to override the details
 				Alert alert = new Alert(AlertType.NONE);
 				alert.setTitle("Team ID Taken");
@@ -262,12 +249,10 @@ public class fxTeam {
 				sTeam.setAlwaysOnTop(false);
 				Optional<ButtonType> result = alert.showAndWait();
 				sTeam.setAlwaysOnTop(true);
-				if (result.get() == bOverwrite) {
+				if(result.get() == bOverwrite) {
 					Pace.teams.set(Pace.teams.indexOf(paceManager.getTeam(tTeam.getText())), compileTeam());
-				} else
-					return false;
-			} else
-				Pace.teams.add(compileTeam());
+				} else return false;
+			} else Pace.teams.add(compileTeam());
 		} else {
 			Pace.teams.set(Pace.teams.indexOf(paceManager.getTeam(tTeam.getText())), compileTeam());
 		}
