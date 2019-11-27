@@ -162,8 +162,7 @@ public class fileImport {
 			} catch (Exception f) {
 				try {
 					return cell.getBooleanCellValue() + "";
-				} catch (Exception g) {
-				}
+				} catch (Exception g) {}
 			}
 		}
 		return "";

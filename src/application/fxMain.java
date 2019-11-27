@@ -96,16 +96,14 @@ public class fxMain extends Application {
 					} else {
 						fxTeam.open(sel, col);
 					}
-				} catch (IndexOutOfBoundsException e) {
-				}
+				} catch (IndexOutOfBoundsException e) {}
 			}
 		});
 		table.setOnKeyPressed(k -> {
 			if (k.getCode() == KeyCode.DELETE) {
 				try {
 					paceManager.deleteTeam(table.getSelectionModel().getSelectedItem());
-				} catch (IndexOutOfBoundsException e) {
-				}
+				} catch (IndexOutOfBoundsException e) {}
 			} else if (k.getCode() == KeyCode.P && k.isControlDown()) {
 				fxPrint.open("All Teams");
 			}
@@ -358,9 +356,7 @@ public class fxMain extends Application {
 					alert.setHeaderText("Opening a new file will clear the currently loaded file");
 					alert.setContentText("Make sure that you've saved the loaded one before accepting");
 					Optional<ButtonType> result = alert.showAndWait();
-					if (result.get() != ButtonType.OK) {
-						return;
-					}
+					if (result.get() != ButtonType.OK) { return; }
 				}
 				fileManager.loadedFile = null;
 				Pace.newPace();

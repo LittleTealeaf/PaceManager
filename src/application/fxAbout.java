@@ -37,8 +37,7 @@ public class fxAbout {
 				r += line;
 			}
 
-		} catch (Exception e) {
-		}
+		} catch (Exception e) {}
 		return r;
 	}
 }

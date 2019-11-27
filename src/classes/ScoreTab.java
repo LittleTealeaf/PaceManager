@@ -31,8 +31,7 @@ public class ScoreTab {
 					try {
 						fxTeam.open(table.getSelectionModel().getSelectedItem(),
 								table.getSelectionModel().getSelectedCells().get(0).getColumn());
-					} catch (IndexOutOfBoundsException e) {
-					}
+					} catch (IndexOutOfBoundsException e) {}
 				}
 			}
 		});

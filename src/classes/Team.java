@@ -133,9 +133,7 @@ public class Team {
 	}
 
 	public String getNotesDisplay() {
-		if (notes != null && notes.size() > 0) {
-			return notes.get(0);
-		}
+		if (notes != null && notes.size() > 0) { return notes.get(0); }
 		return "";
 	}
 

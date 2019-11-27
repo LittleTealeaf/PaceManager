@@ -66,16 +66,14 @@ public class fxGoals {
 			if (click.getClickCount() == 2) {
 				try {
 					editDiv(table.getSelectionModel().getSelectedItem());
-				} catch (IndexOutOfBoundsException e) {
-				}
+				} catch (IndexOutOfBoundsException e) {}
 			}
 		});
 		table.setOnKeyPressed(k -> {
 			if (k.getCode() == KeyCode.DELETE) {
 				try {
 					deleteDiv(table.getSelectionModel().getSelectedItem());
-				} catch (IndexOutOfBoundsException e) {
-				}
+				} catch (IndexOutOfBoundsException e) {}
 			}
 		});
 

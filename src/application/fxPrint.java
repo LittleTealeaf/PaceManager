@@ -258,8 +258,7 @@ public class fxPrint {
 		// PRESETS
 		// 'if(preset == "") {} else ' makes sure nothing happens if the preset is left
 		// blank
-		if (preset == "") {
-		} else if (preset.contentEquals("All Teams")) {
+		if (preset == "") {} else if (preset.contentEquals("All Teams")) {
 			// All Teams
 			setContent.setValue("Custom");
 			rtAll.setSelected(true);
