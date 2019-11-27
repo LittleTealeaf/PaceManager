@@ -1,9 +1,13 @@
 package debugdev;
 
-import java.util.*;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
-import classes.*;
+import classes.Goal;
+import classes.Pace;
+import classes.Team;
+import classes.Time;
 
 public class importTeams {
 	
