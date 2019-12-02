@@ -10,10 +10,11 @@ import debugdev.importTeams;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.stage.Stage;
 
 public class paceManager {
 	
-	public static final String version = "0.1.0-Beta";
+	public static final String version = "0.1.1";
 	
 	private static final boolean development = false;
 	
@@ -74,5 +75,10 @@ public class paceManager {
 			}
 		}
 		return ret;
+	}
+	
+	public static void closeApplication() {
+		Stage[] stages = new Stage[] {fxMain.mNotes, fxPrint.sPrint, fxScores.sScores, fxSettings.sSettings, fxTeam.sTeam, fxGoals.sGoals, fxImport.sImport};
+		for(Stage s : stages) if(s != null && s.isShowing()) s.close();
 	}
 }

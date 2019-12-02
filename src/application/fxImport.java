@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 public class fxImport {
 	
-	private static Stage sImport;
+	public static Stage sImport;
 	private static TextField tTeam;
 	private static TextField tData;
 	private static ChoiceBox<String> cMethod;

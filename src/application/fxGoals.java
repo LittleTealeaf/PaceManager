@@ -30,7 +30,7 @@ import javafx.stage.Stage;
 
 public class fxGoals {
 
-	private static Stage sGoals;
+	public static Stage sGoals;
 	private static TableView<Goal> table;
 	
 	@SuppressWarnings("unchecked") //one unsolvable warning
@@ -43,6 +43,9 @@ public class fxGoals {
 		});
 		sGoals.heightProperty().addListener(obs -> {
 			resizeWindow();
+		});
+		sGoals.setOnCloseRequest(event -> {
+			if(sgEdit != null && sgEdit.isShowing()) sgEdit.close();
 		});
 		
 		//Creating the Table
