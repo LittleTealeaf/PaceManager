@@ -52,8 +52,7 @@ public class fileImport {
 		cClearTeams.setTooltip(new Tooltip("Clears all currently loaded teams"));
 
 		CheckBox cKeepExisting = new CheckBox("Keep Updated Only");
-		cKeepExisting
-				.setTooltip(new Tooltip("Removes any teams currently listed \nthat are not updated by the import"));
+		cKeepExisting.setTooltip(new Tooltip("Removes any teams currently listed \nthat are not updated by the import"));
 		cKeepExisting.disableProperty().bind(cClearTeams.selectedProperty());
 
 		GridPane grid = new GridPane();
@@ -119,8 +118,7 @@ public class fileImport {
 
 						if(posCol == 2) {
 							r.division = getString(cell).toLowerCase();
-							if(r.division.length() > 1)
-								r.division = r.division.substring(0, 1).toUpperCase() + r.division.substring(1);
+							if(r.division.length() > 1) r.division = r.division.substring(0, 1).toUpperCase() + r.division.substring(1);
 						} else if(posCol == 3) {
 							r.team = getString(cell);
 

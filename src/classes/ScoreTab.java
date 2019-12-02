@@ -29,8 +29,7 @@ public class ScoreTab {
 			public void handle(MouseEvent click) {
 				if(click.getClickCount() == 2) {
 					try {
-						fxTeam.open(table.getSelectionModel().getSelectedItem(),
-								table.getSelectionModel().getSelectedCells().get(0).getColumn());
+						fxTeam.open(table.getSelectionModel().getSelectedItem(), table.getSelectionModel().getSelectedCells().get(0).getColumn());
 					} catch(IndexOutOfBoundsException e) {}
 				}
 			}

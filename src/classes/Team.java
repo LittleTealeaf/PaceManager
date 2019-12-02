@@ -141,9 +141,7 @@ public class Team {
 	public String getDifference() {
 		if(elapsed() != null) {
 			for(Goal g : Pace.goals) {
-				if(g.division.contentEquals(division)) {
-					return new Time(Math.abs(g.getGoalTime().time - elapsed().time)).toString(true);
-				}
+				if(g.division.contentEquals(division)) { return new Time(Math.abs(g.getGoalTime().time - elapsed().time)).toString(true); }
 			}
 		}
 		return "";

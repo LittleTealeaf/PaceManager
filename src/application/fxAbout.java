@@ -27,8 +27,7 @@ public class fxAbout {
 	public static String getChangeLog() {
 		String r = "";
 		try {
-			BufferedReader br = new BufferedReader(
-					new InputStreamReader(ClassLoader.getSystemResourceAsStream("Changelog.txt")));
+			BufferedReader br = new BufferedReader(new InputStreamReader(ClassLoader.getSystemResourceAsStream("Changelog.txt")));
 			String line = "";
 			while((line = br.readLine()) != null) {
 				if(!r.contentEquals("")) r += "\n";

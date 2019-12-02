@@ -20,7 +20,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 public class fileManager {
 
 	public static File loadedFile;
-	
+
 	private static Gson staticGson;
 
 	/**
@@ -79,8 +79,8 @@ public class fileManager {
 
 			staticGson.fromJson(Files.newBufferedReader(openFile.toPath()), Pace.class);
 			Pace.loadPace();
-			
-			//TODO add differentiation for different versions
+
+			// TODO add differentiation for different versions
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

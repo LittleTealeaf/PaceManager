@@ -135,9 +135,7 @@ public class fxPrint {
 			updateStage();
 		});
 
-		cColumns = new CheckBox[] { new CheckBox("Position"), new CheckBox("Team"), new CheckBox("Names"),
-				new CheckBox("Start Time"), new CheckBox("Finish Time"), new CheckBox("Elapsed Time"),
-				new CheckBox("Difference"), new CheckBox("Notes") };
+		cColumns = new CheckBox[] {new CheckBox("Position"), new CheckBox("Team"), new CheckBox("Names"), new CheckBox("Start Time"), new CheckBox("Finish Time"), new CheckBox("Elapsed Time"), new CheckBox("Difference"), new CheckBox("Notes")};
 
 		// Selecting a new row will update the list of columns
 		for(CheckBox c : cColumns) {
@@ -185,8 +183,7 @@ public class fxPrint {
 
 		Text lValid = new Text("Valid Teams");
 
-		setValidTeams = new ChoiceBox<String>(FXCollections.observableArrayList("All Teams", "Valid Only",
-				"Arrived Only", "Departed Only", "Stale Only"));
+		setValidTeams = new ChoiceBox<String>(FXCollections.observableArrayList("All Teams", "Valid Only", "Arrived Only", "Departed Only", "Stale Only"));
 		setValidTeams.setTooltip(new Tooltip("Which specific teams should we include?"));
 
 		HBox hbContentValidTeams = new HBox(lValid, setValidTeams);
@@ -200,8 +197,7 @@ public class fxPrint {
 		HBox hbContentOptionsSort = new HBox(lSort, setSortCol);
 		hbContentOptionsSort.setSpacing(10);
 
-		VBox vbContentOptionsTeamSelect = new VBox(rtAll, hbContentOptionsRTSelect, rtSeparate, hbContentValidTeams,
-				hbContentOptionsSort);
+		VBox vbContentOptionsTeamSelect = new VBox(rtAll, hbContentOptionsRTSelect, rtSeparate, hbContentValidTeams, hbContentOptionsSort);
 		vbContentOptionsTeamSelect.setSpacing(10);
 
 		// rest
@@ -331,7 +327,7 @@ public class fxPrint {
 			}
 			break;
 		case "Scoreboard":
-			for(String s : new String[] { "Team", "Division", "Elapsed Time" }) ret.add(s);
+			for(String s : new String[] {"Team", "Division", "Elapsed Time"}) ret.add(s);
 		}
 		return ret;
 	}
@@ -403,8 +399,7 @@ public class fxPrint {
 		job = PrinterJob.createPrinterJob(printer);
 
 		// Create a layout using the printer's default paper
-		PageLayout layout = printer.createPageLayout(printer.getDefaultPageLayout().getPaper(), orientation,
-				Printer.MarginType.DEFAULT);
+		PageLayout layout = printer.createPageLayout(printer.getDefaultPageLayout().getPaper(), orientation, Printer.MarginType.DEFAULT);
 
 		job.getJobSettings().setPageLayout(layout);
 
@@ -434,7 +429,7 @@ public class fxPrint {
 		case "Announcement":
 			if(!Pace.goals.isEmpty()) for(Goal g : Pace.goals) {
 				header = g.division + "  " + g.time.toString();
-				columns = new String[] { "positionInDivision", "team", "names", "elapsedFXM" };
+				columns = new String[] {"positionInDivision", "team", "names", "elapsedFXM"};
 				List<Team> tms = new ArrayList<Team>();
 				for(Team t : paceManager.getTeams(g.division)) {
 					if(!t.getPositionInDivision().contentEquals("")) tms.add(t);
@@ -449,7 +444,7 @@ public class fxPrint {
 			break;
 		case "Scoreboard":
 			header = "Scoreboard:";
-			columns = new String[] { "team", "division", "elapsedFXM", "difference" };
+			columns = new String[] {"team", "division", "elapsedFXM", "difference"};
 			borderPanes.addAll(getTablePages(job, header, getPrintTeams(Pace.teams), columns, "team"));
 			break;
 		case "Custom":
@@ -468,8 +463,7 @@ public class fxPrint {
 				if(!Pace.goals.isEmpty()) {
 					for(Goal g : Pace.goals) {
 						header = g.division + "  " + g.time.toString(true);
-						borderPanes.addAll(getTablePages(job, header, getPrintTeams(paceManager.getTeams(g.division)),
-								columns, getCustomPrintSort()));
+						borderPanes.addAll(getTablePages(job, header, getPrintTeams(paceManager.getTeams(g.division)), columns, getCustomPrintSort()));
 					}
 					break;
 				} else {
@@ -515,8 +509,7 @@ public class fxPrint {
 	 * @return
 	 */
 
-	private static List<BorderPane> getTablePages(PrinterJob job, String header, List<Team> getTeams, String[] columns,
-			String sortColumn) {
+	private static List<BorderPane> getTablePages(PrinterJob job, String header, List<Team> getTeams, String[] columns, String sortColumn) {
 		// Checks if the sort column is in the columns
 		boolean bError = true;
 		for(String s : columns) if(s.contentEquals(sortColumn)) bError = false;

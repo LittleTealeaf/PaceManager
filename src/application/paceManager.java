@@ -81,8 +81,7 @@ public class paceManager {
 	}
 
 	public static void closeApplication() {
-		Stage[] stages = new Stage[] { fxMain.mNotes, fxPrint.sPrint, fxScores.sScores, fxSettings.sSettings,
-				fxTeam.sTeam, fxGoals.sGoals, fxImport.sImport };
+		Stage[] stages = new Stage[] {fxMain.mNotes, fxPrint.sPrint, fxScores.sScores, fxSettings.sSettings, fxTeam.sTeam, fxGoals.sGoals, fxImport.sImport};
 		for(Stage s : stages) if(s != null && s.isShowing()) s.close();
 	}
 }

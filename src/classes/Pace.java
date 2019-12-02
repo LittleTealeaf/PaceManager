@@ -12,10 +12,9 @@ public class Pace {
 	public static String version;
 	public static List<Team> teams;
 	public static List<Goal> goals;
-	public static Settings settings; //TODO move settings to user-based
+	public static Settings settings; // TODO move settings to user-based
 
 	public Pace() {}
-
 
 	/**
 	 * Applies object-values to the pace main values

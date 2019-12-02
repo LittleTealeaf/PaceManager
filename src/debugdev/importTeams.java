@@ -65,7 +65,7 @@ public class importTeams {
 				longestTime = t.elapsed();
 			}
 		}
-		String[] divs = { "Pleasure", "Hunt", "Western", "Junior" };
+		String[] divs = {"Pleasure", "Hunt", "Western", "Junior"};
 		for(String s : divs) {
 			Goal g = new Goal(s);
 			g.time = new Time((float) Math.random() * (longestTime.time - shortestTime.time) + shortestTime.time);
