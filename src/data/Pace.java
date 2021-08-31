@@ -25,14 +25,27 @@ public class Pace {
 	}
 
 	public static Pace fromJson(JsonReader reader) {
-		return Serializer.getGson().fromJson(reader, Pace.class);
+		Pace pace = Serializer.getGson().fromJson(reader, Pace.class);
+		pace.populateDivisions();
+		return pace;
+	}
+
+	/**
+	 * Populates each {@link Team team's} {@link Division} value based on their {@code DivisionUUID} parameter
+	 */
+	public void populateDivisions() {
+		for (Team team : teams) {
+			for (Division division : divisions) {
+				if (team.getDivisionUUID().equals(division.getUUID())) {
+					team.setDivision(division);
+				}
+			}
+		}
 	}
 
 	public String serialize() {
 		//Update all teams to include their division UUID
-		for (Team team : teams) {
-			team.updateDivisionUUID();
-		}
+		for (Team team : teams) team.updateDivisionUUID();
 
 		return Serializer.getGson().toJson(this);
 	}
