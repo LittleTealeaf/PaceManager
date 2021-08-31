@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"data","l":"Division"},{"p":"main","l":"main"},{"p":"data","l":"Pace"},{"p":"data","l":"Team"},{"p":"data","l":"Time"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"main","l":"Application"},{"p":"data","l":"Division"},{"p":"data","l":"Pace"},{"p":"data","l":"Serializer"},{"p":"main","l":"Settings"},{"p":"data","l":"Team"},{"p":"data","l":"Time"},{"p":"data","l":"Time.TimeDeserializer"},{"p":"data","l":"Time.TimeSerializer"}];updateSearchResults();
