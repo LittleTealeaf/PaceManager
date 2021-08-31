@@ -8,17 +8,19 @@ public class App extends Application {
 
     public static Settings settings = new Settings(); //TODO get the base app directory and save settings
 
-    private Stage appStage;
+    private static Stage appStage;
 
     public static void main(String[] args) {
         launch(args);
     }
 
+    public static void show() {
+        appStage.show();
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
         appStage = stage;
-
-
-        stage.show();
+        Greeter.open();
     }
 }
