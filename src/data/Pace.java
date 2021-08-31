@@ -18,18 +18,48 @@ public class Pace {
 		divisions = new ArrayList<>();
 	}
 
-	public List<Division> getDivisions() {
-		return divisions;
-	}
-
-	public List<Team> getTeams() {
-		return teams;
-	}
-
+	/**
+	 * Creates a Pace from a given JSON
+	 *
+	 * @param reader Json Reader
+	 * @return Pace object with the given data
+	 */
 	public static Pace fromJson(JsonReader reader) {
 		Pace pace = Serializer.getGson().fromJson(reader, Pace.class);
 		pace.populateDivisions();
 		return pace;
+	}
+
+	/**
+	 * Returns a list of all divisions
+	 *
+	 * @return List of all divisions in the pace
+	 */
+	public List<Division> getDivisions() {
+		return divisions;
+	}
+
+	/**
+	 * Returns a list of all teams
+	 *
+	 * @return List of all teams in the pace
+	 */
+	public List<Team> getTeams() {
+		return teams;
+	}
+
+	/**
+	 * Wipes out all division team lists and repopulates them
+	 */
+	public void updateDivisionLists() {
+		for (Division division : divisions) {
+			division.clearTeams();
+		}
+		for (Team team : teams) {
+			if (team.getDivision() != null) {
+				team.getDivision().addTeam(team);
+			}
+		}
 	}
 
 	/**
@@ -49,6 +79,11 @@ public class Pace {
 		}
 	}
 
+	/**
+	 * Serializes the data within this object to a writer
+	 *
+	 * @param writer Writer to serialize the data to
+	 */
 	public void serialize(Writer writer) {
 		//Updates all
 		for (Team team : teams) {

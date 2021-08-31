@@ -5,21 +5,22 @@ import java.util.UUID;
 
 public class Team implements Serializable {
 
-	private final UUID uuid;
+	private final UUID uuid = UUID.randomUUID();
 	private String teamNumber;
 	private String[] riders;
 	private String notes;
 	private Time startTime;
 	private Time endTime;
+	private boolean excluded = false;
 	private transient Division division;
 	private UUID divisionUUID;
+	/**
+	 * Only used when populating scoreboards
+	 */
+	private transient Time distanceToGoal;
 
 
 	public Team() {
-		uuid = UUID.randomUUID();
-
-		startTime = null;
-		endTime = null;
 	}
 
 	public Division getDivision() {
@@ -27,7 +28,12 @@ public class Team implements Serializable {
 	}
 
 	public void setDivision(Division division) {
+		//Removes itself from previous division
+		if (this.division != null) {
+			this.division.removeTeam(this);
+		}
 		this.division = division;
+		division.addTeam(this);
 	}
 
 	public UUID getDivisionUUID() {
@@ -104,5 +110,21 @@ public class Team implements Serializable {
 	 */
 	public boolean hasElapsed() {
 		return startTime != null && endTime != null;
+	}
+
+	public Time getDistanceToGoal() {
+		return distanceToGoal;
+	}
+
+	public void setDistanceToGoal(Time distanceToGoal) {
+		this.distanceToGoal = distanceToGoal;
+	}
+
+	public boolean isExcluded() {
+		return excluded;
+	}
+
+	public void setExcluded(boolean excluded) {
+		this.excluded = excluded;
 	}
 }

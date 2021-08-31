@@ -1,5 +1,7 @@
 package data;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -12,12 +14,14 @@ public class Division {
 	private String name;
 	private Time goalTime;
 	private final UUID uuid;
+	private final transient List<Team> teams;
 
 	/**
 	 * Creates a new division with a unique UUID
 	 */
 	public Division() {
 		this.uuid = UUID.randomUUID();
+		this.teams = new ArrayList<Team>();
 	}
 
 	/**
@@ -47,6 +51,18 @@ public class Division {
 		return goalTime;
 	}
 
+	public void addTeam(Team team) {
+		teams.add(team);
+	}
+
+	public void removeTeam(Team team) {
+		teams.remove(team);
+	}
+
+	public void clearTeams() {
+		teams.clear();
+	}
+
 	/**
 	 * Updates the division's goal time
 	 *
@@ -67,5 +83,55 @@ public class Division {
 
 	public String toString() {
 		return "Division " + getName();
+	}
+
+	/**
+	 * Does not include any that did not complete
+	 *
+	 * @return Array of all completed and non-excluded teams ordered by closeness to the average time. Returns {@code null} if there is no goal time
+	 */
+	public Team[] getPlaceOrder() {
+		if (goalTime == null) {
+			return null;
+		}
+
+		//Get number of places, and update their distance-to-goal time
+		int count = 0;
+		for (Team team : teams) {
+			if (team.hasElapsed() && !team.isExcluded()) {
+				count++;
+				team.setDistanceToGoal(Time.difference(team.getElapsedTime(), goalTime).absolute());
+			}
+		}
+
+		//Creates empty Team array and populates with the valid teams
+		Team[] standings = new Team[count];
+		count--;
+		for (int i = 0; i < teams.size() && count >= 0; i++) {
+			Team t = teams.get(i);
+			if (t.hasElapsed() && !t.isExcluded()) {
+				standings[count--] = t;
+			}
+		}
+
+		//Sorting using a quick bubble sort
+		//TODO implement better sorting method
+		boolean edited;
+		for (int i = 0; i < standings.length; i++) {
+			edited = false;
+			for (int j = 0; j < standings.length - i - 1; j++) {
+				if (standings[i].getDistanceToGoal().compareTo(standings[i + 1].getDistanceToGoal()) == 1) {
+					Team tmp = standings[i];
+					standings[i] = standings[i + 1];
+					standings[i + 1] = tmp;
+					edited = true;
+				}
+			}
+			if (!edited) {
+				break;
+			}
+		}
+
+		return standings;
 	}
 }
