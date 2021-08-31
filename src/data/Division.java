@@ -1,12 +1,16 @@
 package data;
 
-public class Division {
+import java.io.Serializable;
+import java.util.UUID;
+
+public class Division implements Serializable {
 
 	private String name;
 	private Time goalTime;
+	private final UUID uuid;
 
 	public Division() {
-
+		this.uuid = UUID.randomUUID();
 	}
 
 	public String getName() {
@@ -23,6 +27,10 @@ public class Division {
 
 	public void setGoalTime(Time goalTime) {
 		this.goalTime = goalTime;
+	}
+
+	public UUID getUUID() {
+		return uuid;
 	}
 
 	public String toString() {

@@ -3,6 +3,9 @@
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
+    <javadoc-paths>
+      <root url="file://$MODULE_DIR$/javadocs" />
+    </javadoc-paths>
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
@@ -41,5 +44,6 @@
     <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-compiler-api:2.8.4" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-compiler-manager:2.8.4" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.codehaus.plexus:plexus-compiler-javac:2.8.4" level="project" />
+    <orderEntry type="library" exported="" name="Maven: com.google.code.gson:gson:2.8.8" level="project" />
   </component>
 </module>

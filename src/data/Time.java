@@ -1,6 +1,11 @@
 package data;
 
-public class Time {
+import com.google.gson.*;
+
+import java.io.Serializable;
+import java.lang.reflect.Type;
+
+public class Time implements Serializable {
 
     private final long time;
 
@@ -18,6 +23,18 @@ public class Time {
 
     public long getTime() {
         return time;
+    }
+
+    public static class TimeSerializer implements JsonSerializer<Time> {
+        public JsonElement serialize(Time time, Type type, JsonSerializationContext jsonSerializationContext) {
+            return new JsonPrimitive(time.getTime());
+        }
+    }
+
+    public static class TimeDeserializer implements JsonDeserializer<Time> {
+        public Time deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+            return new Time(jsonElement.getAsLong());
+        }
     }
 
 }
