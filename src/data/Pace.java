@@ -1,7 +1,7 @@
 package data;
 
 import com.google.gson.stream.JsonReader;
-import main.Application;
+import ui.App;
 
 import java.io.Writer;
 import java.util.ArrayList;
@@ -66,7 +66,7 @@ public class Pace {
 	 * Populates each {@link Team team's} {@link Division} value based on their {@code DivisionUUID} parameter
 	 */
 	public void populateDivisions() {
-		boolean clear = Application.settings.getAggressiveMemorySave();
+		boolean clear = App.settings.getAggressiveMemorySave();
 		for (Team team : teams) {
 			for (Division division : divisions) {
 				if (team.getDivisionUUID().equals(division.getUUID())) {
@@ -90,7 +90,7 @@ public class Pace {
 			team.updateDivisionUUID();
 		}
 		Serializer.getGson().toJson(this, writer);
-		if (Application.settings.getAggressiveMemorySave()) {
+		if (App.settings.getAggressiveMemorySave()) {
 			for (Team team : teams) {
 				team.clearDivisionUUID();
 			}
