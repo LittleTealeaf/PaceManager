@@ -11,17 +11,17 @@ import java.util.UUID;
  */
 public class Division {
 
-	private String name;
-	private Time goalTime;
 	private final UUID uuid;
 	private final transient List<Team> teams;
+	private String name;
+	private Time goalTime;
 
 	/**
 	 * Creates a new division with a unique UUID
 	 */
 	public Division() {
-		this.uuid = UUID.randomUUID();
-		this.teams = new ArrayList<Team>();
+		uuid = UUID.randomUUID();
+		teams = new ArrayList<Team>();
 	}
 
 	/**
@@ -51,6 +51,15 @@ public class Division {
 		return goalTime;
 	}
 
+	/**
+	 * Updates the division's goal time
+	 *
+	 * @param goalTime Division's Goal Time
+	 */
+	public void setGoalTime(Time goalTime) {
+		this.goalTime = goalTime;
+	}
+
 	public void addTeam(Team team) {
 		teams.add(team);
 	}
@@ -61,15 +70,6 @@ public class Division {
 
 	public void clearTeams() {
 		teams.clear();
-	}
-
-	/**
-	 * Updates the division's goal time
-	 *
-	 * @param goalTime Division's Goal Time
-	 */
-	public void setGoalTime(Time goalTime) {
-		this.goalTime = goalTime;
 	}
 
 	/**

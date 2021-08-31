@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public class Team implements Serializable {
 
-	private final UUID uuid = UUID.randomUUID();
+	private final UUID uuid;
 	private String teamNumber;
 	private String[] riders;
 	private String notes;
@@ -21,6 +21,7 @@ public class Team implements Serializable {
 
 
 	public Team() {
+		uuid = UUID.randomUUID();
 	}
 
 	public Division getDivision() {
