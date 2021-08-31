@@ -1,7 +1,9 @@
 package data;
 
 import com.google.gson.stream.JsonReader;
+import main.Application;
 
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -34,19 +36,29 @@ public class Pace {
 	 * Populates each {@link Team team's} {@link Division} value based on their {@code DivisionUUID} parameter
 	 */
 	public void populateDivisions() {
+		boolean clear = Application.settings.getAggressiveMemorySave();
 		for (Team team : teams) {
 			for (Division division : divisions) {
 				if (team.getDivisionUUID().equals(division.getUUID())) {
 					team.setDivision(division);
 				}
 			}
+			if (clear) {
+				team.clearDivisionUUID();
+			}
 		}
 	}
 
-	public String serialize() {
-		//Update all teams to include their division UUID
-		for (Team team : teams) team.updateDivisionUUID();
-
-		return Serializer.getGson().toJson(this);
+	public void serialize(Writer writer) {
+		//Updates all
+		for (Team team : teams) {
+			team.updateDivisionUUID();
+		}
+		Serializer.getGson().toJson(this, writer);
+		if (Application.settings.getAggressiveMemorySave()) {
+			for (Team team : teams) {
+				team.clearDivisionUUID();
+			}
+		}
 	}
 }
