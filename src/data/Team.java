@@ -1,8 +1,9 @@
 package data;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class Team {
+public class Team implements Serializable {
 
 	private final UUID uuid;
 	private String teamNumber;
