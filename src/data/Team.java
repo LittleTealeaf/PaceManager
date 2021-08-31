@@ -10,6 +10,8 @@ public class Team {
 	private String notes;
 	private Time startTime;
 	private Time endTime;
+	private transient Division division;
+	private UUID divisionUUID;
 
 
 	public Team() {
@@ -17,6 +19,26 @@ public class Team {
 
 		startTime = null;
 		endTime = null;
+	}
+
+	public Division getDivision() {
+		return division;
+	}
+
+	public void setDivision(Division division) {
+		this.division = division;
+	}
+
+	public UUID getDivisionUUID() {
+		return divisionUUID;
+	}
+
+	public void updateDivisionUUID() {
+		divisionUUID = division == null ? null : division.getUUID();
+	}
+
+	public void clearDivisionUUID() {
+		divisionUUID = null;
 	}
 
 	public UUID getUUID() {
