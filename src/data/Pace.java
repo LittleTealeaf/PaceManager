@@ -51,7 +51,7 @@ public class Pace {
 	 * @return Pace object with the given data
 	 */
 	public static Pace fromJson(JsonReader reader) {
-		Pace pace = Serializer.getGson().fromJson(reader, Pace.class);
+		Pace pace = App.getGson().fromJson(reader, Pace.class);
 		pace.populateDivisions();
 		return pace;
 	}
@@ -126,7 +126,7 @@ public class Pace {
 		for (Team team : teams) {
 			team.updateDivisionUUID();
 		}
-		Serializer.getGson().toJson(this, writer);
+		App.getGson().toJson(this, writer);
 		if (App.settings.getAggressiveMemorySave()) {
 			for (Team team : teams) {
 				team.clearDivisionUUID();
