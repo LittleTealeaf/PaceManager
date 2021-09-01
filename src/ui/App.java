@@ -21,6 +21,6 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         appStage = stage;
-        Greeter.open();
+        Launcher.open();
     }
 }
