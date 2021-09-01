@@ -1,8 +1,9 @@
-package ui;
+package app;
 
 import data.Settings;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import ui.Launcher;
 
 /*
 Add additional thread to periodically save pace

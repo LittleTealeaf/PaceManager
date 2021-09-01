@@ -1,7 +1,7 @@
 package data;
 
 import com.google.gson.stream.JsonReader;
-import ui.App;
+import app.App;
 
 import java.io.File;
 import java.io.FileReader;
