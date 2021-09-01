@@ -3,6 +3,9 @@ package data;
 import com.google.gson.stream.JsonReader;
 import ui.App;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -12,10 +15,28 @@ public class Pace {
 
 	private final List<Division> divisions;
 	private final List<Team> teams;
+	private transient File file;
 
 	public Pace() {
 		teams = new LinkedList<>();
 		divisions = new ArrayList<>();
+	}
+
+	/**
+	 * Creates a Pace object from a file, and attaches that file to the pace
+	 *
+	 * @param file Location of the Pace File
+	 * @return {@code Pace} object with the {@code File} connected. Will return {@code null} if FileIO or other errors occur.
+	 */
+	public static Pace fromFile(File file) {
+		try {
+			JsonReader reader = new JsonReader(new FileReader(file));
+			Pace pace = fromJson(reader);
+			pace.setFile(file);
+			return pace;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	/**
@@ -80,6 +101,17 @@ public class Pace {
 	}
 
 	/**
+	 * Attempts to save the Pace to the file specified
+	 */
+	public void save() {
+		if (file != null) {
+			try {
+				serialize(new FileWriter(file));
+			} catch (Exception ignore) {}
+		}
+	}
+
+	/**
 	 * Serializes the data within this object to a writer
 	 *
 	 * @param writer Writer to serialize the data to
@@ -95,5 +127,13 @@ public class Pace {
 				team.clearDivisionUUID();
 			}
 		}
+	}
+
+	public File getFile() {
+		return file;
+	}
+
+	public void setFile(File file) {
+		this.file = file;
 	}
 }
