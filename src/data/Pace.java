@@ -10,14 +10,19 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 
+
+//Idea: Additional Thread for periodical saving
 public class Pace {
 
+	private final UUID uuid;
 	private final List<Division> divisions;
 	private final List<Team> teams;
 	private transient File file;
 
 	public Pace() {
+		uuid = UUID.randomUUID();
 		teams = new LinkedList<>();
 		divisions = new ArrayList<>();
 	}
@@ -135,5 +140,9 @@ public class Pace {
 
 	public void setFile(File file) {
 		this.file = file;
+	}
+
+	public UUID getUUID() {
+		return uuid;
 	}
 }

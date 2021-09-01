@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="paceManager" target="15" />
+      <module name="paceManager" target="1.15" />
     </bytecodeTargetLevel>
   </component>
 </project>
