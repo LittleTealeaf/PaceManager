@@ -111,13 +111,15 @@ public class Settings {
     }
 
     public void addRecentFile(String path) {
-        //Checks if file is already in
-        for (String recentPath : recentFiles) {
-            if (recentPath.contentEquals(path)) {
-                return;
+        if (path != null) {
+            //Checks if file is already in
+            for (String recentPath : recentFiles) {
+                if (recentPath.contentEquals(path)) {
+                    return;
+                }
             }
+            recentFiles.add(path);
+            save();
         }
-        recentFiles.add(path);
-        save();
     }
 }
