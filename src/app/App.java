@@ -15,7 +15,7 @@ public class App extends Application {
      * Current PaceManager version of the code
      */
     public static final String version = "1.0.0";
-    public static final Settings settings = new Settings(); //TODO get the base app directory and save settings
+    public static final Settings settings = SystemResources.getSettings(); //TODO get the base app directory and save settings
 
     private static Stage appStage;
 

@@ -3,8 +3,11 @@ package app;
 //Ideas: Additional Thread for Settings Saving
 
 import java.io.File;
+import java.io.FileWriter;
 
 public class Settings {
+
+    public static transient File settingsFile;
 
     /**
      * Current application version of the settings object
@@ -38,7 +41,17 @@ public class Settings {
      * Saves the current configuration
      */
     public void save() {
+        if(settingsFile.getParentFile().mkdirs()) {
+            System.out.println("Created " + settingsFile.getParentFile().getPath());
+        }
 
+        try {
+            FileWriter writer = new FileWriter(settingsFile);
+            Serialization.getGson().toJson(this,Settings.class,writer);
+            writer.close();
+        } catch(Exception e) {
+            System.out.println(e);
+        }
     }
 
     /**

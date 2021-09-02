@@ -1,4 +1,7 @@
 module paceManager {
+    opens app to com.google.gson;
+    opens data to com.google.gson;
+
     exports ui to javafx.graphics;
     exports app to javafx.graphics;
 

@@ -1,6 +1,9 @@
 package app;
 
+import com.google.gson.stream.JsonReader;
+
 import java.io.File;
+import java.io.FileReader;
 
 public class SystemResources {
 
@@ -19,5 +22,23 @@ public class SystemResources {
      */
     public static String getWorkingDirectory() {
         return System.getProperty("user.home") + File.separatorChar + ".paceManager" + File.separatorChar;
+    }
+
+    public static Settings getSettings() {
+        Settings.settingsFile = new File(getWorkingDirectory() + "config.json");
+        Settings settings = new Settings();
+        try {
+            if(Settings.settingsFile.exists()) {
+                JsonReader reader = new JsonReader(new FileReader(Settings.settingsFile));
+                settings = Serialization.getGson().fromJson(reader,Settings.class);
+                if(settings == null) {
+                    settings = new Settings();
+                }
+            }
+        } catch(Exception e){
+            System.out.println(e);
+        }
+        settings.save();
+        return settings;
     }
 }
