@@ -11,7 +11,7 @@ Potentially add additional thread to have a "backup" of the pace
 
 public class App extends Application {
 
-    public static Settings settings = new Settings(); //TODO get the base app directory and save settings
+    public static final Settings settings = new Settings(); //TODO get the base app directory and save settings
 
     private static Stage appStage;
 

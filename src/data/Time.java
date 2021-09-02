@@ -32,6 +32,7 @@ public class Time {
 
     /**
      * Creates a Time object with a given time
+     *
      * @param time Time in ms
      */
     public Time(long time) {
@@ -40,8 +41,9 @@ public class Time {
 
     /**
      * Calculates the difference between two {@code Time} objects
+     *
      * @param start Starting Time
-     * @param end Ending Time
+     * @param end   Ending Time
      * @return Elapsed Time as a {@code Time} object
      */
     //TODO make this non-static?
@@ -60,6 +62,7 @@ public class Time {
 
     /**
      * Returns the time
+     *
      * @return Time in ms
      */
     public long getTime() {
@@ -68,18 +71,20 @@ public class Time {
 
     /**
      * Compares the time to another {@code Time} object's time
+     *
      * @param other {@code Time} object to compare to
      * @return the value 0 if this Time is equal to the other Time; a value less than 0 if this Time is numerically less than
-    the other Time; and a value greater than 0 if this Time is numerically greater than the other Time (signed comparison).
-     @see Long#compareTo(Long)
+     * the other Time; and a value greater than 0 if this Time is numerically greater than the other Time (signed comparison).
+     * @see Long#compareTo(Long)
      */
     public int compareTo(Time other) {
-        return Long.valueOf(getTime()).compareTo(other.getTime());
+        return Long.compare(getTime(), other.getTime());
     }
 
     /**
      * Provides the Serialization instructions of a {@link Time} object, which only needs to be stored as a {@code long} instead
      * of a whole object
+     *
      * @author Thomas Kwashnak
      * @version 1.0.0
      * @since 1.0.0
