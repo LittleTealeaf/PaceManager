@@ -1,5 +1,6 @@
 package data;
 
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -11,13 +12,27 @@ import java.util.UUID;
  */
 public class Division {
 
+    /**
+     * Unique identifier of this division object
+     *
+     * @see #getUUID()
+     */
     private final UUID uuid;
+    /**
+     * List of team objects within the division.
+     *
+     * @apiNote is transitive such that teams are not double copied in {@link Pace#serialize(Writer)}
+     * @see #addTeam(Team)
+     * @see #removeTeam(Team)
+     */
     private final transient List<Team> teams;
     private String name;
     private Time goalTime;
 
     /**
      * Creates a new division with a unique UUID
+     *
+     * @see #uuid
      */
     public Division() {
         uuid = UUID.randomUUID();
@@ -76,6 +91,7 @@ public class Division {
      * Provides the unique identifier for the division
      *
      * @return The division's unique identifier
+     * @see #uuid
      */
     public UUID getUUID() {
         return uuid;
@@ -133,5 +149,17 @@ public class Division {
         }
 
         return standings;
+    }
+
+    public List<Team> getTeams() {
+        return teams;
+    }
+
+    public Team[] getTeamsAsArray() {
+        Team[] array = new Team[teams.size()];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = teams.get(i);
+        }
+        return array;
     }
 }
