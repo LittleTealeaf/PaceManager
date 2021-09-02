@@ -49,7 +49,9 @@ public class Pace {
 			pace.setFile(file);
 			return pace;
 		} catch (Exception e) {
-			return null;
+			Pace pace = new Pace();
+			pace.setFile(file);
+			return pace;
 		}
 	}
 

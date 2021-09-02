@@ -4,8 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import data.Time;
 
-import java.io.File;
-
 /**
  * Contains functions related to Serializing / Deserializing data
  *
@@ -55,7 +53,8 @@ public class Serialization {
     private static Gson createGson() {
         return new GsonBuilder().excludeFieldsWithModifiers(java.lang.reflect.Modifier.TRANSIENT)
                                 .registerTypeAdapter(Time.class, new Time.TimeSerializer())
-                                .registerTypeAdapter(Time.class, new Time.TimeDeserializer()).create();
+                                .registerTypeAdapter(Time.class, new Time.TimeDeserializer()).setPrettyPrinting()
+                                .create();
     }
 
 

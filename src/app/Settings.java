@@ -4,6 +4,8 @@ package app;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Settings {
 
@@ -28,6 +30,8 @@ public class Settings {
 
     private String paceDirectory;
 
+    private final List<String> recentFiles;
+
     /**
      * Creates a new {@code Settings} object and sets values to their defaults.
      */
@@ -36,6 +40,9 @@ public class Settings {
         fileExtension = ".pace";
         version = App.version;
         paceDirectory = System.getProperty("user.home") + File.separatorChar + "Documents" + File.separatorChar;
+        //If doesn't work, revert to home
+
+        recentFiles = new ArrayList<>();
     }
 
     /**
@@ -97,5 +104,20 @@ public class Settings {
 
     public String getPaceDirectory() {
         return paceDirectory;
+    }
+
+    public List<String> getRecentFiles() {
+        return recentFiles;
+    }
+
+    public void addRecentFile(String path) {
+        //Checks if file is already in
+        for (String recentPath : recentFiles) {
+            if (recentPath.contentEquals(path)) {
+                return;
+            }
+        }
+        recentFiles.add(path);
+        save();
     }
 }
