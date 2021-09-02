@@ -11,6 +11,9 @@ Potentially add additional thread to have a "backup" of the pace
 
 public class App extends Application {
 
+    /**
+     * Current PaceManager version of the code
+     */
     public static final String version = "1.0.0";
     public static final Settings settings = new Settings(); //TODO get the base app directory and save settings
 
@@ -30,5 +33,4 @@ public class App extends Application {
         appStage = stage;
         Launcher.open();
     }
-
 }

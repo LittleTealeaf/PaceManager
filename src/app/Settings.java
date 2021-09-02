@@ -4,10 +4,25 @@ package app;
 
 public class Settings {
 
+    /**
+     * Current application version of the settings object
+     * @see App#version
+     */
     private String version;
+    /**
+     * Determines whether or not additional steps are taken to reduce memory used by the program
+     * <p>Default: False
+     */
     private boolean aggressiveMemorySave;
+    /**
+     * What the file extension should be for files opened by the program
+     * <p>Default: {@code .pace}
+     */
     private String fileExtension;
 
+    /**
+     * Creates a new {@code Settings} object and sets values to their defaults.
+     */
     public Settings() {
         aggressiveMemorySave = false;
         fileExtension = ".pace";
@@ -55,5 +70,6 @@ public class Settings {
      */
     public void setFileExtension(String fileExtension) {
         this.fileExtension = fileExtension;
+        save();
     }
 }
