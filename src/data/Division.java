@@ -30,9 +30,7 @@ public class Division {
     private Time goalTime;
 
     /**
-     * Creates a new division with a unique UUID
-     *
-     * @see #uuid
+     * @since 1.0.0
      */
     public Division() {
         uuid = UUID.randomUUID();
@@ -40,71 +38,79 @@ public class Division {
     }
 
     /**
-     * Returns the name of the Division
-     *
-     * @return Division Name
+     * @since 1.0.0
+     * @return
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Sets the name of the Division
-     *
-     * @param name Division Name
+     * @since 1.0.0
+     * @param name
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * Goal Time is the time that all members within the division are aiming for
-     *
-     * @return Division's Goal Time
+     * @since 1.0.0
+     * @return
      */
     public Time getGoalTime() {
         return goalTime;
     }
 
     /**
-     * Updates the division's goal time
-     *
-     * @param goalTime Division's Goal Time
+     * @since 1.0.0
+     * @param goalTime
      */
     public void setGoalTime(Time goalTime) {
         this.goalTime = goalTime;
     }
 
+    /**
+     * @since 1.0.0
+     * @param team
+     */
     public void addTeam(Team team) {
         teams.add(team);
     }
 
+    /**
+     * @since 1.0.0
+     * @param team
+     */
     public void removeTeam(Team team) {
         teams.remove(team);
     }
 
+    /**
+     * @since 1.0.0
+     */
     public void clearTeams() {
         teams.clear();
     }
 
     /**
-     * Provides the unique identifier for the division
-     *
-     * @return The division's unique identifier
-     * @see #uuid
+     * @since 1.0.0
+     * @return
      */
     public UUID getUUID() {
         return uuid;
     }
 
+    /**
+     * @since 1.0.0
+     * @return
+     */
     public String toString() {
         return "Division " + getName();
     }
 
     /**
-     * Does not include any that did not complete
-     *
-     * @return Array of all completed and non-excluded teams ordered by closeness to the average time. Returns {@code null} if there is no goal time
+     * @since 1.0.0
+     * @return
      */
     public Team[] getPlaceOrder() {
         if (goalTime == null) {
@@ -151,10 +157,18 @@ public class Division {
         return standings;
     }
 
+    /**
+     * @since 1.0.0
+     * @return
+     */
     public List<Team> getTeams() {
         return teams;
     }
 
+    /**
+     * @since 1.0.0
+     * @return
+     */
     public Team[] getTeamsAsArray() {
         Team[] array = new Team[teams.size()];
         for (int i = 0; i < array.length; i++) {

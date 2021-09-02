@@ -20,39 +20,42 @@ import java.io.File;
  */
 public class Serialization {
     /**
-     * Stores the created {@link Gson} object
-     *
+     * Stores the generated {@code Gson} object used for serialization and deserialization of objects.
+     * This value is generated at application launch using the {@link #createGson()} method.
      * @see #createGson()
      * @see #getGson()
-     */
-    private static Gson builder;
-
-    /**
-     * Grabs the project's {@link Gson} object. Creates a new one using {@link #createGson()} if one has not been already generated. Stores the newly created {@code Gson} object in {@link #builder}
-     *
-     * @return Modified {@link Gson} object. Modifications listed under {@code #createGson()}
-     * @see #createGson()
      * @see Gson
      */
+    private static final Gson gson = createGson();
+
+    /**
+     * Provides the {@code Gson} object for serialization and deserialization.
+     * @see #gson
+     * @see #createGson()
+     * @return Gson object, specified in {@link #createGson()}
+     * @since 1.0.0
+     */
     public static Gson getGson() {
-        return builder != null ? builder : (builder = createGson());
+        return gson;
     }
 
     /**
-     * Creates a {@link Gson} object with modifications required
-     * <br>
-     * Modifications include:
+     * Creates a {@link Gson} object with modifications required for use in the project.
+     * <p>
+     * Modifications:
      * <ul>
-     *     <li>Excluding {@code transient} values
+     *     <li>Excluding {@code transient} values. This allows for specification of values that should not be serialized,
+     *     either to save space or to prevent excess connections.
      *     </li>
-     *     <li>Custom {@link Time} Serialization / Deserialization</li>
+     *     <li>Use of custom Serializers and Deserializers:
+     *     <ul><li>{@link Time} class ({@link data.Time.TimeSerializer Serializer}, {@link data.Time.TimeDeserializer Deserializer})</li></ul>
+     *     </li>
      * </ul>
      *
      * @return Completed {@link Gson} object for use in the project
-     * @see data.Time.TimeSerializer
-     * @see data.Time.TimeDeserializer
      * @see Gson
      * @see GsonBuilder
+     * @since 1.0.0
      */
     private static Gson createGson() {
         return new GsonBuilder().excludeFieldsWithModifiers(java.lang.reflect.Modifier.TRANSIENT)
@@ -61,15 +64,19 @@ public class Serialization {
     }
 
     /**
-     * Provides the working directory for Application Files
+     * Provides a working directory for use of data, settings, or other files within the project.
+     * <p>Uses {@link System#getProperty(String) System.getProperty("user.home")} to obtain the base directory, and then includes a
+     * sub directory for paceManager. This folder is set as hidden on all systems except windows by naming the directory ".paceManager".
+     * <p>
+     * Future versions may move this folder to {@code %APPDATA%} on windows machines, or similarly change the location on other
+     * platforms as well.
      *
-     * @return String file path of the application working directory
-     * @apiNote Does not point to the {@code %AppData%} folder on windows directories. This is due to the
-     * {@code AppDirs}
-     * dependency not working in its current or previous versions in this project
-     * @see System#getProperty(String)
+     * @return String directory path of the working directory, such as {@code C:\Users\Tealeaf\.paceManager\}
      * @see File#separatorChar
+     * @since 1.0.0
+     * @version 1.0.0
      */
+    //TODO perhaps move this to a java file like "System Resources"
     public static String getWorkingDirectory() {
         return System.getProperty("user.home") + File.separatorChar + ".paceManager" + File.separatorChar;
     }

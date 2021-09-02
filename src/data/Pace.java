@@ -15,6 +15,12 @@ import java.util.UUID;
 
 
 //Idea: Additional Thread for periodical saving
+
+/**
+ * @author Thomas Kwashnak
+ * @since 1.0.0
+ * @version 1.0.0
+ */
 public class Pace {
 
 	private final UUID uuid;
@@ -22,6 +28,9 @@ public class Pace {
 	private final List<Team> teams;
 	private transient File file;
 
+	/**
+	 * @since 1.0.0
+	 */
 	public Pace() {
 		uuid = UUID.randomUUID();
 		teams = new LinkedList<>();
@@ -29,10 +38,9 @@ public class Pace {
 	}
 
 	/**
-	 * Creates a Pace object from a file, and attaches that file to the pace
-	 *
-	 * @param file Location of the Pace File
-	 * @return {@code Pace} object with the {@code File} connected. Will return {@code null} if FileIO or other errors occur.
+	 * @since 1.0.0
+	 * @param file
+	 * @return
 	 */
 	public static Pace fromFile(File file) {
 		try {
@@ -46,10 +54,10 @@ public class Pace {
 	}
 
 	/**
-	 * Creates a Pace from a given JSON
 	 *
-	 * @param reader Json Reader
-	 * @return Pace object with the given data
+	 * @since 1.0.0
+	 * @param reader
+	 * @return
 	 */
 	public static Pace fromJson(JsonReader reader) {
 		Pace pace = Serialization.getGson().fromJson(reader, Pace.class);
@@ -58,18 +66,16 @@ public class Pace {
 	}
 
 	/**
-	 * Returns a list of all divisions
-	 *
-	 * @return List of all divisions in the pace
+	 * @since 1.0.0
+	 * @return
 	 */
 	public List<Division> getDivisions() {
 		return divisions;
 	}
 
 	/**
-	 * Returns a list of all teams
-	 *
-	 * @return List of all teams in the pace
+	 * @since 1.0.0
+	 * @return
 	 */
 	public List<Team> getTeams() {
 		return teams;
@@ -77,6 +83,7 @@ public class Pace {
 
 	/**
 	 * Wipes out all division team lists and repopulates them
+	 * @since 1.0.0
 	 */
 	public void updateDivisionLists() {
 		for (Division division : divisions) {
@@ -91,6 +98,7 @@ public class Pace {
 
 	/**
 	 * Populates each {@link Team team's} {@link Division} value based on their {@code DivisionUUID} parameter
+	 * @since 1.0.0
 	 */
 	public void populateDivisions() {
 		boolean clear = App.settings.getAggressiveMemorySave();
@@ -108,6 +116,7 @@ public class Pace {
 
 	/**
 	 * Attempts to save the Pace to the file specified
+	 * @since 1.0.0
 	 */
 	public void save() {
 		if (file != null) {
@@ -121,6 +130,7 @@ public class Pace {
 	 * Serializes the data within this object to a writer
 	 *
 	 * @param writer Writer to serialize the data to
+	 * @since 1.0.0
 	 */
 	public void serialize(Writer writer) {
 		//Updates all
@@ -135,14 +145,26 @@ public class Pace {
 		}
 	}
 
+	/**
+	 * @since 1.0.0
+	 * @return
+	 */
 	public File getFile() {
 		return file;
 	}
 
+	/**
+	 * @since 1.0.0
+	 * @param file
+	 */
 	public void setFile(File file) {
 		this.file = file;
 	}
 
+	/**
+	 * @since 1.0.0
+	 * @return
+	 */
 	public UUID getUUID() {
 		return uuid;
 	}

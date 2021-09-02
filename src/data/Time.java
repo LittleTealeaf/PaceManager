@@ -5,71 +5,94 @@ import com.google.gson.*;
 import java.lang.reflect.Type;
 
 /**
- * Stores the value of a given Time
- *
+ * Stores the value of a given time. Value is stored as a long, specifying the time in ms.
+ * <p> Uses of stored time includes specifying a specific time and date, specifying a specific time of day, or specifying a difference in time
  * @author Thomas Kwashnak
- * @version 1.0.0
  * @since 1.0.0
+ * @version 1.0.0
  */
 public class Time {
 
     /**
-     * Time stored as number of ms
-     *
-     * @see #Time()
-     * @see #Time(long)
-     * @see #getTime()
+     * Value of Time stored as ms. The only way to specify this value is by creating a new Time using either
+     * {@link #Time()} (sets {@code value = 0}) or {@link #Time(long)} (allows for specification of {@code value})
+     * @see #getValue()
      */
-    private final long time;
+    private final long value;
 
     /**
-     * Creates a Zero-Time object
-     * <ul><li>{@code time = 0}</li></ul>
+     * Creates a new {@code Time} object with {@code value} set to {@code 0}
+     * @since 1.0.0
+     * @see #Time(long)
      */
     public Time() {
-        time = 0;
+        value = 0;
     }
 
     /**
-     * Creates a Time object with a given time
-     *
-     * @param time Time in ms
+     * Creates a new {@code Time} object with the specified {@code value}
+     * @param value Time in number of ms
+     * @since 1.0.0
+     * @see #Time()
+     * @see #value
      */
-    public Time(long time) {
-        this.time = time;
+    public Time(long value) {
+        this.value = value;
     }
 
     /**
-     * Calculates the difference between two {@code Time} objects
-     *
-     * @param start Starting Time
-     * @param end   Ending Time
-     * @return Elapsed Time as a {@code Time} object
+     * Calculates the difference between two {@code Time} objects.<p>
+     *     Will result in a {@code Time} object with negative values if the value of {@code end} is greater
+     *     than the value of {@code start}
+     * @param start the first {@code Time}, typically less in value than {@code end}
+     * @param end the second {@code Time}, typically greater in value than {@code start}
+     * @return A new {@code Time} object representing the difference between {@code start} and {@code end}
+     * @see #value
+     * @see #absolute()
+     * @since 1.0.0
      */
-    //TODO make this non-static?
     public static Time difference(Time start, Time end) {
-        return new Time(end.getTime() - start.getTime());
+        return new Time(end.getValue() - start.getValue());
     }
 
     /**
-     * Wraps negative time values to positive
-     *
-     * @return Returns a Time object where the {@code time} value will always be positive
+     * Returns a {@code Time} object with the positive value of {@code value}.
+     * <p>For example, if {@code value = -100}, then will return a {@code Time} object with {@code value = 100}.
+     * Similarly, if {@code value = 100}, then will also return a {@code Time} object with {@code value = 100}.
+     * @return A new {@code Time} object with a positive {@code value}
+     * @since 1.0.0
      */
     public Time absolute() {
-        return new Time(Math.abs(time));
+        return new Time(Math.abs(value));
     }
 
     /**
-     * Returns the time
      *
-     * @return Time in ms
+     * @since 1.0.0
      */
-    public long getTime() {
-        return time;
+    public long getValue() {
+        return value;
     }
 
     /**
+     * @since 1.0.0
+     * @param other
+     * @return
+     */
+    public Time add(Time other) {
+        return new Time(getValue() + other.getValue());
+    }
+
+    /**
+     * @since 1.0.0
+     * @param other
+     * @return
+     */
+    public Time subtract(Time other) {
+        return new Time(getValue() - other.getValue());
+    }
+
+    /*
      * Compares the time to another {@code Time} object's time
      *
      * @param x The first {@code Time} to compare
@@ -78,11 +101,7 @@ public class Time {
      * the other Time; and a value greater than 0 if this Time is numerically greater than the other Time (signed comparison).
      * @see Long#compare(long, long)
      */
-    public static int compare(Time x, Time y) {
-        return Long.compare(x.getTime(), y.getTime());
-    }
-
-    /**
+    /*
      * Compares the time to another {@code Time} object's time
      *
      * @param other {@code Time} object to compare to
@@ -90,8 +109,14 @@ public class Time {
      * the other Time; and a value greater than 0 if this Time is numerically greater than the other Time (signed comparison).
      * @see #compare(Time, Time)
      */
+
+    /**
+     * @since 1.0.0
+     * @param other
+     * @return
+     */
     public int compareTo(Time other) {
-        return compare(this, other);
+        return Long.compare(getValue(), other.getValue());
     }
 
     /**
@@ -104,7 +129,7 @@ public class Time {
      */
     public static class TimeSerializer implements JsonSerializer<Time> {
         public JsonElement serialize(Time time, Type type, JsonSerializationContext jsonSerializationContext) {
-            return new JsonPrimitive(time.getTime());
+            return new JsonPrimitive(time.getValue());
         }
     }
 
