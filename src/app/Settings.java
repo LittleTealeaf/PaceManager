@@ -11,9 +11,10 @@ public class Settings {
 
     /**
      * Current application version of the settings object
+     *
      * @see App#version
      */
-    private String version;
+    private final String version;
     /**
      * Determines whether or not additional steps are taken to reduce memory used by the program
      * <p>Default: False
@@ -44,7 +45,6 @@ public class Settings {
         if(settingsFile.getParentFile().mkdirs()) {
             System.out.println("Created " + settingsFile.getParentFile().getPath());
         }
-
         try {
             FileWriter writer = new FileWriter(settingsFile);
             Serialization.getGson().toJson(this,Settings.class,writer);
