@@ -20,7 +20,6 @@ public class App extends Application {
     private static Stage appStage;
 
     public static void main(String[] args) {
-        System.out.println(Serialization.getWorkingDirectory());
         launch(args);
     }
 
