@@ -2,6 +2,8 @@ package app;
 
 //Ideas: Additional Thread for Settings Saving
 
+import java.io.File;
+
 public class Settings {
 
     /**
@@ -20,6 +22,8 @@ public class Settings {
      */
     private String fileExtension;
 
+    private String paceDirectory;
+
     /**
      * Creates a new {@code Settings} object and sets values to their defaults.
      */
@@ -27,6 +31,7 @@ public class Settings {
         aggressiveMemorySave = false;
         fileExtension = ".pace";
         version = App.version;
+        paceDirectory = System.getProperty("user.home") + File.separatorChar + "Documents" + File.separatorChar;
     }
 
     /**
@@ -71,5 +76,13 @@ public class Settings {
     public void setFileExtension(String fileExtension) {
         this.fileExtension = fileExtension;
         save();
+    }
+
+    public void setPaceDirectory(String directory) {
+        paceDirectory = directory;
+    }
+
+    public String getPaceDirectory() {
+        return paceDirectory;
     }
 }
