@@ -1,7 +1,8 @@
 package data;
 
-import com.google.gson.stream.JsonReader;
 import app.App;
+import app.Serialization;
+import com.google.gson.stream.JsonReader;
 
 import java.io.File;
 import java.io.FileReader;
@@ -51,7 +52,7 @@ public class Pace {
 	 * @return Pace object with the given data
 	 */
 	public static Pace fromJson(JsonReader reader) {
-		Pace pace = App.getGson().fromJson(reader, Pace.class);
+		Pace pace = Serialization.getGson().fromJson(reader, Pace.class);
 		pace.populateDivisions();
 		return pace;
 	}
@@ -126,7 +127,7 @@ public class Pace {
 		for (Team team : teams) {
 			team.updateDivisionUUID();
 		}
-		App.getGson().toJson(this, writer);
+		Serialization.getGson().toJson(this, writer);
 		if (App.settings.getAggressiveMemorySave()) {
 			for (Team team : teams) {
 				team.clearDivisionUUID();

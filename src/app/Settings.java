@@ -1,4 +1,4 @@
-package data;
+package app;
 
 //Ideas: Additional Thread for Settings Saving
 

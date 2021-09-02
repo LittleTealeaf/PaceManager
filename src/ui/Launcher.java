@@ -17,7 +17,6 @@ public class Launcher {
 
     public static void open() {
         stage = new Stage();
-
         stage.show();
     }
 
