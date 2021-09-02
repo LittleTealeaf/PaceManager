@@ -5,13 +5,11 @@ package app;
 public class Settings {
 
     private boolean aggressiveMemorySave;
+    private String fileExtension;
 
     public Settings() {
-
-    }
-
-    public void defaults() {
         aggressiveMemorySave = false;
+        fileExtension = ".pace";
     }
 
     /**
@@ -31,5 +29,13 @@ public class Settings {
             aggressiveMemorySave = value;
             save();
         }
+    }
+
+    public String getFileExtension() {
+        return fileExtension;
+    }
+
+    public void setFileExtension(String fileExtension) {
+        this.fileExtension = fileExtension;
     }
 }
