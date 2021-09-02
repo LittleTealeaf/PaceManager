@@ -15,6 +15,10 @@ public class Time {
 
     /**
      * Time stored as number of ms
+     *
+     * @see #Time()
+     * @see #Time(long)
+     * @see #getTime()
      */
     private final long time;
 

@@ -67,6 +67,8 @@ public class Serialization {
      * @apiNote Does not point to the {@code %AppData%} folder on windows directories. This is due to the
      * {@code AppDirs}
      * dependency not working in its current or previous versions in this project
+     * @see System#getProperty(String)
+     * @see File#separatorChar
      */
     public static String getWorkingDirectory() {
         return System.getProperty("user.home") + File.separatorChar + ".paceManager" + File.separatorChar;
