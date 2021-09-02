@@ -72,13 +72,26 @@ public class Time {
     /**
      * Compares the time to another {@code Time} object's time
      *
+     * @param x The first {@code Time} to compare
+     * @param y The second {@code Time} to compare
+     * @return the value 0 if this Time is equal to the other Time; a value less than 0 if this Time is numerically less than
+     * the other Time; and a value greater than 0 if this Time is numerically greater than the other Time (signed comparison).
+     * @see Long#compare(long, long)
+     */
+    public static int compare(Time x, Time y) {
+        return Long.compare(x.getTime(), y.getTime());
+    }
+
+    /**
+     * Compares the time to another {@code Time} object's time
+     *
      * @param other {@code Time} object to compare to
      * @return the value 0 if this Time is equal to the other Time; a value less than 0 if this Time is numerically less than
      * the other Time; and a value greater than 0 if this Time is numerically greater than the other Time (signed comparison).
-     * @see Long#compareTo(Long)
+     * @see #compare(Time, Time)
      */
     public int compareTo(Time other) {
-        return Long.compare(getTime(), other.getTime());
+        return compare(this, other);
     }
 
     /**
