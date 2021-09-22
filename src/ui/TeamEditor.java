@@ -3,6 +3,7 @@ package ui;
 import data.Team;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -18,6 +19,7 @@ public class TeamEditor {
     private final TimeInput startTime;
     private final TimeInput endTime;
     private final DivisionSelector divisionSelector;
+    private final CheckBox excluded;
     //Division Selection (hooks into the pace?)
 
     /*
@@ -48,6 +50,7 @@ public class TeamEditor {
         startTime = new TimeInput();
         endTime = new TimeInput();
         divisionSelector = new DivisionSelector();
+        excluded = new CheckBox("Excluded");
 
 
         GridPane gridPane = new GridPane();
@@ -64,6 +67,7 @@ public class TeamEditor {
         team.setEndTime(endTime.getTime());
         team.setDivision(divisionSelector.getDivision());
         team.setRiders(riders.getText().split("\n"));
+        team.setExcluded(excluded.isSelected());
     }
 
     public void updateElements() {
@@ -72,6 +76,7 @@ public class TeamEditor {
         startTime.setTime(team.getStartTime());
         endTime.setTime(team.getEndTime());
         divisionSelector.setDivision(team.getDivision());
+        excluded.setSelected(team.isExcluded());
 
         StringBuilder builder = new StringBuilder();
         int riderLength = team.getRiders().length;
