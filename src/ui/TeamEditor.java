@@ -62,7 +62,22 @@ public class TeamEditor {
     }
 
     public void updateElements() {
+        teamNumber.setText(team.getTeamNumber());
 
+        StringBuilder builder = new StringBuilder();
+        int riderLength = team.getRiders().length;
+        for(int i = 0; i < riderLength; i++) {
+            builder.append(team.getRiders()[i]);
+            if(i < riderLength - 1) {
+                builder.append("\n");
+            }
+        }
+        riders.setText(builder.toString());
+
+        notes.setText(team.getNotes());
+        startTime.setTime(team.getStartTime());
+        endTime.setTime(team.getEndTime());
+        divisionSelector.setDivision(team.getDivision());
     }
 
     public Team getTeam() {
