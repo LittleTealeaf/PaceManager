@@ -2,7 +2,13 @@ package data;
 
 import com.google.gson.*;
 
+import javax.swing.text.DateFormatter;
 import java.lang.reflect.Type;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
+import java.util.Date;
+import java.util.TimeZone;
 
 /**
  * Stores the value of a given time. Value is stored as a long, specifying the time in ms.
@@ -19,6 +25,8 @@ public class Time {
      * @see #getValue()
      */
     private final long value;
+
+    private static final long MILLISECONDS_PER_12_HOURS = 43200000;
 
     /**
      * Creates a new {@code Time} object with {@code value} set to {@code 0}
@@ -37,6 +45,27 @@ public class Time {
      * @see #value
      */
     public Time(long value) {
+        this.value = value;
+    }
+
+    public Time(String string) {
+        long value = 0;
+        String cleanedString = string.replace(" ","");
+        SimpleDateFormat[] validFormats = new SimpleDateFormat[] {
+                new SimpleDateFormat("HH:mm:ss"),
+                new SimpleDateFormat("HH:mm")
+        };
+        for(SimpleDateFormat format : validFormats) {
+            try {
+                value = format.parse(cleanedString).getTime();
+                break;
+            }catch(Exception ignored) {}
+        }
+
+        if(string.contains("PM")) {
+            value += MILLISECONDS_PER_12_HOURS;
+        }
+
         this.value = value;
     }
 
@@ -117,6 +146,13 @@ public class Time {
      */
     public int compareTo(Time other) {
         return Long.compare(getValue(), other.getValue());
+    }
+
+    public String toString() {
+        Date date = new Date(value);
+        DateFormat dateFormatter = new SimpleDateFormat("HH:mm:ss");
+        dateFormatter.setTimeZone(TimeZone.getDefault());
+        return dateFormatter.format(date);
     }
 
     /**

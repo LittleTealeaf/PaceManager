@@ -1,6 +1,7 @@
 package app;
 
 import data.Pace;
+import data.Time;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import ui.Launcher;
@@ -26,6 +27,7 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch(args);
+
     }
 
     public static void open(String filePath) {

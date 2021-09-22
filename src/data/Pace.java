@@ -49,6 +49,7 @@ public class Pace {
 			pace.setFile(file);
 			return pace;
 		} catch (Exception e) {
+			System.out.println(e.toString());
 			Pace pace = new Pace();
 			pace.setFile(file);
 			return pace;
