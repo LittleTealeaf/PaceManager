@@ -1,8 +1,11 @@
 package ui;
 
 import data.Team;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class TeamEditor {
@@ -14,6 +17,7 @@ public class TeamEditor {
     private TextArea notes;
     private TimeInput startTime;
     private TimeInput endTime;
+    private DivisionSelector divisionSelector;
     //Division Selection (hooks into the pace?)
 
     /*
@@ -34,6 +38,24 @@ public class TeamEditor {
 
     public TeamEditor(Team team) {
         this.team = team;
+        stage = new Stage();
+        stage.setTitle(team.getTeamNumber() != null && team.getTeamNumber() != "" ? "Editing Team " + team.getTeamNumber() : "Creating New Team");
+
+        GridPane gridPane = new GridPane();
+
+//        DivisionSelector selector = new DivisionSelector();
+//        Button b = new Button("X");
+//        b.setOnAction(e -> {
+//            selector.getDivision();
+//        });
+//
+//        gridPane.add(selector,0,0);
+//        gridPane.add(b,1,0);
+
+
+        stage.setScene(new Scene(gridPane));
+
+        stage.show();
     }
 
 

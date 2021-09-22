@@ -35,6 +35,7 @@ public class Pace {
 		uuid = UUID.randomUUID();
 		teams = new LinkedList<>();
 		divisions = new ArrayList<>();
+		divisions.add(new Division("Default"));
 	}
 
 	/**
@@ -65,6 +66,7 @@ public class Pace {
 	public static Pace fromJson(JsonReader reader) {
 		Pace pace = Serialization.getGson().fromJson(reader, Pace.class);
 		pace.populateDivisions();
+		pace.updateDivisionLists();
 		return pace;
 	}
 
@@ -106,14 +108,23 @@ public class Pace {
 	public void populateDivisions() {
 		boolean clear = App.settings.getAggressiveMemorySave();
 		for (Team team : teams) {
-			for (Division division : divisions) {
-				if (team.getDivisionUUID().equals(division.getUUID())) {
-					team.setDivision(division);
+			if(team.getDivisionUUID() != null) {
+				boolean found = false;
+				for (Division division : divisions) {
+					if (team.getDivisionUUID().equals(division.getUUID())) {
+						team.setDivision(division);
+						found = true;
+					}
+				}
+				if (clear || !found) {
+					team.clearDivisionUUID();
 				}
 			}
-			if (clear) {
-				team.clearDivisionUUID();
+
+			if(team.getDivisionUUID() == null) {
+				team.setDivision(divisions.get(0));
 			}
+
 		}
 	}
 
@@ -124,8 +135,14 @@ public class Pace {
 	public void save() {
 		if (file != null) {
 			try {
-				serialize(new FileWriter(file));
-			} catch (Exception ignore) {}
+				if(!file.exists()) {
+					file.createNewFile();
+				}
+				FileWriter writer = new FileWriter(file);
+				serialize(writer);
+				writer.close();
+			} catch (Exception ignore) {
+			}
 		}
 	}
 
@@ -137,8 +154,13 @@ public class Pace {
 	 */
 	public void serialize(Writer writer) {
 		//Updates all
+		updateDivisionLists();
 		for (Team team : teams) {
-			team.updateDivisionUUID();
+			if(team.getDivision() != divisions.get(0)) {
+				team.updateDivisionUUID();
+			} else {
+				team.clearDivisionUUID();
+			}
 		}
 		Serialization.getGson().toJson(this, writer);
 		if (App.settings.getAggressiveMemorySave()) {
@@ -170,5 +192,21 @@ public class Pace {
 	 */
 	public UUID getUUID() {
 		return uuid;
+	}
+
+	public UUID newDivision(String name) {
+		Division division = new Division();
+		division.setName(name);
+		divisions.add(division);
+		return division.getUUID();
+	}
+
+	public void addDivision(Division division) {
+		divisions.add(division);
+	}
+
+	public void removeDivision(Division division) {
+		//Clear divs of teams not in that division
+
 	}
 }

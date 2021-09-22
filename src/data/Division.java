@@ -37,6 +37,11 @@ public class Division {
         teams = new ArrayList<>();
     }
 
+    public Division(String name) {
+        this();
+        this.name = name;
+    }
+
     /**
      * @since 1.0.0
      * @return
@@ -77,6 +82,14 @@ public class Division {
         teams.add(team);
     }
 
+    public void importTeamsFrom(Division division) {
+        for(Team team : division.getTeams()) {
+            team.setDivision(this);
+            addTeam(team);
+            division.removeTeam(team);
+        }
+    }
+
     /**
      * @since 1.0.0
      * @param team
@@ -105,7 +118,7 @@ public class Division {
      * @return
      */
     public String toString() {
-        return "Division " + getName();
+        return getName();
     }
 
     /**
