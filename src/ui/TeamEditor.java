@@ -9,6 +9,10 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class TeamEditor {
+
+    private static Stage openedStage;
+
+
     private final Stage stage;
     private final Team team;
 
@@ -38,6 +42,7 @@ public class TeamEditor {
         endTime = new TimeInput();
         divisionSelector = new DivisionSelector();
         excluded = new CheckBox("Excluded");
+
 
 
         GridPane gridPane = new GridPane();
@@ -76,8 +81,24 @@ public class TeamEditor {
         riders.setText(builder.toString());
     }
 
+    public void open() {
+        //if singular is enabled...
+        if(openedStage.isShowing()) {
+            openedStage.close();
+        }
+
+        stage.show();
+    }
+
     public Team getTeam() {
         return team;
+    }
+
+    public void close() {
+        stage.close();
+        if(openedStage == stage) {
+            openedStage = null;
+        }
     }
 
 }
