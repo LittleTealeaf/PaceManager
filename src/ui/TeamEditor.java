@@ -15,7 +15,6 @@ public class TeamEditor {
 
     private static Stage openedStage;
 
-
     private final Stage stage;
     private final Team team;
 
@@ -37,7 +36,6 @@ public class TeamEditor {
         stage.setTitle(team.getTeamNumber() != null && !team.getTeamNumber().equals("") ? "Editing Team " + team
                 .getTeamNumber() : "Creating New Team");
 
-        //Creating the elements
         teamNumber = new TextField();
         riders = new TextArea();
         notes = new TextArea();
