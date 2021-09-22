@@ -86,16 +86,8 @@ public class Launcher {
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setPadding(new Insets(10));
 
-//        GridPane gridPane = new GridPane();
-//        gridPane.setHgap(10);
-//        gridPane.setVgap(10);
-//
-//        updateRecentFiles(gridPane);
-//
-//        scrollPane.setContent(gridPane);
         ListView<String> recentFiles = new ListView<>();
         recentFiles.getItems().setAll(App.settings.getRecentFiles());
-        //Double-click on
         recentFiles.setOnMouseClicked(e -> {
             if(e.getClickCount() == 2) {
                 open(recentFiles.getSelectionModel().getSelectedItem());
@@ -116,33 +108,11 @@ public class Launcher {
             }
         });
 
-
-
-//        scrollPane.setContent(recentFiles);
         borderPane.setCenter(recentFiles);
         borderPane.setTop(new Label("Recent Files"));
 
         return borderPane;
     }
-
-//    private static void updateRecentFiles(GridPane gridPane) {
-//        int size = App.settings.getRecentFiles().size();
-//        for (int i = 0; i < size; i++) {
-//            String path = App.settings.getRecentFiles().get(i);
-//            if (path != null && new File(path).exists()) {
-//                Label fileLabel = new Label(path);
-//                fileLabel.setOnMouseClicked(e -> {
-//                    if (e.getClickCount() == 2) {
-//                        open(path);
-//                    }
-//                });
-//                gridPane.add(fileLabel, 0, i);
-//
-//            } else {
-//                App.settings.getRecentFiles().remove(i--);
-//            }
-//        }
-//    }
 
     private static String openFile() {
         FileChooser prompt = new FileChooser();
