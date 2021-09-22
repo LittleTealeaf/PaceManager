@@ -2,10 +2,11 @@ package ui;
 
 import data.Time;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 import java.util.Date;
 
-public class TimeInput extends TextArea {
+public class TimeInput extends TextField {
 
     private Time time;
 
