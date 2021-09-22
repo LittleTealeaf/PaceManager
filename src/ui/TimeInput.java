@@ -4,6 +4,7 @@ import data.Time;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+import java.awt.*;
 import java.util.Date;
 
 public class TimeInput extends TextField {
@@ -23,12 +24,10 @@ public class TimeInput extends TextField {
                 parseText();
             }
         });
-
-
     }
 
     public void updateText() {
-        setText(time.toString());
+        setText(time != null ? time.toString() : "");
     }
 
     public Time getTime() {
@@ -41,7 +40,11 @@ public class TimeInput extends TextField {
     }
 
     public void parseText() {
-        time = new Time(getText());
+        if(getText() == null || getText().contentEquals("")) {
+            time = null;
+        } else {
+            time = new Time(getText());
+        }
         updateText();
     }
 }
