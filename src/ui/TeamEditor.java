@@ -12,12 +12,12 @@ public class TeamEditor {
     private Stage stage;
     private final Team team;
 
-    private TextField teamNumber;
-    private TextArea riders;
-    private TextArea notes;
-    private TimeInput startTime;
-    private TimeInput endTime;
-    private DivisionSelector divisionSelector;
+    private final TextField teamNumber;
+    private final TextArea riders;
+    private final TextArea notes;
+    private final TimeInput startTime;
+    private final TimeInput endTime;
+    private final DivisionSelector divisionSelector;
     //Division Selection (hooks into the pace?)
 
     /*
@@ -41,8 +41,16 @@ public class TeamEditor {
         stage = new Stage();
         stage.setTitle(team.getTeamNumber() != null && team.getTeamNumber() != "" ? "Editing Team " + team.getTeamNumber() : "Creating New Team");
 
-        GridPane gridPane = new GridPane();
+        //Creating the elements
+        teamNumber = new TextField();
+        riders = new TextArea();
+        notes = new TextArea();
+        startTime = new TimeInput();
+        endTime = new TimeInput();
+        divisionSelector = new DivisionSelector();
 
+
+        GridPane gridPane = new GridPane();
         stage.setScene(new Scene(gridPane));
 
         stage.show();
@@ -50,6 +58,10 @@ public class TeamEditor {
 
 
     public void updateTeam() {
+
+    }
+
+    public void updateElements() {
 
     }
 
