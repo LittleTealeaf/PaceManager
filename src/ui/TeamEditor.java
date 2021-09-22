@@ -58,11 +58,20 @@ public class TeamEditor {
 
 
     public void updateTeam() {
-
+        team.setTeamNumber(teamNumber.getText());
+        team.setNotes(notes.getText());
+        team.setStartTime(startTime.getTime());
+        team.setEndTime(endTime.getTime());
+        team.setDivision(divisionSelector.getDivision());
+        team.setRiders(riders.getText().split("\n"));
     }
 
     public void updateElements() {
         teamNumber.setText(team.getTeamNumber());
+        notes.setText(team.getNotes());
+        startTime.setTime(team.getStartTime());
+        endTime.setTime(team.getEndTime());
+        divisionSelector.setDivision(team.getDivision());
 
         StringBuilder builder = new StringBuilder();
         int riderLength = team.getRiders().length;
@@ -73,11 +82,6 @@ public class TeamEditor {
             }
         }
         riders.setText(builder.toString());
-
-        notes.setText(team.getNotes());
-        startTime.setTime(team.getStartTime());
-        endTime.setTime(team.getEndTime());
-        divisionSelector.setDivision(team.getDivision());
     }
 
     public Team getTeam() {
