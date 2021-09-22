@@ -207,8 +207,15 @@ public class Pace {
         divisions.add(division);
     }
 
-    public int removeDivision(Division division) {
-        //TODO implement
-        return -1;
+    public boolean removeDivision(Division division) {
+        if(divisions.indexOf(division) > 0) {
+        	updateDivisionLists();
+        	for(Team team : division.getTeams()) {
+        		team.setDivision(divisions.get(0));
+			}
+        	return divisions.remove(division);
+		} else {
+			return false;
+		}
     }
 }
