@@ -215,4 +215,22 @@ public class Team implements Serializable {
 	public void setExcluded(boolean excluded) {
 		this.excluded = excluded;
 	}
+
+	/**
+	 * Checks if the team is eligible for final times
+	 * @since 1.0.0
+	 * @return {@code true} if the team has an elapsed time (meaning that they have a start time and an end time), and they are not excluded
+	 * for any reason
+	 */
+	public boolean isCompleted() {
+		return !excluded && hasElapsed();
+	}
+
+	/**
+	 * @since 1.0.0
+	 * @return Number of riders in the team
+	 */
+	public int getNumberOfRiders() {
+		return riders.length;
+	}
 }
