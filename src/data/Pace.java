@@ -137,8 +137,8 @@ public class Pace {
     public void save() {
         if (file != null) {
             try {
-                if (!file.exists()) {
-                    file.createNewFile();
+                if(file.createNewFile()) {
+                    System.out.println("Created file " + file.getPath());
                 }
                 FileWriter writer = new FileWriter(file);
                 serialize(writer);

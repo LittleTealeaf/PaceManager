@@ -123,8 +123,8 @@ public class Settings {
         int size = recentFiles.size();
         for (int i = 0; i < size; i++) {
             if (recentFiles.get(i) == null || !new File(recentFiles.get(i)).exists()) {
+                recentFiles.remove(i--);
                 size--;
-                recentFiles.remove(i);
             }
         }
     }
