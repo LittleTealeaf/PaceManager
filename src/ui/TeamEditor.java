@@ -1,10 +1,13 @@
 package ui;
 
 import data.Team;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -44,13 +47,33 @@ public class TeamEditor {
         excluded = new CheckBox("Excluded");
 
 
-
-        GridPane gridPane = new GridPane();
-        stage.setScene(new Scene(gridPane));
-
-        stage.show();
+        stage.setScene(generateScene());
+        updateElements();
+        open();
     }
 
+    private Scene generateScene() {
+        BorderPane borderPane = new BorderPane();
+        borderPane.setPadding(new Insets(10));
+
+        GridPane center = new GridPane();
+        center.setHgap(7);
+        center.setVgap(7);
+        borderPane.setCenter(center);
+
+        center.add(new Label("Team Number"),0,0);
+        center.add(teamNumber,1,0);
+
+        center.add(new Label("Riders"),2,0,2,1);
+        center.add(riders,2,1,2,2);
+
+
+
+        return new Scene(borderPane);
+    }
+
+    //TODO: implement use of converting "," to newlines in riders
+    //TODO: implement removal of "empty riders"
 
     public void updateTeam() {
         team.setTeamNumber(teamNumber.getText());
@@ -70,20 +93,24 @@ public class TeamEditor {
         divisionSelector.setDivision(team.getDivision());
         excluded.setSelected(team.isExcluded());
 
-        StringBuilder builder = new StringBuilder();
-        int riderLength = team.getRiders().length;
-        for (int i = 0; i < riderLength; i++) {
-            builder.append(team.getRiders()[i]);
-            if (i < riderLength - 1) {
-                builder.append("\n");
+        if(team.getRiders() != null) {
+            StringBuilder builder = new StringBuilder();
+            int riderLength = team.getRiders().length;
+            for (int i = 0; i < riderLength; i++) {
+                builder.append(team.getRiders()[i]);
+                if (i < riderLength - 1) {
+                    builder.append("\n");
+                }
             }
+            riders.setText(builder.toString());
+        } else {
+            riders.setText("");
         }
-        riders.setText(builder.toString());
     }
 
     public void open() {
         //if singular is enabled...
-        if(openedStage.isShowing()) {
+        if(openedStage != null && openedStage.isShowing()) {
             openedStage.close();
         }
 
