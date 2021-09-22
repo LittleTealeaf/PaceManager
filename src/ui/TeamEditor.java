@@ -43,16 +43,6 @@ public class TeamEditor {
 
         GridPane gridPane = new GridPane();
 
-//        DivisionSelector selector = new DivisionSelector();
-//        Button b = new Button("X");
-//        b.setOnAction(e -> {
-//            selector.getDivision();
-//        });
-//
-//        gridPane.add(selector,0,0);
-//        gridPane.add(b,1,0);
-
-
         stage.setScene(new Scene(gridPane));
 
         stage.show();
