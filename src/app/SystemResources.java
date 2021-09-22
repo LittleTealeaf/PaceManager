@@ -16,9 +16,9 @@ public class SystemResources {
      * platforms as well.
      *
      * @return String directory path of the working directory, such as {@code C:\Users\Tealeaf\.paceManager\}
+     * @version 1.0.0
      * @see File#separatorChar
      * @since 1.0.0
-     * @version 1.0.0
      */
     public static String getWorkingDirectory() {
         return System.getProperty("user.home") + File.separatorChar + ".paceManager" + File.separatorChar;
@@ -28,16 +28,14 @@ public class SystemResources {
         Settings.settingsFile = new File(getWorkingDirectory() + "config.json");
         Settings settings = new Settings();
         try {
-            if(Settings.settingsFile.exists()) {
+            if (Settings.settingsFile.exists()) {
                 JsonReader reader = new JsonReader(new FileReader(Settings.settingsFile));
-                settings = Serialization.getGson().fromJson(reader,Settings.class);
-                if(settings == null) {
+                settings = Serialization.getGson().fromJson(reader, Settings.class);
+                if (settings == null) {
                     settings = new Settings();
                 }
             }
-        } catch(Exception e){
-            System.out.println(e);
-        }
+        } catch (Exception ignored) {}
         settings.save();
         return settings;
     }

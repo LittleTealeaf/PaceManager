@@ -1,11 +1,7 @@
 package ui;
 
 import data.Time;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-
-import java.awt.*;
-import java.util.Date;
 
 public class TimeInput extends TextField {
 
@@ -19,8 +15,8 @@ public class TimeInput extends TextField {
         super();
         this.time = time;
 
-        focusedProperty().addListener((e,o,n) -> {
-            if(!e.getValue().booleanValue()) {
+        focusedProperty().addListener((e, o, n) -> {
+            if (!e.getValue().booleanValue()) {
                 parseText();
             }
         });
@@ -40,7 +36,7 @@ public class TimeInput extends TextField {
     }
 
     public void parseText() {
-        if(getText() == null || getText().contentEquals("")) {
+        if (getText() == null || getText().contentEquals("")) {
             time = null;
         } else {
             time = new Time(getText());

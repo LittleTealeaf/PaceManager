@@ -15,6 +15,7 @@ public class Serialization {
     /**
      * Stores the generated {@code Gson} object used for serialization and deserialization of objects.
      * This value is generated at application launch using the {@link #createGson()} method.
+     *
      * @see #createGson()
      * @see #getGson()
      * @see Gson
@@ -23,9 +24,10 @@ public class Serialization {
 
     /**
      * Provides the {@code Gson} object for serialization and deserialization.
+     *
+     * @return Gson object, specified in {@link #createGson()}
      * @see #gson
      * @see #createGson()
-     * @return Gson object, specified in {@link #createGson()}
      * @since 1.0.0
      */
     public static Gson getGson() {

@@ -17,6 +17,7 @@ public class Settings {
      * @see App#version
      */
     private final String version;
+    private final List<String> recentFiles;
     /**
      * Determines whether or not additional steps are taken to reduce memory used by the program
      * <p>Default: False
@@ -27,10 +28,7 @@ public class Settings {
      * <p>Default: {@code .pace}
      */
     private String fileExtension;
-
     private String paceDirectory;
-
-    private final List<String> recentFiles;
 
     /**
      * Creates a new {@code Settings} object and sets values to their defaults.
@@ -49,29 +47,27 @@ public class Settings {
      * Saves the current configuration
      */
     public void save() {
-        if(settingsFile.getParentFile().mkdirs()) {
+        if (settingsFile.getParentFile().mkdirs()) {
             System.out.println("Created " + settingsFile.getParentFile().getPath());
         }
         try {
             FileWriter writer = new FileWriter(settingsFile);
-            Serialization.getGson().toJson(this,Settings.class,writer);
+            Serialization.getGson().toJson(this, Settings.class, writer);
             writer.close();
-        } catch(Exception e) {
-            System.out.println(e);
-        }
+        } catch (Exception ignored) {}
     }
 
     /**
-     * @since 1.0.0
      * @return
+     * @since 1.0.0
      */
     public boolean getAggressiveMemorySave() {
         return aggressiveMemorySave;
     }
 
     /**
-     * @since 1.0.0
      * @param value
+     * @since 1.0.0
      */
     public void setAggressiveMemorySave(boolean value) {
         //Only updates / saves if there is a change
@@ -82,28 +78,28 @@ public class Settings {
     }
 
     /**
-     * @since 1.0.0
      * @return
+     * @since 1.0.0
      */
     public String getFileExtension() {
         return fileExtension;
     }
 
     /**
-     * @since 1.0.0
      * @param fileExtension
+     * @since 1.0.0
      */
     public void setFileExtension(String fileExtension) {
         this.fileExtension = fileExtension;
         save();
     }
 
-    public void setPaceDirectory(String directory) {
-        paceDirectory = directory;
-    }
-
     public String getPaceDirectory() {
         return paceDirectory;
+    }
+
+    public void setPaceDirectory(String directory) {
+        paceDirectory = directory;
     }
 
     public List<String> getRecentFiles() {
@@ -125,8 +121,8 @@ public class Settings {
 
     public void cleanRecentFiles() {
         int size = recentFiles.size();
-        for(int i = 0; i < size; i++) {
-            if(recentFiles.get(i) == null || !new File(recentFiles.get(i)).exists()) {
+        for (int i = 0; i < size; i++) {
+            if (recentFiles.get(i) == null || !new File(recentFiles.get(i)).exists()) {
                 size--;
                 recentFiles.remove(i);
             }

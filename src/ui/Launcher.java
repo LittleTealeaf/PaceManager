@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -89,22 +88,20 @@ public class Launcher {
         ListView<String> recentFiles = new ListView<>();
         recentFiles.getItems().setAll(App.settings.getRecentFiles());
         recentFiles.setOnMouseClicked(e -> {
-            if(e.getClickCount() == 2) {
+            if (e.getClickCount() == 2) {
                 open(recentFiles.getSelectionModel().getSelectedItem());
             }
         });
         recentFiles.setOnKeyPressed(e -> {
-            switch(e.getCode()) {
+            switch (e.getCode()) {
                 case DELETE, BACK_SPACE -> {
                     String selected = recentFiles.getSelectionModel().getSelectedItem();
-                    if(selected != null) {
+                    if (selected != null) {
                         App.settings.getRecentFiles().remove(selected);
                         recentFiles.getItems().setAll(App.settings.getRecentFiles());
                     }
                 }
-                case ENTER, SPACE -> {
-                    open(recentFiles.getSelectionModel().getSelectedItem());
-                }
+                case ENTER, SPACE -> open(recentFiles.getSelectionModel().getSelectedItem());
             }
         });
 

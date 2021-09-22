@@ -43,47 +43,47 @@ public class Division {
     }
 
     /**
-     * @since 1.0.0
      * @return
+     * @since 1.0.0
      */
     public String getName() {
         return name;
     }
 
     /**
-     * @since 1.0.0
      * @param name
+     * @since 1.0.0
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * @since 1.0.0
      * @return
+     * @since 1.0.0
      */
     public Time getGoalTime() {
         return goalTime;
     }
 
     /**
-     * @since 1.0.0
      * @param goalTime
+     * @since 1.0.0
      */
     public void setGoalTime(Time goalTime) {
         this.goalTime = goalTime;
     }
 
     /**
-     * @since 1.0.0
      * @param team
+     * @since 1.0.0
      */
     public void addTeam(Team team) {
         teams.add(team);
     }
 
     public void importTeamsFrom(Division division) {
-        for(Team team : division.getTeams()) {
+        for (Team team : division.getTeams()) {
             team.setDivision(this);
             addTeam(team);
             division.removeTeam(team);
@@ -91,8 +91,8 @@ public class Division {
     }
 
     /**
-     * @since 1.0.0
      * @param team
+     * @since 1.0.0
      */
     public void removeTeam(Team team) {
         teams.remove(team);
@@ -106,24 +106,24 @@ public class Division {
     }
 
     /**
-     * @since 1.0.0
      * @return
+     * @since 1.0.0
      */
     public UUID getUUID() {
         return uuid;
     }
 
     /**
-     * @since 1.0.0
      * @return
+     * @since 1.0.0
      */
     public String toString() {
         return getName();
     }
 
     /**
-     * @since 1.0.0
      * @return
+     * @since 1.0.0
      */
     public Team[] getPlaceOrder() {
         if (goalTime == null) {
@@ -171,16 +171,16 @@ public class Division {
     }
 
     /**
-     * @since 1.0.0
      * @return
+     * @since 1.0.0
      */
     public List<Team> getTeams() {
         return teams;
     }
 
     /**
-     * @since 1.0.0
      * @return
+     * @since 1.0.0
      */
     public Team[] getTeamsAsArray() {
         Team[] array = new Team[teams.size()];

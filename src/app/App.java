@@ -46,12 +46,6 @@ public class App extends Application {
         appStage.show();
     }
 
-    @Override
-    public void start(Stage stage) throws Exception {
-        appStage = stage;
-        Launcher.open();
-    }
-
     private static Pace testPace() {
         Pace pace = new Pace();
         pace.setFile(new File("C:\\Users\\Littl\\Downloads\\Test H.pace"));
@@ -61,17 +55,19 @@ public class App extends Application {
         pace.addDivision(new Division("Pleasure"));
         pace.addDivision(new Division("Junior"));
 
-        for(int i = 0; i < 50; i++) {
+        for (int i = 0; i < 50; i++) {
             Team team = new Team();
-            if(Math.random() * 100 > 30) {
+            if (Math.random() * 100 > 30) {
                 team.setDivision(pace.getDivisions().get((int) (Math.random() * 4)));
             }
-            if(Math.random() * 100 > 40) {
+            if (Math.random() * 100 > 40) {
                 //Random Start Time, start is fromm 7 am to 12 pm
                 final long MILLISECONDS_PER_HOUR = 3600000;
-                team.setStartTime(new Time((long) (Math.random() * MILLISECONDS_PER_HOUR * 5) + MILLISECONDS_PER_HOUR * 7));
-                if(Math.random() * 100 > 50) {
-                    team.setEndTime(new Time((long) (Math.random() * MILLISECONDS_PER_HOUR * 3) + team.getStartTime().getValue()));
+                team.setStartTime(
+                        new Time((long) (Math.random() * MILLISECONDS_PER_HOUR * 5) + MILLISECONDS_PER_HOUR * 7));
+                if (Math.random() * 100 > 50) {
+                    team.setEndTime(new Time(
+                            (long) (Math.random() * MILLISECONDS_PER_HOUR * 3) + team.getStartTime().getValue()));
                 }
             }
             team.setTeamNumber("A" + i);
@@ -80,5 +76,11 @@ public class App extends Application {
 
         pace.save();
         return pace;
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        appStage = stage;
+        Launcher.open();
     }
 }
