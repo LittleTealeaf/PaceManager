@@ -122,4 +122,14 @@ public class Settings {
             save();
         }
     }
+
+    public void cleanRecentFiles() {
+        int size = recentFiles.size();
+        for(int i = 0; i < size; i++) {
+            if(recentFiles.get(i) == null || !new File(recentFiles.get(i)).exists()) {
+                size--;
+                recentFiles.remove(i);
+            }
+        }
+    }
 }
