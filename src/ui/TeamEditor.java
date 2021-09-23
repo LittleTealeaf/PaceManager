@@ -77,14 +77,13 @@ public class TeamEditor {
         return new Scene(borderPane);
     }
 
-    //TODO: implement removal of "empty riders"
-
     public void updateTeam() {
         team.setTeamNumber(teamNumber.getText());
         team.setNotes(notes.getText());
         team.setStartTime(startTime.getTime());
         team.setEndTime(endTime.getTime());
         team.setDivision(divisionSelector.getDivision());
+        //TODO cleanse data in separate function
         team.setRiders(riders.getText().replace(',','\n').split("\n"));
         team.setExcluded(excluded.isSelected());
     }
