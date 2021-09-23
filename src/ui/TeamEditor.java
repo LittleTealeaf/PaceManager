@@ -121,10 +121,41 @@ public class TeamEditor {
         team.setEndTime(elementEndTime.getTime());
         team.setDivision(elementDivision.getDivision());
         //TODO cleanse data in separate function
-        team.setRiders(elementRiders.getText().replace(',', '\n').split("\n"));
+        team.setRiders(parseRiders());
         team.setExcluded(elementExcluded.isSelected());
         updateElements();
         App.openedPace.pingUpdate();
+    }
+
+    public String[] parseRiders() {
+        String[] raw = elementRiders.getText().replace(',','\n').split("\n");
+        boolean[] delete = new boolean[raw.length];
+        int delCount = 0;
+        for(int i = 0; i < raw.length; i++) {
+            while(raw[i].length() > 0 && raw[i].charAt(0) == ' ') {
+                raw[i] = raw[i].substring(1);
+            }
+            while(raw[i].length() > 0 && raw[i].charAt(raw[i].length() - 1) == ' ') {
+                raw[i] = raw[i].substring(0,raw[i].length() - 1);
+            }
+            if(raw[i].equals("")) {
+                delete[i] = true;
+                delCount++;
+            }
+        }
+        String[] riders = new String[raw.length - delCount];
+        int i = 0, j = 0;
+        while(i < riders.length) {
+            if(delete[j]) {
+                j++;
+            } else {
+                riders[i] = raw[j];
+                j++;
+                i++;
+            }
+        }
+
+        return riders;
     }
 
     public void updateElements() {
