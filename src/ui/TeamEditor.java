@@ -116,8 +116,8 @@ public class TeamEditor {
         if(openedStage != null && openedStage.isShowing()) {
             openedStage.close();
         }
-
         stage.show();
+        stage.requestFocus();
     }
 
     public Team getTeam() {

@@ -42,8 +42,8 @@ public class App extends Application {
 //            openedPace = new Pace();
             openedPace = testPace();
         }
-        new TeamEditor(openedPace.getTeams().get((int) (openedPace.getTeams().size() * Math.random())));
         appStage.show();
+        new TeamEditor(openedPace.getTeams().get((int) (openedPace.getTeams().size() * Math.random())));
     }
 
     private static Pace testPace() {
