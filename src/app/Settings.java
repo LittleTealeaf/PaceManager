@@ -67,7 +67,7 @@ public class Settings {
      * @return
      * @since 1.0.0
      */
-    public boolean getAggressiveMemorySave() {
+    public boolean isAggressiveMemorySave() {
         return aggressiveMemorySave;
     }
 

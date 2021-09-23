@@ -107,7 +107,7 @@ public class Pace {
      * @since 1.0.0
      */
     public void populateDivisions() {
-        boolean clear = App.settings.getAggressiveMemorySave();
+        boolean clear = App.settings.isAggressiveMemorySave();
         for (Team team : teams) {
             if (team.getDivisionUUID() != null) {
                 boolean found = false;
@@ -165,7 +165,7 @@ public class Pace {
             }
         }
         Serialization.getGson().toJson(this, writer);
-        if (App.settings.getAggressiveMemorySave()) {
+        if (App.settings.isAggressiveMemorySave()) {
             for (Team team : teams) {
                 team.clearDivisionUUID();
             }
