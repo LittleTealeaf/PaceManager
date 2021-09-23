@@ -77,7 +77,6 @@ public class TeamEditor {
         return new Scene(borderPane);
     }
 
-    //TODO: implement use of converting "," to newlines in riders
     //TODO: implement removal of "empty riders"
 
     public void updateTeam() {
@@ -86,7 +85,7 @@ public class TeamEditor {
         team.setStartTime(startTime.getTime());
         team.setEndTime(endTime.getTime());
         team.setDivision(divisionSelector.getDivision());
-        team.setRiders(riders.getText().split("\n"));
+        team.setRiders(riders.getText().replace(',','\n').split("\n"));
         team.setExcluded(excluded.isSelected());
     }
 
