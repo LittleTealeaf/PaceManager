@@ -17,13 +17,13 @@ public class TeamEditor {
     private final Stage stage;
     private final Team team;
 
-    private final TextField teamNumber;
-    private final TextArea riders;
-    private final TextArea notes;
-    private final TimeInput startTime;
-    private final TimeInput endTime;
-    private final DivisionSelector divisionSelector;
-    private final CheckBox excluded;
+    private final TextField elementTeamNumber;
+    private final TextArea elementRiders;
+    private final TextArea elementNotes;
+    private final TimeInput elementStartTime;
+    private final TimeInput elementEndTime;
+    private final DivisionSelector elementDivision;
+    private final CheckBox elementExcluded;
 
     public TeamEditor() {
         this(new Team());
@@ -35,13 +35,13 @@ public class TeamEditor {
         stage.setTitle(team.getTeamNumber() != null && !team.getTeamNumber().equals("") ? "Editing Team " + team
                 .getTeamNumber() : "Creating New Team");
 
-        teamNumber = new TextField();
-        riders = new TextArea();
-        notes = new TextArea();
-        startTime = new TimeInput();
-        endTime = new TimeInput();
-        divisionSelector = new DivisionSelector();
-        excluded = new CheckBox("Excluded");
+        elementTeamNumber = new TextField();
+        elementRiders = new TextArea();
+        elementNotes = new TextArea();
+        elementStartTime = new TimeInput();
+        elementEndTime = new TimeInput();
+        elementDivision = new DivisionSelector();
+        elementExcluded = new CheckBox("Excluded");
 
 
         stage.setScene(generateScene());
@@ -85,10 +85,10 @@ public class TeamEditor {
         borderPane.setCenter(center);
 
         center.add(new Label("Team Number"),0,0);
-        center.add(teamNumber,1,0);
+        center.add(elementTeamNumber, 1, 0);
 
         center.add(new Label("Riders"),0,1,2,1);
-        center.add(riders,0,2,2,2);
+        center.add(elementRiders, 0, 2, 2, 2);
 
         GridPane centerColumn = new GridPane();
         centerColumn.setVgap(6);
@@ -96,17 +96,17 @@ public class TeamEditor {
         center.add(centerColumn,2,0,1,3);
 
         centerColumn.add(new Label("Division"),0,0);
-        centerColumn.add(divisionSelector,1,0);
+        centerColumn.add(elementDivision, 1, 0);
 
         centerColumn.add(new Label("Start Time"),0,1);
-        centerColumn.add(startTime,1,1);
+        centerColumn.add(elementStartTime, 1, 1);
 
         centerColumn.add(new Label("End Time"),0,2);
-        centerColumn.add(endTime,1,2);
+        centerColumn.add(elementEndTime, 1, 2);
 
-        centerColumn.add(excluded,0,3,2,1);
+        centerColumn.add(elementExcluded, 0, 3, 2, 1);
 
-        center.add(notes,2,3,2,1);
+        center.add(elementNotes, 2, 3, 2, 1);
 
 
         borderPane.setBottom(generateBottomPane());
@@ -115,25 +115,25 @@ public class TeamEditor {
     }
 
     public void updateTeam() {
-        team.setTeamNumber(teamNumber.getText());
-        team.setNotes(notes.getText());
-        team.setStartTime(startTime.getTime());
-        team.setEndTime(endTime.getTime());
-        team.setDivision(divisionSelector.getDivision());
+        team.setTeamNumber(elementTeamNumber.getText());
+        team.setNotes(elementNotes.getText());
+        team.setStartTime(elementStartTime.getTime());
+        team.setEndTime(elementEndTime.getTime());
+        team.setDivision(elementDivision.getDivision());
         //TODO cleanse data in separate function
-        team.setRiders(riders.getText().replace(',','\n').split("\n"));
-        team.setExcluded(excluded.isSelected());
+        team.setRiders(elementRiders.getText().replace(',', '\n').split("\n"));
+        team.setExcluded(elementExcluded.isSelected());
         updateElements();
         App.openedPace.pingUpdate();
     }
 
     public void updateElements() {
-        teamNumber.setText(team.getTeamNumber());
-        notes.setText(team.getNotes());
-        startTime.setTime(team.getStartTime());
-        endTime.setTime(team.getEndTime());
-        divisionSelector.setDivision(team.getDivision());
-        excluded.setSelected(team.isExcluded());
+        elementTeamNumber.setText(team.getTeamNumber());
+        elementNotes.setText(team.getNotes());
+        elementStartTime.setTime(team.getStartTime());
+        elementEndTime.setTime(team.getEndTime());
+        elementDivision.setDivision(team.getDivision());
+        elementExcluded.setSelected(team.isExcluded());
 
         if(team.getRiders() != null) {
             StringBuilder builder = new StringBuilder();
@@ -144,9 +144,9 @@ public class TeamEditor {
                     builder.append("\n");
                 }
             }
-            riders.setText(builder.toString());
+            elementRiders.setText(builder.toString());
         } else {
-            riders.setText("");
+            elementRiders.setText("");
         }
     }
 
