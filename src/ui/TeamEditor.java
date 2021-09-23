@@ -1,5 +1,6 @@
 package ui;
 
+import app.App;
 import data.Team;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -122,8 +123,8 @@ public class TeamEditor {
         //TODO cleanse data in separate function
         team.setRiders(riders.getText().replace(',','\n').split("\n"));
         team.setExcluded(excluded.isSelected());
-
         updateElements();
+        App.openedPace.pingUpdate();
     }
 
     public void updateElements() {

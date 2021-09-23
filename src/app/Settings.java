@@ -31,12 +31,18 @@ public class Settings {
     private String paceDirectory;
 
     /**
+     * Whether or not to automatically save the file whenever any changes to the Pace have been saved
+     */
+    private boolean aggressiveSave;
+
+    /**
      * Creates a new {@code Settings} object and sets values to their defaults.
      */
     public Settings() {
         aggressiveMemorySave = false;
         fileExtension = ".pace";
         version = App.version;
+        aggressiveSave = true;
         paceDirectory = System.getProperty("user.home") + File.separatorChar + "Documents" + File.separatorChar;
         //If doesn't work, revert to home
 
@@ -127,5 +133,14 @@ public class Settings {
                 size--;
             }
         }
+    }
+
+    public boolean isAggressiveSave() {
+        return aggressiveSave;
+    }
+
+    public void setAggressiveSave(boolean aggressiveSave) {
+        this.aggressiveSave = aggressiveSave;
+        save();
     }
 }

@@ -218,4 +218,10 @@ public class Pace {
 			return false;
 		}
     }
+
+    public void pingUpdate() {
+        if(App.settings.isAggressiveSave()) {
+            save();
+        }
+    }
 }
