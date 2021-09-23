@@ -127,6 +127,7 @@ public class TeamEditor {
         App.openedPace.pingUpdate();
     }
 
+    //TODO: Add this method to the "Team" class as a method to be called before saving or something
     public String[] parseRiders() {
         String[] raw = elementRiders.getText().replace(',','\n').split("\n");
         boolean[] delete = new boolean[raw.length];
