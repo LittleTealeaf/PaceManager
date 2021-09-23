@@ -4,6 +4,7 @@ module paceManager {
 
     exports ui to javafx.graphics;
     exports app to javafx.graphics;
+    exports data;
 
     requires javafx.graphics;
     requires javafx.controls;
