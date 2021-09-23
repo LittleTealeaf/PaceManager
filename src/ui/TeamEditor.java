@@ -65,16 +65,23 @@ public class TeamEditor {
         center.add(new Label("Riders"),0,1,2,1);
         center.add(riders,0,2,2,2);
 
-        center.add(new Label("Division"),2,0);
-        center.add(divisionSelector,3,0);
+        GridPane centerColumn = new GridPane();
+        centerColumn.setVgap(6);
+        centerColumn.setHgap(6);
+        center.add(centerColumn,2,0,1,3);
 
-        center.add(new Label("Start Time"),2,1);
-        center.add(startTime,3,1);
+        centerColumn.add(new Label("Division"),0,0);
+        centerColumn.add(divisionSelector,1,0);
 
-        center.add(new Label("End Time"),2,2);
-        center.add(endTime,3,2);
+        centerColumn.add(new Label("Start Time"),0,1);
+        centerColumn.add(startTime,1,1);
 
-        center.add(excluded,2,3,2,1);
+        centerColumn.add(new Label("End Time"),0,2);
+        centerColumn.add(endTime,1,2);
+
+        centerColumn.add(excluded,0,3,2,1);
+
+        center.add(notes,2,3,2,1);
 
         return new Scene(borderPane);
     }
