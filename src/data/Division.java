@@ -26,10 +26,17 @@ public class Division {
      * @see #removeTeam(Team)
      */
     private final transient List<Team> teams;
+    /**
+     * Display Name of the Division
+     */
     private String name;
+    /**
+     * Optimum Time for the division
+     */
     private Time goalTime;
 
     /**
+     * Creates a new division
      * @since 1.0.0
      */
     public Division() {
@@ -37,13 +44,17 @@ public class Division {
         teams = new ArrayList<>();
     }
 
+    /**
+     * Creates a division with a given name
+     * @param name Display Name of the Division
+     */
     public Division(String name) {
         this();
         this.name = name;
     }
 
     /**
-     * @return
+     * @return Display name of the Division
      * @since 1.0.0
      */
     public String getName() {
@@ -51,7 +62,8 @@ public class Division {
     }
 
     /**
-     * @param name
+     * Sets the display name of the division
+     * @param name new Display Name for the division
      * @since 1.0.0
      */
     public void setName(String name) {
@@ -82,6 +94,11 @@ public class Division {
         teams.add(team);
     }
 
+    /**
+     * Moves all teams from the provided division into this division.
+     * Removes all teams from the specified division respectfully
+     * @param division Division to "steal" all teams from
+     */
     public void importTeamsFrom(Division division) {
         for (Team team : division.getTeams()) {
             team.setDivision(this);
