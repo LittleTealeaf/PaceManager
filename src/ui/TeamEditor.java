@@ -3,12 +3,10 @@ package ui;
 import data.Team;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class TeamEditor {
@@ -50,6 +48,32 @@ public class TeamEditor {
         open();
     }
 
+    private BorderPane generateBottomPane() {
+        BorderPane pane = new BorderPane();
+
+        Button buttonClose = new Button("Close");
+        buttonClose.setOnAction(e -> close());
+
+        Button buttonSave = new Button("Save");
+        buttonSave.setOnAction(e -> updateTeam());
+
+        Button buttonSaveExit = new Button("Save and Exit");
+        buttonSaveExit.setOnAction(e -> {
+            updateTeam();
+            close();
+        });
+
+        HBox leftBox = new HBox(buttonClose);
+        leftBox.setSpacing(10);
+        pane.setLeft(leftBox);
+
+        HBox rightBox = new HBox(buttonSave,buttonSaveExit);
+        rightBox.setSpacing(10);
+        pane.setRight(rightBox);
+
+        return pane;
+    }
+
     private Scene generateScene() {
         BorderPane borderPane = new BorderPane();
         borderPane.setPadding(new Insets(10));
@@ -83,6 +107,9 @@ public class TeamEditor {
 
         center.add(notes,2,3,2,1);
 
+
+        borderPane.setBottom(generateBottomPane());
+
         return new Scene(borderPane);
     }
 
@@ -95,6 +122,8 @@ public class TeamEditor {
         //TODO cleanse data in separate function
         team.setRiders(riders.getText().replace(',','\n').split("\n"));
         team.setExcluded(excluded.isSelected());
+
+        updateElements();
     }
 
     public void updateElements() {
