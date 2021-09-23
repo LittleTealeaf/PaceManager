@@ -62,8 +62,17 @@ public class TeamEditor {
         center.add(new Label("Team Number"),0,0);
         center.add(teamNumber,1,0);
 
-        center.add(new Label("Riders"),2,0,2,1);
-        center.add(riders,2,1,2,2);
+        center.add(new Label("Riders"),0,1,2,1);
+        center.add(riders,0,2,2,2);
+
+        center.add(new Label("Division"),2,0);
+        center.add(divisionSelector,3,0);
+
+        center.add(new Label("Start Time"),2,1);
+        center.add(startTime,3,1);
+
+        center.add(new Label("End Time"),2,2);
+        center.add(endTime,3,2);
 
 
 
