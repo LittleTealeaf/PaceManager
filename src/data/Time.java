@@ -17,8 +17,7 @@ import java.util.TimeZone;
  * @since 1.0.0
  */
 public class Time {
-
-    private static final long MILLISECONDS_PER_12_HOURS = 43200000;
+    private static final long MILLISECONDS_PER_HOUR = 3600000;
     /**
      * Value of Time stored as ms. The only way to specify this value is by creating a new Time using either
      * {@link #Time()} (sets {@code value = 0}) or {@link #Time(long)} (allows for specification of {@code value})
@@ -63,8 +62,10 @@ public class Time {
             } catch (Exception ignored) {}
         }
 
-        if (string.contains("PM")) {
-            value += MILLISECONDS_PER_12_HOURS;
+        if (string.toUpperCase().contains("PM") && value < 13 * MILLISECONDS_PER_HOUR) {
+            value += 12 * MILLISECONDS_PER_HOUR;
+        } else if(string.toUpperCase().contains("AM") && value > 12 * MILLISECONDS_PER_HOUR) {
+            value -= 24 * MILLISECONDS_PER_HOUR;
         }
 
         this.value = value;
