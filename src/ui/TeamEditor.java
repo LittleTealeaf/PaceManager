@@ -74,8 +74,6 @@ public class TeamEditor {
         center.add(new Label("End Time"),2,2);
         center.add(endTime,3,2);
 
-
-
         return new Scene(borderPane);
     }
 
