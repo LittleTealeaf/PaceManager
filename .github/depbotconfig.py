@@ -15,9 +15,9 @@ with open(os.path.join(__location__,'dependabot.yml')) as file:
     for b in branches:
         update = {}
         update['package-ecosystem'] = "maven"
-        update['directory'] = "/
+        update['directory'] = "/"
         update['target-branch'] = b
-        update['schedule'] = {'interval':"daily}
+        update['schedule'] = {'interval':"daily"}
         updates.append(update)
     data['updates'] = updates
 

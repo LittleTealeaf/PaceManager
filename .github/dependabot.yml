@@ -1,17 +1,17 @@
 updates:
-- directory: '"/"'
-  package-ecosystem: '"maven"'
+- directory: /
+  package-ecosystem: maven
   schedule:
-    interval: '"daily"'
+    interval: daily
   target-branch: master
-- directory: '"/"'
-  package-ecosystem: '"maven"'
+- directory: /
+  package-ecosystem: maven
   schedule:
-    interval: '"daily"'
+    interval: daily
   target-branch: 1.0.0
-- directory: '"/"'
-  package-ecosystem: '"maven"'
+- directory: /
+  package-ecosystem: maven
   schedule:
-    interval: '"daily"'
+    interval: daily
   target-branch: bug-fixes
 version: 2
