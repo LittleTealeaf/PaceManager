@@ -205,7 +205,7 @@ public class Team implements Serializable {
     }
 
     /**
-     * Checks whether or not an elapsed time can be calculated
+     * Checks whether an elapsed time can be calculated
      *
      * @return {@code false} if either {@code startTime} or {@code endTime} are {@code null}
      * @since 1.0.0
