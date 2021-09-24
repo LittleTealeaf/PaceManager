@@ -227,6 +227,7 @@ public class TeamEditor {
         }
         stage.show();
         stage.requestFocus();
+        openedStage = stage;
     }
 
     /**
