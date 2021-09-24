@@ -5,9 +5,11 @@ import data.Pace;
 import data.Team;
 import data.Time;
 import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import ui.Launcher;
-import ui.TeamEditor;
+import ui.TeamTable;
 
 import java.io.File;
 
@@ -72,9 +74,14 @@ public class App extends Application {
 //            openedPace = new Pace();
             openedPace = testPace();
         }
+        BorderPane borderPane = new BorderPane();
+
+        borderPane.setCenter(new TeamTable(openedPace));
+
+        Scene scene = new Scene(borderPane);
         openedPace.save();
         appStage.show();
-        new TeamEditor(openedPace.getTeams().get((int) (openedPace.getTeams().size() * Math.random())));
+//        new TeamEditor(openedPace.getTeams().get((int) (openedPace.getTeams().size() * Math.random())));
     }
 
     /**
