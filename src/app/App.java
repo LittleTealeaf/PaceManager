@@ -72,6 +72,7 @@ public class App extends Application {
     public static void open(File file) {
         if (file != null && file.exists()) {
             openedPace = Pace.fromFile(file);
+            appStage.setTitle(file.getName());
         } else {
 //            openedPace = new Pace();
             openedPace = testPace();
@@ -83,6 +84,7 @@ public class App extends Application {
         Scene scene = new Scene(borderPane);
         appStage.setScene(scene);
         openedPace.save();
+
         appStage.show();
     }
 
