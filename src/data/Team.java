@@ -264,4 +264,15 @@ public class Team implements Serializable {
     public int getNumberOfRiders() {
         return riders.length;
     }
+
+    public String getRidersString() {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < riders.length; i++) {
+            builder.append(riders[i]);
+            if (i < riders.length - 1) {
+                builder.append(", ");
+            }
+        }
+        return builder.toString();
+    }
 }
