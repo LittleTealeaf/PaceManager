@@ -119,8 +119,11 @@ public class Launcher {
             return openFile();
         }
         prompt.setInitialDirectory(startingDirectory);
-        prompt.getExtensionFilters().add(new FileChooser.ExtensionFilter("PACE files (*.pace)", "*.pace"));
-        prompt.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON files (*.json)", "*.json"));
+        for (String ext : App.settings.getFileExtensions()) {
+            String display = ext.substring(1).toUpperCase() + " files (*" + ext + ")";
+            String filter = "*" + ext;
+            prompt.getExtensionFilters().add(new FileChooser.ExtensionFilter(display, filter));
+        }
 
         File file = prompt.showOpenDialog(stage);
         if (file != null) {

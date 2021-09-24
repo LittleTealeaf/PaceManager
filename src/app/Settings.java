@@ -27,7 +27,7 @@ public class Settings {
      * What the file extension should be for files opened by the program
      * <p>Default: {@code .pace}
      */
-    private String fileExtension;
+    private String[] fileExtensions;
     private String paceDirectory;
 
     /**
@@ -40,7 +40,7 @@ public class Settings {
      */
     public Settings() {
         aggressiveMemorySave = false;
-        fileExtension = ".pace";
+        fileExtensions = new String[]{".pace", ".json"};
         version = App.version;
         aggressiveSave = true;
         paceDirectory = System.getProperty("user.home") + File.separatorChar + "Documents" + File.separatorChar;
@@ -87,16 +87,16 @@ public class Settings {
      * @return
      * @since 1.0.0
      */
-    public String getFileExtension() {
-        return fileExtension;
+    public String[] getFileExtensions() {
+        return fileExtensions;
     }
 
     /**
-     * @param fileExtension
+     * @param fileExtensions
      * @since 1.0.0
      */
-    public void setFileExtension(String fileExtension) {
-        this.fileExtension = fileExtension;
+    public void setFileExtensions(String[] fileExtensions) {
+        this.fileExtensions = fileExtensions;
         save();
     }
 
