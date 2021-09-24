@@ -151,7 +151,7 @@ public class TeamEditor {
         team.setRiders(parseRiders());
         team.setExcluded(elementExcluded.isSelected());
         updateElements();
-        App.openedPace.pingUpdate();
+        App.pingUpdate();
     }
 
     //TODO: Add this method to the "Team" class as a method to be called before saving or something

@@ -50,6 +50,8 @@ public class App extends Application {
      */
     private static Stage appStage;
 
+    private static TeamTable table;
+
     /**
      * Application Launch Point
      *
@@ -76,12 +78,17 @@ public class App extends Application {
         }
         BorderPane borderPane = new BorderPane();
 
-        borderPane.setCenter(new TeamTable(openedPace));
+        borderPane.setCenter(table = new TeamTable(openedPace));
 
         Scene scene = new Scene(borderPane);
         appStage.setScene(scene);
         openedPace.save();
         appStage.show();
+    }
+
+    public static void pingUpdate() {
+        openedPace.pingUpdate();
+        table.update();
     }
 
     /**

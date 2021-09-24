@@ -23,7 +23,24 @@ public class TeamTable extends TableView<Team> {
         super();
         this.pace = pace;
         addColumns();
-        updateRiders();
+        update();
+
+        setOnMouseClicked(e -> {
+            if (e.getClickCount() == 2) {
+                if (getSelectionModel().getSelectedItem() != null) {
+                    new TeamEditor(getSelectionModel().getSelectedItem());
+                }
+            }
+        });
+        setOnKeyPressed(e -> {
+            switch (e.getCode()) {
+                case ENTER, SPACE -> {
+                    if (getSelectionModel().getSelectedItem() != null) {
+                        new TeamEditor(getSelectionModel().getSelectedItem());
+                    }
+                }
+            }
+        });
     }
 
     private void addColumns() {
@@ -43,8 +60,14 @@ public class TeamTable extends TableView<Team> {
         return column;
     }
 
-    public void updateRiders() {
+    public void update() {
+        int selectedIndex = getSelectionModel().getSelectedIndex();
+
         getItems().clear();
         getItems().addAll(pace.getTeams());
+
+        if (selectedIndex >= 0) {
+            getSelectionModel().select(selectedIndex);
+        }
     }
 }
