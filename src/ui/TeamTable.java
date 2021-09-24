@@ -47,6 +47,7 @@ public class TeamTable extends TableView<Team> {
         getColumns().clear();
 
         TableColumn<Team, String> times = new TableColumn<>("Times");
+        times.setReorderable(false);
         times.getColumns().addAll(
                 columnFactory("Start", "startString"),
                 columnFactory("End", "endString"),
@@ -65,6 +66,7 @@ public class TeamTable extends TableView<Team> {
     private TableColumn<Team, String> columnFactory(String name, String propertyName) {
         TableColumn<Team, String> column = new TableColumn<>(name);
         column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
+        column.setReorderable(false);
         return column;
     }
 
