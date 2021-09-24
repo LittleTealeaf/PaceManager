@@ -55,6 +55,7 @@ public class Time {
     }
 
     public Time(String string) {
+        //TODO optimize this using character pointer and an intermediate value that gets increased in potency
         long value = 0;
         String cleanedString = string.replace(" ", "");
 
