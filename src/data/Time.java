@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+//TODO update javadocs
 /**
  * Stores the value of a given time. Value is stored as a long, specifying the time in ms.
  * <p> Uses of stored time includes specifying a specific time and date, specifying a specific time of day, or specifying a difference in time
