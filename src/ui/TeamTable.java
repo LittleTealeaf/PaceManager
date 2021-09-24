@@ -29,11 +29,23 @@ public class TeamTable extends TableView<Team> {
 
         setOnMouseClicked(e -> {
             if (e.getClickCount() == 2) {
-                if (getSelectionModel().getSelectedItem() != null) {
+                if (getSelectionModel().getSelectedIndex() > -1) {
                     new TeamEditor(getSelectionModel().getSelectedItem());
                 }
             }
         });
+//        setRowFactory(tv -> {
+//            TableRow<Team> row = new TableRow<>();
+//            row.setOnMouseClicked(e -> {
+//                if(!row.isEmpty() && e.getClickCount() == 2) {
+//                    if(getSelectionModel().getSelectedItem() != null) {
+//                        new TeamEditor(getSelectionModel().getSelectedItem());
+//                    }
+//                }
+//            });
+//
+//            return row;
+//        });
         setOnKeyPressed(e -> {
             switch (e.getCode()) {
                 case ENTER, SPACE -> {
