@@ -36,12 +36,7 @@ public class Settings {
      * @see ui.Launcher
      */
     private final List<String> recentFiles;
-    /**
-     * Determines whether additional steps are taken to reduce memory used by the program.
-     * <p>Default: False
-     * @since 1.0.0
-     */
-    private boolean aggressiveMemorySave;
+
     /**
      * What the file extension should be for files opened by the program. Extensions are in the format {@code .___}
      *
@@ -57,12 +52,25 @@ public class Settings {
 
     /**
      * Whether to automatically save the file whenever any changes to the Pace have been saved.
+     *
      * @since 1.0.0
      */
     private boolean aggressiveSave;
 
     /**
+     * Determines whether additional steps are taken to reduce memory used by the program.
+     * <p>Default: False
+     *
+     * @since 1.0.0
+     */
+    private boolean aggressiveMemorySave;
+
+    private boolean launcherMaximized;
+    private boolean appMaximized;
+
+    /**
      * Creates a new {@code Settings} object and sets values to their defaults.
+     *
      * @since 1.0.0
      */
     public Settings() {
@@ -71,7 +79,8 @@ public class Settings {
         version = App.version;
         aggressiveSave = true;
         paceDirectory = System.getProperty("user.home") + File.separatorChar + "Documents" + File.separatorChar;
-        //If doesn't work, revert to home
+        launcherMaximized = false;
+        appMaximized = true;
 
         recentFiles = new ArrayList<>();
     }
@@ -235,6 +244,24 @@ public class Settings {
      */
     public void setAggressiveSave(boolean aggressiveSave) {
         this.aggressiveSave = aggressiveSave;
+        save();
+    }
+
+    public boolean isLauncherMaximized() {
+        return launcherMaximized;
+    }
+
+    public void setLauncherMaximized(boolean launcherMaximized) {
+        this.launcherMaximized = launcherMaximized;
+        save();
+    }
+
+    public boolean isAppMaximized() {
+        return appMaximized;
+    }
+
+    public void setAppMaximized(boolean appMaximized) {
+        this.appMaximized = appMaximized;
         save();
     }
 }

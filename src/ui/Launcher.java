@@ -36,6 +36,10 @@ public class Launcher {
     public static void open() {
         stage = new Stage();
         stage.setTitle("Pace Manager " + App.version);
+        stage.setMaximized(App.settings.isLauncherMaximized());
+        stage.maximizedProperty().addListener(e -> {
+            App.settings.setLauncherMaximized(stage.isMaximized());
+        });
 
         BorderPane borderPane = new BorderPane();
         borderPane.setPadding(new Insets(10));

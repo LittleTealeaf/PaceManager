@@ -139,6 +139,10 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         appStage = stage;
+        stage.setMaximized(settings.isAppMaximized());
+        stage.maximizedProperty().addListener(e -> {
+            settings.setAppMaximized(stage.isMaximized());
+        });
         Launcher.open();
     }
 }
