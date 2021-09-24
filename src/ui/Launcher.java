@@ -107,7 +107,9 @@ public class Launcher {
         recentFiles.getItems().setAll(App.settings.getRecentFiles());
         recentFiles.setOnMouseClicked(e -> {
             if (e.getClickCount() == 2) {
-                open(new File(recentFiles.getSelectionModel().getSelectedItem()));
+                if (recentFiles.getSelectionModel().getSelectedItem() != null) {
+                    open(new File(recentFiles.getSelectionModel().getSelectedItem()));
+                }
             }
         });
         recentFiles.setOnKeyPressed(e -> {
