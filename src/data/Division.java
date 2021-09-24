@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.UUID;
 
 /**
+ * Class representing all data for a given Division
+ *
  * @author Thomas Kwashnak
  * @version 1.0.0
  * @since 1.0.0
@@ -16,6 +18,7 @@ public class Division {
      * Unique identifier of this division object
      *
      * @see #getUUID()
+     * @since 1.0.0
      */
     private final UUID uuid;
     /**
@@ -24,14 +27,17 @@ public class Division {
      * @apiNote is transitive such that teams are not double copied in {@link Pace#serialize(Writer)}
      * @see #addTeam(Team)
      * @see #removeTeam(Team)
+     * @since 1.0.0
      */
     private final transient List<Team> teams;
     /**
      * Display Name of the Division
+     * @since 1.0.0
      */
     private String name;
     /**
      * Optimum Time for the division
+     * @since 1.0.0
      */
     private Time goalTime;
 
@@ -47,6 +53,7 @@ public class Division {
     /**
      * Creates a division with a given name
      * @param name Display Name of the Division
+     * @since 1.0.0
      */
     public Division(String name) {
         this();
@@ -54,6 +61,7 @@ public class Division {
     }
 
     /**
+     * Gets the display name
      * @return Display name of the Division
      * @since 1.0.0
      */
@@ -62,7 +70,7 @@ public class Division {
     }
 
     /**
-     * Sets the display name of the division
+     * Sets the display name
      * @param name new Display Name for the division
      * @since 1.0.0
      */
@@ -71,7 +79,8 @@ public class Division {
     }
 
     /**
-     * @return
+     * Gets the goal time
+     * @return Gets the optimum time for the division
      * @since 1.0.0
      */
     public Time getGoalTime() {
@@ -79,15 +88,20 @@ public class Division {
     }
 
     /**
-     * @param goalTime
+     * Sets the goal time
+     * @param goalTime Optimum time for the division
      * @since 1.0.0
      */
     public void setGoalTime(Time goalTime) {
         this.goalTime = goalTime;
     }
 
+    //TODO maybe make this set the team's division?
+
     /**
-     * @param team
+     * Adds a new team to the division.
+     * <p>Does not modify the team or check if the team is set to the division in any way.</p>
+     * @param team Team to add to the division
      * @since 1.0.0
      */
     public void addTeam(Team team) {
@@ -108,14 +122,19 @@ public class Division {
     }
 
     /**
-     * @param team
+     * Removes a team from the division
+     *
+     * @param team Team to remove from the division
+     * @return {@code true} if the team was able to be removed, {@code false} otherwise
+     * @see List#remove(Object)
      * @since 1.0.0
      */
-    public void removeTeam(Team team) {
-        teams.remove(team);
+    public boolean removeTeam(Team team) {
+        return teams.remove(team);
     }
 
     /**
+     * Clears all teams from the division list
      * @since 1.0.0
      */
     public void clearTeams() {
@@ -123,7 +142,8 @@ public class Division {
     }
 
     /**
-     * @return
+     * Gets the division UUID
+     * @return Unique Identifier of the division
      * @since 1.0.0
      */
     public UUID getUUID() {
@@ -131,16 +151,21 @@ public class Division {
     }
 
     /**
-     * @return
+     * String representation of the division
+     * @return Division's name
      * @since 1.0.0
+     * @see #getName()
      */
     public String toString() {
         return getName();
     }
 
     /**
-     * @return
+     * Obtains a list of teams in the division who have completed and are eligible for a place, in order from closest
+     * to the optimum time to farthest from the optimum time
+     * @return Array List of eligible teams in order of closeness to the goal time
      * @since 1.0.0
+     * @see #goalTime
      */
     public Team[] getPlaceOrder() {
         if (goalTime == null) {
@@ -188,7 +213,8 @@ public class Division {
     }
 
     /**
-     * @return
+     * Gets all the teams listed in the division
+     * @return List of teams recorded in the division
      * @since 1.0.0
      */
     public List<Team> getTeams() {
@@ -196,7 +222,8 @@ public class Division {
     }
 
     /**
-     * @return
+     * Gets all teh teams listed in the division in array form
+     * @return Array of all teams recorded in the division
      * @since 1.0.0
      */
     public Team[] getTeamsAsArray() {
