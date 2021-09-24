@@ -58,7 +58,8 @@ public class TeamTable extends TableView<Team> {
                 columnFactory("Division", "division"),
                 columnFactory("Team", "teamNumber"),
                 columnFactory("Riders", "ridersString"),
-                times
+                times,
+                columnFactory("Notes", "notes")
         );
 
     }
