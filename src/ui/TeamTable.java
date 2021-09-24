@@ -6,6 +6,7 @@ import data.Team;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 
 /**
  * @author Thomas Kwashnak
@@ -28,7 +29,7 @@ public class TeamTable extends TableView<Team> {
         update();
 
         setOnMouseClicked(e -> {
-            if (e.getClickCount() == 2) {
+            if (e.getClickCount() == 2 && e.getButton() == MouseButton.PRIMARY) {
                 if (getSelectionModel().getSelectedIndex() > -1) {
                     new TeamEditor(getSelectionModel().getSelectedItem());
                 }

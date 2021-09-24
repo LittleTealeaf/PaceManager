@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -113,7 +114,7 @@ public class Launcher {
         ListView<String> recentFiles = new ListView<>();
         recentFiles.getItems().setAll(App.settings.getRecentFiles());
         recentFiles.setOnMouseClicked(e -> {
-            if (e.getClickCount() == 2) {
+            if (e.getClickCount() == 2 && e.getButton() == MouseButton.PRIMARY) {
                 if (recentFiles.getSelectionModel().getSelectedItem() != null) {
                     open(new File(recentFiles.getSelectionModel().getSelectedItem()));
                 }
