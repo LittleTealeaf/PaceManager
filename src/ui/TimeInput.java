@@ -80,11 +80,17 @@ public class TimeInput extends TextField {
      * @since 1.0.0
      */
     private void parseText() {
-        if (getText() == null || getText().contentEquals("")) {
-            time = null;
-        } else {
-            time = new Time(getText());
-        }
+        try {
+            if (getText() == null || getText().contentEquals("")) {
+                time = null;
+            } else {
+                Time t = new Time(getText());
+                if (t != null) {
+                    time = t;
+                }
+            }
+        } catch (Exception ignored) {}
+
         updateText();
     }
 }
