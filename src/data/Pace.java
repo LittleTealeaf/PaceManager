@@ -254,6 +254,7 @@ public class Pace {
         Division division = new Division();
         division.setName(name);
         divisions.add(division);
+        pingUpdate();
         return division.getUUID();
     }
 
@@ -265,6 +266,7 @@ public class Pace {
      */
     public void addDivision(Division division) {
         divisions.add(division);
+        pingUpdate();
     }
 
     /**
@@ -281,6 +283,7 @@ public class Pace {
             for (Team team : division.getTeams()) {
                 team.setDivision(divisions.get(0));
             }
+            pingUpdate();
             return divisions.remove(division);
         } else {
             return false;
@@ -303,6 +306,7 @@ public class Pace {
             int index = divisions.indexOf(division);
             divisions.set(0, division);
             divisions.set(index, currentDefault);
+            pingUpdate();
             return true;
         }
     }
