@@ -66,7 +66,7 @@ public class App extends Application {
      * @since 1.0.0
      */
     public static void open(File file) {
-        if (file.exists()) {
+        if (file != null && file.exists()) {
             openedPace = Pace.fromFile(file);
         } else {
 //            openedPace = new Pace();
