@@ -28,6 +28,7 @@ public class Settings {
      * @see App#version
      * @since 1.0.0
      */
+    @SuppressWarnings("FieldCanBeLocal")
     private final String version;
     /**
      * List of recently opened Pace files

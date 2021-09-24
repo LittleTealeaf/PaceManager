@@ -84,7 +84,6 @@ public class Pace {
             pace.setFile(file);
             return pace;
         } catch (Exception e) {
-            System.out.println(e);
             Pace pace = new Pace();
             pace.setFile(file);
             return pace;

@@ -123,7 +123,7 @@ public class App extends Application {
      * @since 1.0.0
      */
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         appStage = stage;
         Launcher.open();
     }
