@@ -19,6 +19,7 @@ public class Serialization {
      * @see #createGson()
      * @see #getGson()
      * @see Gson
+     * @since 1.0.0
      */
     private static final Gson gson = createGson();
 

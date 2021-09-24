@@ -7,36 +7,62 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class containing all current settings of the program. Stores these values in a location dependent on the operating
+ * system. Or at least that is what it's supposed to do.
+ *
+ * @author Thomas Kwashnak
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class Settings {
 
+    /**
+     * File object referencing to where the Settings JSON is stored
+     */
     public static transient File settingsFile;
 
     /**
      * Current application version of the settings object
      *
      * @see App#version
+     * @since 1.0.0
      */
     private final String version;
+    /**
+     * List of recently opened Pace files
+     * @since 1.0.0
+     * @see ui.Launcher
+     */
     private final List<String> recentFiles;
     /**
-     * Determines whether or not additional steps are taken to reduce memory used by the program
+     * Determines whether additional steps are taken to reduce memory used by the program.
      * <p>Default: False
+     * @since 1.0.0
      */
     private boolean aggressiveMemorySave;
     /**
-     * What the file extension should be for files opened by the program
-     * <p>Default: {@code .pace}
+     * What the file extension should be for files opened by the program. Extensions are in the format {@code .___}
+     *
+     * @since 1.0.0
      */
     private String[] fileExtensions;
+    /**
+     * Default directory to begin looking for pace files in
+     * @see ui.Launcher
+     * @since 1.0.0
+     */
     private String paceDirectory;
 
     /**
-     * Whether or not to automatically save the file whenever any changes to the Pace have been saved
+     * Whether to automatically save the file whenever any changes to the Pace have been saved.
+     * @since 1.0.0
      */
     private boolean aggressiveSave;
 
     /**
      * Creates a new {@code Settings} object and sets values to their defaults.
+     * @since 1.0.0
      */
     public Settings() {
         aggressiveMemorySave = false;
@@ -51,6 +77,8 @@ public class Settings {
 
     /**
      * Saves the current configuration
+     *
+     * @since 1.0.0
      */
     public void save() {
         if (settingsFile.getParentFile().mkdirs()) {
@@ -64,16 +92,21 @@ public class Settings {
     }
 
     /**
-     * @return
+     * Returns whether to aggressively save memory (ram)
+     * @return {@code true} if the setting is set to true, {@code false} if the setting is set to false
      * @since 1.0.0
+     * @see #aggressiveMemorySave
      */
     public boolean isAggressiveMemorySave() {
         return aggressiveMemorySave;
     }
 
     /**
-     * @param value
+     * Sets whether the program should be concerned about aggressively saving values
+     * <p>Will save settings to the settings file after the modification</p>
+     * @param value {@code true} if the program should take extra steps to reduce memory, {@code false} if not
      * @since 1.0.0
+     * @see #aggressiveMemorySave
      */
     public void setAggressiveMemorySave(boolean value) {
         //Only updates / saves if there is a change
@@ -84,22 +117,28 @@ public class Settings {
     }
 
     /**
-     * @return
+     * Gets the list of file extensions used when opening a pace file
+     * @return String array of valid file extensions. Extensions are in the format {@code .___}.
      * @since 1.0.0
+     * @see #fileExtensions
      */
     public String[] getFileExtensions() {
         return fileExtensions;
     }
 
     /**
-     * @param fileExtensions
+     * Sets the list of file extensions.
+     * <p>Will save settings to the settings file after the modification</p>
+     * @param fileExtensions String array of valid file extensions. Extensions are in the format {@code .___}.
      * @since 1.0.0
+     * @see #fileExtensions
      */
     public void setFileExtensions(String[] fileExtensions) {
         this.fileExtensions = fileExtensions;
         save();
     }
 
+    //TODO finish comments
     public String getPaceDirectory() {
         return paceDirectory;
     }
