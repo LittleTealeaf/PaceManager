@@ -82,7 +82,6 @@ public class App extends Application {
         appStage.setScene(scene);
         openedPace.save();
         appStage.show();
-//        new TeamEditor(openedPace.getTeams().get((int) (openedPace.getTeams().size() * Math.random())));
     }
 
     /**
