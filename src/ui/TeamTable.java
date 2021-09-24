@@ -29,16 +29,18 @@ public class TeamTable extends TableView<Team> {
     private void addColumns() {
         getColumns().clear();
 
-        TableColumn<Team, String> colDivision = new TableColumn<>("Division");
-        colDivision.setCellValueFactory(new PropertyValueFactory<>("division"));
-        getColumns().add(colDivision);
+        getColumns().addAll(
+                columnFactory("Division", "division"),
+                columnFactory("Team", "teamNumber"),
+                columnFactory("Riders", "ridersString")
+        );
 
-        TableColumn<Team, String> colIdentifier = new TableColumn<>("Identifier");
+    }
 
-
-        TableColumn<Team, String> colRiders = new TableColumn<>("Riders");
-
-
+    private TableColumn<Team, String> columnFactory(String name, String propertyName) {
+        TableColumn<Team, String> column = new TableColumn<>(name);
+        column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
+        return column;
     }
 
     public void updateRiders() {
