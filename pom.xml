@@ -34,6 +34,16 @@
             <artifactId>javafx-controls</artifactId>
             <version>17.0.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>17.0.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>17.0.0.1</version>
+        </dependency>
     </dependencies>
     <properties>
         <maven.compiler.source>1.15</maven.compiler.source>
