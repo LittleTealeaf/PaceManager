@@ -266,13 +266,17 @@ public class Team implements Serializable {
     }
 
     public String getRidersString() {
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < riders.length; i++) {
-            builder.append(riders[i]);
-            if (i < riders.length - 1) {
-                builder.append(", ");
+        if (riders != null) {
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < riders.length; i++) {
+                builder.append(riders[i]);
+                if (i < riders.length - 1) {
+                    builder.append("\n");
+                }
             }
+            return builder.toString();
+        } else {
+            return "";
         }
-        return builder.toString();
     }
 }
