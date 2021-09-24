@@ -50,7 +50,7 @@ public class Pace {
             pace.setFile(file);
             return pace;
         } catch (Exception e) {
-            System.out.println(e.toString());
+            System.out.println(e);
             Pace pace = new Pace();
             pace.setFile(file);
             return pace;
@@ -143,6 +143,7 @@ public class Pace {
                 FileWriter writer = new FileWriter(file);
                 serialize(writer);
                 writer.close();
+                App.settings.addRecentFile(getFile().getPath());
             } catch (Exception ignore) {
             }
         }
