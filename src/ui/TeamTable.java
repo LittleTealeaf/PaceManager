@@ -46,10 +46,18 @@ public class TeamTable extends TableView<Team> {
     private void addColumns() {
         getColumns().clear();
 
+        TableColumn<Team, String> times = new TableColumn<>("Times");
+        times.getColumns().addAll(
+                columnFactory("Start", "startString"),
+                columnFactory("End", "endString"),
+                columnFactory("Elapsed", "elapsedString")
+        );
+
         getColumns().addAll(
                 columnFactory("Division", "division"),
                 columnFactory("Team", "teamNumber"),
-                columnFactory("Riders", "ridersString")
+                columnFactory("Riders", "ridersString"),
+                times
         );
 
     }

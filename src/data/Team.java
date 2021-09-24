@@ -279,4 +279,17 @@ public class Team implements Serializable {
             return "";
         }
     }
+
+    public String getStartString() {
+        return startTime == null ? "-" : startTime.toString();
+    }
+
+    public String getEndString() {
+        return endTime == null ? "-" : endTime.toString();
+    }
+
+    public String getElapsedString() {
+        Time elapsed = getElapsedTime();
+        return elapsed == null ? "-" : elapsed.toString();
+    }
 }
