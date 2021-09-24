@@ -36,11 +36,11 @@ public class App extends Application {
     /**
      * Opens a pace from a specified file path
      *
-     * @param filePath
+     * @param file Pace File to open
      */
-    public static void open(String filePath) {
-        if (filePath != null) {
-            openedPace = Pace.fromFile(new File(filePath));
+    public static void open(File file) {
+        if (file.exists()) {
+            openedPace = Pace.fromFile(file);
         } else {
 //            openedPace = new Pace();
             openedPace = testPace();

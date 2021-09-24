@@ -64,9 +64,9 @@ public class Launcher {
 
         buttons[1] = new Button("Open");
         buttons[1].setOnAction(e -> {
-            String path = openFile();
-            if (path != null) {
-                open(path);
+            File file = openFile();
+            if (file != null) {
+                open(file);
             }
         });
 
@@ -89,7 +89,7 @@ public class Launcher {
         recentFiles.getItems().setAll(App.settings.getRecentFiles());
         recentFiles.setOnMouseClicked(e -> {
             if (e.getClickCount() == 2) {
-                open(recentFiles.getSelectionModel().getSelectedItem());
+                open(new File(recentFiles.getSelectionModel().getSelectedItem()));
             }
         });
         recentFiles.setOnKeyPressed(e -> {
@@ -101,7 +101,7 @@ public class Launcher {
                         recentFiles.getItems().setAll(App.settings.getRecentFiles());
                     }
                 }
-                case ENTER, SPACE -> open(recentFiles.getSelectionModel().getSelectedItem());
+                case ENTER, SPACE -> open(new File(recentFiles.getSelectionModel().getSelectedItem()));
             }
         });
 
@@ -111,7 +111,7 @@ public class Launcher {
         return borderPane;
     }
 
-    private static String openFile() {
+    private static File openFile() {
         FileChooser prompt = new FileChooser();
         File startingDirectory = new File(App.settings.getPaceDirectory());
         if (!startingDirectory.exists()) {
@@ -128,14 +128,14 @@ public class Launcher {
         File file = prompt.showOpenDialog(stage);
         if (file != null) {
             App.settings.setPaceDirectory(file.getParent());
-            return file.getPath();
+            return file;
         } else {
             return null;
         }
     }
 
-    private static void open(String path) {
-        App.open(path);
+    private static void open(File file) {
+        App.open(file);
         stage.close();
     }
 
