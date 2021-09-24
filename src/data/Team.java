@@ -11,17 +11,46 @@ import java.util.UUID;
  */
 public class Team implements Serializable {
 
+    /**
+     * @since 1.0.0
+     */
     private final UUID uuid;
+    /**
+     * @since 1.0.0
+     */
     private String teamNumber;
+    /**
+     * @since 1.0.0
+     */
     private String[] riders;
+    /**
+     * @since 1.0.0
+     */
     private String notes;
+    /**
+     * @since 1.0.0
+     */
     private Time startTime;
+    /**
+     * @since 1.0.0
+     */
     private Time endTime;
+    /**
+     * @since 1.0.0
+     */
     private boolean excluded = false;
+    /**
+     * @since 1.0.0
+     */
     private transient Division division;
+    /**
+     * @since 1.0.0
+     */
     private UUID divisionUUID;
     /**
      * Only used when populating scoreboards
+     *
+     * @since 1.0.0
      */
     private transient Time distanceToGoal;
 

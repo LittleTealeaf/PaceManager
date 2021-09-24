@@ -18,12 +18,16 @@ import java.util.TimeZone;
  * @since 1.0.0
  */
 public class Time {
+    /**
+     * @since 1.0.0
+     */
     private static final long MILLISECONDS_PER_HOUR = 3600000;
     /**
      * Value of Time stored as ms. The only way to specify this value is by creating a new Time using either
      * {@link #Time()} (sets {@code value = 0}) or {@link #Time(long)} (allows for specification of {@code value})
      *
      * @see #getValue()
+     * @since 1.0.0
      */
     private final long value;
 
@@ -125,28 +129,12 @@ public class Time {
         return new Time(getValue() - other.getValue());
     }
 
-    /*
-     * Compares the time to another {@code Time} object's time
-     *
-     * @param x The first {@code Time} to compare
-     * @param y The second {@code Time} to compare
-     * @return the value 0 if this Time is equal to the other Time; a value less than 0 if this Time is numerically less than
-     * the other Time; and a value greater than 0 if this Time is numerically greater than the other Time (signed comparison).
-     * @see Long#compare(long, long)
-     */
-    /*
+    /**
      * Compares the time to another {@code Time} object's time
      *
      * @param other {@code Time} object to compare to
      * @return the value 0 if this Time is equal to the other Time; a value less than 0 if this Time is numerically less than
      * the other Time; and a value greater than 0 if this Time is numerically greater than the other Time (signed comparison).
-     * @see #compare(Time, Time)
-     */
-
-    /**
-     * @param other
-     * @return
-     * @since 1.0.0
      */
     public int compareTo(Time other) {
         return Long.compare(getValue(), other.getValue());

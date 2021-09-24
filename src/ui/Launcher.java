@@ -25,8 +25,14 @@ public class Launcher {
      - Exit button
      */
 
+    /**
+     * @since 1.0.0
+     */
     private static Stage stage;
 
+    /**
+     * @since 1.0.0
+     */
     public static void open() {
         stage = new Stage();
         stage.setTitle("Pace Manager " + App.version);
@@ -45,6 +51,10 @@ public class Launcher {
         stage.show();
     }
 
+    /**
+     * @return
+     * @since 1.0.0
+     */
     private static VBox buttonPanel() {
         VBox panel = new VBox();
         panel.setSpacing(10);
@@ -55,6 +65,10 @@ public class Launcher {
         return panel;
     }
 
+    /**
+     * @return
+     * @since 1.0.0
+     */
     private static Button[] generateButtons() {
         //New, Open, Copy, Info, Exit
         Button[] buttons = new Button[4];
@@ -79,6 +93,10 @@ public class Launcher {
 
     }
 
+    /**
+     * @return
+     * @since 1.0.0
+     */
     private static BorderPane generateRecentFiles() {
         BorderPane borderPane = new BorderPane();
 
@@ -111,6 +129,10 @@ public class Launcher {
         return borderPane;
     }
 
+    /**
+     * @return
+     * @since 1.0.0
+     */
     private static File openFile() {
         FileChooser prompt = new FileChooser();
         File startingDirectory = new File(App.settings.getPaceDirectory());
@@ -134,6 +156,10 @@ public class Launcher {
         }
     }
 
+    /**
+     * @param file
+     * @since 1.0.0
+     */
     private static void open(File file) {
         App.open(file);
         stage.close();
