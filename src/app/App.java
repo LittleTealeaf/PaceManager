@@ -79,6 +79,7 @@ public class App extends Application {
         borderPane.setCenter(new TeamTable(openedPace));
 
         Scene scene = new Scene(borderPane);
+        appStage.setScene(scene);
         openedPace.save();
         appStage.show();
 //        new TeamEditor(openedPace.getTeams().get((int) (openedPace.getTeams().size() * Math.random())));
