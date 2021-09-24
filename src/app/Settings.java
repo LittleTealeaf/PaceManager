@@ -138,19 +138,48 @@ public class Settings {
         save();
     }
 
-    //TODO finish comments
+    /**
+     * Gets the pace directory path string
+     *
+     * @return String Path of the default directory to begin looking for pace files in
+     * @see #paceDirectory
+     * @since 1.0.0
+     */
     public String getPaceDirectory() {
         return paceDirectory;
     }
 
+    /**
+     * Sets the pace directory
+     * <p>Will save settings to the settings file after the modification</p>
+     *
+     * @param directory String Path of the default directory to begin looking for pace files in
+     * @see #paceDirectory
+     * @since 1.0.0
+     */
     public void setPaceDirectory(String directory) {
         paceDirectory = directory;
     }
 
+    /**
+     * Returns a list of recently opened pace files
+     *
+     * @return List of recently opened files stored as strings of the file locations
+     * @see #recentFiles
+     * @since 1.0.0
+     */
     public List<String> getRecentFiles() {
         return recentFiles;
     }
 
+    /**
+     * Adds a new recent file to the list of recent files if that file is not already listed
+     * <p>Will save settings to the settings file after the modification</p>
+     *
+     * @param path String Path representation of the new file to add
+     * @see #recentFiles
+     * @since 1.0.0
+     */
     public void addRecentFile(String path) {
         if (path != null) {
             //Checks if file is already in
@@ -164,6 +193,13 @@ public class Settings {
         }
     }
 
+    /**
+     * Clears the list of recently opened pace files
+     * <p>Will save settings to the settings file after the modification</p>
+     *
+     * @see #recentFiles
+     * @since 1.0.0
+     */
     public void cleanRecentFiles() {
         int size = recentFiles.size();
         for (int i = 0; i < size; i++) {
@@ -172,12 +208,30 @@ public class Settings {
                 size--;
             }
         }
+        save();
     }
 
+    /**
+     * Returns whether to aggressively save the pace file whenever a modification has been made to it
+     *
+     * @return {@code true} if a pace object should attempt to save whenever a modification ping is sent to it,
+     * {@code false} otherwise
+     * @see #aggressiveSave
+     * @since 1.0.0
+     */
     public boolean isAggressiveSave() {
         return aggressiveSave;
     }
 
+    /**
+     * Sets whether to aggressively save the pace file whenever a modification has been made to it
+     * <p>Will save settings to the settings file after the modification</p>
+     *
+     * @param aggressiveSave {@code true} if a pace object should attempt to save whenever a modification ping is sent
+     *                       to it, {@code false} otherwise
+     * @see #aggressiveSave
+     * @since 1.0.0
+     */
     public void setAggressiveSave(boolean aggressiveSave) {
         this.aggressiveSave = aggressiveSave;
         save();
