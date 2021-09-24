@@ -19,6 +19,8 @@ public class TeamTable extends TableView<Team> {
         this(App.openedPace);
     }
 
+    //TODO BUG clicking on a selected item and then clicking on empty space opens the selected item
+
     public TeamTable(Pace pace) {
         super();
         this.pace = pace;

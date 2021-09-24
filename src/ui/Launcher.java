@@ -25,6 +25,9 @@ public class Launcher {
      - Exit button
      */
 
+    //TODO BUG clicking on a selected item and then clicking on empty space opens the selected item
+
+
     /**
      * @since 1.0.0
      */
