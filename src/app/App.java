@@ -36,12 +36,11 @@ public class App extends Application {
     public static void open(String filePath) {
         if (filePath != null) {
             openedPace = Pace.fromFile(new File(filePath));
-            openedPace.save();
         } else {
 //            openedPace = new Pace();
             openedPace = testPace();
-            openedPace.save();
         }
+        openedPace.save();
         appStage.show();
         new TeamEditor(openedPace.getTeams().get((int) (openedPace.getTeams().size() * Math.random())));
     }
