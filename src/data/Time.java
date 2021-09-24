@@ -3,12 +3,10 @@ package data;
 import com.google.gson.*;
 
 import java.lang.reflect.Type;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
+import java.text.DecimalFormat;
 
 //TODO update javadocs
+
 /**
  * Stores the value of a given time. Value is stored as a long, specifying the time in ms.
  * <p> Uses of stored time includes specifying a specific time and date, specifying a specific time of day, or specifying a difference in time
@@ -18,10 +16,11 @@ import java.util.TimeZone;
  * @since 1.0.0
  */
 public class Time {
-    /**
-     * @since 1.0.0
-     */
-    private static final long MILLISECONDS_PER_HOUR = 3600000;
+
+    private static final long MILLISECONDS_PER_SECOND = 1000;
+    private static final long MILLISECONDS_PER_MINUTE = 60 * MILLISECONDS_PER_SECOND;
+    private static final long MILLISECONDS_PER_HOUR = 60 * MILLISECONDS_PER_MINUTE;
+    private static final long MILLISECONDS_PER_DAY = 24 * MILLISECONDS_PER_HOUR;
     /**
      * Value of Time stored as ms. The only way to specify this value is by creating a new Time using either
      * {@link #Time()} (sets {@code value = 0}) or {@link #Time(long)} (allows for specification of {@code value})
@@ -30,6 +29,8 @@ public class Time {
      * @since 1.0.0
      */
     private final long value;
+
+    private String string;
 
     /**
      * Creates a new {@code Time} object with {@code value} set to {@code 0}
@@ -56,21 +57,15 @@ public class Time {
     public Time(String string) {
         long value = 0;
         String cleanedString = string.replace(" ", "");
-        SimpleDateFormat[] validFormats = new SimpleDateFormat[]{
-                new SimpleDateFormat("HH:mm:ss"),
-                new SimpleDateFormat("HH:mm")
-        };
-        for (SimpleDateFormat format : validFormats) {
-            try {
-                value = format.parse(cleanedString).getTime();
-                break;
-            } catch (Exception ignored) {}
-        }
 
-        if (string.toUpperCase().contains("PM") && value < 13 * MILLISECONDS_PER_HOUR) {
-            value += 12 * MILLISECONDS_PER_HOUR;
-        } else if(string.toUpperCase().contains("AM") && value > 12 * MILLISECONDS_PER_HOUR) {
-            value -= 24 * MILLISECONDS_PER_HOUR;
+        if (cleanedString.contains("PM")) {
+            value += MILLISECONDS_PER_HOUR * 12;
+        }
+        String[] intVals = cleanedString.split(":");
+        value += MILLISECONDS_PER_HOUR * Integer.parseInt(intVals[0]);
+        value += MILLISECONDS_PER_MINUTE * Integer.parseInt(intVals[1]);
+        if (intVals.length > 2) {
+            value += MILLISECONDS_PER_SECOND * Integer.parseInt(intVals[2]);
         }
 
         this.value = value;
@@ -141,10 +136,31 @@ public class Time {
     }
 
     public String toString() {
-        Date date = new Date(value);
-        DateFormat dateFormatter = new SimpleDateFormat("HH:mm:ss");
-        dateFormatter.setTimeZone(TimeZone.getDefault());
-        return dateFormatter.format(date);
+        if (string != null) {
+            return string;
+        } else {
+            long val = value;
+            StringBuilder builder = new StringBuilder();
+            while (val >= MILLISECONDS_PER_DAY) {
+                val -= MILLISECONDS_PER_DAY;
+            }
+            int h = 0, m = 0, s = 0;
+            while (val >= MILLISECONDS_PER_HOUR) {
+                h++;
+                val -= MILLISECONDS_PER_HOUR;
+            }
+            while (val >= MILLISECONDS_PER_MINUTE) {
+                m++;
+                val -= MILLISECONDS_PER_MINUTE;
+            }
+            while (val >= MILLISECONDS_PER_SECOND) {
+                s++;
+                val -= MILLISECONDS_PER_SECOND;
+            }
+
+            DecimalFormat formatter = new DecimalFormat("00");
+            return string = formatter.format(h) + ":" + formatter.format(m) + ":" + formatter.format(s);
+        }
     }
 
     /**
