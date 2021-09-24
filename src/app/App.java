@@ -16,39 +16,76 @@ Add additional thread to periodically save pace
 Potentially add additional thread to have a "backup" of the pace
  */
 
+/**
+ * Application Class, includes the starting point of the program and additional universally-accessible references
+ */
 public class App extends Application {
 
     /**
      * Current PaceManager version of the code
+     *
+     * @since 1.0.0
      */
     public static final String version = "1.0.0";
+    /**
+     * Application wide settings object
+     *
+     * @since 1.0.0
+     */
     public static final Settings settings = SystemResources.getSettings();
 
+    /**
+     * Currently opened pace
+     *
+     * @since 1.0.0
+     */
     public static Pace openedPace;
 
+    /**
+     * JavaFX Main Application Stage
+     *
+     * @since 1.0.0
+     */
     private static Stage appStage;
 
+    /**
+     * Application Launch Point
+     *
+     * @param args Launch Arguments
+     * @since 1.0.0
+     */
     public static void main(String[] args) {
         launch(args);
 
     }
 
-    public static void open(String filePath) {
-        settings.addRecentFile(filePath);
-        if (filePath != null) {
-            openedPace = Pace.fromFile(new File(filePath));
-            openedPace.save();
+    /**
+     * Opens a pace from a specified file path
+     *
+     * @param file Pace File to open
+     * @since 1.0.0
+     */
+    public static void open(File file) {
+        if (file.exists()) {
+            openedPace = Pace.fromFile(file);
         } else {
 //            openedPace = new Pace();
             openedPace = testPace();
         }
+        openedPace.save();
         appStage.show();
         new TeamEditor(openedPace.getTeams().get((int) (openedPace.getTeams().size() * Math.random())));
     }
 
+    /**
+     * A debugging pace generator, creates a debug.json pace with 50 teams, of random divisions, start times, and end times
+     *
+     * @return Generated Pace
+     * @since 1.0.0
+     */
     private static Pace testPace() {
         Pace pace = new Pace();
-        pace.setFile(new File("C:\\Users\\Littl\\Downloads\\Test H.pace"));
+        pace.setFile(new File(settings.getPaceDirectory() + "\\debug.json"));
 
         pace.addDivision(new Division("Hunt"));
         pace.addDivision(new Division("Western"));
@@ -78,6 +115,13 @@ public class App extends Application {
         return pace;
     }
 
+
+    /**
+     * Application stage start point
+     *
+     * @see Application
+     * @since 1.0.0
+     */
     @Override
     public void start(Stage stage) throws Exception {
         appStage = stage;

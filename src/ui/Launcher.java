@@ -13,7 +13,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-
+//TODO update javadocs
 public class Launcher {
 
     /*
@@ -25,8 +25,14 @@ public class Launcher {
      - Exit button
      */
 
+    /**
+     * @since 1.0.0
+     */
     private static Stage stage;
 
+    /**
+     * @since 1.0.0
+     */
     public static void open() {
         stage = new Stage();
         stage.setTitle("Pace Manager " + App.version);
@@ -45,6 +51,10 @@ public class Launcher {
         stage.show();
     }
 
+    /**
+     * @return
+     * @since 1.0.0
+     */
     private static VBox buttonPanel() {
         VBox panel = new VBox();
         panel.setSpacing(10);
@@ -55,6 +65,10 @@ public class Launcher {
         return panel;
     }
 
+    /**
+     * @return
+     * @since 1.0.0
+     */
     private static Button[] generateButtons() {
         //New, Open, Copy, Info, Exit
         Button[] buttons = new Button[4];
@@ -64,9 +78,9 @@ public class Launcher {
 
         buttons[1] = new Button("Open");
         buttons[1].setOnAction(e -> {
-            String path = openFile();
-            if (path != null) {
-                open(path);
+            File file = openFile();
+            if (file != null) {
+                open(file);
             }
         });
 
@@ -79,6 +93,10 @@ public class Launcher {
 
     }
 
+    /**
+     * @return
+     * @since 1.0.0
+     */
     private static BorderPane generateRecentFiles() {
         BorderPane borderPane = new BorderPane();
 
@@ -89,7 +107,7 @@ public class Launcher {
         recentFiles.getItems().setAll(App.settings.getRecentFiles());
         recentFiles.setOnMouseClicked(e -> {
             if (e.getClickCount() == 2) {
-                open(recentFiles.getSelectionModel().getSelectedItem());
+                open(new File(recentFiles.getSelectionModel().getSelectedItem()));
             }
         });
         recentFiles.setOnKeyPressed(e -> {
@@ -101,7 +119,7 @@ public class Launcher {
                         recentFiles.getItems().setAll(App.settings.getRecentFiles());
                     }
                 }
-                case ENTER, SPACE -> open(recentFiles.getSelectionModel().getSelectedItem());
+                case ENTER, SPACE -> open(new File(recentFiles.getSelectionModel().getSelectedItem()));
             }
         });
 
@@ -111,7 +129,11 @@ public class Launcher {
         return borderPane;
     }
 
-    private static String openFile() {
+    /**
+     * @return
+     * @since 1.0.0
+     */
+    private static File openFile() {
         FileChooser prompt = new FileChooser();
         File startingDirectory = new File(App.settings.getPaceDirectory());
         if (!startingDirectory.exists()) {
@@ -119,20 +141,27 @@ public class Launcher {
             return openFile();
         }
         prompt.setInitialDirectory(startingDirectory);
-        prompt.getExtensionFilters().add(new FileChooser.ExtensionFilter("PACE files (*.pace)", "*.pace"));
-        prompt.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON files (*.json)", "*.json"));
+        for (String ext : App.settings.getFileExtensions()) {
+            String display = ext.substring(1).toUpperCase() + " files (*" + ext + ")";
+            String filter = "*" + ext;
+            prompt.getExtensionFilters().add(new FileChooser.ExtensionFilter(display, filter));
+        }
 
         File file = prompt.showOpenDialog(stage);
         if (file != null) {
             App.settings.setPaceDirectory(file.getParent());
-            return file.getPath();
+            return file;
         } else {
             return null;
         }
     }
 
-    private static void open(String path) {
-        App.open(path);
+    /**
+     * @param file
+     * @since 1.0.0
+     */
+    private static void open(File file) {
+        App.open(file);
         stage.close();
     }
 

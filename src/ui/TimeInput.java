@@ -2,7 +2,7 @@ package ui;
 
 import data.Time;
 import javafx.scene.control.TextField;
-
+//TODO update javadocs
 /**
  * {@code JavaFX} UI Element allowing the user to input a Time into a text box. Uses a {@code TextField} to allow for
  * interaction and display
@@ -54,7 +54,9 @@ public class TimeInput extends TextField {
     /**
      * Returns the currently selected time. Note that each time the time is changed, it is a new value instead of
      * just modifying the initial {@code Time} object
+     *
      * @return Current time specified. Returns {@code null} if no time is specified
+     * @since 1.0.0
      */
     public Time getTime() {
         return time;

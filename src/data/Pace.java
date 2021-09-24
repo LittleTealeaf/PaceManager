@@ -2,6 +2,7 @@ package data;
 
 import app.App;
 import app.Serialization;
+import app.Settings;
 import com.google.gson.stream.JsonReader;
 
 import java.io.File;
@@ -17,18 +18,46 @@ import java.util.UUID;
 //Idea: Additional Thread for periodical saving
 
 /**
+ * Class representing the combined data for a given Pace. Includes methods for saving or loading a pace
+ *
  * @author Thomas Kwashnak
  * @version 1.0.0
  * @since 1.0.0
  */
 public class Pace {
 
+    /**
+     * Unique Identifier of the Pace
+     *
+     * @since 1.0.0
+     */
     private final UUID uuid;
+    /**
+     * List of all divisions included in the pace. The first division listed is considered the "default" division,
+     * and cannot (or should not) be removed from the list (resulting in an empty list). Any teams that have no division
+     * selected will be automatically included in this division
+     *
+     * @since 1.0.0
+     */
     private final List<Division> divisions;
+    /**
+     * List of all teams in the pace
+     *
+     * @since 1.0.0
+     */
     private final List<Team> teams;
+    /**
+     * The file that the pace is stored in. If the pace is brand new, or does not have a file, this value is {@code null}.
+     * The data is stored in the file in a JSON file format, regardless of whether the extension is of any extension
+     * listed in {@link Settings#getFileExtensions()}
+     *
+     * @since 1.0.0
+     */
     private transient File file;
 
     /**
+     * Creates a new pace, initializing values.
+     *
      * @since 1.0.0
      */
     public Pace() {
@@ -39,8 +68,13 @@ public class Pace {
     }
 
     /**
-     * @param file
-     * @return
+     * Attempts to create a new pace from a given {@code file}.
+     * <p>If the file doesn't exist, or if there are errors in
+     * parsing the file, returns a new {@code Pace} object with a reference to that file, such that the pace will save
+     * to that file.</p>
+     * @param file File reference to the saved pace data
+     * @return A {@code Pace} object, set to save to the provided file. The {@code Pace} object is an empty pace if
+     * there were errors in parsing the file
      * @since 1.0.0
      */
     public static Pace fromFile(File file) {
@@ -50,7 +84,7 @@ public class Pace {
             pace.setFile(file);
             return pace;
         } catch (Exception e) {
-            System.out.println(e.toString());
+            System.out.println(e);
             Pace pace = new Pace();
             pace.setFile(file);
             return pace;
@@ -58,8 +92,9 @@ public class Pace {
     }
 
     /**
-     * @param reader
-     * @return
+     * Returns a pace object derived from a Json reader. Populates divisions and updates the division list.
+     * @param reader JsonReader to read the pace data from
+     * @return Pace object derived from data in the JsonReader
      * @since 1.0.0
      */
     public static Pace fromJson(JsonReader reader) {
@@ -70,7 +105,8 @@ public class Pace {
     }
 
     /**
-     * @return
+     * Gets a list of divisions
+     * @return List of division included in the pace
      * @since 1.0.0
      */
     public List<Division> getDivisions() {
@@ -78,7 +114,8 @@ public class Pace {
     }
 
     /**
-     * @return
+     * Gets a list of teams
+     * @return List of teams tracked in the pace
      * @since 1.0.0
      */
     public List<Team> getTeams() {
@@ -137,14 +174,14 @@ public class Pace {
     public void save() {
         if (file != null) {
             try {
-                if(file.createNewFile()) {
+                if (file.createNewFile()) {
                     System.out.println("Created file " + file.getPath());
                 }
                 FileWriter writer = new FileWriter(file);
                 serialize(writer);
                 writer.close();
-            } catch (Exception ignore) {
-            }
+                App.settings.addRecentFile(getFile().getPath());
+            } catch (Exception ignored) {}
         }
     }
 
@@ -172,8 +209,13 @@ public class Pace {
         }
     }
 
+    //these comments are not good lol
+
     /**
-     * @return
+     * Gets the save file
+     *
+     * @return File referencing the location of save-data for the pace
+     * @see #file
      * @since 1.0.0
      */
     public File getFile() {
@@ -181,21 +223,33 @@ public class Pace {
     }
 
     /**
-     * @param file
+     * Sets the save file
+     * @param file File referencing the location of save-data for the pace
      * @since 1.0.0
+     * @see #file
      */
     public void setFile(File file) {
         this.file = file;
     }
 
     /**
-     * @return
+     * Gets the pace's UUID
+     *
+     * @return Unique Identifier of the pace
+     * @see #uuid
      * @since 1.0.0
      */
     public UUID getUUID() {
         return uuid;
     }
 
+    /**
+     * Creates a new division from a given name, adding it to the list, and returning its UUID
+     *
+     * @param name Name of the new division
+     * @return UUID of the newly created division
+     * @since 1.0.0
+     */
     public UUID newDivision(String name) {
         Division division = new Division();
         division.setName(name);
@@ -203,24 +257,61 @@ public class Pace {
         return division.getUUID();
     }
 
+    /**
+     * Adds a given division to the list
+     *
+     * @param division Division to add to the list
+     * @since 1.0.0
+     */
     public void addDivision(Division division) {
         divisions.add(division);
     }
 
+    /**
+     * Removes a given division from the list. Will not remove the division if the provided division is the current
+     * default division.
+     *
+     * @param division Division to remove
+     * @return {@code true} if removing was successful, {@code false} if the division is not in the list, or if the division
+     * is the default division and cannot be removed
+     */
     public boolean removeDivision(Division division) {
-        if(divisions.indexOf(division) > 0) {
-        	updateDivisionLists();
-        	for(Team team : division.getTeams()) {
-        		team.setDivision(divisions.get(0));
-			}
-        	return divisions.remove(division);
-		} else {
-			return false;
-		}
+        if (divisions.indexOf(division) > 0) {
+            updateDivisionLists();
+            for (Team team : division.getTeams()) {
+                team.setDivision(divisions.get(0));
+            }
+            return divisions.remove(division);
+        } else {
+            return false;
+        }
     }
 
+    /**
+     * Sets the default division
+     * <p>Useful if there is a need for changing default divisions to remove the previous default division</p>
+     *
+     * @param division Division to set as default
+     * @return {@code true} if the provided division was set as default, {@code false} if the division is not in the
+     * current list of divisions, or it is already the default division
+     */
+    public boolean setDefaultDivision(Division division) {
+        if (!divisions.contains(division) || divisions.get(0) == division) {
+            return false;
+        } else {
+            Division currentDefault = divisions.get(0);
+            int index = divisions.indexOf(division);
+            divisions.set(0, division);
+            divisions.set(index, currentDefault);
+            return true;
+        }
+    }
+
+    /**
+     * Lets the pace know that there has been an update to one of its child objects
+     */
     public void pingUpdate() {
-        if(App.settings.isAggressiveSave()) {
+        if (App.settings.isAggressiveSave()) {
             save();
         }
     }

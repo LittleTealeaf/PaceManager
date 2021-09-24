@@ -9,26 +9,69 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+//TODO update javadocs
 
+/**
+ * @author Thomas Kwashnak
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class TeamEditor {
 
+    /**
+     * @since 1.0.0
+     */
     private static Stage openedStage;
 
+    /**
+     * @since 1.0.0
+     */
     private final Stage stage;
+    /**
+     * @since 1.0.0
+     */
     private final Team team;
 
+    /**
+     * @since 1.0.0
+     */
     private final TextField elementTeamNumber;
+    /**
+     * @since 1.0.0
+     */
     private final TextArea elementRiders;
+    /**
+     * @since 1.0.0
+     */
     private final TextArea elementNotes;
+    /**
+     * @since 1.0.0
+     */
     private final TimeInput elementStartTime;
+    /**
+     * @since 1.0.0
+     */
     private final TimeInput elementEndTime;
+    /**
+     * @since 1.0.0
+     */
     private final DivisionSelector elementDivision;
+    /**
+     * @since 1.0.0
+     */
     private final CheckBox elementExcluded;
 
+    /**
+     * @since 1.0.0
+     */
     public TeamEditor() {
         this(new Team());
     }
 
+    /**
+     * @param team
+     * @since 1.0.0
+     */
     public TeamEditor(Team team) {
         this.team = team;
         stage = new Stage();
@@ -49,6 +92,10 @@ public class TeamEditor {
         open();
     }
 
+    /**
+     * @return
+     * @since 1.0.0
+     */
     private BorderPane generateBottomPane() {
         BorderPane pane = new BorderPane();
 
@@ -68,13 +115,17 @@ public class TeamEditor {
         leftBox.setSpacing(10);
         pane.setLeft(leftBox);
 
-        HBox rightBox = new HBox(buttonSave,buttonSaveExit);
+        HBox rightBox = new HBox(buttonSave, buttonSaveExit);
         rightBox.setSpacing(10);
         pane.setRight(rightBox);
 
         return pane;
     }
 
+    /**
+     * @return
+     * @since 1.0.0
+     */
     private Scene generateScene() {
         BorderPane borderPane = new BorderPane();
         borderPane.setPadding(new Insets(10));
@@ -84,24 +135,24 @@ public class TeamEditor {
         center.setVgap(7);
         borderPane.setCenter(center);
 
-        center.add(new Label("Team Number"),0,0);
+        center.add(new Label("Team Number"), 0, 0);
         center.add(elementTeamNumber, 1, 0);
 
-        center.add(new Label("Riders"),0,1,2,1);
+        center.add(new Label("Riders"), 0, 1, 2, 1);
         center.add(elementRiders, 0, 2, 2, 2);
 
         GridPane centerColumn = new GridPane();
         centerColumn.setVgap(6);
         centerColumn.setHgap(6);
-        center.add(centerColumn,2,0,1,3);
+        center.add(centerColumn, 2, 0, 1, 3);
 
-        centerColumn.add(new Label("Division"),0,0);
+        centerColumn.add(new Label("Division"), 0, 0);
         centerColumn.add(elementDivision, 1, 0);
 
-        centerColumn.add(new Label("Start Time"),0,1);
+        centerColumn.add(new Label("Start Time"), 0, 1);
         centerColumn.add(elementStartTime, 1, 1);
 
-        centerColumn.add(new Label("End Time"),0,2);
+        centerColumn.add(new Label("End Time"), 0, 2);
         centerColumn.add(elementEndTime, 1, 2);
 
         centerColumn.add(elementExcluded, 0, 3, 2, 1);
@@ -114,6 +165,9 @@ public class TeamEditor {
         return new Scene(borderPane);
     }
 
+    /**
+     * @since 1.0.0
+     */
     public void updateTeam() {
         team.setTeamNumber(elementTeamNumber.getText());
         team.setNotes(elementNotes.getText());
@@ -128,16 +182,21 @@ public class TeamEditor {
     }
 
     //TODO: Add this method to the "Team" class as a method to be called before saving or something
+
+    /**
+     * @return
+     * @since 1.0.0
+     */
     public String[] parseRiders() {
-        String[] raw = elementRiders.getText().replace(',','\n').split("\n");
+        String[] raw = elementRiders.getText().replace(',', '\n').split("\n");
         boolean[] delete = new boolean[raw.length];
         int delCount = 0;
-        for(int i = 0; i < raw.length; i++) {
-            while(raw[i].length() > 0 && raw[i].charAt(0) == ' ') {
+        for (int i = 0; i < raw.length; i++) {
+            while (raw[i].length() > 0 && raw[i].charAt(0) == ' ') {
                 raw[i] = raw[i].substring(1);
             }
-            while(raw[i].length() > 0 && raw[i].charAt(raw[i].length() - 1) == ' ') {
-                raw[i] = raw[i].substring(0,raw[i].length() - 1);
+            while (raw[i].length() > 0 && raw[i].charAt(raw[i].length() - 1) == ' ') {
+                raw[i] = raw[i].substring(0, raw[i].length() - 1);
             }
             if(raw[i].equals("")) {
                 delete[i] = true;
@@ -159,6 +218,9 @@ public class TeamEditor {
         return riders;
     }
 
+    /**
+     * @since 1.0.0
+     */
     public void updateElements() {
         elementTeamNumber.setText(team.getTeamNumber());
         elementNotes.setText(team.getNotes());
@@ -167,7 +229,7 @@ public class TeamEditor {
         elementDivision.setDivision(team.getDivision());
         elementExcluded.setSelected(team.isExcluded());
 
-        if(team.getRiders() != null) {
+        if (team.getRiders() != null) {
             StringBuilder builder = new StringBuilder();
             int riderLength = team.getRiders().length;
             for (int i = 0; i < riderLength; i++) {
@@ -182,22 +244,32 @@ public class TeamEditor {
         }
     }
 
+    /**
+     * @since 1.0.0
+     */
     public void open() {
         //if singular is enabled...
-        if(openedStage != null && openedStage.isShowing()) {
+        if (openedStage != null && openedStage.isShowing()) {
             openedStage.close();
         }
         stage.show();
         stage.requestFocus();
     }
 
+    /**
+     * @return
+     * @since 1.0.0
+     */
     public Team getTeam() {
         return team;
     }
 
+    /**
+     * @since 1.0.0
+     */
     public void close() {
         stage.close();
-        if(openedStage == stage) {
+        if (openedStage == stage) {
             openedStage = null;
         }
     }
