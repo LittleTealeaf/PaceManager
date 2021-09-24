@@ -292,4 +292,16 @@ public class Team implements Serializable {
         Time elapsed = getElapsedTime();
         return elapsed == null ? "-" : elapsed.toString();
     }
+
+    public String getNotesDisplay() {
+        if (notes != null) {
+            String n = notes;
+            while (n.contains("\n\n")) {
+                n = n.replace("\n\n", "\n");
+            }
+            return n;
+        } else {
+            return "";
+        }
+    }
 }

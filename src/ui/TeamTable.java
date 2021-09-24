@@ -59,7 +59,7 @@ public class TeamTable extends TableView<Team> {
                 columnFactory("Team", "teamNumber"),
                 columnFactory("Riders", "ridersString"),
                 times,
-                columnFactory("Notes", "notes")
+                columnFactory("Notes", "notesDisplay")
         );
 
     }
