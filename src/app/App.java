@@ -33,6 +33,11 @@ public class App extends Application {
 
     }
 
+    /**
+     * Opens a pace from a specified file path
+     *
+     * @param filePath
+     */
     public static void open(String filePath) {
         if (filePath != null) {
             openedPace = Pace.fromFile(new File(filePath));
@@ -45,6 +50,12 @@ public class App extends Application {
         new TeamEditor(openedPace.getTeams().get((int) (openedPace.getTeams().size() * Math.random())));
     }
 
+    /**
+     * A debugging pace generator, creates a debug.json pace with 50 teams, of random divisions, start times, and end times
+     *
+     * @return Generated Pace
+     * @since DEBUG
+     */
     private static Pace testPace() {
         Pace pace = new Pace();
         pace.setFile(new File(settings.getPaceDirectory() + "\\debug.json"));
