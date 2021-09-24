@@ -34,18 +34,6 @@ public class TeamTable extends TableView<Team> {
                 }
             }
         });
-//        setRowFactory(tv -> {
-//            TableRow<Team> row = new TableRow<>();
-//            row.setOnMouseClicked(e -> {
-//                if(!row.isEmpty() && e.getClickCount() == 2) {
-//                    if(getSelectionModel().getSelectedItem() != null) {
-//                        new TeamEditor(getSelectionModel().getSelectedItem());
-//                    }
-//                }
-//            });
-//
-//            return row;
-//        });
         setOnKeyPressed(e -> {
             switch (e.getCode()) {
                 case ENTER, SPACE -> {
