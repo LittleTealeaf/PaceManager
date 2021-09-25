@@ -4,6 +4,8 @@ import app.App;
 import data.Division;
 import data.Time;
 import javafx.geometry.Insets;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -12,15 +14,33 @@ import java.text.DecimalFormat;
 
 public class DivisionTable extends GridPane implements Updatable {
 
+    private DivisionRow[] divisions;
+
     public DivisionTable() {
         super();
         setHgap(10);
         setVgap(10);
         setPadding(new Insets(10));
+        setOnKeyPressed(e -> {
+            switch (e.getCode()) {
+                case ESCAPE -> reBuild();
+            }
+        });
         update();
     }
 
     public void update() {
+        if (divisions == null || divisions.length != App.openedPace.getDivisions().size()) {
+            reBuild();
+        } else {
+            for (DivisionRow divRow : divisions) {
+                divRow.update();
+            }
+        }
+
+    }
+
+    public void reBuild() {
         getChildren().clear();
 
         String[] headers = new String[]{"Division", "# Riders", "Average", "Goal Time", "Deviation", "Deviation %"};
@@ -29,40 +49,73 @@ public class DivisionTable extends GridPane implements Updatable {
             header.setFont(new Font(15));
             add(header, i, 0);
         }
-        Division[] divisions = App.openedPace.getDivisions().toArray(new Division[0]);
+        divisions = new DivisionRow[App.openedPace.getDivisions().size()];
         for (int i = 0; i < divisions.length; i++) {
-            Division division = divisions[i];
-            int row = i + 1;
+            divisions[i] = new DivisionRow(App.openedPace.getDivisions().get(i));
+            divisions[i].addRow(this, i + 1);
+        }
+    }
 
-            Text divLabel = new Text(division.getName());
-            add(divLabel, 0, row);
+    private class DivisionRow {
 
-            Text numRiders = new Text(Integer.toString(division.getTeams().size()));
-            add(numRiders, 1, row);
+        Division division;
+        TextField divisionName;
+        Text numRiders;
+        Text averageTime;
+        TimeInput goalTime;
+        Text deviationTime;
+        Text deviationPercent;
 
-            Time averageTime = division.getAverageTime();
-            Text avgTime = new Text(averageTime != null ? averageTime.toString() : "-");
-            add(avgTime, 2, row);
-
-            TimeInput goalTime = new TimeInput(division.getGoalTime());
-            goalTime.addTimeListener((o, n) -> {
-                division.setGoalTime(n);
-                App.pingUpdate();
+        DivisionRow(Division division) {
+            this.division = division;
+            divisionName = new TextField();
+            divisionName.focusedProperty().addListener((e, o, n) -> {
+                if (!e.getValue().booleanValue()) {
+                    division.setName(divisionName.getText());
+                    App.pingUpdate();
+                }
             });
-            add(goalTime, 3, row);
+            divisionName.setOnKeyPressed(e -> {
+                if (e.getCode() == KeyCode.ENTER) {
+                    division.setName(divisionName.getText());
+                    App.pingUpdate();
+                }
+            });
+            numRiders = new Text();
+            averageTime = new Text();
+            goalTime = new TimeInput();
+            deviationTime = new Text();
+            deviationPercent = new Text();
+            update();
+        }
 
-            if (averageTime != null && goalTime != null) {
-                Time devTime = averageTime.subtract(goalTime.getTime());
-                Text deviation = new Text(devTime.toString());
-                add(deviation, 4, row);
+        void update() {
+            divisionName.setText(division.getName());
+            numRiders.setText(Integer.toString(division.getTeams().size()));
+
+            Time timeAvg = division.getAverageTime();
+            averageTime.setText(timeAvg != null ? timeAvg.toString() : "-");
+
+            goalTime.setTime(division.getGoalTime());
+            if (goalTime.getTime() != null && timeAvg != null) {
+                Time devTime = timeAvg.subtract(goalTime.getTime());
+                deviationTime.setText(devTime.toString());
 
                 double percent = ((double) devTime.getValue() / goalTime.getTime().getValue());
-                Text deviationPercent = new Text(new DecimalFormat("##.##%").format(percent));
-                add(deviationPercent, 5, row);
+                deviationPercent.setText(new DecimalFormat("##.##%").format(percent));
             } else {
-                add(new Text("-"), 4, row);
-                add(new Text("-"), 5, row);
+                deviationTime.setText("-");
+                deviationPercent.setText("-");
             }
+        }
+
+        void addRow(GridPane gridPane, int row) {
+            gridPane.add(divisionName, 0, row);
+            gridPane.add(numRiders, 1, row);
+            gridPane.add(averageTime, 2, row);
+            gridPane.add(goalTime, 3, row);
+            gridPane.add(deviationTime, 4, row);
+            gridPane.add(deviationPercent, 5, row);
         }
     }
 }
