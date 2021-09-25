@@ -30,8 +30,9 @@ public class Settings {
     private final String version;
     /**
      * List of recently opened Pace files
+     *
+     * @see Launcher
      * @since 1.0.0
-     * @see ui.Launcher
      */
     private final List<String> recentFiles;
 
@@ -43,7 +44,7 @@ public class Settings {
     private String[] fileExtensions;
     /**
      * Default directory to begin looking for pace files in
-     * @see ui.Launcher
+     * @see Launcher
      * @since 1.0.0
      */
     private String paceDirectory;

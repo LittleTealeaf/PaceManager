@@ -1,7 +1,5 @@
-package ui;
+package app;
 
-import app.App;
-import app.SystemResources;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

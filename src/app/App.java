@@ -11,7 +11,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import ui.DivisionTab;
-import ui.Launcher;
 import ui.TeamTab;
 import ui.Updatable;
 
