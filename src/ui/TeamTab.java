@@ -37,6 +37,7 @@ public class TeamTab extends TableView<Team> implements Updatable {
                     }
                 }
                 case F5 -> update();
+                case DELETE -> App.openedPace.deleteTeam(getSelectionModel().getSelectedItem());
             }
         });
         setContextMenu(createContextMenu());
