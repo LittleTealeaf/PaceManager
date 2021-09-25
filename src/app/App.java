@@ -7,10 +7,7 @@ import data.Time;
 import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import ui.DivisionTab;
@@ -167,7 +164,32 @@ public class App extends Application {
 
         updateList = new Updatable[]{teamTab, divisionTab};
 
+        MenuBar menuBar = new MenuBar();
 
+        Menu menuFile = new Menu("File");
+        menuBar.getMenus().add(menuFile);
+
+        MenuItem savePace = new MenuItem("Save");
+        savePace.setOnAction(e -> {
+            openedPace.save();
+        });
+
+        MenuItem closePace = new MenuItem("Close Pace");
+        closePace.setOnAction(e -> {
+            Launcher.open();
+            appStage.close();
+        });
+
+        MenuItem exitApp = new MenuItem("Exit");
+        exitApp.setOnAction(e -> {
+            System.exit(0);
+        });
+
+
+        menuFile.getItems().addAll(savePace, closePace, exitApp);
+
+
+        borderPane.setTop(menuBar);
         borderPane.setCenter(tabPane);
 
 
