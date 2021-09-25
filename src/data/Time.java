@@ -140,8 +140,11 @@ public class Time {
         if (string != null) {
             return string;
         } else {
+            boolean negative = value < 0;
             long val = value;
-            StringBuilder builder = new StringBuilder();
+            if (negative) {
+                val *= -1;
+            }
             while (val >= MILLISECONDS_PER_DAY) {
                 val -= MILLISECONDS_PER_DAY;
             }
@@ -160,7 +163,8 @@ public class Time {
             }
 
             DecimalFormat formatter = new DecimalFormat("00");
-            return string = formatter.format(h) + ":" + formatter.format(m) + ":" + formatter.format(s);
+            return string = (negative ? "-" : "") + formatter.format(h) + ":" + formatter.format(
+                    m) + ":" + formatter.format(s);
         }
     }
 

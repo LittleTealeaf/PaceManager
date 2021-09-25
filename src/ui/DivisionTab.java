@@ -84,6 +84,10 @@ public class DivisionTab extends GridPane implements Updatable {
             numRiders = new Text();
             averageTime = new Text();
             goalTime = new TimeInput();
+            goalTime.addTimeListener((o, n) -> {
+                division.setGoalTime(n);
+                App.updateApplication();
+            });
             deviationTime = new Text();
             deviationPercent = new Text();
             update();
@@ -98,7 +102,7 @@ public class DivisionTab extends GridPane implements Updatable {
 
             goalTime.setTime(division.getGoalTime());
             if (goalTime.getTime() != null && timeAvg != null) {
-                Time devTime = timeAvg.subtract(goalTime.getTime());
+                Time devTime = new Time(timeAvg.getValue() - goalTime.getTime().getValue());
                 deviationTime.setText(devTime.toString());
 
                 double percent = ((double) devTime.getValue() / goalTime.getTime().getValue());
