@@ -12,18 +12,18 @@ import javafx.scene.text.Text;
 
 import java.text.DecimalFormat;
 
-public class DivisionTable extends GridPane implements Updatable {
+public class DivisionTab extends GridPane implements Updatable {
 
     private DivisionRow[] divisions;
 
-    public DivisionTable() {
+    public DivisionTab() {
         super();
         setHgap(10);
         setVgap(10);
         setPadding(new Insets(10));
         setOnKeyPressed(e -> {
-            switch (e.getCode()) {
-                case ESCAPE -> reBuild();
+            if (e.getCode() == KeyCode.ESCAPE) {
+                reBuild();
             }
         });
         update();
@@ -56,15 +56,15 @@ public class DivisionTable extends GridPane implements Updatable {
         }
     }
 
-    private class DivisionRow {
+    private static class DivisionRow {
 
-        Division division;
-        TextField divisionName;
-        Text numRiders;
-        Text averageTime;
-        TimeInput goalTime;
-        Text deviationTime;
-        Text deviationPercent;
+        final Division division;
+        final TextField divisionName;
+        final Text numRiders;
+        final Text averageTime;
+        final TimeInput goalTime;
+        final Text deviationTime;
+        final Text deviationPercent;
 
         DivisionRow(Division division) {
             this.division = division;
@@ -72,13 +72,13 @@ public class DivisionTable extends GridPane implements Updatable {
             divisionName.focusedProperty().addListener((e, o, n) -> {
                 if (!e.getValue().booleanValue()) {
                     division.setName(divisionName.getText());
-                    App.pingUpdate();
+                    App.updateApplication();
                 }
             });
             divisionName.setOnKeyPressed(e -> {
                 if (e.getCode() == KeyCode.ENTER) {
                     division.setName(divisionName.getText());
-                    App.pingUpdate();
+                    App.updateApplication();
                 }
             });
             numRiders = new Text();

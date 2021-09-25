@@ -13,9 +13,9 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import ui.DivisionTable;
+import ui.DivisionTab;
 import ui.Launcher;
-import ui.TeamTable;
+import ui.TeamTab;
 import ui.Updatable;
 
 import java.io.File;
@@ -33,35 +33,11 @@ Potentially add additional thread to have a "backup" of the pace
  */
 public class App extends Application {
 
-    /**
-     * Current PaceManager version of the code
-     *
-     * @since 1.0.0
-     */
     public static final String version = "1.0.0";
-    /**
-     * Application wide settings object
-     *
-     * @since 1.0.0
-     */
     public static final Settings settings = SystemResources.getSettings();
-
-    /**
-     * Currently opened pace
-     *
-     * @since 1.0.0
-     */
     public static Pace openedPace;
-
-    /**
-     * JavaFX Main Application Stage
-     *
-     * @since 1.0.0
-     */
     private static Stage appStage;
-
-    //    private static TeamTable table;
-    private static Updatable[] updatables;
+    private static Updatable[] updateList;
 
     /**
      * Application Launch Point
@@ -84,27 +60,10 @@ public class App extends Application {
             openedPace = Pace.fromFile(file);
             appStage.setTitle(file.getName());
         } else {
-//            openedPace = new Pace();
             openedPace = testPace();
         }
-        BorderPane borderPane = new BorderPane();
-        TabPane tabPane = new TabPane();
 
-        TeamTable teamTable = new TeamTable();
-        DivisionTable divisionTable = new DivisionTable();
-        tabPane.getTabs().addAll(
-                createTab(teamTable, "Teams"),
-                createTab(divisionTable, "Divisions")
-        );
-
-        updatables = new Updatable[]{teamTable, divisionTable};
-
-
-        borderPane.setCenter(tabPane);
-
-
-        Scene scene = new Scene(borderPane);
-        appStage.setScene(scene);
+        appStage.setScene(generateScene());
         openedPace.save();
 
         appStage.show();
@@ -117,10 +76,10 @@ public class App extends Application {
         return tab;
     }
 
-    public static void pingUpdate() {
+    public static void updateApplication() {
         openedPace.pingUpdate();
-        if (updatables != null) {
-            for (Updatable updatable : updatables) {
+        if (updateList != null) {
+            for (Updatable updatable : updateList) {
                 updatable.update();
             }
         }
@@ -192,5 +151,26 @@ public class App extends Application {
         stage.setMaximized(settings.isAppMaximized());
         stage.maximizedProperty().addListener(e -> settings.setAppMaximized(stage.isMaximized()));
         Launcher.open();
+    }
+
+    private static Scene generateScene() {
+        BorderPane borderPane = new BorderPane();
+        TabPane tabPane = new TabPane();
+
+        TeamTab teamTab = new TeamTab();
+        DivisionTab divisionTab = new DivisionTab();
+
+        tabPane.getTabs().addAll(
+                createTab(teamTab, "Teams"),
+                createTab(divisionTab, "Divisions")
+        );
+
+        updateList = new Updatable[]{teamTab, divisionTab};
+
+
+        borderPane.setCenter(tabPane);
+
+
+        return new Scene(borderPane);
     }
 }

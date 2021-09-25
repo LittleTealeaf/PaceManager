@@ -49,9 +49,7 @@ public class TeamEditor {
                 .getTeamNumber() : "Creating New Team");
 
         elementTeamIdentifier = new TextField();
-        elementTeamIdentifier.textProperty().addListener((e, o, n) -> {
-            stage.setTitle("Editing Team " + e.getValue());
-        });
+        elementTeamIdentifier.textProperty().addListener((e, o, n) -> stage.setTitle("Editing Team " + e.getValue()));
 
         elementRiders = new TextArea();
         elementNotes = new TextArea();
@@ -152,7 +150,7 @@ public class TeamEditor {
         team.setRiders(parseRiders());
         team.setExcluded(elementExcluded.isSelected());
         updateElements();
-        App.pingUpdate();
+        App.updateApplication();
     }
 
     //TODO: Add this method to the "Team" class as a method to be called before saving or something

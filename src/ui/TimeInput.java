@@ -2,6 +2,7 @@ package ui;
 
 import data.Time;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,15 +42,15 @@ public class TimeInput extends TextField {
      */
     public TimeInput(Time time) {
         super();
-        timeListeners = new ArrayList<TimeListener>();
+        timeListeners = new ArrayList<>();
         focusedProperty().addListener((e, o, n) -> {
             if (!e.getValue().booleanValue()) {
                 parseText();
             }
         });
         setOnKeyPressed(e -> {
-            switch (e.getCode()) {
-                case ENTER -> parseText();
+            if (e.getCode() == KeyCode.ENTER) {
+                parseText();
             }
         });
         setTime(time);
@@ -98,10 +99,7 @@ public class TimeInput extends TextField {
             if (getText() == null || getText().contentEquals("")) {
                 time = null;
             } else {
-                Time t = new Time(getText());
-                if (t != null) {
-                    time = t;
-                }
+                time = new Time(getText());
             }
         } catch (Exception ignored) {}
 
