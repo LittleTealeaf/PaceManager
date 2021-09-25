@@ -44,6 +44,7 @@ public class TeamTable extends TableView<Team> {
                         new TeamEditor(getSelectionModel().getSelectedItem());
                     }
                 }
+                case F5 -> update();
             }
         });
         setContextMenu(createContextMenu());
