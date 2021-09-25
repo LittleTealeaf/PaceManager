@@ -335,6 +335,7 @@ public class Pace {
 
     public Team newTeam() {
         Team team = new Team();
+        team.setDivision(divisions.get(0));
         teams.add(team);
         return team;
     }
