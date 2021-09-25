@@ -84,7 +84,6 @@ public class Pace {
             pace.setFile(file);
             return pace;
         } catch (Exception e) {
-            System.out.println(e);
             Pace pace = new Pace();
             pace.setFile(file);
             return pace;
@@ -311,8 +310,32 @@ public class Pace {
      * Lets the pace know that there has been an update to one of its child objects
      */
     public void pingUpdate() {
+        updateDivisionLists();
         if (App.settings.isAggressiveSave()) {
             save();
         }
+    }
+
+    /**
+     * Prompts the user to delete if settings require
+     *
+     * @param team Team to delete
+     */
+    public boolean deleteTeam(Team team) {
+        if (App.settings.doWarnOnDelete() == App.warnDelete(team.getTeamNumber())) {
+            boolean result = teams.remove(team);
+            if (result) {
+                App.pingUpdate();
+            }
+            return result;
+        } else {
+            return false;
+        }
+    }
+
+    public Team newTeam() {
+        Team team = new Team();
+        teams.add(team);
+        return team;
     }
 }

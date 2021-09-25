@@ -264,4 +264,44 @@ public class Team implements Serializable {
     public int getNumberOfRiders() {
         return riders.length;
     }
+
+    public String getRidersString() {
+        if (riders != null) {
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < riders.length; i++) {
+                builder.append(riders[i]);
+                if (i < riders.length - 1) {
+                    builder.append("\n");
+                }
+            }
+            return builder.toString();
+        } else {
+            return "";
+        }
+    }
+
+    public String getStartString() {
+        return startTime == null ? "-" : startTime.toString();
+    }
+
+    public String getEndString() {
+        return endTime == null ? "-" : endTime.toString();
+    }
+
+    public String getElapsedString() {
+        Time elapsed = getElapsedTime();
+        return elapsed == null ? "-" : elapsed.toString();
+    }
+
+    public String getNotesDisplay() {
+        if (notes != null) {
+            String n = notes;
+            while (n.contains("\n\n")) {
+                n = n.replace("\n\n", "\n");
+            }
+            return n;
+        } else {
+            return "";
+        }
+    }
 }

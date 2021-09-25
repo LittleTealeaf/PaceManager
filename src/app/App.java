@@ -5,16 +5,28 @@ import data.Pace;
 import data.Team;
 import data.Time;
 import javafx.application.Application;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import ui.DivisionTable;
 import ui.Launcher;
-import ui.TeamEditor;
+import ui.TeamTable;
+import ui.Updatable;
 
 import java.io.File;
+import java.util.Optional;
 
 /*
 Add additional thread to periodically save pace
 Potentially add additional thread to have a "backup" of the pace
  */
+
+//TODO figure out if removing the general application thing and just making stages and showing them would work better
 
 /**
  * Application Class, includes the starting point of the program and additional universally-accessible references
@@ -48,6 +60,9 @@ public class App extends Application {
      */
     private static Stage appStage;
 
+    //    private static TeamTable table;
+    private static Updatable[] updatables;
+
     /**
      * Application Launch Point
      *
@@ -56,7 +71,6 @@ public class App extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-
     }
 
     /**
@@ -66,15 +80,50 @@ public class App extends Application {
      * @since 1.0.0
      */
     public static void open(File file) {
-        if (file.exists()) {
+        if (file != null && file.exists()) {
             openedPace = Pace.fromFile(file);
+            appStage.setTitle(file.getName());
         } else {
 //            openedPace = new Pace();
             openedPace = testPace();
         }
+        BorderPane borderPane = new BorderPane();
+        TabPane tabPane = new TabPane();
+
+        TeamTable teamTable = new TeamTable();
+        DivisionTable divisionTable = new DivisionTable();
+        tabPane.getTabs().addAll(
+                createTab(teamTable, "Teams"),
+                createTab(divisionTable, "Divisions")
+        );
+
+        updatables = new Updatable[]{teamTable, divisionTable};
+
+
+        borderPane.setCenter(tabPane);
+
+
+        Scene scene = new Scene(borderPane);
+        appStage.setScene(scene);
         openedPace.save();
+
         appStage.show();
-        new TeamEditor(openedPace.getTeams().get((int) (openedPace.getTeams().size() * Math.random())));
+    }
+
+    private static Tab createTab(Node node, String name) {
+        Tab tab = new Tab(name);
+        tab.setClosable(false);
+        tab.setContent(node);
+        return tab;
+    }
+
+    public static void pingUpdate() {
+        openedPace.pingUpdate();
+        if (updatables != null) {
+            for (Updatable updatable : updatables) {
+                updatable.update();
+            }
+        }
     }
 
     /**
@@ -117,14 +166,31 @@ public class App extends Application {
 
 
     /**
+     * Prompts the user to verify whether they want to delete an item
+     *
+     * @param name Display Name of the item the user may want to delete
+     * @return {@code True} if the user decided to delete, {@code false} otherwise.
+     */
+    public static boolean warnDelete(String name) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete " + name + "?");
+        alert.setHeaderText("Are you sure you want to delete " + name + "?");
+        alert.setContentText("This action is permanent and cannot be reversed");
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.isPresent() && result.get() == ButtonType.OK;
+    }
+
+    /**
      * Application stage start point
      *
      * @see Application
      * @since 1.0.0
      */
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         appStage = stage;
+        stage.setMaximized(settings.isAppMaximized());
+        stage.maximizedProperty().addListener(e -> settings.setAppMaximized(stage.isMaximized()));
         Launcher.open();
     }
 }

@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -25,6 +26,9 @@ public class Launcher {
      - Exit button
      */
 
+    //TODO BUG clicking on a selected item and then clicking on empty space opens the selected item
+
+
     /**
      * @since 1.0.0
      */
@@ -36,6 +40,10 @@ public class Launcher {
     public static void open() {
         stage = new Stage();
         stage.setTitle("Pace Manager " + App.version);
+        stage.setMaximized(App.settings.isLauncherMaximized());
+        stage.maximizedProperty().addListener(e -> {
+            App.settings.setLauncherMaximized(stage.isMaximized());
+        });
 
         BorderPane borderPane = new BorderPane();
         borderPane.setPadding(new Insets(10));
@@ -106,8 +114,10 @@ public class Launcher {
         ListView<String> recentFiles = new ListView<>();
         recentFiles.getItems().setAll(App.settings.getRecentFiles());
         recentFiles.setOnMouseClicked(e -> {
-            if (e.getClickCount() == 2) {
-                open(new File(recentFiles.getSelectionModel().getSelectedItem()));
+            if (e.getClickCount() == 2 && e.getButton() == MouseButton.PRIMARY) {
+                if (recentFiles.getSelectionModel().getSelectedItem() != null) {
+                    open(new File(recentFiles.getSelectionModel().getSelectedItem()));
+                }
             }
         });
         recentFiles.setOnKeyPressed(e -> {

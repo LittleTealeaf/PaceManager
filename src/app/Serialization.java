@@ -54,6 +54,7 @@ public class Serialization {
      * @since 1.0.0
      */
     private static Gson createGson() {
+        //TODO remove pretty printing before release
         return new GsonBuilder().excludeFieldsWithModifiers(java.lang.reflect.Modifier.TRANSIENT)
                                 .registerTypeAdapter(Time.class, new Time.TimeSerializer())
                                 .registerTypeAdapter(Time.class, new Time.TimeDeserializer()).setPrettyPrinting()

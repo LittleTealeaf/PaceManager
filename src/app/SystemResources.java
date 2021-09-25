@@ -23,7 +23,6 @@ public class SystemResources {
      * platforms as well.
      *
      * @return String directory path of the working directory, such as {@code C:\Users\Thomas\.paceManager\}
-     * @version 1.0.0
      * @see File#separatorChar
      * @since 1.0.0
      */
@@ -52,6 +51,7 @@ public class SystemResources {
                 }
             }
         } catch (Exception ignored) {}
+        assert settings != null;
         settings.save();
         return settings;
     }

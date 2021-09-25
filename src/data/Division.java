@@ -233,4 +233,18 @@ public class Division {
         }
         return array;
     }
+
+    public Time getAverageTime() {
+        long sum = 0;
+        int count = 0;
+        for (Team team : teams) {
+            Time elapsed = team.getElapsedTime();
+            if (elapsed != null) {
+                sum += elapsed.getValue();
+                count++;
+            }
+        }
+        return count == 0 ? null : new Time(sum / count);
+    }
+
 }

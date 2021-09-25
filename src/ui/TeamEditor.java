@@ -18,47 +18,16 @@ import javafx.stage.Stage;
  */
 public class TeamEditor {
 
-    /**
-     * @since 1.0.0
-     */
     private static Stage openedStage;
-
-    /**
-     * @since 1.0.0
-     */
     private final Stage stage;
-    /**
-     * @since 1.0.0
-     */
     private final Team team;
 
-    /**
-     * @since 1.0.0
-     */
-    private final TextField elementTeamNumber;
-    /**
-     * @since 1.0.0
-     */
+    private final TextField elementTeamIdentifier;
     private final TextArea elementRiders;
-    /**
-     * @since 1.0.0
-     */
     private final TextArea elementNotes;
-    /**
-     * @since 1.0.0
-     */
     private final TimeInput elementStartTime;
-    /**
-     * @since 1.0.0
-     */
     private final TimeInput elementEndTime;
-    /**
-     * @since 1.0.0
-     */
     private final DivisionSelector elementDivision;
-    /**
-     * @since 1.0.0
-     */
     private final CheckBox elementExcluded;
 
     /**
@@ -78,7 +47,11 @@ public class TeamEditor {
         stage.setTitle(team.getTeamNumber() != null && !team.getTeamNumber().equals("") ? "Editing Team " + team
                 .getTeamNumber() : "Creating New Team");
 
-        elementTeamNumber = new TextField();
+        elementTeamIdentifier = new TextField();
+        elementTeamIdentifier.textProperty().addListener((e, o, n) -> {
+            stage.setTitle("Editing Team " + e.getValue());
+        });
+
         elementRiders = new TextArea();
         elementNotes = new TextArea();
         elementStartTime = new TimeInput();
@@ -136,7 +109,7 @@ public class TeamEditor {
         borderPane.setCenter(center);
 
         center.add(new Label("Team Number"), 0, 0);
-        center.add(elementTeamNumber, 1, 0);
+        center.add(elementTeamIdentifier, 1, 0);
 
         center.add(new Label("Riders"), 0, 1, 2, 1);
         center.add(elementRiders, 0, 2, 2, 2);
@@ -169,7 +142,7 @@ public class TeamEditor {
      * @since 1.0.0
      */
     public void updateTeam() {
-        team.setTeamNumber(elementTeamNumber.getText());
+        team.setTeamNumber(elementTeamIdentifier.getText());
         team.setNotes(elementNotes.getText());
         team.setStartTime(elementStartTime.getTime());
         team.setEndTime(elementEndTime.getTime());
@@ -178,7 +151,7 @@ public class TeamEditor {
         team.setRiders(parseRiders());
         team.setExcluded(elementExcluded.isSelected());
         updateElements();
-        App.openedPace.pingUpdate();
+        App.pingUpdate();
     }
 
     //TODO: Add this method to the "Team" class as a method to be called before saving or something
@@ -222,7 +195,7 @@ public class TeamEditor {
      * @since 1.0.0
      */
     public void updateElements() {
-        elementTeamNumber.setText(team.getTeamNumber());
+        elementTeamIdentifier.setText(team.getTeamNumber());
         elementNotes.setText(team.getNotes());
         elementStartTime.setTime(team.getStartTime());
         elementEndTime.setTime(team.getEndTime());
@@ -254,6 +227,7 @@ public class TeamEditor {
         }
         stage.show();
         stage.requestFocus();
+        openedStage = stage;
     }
 
     /**
