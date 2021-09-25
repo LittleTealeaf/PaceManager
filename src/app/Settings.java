@@ -82,7 +82,6 @@ public class Settings {
         launcherMaximized = false;
         appMaximized = true;
         warnOnDelete = true;
-
         recentFiles = new ArrayList<>();
     }
 
@@ -193,15 +192,16 @@ public class Settings {
      */
     public void addRecentFile(String path) {
         if (path != null) {
-            //Checks if file is already in
-            for (String recentPath : recentFiles) {
-                if (recentPath.contentEquals(path)) {
-                    return;
+            int length = recentFiles.size();
+            for (int i = 0; i < length; i++) {
+                if (recentFiles.get(i).contentEquals(path)) {
+                    recentFiles.remove(i);
+                    break;
                 }
             }
-            recentFiles.add(path);
-            save();
+            recentFiles.add(0, path);
         }
+        save();
     }
 
     /**
