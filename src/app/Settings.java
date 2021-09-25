@@ -1,7 +1,5 @@
 package app;
 
-//Ideas: Additional Thread for Settings Saving
-
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
