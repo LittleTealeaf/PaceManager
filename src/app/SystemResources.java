@@ -57,31 +57,39 @@ public class SystemResources {
         return settings;
     }
 
-    /**
-     * @return
-     * @since 1.0.0
-     */
     public static File promptOpenPace() {
-        FileChooser prompt = new FileChooser();
+        FileChooser fileChooser = generatePacePrompt();
+        fileChooser.setTitle("Open Pace");
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null) {
+            App.settings.setPaceDirectory(file.getParent());
+        }
+        return file == null || !file.exists() ? null : file;
+    }
+
+    public static File promptSavePace() {
+        FileChooser fileChooser = generatePacePrompt();
+        fileChooser.setTitle("Save Pace");
+        File file = fileChooser.showSaveDialog(null);
+        if (file != null) {
+            App.settings.setPaceDirectory(file.getParent());
+        }
+        return file;
+    }
+
+    private static FileChooser generatePacePrompt() {
+        FileChooser fileChooser = new FileChooser();
         File startingDirectory = new File(App.settings.getPaceDirectory());
         if (!startingDirectory.exists()) {
-            App.settings.setPaceDirectory(System.getProperty("user.home"));
-            return promptOpenPace();
+            App.settings.setPaceDirectory((startingDirectory = new File(System.getProperty("user.home"))).getPath());
         }
-        prompt.setInitialDirectory(startingDirectory);
+        fileChooser.setInitialDirectory(startingDirectory);
         for (String ext : App.settings.getFileExtensions()) {
             String display = ext.substring(1).toUpperCase() + " files (*" + ext + ")";
             String filter = "*" + ext;
-            prompt.getExtensionFilters().add(new FileChooser.ExtensionFilter(display, filter));
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(display, filter));
         }
-
-        File file = prompt.showOpenDialog(null);
-        if (file != null) {
-            App.settings.setPaceDirectory(file.getParent());
-            return file;
-        } else {
-            return null;
-        }
+        return fileChooser;
     }
 
 }

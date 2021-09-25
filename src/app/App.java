@@ -168,9 +168,30 @@ public class App extends Application {
         Menu menuFile = new Menu("File");
         menuBar.getMenus().add(menuFile);
 
+        MenuItem openPace = new MenuItem("Open");
+        openPace.setOnAction(e -> {
+            File file = SystemResources.promptOpenPace();
+            if (file != null) {
+                open(file);
+            }
+        });
+
+        MenuItem savePaceAs = new MenuItem("Save As");
+        savePaceAs.setOnAction(e -> {
+            File file = SystemResources.promptSavePace();
+            if (file != null) {
+                openedPace.setFile(file);
+                openedPace.save();
+            }
+        });
+
         MenuItem savePace = new MenuItem("Save");
         savePace.setOnAction(e -> {
-            openedPace.save();
+            if (openedPace.getFile() != null) {
+                openedPace.save();
+            } else {
+                savePaceAs.fire();
+            }
         });
 
         MenuItem closePace = new MenuItem("Close Pace");
@@ -185,7 +206,7 @@ public class App extends Application {
         });
 
 
-        menuFile.getItems().addAll(savePace, closePace, exitApp);
+        menuFile.getItems().addAll(openPace, savePace, savePaceAs, closePace, exitApp);
 
 
         borderPane.setTop(menuBar);
