@@ -47,6 +47,11 @@ public class TimeInput extends TextField {
                 parseText();
             }
         });
+        setOnKeyPressed(e -> {
+            switch (e.getCode()) {
+                case ENTER -> parseText();
+            }
+        });
         setTime(time);
     }
 
