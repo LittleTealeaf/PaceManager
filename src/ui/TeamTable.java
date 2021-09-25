@@ -1,7 +1,6 @@
 package ui;
 
 import app.App;
-import data.Pace;
 import data.Team;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
@@ -16,17 +15,10 @@ import javafx.scene.input.MouseButton;
  * @since 1.0.0
  */
 public class TeamTable extends TableView<Team> {
-    private final Pace pace;
-
-    public TeamTable() {
-        this(App.openedPace);
-    }
-
     //TODO BUG clicking on a selected item and then clicking on empty space opens the selected item
 
-    public TeamTable(Pace pace) {
+    public TeamTable() {
         super();
-        this.pace = pace;
         addColumns();
         update();
 
@@ -57,10 +49,10 @@ public class TeamTable extends TableView<Team> {
         openItem.setOnAction(e -> new TeamEditor(getSelectionModel().getSelectedItem()));
 
         MenuItem newItem = new MenuItem("New");
-        newItem.setOnAction(e -> new TeamEditor(pace.newTeam()));
+        newItem.setOnAction(e -> new TeamEditor(App.openedPace.newTeam()));
 
         MenuItem deleteItem = new MenuItem("Delete");
-        deleteItem.setOnAction(e -> pace.deleteTeam(getSelectionModel().getSelectedItem()));
+        deleteItem.setOnAction(e -> App.openedPace.deleteTeam(getSelectionModel().getSelectedItem()));
 
         contextMenu.getItems().addAll(openItem, newItem, deleteItem);
         return contextMenu;
@@ -98,7 +90,7 @@ public class TeamTable extends TableView<Team> {
         int selectedIndex = getSelectionModel().getSelectedIndex();
 
         getItems().clear();
-        getItems().addAll(pace.getTeams());
+        getItems().addAll(App.openedPace.getTeams());
 
         if (selectedIndex >= 0) {
             getSelectionModel().select(selectedIndex);

@@ -81,7 +81,7 @@ public class App extends Application {
         }
         BorderPane borderPane = new BorderPane();
 
-        borderPane.setCenter(table = new TeamTable(openedPace));
+        borderPane.setCenter(table = new TeamTable());
 
         Scene scene = new Scene(borderPane);
         appStage.setScene(scene);
