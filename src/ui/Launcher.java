@@ -1,6 +1,7 @@
 package ui;
 
 import app.App;
+import app.SystemResources;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,7 +11,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -84,7 +84,7 @@ public class Launcher {
 
         buttons[1] = new Button("Open");
         buttons[1].setOnAction(e -> {
-            File file = openFile();
+            File file = SystemResources.promptOpenPace();
             if (file != null) {
                 open(file);
             }
@@ -135,33 +135,6 @@ public class Launcher {
         borderPane.setTop(new Label("Recent Files"));
 
         return borderPane;
-    }
-
-    /**
-     * @return
-     * @since 1.0.0
-     */
-    private static File openFile() {
-        FileChooser prompt = new FileChooser();
-        File startingDirectory = new File(App.settings.getPaceDirectory());
-        if (!startingDirectory.exists()) {
-            App.settings.setPaceDirectory(System.getProperty("user.home"));
-            return openFile();
-        }
-        prompt.setInitialDirectory(startingDirectory);
-        for (String ext : App.settings.getFileExtensions()) {
-            String display = ext.substring(1).toUpperCase() + " files (*" + ext + ")";
-            String filter = "*" + ext;
-            prompt.getExtensionFilters().add(new FileChooser.ExtensionFilter(display, filter));
-        }
-
-        File file = prompt.showOpenDialog(stage);
-        if (file != null) {
-            App.settings.setPaceDirectory(file.getParent());
-            return file;
-        } else {
-            return null;
-        }
     }
 
     /**

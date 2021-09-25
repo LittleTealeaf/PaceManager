@@ -184,6 +184,14 @@ public class Pace {
         }
     }
 
+    public void saveAs() {
+        if (file != null) {
+            save();
+        } else {
+
+        }
+    }
+
     /**
      * Serializes the data within this object to a writer
      *

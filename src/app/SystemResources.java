@@ -1,6 +1,7 @@
 package app;
 
 import com.google.gson.stream.JsonReader;
+import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.FileReader;
@@ -55,4 +56,32 @@ public class SystemResources {
         settings.save();
         return settings;
     }
+
+    /**
+     * @return
+     * @since 1.0.0
+     */
+    public static File promptOpenPace() {
+        FileChooser prompt = new FileChooser();
+        File startingDirectory = new File(App.settings.getPaceDirectory());
+        if (!startingDirectory.exists()) {
+            App.settings.setPaceDirectory(System.getProperty("user.home"));
+            return promptOpenPace();
+        }
+        prompt.setInitialDirectory(startingDirectory);
+        for (String ext : App.settings.getFileExtensions()) {
+            String display = ext.substring(1).toUpperCase() + " files (*" + ext + ")";
+            String filter = "*" + ext;
+            prompt.getExtensionFilters().add(new FileChooser.ExtensionFilter(display, filter));
+        }
+
+        File file = prompt.showOpenDialog(null);
+        if (file != null) {
+            App.settings.setPaceDirectory(file.getParent());
+            return file;
+        } else {
+            return null;
+        }
+    }
+
 }

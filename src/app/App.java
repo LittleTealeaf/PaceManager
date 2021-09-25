@@ -120,7 +120,6 @@ public class App extends Application {
         return pace;
     }
 
-
     /**
      * Prompts the user to verify whether they want to delete an item
      *
@@ -195,4 +194,6 @@ public class App extends Application {
 
         return new Scene(borderPane);
     }
+
+
 }
