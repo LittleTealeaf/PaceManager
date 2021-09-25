@@ -12,8 +12,8 @@ import javafx.scene.input.MouseButton;
 
 /**
  * @author Thomas Kwashnak
- * @version 1.0.0-tableview
- * @since 1.0.0-tableview
+ * @version 1.0.0
+ * @since 1.0.0
  */
 public class TeamTable extends TableView<Team> {
     private final Pace pace;
