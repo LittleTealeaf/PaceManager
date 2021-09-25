@@ -44,6 +44,7 @@ public class TeamEditor {
     public TeamEditor(Team team) {
         this.team = team;
         stage = new Stage();
+        stage.setAlwaysOnTop(true);
         stage.setTitle(team.getTeamNumber() != null && !team.getTeamNumber().equals("") ? "Editing Team " + team
                 .getTeamNumber() : "Creating New Team");
 
