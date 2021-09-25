@@ -2,6 +2,9 @@ package ui;
 
 import data.Time;
 import javafx.scene.control.TextField;
+
+import java.util.ArrayList;
+import java.util.List;
 //TODO update javadocs
 /**
  * {@code JavaFX} UI Element allowing the user to input a Time into a text box. Uses a {@code TextField} to allow for
@@ -15,12 +18,16 @@ public class TimeInput extends TextField {
 
     /**
      * The currently stored {@link Time} value
+     *
      * @since 1.0.0
      */
     private Time time;
 
+    private List<TimeListener> timeListeners;
+
     /**
      * Creates a new {@code TimeInput} object with a set Time of 0
+     *
      * @since 1.0.0
      */
     public TimeInput() {
@@ -34,12 +41,13 @@ public class TimeInput extends TextField {
      */
     public TimeInput(Time time) {
         super();
-        this.time = time;
+        timeListeners = new ArrayList<TimeListener>();
         focusedProperty().addListener((e, o, n) -> {
             if (!e.getValue().booleanValue()) {
                 parseText();
             }
         });
+        setTime(time);
     }
 
     /**
@@ -80,6 +88,7 @@ public class TimeInput extends TextField {
      * @since 1.0.0
      */
     private void parseText() {
+        Time oldValue = time;
         try {
             if (getText() == null || getText().contentEquals("")) {
                 time = null;
@@ -91,6 +100,29 @@ public class TimeInput extends TextField {
             }
         } catch (Exception ignored) {}
 
+        Time newValue = time;
+        if (oldValue != newValue) {
+            for (TimeListener listener : timeListeners) {
+                listener.valueChanged(oldValue, newValue);
+            }
+        }
+
         updateText();
+    }
+
+    public List<TimeListener> getTimeListeners() {
+        return timeListeners;
+    }
+
+    public void setTimeListeners(List<TimeListener> listeners) {
+        this.timeListeners = listeners;
+    }
+
+    public void addTimeListener(TimeListener listener) {
+        timeListeners.add(listener);
+    }
+
+    public interface TimeListener {
+        void valueChanged(Time newValue, Time oldValue);
     }
 }
