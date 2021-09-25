@@ -66,6 +66,8 @@ public class Settings {
     private boolean launcherMaximized;
     private boolean appMaximized;
 
+    private boolean warnOnDelete;
+
     /**
      * Creates a new {@code Settings} object and sets values to their defaults.
      *
@@ -79,6 +81,7 @@ public class Settings {
         paceDirectory = System.getProperty("user.home") + File.separatorChar + "Documents" + File.separatorChar;
         launcherMaximized = false;
         appMaximized = true;
+        warnOnDelete = true;
 
         recentFiles = new ArrayList<>();
     }
@@ -260,6 +263,15 @@ public class Settings {
 
     public void setAppMaximized(boolean appMaximized) {
         this.appMaximized = appMaximized;
+        save();
+    }
+
+    public boolean doWarnOnDelete() {
+        return warnOnDelete;
+    }
+
+    public void setWarnOnDelete(boolean warnOnDelete) {
+        this.warnOnDelete = warnOnDelete;
         save();
     }
 }

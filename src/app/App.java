@@ -6,12 +6,15 @@ import data.Team;
 import data.Time;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import ui.Launcher;
 import ui.TeamTable;
 
 import java.io.File;
+import java.util.Optional;
 
 /*
 Add additional thread to periodically save pace
@@ -132,6 +135,21 @@ public class App extends Application {
 
 
     /**
+     * Prompts the user to verify whether they want to delete an item
+     *
+     * @param name Display Name of the item the user may want to delete
+     * @return {@code True} if the user decided to delete, {@code false} otherwise.
+     */
+    public static boolean warnDelete(String name) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete " + name + "?");
+        alert.setHeaderText("Are you sure you want to delete " + name + "?");
+        alert.setContentText("This action is permanent and cannot be reversed");
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.isPresent() && result.get() == ButtonType.OK;
+    }
+
+    /**
      * Application stage start point
      *
      * @see Application
@@ -141,9 +159,7 @@ public class App extends Application {
     public void start(Stage stage) {
         appStage = stage;
         stage.setMaximized(settings.isAppMaximized());
-        stage.maximizedProperty().addListener(e -> {
-            settings.setAppMaximized(stage.isMaximized());
-        });
+        stage.maximizedProperty().addListener(e -> settings.setAppMaximized(stage.isMaximized()));
         Launcher.open();
     }
 }

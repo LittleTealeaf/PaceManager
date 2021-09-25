@@ -314,4 +314,27 @@ public class Pace {
             save();
         }
     }
+
+    /**
+     * Prompts the user to delete if settings require
+     *
+     * @param team Team to delete
+     */
+    public boolean deleteTeam(Team team) {
+        if (App.settings.doWarnOnDelete() == App.warnDelete(team.getTeamNumber())) {
+            boolean result = teams.remove(team);
+            if (result) {
+                App.pingUpdate();
+            }
+            return result;
+        } else {
+            return false;
+        }
+    }
+
+    public Team newTeam() {
+        Team team = new Team();
+        teams.add(team);
+        return team;
+    }
 }

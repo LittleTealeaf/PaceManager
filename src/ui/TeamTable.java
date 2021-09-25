@@ -3,6 +3,8 @@ package ui;
 import app.App;
 import data.Pace;
 import data.Team;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -44,6 +46,23 @@ public class TeamTable extends TableView<Team> {
                 }
             }
         });
+        setContextMenu(createContextMenu());
+    }
+
+    private ContextMenu createContextMenu() {
+        ContextMenu contextMenu = new ContextMenu();
+
+        MenuItem openItem = new MenuItem("Open");
+        openItem.setOnAction(e -> new TeamEditor(getSelectionModel().getSelectedItem()));
+
+        MenuItem newItem = new MenuItem("New");
+        newItem.setOnAction(e -> new TeamEditor(pace.newTeam()));
+
+        MenuItem deleteItem = new MenuItem("Delete");
+        deleteItem.setOnAction(e -> pace.deleteTeam(getSelectionModel().getSelectedItem()));
+
+        contextMenu.getItems().addAll(openItem, newItem, deleteItem);
+        return contextMenu;
     }
 
     private void addColumns() {
