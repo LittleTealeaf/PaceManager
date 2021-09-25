@@ -1,6 +1,7 @@
 package ui;
 
 import data.Time;
+import javafx.application.Platform;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 
@@ -46,6 +47,13 @@ public class TimeInput extends TextField {
         focusedProperty().addListener((e, o, n) -> {
             if (!e.getValue().booleanValue()) {
                 parseText();
+            } else {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        selectAll();
+                    }
+                });
             }
         });
         setOnKeyPressed(e -> {

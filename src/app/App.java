@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import ui.DivisionTab;
+import ui.QuickImport;
 import ui.TeamTab;
 import ui.Updatable;
 
@@ -165,7 +166,6 @@ public class App extends Application {
         MenuBar menuBar = new MenuBar();
 
         Menu menuFile = new Menu("File");
-        menuBar.getMenus().add(menuFile);
 
         MenuItem openPace = new MenuItem("Open");
         openPace.setOnAction(e -> {
@@ -204,8 +204,16 @@ public class App extends Application {
             System.exit(0);
         });
 
+        Menu menuTools = new Menu("Tools");
 
+        MenuItem quickImport = new MenuItem("Quick Import");
+        quickImport.setOnAction(e -> {
+            new QuickImport();
+        });
+
+        menuBar.getMenus().addAll(menuFile, menuTools);
         menuFile.getItems().addAll(openPace, savePace, savePaceAs, closePace, exitApp);
+        menuTools.getItems().addAll(quickImport);
 
 
         borderPane.setTop(menuBar);
