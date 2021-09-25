@@ -1,5 +1,7 @@
 package data;
 
+import app.App;
+
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
@@ -237,12 +239,25 @@ public class Division {
     public Time getAverageTime() {
         long sum = 0;
         int count = 0;
+        long outLow = -1;
+        long outHigh = -1;
         for (Team team : teams) {
             Time elapsed = team.getElapsedTime();
             if (elapsed != null) {
-                sum += elapsed.getValue();
+                long elapsedTime = elapsed.getValue();
+                sum += elapsedTime;
                 count++;
+                if (elapsedTime < outLow || outLow == -1) {
+                    outLow = elapsedTime;
+                }
+                if (elapsedTime > outHigh || outHigh == -1) {
+                    outHigh = elapsedTime;
+                }
             }
+        }
+        if (App.settings.isExcludeOutliers() && count > 2) {
+            sum -= outHigh + outLow;
+            count -= 2;
         }
         return count == 0 ? null : new Time(sum / count);
     }

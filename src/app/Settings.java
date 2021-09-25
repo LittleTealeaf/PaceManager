@@ -69,6 +69,8 @@ public class Settings {
 
     private boolean warnOnDelete;
 
+    private boolean excludeOutliers;
+
     /**
      * Creates a new {@code Settings} object and sets values to their defaults.
      *
@@ -84,6 +86,7 @@ public class Settings {
         appMaximized = true;
         warnOnDelete = true;
         recentFiles = new ArrayList<>();
+        excludeOutliers = true;
     }
 
     /**
@@ -274,5 +277,13 @@ public class Settings {
     public void setWarnOnDelete(boolean warnOnDelete) {
         this.warnOnDelete = warnOnDelete;
         save();
+    }
+
+    public boolean isExcludeOutliers() {
+        return excludeOutliers;
+    }
+
+    public void setExcludeOutliers(boolean excludeOutliers) {
+        this.excludeOutliers = excludeOutliers;
     }
 }
