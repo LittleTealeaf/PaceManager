@@ -56,14 +56,10 @@ public class QuickImport extends Stage {
             switch (e.getCode()) {
                 case ENTER, TAB -> {
                     teamId.requestFocus();
+                    saveTeam();
+                    teamId.setText("");
+                    timeInput.setTime(null);
                 }
-            }
-        });
-        timeInput.focusedProperty().addListener((e, o, n) -> {
-            if (!e.getValue().booleanValue()) {
-                saveTeam();
-                teamId.setText("");
-                timeInput.setTime(null);
             }
         });
 
