@@ -5,13 +5,18 @@ import data.Pace;
 import data.Team;
 import data.Time;
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import ui.DivisionTable;
 import ui.Launcher;
 import ui.TeamTable;
+import ui.Updatable;
 
 import java.io.File;
 import java.util.Optional;
@@ -20,6 +25,8 @@ import java.util.Optional;
 Add additional thread to periodically save pace
 Potentially add additional thread to have a "backup" of the pace
  */
+
+//TODO figure out if removing the general application thing and just making stages and showing them would work better
 
 /**
  * Application Class, includes the starting point of the program and additional universally-accessible references
@@ -53,7 +60,8 @@ public class App extends Application {
      */
     private static Stage appStage;
 
-    private static TeamTable table;
+    //    private static TeamTable table;
+    private static Updatable[] updatables;
 
     /**
      * Application Launch Point
@@ -80,8 +88,20 @@ public class App extends Application {
             openedPace = testPace();
         }
         BorderPane borderPane = new BorderPane();
+        TabPane tabPane = new TabPane();
 
-        borderPane.setCenter(table = new TeamTable());
+        TeamTable teamTable = new TeamTable();
+        DivisionTable divisionTable = new DivisionTable();
+        tabPane.getTabs().addAll(
+                createTab(teamTable, "Teams"),
+                createTab(divisionTable, "Divisions")
+        );
+
+        updatables = new Updatable[]{teamTable, divisionTable};
+
+
+        borderPane.setCenter(tabPane);
+
 
         Scene scene = new Scene(borderPane);
         appStage.setScene(scene);
@@ -90,9 +110,20 @@ public class App extends Application {
         appStage.show();
     }
 
+    private static Tab createTab(Node node, String name) {
+        Tab tab = new Tab(name);
+        tab.setClosable(false);
+        tab.setContent(node);
+        return tab;
+    }
+
     public static void pingUpdate() {
         openedPace.pingUpdate();
-        table.update();
+        if (updatables != null) {
+            for (Updatable updatable : updatables) {
+                updatable.update();
+            }
+        }
     }
 
     /**

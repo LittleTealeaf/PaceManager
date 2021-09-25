@@ -14,7 +14,7 @@ import javafx.scene.input.MouseButton;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class TeamTable extends TableView<Team> {
+public class TeamTable extends TableView<Team> implements Updatable {
     //TODO BUG clicking on a selected item and then clicking on empty space opens the selected item
 
     public TeamTable() {
