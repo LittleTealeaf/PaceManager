@@ -43,7 +43,7 @@ public class DivisionTab extends GridPane implements Updatable {
     public void reBuild() {
         getChildren().clear();
 
-        String[] headers = new String[]{"Division", "# Riders", "Average", "Goal Time", "Deviation", "Deviation %"};
+        String[] headers = new String[]{"Division", "# Teams", "Average", "Goal Time", "Deviation", "Deviation %"};
         for (int i = 0; i < headers.length; i++) {
             Text header = new Text(headers[i]);
             header.setFont(new Font(15));
