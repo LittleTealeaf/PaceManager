@@ -26,8 +26,7 @@ public class Settings {
      * @see App#version
      * @since 1.0.0
      */
-    @SuppressWarnings("FieldCanBeLocal")
-    private final String version;
+    private final String settingsVersion;
     /**
      * List of recently opened Pace files
      *
@@ -79,7 +78,7 @@ public class Settings {
     public Settings() {
         aggressiveMemorySave = false;
         fileExtensions = new String[]{".pace", ".json"};
-        version = App.version;
+        settingsVersion = App.version;
         aggressiveSave = true;
         paceDirectory = System.getProperty("user.home") + File.separatorChar + "Documents" + File.separatorChar;
         launcherMaximized = false;
@@ -285,5 +284,9 @@ public class Settings {
 
     public void setExcludeOutliers(boolean excludeOutliers) {
         this.excludeOutliers = excludeOutliers;
+    }
+
+    public String getSettingsVersion() {
+        return settingsVersion;
     }
 }
