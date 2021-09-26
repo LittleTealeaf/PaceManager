@@ -309,7 +309,7 @@ public class Pace {
     /**
      * Lets the pace know that there has been an update to one of its child objects
      */
-    public void pingUpdate() {
+    public void update() {
         updateDivisionLists();
         if (App.settings.isAggressiveSave()) {
             save();

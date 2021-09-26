@@ -74,7 +74,7 @@ public class App extends Application {
     }
 
     public static void updateApplication() {
-        openedPace.pingUpdate();
+        openedPace.update();
         if (updateList != null) {
             for (Updatable updatable : updateList) {
                 updatable.update();
