@@ -12,6 +12,13 @@ import javafx.scene.text.Text;
 
 import java.text.DecimalFormat;
 
+/*
+TODO change this to another tab view
+each tab is another division with its own updating. One tab is the "general" list of data (like what we have here).
+so like
+Overview | Default | Pleasure | Hunt | Western | Junior
+ */
+
 public class DivisionTab extends GridPane implements Updatable {
 
     private DivisionRow[] divisions;
