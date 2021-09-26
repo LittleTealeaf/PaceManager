@@ -255,7 +255,7 @@ public class Division {
                 }
             }
         }
-        if (App.settings.isExcludeOutliers() && count > 2) {
+        if (App.settings.excludeOutliers() && count > 2) {
             sum -= outHigh + outLow;
             count -= 2;
         }

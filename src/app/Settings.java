@@ -279,7 +279,7 @@ public class Settings {
         save();
     }
 
-    public boolean isExcludeOutliers() {
+    public boolean excludeOutliers() {
         return excludeOutliers;
     }
 
