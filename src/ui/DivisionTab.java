@@ -72,13 +72,13 @@ public class DivisionTab extends GridPane implements Updatable {
             divisionName.focusedProperty().addListener((e, o, n) -> {
                 if (!e.getValue().booleanValue()) {
                     division.setName(divisionName.getText());
-                    App.updateApplication();
+                    App.update();
                 }
             });
             divisionName.setOnKeyPressed(e -> {
                 if (e.getCode() == KeyCode.ENTER) {
                     division.setName(divisionName.getText());
-                    App.updateApplication();
+                    App.update();
                 }
             });
             numRiders = new Text();
@@ -86,7 +86,7 @@ public class DivisionTab extends GridPane implements Updatable {
             goalTime = new TimeInput();
             goalTime.addTimeListener((o, n) -> {
                 division.setGoalTime(n);
-                App.updateApplication();
+                App.update();
             });
             deviationTime = new Text();
             deviationPercent = new Text();

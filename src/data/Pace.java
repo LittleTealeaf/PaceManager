@@ -325,7 +325,7 @@ public class Pace {
         if (App.settings.doWarnOnDelete() == App.warnDelete(team.getTeamNumber())) {
             boolean result = teams.remove(team);
             if (result) {
-                App.updateApplication();
+                App.update();
             }
             return result;
         } else {

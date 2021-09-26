@@ -73,7 +73,7 @@ public class App extends Application {
         return tab;
     }
 
-    public static void updateApplication() {
+    public static void update() {
         openedPace.update();
         if (updateList != null) {
             for (Updatable updatable : updateList) {

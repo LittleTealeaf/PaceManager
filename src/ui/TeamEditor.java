@@ -150,7 +150,7 @@ public class TeamEditor {
         team.setRiders(parseRiders());
         team.setExcluded(elementExcluded.isSelected());
         updateElements();
-        App.updateApplication();
+        App.update();
     }
 
     //TODO: Add this method to the "Team" class as a method to be called before saving or something

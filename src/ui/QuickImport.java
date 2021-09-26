@@ -101,7 +101,7 @@ public class QuickImport extends Stage {
             team.setTeamNumber(teamId.getText());
             saveTeam();
         }
-        App.updateApplication();
+        App.update();
     }
 
 }
