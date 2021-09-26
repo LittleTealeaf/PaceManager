@@ -223,19 +223,6 @@ public class Division {
         return teams;
     }
 
-    /**
-     * Gets all teh teams listed in the division in array form
-     * @return Array of all teams recorded in the division
-     * @since 1.0.0
-     */
-    public Team[] getTeamsAsArray() {
-        Team[] array = new Team[teams.size()];
-        for (int i = 0; i < array.length; i++) {
-            array[i] = teams.get(i);
-        }
-        return array;
-    }
-
     public Time getAverageTime() {
         long sum = 0;
         int count = 0;
