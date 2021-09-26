@@ -1,0 +1,343 @@
+{
+  "uuid": "71a8a738-556d-4ef1-aa5c-d26dd63f7423",
+  "divisions": [
+    {
+      "uuid": "e3f70bea-a003-4805-9802-204a27920d5a",
+      "name": "Default"
+    },
+    {
+      "uuid": "b940d293-affc-4ff1-9926-16e7606ff4bf",
+      "name": "Hunt",
+      "goalTime": 4651000
+    },
+    {
+      "uuid": "c41bf8a6-9e5b-4f45-b55d-36672cdece6e",
+      "name": "Western",
+      "goalTime": 5671000
+    },
+    {
+      "uuid": "12e102e4-ffe0-4011-9761-50841c67667a",
+      "name": "Pleasure",
+      "goalTime": 6122000
+    },
+    {
+      "uuid": "8b9b23c3-c5cd-4097-a485-b29b7af8228b",
+      "name": "Junior",
+      "goalTime": 5124000
+    }
+  ],
+  "teams": [
+    {
+      "uuid": "c42c6198-a5e1-49ce-a1e9-e968c18e0362",
+      "teamNumber": "182",
+      "riders": [],
+      "startTime": 31320000,
+      "endTime": 37020000,
+      "excluded": false,
+      "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
+    },
+    {
+      "uuid": "4932fe53-fdcb-4305-b9d0-45a9476a3286",
+      "teamNumber": "184",
+      "riders": [],
+      "startTime": 32100000,
+      "endTime": 37785000,
+      "excluded": false,
+      "divisionUUID": "b940d293-affc-4ff1-9926-16e7606ff4bf"
+    },
+    {
+      "uuid": "ae26e22b-bdfd-428e-8540-dfd07151e3c3",
+      "teamNumber": "192",
+      "riders": [],
+      "startTime": 32340000,
+      "endTime": 37940000,
+      "excluded": false,
+      "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
+    },
+    {
+      "uuid": "3beeca8c-7f01-4cc0-aae9-eff6bb8761c6",
+      "teamNumber": "193",
+      "riders": [],
+      "startTime": 34800000,
+      "endTime": 39168000,
+      "excluded": false,
+      "divisionUUID": "b940d293-affc-4ff1-9926-16e7606ff4bf"
+    },
+    {
+      "uuid": "3e1f58e8-be03-4854-9d19-5fb787282ece",
+      "teamNumber": "197",
+      "riders": [],
+      "startTime": 36780000,
+      "endTime": 42666000,
+      "excluded": false,
+      "divisionUUID": "c41bf8a6-9e5b-4f45-b55d-36672cdece6e"
+    },
+    {
+      "uuid": "49204994-d4b0-4207-833f-c667cd33745a",
+      "teamNumber": "199",
+      "riders": [],
+      "startTime": 35580000,
+      "endTime": 41149000,
+      "excluded": false,
+      "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
+    },
+    {
+      "uuid": "4b201e78-16f9-4c5d-9133-9b9d54c2fe76",
+      "teamNumber": "204",
+      "riders": [],
+      "excluded": false,
+      "divisionUUID": "b940d293-affc-4ff1-9926-16e7606ff4bf"
+    },
+    {
+      "uuid": "54b18f5a-9e1b-4bc7-a444-cdbad9f0d3e9",
+      "teamNumber": "206",
+      "riders": [],
+      "startTime": 32940000,
+      "endTime": 38698000,
+      "excluded": false,
+      "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
+    },
+    {
+      "uuid": "d3b43b2f-d4f9-44fb-9c05-c251bbd971ad",
+      "teamNumber": "207",
+      "riders": [],
+      "startTime": 35760000,
+      "endTime": 40434000,
+      "excluded": false,
+      "divisionUUID": "b940d293-affc-4ff1-9926-16e7606ff4bf"
+    },
+    {
+      "uuid": "f94d4ede-a266-4998-8e03-8aa28b75a688",
+      "teamNumber": "208",
+      "riders": [],
+      "startTime": 34620000,
+      "endTime": 41462000,
+      "excluded": false,
+      "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
+    },
+    {
+      "uuid": "1370d25f-80de-4ae3-9ce6-ca84ba3cfc3a",
+      "teamNumber": "213",
+      "riders": [],
+      "startTime": 34320000,
+      "endTime": 40465000,
+      "excluded": false,
+      "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
+    },
+    {
+      "uuid": "f325194e-d5da-4969-883a-22be48df3485",
+      "teamNumber": "214",
+      "riders": [],
+      "startTime": 35040000,
+      "endTime": 41831000,
+      "excluded": false,
+      "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
+    },
+    {
+      "uuid": "813011f2-7738-4809-a57a-5b97355ce0f8",
+      "teamNumber": "216",
+      "riders": [],
+      "startTime": 35280000,
+      "endTime": 41368000,
+      "excluded": false,
+      "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
+    },
+    {
+      "uuid": "093d91de-3cb4-40cb-94be-682fbc955f2a",
+      "teamNumber": "217",
+      "riders": [],
+      "startTime": 36960000,
+      "endTime": 42579000,
+      "excluded": false,
+      "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
+    },
+    {
+      "uuid": "fd9a65b6-733f-4353-9d0d-278bc72ee81e",
+      "teamNumber": "219",
+      "riders": [],
+      "startTime": 35940000,
+      "endTime": 42401000,
+      "excluded": false,
+      "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
+    },
+    {
+      "uuid": "1ad24226-d4d4-4eed-af3e-e47f742d359e",
+      "teamNumber": "221",
+      "riders": [],
+      "startTime": 36120000,
+      "endTime": 42043000,
+      "excluded": false,
+      "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
+    },
+    {
+      "uuid": "baae7e5d-e94c-4195-b951-473d7c1ac4e4",
+      "teamNumber": "223",
+      "riders": [],
+      "startTime": 37800000,
+      "endTime": 44183000,
+      "excluded": false,
+      "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
+    },
+    {
+      "uuid": "a7c2f8fc-fd8d-4405-b6ec-77497b3f9c2e",
+      "teamNumber": "224",
+      "riders": [],
+      "startTime": 37200000,
+      "endTime": 42140000,
+      "excluded": false,
+      "divisionUUID": "8b9b23c3-c5cd-4097-a485-b29b7af8228b"
+    },
+    {
+      "uuid": "61b05d69-b9d6-4eba-a76b-a90164b62f69",
+      "teamNumber": "226",
+      "riders": [],
+      "startTime": 37560000,
+      "excluded": false,
+      "divisionUUID": "b940d293-affc-4ff1-9926-16e7606ff4bf"
+    },
+    {
+      "uuid": "09c843f3-ef4b-475d-9798-59c6bbdecd29",
+      "teamNumber": "227",
+      "riders": [],
+      "startTime": 37380000,
+      "endTime": 44335000,
+      "excluded": false,
+      "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
+    },
+    {
+      "uuid": "a1c7bdc7-9f28-4b99-9078-3f33c0231798",
+      "teamNumber": "228",
+      "riders": [],
+      "startTime": 40020000,
+      "endTime": 46056000,
+      "excluded": false,
+      "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
+    },
+    {
+      "uuid": "dc894eb1-9c5b-44b8-a19a-794c3c06d23a",
+      "teamNumber": "231",
+      "riders": [],
+      "startTime": 38520000,
+      "endTime": 43200000,
+      "excluded": false,
+      "divisionUUID": "b940d293-affc-4ff1-9926-16e7606ff4bf"
+    },
+    {
+      "uuid": "27cd24eb-0230-42e6-a6d0-102acd7f0d0b",
+      "teamNumber": "234",
+      "riders": [],
+      "startTime": 36420000,
+      "endTime": 40927000,
+      "excluded": false,
+      "divisionUUID": "b940d293-affc-4ff1-9926-16e7606ff4bf"
+    },
+    {
+      "uuid": "2db1835b-39dd-4664-afef-41e9ad538651",
+      "teamNumber": "236",
+      "riders": [],
+      "startTime": 36600000,
+      "endTime": 40927000,
+      "excluded": false,
+      "divisionUUID": "b940d293-affc-4ff1-9926-16e7606ff4bf"
+    },
+    {
+      "uuid": "8947cb74-dfa8-4256-9455-908b45645657",
+      "teamNumber": "239",
+      "riders": [],
+      "startTime": 39660000,
+      "endTime": 43734000,
+      "excluded": false,
+      "divisionUUID": "b940d293-affc-4ff1-9926-16e7606ff4bf"
+    },
+    {
+      "uuid": "df4fec18-2598-49f9-a8b7-5b8034cd60ce",
+      "teamNumber": "240",
+      "riders": [],
+      "startTime": 38160000,
+      "endTime": 44400000,
+      "excluded": false,
+      "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
+    },
+    {
+      "uuid": "a5efeb7d-7ad1-46ea-af43-44551044e9b2",
+      "teamNumber": "241",
+      "riders": [],
+      "startTime": 39120000,
+      "endTime": 44593000,
+      "excluded": false,
+      "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
+    },
+    {
+      "uuid": "ce1c2558-f5f7-4f8e-83d4-730982bbfe49",
+      "teamNumber": "243",
+      "riders": [],
+      "startTime": 38340000,
+      "endTime": 44484000,
+      "excluded": false,
+      "divisionUUID": "c41bf8a6-9e5b-4f45-b55d-36672cdece6e"
+    },
+    {
+      "uuid": "91ca67f7-be42-41b9-b64c-d110eff582e9",
+      "teamNumber": "245",
+      "riders": [],
+      "startTime": 39480000,
+      "endTime": 45674000,
+      "excluded": false,
+      "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
+    },
+    {
+      "uuid": "0611ff0d-69c1-4b7d-9f54-38401e3a5255",
+      "teamNumber": "537",
+      "riders": [],
+      "startTime": 39300000,
+      "endTime": 45675000,
+      "excluded": false,
+      "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
+    },
+    {
+      "uuid": "72674645-7121-4cac-b63b-c55f18ee4868",
+      "teamNumber": "552",
+      "riders": [],
+      "startTime": 38940000,
+      "endTime": 45268000,
+      "excluded": false,
+      "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
+    },
+    {
+      "uuid": "df678d47-02c9-477c-b3f5-bc97bac40c11",
+      "teamNumber": "569",
+      "riders": [],
+      "startTime": 39840000,
+      "endTime": 45834000,
+      "excluded": false,
+      "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
+    },
+    {
+      "uuid": "7183727e-8e91-4857-bfcf-dd8833a8ffe6",
+      "teamNumber": "570",
+      "riders": [],
+      "startTime": 38760000,
+      "endTime": 44002000,
+      "excluded": false,
+      "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
+    },
+    {
+      "uuid": "2704409d-7f2d-4752-be37-6adc88081c9c",
+      "teamNumber": "571",
+      "riders": [],
+      "startTime": 40200000,
+      "endTime": 45127000,
+      "excluded": false,
+      "divisionUUID": "b940d293-affc-4ff1-9926-16e7606ff4bf"
+    },
+    {
+      "uuid": "22c09b11-4c91-4595-8d6b-5fc9c7350182",
+      "teamNumber": "572",
+      "riders": [],
+      "startTime": 40380000,
+      "endTime": 45199000,
+      "excluded": false,
+      "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
+    }
+  ]
+}
