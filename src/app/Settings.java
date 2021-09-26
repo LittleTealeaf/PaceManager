@@ -270,7 +270,7 @@ public class Settings {
         save();
     }
 
-    public boolean doWarnOnDelete() {
+    public boolean warnOnDelete() {
         return warnOnDelete;
     }
 
