@@ -321,7 +321,7 @@ public class Pace {
      *
      * @param team Team to delete
      */
-    public boolean deleteTeam(Team team) {
+    public boolean removeTeam(Team team) {
         if (App.settings.doWarnOnDelete() == App.warnDelete(team.getTeamNumber())) {
             boolean result = teams.remove(team);
             if (result) {

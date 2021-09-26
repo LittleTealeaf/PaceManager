@@ -37,7 +37,7 @@ public class TeamTab extends TableView<Team> implements Updatable {
                     }
                 }
                 case F5 -> update();
-                case DELETE -> App.openedPace.deleteTeam(getSelectionModel().getSelectedItem());
+                case DELETE -> App.openedPace.removeTeam(getSelectionModel().getSelectedItem());
             }
         });
         setContextMenu(createContextMenu());
@@ -53,7 +53,7 @@ public class TeamTab extends TableView<Team> implements Updatable {
         newItem.setOnAction(e -> new TeamEditor(App.openedPace.newTeam()));
 
         MenuItem deleteItem = new MenuItem("Delete");
-        deleteItem.setOnAction(e -> App.openedPace.deleteTeam(getSelectionModel().getSelectedItem()));
+        deleteItem.setOnAction(e -> App.openedPace.removeTeam(getSelectionModel().getSelectedItem()));
 
         contextMenu.getItems().addAll(openItem, newItem, deleteItem);
         return contextMenu;
