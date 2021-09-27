@@ -72,17 +72,23 @@ public class DivisionView extends TabPane implements Updatable {
             setClosable(true);
             this.division = division;
             this.parent = parent;
+
             BorderPane content = new BorderPane();
+
             table = new TeamTable(() -> this.division.getTeams());
             table.getColumns().remove(0);
             content.setCenter(table);
-            setContent(content);
 
+
+
+
+            setContent(content);
             update();
         }
 
         public void update() {
             table.update();
+            setText(division.getName());
         }
     }
 }
