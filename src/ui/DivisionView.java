@@ -19,13 +19,13 @@ Overview | Default | Pleasure | Hunt | Western | Junior
 public class DivisionView extends TabPane implements Updatable {
 
 
-    private List<DivisionList> divisionLists;
+    private List<DivisionTab> divisionTabs;
     private boolean tabClose;
 
 
     public DivisionView() {
         super();
-        divisionLists = new ArrayList<>();
+        divisionTabs = new ArrayList<>();
         Tab tab = new Tab("TEESTSETST");
         getTabs().add(tab);
         update();
@@ -33,31 +33,30 @@ public class DivisionView extends TabPane implements Updatable {
     }
 
     public void update() {
-        //TODO change this to an arraylist or linkedlist (just list) and make it dynamically add / remove as needed
-        if(divisionLists.size() != App.openedPace.getDivisions().size()) {
+        if(divisionTabs.size() != App.openedPace.getDivisions().size()) {
             //Get Selected index
             int selIndex = getSelectionModel().getSelectedIndex();
             List<Division> divisions = App.openedPace.getDivisions();
 
-            List<DivisionList> newDivisionLists = new ArrayList<>();
+            List<DivisionTab> newDivisionTabs = new ArrayList<>();
 
             for(Division div : divisions) {
-                DivisionList divisionList = null;
-                for(DivisionList divList : divisionLists) {
+                DivisionTab divisionTab = null;
+                for(DivisionTab divList : divisionTabs) {
                     if(divList.division == div) {
-                        divisionList = divList;
+                        divisionTab = divList;
                         break;
                     }
                 }
-                if(divisionList == null) {
-                    divisionList = new DivisionList(this, div);
+                if(divisionTab == null) {
+                    divisionTab = new DivisionTab(this, div);
                 }
-                newDivisionLists.add(divisionList);
+                newDivisionTabs.add(divisionTab);
             }
 
             getTabs().remove(1,getTabs().size() - 1);
-            getTabs().addAll(newDivisionLists);
-            divisionLists = newDivisionLists;
+            getTabs().addAll(newDivisionTabs);
+            divisionTabs = newDivisionTabs;
 
             if(selIndex > 0) {
                 getSelectionModel().select(selIndex);
@@ -65,19 +64,19 @@ public class DivisionView extends TabPane implements Updatable {
 
         } else {
             tabClose = false;
-            for(DivisionList divisionList : divisionLists) {
-                divisionList.update();
+            for(DivisionTab divisionTab : divisionTabs) {
+                divisionTab.update();
             }
         }
     }
 
-    private class DivisionList extends Tab implements Updatable {
+    private class DivisionTab extends Tab implements Updatable {
 
         TeamTable table;
         Division division;
         DivisionView parent;
 
-        public DivisionList(DivisionView parent, Division division) {
+        public DivisionTab(DivisionView parent, Division division) {
             super(division.getName());
             this.division = division;
             this.parent = parent;
