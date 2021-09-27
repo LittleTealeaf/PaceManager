@@ -31,7 +31,9 @@ public class DivisionTab extends TabPane implements Updatable {
 
     public void update() {
         int length = App.openedPace.getDivisions().size();
+        //TODO change this to an arraylist or linkedlist (just list) and make it dynamically add / remove as needed
         if(divLists.length != length && !tabClose) {
+            //Get opened index
             if(divLists.length > 0) {
                 getTabs().remove(1,divLists.length);
             }
