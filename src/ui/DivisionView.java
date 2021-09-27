@@ -75,6 +75,7 @@ public class DivisionView extends TabPane implements Updatable {
 
         public DivisionTab(DivisionView parent, Division division) {
             super(division.getName());
+            setClosable(true);
             this.division = division;
             this.parent = parent;
             BorderPane content = new BorderPane();
@@ -82,13 +83,6 @@ public class DivisionView extends TabPane implements Updatable {
             table.getColumns().remove(0);
             content.setCenter(table);
             setContent(content);
-
-            setOnCloseRequest(e -> {
-                if(App.settings.warnOnDelete() && App.warnDelete(this.division.getName())) {
-                    App.openedPace.removeDivision(this.division);
-                    App.update();
-                }
-            });
 
             update();
         }
