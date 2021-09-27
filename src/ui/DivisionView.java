@@ -19,7 +19,7 @@ public class DivisionView extends TabPane implements Updatable {
     public DivisionView() {
         super();
         divisionTabs = new ArrayList<>();
-        Tab tab = new Tab("TEESTSETST");
+        Tab tab = new Tab("General");
         getTabs().add(tab);
         update();
     }
@@ -85,5 +85,4 @@ public class DivisionView extends TabPane implements Updatable {
             table.update();
         }
     }
-
 }
