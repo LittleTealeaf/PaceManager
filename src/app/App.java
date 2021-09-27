@@ -10,13 +10,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import ui.DivisionTab;
+import ui.DivisionView;
 import ui.QuickImport;
 import ui.TeamTable;
 import ui.Updatable;
 
 import java.io.File;
-import java.util.List;
 import java.util.Optional;
 
 /*
@@ -155,14 +154,14 @@ public class App extends Application {
         TabPane tabPane = new TabPane();
 
         TeamTable teamTable = new TeamTable(() -> openedPace.getTeams());
-        DivisionTab divisionTab = new DivisionTab();
+        DivisionView divisionView = new DivisionView();
 
         tabPane.getTabs().addAll(
                 createTab(teamTable, "Teams"),
-                createTab(divisionTab, "Divisions")
+                createTab(divisionView, "Divisions")
         );
 
-        updateList = new Updatable[]{teamTable, divisionTab};
+        updateList = new Updatable[]{teamTable, divisionView};
 
         MenuBar menuBar = new MenuBar();
 
