@@ -276,9 +276,15 @@ public class Pace {
      */
     public boolean removeDivision(Division division) {
         if (divisions.indexOf(division) > 0) {
-            updateDivisionLists();
-            for (Team team : division.getTeams()) {
-                team.setDivision(divisions.get(0));
+//            updateDivisionLists();
+//            for (Team team : division.getTeams()) {
+//                team.setDivision(divisions.get(0));
+//            }
+//            boolean val = divisions.remove(division);
+//            updateDivisionLists();
+//            return val;
+            while(division.getTeams().size() > 0) {
+                division.getTeams().get(0).setDivision(divisions.get(0));
             }
             return divisions.remove(division);
         } else {
