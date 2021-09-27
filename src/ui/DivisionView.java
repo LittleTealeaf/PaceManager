@@ -26,10 +26,9 @@ public class DivisionView extends TabPane implements Updatable {
 
     public void update() {
         if(divisionTabs.size() != App.openedPace.getDivisions().size()) {
-            //Get Selected index
             int selIndex = getSelectionModel().getSelectedIndex();
-            List<Division> divisions = App.openedPace.getDivisions();
 
+            List<Division> divisions = App.openedPace.getDivisions();
             List<DivisionTab> newDivisionTabs = new ArrayList<>();
 
             for(Division div : divisions) {
