@@ -20,7 +20,6 @@ public class DivisionView extends TabPane implements Updatable {
 
 
     private List<DivisionTab> divisionTabs;
-    private boolean tabClose;
 
 
     public DivisionView() {
@@ -29,7 +28,6 @@ public class DivisionView extends TabPane implements Updatable {
         Tab tab = new Tab("TEESTSETST");
         getTabs().add(tab);
         update();
-        tabClose = false;
     }
 
     public void update() {
@@ -63,7 +61,6 @@ public class DivisionView extends TabPane implements Updatable {
             }
 
         } else {
-            tabClose = false;
             for(DivisionTab divisionTab : divisionTabs) {
                 divisionTab.update();
             }
@@ -89,7 +86,6 @@ public class DivisionView extends TabPane implements Updatable {
             setOnCloseRequest(e -> {
                 if(App.settings.warnOnDelete() && App.warnDelete(this.division.getName())) {
                     App.openedPace.removeDivision(this.division);
-                    this.parent.tabClose = true;
                     App.update();
                 }
             });
