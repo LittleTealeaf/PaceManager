@@ -9,12 +9,6 @@ import javafx.scene.layout.BorderPane;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-TODO change this to another tab view
-each tab is another division with its own updating. One tab is the "general" list of data (like what we have here).
-so like
-Overview | Default | Pleasure | Hunt | Western | Junior
- */
 
 public class DivisionView extends TabPane implements Updatable {
 
