@@ -5,6 +5,7 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.InputStream;
 
 /**
  * Useful system resources used throughout the program, typically referencing to file locations and similar activities
@@ -14,6 +15,8 @@ import java.io.FileReader;
  * @since 1.0.0
  */
 public class SystemResources {
+
+    public SystemResources() {}
 
     /**
      * Provides a working directory for use of data, settings, or other files within the project.
@@ -92,4 +95,7 @@ public class SystemResources {
         return fileChooser;
     }
 
+    public static InputStream getResourceStream(String resourcePath) {
+        return SystemResources.class.getClassLoader().getResourceAsStream(resourcePath);
+    }
 }

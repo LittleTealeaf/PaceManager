@@ -1,5 +1,6 @@
 package app;
 
+import com.google.gson.stream.JsonReader;
 import data.Division;
 import data.Pace;
 import data.Team;
@@ -16,6 +17,8 @@ import ui.TeamTable;
 import ui.Updatable;
 
 import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Optional;
 
 /*
@@ -57,7 +60,7 @@ public class App extends Application {
             openedPace = Pace.fromFile(file);
             appStage.setTitle(file.getName());
         } else {
-            openedPace = testPace();
+            openedPace = pace2021();
         }
 
         appStage.setScene(generateScene());
@@ -118,6 +121,12 @@ public class App extends Application {
 
         pace.save();
         return pace;
+    }
+
+    private static Pace pace2021() {
+        InputStream stream = SystemResources.getResourceStream("dev/pace2021.json");
+        System.out.println(stream);
+        return Pace.fromJson(new JsonReader(new InputStreamReader(stream)));
     }
 
     /**
