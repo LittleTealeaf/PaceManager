@@ -8,13 +8,15 @@ import javafx.scene.input.KeyCode;
 import java.util.ArrayList;
 import java.util.List;
 //TODO update javadocs
+
 /**
  * {@code JavaFX} UI Element allowing the user to input a Time into a text box. Uses a {@code TextField} to allow for
  * interaction and display
+ *
+ * @author Thomas Kwashnak
+ * @version 1.0.0
  * @see Time
  * @since 1.0.0
- * @version 1.0.0
- * @author Thomas Kwashnak
  */
 public class TimeInput extends TextField {
 
@@ -38,6 +40,7 @@ public class TimeInput extends TextField {
 
     /**
      * Creates a new {@code TimeInput} object with a given Time
+     *
      * @param time Initial Time value
      * @since 1.0.0
      */
@@ -66,6 +69,7 @@ public class TimeInput extends TextField {
 
     /**
      * Updates the text-box to the value provided from the current Time
+     *
      * @see Time#toString()
      * @since 1.0.0
      */
@@ -86,6 +90,7 @@ public class TimeInput extends TextField {
 
     /**
      * Sets the current time and updates the text
+     *
      * @param time The new time to display
      * @see #updateText()
      * @since 1.0.0
@@ -98,6 +103,7 @@ public class TimeInput extends TextField {
     /**
      * Parses the current text within the object into a {@code Time} object. Sets the time to null if
      * there is no text specified
+     *
      * @see Time#Time(String)
      * @since 1.0.0
      */

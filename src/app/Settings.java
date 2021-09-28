@@ -43,6 +43,7 @@ public class Settings {
     private String[] fileExtensions;
     /**
      * Default directory to begin looking for pace files in
+     *
      * @see Launcher
      * @since 1.0.0
      */
@@ -106,9 +107,10 @@ public class Settings {
 
     /**
      * Returns whether to aggressively save memory (ram)
+     *
      * @return {@code true} if the setting is set to true, {@code false} if the setting is set to false
-     * @since 1.0.0
      * @see #aggressiveMemorySave
+     * @since 1.0.0
      */
     public boolean isAggressiveMemorySave() {
         return aggressiveMemorySave;
@@ -117,9 +119,10 @@ public class Settings {
     /**
      * Sets whether the program should be concerned about aggressively saving values
      * <p>Will save settings to the settings file after the modification</p>
+     *
      * @param value {@code true} if the program should take extra steps to reduce memory, {@code false} if not
-     * @since 1.0.0
      * @see #aggressiveMemorySave
+     * @since 1.0.0
      */
     public void setAggressiveMemorySave(boolean value) {
         //Only updates / saves if there is a change
@@ -131,9 +134,10 @@ public class Settings {
 
     /**
      * Gets the list of file extensions used when opening a pace file
+     *
      * @return String array of valid file extensions. Extensions are in the format {@code .___}.
-     * @since 1.0.0
      * @see #fileExtensions
+     * @since 1.0.0
      */
     public String[] getFileExtensions() {
         return fileExtensions;
@@ -142,9 +146,10 @@ public class Settings {
     /**
      * Sets the list of file extensions.
      * <p>Will save settings to the settings file after the modification</p>
+     *
      * @param fileExtensions String array of valid file extensions. Extensions are in the format {@code .___}.
-     * @since 1.0.0
      * @see #fileExtensions
+     * @since 1.0.0
      */
     public void setFileExtensions(String[] fileExtensions) {
         this.fileExtensions = fileExtensions;

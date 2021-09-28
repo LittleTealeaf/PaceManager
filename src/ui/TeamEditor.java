@@ -170,15 +170,15 @@ public class TeamEditor {
             while (raw[i].length() > 0 && raw[i].charAt(raw[i].length() - 1) == ' ') {
                 raw[i] = raw[i].substring(0, raw[i].length() - 1);
             }
-            if(raw[i].equals("")) {
+            if (raw[i].equals("")) {
                 delete[i] = true;
                 delCount++;
             }
         }
         String[] riders = new String[raw.length - delCount];
         int i = 0, j = 0;
-        while(i < riders.length) {
-            if(delete[j]) {
+        while (i < riders.length) {
+            if (delete[j]) {
                 j++;
             } else {
                 riders[i] = raw[j];

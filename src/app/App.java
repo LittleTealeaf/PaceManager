@@ -101,20 +101,6 @@ public class App extends Application {
         return result.isPresent() && result.get() == ButtonType.OK;
     }
 
-    /**
-     * Application stage start point
-     *
-     * @see Application
-     * @since 1.0.0
-     */
-    @Override
-    public void start(Stage stage) {
-        appStage = stage;
-        stage.setMaximized(settings.isAppMaximized());
-        stage.maximizedProperty().addListener(e -> settings.setAppMaximized(stage.isMaximized()));
-        Launcher.open();
-    }
-
     private static Scene generateScene() {
         BorderPane borderPane = new BorderPane();
         TabPane tabPane = new TabPane();
@@ -187,6 +173,20 @@ public class App extends Application {
 
 
         return new Scene(borderPane);
+    }
+
+    /**
+     * Application stage start point
+     *
+     * @see Application
+     * @since 1.0.0
+     */
+    @Override
+    public void start(Stage stage) {
+        appStage = stage;
+        stage.setMaximized(settings.isAppMaximized());
+        stage.maximizedProperty().addListener(e -> settings.setAppMaximized(stage.isMaximized()));
+        Launcher.open();
     }
 
 

@@ -26,6 +26,7 @@ public class DivisionSelector extends ComboBox<String> {
 
     /**
      * Creates a new division selector object
+     *
      * @since 1.0.0
      */
     public DivisionSelector() {
@@ -36,6 +37,7 @@ public class DivisionSelector extends ComboBox<String> {
 
     /**
      * Updates the division list to the current list of divisions from the currently opened pace
+     *
      * @see App#openedPace
      * @since 1.0.0
      */
@@ -48,6 +50,7 @@ public class DivisionSelector extends ComboBox<String> {
 
     /**
      * Gets the currently selected division
+     *
      * @return The selected division if the user selected a division from the given list.
      * <p>If the user typed in a custom division, it returns a new division with the given name</p>
      * @since 1.0.0
@@ -66,6 +69,7 @@ public class DivisionSelector extends ComboBox<String> {
     /**
      * Sets the selected division to the passed parameter. Adds the division to the provided list if it is not already
      * listed.
+     *
      * @param division Division to select
      * @since 1.0.0
      */

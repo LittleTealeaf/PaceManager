@@ -72,6 +72,7 @@ public class Pace {
      * <p>If the file doesn't exist, or if there are errors in
      * parsing the file, returns a new {@code Pace} object with a reference to that file, such that the pace will save
      * to that file.</p>
+     *
      * @param file File reference to the saved pace data
      * @return A {@code Pace} object, set to save to the provided file. The {@code Pace} object is an empty pace if
      * there were errors in parsing the file
@@ -92,6 +93,7 @@ public class Pace {
 
     /**
      * Returns a pace object derived from a Json reader. Populates divisions and updates the division list.
+     *
      * @param reader JsonReader to read the pace data from
      * @return Pace object derived from data in the JsonReader
      * @since 1.0.0
@@ -105,6 +107,7 @@ public class Pace {
 
     /**
      * Gets a list of divisions
+     *
      * @return List of division included in the pace
      * @since 1.0.0
      */
@@ -114,6 +117,7 @@ public class Pace {
 
     /**
      * Gets a list of teams
+     *
      * @return List of teams tracked in the pace
      * @since 1.0.0
      */
@@ -223,9 +227,10 @@ public class Pace {
 
     /**
      * Sets the save file
+     *
      * @param file File referencing the location of save-data for the pace
-     * @since 1.0.0
      * @see #file
+     * @since 1.0.0
      */
     public void setFile(File file) {
         this.file = file;
@@ -283,7 +288,7 @@ public class Pace {
 //            boolean val = divisions.remove(division);
 //            updateDivisionLists();
 //            return val;
-            while(division.getTeams().size() > 0) {
+            while (division.getTeams().size() > 0) {
                 division.getTeams().get(0).setDivision(divisions.get(0));
             }
             return divisions.remove(division);

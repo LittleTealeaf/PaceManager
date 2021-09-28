@@ -34,17 +34,20 @@ public class Division {
     private final transient List<Team> teams;
     /**
      * Display Name of the Division
+     *
      * @since 1.0.0
      */
     private String name;
     /**
      * Optimum Time for the division
+     *
      * @since 1.0.0
      */
     private Time goalTime;
 
     /**
      * Creates a new division
+     *
      * @since 1.0.0
      */
     public Division() {
@@ -54,6 +57,7 @@ public class Division {
 
     /**
      * Creates a division with a given name
+     *
      * @param name Display Name of the Division
      * @since 1.0.0
      */
@@ -64,6 +68,7 @@ public class Division {
 
     /**
      * Gets the display name
+     *
      * @return Display name of the Division
      * @since 1.0.0
      */
@@ -73,6 +78,7 @@ public class Division {
 
     /**
      * Sets the display name
+     *
      * @param name new Display Name for the division
      * @since 1.0.0
      */
@@ -82,6 +88,7 @@ public class Division {
 
     /**
      * Gets the goal time
+     *
      * @return Gets the optimum time for the division
      * @since 1.0.0
      */
@@ -91,6 +98,7 @@ public class Division {
 
     /**
      * Sets the goal time
+     *
      * @param goalTime Optimum time for the division
      * @since 1.0.0
      */
@@ -103,6 +111,7 @@ public class Division {
     /**
      * Adds a new team to the division.
      * <p>Does not modify the team or check if the team is set to the division in any way.</p>
+     *
      * @param team Team to add to the division
      * @since 1.0.0
      */
@@ -113,6 +122,7 @@ public class Division {
     /**
      * Moves all teams from the provided division into this division.
      * Removes all teams from the specified division respectfully
+     *
      * @param division Division to "steal" all teams from
      */
     public void importTeamsFrom(Division division) {
@@ -137,6 +147,7 @@ public class Division {
 
     /**
      * Clears all teams from the division list
+     *
      * @since 1.0.0
      */
     public void clearTeams() {
@@ -145,6 +156,7 @@ public class Division {
 
     /**
      * Gets the division UUID
+     *
      * @return Unique Identifier of the division
      * @since 1.0.0
      */
@@ -154,9 +166,10 @@ public class Division {
 
     /**
      * String representation of the division
+     *
      * @return Division's name
-     * @since 1.0.0
      * @see #getName()
+     * @since 1.0.0
      */
     public String toString() {
         return getName();
@@ -165,9 +178,10 @@ public class Division {
     /**
      * Obtains a list of teams in the division who have completed and are eligible for a place, in order from closest
      * to the optimum time to farthest from the optimum time
+     *
      * @return Array List of eligible teams in order of closeness to the goal time
-     * @since 1.0.0
      * @see #goalTime
+     * @since 1.0.0
      */
     public Team[] getPlaceOrder() {
         if (goalTime == null) {
@@ -216,6 +230,7 @@ public class Division {
 
     /**
      * Gets all the teams listed in the division
+     *
      * @return List of teams recorded in the division
      * @since 1.0.0
      */

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 //TODO update javadocs
+
 /**
  * @author Thomas Kwashnak
  * @version 1.0.0

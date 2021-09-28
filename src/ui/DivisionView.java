@@ -13,7 +13,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 import java.text.DecimalFormat;
@@ -27,7 +26,7 @@ public class DivisionView extends TabPane implements Updatable {
 
 
     private List<DivisionTab> divisionTabs;
-    private GeneralTab generalTab;
+    private final GeneralTab generalTab;
 
 
     public DivisionView() {
@@ -39,36 +38,36 @@ public class DivisionView extends TabPane implements Updatable {
 
     public void update() {
         generalTab.update();
-        if(divisionTabs.size() != App.openedPace.getDivisions().size()) {
+        if (divisionTabs.size() != App.openedPace.getDivisions().size()) {
             int selIndex = getSelectionModel().getSelectedIndex();
 
             List<Division> divisions = App.openedPace.getDivisions();
             List<DivisionTab> newDivisionTabs = new ArrayList<>();
 
-            for(Division div : divisions) {
+            for (Division div : divisions) {
                 DivisionTab divisionTab = null;
-                for(DivisionTab divList : divisionTabs) {
-                    if(divList.division == div) {
+                for (DivisionTab divList : divisionTabs) {
+                    if (divList.division == div) {
                         divisionTab = divList;
                         break;
                     }
                 }
-                if(divisionTab == null) {
+                if (divisionTab == null) {
                     divisionTab = new DivisionTab(this, div);
                 }
                 newDivisionTabs.add(divisionTab);
             }
 
-            getTabs().remove(1,getTabs().size());
+            getTabs().remove(1, getTabs().size());
             getTabs().addAll(newDivisionTabs);
             divisionTabs = newDivisionTabs;
 
-            if(selIndex > 0) {
+            if (selIndex > 0) {
                 getSelectionModel().select(selIndex);
             }
 
         } else {
-            for(DivisionTab divisionTab : divisionTabs) {
+            for (DivisionTab divisionTab : divisionTabs) {
                 divisionTab.update();
             }
         }
@@ -95,28 +94,29 @@ public class DivisionView extends TabPane implements Updatable {
         }
 
         public void update() {
-            if(panels == null || panels.length != App.openedPace.getDivisions().size()) {
+            if (panels == null || panels.length != App.openedPace.getDivisions().size()) {
                 gridPane.getChildren().clear();
-                Text[] headers = new Text[] {
-                        new Text("Name"), new Text("Optimum Time"), new Text("Average Time"), new Text("Deviation Time"),
+                Text[] headers = new Text[]{
+                        new Text("Name"), new Text("Optimum Time"), new Text("Average Time"), new Text(
+                        "Deviation Time"),
                         new Text("Deviation %")
                 };
-                for(Text t : headers) {
+                for (Text t : headers) {
                     t.setFont(new Font(15));
                 }
-                gridPane.addRow(0,headers);
+                gridPane.addRow(0, headers);
 
 
                 panels = new DivisionPanel[App.openedPace.getDivisions().size()];
-                for(int i = 0; i < panels.length; i++) {
+                for (int i = 0; i < panels.length; i++) {
                     panels[i] = new DivisionPanel(App.openedPace.getDivisions().get(i));
                     Node[] nodes = panels[i].asArray();
-                    for(int j = 0; j < nodes.length; j++) {
-                        gridPane.add(nodes[j],j,i+1);
+                    for (int j = 0; j < nodes.length; j++) {
+                        gridPane.add(nodes[j], j, i + 1);
                     }
                 }
             } else {
-                for(int i = 0; i < panels.length; i++) {
+                for (int i = 0; i < panels.length; i++) {
                     panels[i].update();
                 }
             }
@@ -147,13 +147,14 @@ public class DivisionView extends TabPane implements Updatable {
             //Button Panel
             buttonDeleteDivision = new Button("Delete");
             buttonDeleteDivision.setOnAction(e -> {
-                if((!App.settings.warnOnDelete() || App.warnDelete(this.division.getName())) && App.openedPace.removeDivision(this.division)) {
+                if ((!App.settings.warnOnDelete() || App.warnDelete(
+                        this.division.getName())) && App.openedPace.removeDivision(this.division)) {
                     App.update();
                 }
             });
             buttonSetAsDefault = new Button("Make Default");
             buttonSetAsDefault.setOnAction(e -> {
-                if(App.openedPace.setDefaultDivision(this.division)) {
+                if (App.openedPace.setDefaultDivision(this.division)) {
                     App.update();
                 }
             });
@@ -182,8 +183,8 @@ public class DivisionView extends TabPane implements Updatable {
             table.update();
             setText(division.getName());
 
-            if(this.division != App.openedPace.getDefaultDivision()) {
-                boxButtons.getChildren().setAll(buttonSetAsDefault,buttonDeleteDivision);
+            if (this.division != App.openedPace.getDefaultDivision()) {
+                boxButtons.getChildren().setAll(buttonSetAsDefault, buttonDeleteDivision);
             } else {
                 Text defaultMessage = new Text("You cannot delete the\ndefault division");
                 defaultMessage.setFont(new Font(11));
@@ -209,14 +210,14 @@ public class DivisionView extends TabPane implements Updatable {
         public DivisionPanel(Division division) {
             this.division = division;
             name = new TextField();
-            name.focusedProperty().addListener((e,o,n) -> {
-                if(!e.getValue().booleanValue()) {
+            name.focusedProperty().addListener((e, o, n) -> {
+                if (!e.getValue().booleanValue()) {
                     this.division.setName(name.getText());
                     App.update();
                 }
             });
             goalTime = new TimeInput();
-            goalTime.addTimeListener((o,n) -> {
+            goalTime.addTimeListener((o, n) -> {
                 this.division.setGoalTime(n);
                 App.update();
             });
@@ -235,7 +236,7 @@ public class DivisionView extends TabPane implements Updatable {
 
             Time avg = division.getAverageTime();
             averageTime.setText((avg == null ? "-" : avg.toString()));
-            if(avg != null && division.getGoalTime() != null) {
+            if (avg != null && division.getGoalTime() != null) {
                 Time deviation = avg.subtract(division.getGoalTime());
                 deviationTime.setText(deviation.toString());
                 double percent = ((double) deviation.getValue() / goalTime.getTime().getValue());
@@ -247,25 +248,26 @@ public class DivisionView extends TabPane implements Updatable {
         }
 
         public HBox asHBox() {
-            Text[] labels = new Text[] {
+            Text[] labels = new Text[]{
                     new Text("Division:"),
                     new Text("Goal Time:"),
                     new Text("Average:"),
                     new Text("Deviation")
             };
             Font font = new Font(FONT_SIZE);
-            for(Text text : labels) {
+            for (Text text : labels) {
                 text.setFont(font);
             }
-            HBox hbox = new HBox(labels[0],name,labels[1],goalTime,labels[2],averageTime,labels[3],deviationTime,deviationPercent);
+            HBox hbox = new HBox(labels[0], name, labels[1], goalTime, labels[2], averageTime, labels[3], deviationTime,
+                                 deviationPercent);
             hbox.setSpacing(7);
 
             return hbox;
         }
 
         public Node[] asArray() {
-            return new Node[] {
-                    name,goalTime,averageTime,deviationTime,deviationPercent
+            return new Node[]{
+                    name, goalTime, averageTime, deviationTime, deviationPercent
             };
         }
     }
