@@ -345,4 +345,8 @@ public class Pace {
         teams.add(team);
         return team;
     }
+
+    public Division getDefaultDivision() {
+        return divisions.get(0);
+    }
 }
