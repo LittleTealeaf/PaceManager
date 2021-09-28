@@ -1,10 +1,7 @@
 package app;
 
 import com.google.gson.stream.JsonReader;
-import data.Division;
 import data.Pace;
-import data.Team;
-import data.Time;
 import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Scene;

@@ -19,7 +19,7 @@ import java.util.List;
 public class TeamTable extends TableView<Team> implements Updatable {
     //TODO BUG clicking on a selected item and then clicking on empty space opens the selected item
 
-    private TeamUpdater updater;
+    private final TeamUpdater updater;
 
     public TeamTable(TeamUpdater updater) {
         super();
