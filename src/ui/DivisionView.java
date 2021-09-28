@@ -145,6 +145,7 @@ public class DivisionView extends TabPane implements Updatable {
 
             boxButtons = new HBox();
             boxButtons.setPadding(new Insets(7));
+            boxButtons.setSpacing(7);
 
             BorderPane bottomField = new BorderPane();
             bottomField.setLeft(divInfo);
