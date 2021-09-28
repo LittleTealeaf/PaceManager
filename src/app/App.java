@@ -84,43 +84,6 @@ public class App extends Application {
         }
     }
 
-    /**
-     * A debugging pace generator, creates a debug.json pace with 50 teams, of random divisions, start times, and end times
-     *
-     * @return Generated Pace
-     * @since 1.0.0
-     */
-    private static Pace testPace() {
-        Pace pace = new Pace();
-        pace.setFile(new File(settings.getPaceDirectory() + "\\debug.json"));
-
-        pace.addDivision(new Division("Hunt"));
-        pace.addDivision(new Division("Western"));
-        pace.addDivision(new Division("Pleasure"));
-        pace.addDivision(new Division("Junior"));
-
-        for (int i = 0; i < 50; i++) {
-            Team team = new Team();
-            if (Math.random() * 100 > 30) {
-                team.setDivision(pace.getDivisions().get((int) (Math.random() * 4)));
-            }
-            if (Math.random() * 100 > 40) {
-                //Random Start Time, start is fromm 7 am to 12 pm
-                final long MILLISECONDS_PER_HOUR = 3600000;
-                team.setStartTime(
-                        new Time((long) (Math.random() * MILLISECONDS_PER_HOUR * 5) + MILLISECONDS_PER_HOUR * 7));
-                if (Math.random() * 100 > 50) {
-                    team.setEndTime(new Time(
-                            (long) (Math.random() * MILLISECONDS_PER_HOUR * 3) + team.getStartTime().getValue()));
-                }
-            }
-            team.setTeamNumber("A" + i);
-            pace.getTeams().add(team);
-        }
-
-        pace.save();
-        return pace;
-    }
 
     private static Pace pace2021() {
         return Pace.fromJson(new JsonReader(new InputStreamReader(SystemResources.getResource("/dev/pace2021.json"))));
