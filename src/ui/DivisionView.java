@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -113,15 +114,16 @@ public class DivisionView extends TabPane implements Updatable {
                 update();
             });
 
+            int timeFontSize = 13;
             averageTime = new Text();
-            averageTime.setFont(new Font(12));
+            averageTime.setFont(new Font(timeFontSize));
             deviationTime = new Text();
-            deviationTime.setFont(new Font(12));
+            deviationTime.setFont(new Font(timeFontSize));
             deviationPercent = new Text();
-            deviationPercent.setFont(new Font(12));
+            deviationPercent.setFont(new Font(timeFontSize));
 
 
-            HBox divInfo = new HBox(nameLabel,name, goalLabel, goalTime, averageTime);
+            HBox divInfo = new HBox(nameLabel,name, goalLabel, goalTime, averageTime, deviationTime, deviationPercent);
             divInfo.setSpacing(7);
             divInfo.setPadding(new Insets(5));
 
@@ -165,8 +167,16 @@ public class DivisionView extends TabPane implements Updatable {
             goalTime.setTime(division.getGoalTime());
 
             Time avg = division.getAverageTime();
-            averageTime.setText("Average: " + avg == null ? "-" : avg.toString());
-//            Time deviation = avg == null ? null : avg.subtract(division.getGoalTime());
+            averageTime.setText("Average: " + (avg == null ? "-" : avg.toString()));
+            if(avg != null && division.getGoalTime() != null) {
+                Time deviation = avg.subtract(division.getGoalTime());
+                deviationTime.setText("Deviation: " + deviation.toString());
+                double percent = ((double) deviation.getValue() / goalTime.getTime().getValue());
+                deviationPercent.setText(new DecimalFormat("##.##%").format(percent));
+            } else {
+                deviationPercent.setText("");
+                deviationTime.setText("");
+            }
 
 
             if(this.division != App.openedPace.getDefaultDivision()) {
