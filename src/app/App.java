@@ -124,12 +124,7 @@ public class App extends Application {
     }
 
     private static Pace pace2021() {
-        InputStream stream = SystemResources.getResourceStream("dev/pace2021.json");
-//        System.out.println(stream);
-//        return Pace.fromJson(new JsonReader(new InputStreamReader(stream)));
-        System.out.println(App.class.getClassLoader().getResourceAsStream("dev/pace2021.json"));
-        //https://mkyong.com/java/java-read-a-file-from-resources-folder/
-        return null;
+        return Pace.fromJson(new JsonReader(new InputStreamReader(SystemResources.getResource("/dev/pace2021.json"))));
     }
 
     /**

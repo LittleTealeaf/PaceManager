@@ -95,7 +95,13 @@ public class SystemResources {
         return fileChooser;
     }
 
-    public static InputStream getResourceStream(String resourcePath) {
-        return SystemResources.class.getClassLoader().getResourceAsStream(resourcePath);
+    /**
+     * Grabs a system resources as a stream.
+     * @param name Resource Path of resource <br>If in a subdirectory, format such as {@code /dev/pace2021.json},
+     *             if not format such as {@code pace2021.json}
+     * @return
+     */
+    public static InputStream getResource(String name) {
+        return SystemResources.class.getResourceAsStream(name);
     }
 }
