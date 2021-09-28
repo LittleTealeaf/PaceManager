@@ -134,6 +134,6 @@ public class TimeInput extends TextField {
     }
 
     public interface TimeListener {
-        void valueChanged(Time newValue, Time oldValue);
+        void valueChanged(Time oldValue, Time newValue);
     }
 }
