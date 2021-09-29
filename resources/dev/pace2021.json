@@ -106,6 +106,7 @@
         "Courtney Strout",
         "Chrysanthi Gavagan"
       ],
+      "notes": "No show",
       "excluded": false,
       "divisionUUID": "b940d293-affc-4ff1-9926-16e7606ff4bf"
     },
@@ -251,7 +252,8 @@
       ],
       "startTime": 37560000,
       "excluded": false,
-      "divisionUUID": "b940d293-affc-4ff1-9926-16e7606ff4bf"
+      "divisionUUID": "b940d293-affc-4ff1-9926-16e7606ff4bf",
+      "notes": "Left pace early"
     },
     {
       "uuid": "09c843f3-ef4b-475d-9798-59c6bbdecd29",
