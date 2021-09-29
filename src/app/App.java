@@ -31,6 +31,7 @@ public class App extends Application {
     public static Pace openedPace;
     private static Stage appStage;
     private static Updatable[] updateList;
+    public static SettingsEditor settingsEditor;
 
     /**
      * Application Launch Point
@@ -148,6 +149,11 @@ public class App extends Application {
             appStage.close();
         });
 
+        MenuItem openSettings = new MenuItem("Settings");
+        openSettings.setOnAction(e -> {
+            new SettingsEditor();
+        });
+
         MenuItem exitApp = new MenuItem("Exit");
         exitApp.setOnAction(e -> {
             System.exit(0);
@@ -166,7 +172,7 @@ public class App extends Application {
         });
 
         menuBar.getMenus().addAll(menuFile, menuTools);
-        menuFile.getItems().addAll(openPace, savePace, savePaceAs, closePace, exitApp);
+        menuFile.getItems().addAll(openPace, savePace, savePaceAs, closePace, openSettings, exitApp);
         menuTools.getItems().addAll(quickImport, newTeam);
 
 
@@ -186,6 +192,11 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         appStage = stage;
+        stage.setOnCloseRequest(e -> {
+            if(settingsEditor != null) {
+                settingsEditor.close();
+            }
+        });
         stage.setMaximized(settings.isAppMaximized());
         stage.maximizedProperty().addListener(e -> settings.setAppMaximized(stage.isMaximized()));
         Launcher.open();
