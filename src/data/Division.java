@@ -245,7 +245,7 @@ public class Division {
         long outHigh = -1;
         for (Team team : teams) {
             Time elapsed = team.getElapsedTime();
-            if (elapsed != null) {
+            if (elapsed != null && !team.isExcluded()) {
                 long elapsedTime = elapsed.getValue();
                 sum += elapsedTime;
                 count++;
