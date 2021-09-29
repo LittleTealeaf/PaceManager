@@ -295,14 +295,17 @@ public class Team implements Serializable {
     }
 
     public String getNotesDisplay() {
+        StringBuilder builder = new StringBuilder();
+        if(isExcluded()) {
+            builder.append("[Excluded from placements]\n");
+        }
         if (notes != null) {
             String n = notes;
             while (n.contains("\n\n")) {
                 n = n.replace("\n\n", "\n");
             }
-            return n;
-        } else {
-            return "";
+            builder.append(n);
         }
+        return builder.toString();
     }
 }
