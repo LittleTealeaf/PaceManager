@@ -239,10 +239,8 @@ public class Division {
     }
 
     public Time getAverageTime() {
-        long sum = 0;
+        long sum = 0, outLow = -1, outHigh = -1;
         int count = 0;
-        long outLow = -1;
-        long outHigh = -1;
         for (Team team : teams) {
             Time elapsed = team.getElapsedTime();
             if (elapsed != null && !team.isExcluded()) {
