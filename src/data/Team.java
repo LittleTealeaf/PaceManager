@@ -39,7 +39,7 @@ public class Team implements Serializable {
     /**
      * @since 1.0.0
      */
-    private boolean excluded = false;
+    private Boolean excluded;
     /**
      * @since 1.0.0
      */
@@ -236,7 +236,7 @@ public class Team implements Serializable {
      * @since 1.0.0
      */
     public boolean isExcluded() {
-        return excluded;
+        return excluded != null && excluded;
     }
 
     /**
@@ -244,7 +244,7 @@ public class Team implements Serializable {
      * @since 1.0.0
      */
     public void setExcluded(boolean excluded) {
-        this.excluded = excluded;
+        this.excluded = excluded ? true : null;
     }
 
     /**

@@ -36,7 +36,6 @@
       ],
       "startTime": 31320000,
       "endTime": 37020000,
-      "excluded": false,
       "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
     },
     {
@@ -48,7 +47,6 @@
       ],
       "startTime": 32100000,
       "endTime": 37785000,
-      "excluded": false,
       "divisionUUID": "b940d293-affc-4ff1-9926-16e7606ff4bf"
     },
     {
@@ -60,7 +58,6 @@
       ],
       "startTime": 32340000,
       "endTime": 37940000,
-      "excluded": false,
       "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
     },
     {
@@ -72,7 +69,6 @@
       ],
       "startTime": 34800000,
       "endTime": 39168000,
-      "excluded": false,
       "divisionUUID": "b940d293-affc-4ff1-9926-16e7606ff4bf"
     },
     {
@@ -84,7 +80,6 @@
       ],
       "startTime": 36780000,
       "endTime": 42666000,
-      "excluded": false,
       "divisionUUID": "c41bf8a6-9e5b-4f45-b55d-36672cdece6e"
     },
     {
@@ -96,7 +91,6 @@
       ],
       "startTime": 35580000,
       "endTime": 41149000,
-      "excluded": false,
       "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
     },
     {
@@ -107,7 +101,6 @@
         "Chrysanthi Gavagan"
       ],
       "notes": "No show",
-      "excluded": false,
       "divisionUUID": "b940d293-affc-4ff1-9926-16e7606ff4bf"
     },
     {
@@ -119,7 +112,6 @@
       ],
       "startTime": 32940000,
       "endTime": 38698000,
-      "excluded": false,
       "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
     },
     {
@@ -132,7 +124,6 @@
       ],
       "startTime": 35760000,
       "endTime": 40434000,
-      "excluded": false,
       "divisionUUID": "b940d293-affc-4ff1-9926-16e7606ff4bf"
     },
     {
@@ -144,7 +135,6 @@
       ],
       "startTime": 34620000,
       "endTime": 41462000,
-      "excluded": false,
       "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
     },
     {
@@ -156,7 +146,6 @@
       ],
       "startTime": 34320000,
       "endTime": 40465000,
-      "excluded": false,
       "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
     },
     {
@@ -168,7 +157,6 @@
       ],
       "startTime": 35040000,
       "endTime": 41831000,
-      "excluded": false,
       "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
     },
     {
@@ -180,7 +168,6 @@
       ],
       "startTime": 35280000,
       "endTime": 41368000,
-      "excluded": false,
       "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
     },
     {
@@ -192,7 +179,6 @@
       ],
       "startTime": 36960000,
       "endTime": 42579000,
-      "excluded": false,
       "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
     },
     {
@@ -204,7 +190,6 @@
       ],
       "startTime": 35940000,
       "endTime": 42401000,
-      "excluded": false,
       "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
     },
     {
@@ -216,7 +201,6 @@
       ],
       "startTime": 36120000,
       "endTime": 42043000,
-      "excluded": false,
       "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
     },
     {
@@ -228,7 +212,6 @@
       ],
       "startTime": 37800000,
       "endTime": 44183000,
-      "excluded": false,
       "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
     },
     {
@@ -240,7 +223,6 @@
       ],
       "startTime": 37200000,
       "endTime": 42140000,
-      "excluded": false,
       "divisionUUID": "8b9b23c3-c5cd-4097-a485-b29b7af8228b"
     },
     {
@@ -250,10 +232,9 @@
         "Deborah Higgins",
         "Corie Squmell-Kraener"
       ],
+      "notes": "Left pace early",
       "startTime": 37560000,
-      "excluded": false,
-      "divisionUUID": "b940d293-affc-4ff1-9926-16e7606ff4bf",
-      "notes": "Left pace early"
+      "divisionUUID": "b940d293-affc-4ff1-9926-16e7606ff4bf"
     },
     {
       "uuid": "09c843f3-ef4b-475d-9798-59c6bbdecd29",
@@ -265,7 +246,6 @@
       ],
       "startTime": 37380000,
       "endTime": 44335000,
-      "excluded": false,
       "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
     },
     {
@@ -277,7 +257,6 @@
       ],
       "startTime": 40020000,
       "endTime": 46056000,
-      "excluded": false,
       "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
     },
     {
@@ -289,7 +268,6 @@
       ],
       "startTime": 38520000,
       "endTime": 43200000,
-      "excluded": false,
       "divisionUUID": "b940d293-affc-4ff1-9926-16e7606ff4bf"
     },
     {
@@ -301,7 +279,6 @@
       ],
       "startTime": 36420000,
       "endTime": 40927000,
-      "excluded": false,
       "divisionUUID": "b940d293-affc-4ff1-9926-16e7606ff4bf"
     },
     {
@@ -313,7 +290,6 @@
       ],
       "startTime": 36600000,
       "endTime": 40927000,
-      "excluded": false,
       "divisionUUID": "b940d293-affc-4ff1-9926-16e7606ff4bf"
     },
     {
@@ -325,7 +301,6 @@
       ],
       "startTime": 39660000,
       "endTime": 43734000,
-      "excluded": false,
       "divisionUUID": "b940d293-affc-4ff1-9926-16e7606ff4bf"
     },
     {
@@ -337,7 +312,6 @@
       ],
       "startTime": 38160000,
       "endTime": 44400000,
-      "excluded": false,
       "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
     },
     {
@@ -349,7 +323,6 @@
       ],
       "startTime": 39120000,
       "endTime": 44593000,
-      "excluded": false,
       "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
     },
     {
@@ -362,7 +335,6 @@
       ],
       "startTime": 38340000,
       "endTime": 44484000,
-      "excluded": false,
       "divisionUUID": "c41bf8a6-9e5b-4f45-b55d-36672cdece6e"
     },
     {
@@ -374,7 +346,6 @@
       ],
       "startTime": 39480000,
       "endTime": 45674000,
-      "excluded": false,
       "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
     },
     {
@@ -386,7 +357,6 @@
       ],
       "startTime": 39300000,
       "endTime": 45675000,
-      "excluded": false,
       "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
     },
     {
@@ -398,7 +368,6 @@
       ],
       "startTime": 38940000,
       "endTime": 45268000,
-      "excluded": false,
       "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
     },
     {
@@ -410,7 +379,6 @@
       ],
       "startTime": 39840000,
       "endTime": 45834000,
-      "excluded": false,
       "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
     },
     {
@@ -423,7 +391,6 @@
       ],
       "startTime": 38760000,
       "endTime": 44002000,
-      "excluded": false,
       "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
     },
     {
@@ -435,7 +402,6 @@
       ],
       "startTime": 40200000,
       "endTime": 45127000,
-      "excluded": false,
       "divisionUUID": "b940d293-affc-4ff1-9926-16e7606ff4bf"
     },
     {
@@ -448,7 +414,6 @@
       ],
       "startTime": 40380000,
       "endTime": 45199000,
-      "excluded": false,
       "divisionUUID": "12e102e4-ffe0-4011-9761-50841c67667a"
     }
   ]
