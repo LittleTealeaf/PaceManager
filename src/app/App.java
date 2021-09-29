@@ -8,10 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import ui.DivisionView;
-import ui.QuickImport;
-import ui.TeamTable;
-import ui.Updatable;
+import ui.*;
 
 import java.io.File;
 import java.io.InputStreamReader;
@@ -163,9 +160,14 @@ public class App extends Application {
             new QuickImport();
         });
 
+        MenuItem newTeam = new MenuItem("New Team");
+        newTeam.setOnAction(e -> {
+            new TeamEditor();
+        });
+
         menuBar.getMenus().addAll(menuFile, menuTools);
         menuFile.getItems().addAll(openPace, savePace, savePaceAs, closePace, exitApp);
-        menuTools.getItems().addAll(quickImport);
+        menuTools.getItems().addAll(quickImport, newTeam);
 
 
         borderPane.setTop(menuBar);

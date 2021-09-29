@@ -29,12 +29,14 @@ public class TeamEditor {
     private final TimeInput elementEndTime;
     private final DivisionSelector elementDivision;
     private final CheckBox elementExcluded;
+    private boolean isNewTeam;
 
     /**
      * @since 1.0.0
      */
     public TeamEditor() {
         this(new Team());
+        isNewTeam = true;
     }
 
     /**
@@ -43,6 +45,7 @@ public class TeamEditor {
      */
     public TeamEditor(Team team) {
         this.team = team;
+        isNewTeam = false;
         stage = new Stage();
         stage.setAlwaysOnTop(true);
         stage.setTitle(team.getTeamNumber() != null && !team.getTeamNumber().equals("") ? "Editing Team " + team
@@ -141,6 +144,12 @@ public class TeamEditor {
      * @since 1.0.0
      */
     public void updateTeam() {
+
+        if(isNewTeam) {
+            isNewTeam = false;
+            App.openedPace.getTeams().add(team);
+        }
+
         team.setTeamNumber(elementTeamIdentifier.getText());
         team.setNotes(elementNotes.getText());
         team.setStartTime(elementStartTime.getTime());
