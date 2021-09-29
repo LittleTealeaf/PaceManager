@@ -48,12 +48,6 @@ public class Team implements Serializable {
      * @since 1.0.0
      */
     private UUID divisionUUID;
-    /**
-     * Only used when populating scoreboards
-     *
-     * @since 1.0.0
-     */
-    private transient Time distanceToGoal;
 
     /**
      * @since 1.0.0
@@ -215,20 +209,8 @@ public class Team implements Serializable {
         return startTime != null && endTime != null;
     }
 
-    /**
-     * @return
-     * @since 1.0.0
-     */
     public Time getDistanceToGoal() {
-        return distanceToGoal;
-    }
-
-    /**
-     * @param distanceToGoal
-     * @since 1.0.0
-     */
-    public void setDistanceToGoal(Time distanceToGoal) {
-        this.distanceToGoal = distanceToGoal;
+        return division == null || division.getGoalTime() == null || !isCompleted() ? null : division.getGoalTime().subtract(getElapsedTime()).absolute();
     }
 
     /**
