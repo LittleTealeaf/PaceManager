@@ -194,7 +194,6 @@ public class Division {
         for (Team team : teams) {
             if (team.hasElapsed() && !team.isExcluded()) {
                 count++;
-                team.setDistanceToGoal(Time.difference(team.getElapsedTime(), goalTime).absolute());
             }
         }
 
@@ -225,8 +224,8 @@ public class Division {
 //                break;
 //            }
 //        }
-        Arrays.sort(standings,(a,b) ->
-            a.getDistanceToGoal().compareTo(b.getDistanceToGoal())
+        Arrays.sort(standings, (a, b) ->
+                a.getDistanceToGoal().compareTo(b.getDistanceToGoal())
         );
 
 

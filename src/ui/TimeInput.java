@@ -51,12 +51,7 @@ public class TimeInput extends TextField {
             if (!e.getValue().booleanValue()) {
                 parseText();
             } else {
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        selectAll();
-                    }
-                });
+                Platform.runLater(this::selectAll);
             }
         });
         setOnKeyPressed(e -> {

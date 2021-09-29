@@ -16,6 +16,7 @@ import java.util.List;
  * @version 1.0.0
  * @since 1.0.0
  */
+@SuppressWarnings("unchecked")
 public class TeamTable extends TableView<Team> implements Updatable {
     //TODO BUG clicking on a selected item and then clicking on empty space opens the selected item
 

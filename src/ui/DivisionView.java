@@ -25,8 +25,8 @@ public class DivisionView extends TabPane implements Updatable {
     //BUG: deleting a division causes the default division's name to be set to ""
 
 
-    private List<DivisionTab> divisionTabs;
     private final GeneralTab generalTab;
+    private List<DivisionTab> divisionTabs;
 
 
     public DivisionView() {
@@ -73,11 +73,11 @@ public class DivisionView extends TabPane implements Updatable {
         }
     }
 
-    private class GeneralTab extends Tab implements Updatable {
+    private static class GeneralTab extends Tab implements Updatable {
 
-        DivisionView parent;
+        final DivisionView parent;
+        final GridPane gridPane;
         DivisionPanel[] panels;
-        GridPane gridPane = new GridPane();
 
 
         GeneralTab(DivisionView parent) {
@@ -116,23 +116,23 @@ public class DivisionView extends TabPane implements Updatable {
                     }
                 }
             } else {
-                for (int i = 0; i < panels.length; i++) {
-                    panels[i].update();
+                for (DivisionPanel panel : panels) {
+                    panel.update();
                 }
             }
         }
     }
 
-    private class DivisionTab extends Tab implements Updatable {
+    private static class DivisionTab extends Tab implements Updatable {
 
-        TeamTable table;
-        Division division;
-        DivisionView parent;
-        DivisionPanel divisionPanel;
+        final TeamTable table;
+        final Division division;
+        final DivisionView parent;
+        final DivisionPanel divisionPanel;
 
-        Button buttonDeleteDivision;
-        Button buttonSetAsDefault;
-        HBox boxButtons;
+        final Button buttonDeleteDivision;
+        final Button buttonSetAsDefault;
+        final HBox boxButtons;
 
 
         DivisionTab(DivisionView parent, Division division) {
@@ -171,7 +171,7 @@ public class DivisionView extends TabPane implements Updatable {
 
             content.setBottom(bottomField);
 
-            table = new TeamTable(() -> this.division.getTeams());
+            table = new TeamTable(this.division::getTeams);
             table.getColumns().remove(0);
             content.setCenter(table);
 
@@ -196,15 +196,17 @@ public class DivisionView extends TabPane implements Updatable {
 
     }
 
-    private class DivisionPanel implements Updatable {
+    private static class DivisionPanel implements Updatable {
 
         static final int FONT_SIZE = 13;
 
-        Division division;
+        final Division division;
 
-        TextField name;
-        TimeInput goalTime;
-        Text averageTime, deviationTime, deviationPercent;
+        final TextField name;
+        final TimeInput goalTime;
+        final Text averageTime;
+        final Text deviationTime;
+        final Text deviationPercent;
 
 
         public DivisionPanel(Division division) {

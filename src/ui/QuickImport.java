@@ -41,9 +41,7 @@ public class QuickImport extends Stage {
         teamId = new TextField();
         teamId.setOnKeyPressed(e -> {
             switch (e.getCode()) {
-                case ENTER, TAB -> {
-                    timeInput.requestFocus();
-                }
+                case ENTER, TAB -> timeInput.requestFocus();
             }
         });
         teamId.focusedProperty().addListener((e, o, n) -> {

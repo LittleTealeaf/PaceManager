@@ -210,7 +210,11 @@ public class Team implements Serializable {
     }
 
     public Time getDistanceToGoal() {
-        return division == null || division.getGoalTime() == null || !isCompleted() ? null : division.getGoalTime().subtract(getElapsedTime()).absolute();
+        if (division == null || division.getGoalTime() == null || !isCompleted()) {
+            return null;
+        } else {
+            return division.getGoalTime().subtract(getElapsedTime()).absolute();
+        }
     }
 
     /**
@@ -278,7 +282,7 @@ public class Team implements Serializable {
 
     public String getNotesDisplay() {
         StringBuilder builder = new StringBuilder();
-        if(isExcluded()) {
+        if (isExcluded()) {
             builder.append("[Excluded from placements]\n");
         }
         if (notes != null) {

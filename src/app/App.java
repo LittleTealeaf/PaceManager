@@ -29,9 +29,9 @@ public class App extends Application {
     public static final String version = "1.0.0";
     public static final Settings settings = SystemResources.getSettings();
     public static Pace openedPace;
+    public static SettingsEditor settingsEditor;
     private static Stage appStage;
     private static Updatable[] updateList;
-    public static SettingsEditor settingsEditor;
 
     /**
      * Application Launch Point
@@ -150,26 +150,18 @@ public class App extends Application {
         });
 
         MenuItem openSettings = new MenuItem("Settings");
-        openSettings.setOnAction(e -> {
-            new SettingsEditor();
-        });
+        openSettings.setOnAction(e -> new SettingsEditor());
 
         MenuItem exitApp = new MenuItem("Exit");
-        exitApp.setOnAction(e -> {
-            System.exit(0);
-        });
+        exitApp.setOnAction(e -> System.exit(0));
 
         Menu menuTools = new Menu("Tools");
 
         MenuItem quickImport = new MenuItem("Quick Import");
-        quickImport.setOnAction(e -> {
-            new QuickImport();
-        });
+        quickImport.setOnAction(e -> new QuickImport());
 
         MenuItem newTeam = new MenuItem("New Team");
-        newTeam.setOnAction(e -> {
-            new TeamEditor();
-        });
+        newTeam.setOnAction(e -> new TeamEditor());
 
         menuBar.getMenus().addAll(menuFile, menuTools);
         menuFile.getItems().addAll(openPace, savePace, savePaceAs, closePace, openSettings, exitApp);
@@ -193,7 +185,7 @@ public class App extends Application {
     public void start(Stage stage) {
         appStage = stage;
         stage.setOnCloseRequest(e -> {
-            if(settingsEditor != null) {
+            if (settingsEditor != null) {
                 settingsEditor.close();
             }
         });

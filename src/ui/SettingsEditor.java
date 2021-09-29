@@ -1,7 +1,6 @@
 package ui;
 
 import app.App;
-import app.Settings;
 import javafx.stage.Stage;
 
 public class SettingsEditor extends Stage implements Updatable {
@@ -9,11 +8,9 @@ public class SettingsEditor extends Stage implements Updatable {
         super();
         setTitle("Settings");
 
-        setOnCloseRequest(e -> {
-            App.settingsEditor = null;
-        });
+        setOnCloseRequest(e -> App.settingsEditor = null);
 
-        if(App.settingsEditor != null) {
+        if (App.settingsEditor != null) {
             App.settingsEditor.close();
         }
         App.settingsEditor = this;

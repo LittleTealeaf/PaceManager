@@ -145,7 +145,7 @@ public class TeamEditor {
      */
     public void updateTeam() {
 
-        if(isNewTeam) {
+        if (isNewTeam) {
             isNewTeam = false;
             App.openedPace.getTeams().add(team);
         }
