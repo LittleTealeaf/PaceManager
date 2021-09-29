@@ -4,6 +4,7 @@ import app.App;
 
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -209,21 +210,25 @@ public class Division {
 
         //Sorting using a quick bubble sort
         //TODO implement better sorting method
-        boolean edited;
-        for (int i = 0; i < standings.length; i++) {
-            edited = false;
-            for (int j = 0; j < standings.length - i - 1; j++) {
-                if (standings[i].getDistanceToGoal().compareTo(standings[i + 1].getDistanceToGoal()) == 1) {
-                    Team tmp = standings[i];
-                    standings[i] = standings[i + 1];
-                    standings[i + 1] = tmp;
-                    edited = true;
-                }
-            }
-            if (!edited) {
-                break;
-            }
-        }
+//        boolean edited;
+//        for (int i = 0; i < standings.length; i++) {
+//            edited = false;
+//            for (int j = 0; j < standings.length - i - 1; j++) {
+//                if (standings[i].getDistanceToGoal().compareTo(standings[i + 1].getDistanceToGoal()) == 1) {
+//                    Team tmp = standings[i];
+//                    standings[i] = standings[i + 1];
+//                    standings[i + 1] = tmp;
+//                    edited = true;
+//                }
+//            }
+//            if (!edited) {
+//                break;
+//            }
+//        }
+        Arrays.sort(standings,(a,b) ->
+            a.getDistanceToGoal().compareTo(b.getDistanceToGoal())
+        );
+
 
         return standings;
     }
