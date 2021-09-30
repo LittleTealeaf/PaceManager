@@ -23,6 +23,9 @@ Potentially add additional thread to have a "backup" of the pace
 
 /**
  * Application Class, includes the starting point of the program and additional universally-accessible references
+ * @author Thomas Kwashnak
+ * @since 1.0.0
+ * @version 1.0.0
  */
 public class App extends Application {
 
@@ -63,6 +66,16 @@ public class App extends Application {
         appStage.show();
     }
 
+    /**
+     * <p>Creates a new tab element, configures it, and returns the tab</p>
+     * <p><b>Modifications:</b>
+     * <ul><li>Sets Closable to false</li><li>Sets the content to the provided node</li><li>Sets the title of the
+     * tab to the provided name</li></ul></p>
+     * @param node Initial content of the pane
+     * @param name Initial name/title of the tab
+     * @return Configured {@code Tab} object
+     * @since 1.0.0
+     */
     private static Tab createTab(Node node, String name) {
         Tab tab = new Tab(name);
         tab.setClosable(false);
@@ -70,6 +83,10 @@ public class App extends Application {
         return tab;
     }
 
+    /**
+     * Sends update notifications to all updatable objects
+     * @since 1.0.0
+     */
     public static void update() {
         openedPace.update();
         if (updateList != null) {
@@ -82,7 +99,7 @@ public class App extends Application {
 
     /**
      * Development Method that imports the data from the 2021 hunter pace. Pulls from resources/dev/pace2021.json
-     * @since Development
+     * @since 1.0.0-development
      * @return Pace with values from 2021
      */
     private static Pace pace2021() {
@@ -94,6 +111,7 @@ public class App extends Application {
      *
      * @param name Display Name of the item the user may want to delete
      * @return {@code True} if the user decided to delete, {@code false} otherwise.
+     * @since 1.0.0
      */
     public static boolean warnDelete(String name) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -104,6 +122,11 @@ public class App extends Application {
         return result.isPresent() && result.get() == ButtonType.OK;
     }
 
+    /**
+     * Generates the scene of the application
+     * @return Scene with all the application elements within it
+     * @since 1.0.0
+     */
     private static Scene generateScene() {
         BorderPane borderPane = new BorderPane();
         TabPane tabPane = new TabPane();

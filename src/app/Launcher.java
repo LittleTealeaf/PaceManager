@@ -13,7 +13,13 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
-//TODO update javadocs
+/**
+ * Pace-Launcher allowing the user to open a pace, create a new pace, or open a recently opened pace
+ * @author Thomas Kwashnak
+ * @since 1.0.0
+ * @version 1.0.0
+ * @bug Clicking on a recent file and then clicking on empty space opens the selected item
+ */
 public class Launcher {
 
     /*
@@ -25,18 +31,20 @@ public class Launcher {
      - Exit button
      */
 
-    //TODO BUG clicking on a selected item and then clicking on empty space opens the selected item
-
-
     /**
+     * Currently opened stage of launcher, is null if the launcher is not opened
      * @since 1.0.0
      */
     private static Stage stage;
 
     /**
+     * Closes any previous persistent stages, opens the launcher as a new stage, and sets up interface.
      * @since 1.0.0
      */
     public static void open() {
+        if(stage != null && stage.isShowing()) {
+            stage.close();
+        }
         stage = new Stage();
         stage.setTitle("Pace Manager " + App.version);
         stage.setMaximized(App.settings.isLauncherMaximized());
@@ -57,7 +65,8 @@ public class Launcher {
     }
 
     /**
-     * @return
+     * Creates the vertical set of buttons on the left side of the launcher
+     * @return VBox element containing all buttons
      * @since 1.0.0
      */
     private static VBox buttonPanel() {
@@ -71,7 +80,8 @@ public class Launcher {
     }
 
     /**
-     * @return
+     * Generates the list of buttons to be included on the left hand of the launcher
+     * @return Array of buttons to include
      * @since 1.0.0
      */
     private static Button[] generateButtons() {
@@ -79,13 +89,13 @@ public class Launcher {
         Button[] buttons = new Button[4];
 
         buttons[0] = new Button("New");
-        buttons[0].setOnAction(e -> open(null));
+        buttons[0].setOnAction(e -> openPace(null));
 
         buttons[1] = new Button("Open");
         buttons[1].setOnAction(e -> {
             File file = SystemResources.promptOpenPace();
             if (file != null) {
-                open(file);
+                openPace(file);
             }
         });
 
@@ -99,7 +109,8 @@ public class Launcher {
     }
 
     /**
-     * @return
+     * Generates the borderpane responsible for displaying all recently opened files
+     * @return Border Pane with all elements pertaining to listing recent files
      * @since 1.0.0
      */
     private static BorderPane generateRecentFiles() {
@@ -113,7 +124,7 @@ public class Launcher {
         recentFiles.setOnMouseClicked(e -> {
             if (e.getClickCount() == 2 && e.getButton() == MouseButton.PRIMARY) {
                 if (recentFiles.getSelectionModel().getSelectedItem() != null) {
-                    open(new File(recentFiles.getSelectionModel().getSelectedItem()));
+                    openPace(new File(recentFiles.getSelectionModel().getSelectedItem()));
                 }
             }
         });
@@ -126,7 +137,7 @@ public class Launcher {
                         recentFiles.getItems().setAll(App.settings.getRecentFiles());
                     }
                 }
-                case ENTER, SPACE -> open(new File(recentFiles.getSelectionModel().getSelectedItem()));
+                case ENTER, SPACE -> openPace(new File(recentFiles.getSelectionModel().getSelectedItem()));
             }
         });
 
@@ -137,12 +148,15 @@ public class Launcher {
     }
 
     /**
-     * @param file
+     * Opens a selected pace in the application, closes the launcher and marks launcher for garbage collection
+     * @param file File of pace to open
      * @since 1.0.0
+     * @see App#open(File)
      */
-    private static void open(File file) {
+    private static void openPace(File file) {
         App.open(file);
         stage.close();
+        stage = null;
     }
 
 }
