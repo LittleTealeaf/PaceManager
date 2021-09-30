@@ -80,6 +80,11 @@ public class App extends Application {
     }
 
 
+    /**
+     * Development Method that imports the data from the 2021 hunter pace. Pulls from resources/dev/pace2021.json
+     * @since Development
+     * @return Pace with values from 2021
+     */
     private static Pace pace2021() {
         return Pace.fromJson(new JsonReader(new InputStreamReader(SystemResources.getResource("/dev/pace2021.json"))));
     }
