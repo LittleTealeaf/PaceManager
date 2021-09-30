@@ -22,14 +22,14 @@ public class Settings {
 
     /**
      * Current application version of the settings object
-     *
+     * @settings.default see {@link App#version}
      * @see App#version
      * @since 1.0.0
      */
     private final String settingsVersion;
     /**
      * List of recently opened Pace files
-     *
+     * @settings.default Empty List
      * @see Launcher
      * @since 1.0.0
      */
@@ -37,36 +37,56 @@ public class Settings {
 
     /**
      * What the file extension should be for files opened by the program. Extensions are in the format {@code .___}
-     *
+     * @settings.default [{@code .pace}, {@code .json}]
      * @since 1.0.0
      */
     private String[] fileExtensions;
     /**
      * Default directory to begin looking for pace files in
-     *
+     * @settings.default User Documents directory
      * @see Launcher
      * @since 1.0.0
      */
     private String paceDirectory;
 
     /**
-     * Whether to automatically save the file whenever any changes to the Pace have been saved.
-     *
+     * Determines if the file should be automatically saved every update
+     * @settings.default {@code true}
+     * @see App#update()
      * @since 1.0.0
      */
     private boolean aggressiveSave;
 
     /**
-     * Determines whether additional steps are taken to reduce memory used by the program.
-     * <p>Default: False
-     *
+     * Determines if additional steps are taken to reduce memory used by the program.
+     * @settings.default {@code false}
      * @since 1.0.0
      */
     private boolean aggressiveMemorySave;
 
+    /**
+     * Determines whether the launcher should be initially maximized to the whole screen or as a small and movable window
+     * <p>{@code true} if the launcher should be maximized, {@code false} otherwise</p>
+     * @settings.default {@code false}
+     * @since 1.0.0
+     */
     private boolean launcherMaximized;
+    /**
+     * Determines whether the application should be initially maximized to the whole screen or as a small and movable
+     * window<p>{@code true} if the application should be maximized, {@code false} otherwise</p>
+     * @settings.default {@code true}
+     * @since 1.0.0
+     */
     private boolean appMaximized;
 
+    /**
+     * Determines if the application should warn the user first before deleting anything or to just delete it outright
+     * <p>If set to {@code true}, will display a prompt to the user asking if they really want to delete whatever,
+     * and then if they verify that they wish to delete it, will continue with the process</p>
+     * @settings.default {@code true}
+     * @since 1.0.0
+     * @see App#warnDelete(String)
+     */
     private boolean warnOnDelete;
 
     private boolean excludeOutliers;
@@ -256,10 +276,21 @@ public class Settings {
         save();
     }
 
+    /**
+     * Returns whether the launcher should be opened maximized or in window mode
+     * @return {@code true} if the launcher should take up the whole screen, {@code false} otherwise
+     * @since 1.0.0
+     */
     public boolean isLauncherMaximized() {
         return launcherMaximized;
     }
 
+    /**
+     * Sets whether the launcher should be opened maximized or in window mode
+     * <p>Will save settings to the settings file after the modification</p>
+     * @since 1.0.0
+     * @param launcherMaximized {@code true} if the launcher should be opened maximized, {@code false} otherwise
+     */
     public void setLauncherMaximized(boolean launcherMaximized) {
         this.launcherMaximized = launcherMaximized;
         save();
