@@ -10,6 +10,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import ui.SettingsEditor;
 
 import java.io.File;
 
@@ -86,7 +87,7 @@ public class Launcher {
      */
     private static Button[] generateButtons() {
         //New, Open, Copy, Info, Exit
-        Button[] buttons = new Button[4];
+        Button[] buttons = new Button[5];
 
         buttons[0] = new Button("New");
         buttons[0].setOnAction(e -> openPace(null));
@@ -101,8 +102,11 @@ public class Launcher {
 
         buttons[2] = new Button("Info");
 
-        buttons[3] = new Button("Close");
-        buttons[3].setOnAction(e -> System.exit(0));
+        buttons[3] = new Button("Settings");
+        buttons[3].setOnAction(e -> new SettingsEditor());
+
+        buttons[4] = new Button("Close");
+        buttons[4].setOnAction(e -> System.exit(0));
 
         return buttons;
 

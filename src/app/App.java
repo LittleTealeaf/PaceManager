@@ -94,6 +94,9 @@ public class App extends Application {
                 updatable.update();
             }
         }
+        if(settingsEditor != null) {
+            settingsEditor.update();
+        }
     }
 
 

@@ -320,6 +320,7 @@ public class Settings {
 
     public void setExcludeOutliers(boolean excludeOutliers) {
         this.excludeOutliers = excludeOutliers;
+        save();
     }
 
     public String getSettingsVersion() {
