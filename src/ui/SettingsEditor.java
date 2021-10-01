@@ -170,9 +170,6 @@ public class SettingsEditor extends Stage implements Updatable {
         }
 
         public abstract void initialize();
-
-        public abstract void update();
-
         public abstract Node getNode();
     }
 
