@@ -138,7 +138,10 @@ public class SettingsEditor extends Stage implements Updatable {
                     @Override
                     public void initialize() {
                         checkBox = new CheckBox();
-                        checkBox.setOnAction(e -> App.settings.setExcludeOutliers(checkBox.isSelected()));
+                        checkBox.setOnAction(e -> {
+                            App.settings.setExcludeOutliers(checkBox.isSelected());
+                            App.update();
+                        });
                     }
 
                     public void update() {
