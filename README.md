@@ -6,4 +6,4 @@ This <code>README.md</code> will be worked on in the future.</p>
 If there is any issues, uh... figure it out!</p>
 
 
-[JDK Version Download](https://www.oracle.com/java/technologies/downloads/)
+**Currently used JDK:** [JDK Version 17 Download](https://www.oracle.com/java/technologies/downloads/)
