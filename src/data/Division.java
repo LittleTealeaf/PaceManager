@@ -17,6 +17,8 @@ import java.util.UUID;
  */
 public class Division {
 
+//    TODO: implement a checkbox to "use average"
+
     /**
      * Unique identifier of this division object
      *

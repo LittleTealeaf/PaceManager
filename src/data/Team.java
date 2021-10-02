@@ -241,7 +241,7 @@ public class Team implements Serializable {
      * @since 1.0.0
      */
     public boolean isCompleted() {
-        return !excluded && hasElapsed();
+        return !isExcluded() && hasElapsed();
     }
 
     /**
@@ -293,5 +293,9 @@ public class Team implements Serializable {
             builder.append(n);
         }
         return builder.toString();
+    }
+
+    public String toString() {
+        return "Team: " + teamNumber;
     }
 }

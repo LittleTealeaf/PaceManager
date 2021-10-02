@@ -1,6 +1,7 @@
 package app;
 
 import com.google.gson.stream.JsonReader;
+import data.Division;
 import data.Pace;
 import javafx.application.Application;
 import javafx.scene.Node;
@@ -12,6 +13,7 @@ import ui.*;
 
 import java.io.File;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.Optional;
 
 /*
