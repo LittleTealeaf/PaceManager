@@ -48,7 +48,7 @@ public class SettingsEditor extends Stage implements Updatable {
 
     private SettingNode[] generateSettings() {
         return new SettingNode[]{
-                new SettingNode("File Extensions", Category.FILES) {
+                new SettingNode("File Extensions", Category.GENERAL,Category.FILES) {
 
                     TextField field;
 
@@ -135,7 +135,6 @@ public class SettingsEditor extends Stage implements Updatable {
                 new SettingNode("Exclude Outliers",Category.CALCULATIONS,Category.GENERAL) {
                     CheckBox checkBox;
 
-                    @Override
                     public void initialize() {
                         checkBox = new CheckBox();
                         checkBox.setOnAction(e -> {
@@ -177,23 +176,71 @@ public class SettingsEditor extends Stage implements Updatable {
         }
     }
 
+    /**
+     * Abstract class depicting a SettingNode, functionality should be implemented using the following methods
+     * <ul><li>{@link #initialize()}: Executed immediately after the {@link #SettingNode(String, Category...)} constructor</li>
+     * <li>{@link #getNode()}: Returns the node of the setting editor</li></ul>
+     * @author Thomas Kwashnak
+     * @since 1.0.0
+     * @version 1.0.0
+     */
     private abstract class SettingNode implements Updatable {
 
+        /**
+         * Array of categories the setting is classified under
+         */
         Category[] categories;
+        /**
+         * Name of the setting
+         */
         String name;
 
+        /**
+         * Creates a new abstract SettingNode with the setting name and its categories
+         * @param name Title of the setting
+         * @param categories List of categories to list the setting under
+         */
         public SettingNode(String name, Category... categories) {
             this.name = name;
             this.categories = categories;
             initialize();
         }
 
+        /**
+         * Method called immediately after the constructor, used for initializing and configuring the editing nodes
+         */
         public abstract void initialize();
+
+        /**
+         * Returns the node used to edit the setting
+         * @return Node of the setting editor
+         */
         public abstract Node getNode();
     }
 
+    /**
+     * Categorization of settings. Each setting may have one or many categories. Filters within the SettingsEditor
+     * allow the user to filter out settings by category.
+     */
     enum Category {
-        GENERAL("General"),FILES("Files"), OPTIMIZATIONS("Optimizations"), CALCULATIONS("Calculations");
+        /**
+         * Category for more general settings that the user will most likely wish to change at some point
+         */
+        GENERAL("General"),
+        /**
+         * Settings pertaining more to the calculation of average times and winers
+         */
+        CALCULATIONS("Calculations"),
+        /**
+         * Settings pertaining to the storing of config or other files
+         */
+        FILES("Files"),
+        /**
+         * Settings pertaining to application optimizations, such as freeing up memory (allowing for garbage collection)
+         * or other optimizations
+         */
+        OPTIMIZATIONS("Optimizations");
+
 
         String display;
 
