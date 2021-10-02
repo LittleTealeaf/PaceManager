@@ -151,6 +151,22 @@ public class SettingsEditor extends Stage implements Updatable {
                     public Node getNode() {
                         return checkBox;
                     }
+                },
+                new SettingNode("Aggressive Save Memory", Category.OPTIMIZATIONS,Category.FILES) {
+                    CheckBox checkBox;
+
+                    public void initialize() {
+                        checkBox = new CheckBox();
+                        checkBox.setOnAction(e -> App.settings.setExcludeOutliers(checkBox.isSelected()));
+                    }
+
+                    public void update() {
+                        checkBox.setSelected(App.settings.excludeOutliers());
+                    }
+
+                    public Node getNode() {
+                        return checkBox;
+                    }
                 }
         };
     }
