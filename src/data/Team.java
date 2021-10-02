@@ -13,43 +13,55 @@ import java.util.UUID;
 public class Team implements Serializable {
 
     /**
+     * Unique team identifier, used to differentiate between teams, even if the team name is the same
      * @since 1.0.0
      */
     private final UUID uuid;
     /**
+     * Team identifier / name / number
      * @since 1.0.0
      */
     private String teamNumber;
     /**
+     * String array of the teams riders, each entry represents a different rider
      * @since 1.0.0
      */
     private String[] riders;
     /**
+     * String of any notes included, uses \\n to depict new lines
      * @since 1.0.0
      */
     private String notes;
     /**
+     * The team's starting time
      * @since 1.0.0
      */
     private Time startTime;
     /**
+     * The team's ending time
      * @since 1.0.0
      */
     private Time endTime;
     /**
+     * Whether the team should be manually excluded from final results even if they finished the pace
      * @since 1.0.0
      */
     private Boolean excluded;
     /**
+     * Team's specified division to be placed in
      * @since 1.0.0
      */
     private transient Division division;
     /**
+     * Divisions' UUID, used when storing in JSON file formats to save memory. A lookup is used during file load to
+     * populate {@link #division} according to this value
      * @since 1.0.0
      */
     private UUID divisionUUID;
 
     /**
+     * Creates a new team and assigns that team its unique identifier
+     * @see #uuid
      * @since 1.0.0
      */
     public Team() {
@@ -57,7 +69,8 @@ public class Team implements Serializable {
     }
 
     /**
-     * @return
+     * Gets the reference to the team's division
+     * @return Division the team is competing in
      * @since 1.0.0
      */
     public Division getDivision() {
@@ -65,7 +78,9 @@ public class Team implements Serializable {
     }
 
     /**
-     * @param division
+     * Updates the team's division that it is to compete in. Removes the team from the previous division's team list
+     * if the team was previously in a division.
+     * @param division Division the team is to compete in
      * @since 1.0.0
      */
     public void setDivision(Division division) {
@@ -74,7 +89,9 @@ public class Team implements Serializable {
             this.division.removeTeam(this);
         }
         this.division = division;
-        division.addTeam(this);
+        if(division != null) {
+            division.addTeam(this);
+        }
     }
 
     /**
