@@ -48,8 +48,8 @@ public class TeamEditor {
         isNewTeam = false;
         stage = new Stage();
         stage.setAlwaysOnTop(true);
-        stage.setTitle(team.getTeamNumber() != null && !team.getTeamNumber().equals("") ? "Editing Team " + team
-                .getTeamNumber() : "Creating New Team");
+        stage.setTitle(team.getTeamName() != null && !team.getTeamName().equals("") ? "Editing Team " + team
+                .getTeamName() : "Creating New Team");
 
         elementTeamIdentifier = new TextField();
         elementTeamIdentifier.textProperty().addListener((e, o, n) -> stage.setTitle("Editing Team " + e.getValue()));
@@ -150,7 +150,7 @@ public class TeamEditor {
             App.openedPace.getTeams().add(team);
         }
 
-        team.setTeamNumber(elementTeamIdentifier.getText());
+        team.setTeamName(elementTeamIdentifier.getText());
         team.setNotes(elementNotes.getText());
         team.setStartTime(elementStartTime.getTime());
         team.setEndTime(elementEndTime.getTime());
@@ -203,7 +203,7 @@ public class TeamEditor {
      * @since 1.0.0
      */
     public void updateElements() {
-        elementTeamIdentifier.setText(team.getTeamNumber());
+        elementTeamIdentifier.setText(team.getTeamName());
         elementNotes.setText(team.getNotes());
         elementStartTime.setTime(team.getStartTime());
         elementEndTime.setTime(team.getEndTime());

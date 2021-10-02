@@ -78,7 +78,7 @@ public class QuickImport extends Stage {
         String value = teamId.getText().toUpperCase();
         team = null;
         for (Team team : App.openedPace.getTeams()) {
-            if (team.getTeamNumber().toUpperCase().equals(value)) {
+            if (team.getTeamName().toUpperCase().equals(value)) {
                 this.team = team;
                 break;
             }
@@ -96,7 +96,7 @@ public class QuickImport extends Stage {
             }
         } else {
             team = App.openedPace.newTeam();
-            team.setTeamNumber(teamId.getText());
+            team.setTeamName(teamId.getText());
             saveTeam();
         }
         App.update();

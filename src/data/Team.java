@@ -21,7 +21,7 @@ public class Team implements Serializable {
      * Team identifier / name / number
      * @since 1.0.0
      */
-    private String teamNumber;
+    private String teamName;
     /**
      * String array of the teams riders, each entry represents a different rider
      * @since 1.0.0
@@ -128,16 +128,16 @@ public class Team implements Serializable {
      * @return
      * @since 1.0.0
      */
-    public String getTeamNumber() {
-        return teamNumber;
+    public String getTeamName() {
+        return teamName;
     }
 
     /**
-     * @param teamNumber
+     * @param teamName
      * @since 1.0.0
      */
-    public void setTeamNumber(String teamNumber) {
-        this.teamNumber = teamNumber;
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
     }
 
     /**
@@ -313,6 +313,6 @@ public class Team implements Serializable {
     }
 
     public String toString() {
-        return "Team: " + teamNumber;
+        return "Team: " + teamName;
     }
 }
