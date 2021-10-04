@@ -49,7 +49,7 @@ public class Launcher {
             stage.close();
         }
         stage = new Stage();
-        stage.getIcons().add(App.appIcon);
+        stage.getIcons().add(SystemResources.appIcon);
         stage.setTitle("Pace Manager " + App.version);
         stage.setMaximized(App.settings.isLauncherMaximized());
         stage.maximizedProperty().addListener(e -> App.settings.setLauncherMaximized(stage.isMaximized()));

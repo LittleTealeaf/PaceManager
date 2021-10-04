@@ -36,7 +36,6 @@ public class App extends Application {
     public static SettingsEditor settingsEditor;
     private static Stage appStage;
     private static Updatable[] updateList;
-    public static final Image appIcon = new Image(SystemResources.getResource("/icons/application.png"));
 
     /**
      * Application Launch Point
@@ -219,7 +218,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         appStage = stage;
-        stage.getIcons().add(appIcon);
+        stage.getIcons().add(SystemResources.appIcon);
         stage.setOnCloseRequest(e -> {
             if (settingsEditor != null) {
                 settingsEditor.close();

@@ -1,6 +1,7 @@
 package ui;
 
 import app.App;
+import app.SystemResources;
 import data.Team;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -47,7 +48,7 @@ public class TeamEditor {
         this.team = team;
         isNewTeam = false;
         stage = new Stage();
-        stage.getIcons().add(App.appIcon);
+        stage.getIcons().add(SystemResources.appIcon);
         stage.setAlwaysOnTop(true);
         stage.setTitle(team.getTeamName() != null && !team.getTeamName().equals("") ? "Editing Team " + team
                 .getTeamName() : "Creating New Team");

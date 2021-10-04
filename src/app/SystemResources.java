@@ -1,6 +1,7 @@
 package app;
 
 import com.google.gson.stream.JsonReader;
+import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -16,7 +17,7 @@ import java.io.InputStream;
  */
 public class SystemResources {
 
-
+    public static final Image appIcon = new Image(getResource("/icons/application.png"));
 
     public SystemResources() {}
 
