@@ -138,13 +138,15 @@ public class App extends Application {
 
         TeamTable teamTable = new TeamTable(() -> openedPace.getTeams());
         DivisionView divisionView = new DivisionView();
+        WinnersView winnersView = new WinnersView();
 
         tabPane.getTabs().addAll(
                 createTab(teamTable, "Teams"),
-                createTab(divisionView, "Divisions")
+                createTab(divisionView, "Divisions"),
+                createTab(winnersView,"Winners")
         );
 
-        updateList = new Updatable[]{teamTable, divisionView};
+        updateList = new Updatable[]{teamTable, divisionView, winnersView};
 
         MenuBar menuBar = new MenuBar();
 
