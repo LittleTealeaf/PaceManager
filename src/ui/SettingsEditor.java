@@ -1,23 +1,23 @@
 package ui;
 
 import app.App;
-import app.Settings;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class SettingsEditor extends Stage implements Updatable {
 
-    SettingNode[] settingNodes;
+    private SettingNode[] settingNodes;
+    private GridPane settingsPanel;
 
     public SettingsEditor() {
         super();
@@ -30,22 +30,47 @@ public class SettingsEditor extends Stage implements Updatable {
         }
         App.settingsEditor = this;
 
+        BorderPane borderPane = new BorderPane();
+
+        settingsPanel = new GridPane();
+        settingsPanel.setPadding(new Insets(10));
+        settingsPanel.setHgap(5);
+        settingsPanel.setVgap(7);
+        borderPane.setCenter(settingsPanel);
+
         settingNodes = generateSettings();
 
-        GridPane gridPane = new GridPane();
+        ListView<Category> categoryPanel = new ListView<>();
+        categoryPanel.getItems().addAll(Category.values());
+        categoryPanel.getSelectionModel().selectedItemProperty().addListener((e,o,n) -> {
+            populateSettings(n);
+        });
+        categoryPanel.getSelectionModel().select(0);
+        borderPane.setLeft(categoryPanel);
 
-        for (int i = 0; i < settingNodes.length; i++) {
-            SettingNode settingNode = settingNodes[i];
-            gridPane.addRow(i, new Text(settingNode.name), settingNode.getNode());
-        }
-
-
-        Scene scene = new Scene(gridPane);
+        Scene scene = new Scene(borderPane);
         setScene(scene);
         update();
         show();
     }
 
+    private void populateSettings(Category category) {
+        settingsPanel.getChildren().clear();
+        int index = 0;
+        final Font font = new Font(13);
+        for(SettingNode settingNode : settingNodes) {
+            if (settingNode.isCategory(category)) {
+                Text label = new Text(settingNode.name);
+                label.setFont(font);
+                settingsPanel.addRow(index++,label,settingNode.getNode());
+            }
+        }
+    }
+
+    /**
+     * Generates the entire list of settings to include in the SettingsEditor
+     * @return Array of Settings using the SettingNode class
+     */
     private SettingNode[] generateSettings() {
         return new SettingNode[]{
                 new SettingNode("File Extensions", Category.GENERAL,Category.FILES) {
@@ -204,6 +229,21 @@ public class SettingsEditor extends Stage implements Updatable {
             this.name = name;
             this.categories = categories;
             initialize();
+        }
+
+
+        /**
+         * Checks if the SettingNode is classified under a specific category
+         * @param category Category to check if SettingNode is a part of
+         * @return {@code true} if the setting node is classified under the given category, {@code false} otherwise
+         */
+        public boolean isCategory(Category category) {
+            for(Category c : categories) {
+                if(c == category) {
+                    return true;
+                }
+            }
+            return false;
         }
 
         /**
