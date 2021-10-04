@@ -10,63 +10,174 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-//TODO update javadocs
 
-/**
- * @author Thomas Kwashnak
- * @version 1.0.0
- * @since 1.0.0
- */
-public class TeamEditor {
+import java.util.ArrayList;
+import java.util.List;
 
-    private static Stage openedStage;
-    private final Stage stage;
+public class TeamEditor extends Stage implements Updatable {
+
+    private static final List<TeamEditor> EDITORS = new ArrayList<>();
+
     private final Team team;
 
-    private final TextField elementTeamIdentifier;
-    private final TextArea elementRiders;
-    private final TextArea elementNotes;
-    private final TimeInput elementStartTime;
-    private final TimeInput elementEndTime;
-    private final DivisionSelector elementDivision;
-    private final CheckBox elementExcluded;
-    private boolean isNewTeam;
+    private final TextField nodeTeamName;
+    private final TextArea nodeRiders;
+    private final TextArea nodeNotes;
+    private final TimeInput nodeStartTime;
+    private final TimeInput nodeEndTime;
+    private final DivisionSelector nodeDivision;
+    private final CheckBox nodeExcluded;
 
-    /**
-     * @since 1.0.0
-     */
     public TeamEditor() {
-        this(new Team());
-        isNewTeam = true;
+        this(App.openedPace.newTeam());
+    }
+
+    public TeamEditor(Team team) {
+        super();
+
+        if(!App.settings.isMultipleTeamsEditing()) {
+            closeAll();
+        }
+
+        App.addUpdatable(this);
+
+        this.team = team;
+
+        nodeTeamName = new TextField();
+        nodeRiders = new TextArea();
+        nodeNotes = new TextArea();
+        nodeStartTime = new TimeInput();
+        nodeEndTime = new TimeInput();
+        nodeDivision = new DivisionSelector();
+        nodeExcluded = new CheckBox("Excluded");
+
+        EDITORS.add(this);
+        setOnCloseRequest(e -> EDITORS.remove(this));
+        getIcons().add(Resources.APPLICATION_ICON);
+        setAlwaysOnTop(true);
+        setScene(generateScene());
+        update();
+        show();
+    }
+
+    public void update() {
+        //update name
+        setTitle(team.getTeamName() != null && !team.getTeamName().equals("") ? "Editing Team " + team
+                .getTeamName() : "Creating New Team");
+        updateNodes();
+    }
+
+    private void updateTeam() {
+
+        team.setTeamName(nodeTeamName.getText());
+        team.setNotes(nodeNotes.getText());
+        team.setStartTime(nodeStartTime.getTime());
+        team.setEndTime(nodeEndTime.getTime());
+        team.setDivision(nodeDivision.getDivision());
+        //TODO cleanse data in separate function
+        team.setRiders(parseRiders());
+        team.setExcluded(nodeExcluded.isSelected());
+        App.update();
     }
 
     /**
-     * @param team
+     * @return
      * @since 1.0.0
      */
-    public TeamEditor(Team team) {
-        this.team = team;
-        isNewTeam = false;
-        stage = new Stage();
-        stage.getIcons().add(Resources.APPLICATION_ICON);
-        stage.setAlwaysOnTop(true);
-        stage.setTitle(team.getTeamName() != null && !team.getTeamName().equals("") ? "Editing Team " + team
-                .getTeamName() : "Creating New Team");
+    public String[] parseRiders() {
+        String[] raw = nodeRiders.getText().replace(',', '\n').split("\n");
+        boolean[] delete = new boolean[raw.length];
+        int delCount = 0;
+        for (int i = 0; i < raw.length; i++) {
+            while (raw[i].length() > 0 && raw[i].charAt(0) == ' ') {
+                raw[i] = raw[i].substring(1);
+            }
+            while (raw[i].length() > 0 && raw[i].charAt(raw[i].length() - 1) == ' ') {
+                raw[i] = raw[i].substring(0, raw[i].length() - 1);
+            }
+            if (raw[i].equals("")) {
+                delete[i] = true;
+                delCount++;
+            }
+        }
+        String[] riders = new String[raw.length - delCount];
+        int i = 0, j = 0;
+        while (i < riders.length) {
+            if (delete[j]) {
+                j++;
+            } else {
+                riders[i] = raw[j];
+                j++;
+                i++;
+            }
+        }
 
-        elementTeamIdentifier = new TextField();
-        elementTeamIdentifier.textProperty().addListener((e, o, n) -> stage.setTitle("Editing Team " + e.getValue()));
+        return riders;
+    }
 
-        elementRiders = new TextArea();
-        elementNotes = new TextArea();
-        elementStartTime = new TimeInput();
-        elementEndTime = new TimeInput();
-        elementDivision = new DivisionSelector();
-        elementExcluded = new CheckBox("Excluded");
+    private void updateNodes() {
+        nodeTeamName.setText(team.getTeamName());
+        nodeNotes.setText(team.getNotes());
+        nodeStartTime.setTime(team.getStartTime());
+        nodeEndTime.setTime(team.getEndTime());
+        nodeDivision.setDivision(team.getDivision());
+        nodeExcluded.setSelected(team.isExcluded());
+
+        if (team.getRiders() != null) {
+            StringBuilder builder = new StringBuilder();
+            int riderLength = team.getRiders().length;
+            for (int i = 0; i < riderLength; i++) {
+                builder.append(team.getRiders()[i]);
+                if (i < riderLength - 1) {
+                    builder.append("\n");
+                }
+            }
+            nodeRiders.setText(builder.toString());
+        } else {
+            nodeRiders.setText("");
+        }
+    }
+    /**
+     * @return
+     * @since 1.0.0
+     */
+    private Scene generateScene() {
+        BorderPane borderPane = new BorderPane();
+        borderPane.setPadding(new Insets(10));
+
+        GridPane center = new GridPane();
+        center.setHgap(7);
+        center.setVgap(7);
+        borderPane.setCenter(center);
+
+        center.add(new Label("Team Number"), 0, 0);
+        center.add(nodeTeamName, 1, 0);
+
+        center.add(new Label("Riders"), 0, 1, 2, 1);
+        center.add(nodeRiders, 0, 2, 2, 2);
+
+        GridPane centerColumn = new GridPane();
+        centerColumn.setVgap(6);
+        centerColumn.setHgap(6);
+        center.add(centerColumn, 2, 0, 1, 3);
+
+        centerColumn.add(new Label("Division"), 0, 0);
+        centerColumn.add(nodeDivision, 1, 0);
+
+        centerColumn.add(new Label("Start Time"), 0, 1);
+        centerColumn.add(nodeStartTime, 1, 1);
+
+        centerColumn.add(new Label("End Time"), 0, 2);
+        centerColumn.add(nodeEndTime, 1, 2);
+
+        centerColumn.add(nodeExcluded, 0, 3, 2, 1);
+
+        center.add(nodeNotes, 2, 3, 2, 1);
 
 
-        stage.setScene(generateScene());
-        updateElements();
-        open();
+        borderPane.setBottom(generateBottomPane());
+
+        return new Scene(borderPane);
     }
 
     /**
@@ -99,163 +210,15 @@ public class TeamEditor {
         return pane;
     }
 
-    /**
-     * @return
-     * @since 1.0.0
-     */
-    private Scene generateScene() {
-        BorderPane borderPane = new BorderPane();
-        borderPane.setPadding(new Insets(10));
-
-        GridPane center = new GridPane();
-        center.setHgap(7);
-        center.setVgap(7);
-        borderPane.setCenter(center);
-
-        center.add(new Label("Team Number"), 0, 0);
-        center.add(elementTeamIdentifier, 1, 0);
-
-        center.add(new Label("Riders"), 0, 1, 2, 1);
-        center.add(elementRiders, 0, 2, 2, 2);
-
-        GridPane centerColumn = new GridPane();
-        centerColumn.setVgap(6);
-        centerColumn.setHgap(6);
-        center.add(centerColumn, 2, 0, 1, 3);
-
-        centerColumn.add(new Label("Division"), 0, 0);
-        centerColumn.add(elementDivision, 1, 0);
-
-        centerColumn.add(new Label("Start Time"), 0, 1);
-        centerColumn.add(elementStartTime, 1, 1);
-
-        centerColumn.add(new Label("End Time"), 0, 2);
-        centerColumn.add(elementEndTime, 1, 2);
-
-        centerColumn.add(elementExcluded, 0, 3, 2, 1);
-
-        center.add(elementNotes, 2, 3, 2, 1);
-
-
-        borderPane.setBottom(generateBottomPane());
-
-        return new Scene(borderPane);
-    }
-
-    /**
-     * @since 1.0.0
-     */
-    public void updateTeam() {
-
-        if (isNewTeam) {
-            isNewTeam = false;
-            App.openedPace.getTeams().add(team);
-        }
-
-        team.setTeamName(elementTeamIdentifier.getText());
-        team.setNotes(elementNotes.getText());
-        team.setStartTime(elementStartTime.getTime());
-        team.setEndTime(elementEndTime.getTime());
-        team.setDivision(elementDivision.getDivision());
-        //TODO cleanse data in separate function
-        team.setRiders(parseRiders());
-        team.setExcluded(elementExcluded.isSelected());
-        updateElements();
-        App.update();
-    }
-
-    //TODO: Add this method to the "Team" class as a method to be called before saving or something
-
-    /**
-     * @return
-     * @since 1.0.0
-     */
-    public String[] parseRiders() {
-        String[] raw = elementRiders.getText().replace(',', '\n').split("\n");
-        boolean[] delete = new boolean[raw.length];
-        int delCount = 0;
-        for (int i = 0; i < raw.length; i++) {
-            while (raw[i].length() > 0 && raw[i].charAt(0) == ' ') {
-                raw[i] = raw[i].substring(1);
-            }
-            while (raw[i].length() > 0 && raw[i].charAt(raw[i].length() - 1) == ' ') {
-                raw[i] = raw[i].substring(0, raw[i].length() - 1);
-            }
-            if (raw[i].equals("")) {
-                delete[i] = true;
-                delCount++;
-            }
-        }
-        String[] riders = new String[raw.length - delCount];
-        int i = 0, j = 0;
-        while (i < riders.length) {
-            if (delete[j]) {
-                j++;
-            } else {
-                riders[i] = raw[j];
-                j++;
-                i++;
-            }
-        }
-
-        return riders;
-    }
-
-    /**
-     * @since 1.0.0
-     */
-    public void updateElements() {
-        elementTeamIdentifier.setText(team.getTeamName());
-        elementNotes.setText(team.getNotes());
-        elementStartTime.setTime(team.getStartTime());
-        elementEndTime.setTime(team.getEndTime());
-        elementDivision.setDivision(team.getDivision());
-        elementExcluded.setSelected(team.isExcluded());
-
-        if (team.getRiders() != null) {
-            StringBuilder builder = new StringBuilder();
-            int riderLength = team.getRiders().length;
-            for (int i = 0; i < riderLength; i++) {
-                builder.append(team.getRiders()[i]);
-                if (i < riderLength - 1) {
-                    builder.append("\n");
-                }
-            }
-            elementRiders.setText(builder.toString());
-        } else {
-            elementRiders.setText("");
+    public static void closeAll() {
+        while(EDITORS.size() > 0) {
+            TeamEditor editor = EDITORS.get(0);
+            EDITORS.remove(editor);
+            editor.close();
         }
     }
 
-    /**
-     * @since 1.0.0
-     */
-    public void open() {
-        //if singular is enabled...
-        if (openedStage != null && openedStage.isShowing()) {
-            openedStage.close();
-        }
-        stage.show();
-        stage.requestFocus();
-        openedStage = stage;
-    }
-
-    /**
-     * @return
-     * @since 1.0.0
-     */
     public Team getTeam() {
         return team;
     }
-
-    /**
-     * @since 1.0.0
-     */
-    public void close() {
-        stage.close();
-        if (openedStage == stage) {
-            openedStage = null;
-        }
-    }
-
 }

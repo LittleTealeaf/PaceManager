@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 
 public class SettingsEditor extends Stage implements Updatable {
 
+    private static SettingsEditor openedInstance;
+
     private SettingNode[] settingNodes;
     private GridPane settingsPanel;
 
@@ -25,12 +27,15 @@ public class SettingsEditor extends Stage implements Updatable {
         setTitle("Settings");
         getIcons().add(Resources.APPLICATION_ICON);
 
-        setOnCloseRequest(e -> App.settingsEditor = null);
+        setOnCloseRequest(e -> {
+            openedInstance = null;
+            App.removeUpdatable(this);
+        });
 
-        if (App.settingsEditor != null) {
-            App.settingsEditor.close();
+        if (openedInstance != null) {
+            openedInstance.close();
         }
-        App.settingsEditor = this;
+        openedInstance = this;
 
         BorderPane borderPane = new BorderPane();
 
@@ -120,7 +125,7 @@ public class SettingsEditor extends Stage implements Updatable {
                     }
 
                 },
-                new SettingNode("Aggressive Save", Category.OPTIMIZATIONS, Category.FILES) {
+                new SettingNode("Aggressive Save", Category.OPTIMIZATIONS, Category.FILES, Category.APPLICATION) {
                     CheckBox checkBox;
 
                     public void initialize() {
@@ -136,7 +141,7 @@ public class SettingsEditor extends Stage implements Updatable {
                         return checkBox;
                     }
                 },
-                new SettingNode("Warn on Delete",Category.GENERAL) {
+                new SettingNode("Warn on Delete",Category.GENERAL,Category.APPLICATION) {
 
                     CheckBox checkBox;
 
@@ -172,7 +177,7 @@ public class SettingsEditor extends Stage implements Updatable {
                         return checkBox;
                     }
                 },
-                new SettingNode("Aggressive Save Memory", Category.OPTIMIZATIONS,Category.FILES) {
+                new SettingNode("Aggressive Save Memory", Category.OPTIMIZATIONS,Category.FILES, Category.APPLICATION) {
                     CheckBox checkBox;
 
                     public void initialize() {
@@ -198,6 +203,22 @@ public class SettingsEditor extends Stage implements Updatable {
 
                     public void update() {
                         checkBox.setSelected(App.settings.useAverageAsGoalTime());
+                    }
+
+                    public Node getNode() {
+                        return checkBox;
+                    }
+                },
+                new SettingNode("Allow Multiple Team Editors open",Category.APPLICATION,Category.GENERAL) {
+                    CheckBox checkBox;
+
+                    public void initialize() {
+                        checkBox = new CheckBox();
+                        checkBox.setOnAction(e -> App.settings.setMultipleTeamsEditing(checkBox.isSelected()));
+                    }
+
+                    public void update() {
+                        checkBox.setSelected(App.settings.isMultipleTeamsEditing());
                     }
 
                     public Node getNode() {
@@ -280,6 +301,10 @@ public class SettingsEditor extends Stage implements Updatable {
          */
         GENERAL("General"),
         /**
+         * Category for any application specific settings
+         */
+        APPLICATION("Application"),
+        /**
          * Settings pertaining more to the calculation of average times and winners
          */
         CALCULATIONS("Calculations"),
@@ -302,6 +327,12 @@ public class SettingsEditor extends Stage implements Updatable {
 
         public String toString() {
             return display;
+        }
+    }
+
+    public static void closeRequest() {
+        if(openedInstance != null) {
+            openedInstance.close();
         }
     }
 }

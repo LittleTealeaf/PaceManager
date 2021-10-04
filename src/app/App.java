@@ -12,6 +12,8 @@ import ui.*;
 
 import java.io.File;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 /*
@@ -32,9 +34,8 @@ public class App extends Application {
     public static final String version = "1.0.0";
     public static final Settings settings = Resources.getSettings();
     public static Pace openedPace;
-    public static SettingsEditor settingsEditor;
     private static Stage appStage;
-    private static Updatable[] updateList;
+    private static List<Updatable> updateList;
 
     /**
      * Application Launch Point
@@ -43,6 +44,7 @@ public class App extends Application {
      * @since 1.0.0
      */
     public static void main(String[] args) {
+        updateList = new LinkedList<>();
         launch(args);
     }
 
@@ -94,9 +96,6 @@ public class App extends Application {
                 updatable.update();
             }
         }
-        if(settingsEditor != null) {
-            settingsEditor.update();
-        }
     }
 
 
@@ -144,7 +143,9 @@ public class App extends Application {
                 createTab(winnersView,"Winners")
         );
 
-        updateList = new Updatable[]{teamTable, divisionView, winnersView};
+        updateList.add(teamTable);
+        updateList.add(divisionView);
+        updateList.add(winnersView);
 
         MenuBar menuBar = new MenuBar();
 
@@ -219,14 +220,21 @@ public class App extends Application {
         appStage = stage;
         stage.getIcons().add(Resources.APPLICATION_ICON);
         stage.setOnCloseRequest(e -> {
-            if (settingsEditor != null) {
-                settingsEditor.close();
-            }
+            SettingsEditor.closeRequest();
+            updateList.clear();
+            TeamEditor.closeAll();
         });
         stage.setMaximized(settings.isAppMaximized());
         stage.maximizedProperty().addListener(e -> settings.setAppMaximized(stage.isMaximized()));
         Launcher.open();
     }
 
+    public static void addUpdatable(Updatable updatable) {
+        updateList.add(updatable);
+    }
+
+    public static void removeUpdatable(Updatable updatable) {
+        updateList.remove(updateList);
+    }
 
 }

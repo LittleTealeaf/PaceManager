@@ -104,6 +104,11 @@ public class Settings {
     private boolean useAverageAsGoalTime;
 
     /**
+     * Allows for multiple teams editing windows to be opened
+     */
+    private boolean multipleTeamsEditing;
+
+    /**
      * Creates a new {@code Settings} object and sets values to their defaults.
      *
      * @since 1.0.0
@@ -119,6 +124,7 @@ public class Settings {
         warnOnDelete = true;
         recentFiles = new ArrayList<>();
         excludeOutliers = true;
+        multipleTeamsEditing = false;
     }
 
     /**
@@ -347,4 +353,14 @@ public class Settings {
         this.useAverageAsGoalTime = useAverageAsGoalTime;
         save();
     }
+
+    public boolean isMultipleTeamsEditing() {
+        return multipleTeamsEditing;
+    }
+
+    public void setMultipleTeamsEditing(Boolean multipleTeamsEditing) {
+        this.multipleTeamsEditing = multipleTeamsEditing;
+    }
+
+
 }
