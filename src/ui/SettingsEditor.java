@@ -1,26 +1,19 @@
 package ui;
 
 import app.App;
-import app.Settings;
 import app.SystemResources;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import java.io.InputStream;
 
 public class SettingsEditor extends Stage implements Updatable {
 
@@ -30,7 +23,7 @@ public class SettingsEditor extends Stage implements Updatable {
     public SettingsEditor() {
         super();
         setTitle("Settings");
-        getIcons().add(SystemResources.appIcon);
+        getIcons().add(SystemResources.APPLICATION_ICON);
 
         setOnCloseRequest(e -> App.settingsEditor = null);
 

@@ -17,7 +17,7 @@ import java.io.InputStream;
  */
 public class SystemResources {
 
-    public static final Image appIcon = new Image(getResource("/icons/application.png"));
+    public static final Image APPLICATION_ICON = new Image(getResource("/icons/application.png"));
 
     public SystemResources() {}
 

@@ -6,7 +6,6 @@ import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import ui.*;
@@ -218,7 +217,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         appStage = stage;
-        stage.getIcons().add(SystemResources.appIcon);
+        stage.getIcons().add(SystemResources.APPLICATION_ICON);
         stage.setOnCloseRequest(e -> {
             if (settingsEditor != null) {
                 settingsEditor.close();

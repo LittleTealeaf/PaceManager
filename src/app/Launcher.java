@@ -6,8 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -49,7 +47,7 @@ public class Launcher {
             stage.close();
         }
         stage = new Stage();
-        stage.getIcons().add(SystemResources.appIcon);
+        stage.getIcons().add(SystemResources.APPLICATION_ICON);
         stage.setTitle("Pace Manager " + App.version);
         stage.setMaximized(App.settings.isLauncherMaximized());
         stage.maximizedProperty().addListener(e -> App.settings.setLauncherMaximized(stage.isMaximized()));
