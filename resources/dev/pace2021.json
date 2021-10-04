@@ -29,7 +29,7 @@
   "teams": [
     {
       "uuid": "c42c6198-a5e1-49ce-a1e9-e968c18e0362",
-      "teamNumber": "182",
+      "teamName": "182",
       "riders": [
         "Linda Ashe",
         "Hailey Filippone"
@@ -40,7 +40,7 @@
     },
     {
       "uuid": "4932fe53-fdcb-4305-b9d0-45a9476a3286",
-      "teamNumber": "184",
+      "teamName": "184",
       "riders": [
         "Laura Lucarelli",
         "Brittanie Jones"
@@ -51,7 +51,7 @@
     },
     {
       "uuid": "ae26e22b-bdfd-428e-8540-dfd07151e3c3",
-      "teamNumber": "192",
+      "teamName": "192",
       "riders": [
         "Mollykate Mooney",
         "Amy Nauioras"
@@ -62,7 +62,7 @@
     },
     {
       "uuid": "3beeca8c-7f01-4cc0-aae9-eff6bb8761c6",
-      "teamNumber": "193",
+      "teamName": "193",
       "riders": [
         "Elizabeth Grigaro",
         "Edyta Reyher"
@@ -73,7 +73,7 @@
     },
     {
       "uuid": "3e1f58e8-be03-4854-9d19-5fb787282ece",
-      "teamNumber": "197",
+      "teamName": "197",
       "riders": [
         "Karine Roche",
         "Janet Harner"
@@ -84,7 +84,7 @@
     },
     {
       "uuid": "49204994-d4b0-4207-833f-c667cd33745a",
-      "teamNumber": "199",
+      "teamName": "199",
       "riders": [
         "Susan Del Buono",
         "Paul Garlasco"
@@ -95,7 +95,7 @@
     },
     {
       "uuid": "4b201e78-16f9-4c5d-9133-9b9d54c2fe76",
-      "teamNumber": "204",
+      "teamName": "204",
       "riders": [
         "Courtney Strout",
         "Chrysanthi Gavagan"
@@ -105,7 +105,7 @@
     },
     {
       "uuid": "54b18f5a-9e1b-4bc7-a444-cdbad9f0d3e9",
-      "teamNumber": "206",
+      "teamName": "206",
       "riders": [
         "Penny Hedler",
         "Jill Stilson"
@@ -116,7 +116,7 @@
     },
     {
       "uuid": "d3b43b2f-d4f9-44fb-9c05-c251bbd971ad",
-      "teamNumber": "207",
+      "teamName": "207",
       "riders": [
         "Kayla Odell",
         "Sarah Wohrman",
@@ -128,7 +128,7 @@
     },
     {
       "uuid": "f94d4ede-a266-4998-8e03-8aa28b75a688",
-      "teamNumber": "208",
+      "teamName": "208",
       "riders": [
         "Colleen Nolan",
         "Lisa Martin"
@@ -139,7 +139,7 @@
     },
     {
       "uuid": "1370d25f-80de-4ae3-9ce6-ca84ba3cfc3a",
-      "teamNumber": "213",
+      "teamName": "213",
       "riders": [
         "Pat Nelson",
         "Jil Boyers"
@@ -150,7 +150,7 @@
     },
     {
       "uuid": "f325194e-d5da-4969-883a-22be48df3485",
-      "teamNumber": "214",
+      "teamName": "214",
       "riders": [
         "Christine Breitkreutz",
         "Sarah Sienko"
@@ -161,7 +161,7 @@
     },
     {
       "uuid": "813011f2-7738-4809-a57a-5b97355ce0f8",
-      "teamNumber": "216",
+      "teamName": "216",
       "riders": [
         "Amy Blakeslee",
         "Sheryl Savino"
@@ -172,7 +172,7 @@
     },
     {
       "uuid": "093d91de-3cb4-40cb-94be-682fbc955f2a",
-      "teamNumber": "217",
+      "teamName": "217",
       "riders": [
         "Jennifer Corti",
         "M J Corti"
@@ -183,7 +183,7 @@
     },
     {
       "uuid": "fd9a65b6-733f-4353-9d0d-278bc72ee81e",
-      "teamNumber": "219",
+      "teamName": "219",
       "riders": [
         "Gail Yaeker-Daunis",
         "Jan Juracek-Johnson"
@@ -194,7 +194,7 @@
     },
     {
       "uuid": "1ad24226-d4d4-4eed-af3e-e47f742d359e",
-      "teamNumber": "221",
+      "teamName": "221",
       "riders": [
         "Paula Tilquist",
         "Lyrica Crosby"
@@ -205,7 +205,7 @@
     },
     {
       "uuid": "baae7e5d-e94c-4195-b951-473d7c1ac4e4",
-      "teamNumber": "223",
+      "teamName": "223",
       "riders": [
         "Reeva Saria",
         "Patrick Hanrahan"
@@ -216,7 +216,7 @@
     },
     {
       "uuid": "a7c2f8fc-fd8d-4405-b6ec-77497b3f9c2e",
-      "teamNumber": "224",
+      "teamName": "224",
       "riders": [
         "Kathy Lombardo",
         "Anna Lombardo"
@@ -227,7 +227,7 @@
     },
     {
       "uuid": "61b05d69-b9d6-4eba-a76b-a90164b62f69",
-      "teamNumber": "226",
+      "teamName": "226",
       "riders": [
         "Deborah Higgins",
         "Corie Squmell-Kraener"
@@ -238,7 +238,7 @@
     },
     {
       "uuid": "09c843f3-ef4b-475d-9798-59c6bbdecd29",
-      "teamNumber": "227",
+      "teamName": "227",
       "riders": [
         "Karen Downey",
         "Julie Soloman",
@@ -250,7 +250,7 @@
     },
     {
       "uuid": "a1c7bdc7-9f28-4b99-9078-3f33c0231798",
-      "teamNumber": "228",
+      "teamName": "228",
       "riders": [
         "John Barry",
         "Chrstine Barry"
@@ -261,7 +261,7 @@
     },
     {
       "uuid": "dc894eb1-9c5b-44b8-a19a-794c3c06d23a",
-      "teamNumber": "231",
+      "teamName": "231",
       "riders": [
         "Dawn Tagliavia-Deri",
         "Andrea Sayegh"
@@ -272,7 +272,7 @@
     },
     {
       "uuid": "27cd24eb-0230-42e6-a6d0-102acd7f0d0b",
-      "teamNumber": "234",
+      "teamName": "234",
       "riders": [
         "Dave Boscarino",
         "Carol Boscarino"
@@ -283,7 +283,7 @@
     },
     {
       "uuid": "2db1835b-39dd-4664-afef-41e9ad538651",
-      "teamNumber": "236",
+      "teamName": "236",
       "riders": [
         "Jessica Rutledge",
         "Tabitha Abruzzie"
@@ -294,7 +294,7 @@
     },
     {
       "uuid": "8947cb74-dfa8-4256-9455-908b45645657",
-      "teamNumber": "239",
+      "teamName": "239",
       "riders": [
         "Amanda Nygren",
         "Alyssa Santos"
@@ -305,7 +305,7 @@
     },
     {
       "uuid": "df4fec18-2598-49f9-a8b7-5b8034cd60ce",
-      "teamNumber": "240",
+      "teamName": "240",
       "riders": [
         "Summer Galecki",
         "Kelly Ryan"
@@ -316,7 +316,7 @@
     },
     {
       "uuid": "a5efeb7d-7ad1-46ea-af43-44551044e9b2",
-      "teamNumber": "241",
+      "teamName": "241",
       "riders": [
         "Lindsay Fuegmann",
         "Brittney Dalene"
@@ -327,7 +327,7 @@
     },
     {
       "uuid": "ce1c2558-f5f7-4f8e-83d4-730982bbfe49",
-      "teamNumber": "243",
+      "teamName": "243",
       "riders": [
         "Judy Silva",
         "Amanda Morton",
@@ -339,7 +339,7 @@
     },
     {
       "uuid": "91ca67f7-be42-41b9-b64c-d110eff582e9",
-      "teamNumber": "245",
+      "teamName": "245",
       "riders": [
         "Charlotte Silver",
         "Selene Caselia"
@@ -350,7 +350,7 @@
     },
     {
       "uuid": "0611ff0d-69c1-4b7d-9f54-38401e3a5255",
-      "teamNumber": "537",
+      "teamName": "537",
       "riders": [
         "Bonnie Giannotti",
         "Tayler Giannotti"
@@ -361,7 +361,7 @@
     },
     {
       "uuid": "72674645-7121-4cac-b63b-c55f18ee4868",
-      "teamNumber": "552",
+      "teamName": "552",
       "riders": [
         "Chris Mard",
         "Aimee Cole"
@@ -372,7 +372,7 @@
     },
     {
       "uuid": "df678d47-02c9-477c-b3f5-bc97bac40c11",
-      "teamNumber": "569",
+      "teamName": "569",
       "riders": [
         "Stefanie R Kealey",
         "Samantha Hicks"
@@ -383,7 +383,7 @@
     },
     {
       "uuid": "7183727e-8e91-4857-bfcf-dd8833a8ffe6",
-      "teamNumber": "570",
+      "teamName": "570",
       "riders": [
         "Jennifer UYscilla",
         "Eric Uscilla",
@@ -395,7 +395,7 @@
     },
     {
       "uuid": "2704409d-7f2d-4752-be37-6adc88081c9c",
-      "teamNumber": "571",
+      "teamName": "571",
       "riders": [
         "Nicole Spalding",
         "Mary Jo Zanolli"
@@ -406,7 +406,7 @@
     },
     {
       "uuid": "22c09b11-4c91-4595-8d6b-5fc9c7350182",
-      "teamNumber": "572",
+      "teamName": "572",
       "riders": [
         "Elizabeth Neuman",
         "Darlene A Wiessermann",

@@ -79,7 +79,7 @@ public class TeamTable extends TableView<Team> implements Updatable {
 
         getColumns().addAll(
                 columnFactory("Division", "division"),
-                columnFactory("Team", "teamNumber"),
+                columnFactory("Team", "teamName"),
                 columnFactory("Riders", "ridersString"),
                 times,
                 columnFactory("Notes", "notesDisplay")
