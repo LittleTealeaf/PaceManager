@@ -1,7 +1,7 @@
 package ui;
 
 import app.App;
-import app.SystemResources;
+import app.Resources;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -23,7 +23,7 @@ public class SettingsEditor extends Stage implements Updatable {
     public SettingsEditor() {
         super();
         setTitle("Settings");
-        getIcons().add(SystemResources.APPLICATION_ICON);
+        getIcons().add(Resources.APPLICATION_ICON);
 
         setOnCloseRequest(e -> App.settingsEditor = null);
 

@@ -47,7 +47,7 @@ public class Launcher {
             stage.close();
         }
         stage = new Stage();
-        stage.getIcons().add(SystemResources.APPLICATION_ICON);
+        stage.getIcons().add(Resources.APPLICATION_ICON);
         stage.setTitle("Pace Manager " + App.version);
         stage.setMaximized(App.settings.isLauncherMaximized());
         stage.maximizedProperty().addListener(e -> App.settings.setLauncherMaximized(stage.isMaximized()));
@@ -95,7 +95,7 @@ public class Launcher {
 
         buttons[1] = new Button("Open");
         buttons[1].setOnAction(e -> {
-            File file = SystemResources.promptOpenPace();
+            File file = Resources.promptOpenPace();
             if (file != null) {
                 openPace(file);
             }

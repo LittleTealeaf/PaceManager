@@ -15,11 +15,11 @@ import java.io.InputStream;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class SystemResources {
+public class Resources {
 
     public static final Image APPLICATION_ICON = new Image(getResource("/icons/application.png"));
 
-    public SystemResources() {}
+    public Resources() {}
 
     /**
      * Provides a working directory for use of data, settings, or other files within the project.
@@ -110,6 +110,6 @@ public class SystemResources {
      * @return
      */
     public static InputStream getResource(String name) {
-        return SystemResources.class.getResourceAsStream(name);
+        return Resources.class.getResourceAsStream(name);
     }
 }

@@ -30,7 +30,7 @@ Potentially add additional thread to have a "backup" of the pace
 public class App extends Application {
 
     public static final String version = "1.0.0";
-    public static final Settings settings = SystemResources.getSettings();
+    public static final Settings settings = Resources.getSettings();
     public static Pace openedPace;
     public static SettingsEditor settingsEditor;
     private static Stage appStage;
@@ -106,7 +106,7 @@ public class App extends Application {
      * @return Pace with values from 2021
      */
     private static Pace pace2021() {
-        return Pace.fromJson(new JsonReader(new InputStreamReader(SystemResources.getResource("/dev/pace2021.json"))));
+        return Pace.fromJson(new JsonReader(new InputStreamReader(Resources.getResource("/dev/pace2021.json"))));
     }
 
     /**
@@ -152,7 +152,7 @@ public class App extends Application {
 
         MenuItem openPace = new MenuItem("Open");
         openPace.setOnAction(e -> {
-            File file = SystemResources.promptOpenPace();
+            File file = Resources.promptOpenPace();
             if (file != null) {
                 open(file);
             }
@@ -160,7 +160,7 @@ public class App extends Application {
 
         MenuItem savePaceAs = new MenuItem("Save As");
         savePaceAs.setOnAction(e -> {
-            File file = SystemResources.promptSavePace();
+            File file = Resources.promptSavePace();
             if (file != null) {
                 openedPace.setFile(file);
                 openedPace.save();
@@ -217,7 +217,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         appStage = stage;
-        stage.getIcons().add(SystemResources.APPLICATION_ICON);
+        stage.getIcons().add(Resources.APPLICATION_ICON);
         stage.setOnCloseRequest(e -> {
             if (settingsEditor != null) {
                 settingsEditor.close();
