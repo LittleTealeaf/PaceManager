@@ -78,7 +78,6 @@ public class SettingsEditor extends Stage implements Updatable {
 
                     TextField field;
 
-                    @Override
                     public void initialize() {
                         field = new TextField();
                         field.focusedProperty().addListener((e, o, n) -> {
@@ -102,7 +101,6 @@ public class SettingsEditor extends Stage implements Updatable {
                         update();
                     }
 
-                    @Override
                     public void update() {
                         StringBuilder text = new StringBuilder();
                         String[] extensions = App.settings.getFileExtensions();
@@ -124,18 +122,15 @@ public class SettingsEditor extends Stage implements Updatable {
                 new SettingNode("Aggressive Save", Category.OPTIMIZATIONS, Category.FILES) {
                     CheckBox checkBox;
 
-                    @Override
                     public void initialize() {
                         checkBox = new CheckBox();
                         checkBox.setOnAction(e -> App.settings.setAggressiveSave(checkBox.isSelected()));
                     }
 
-                    @Override
                     public void update() {
                         checkBox.setSelected(App.settings.isAggressiveSave());
                     }
 
-                    @Override
                     public Node getNode() {
                         return checkBox;
                     }
@@ -144,7 +139,6 @@ public class SettingsEditor extends Stage implements Updatable {
 
                     CheckBox checkBox;
 
-                    @Override
                     public void initialize() {
                         checkBox = new CheckBox();
                         checkBox.setOnAction(e -> App.settings.setWarnOnDelete(checkBox.isSelected()));
@@ -285,7 +279,7 @@ public class SettingsEditor extends Stage implements Updatable {
          */
         GENERAL("General"),
         /**
-         * Settings pertaining more to the calculation of average times and winers
+         * Settings pertaining more to the calculation of average times and winners
          */
         CALCULATIONS("Calculations"),
         /**
