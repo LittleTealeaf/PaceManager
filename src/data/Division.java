@@ -96,7 +96,7 @@ public class Division {
      * @since 1.0.0
      */
     public Time getGoalTime() {
-        return goalTime;
+        return (goalTime != null) ? goalTime : App.settings.useAverageAsGoalTime() ? getAverageTime() : null;
     }
 
     /**
@@ -187,7 +187,7 @@ public class Division {
      * @since 1.0.0
      */
     public Team[] getPlaceOrder() {
-        if (goalTime == null) {
+        if (getGoalTime() == null) {
             return null;
         }
 

@@ -89,7 +89,19 @@ public class Settings {
      */
     private boolean warnOnDelete;
 
+    /**
+     * Determines if in calculations, the longest and the shortest team are not included in averaging
+     * @settings.default {@code true}
+     * @since 1.0.0
+     */
     private boolean excludeOutliers;
+
+    /**
+     * Whether to default to the average if no goal-time is presented for a division
+     * @settings.default {@code true}
+     * @since 1.0.0
+     */
+    private boolean useAverageAsGoalTime;
 
     /**
      * Creates a new {@code Settings} object and sets values to their defaults.
@@ -325,5 +337,14 @@ public class Settings {
 
     public String getSettingsVersion() {
         return settingsVersion;
+    }
+
+    public boolean useAverageAsGoalTime() {
+        return useAverageAsGoalTime;
+    }
+
+    public void setUseAverageAsGoalTime(boolean useAverageAsGoalTime) {
+        this.useAverageAsGoalTime = useAverageAsGoalTime;
+        save();
     }
 }

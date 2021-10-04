@@ -2,6 +2,7 @@ package ui;
 
 import app.App;
 import data.Division;
+import data.Pace;
 import data.Time;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -20,6 +21,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * <p>A view listing all current divisions. The first tab is a general tab that provides an overview
+ * of all the divisions and their stats. Then, each tab afterward is dedicated to a given division, listed in the order
+ * that they are presented in {@link Pace#getTeams()}</p>
+ * @author Thomas Kwashnak
+ * @since 1.0.0
+ * @version 1.0.0
+ */
 public class DivisionView extends TabPane implements Updatable {
 
     //BUG: deleting a division causes the default division's name to be set to ""
@@ -29,6 +38,9 @@ public class DivisionView extends TabPane implements Updatable {
     private List<DivisionTab> divisionTabs;
 
 
+    /**
+     *
+     */
     public DivisionView() {
         super();
         divisionTabs = new ArrayList<>();

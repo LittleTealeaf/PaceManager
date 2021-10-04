@@ -1,6 +1,7 @@
 package ui;
 
 import app.App;
+import app.Settings;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -186,6 +187,22 @@ public class SettingsEditor extends Stage implements Updatable {
 
                     public void update() {
                         checkBox.setSelected(App.settings.excludeOutliers());
+                    }
+
+                    public Node getNode() {
+                        return checkBox;
+                    }
+                },
+                new SettingNode("Use Average as default Goal Time",Category.CALCULATIONS,Category.GENERAL) {
+                    CheckBox checkBox;
+
+                    public void initialize() {
+                        checkBox = new CheckBox();
+                        checkBox.setOnAction(e -> App.settings.setUseAverageAsGoalTime(checkBox.isSelected()));
+                    }
+
+                    public void update() {
+                        checkBox.setSelected(App.settings.useAverageAsGoalTime());
                     }
 
                     public Node getNode() {
