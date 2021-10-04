@@ -1,19 +1,18 @@
 package app;
 
 import com.google.gson.stream.JsonReader;
-import data.Division;
 import data.Pace;
 import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import ui.*;
 
 import java.io.File;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.Optional;
 
 /*
@@ -37,6 +36,7 @@ public class App extends Application {
     public static SettingsEditor settingsEditor;
     private static Stage appStage;
     private static Updatable[] updateList;
+    public static final Image appIcon = new Image(SystemResources.getResource("/icons/application.png"));
 
     /**
      * Application Launch Point
@@ -219,6 +219,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         appStage = stage;
+        stage.getIcons().add(appIcon);
         stage.setOnCloseRequest(e -> {
             if (settingsEditor != null) {
                 settingsEditor.close();

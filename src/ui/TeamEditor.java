@@ -47,6 +47,7 @@ public class TeamEditor {
         this.team = team;
         isNewTeam = false;
         stage = new Stage();
+        stage.getIcons().add(App.appIcon);
         stage.setAlwaysOnTop(true);
         stage.setTitle(team.getTeamName() != null && !team.getTeamName().equals("") ? "Editing Team " + team
                 .getTeamName() : "Creating New Team");

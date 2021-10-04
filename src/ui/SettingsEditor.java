@@ -30,6 +30,7 @@ public class SettingsEditor extends Stage implements Updatable {
     public SettingsEditor() {
         super();
         setTitle("Settings");
+        getIcons().add(App.appIcon);
 
         setOnCloseRequest(e -> App.settingsEditor = null);
 
