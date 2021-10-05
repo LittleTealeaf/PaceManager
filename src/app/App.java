@@ -234,7 +234,7 @@ public class App extends Application {
     }
 
     public static void removeUpdatable(Updatable updatable) {
-        updateList.remove(updateList);
+        updateList.remove(updatable);
     }
 
 }

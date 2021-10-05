@@ -19,8 +19,8 @@ public class SettingsEditor extends Stage implements Updatable {
 
     private static SettingsEditor openedInstance;
 
-    private SettingNode[] settingNodes;
-    private GridPane settingsPanel;
+    private final SettingNode[] settingNodes;
+    private final GridPane settingsPanel;
 
     public SettingsEditor() {
         super();
@@ -49,9 +49,7 @@ public class SettingsEditor extends Stage implements Updatable {
 
         ListView<Category> categoryPanel = new ListView<>();
         categoryPanel.getItems().addAll(Category.values());
-        categoryPanel.getSelectionModel().selectedItemProperty().addListener((e,o,n) -> {
-            populateSettings(n);
-        });
+        categoryPanel.getSelectionModel().selectedItemProperty().addListener((e,o,n) -> populateSettings(n));
         categoryPanel.getSelectionModel().select(0);
         borderPane.setLeft(categoryPanel);
 
@@ -235,6 +233,45 @@ public class SettingsEditor extends Stage implements Updatable {
     }
 
     /**
+     * Categorization of settings. Each setting may have one or many categories. Filters within the SettingsEditor
+     * allow the user to filter out settings by category.
+     */
+    enum Category {
+        /**
+         * Category for more general settings that the user will most likely wish to change at some point
+         */
+        GENERAL("General"),
+        /**
+         * Category for any application specific settings
+         */
+        APPLICATION("Application"),
+        /**
+         * Settings pertaining more to the calculation of average times and winners
+         */
+        CALCULATIONS("Calculations"),
+        /**
+         * Settings pertaining to the storing of config or other files
+         */
+        FILES("Files"),
+        /**
+         * Settings pertaining to application optimizations, such as freeing up memory (allowing for garbage collection)
+         * or other optimizations
+         */
+        OPTIMIZATIONS("Optimizations");
+
+
+        final String display;
+
+        Category(String display) {
+            this.display = display;
+        }
+
+        public String toString() {
+            return display;
+        }
+    }
+
+    /**
      * Abstract class depicting a SettingNode, functionality should be implemented using the following methods
      * <ul><li>{@link #initialize()}: Executed immediately after the {@link #SettingNode(String, Category...)} constructor</li>
      * <li>{@link #getNode()}: Returns the node of the setting editor</li></ul>
@@ -242,16 +279,16 @@ public class SettingsEditor extends Stage implements Updatable {
      * @since 1.0.0
      * @version 1.0.0
      */
-    private abstract class SettingNode implements Updatable {
+    private abstract static class SettingNode implements Updatable {
 
         /**
          * Array of categories the setting is classified under
          */
-        Category[] categories;
+        final Category[] categories;
         /**
          * Name of the setting
          */
-        String name;
+        final String name;
 
         /**
          * Creates a new abstract SettingNode with the setting name and its categories
@@ -289,45 +326,6 @@ public class SettingsEditor extends Stage implements Updatable {
          * @return Node of the setting editor
          */
         public abstract Node getNode();
-    }
-
-    /**
-     * Categorization of settings. Each setting may have one or many categories. Filters within the SettingsEditor
-     * allow the user to filter out settings by category.
-     */
-    enum Category {
-        /**
-         * Category for more general settings that the user will most likely wish to change at some point
-         */
-        GENERAL("General"),
-        /**
-         * Category for any application specific settings
-         */
-        APPLICATION("Application"),
-        /**
-         * Settings pertaining more to the calculation of average times and winners
-         */
-        CALCULATIONS("Calculations"),
-        /**
-         * Settings pertaining to the storing of config or other files
-         */
-        FILES("Files"),
-        /**
-         * Settings pertaining to application optimizations, such as freeing up memory (allowing for garbage collection)
-         * or other optimizations
-         */
-        OPTIMIZATIONS("Optimizations");
-
-
-        String display;
-
-        Category(String display) {
-            this.display = display;
-        }
-
-        public String toString() {
-            return display;
-        }
     }
 
     public static void closeRequest() {
