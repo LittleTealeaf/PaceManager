@@ -9,6 +9,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+/**
+ * @since 1.0.0
+ */
 public class QuickImport extends Stage {
 
     private static QuickImport instance;

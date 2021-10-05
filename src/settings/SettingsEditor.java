@@ -33,26 +33,26 @@ public class SettingsEditor extends Stage implements Updatable {
 
     /**
      * The currently opened instance of the SettingsEditor. Prevents multiple instances from being opened
-     * @since 1.0.0
+     *
      */
     private static SettingsEditor openedInstance;
 
     /**
      * List of all editing node objects
-     * @since 1.0.0
+     *
      */
     private final SettingNode[] settingNodes;
     /**
      * GridPane where all currently-displaying settings are listed, children are cleared whenever category
      * is changed
-     * @since 1.0.0
+     *
      */
     private final GridPane settingsPanel;
 
     /**
      * Creates a new SettingsEditor. If there is already an instance opened, it will attempt to close that instance
      * and sets {@link #openedInstance} to itself. Also is set to set {@link #openedInstance} to null once it closes
-     * @since 1.0.0
+     *
      */
     public SettingsEditor() {
         super();
@@ -96,7 +96,7 @@ public class SettingsEditor extends Stage implements Updatable {
     /**
      * Updates the GridPane with all settings that are classified under the specified category
      * @param category Filter of which settings to display
-     * @since 1.0.0
+     *
      */
     private void populateSettings(Category category) {
         settingsPanel.getChildren().clear();
@@ -114,7 +114,7 @@ public class SettingsEditor extends Stage implements Updatable {
     /**
      * Generates the entire list of settings to include in the SettingsEditor
      * @return Array of Settings using the SettingNode class
-     * @since 1.0.0
+     *
      */
     private SettingNode[] generateSettings() {
         return new SettingNode[]{
@@ -268,7 +268,7 @@ public class SettingsEditor extends Stage implements Updatable {
 
     /**
      * Sends an update ping to all {@code SettingNodes} in {@link #settingNodes}
-     * @since 1.0.0
+     *
      */
     public void update() {
         for (SettingNode settingNode : settingNodes) {
@@ -278,7 +278,7 @@ public class SettingsEditor extends Stage implements Updatable {
 
     /**
      * Requests the current instance to be closed, only does so if it is populated.
-     * @since 1.0.0
+     *
      */
     public static void closeRequest() {
         if(openedInstance != null) {

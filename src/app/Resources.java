@@ -18,9 +18,10 @@ import java.io.InputStream;
  */
 public class Resources {
 
+    /**
+     * Application Icon to display on window border and task-bar
+     */
     public static final Image APPLICATION_ICON = new Image(getResource("/icons/application.png"));
-
-    public Resources() {}
 
     /**
      * Provides a working directory for use of data, settings, or other files within the project.
@@ -32,7 +33,6 @@ public class Resources {
      *
      * @return String directory path of the working directory, such as {@code C:\Users\Thomas\.paceManager\}
      * @see File#separatorChar
-     * @since 1.0.0
      */
     public static String getWorkingDirectory() {
         return System.getProperty("user.home") + File.separatorChar + ".paceManager" + File.separatorChar;
@@ -45,7 +45,6 @@ public class Resources {
      *
      * @return Settings object with program settings
      * @see Settings
-     * @since 1.0.0
      */
     public static Settings getSettings() {
         Settings.settingsFile = new File(getWorkingDirectory() + "config.json");
@@ -64,6 +63,14 @@ public class Resources {
         return settings;
     }
 
+    /**
+     * Prompts the user to open a pace file.
+     * @return A {@code File} object referring to the pace file. Returns {@code null} if the user canceled out without
+     * selecting a file or selected a file that does not exist
+     *
+     * @see #promptSavePace()
+     * @see #generatePacePrompt()
+     */
     public static File promptOpenPace() {
         FileChooser fileChooser = generatePacePrompt();
         fileChooser.setTitle("Open Pace");
@@ -74,6 +81,14 @@ public class Resources {
         return file == null || !file.exists() ? null : file;
     }
 
+    /**
+     * Prompts the user to save a pace file.
+     * @return A {@code File} object referring to the desired location to save the Pace file. Returns {@code null} if
+     * the user canceled out without selecting a file
+     *
+     * @see #promptOpenPace()
+     * @see #generatePacePrompt()
+     */
     public static File promptSavePace() {
         FileChooser fileChooser = generatePacePrompt();
         fileChooser.setTitle("Save Pace");
@@ -84,6 +99,14 @@ public class Resources {
         return file;
     }
 
+    /**
+     * Generates a File prompt for use in {@link #promptOpenPace()} and {@link #promptSavePace()}. Configures the
+     * prompt to filter out files by file extensions provided in user settings.
+     * @see Settings#getFileExtensions()
+     * @see #promptSavePace()
+     * @see #generatePacePrompt()
+     * @return Generated File Chooser prompt
+     */
     private static FileChooser generatePacePrompt() {
         FileChooser fileChooser = new FileChooser();
         File startingDirectory = new File(App.settings.getPaceDirectory());
@@ -108,7 +131,7 @@ public class Resources {
      *
      * @param name Resource Path of resource <br>If in a subdirectory, format such as {@code /dev/pace2021.json},
      *             if not format such as {@code pace2021.json}
-     * @return
+     * @return Input Stream of desired resource
      */
     public static InputStream getResource(String name) {
         return Resources.class.getResourceAsStream(name);

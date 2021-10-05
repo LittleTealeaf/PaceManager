@@ -23,7 +23,7 @@ public class TimeInput extends TextField {
     /**
      * The currently stored {@link Time} value
      *
-     * @since 1.0.0
+     *
      */
     private Time time;
 
@@ -32,7 +32,7 @@ public class TimeInput extends TextField {
     /**
      * Creates a new {@code TimeInput} object with a set Time of 0
      *
-     * @since 1.0.0
+     *
      */
     public TimeInput() {
         this(new Time());
@@ -42,7 +42,7 @@ public class TimeInput extends TextField {
      * Creates a new {@code TimeInput} object with a given Time
      *
      * @param time Initial Time value
-     * @since 1.0.0
+     *
      */
     public TimeInput(Time time) {
         super();
@@ -66,7 +66,7 @@ public class TimeInput extends TextField {
      * Updates the text-box to the value provided from the current Time
      *
      * @see Time#toString()
-     * @since 1.0.0
+     *
      */
     private void updateText() {
         setText(time != null ? time.toString() : "");
@@ -77,7 +77,7 @@ public class TimeInput extends TextField {
      * just modifying the initial {@code Time} object
      *
      * @return Current time specified. Returns {@code null} if no time is specified
-     * @since 1.0.0
+     *
      */
     public Time getTime() {
         return time;
@@ -88,7 +88,7 @@ public class TimeInput extends TextField {
      *
      * @param time The new time to display
      * @see #updateText()
-     * @since 1.0.0
+     *
      */
     public void setTime(Time time) {
         this.time = time;
@@ -100,7 +100,7 @@ public class TimeInput extends TextField {
      * there is no text specified
      *
      * @see Time#Time(String)
-     * @since 1.0.0
+     *
      */
     private void parseText() {
         Time oldValue = time;

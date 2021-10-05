@@ -59,7 +59,7 @@ public class App extends Application {
      * Application Launch Point
      *
      * @param args Launch Arguments
-     * @since 1.0.0
+     *
      */
     public static void main(String[] args) {
         updateList = new LinkedList<>();
@@ -70,7 +70,7 @@ public class App extends Application {
      * Opens a pace from a specified file path
      *
      * @param file Pace File to open
-     * @since 1.0.0
+     *
      */
     public static void open(File file) {
         if (file != null && file.exists()) {
@@ -94,7 +94,7 @@ public class App extends Application {
      * @param node Initial content of the pane
      * @param name Initial name/title of the tab
      * @return Configured {@code Tab} object
-     * @since 1.0.0
+     *
      */
     private static Tab createTab(Node node, String name) {
         Tab tab = new Tab(name);
@@ -107,7 +107,7 @@ public class App extends Application {
      * Sends update notifications to all updatable objects
      * @see #updateList
      * @see Updatable
-     * @since 1.0.0
+     *
      */
     public static void update() {
         openedPace.update();
@@ -133,7 +133,7 @@ public class App extends Application {
      *
      * @param name Display Name of the item the user may want to delete
      * @return {@code True} if the user decided to delete, {@code false} otherwise.
-     * @since 1.0.0
+     *
      */
     public static boolean warnDelete(String name) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -147,7 +147,7 @@ public class App extends Application {
     /**
      * Generates the scene of the application
      * @return Scene with all the application elements within it
-     * @since 1.0.0
+     *
      */
     private static Scene generateScene() {
         BorderPane borderPane = new BorderPane();
@@ -233,7 +233,7 @@ public class App extends Application {
      * Application stage start point
      *
      * @see Application
-     * @since 1.0.0
+     *
      */
     public void start(Stage stage) {
         appStage = stage;
@@ -252,7 +252,7 @@ public class App extends Application {
      * Adds an updatable to list, executing {@link Updatable#update()} each time the application is sent an update
      * @see #update()
      * @param updatable Updatable object that implements the {@link Updatable} interface
-     * @since 1.0.0
+     *
      */
     public static void addUpdatable(Updatable updatable) {
         updateList.add(updatable);
@@ -263,7 +263,7 @@ public class App extends Application {
      * is updated
      * @param updatable Updatable object that implements the {@link Updatable} interface
      * @return {@code true} if this list contained the specified element
-     * @since 1.0.0
+     *
      */
     public static boolean removeUpdatable(Updatable updatable) {
         return updateList.remove(updatable);

@@ -34,13 +34,13 @@ public class Launcher {
 
     /**
      * Currently opened stage of launcher, is null if the launcher is not opened
-     * @since 1.0.0
+     *
      */
     private static Stage stage;
 
     /**
      * Closes any previous persistent stages, opens the launcher as a new stage, and sets up interface.
-     * @since 1.0.0
+     *
      */
     public static void open() {
         if(stage != null && stage.isShowing()) {
@@ -69,7 +69,7 @@ public class Launcher {
     /**
      * Creates the vertical set of buttons on the left side of the launcher
      * @return VBox element containing all buttons
-     * @since 1.0.0
+     *
      */
     private static VBox buttonPanel() {
         VBox panel = new VBox();
@@ -84,7 +84,7 @@ public class Launcher {
     /**
      * Generates the list of buttons to be included on the left hand of the launcher
      * @return Array of buttons to include
-     * @since 1.0.0
+     *
      */
     private static Button[] generateButtons() {
         //New, Open, Copy, Info, Exit
@@ -116,7 +116,7 @@ public class Launcher {
     /**
      * Generates the borderpane responsible for displaying all recently opened files
      * @return Border Pane with all elements pertaining to listing recent files
-     * @since 1.0.0
+     *
      */
     private static BorderPane generateRecentFiles() {
         BorderPane borderPane = new BorderPane();
@@ -155,7 +155,7 @@ public class Launcher {
     /**
      * Opens a selected pace in the application, closes the launcher and marks launcher for garbage collection
      * @param file File of pace to open
-     * @since 1.0.0
+     *
      * @see App#open(File)
      */
     private static void openPace(File file) {
