@@ -9,6 +9,8 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO use standardized description style
+
 /**
  * Class containing all current settings of the program. Stores these values in a location dependent on the operating
  * system. Or at least that is what it's supposed to do.
