@@ -26,8 +26,7 @@ public class Division {
     private final UUID uuid;
     /**
      * List of team objects within the division.
-     *
-     * @apiNote is transitive such that teams are not double copied in {@link Pace#serialize(Writer)}
+     * <br>is transitive such that teams are not double copied in {@link Pace#serialize(Writer)}
      * @see #addTeam(Team)
      * @see #removeTeam(Team)
      * @since 1.0.0
