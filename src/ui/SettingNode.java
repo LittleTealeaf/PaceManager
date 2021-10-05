@@ -19,7 +19,7 @@ public abstract class SettingNode implements Updatable {
     /**
      * Display name of the setting
      */
-    final String name;
+    private final String name;
 
     /**
      * Creates a new abstract SettingNode with the setting name and its categories
@@ -57,4 +57,8 @@ public abstract class SettingNode implements Updatable {
      * @return Node of the setting editor
      */
     public abstract Node getNode();
+
+    public String getName() {
+        return name;
+    }
 }

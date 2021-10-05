@@ -81,7 +81,7 @@ public class SettingsEditor extends Stage implements Updatable {
         final Font font = new Font(13);
         for(SettingNode settingNode : settingNodes) {
             if (settingNode.isCategory(category)) {
-                Text label = new Text(settingNode.name);
+                Text label = new Text(settingNode.getName());
                 label.setFont(font);
                 settingsPanel.addRow(index++,label,settingNode.getNode());
             }
