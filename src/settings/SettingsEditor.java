@@ -220,7 +220,7 @@ public class SettingsEditor extends Stage implements Updatable {
 
                     public void initialize() {
                         checkBox = new CheckBox();
-                        checkBox.setOnAction(e -> App.settings.setExcludeOutliers(checkBox.isSelected()));
+                        checkBox.setOnAction(e -> App.settings.setAggressiveMemorySave(checkBox.isSelected()));
                     }
 
                     public void update() {
