@@ -31,10 +31,26 @@ Potentially add additional thread to have a "backup" of the pace
  */
 public class App extends Application {
 
+    /**
+     * The current version of the Application
+     */
     public static final String version = "1.0.0";
+    /**
+     * Application instance of settings
+     */
     public static final Settings settings = Resources.getSettings();
+    /**
+     * Currently opened pace
+     */
     public static Pace openedPace;
+    /**
+     * Currently opened main-application stage
+     */
     private static Stage appStage;
+    /**
+     * List of all updatable objects
+     * @see #update()
+     */
     private static List<Updatable> updateList;
 
     /**
@@ -87,6 +103,8 @@ public class App extends Application {
 
     /**
      * Sends update notifications to all updatable objects
+     * @see #updateList
+     * @see Updatable
      * @since 1.0.0
      */
     public static void update() {
@@ -215,7 +233,6 @@ public class App extends Application {
      * @see Application
      * @since 1.0.0
      */
-    @Override
     public void start(Stage stage) {
         appStage = stage;
         stage.getIcons().add(Resources.APPLICATION_ICON);
@@ -229,12 +246,25 @@ public class App extends Application {
         Launcher.open();
     }
 
+    /**
+     * Adds an updatable to list, executing {@link Updatable#update()} each time the application is sent an update
+     * @see #update()
+     * @param updatable Updatable object that implements the {@link Updatable} interface
+     * @since 1.0.0
+     */
     public static void addUpdatable(Updatable updatable) {
         updateList.add(updatable);
     }
 
-    public static void removeUpdatable(Updatable updatable) {
-        updateList.remove(updatable);
+    /**
+     * Removes an updatable from the update list. The object will no longer be pinged any time the application
+     * is updated
+     * @param updatable Updatable object that implements the {@link Updatable} interface
+     * @return {@code true} if this list contained the specified element
+     * @since 1.0.0
+     */
+    public static boolean removeUpdatable(Updatable updatable) {
+        return updateList.remove(updatable);
     }
 
 }
