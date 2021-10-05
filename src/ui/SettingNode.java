@@ -1,5 +1,6 @@
 package ui;
 
+import app.Updatable;
 import javafx.scene.Node;
 
 /**

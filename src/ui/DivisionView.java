@@ -1,6 +1,7 @@
 package ui;
 
 import app.App;
+import app.Updatable;
 import data.Division;
 import data.Pace;
 import data.Time;

@@ -2,6 +2,7 @@ package ui;
 
 import app.App;
 import app.Resources;
+import app.Updatable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
