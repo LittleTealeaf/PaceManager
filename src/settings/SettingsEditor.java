@@ -1,4 +1,4 @@
-package ui;
+package settings;
 
 import app.App;
 import app.Resources;
@@ -24,7 +24,7 @@ import javafx.stage.Stage;
  * <p>Categories are derived from the {@link Category} enumerator</p>
  * <p>Configurable Settings are displayed using a {@link SettingNode}, which connects the link between a setting and its
  * editing node</p>
- * @see app.Settings
+ * @see Settings
  * @author Thomas Kwashnak
  * @since 1.0.0
  * @version 1.0.0
@@ -95,7 +95,7 @@ public class SettingsEditor extends Stage implements Updatable {
      */
     private SettingNode[] generateSettings() {
         return new SettingNode[]{
-                new SettingNode("File Extensions", Category.GENERAL,Category.FILES) {
+                new SettingNode("File Extensions", Category.GENERAL, Category.FILES) {
 
                     TextField field;
 
@@ -156,7 +156,7 @@ public class SettingsEditor extends Stage implements Updatable {
                         return checkBox;
                     }
                 },
-                new SettingNode("Warn on Delete",Category.GENERAL,Category.APPLICATION) {
+                new SettingNode("Warn on Delete", Category.GENERAL, Category.APPLICATION) {
 
                     CheckBox checkBox;
 
@@ -173,7 +173,7 @@ public class SettingsEditor extends Stage implements Updatable {
                         return checkBox;
                     }
                 },
-                new SettingNode("Exclude Outliers",Category.CALCULATIONS,Category.GENERAL) {
+                new SettingNode("Exclude Outliers", Category.CALCULATIONS, Category.GENERAL) {
                     CheckBox checkBox;
 
                     public void initialize() {
@@ -192,7 +192,7 @@ public class SettingsEditor extends Stage implements Updatable {
                         return checkBox;
                     }
                 },
-                new SettingNode("Aggressive Save Memory", Category.OPTIMIZATIONS,Category.FILES, Category.APPLICATION) {
+                new SettingNode("Aggressive Save Memory", Category.OPTIMIZATIONS, Category.FILES, Category.APPLICATION) {
                     CheckBox checkBox;
 
                     public void initialize() {
@@ -208,7 +208,7 @@ public class SettingsEditor extends Stage implements Updatable {
                         return checkBox;
                     }
                 },
-                new SettingNode("Use Average as default Goal Time",Category.CALCULATIONS,Category.GENERAL) {
+                new SettingNode("Use Average as default Goal Time", Category.CALCULATIONS, Category.GENERAL) {
                     CheckBox checkBox;
 
                     public void initialize() {
@@ -224,7 +224,7 @@ public class SettingsEditor extends Stage implements Updatable {
                         return checkBox;
                     }
                 },
-                new SettingNode("Allow Multiple Team Editors open",Category.APPLICATION,Category.GENERAL) {
+                new SettingNode("Allow Multiple Team Editors open", Category.APPLICATION, Category.GENERAL) {
                     CheckBox checkBox;
 
                     public void initialize() {
@@ -249,44 +249,7 @@ public class SettingsEditor extends Stage implements Updatable {
         }
     }
 
-    /**
-     * Categorization of settings. Each setting may have one or many categories. Filters within the SettingsEditor
-     * allow the user to filter out settings by category.
-     */
-    enum Category {
-        /**
-         * Category for more general settings that the user will most likely wish to change at some point
-         */
-        GENERAL("General"),
-        /**
-         * Category for any application specific settings
-         */
-        APPLICATION("Application"),
-        /**
-         * Settings pertaining more to the calculation of average times and winners
-         */
-        CALCULATIONS("Calculations"),
-        /**
-         * Settings pertaining to the storing of config or other files
-         */
-        FILES("Files"),
-        /**
-         * Settings pertaining to application optimizations, such as freeing up memory (allowing for garbage collection)
-         * or other optimizations
-         */
-        OPTIMIZATIONS("Optimizations");
 
-
-        final String display;
-
-        Category(String display) {
-            this.display = display;
-        }
-
-        public String toString() {
-            return display;
-        }
-    }
 
     public static void closeRequest() {
         if(openedInstance != null) {

@@ -10,7 +10,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import ui.SettingsEditor;
+import settings.SettingsEditor;
 
 import java.io.File;
 

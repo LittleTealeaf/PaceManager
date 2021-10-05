@@ -2,7 +2,7 @@ package data;
 
 import app.App;
 import app.Serialization;
-import app.Settings;
+import settings.Settings;
 import com.google.gson.stream.JsonReader;
 
 import java.io.File;

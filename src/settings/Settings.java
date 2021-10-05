@@ -1,4 +1,8 @@
-package app;
+package settings;
+
+import app.App;
+import app.Launcher;
+import app.Serialization;
 
 import java.io.File;
 import java.io.FileWriter;

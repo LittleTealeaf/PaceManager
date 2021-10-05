@@ -1,11 +1,11 @@
-package ui;
+package settings;
 
 import app.Updatable;
 import javafx.scene.Node;
 
 /**
  * Abstract class depicting a SettingNode, functionality should be implemented using the following methods
- * <ul><li>{@link #initialize()}: Executed immediately after the {@link #SettingNode(String, SettingsEditor.Category...)} constructor</li>
+ * <ul><li>{@link #initialize()}: Executed immediately after the {@link #SettingNode(String, Category...)} constructor</li>
  * <li>{@link #getNode()}: Returns the node of the setting editor</li></ul>
  * @author Thomas Kwashnak
  * @since 1.0.0
@@ -16,7 +16,7 @@ public abstract class SettingNode implements Updatable {
     /**
      * Array of categories the setting is classified under
      */
-    private final SettingsEditor.Category[] categories;
+    private final Category[] categories;
     /**
      * Display name of the setting
      */
@@ -27,7 +27,7 @@ public abstract class SettingNode implements Updatable {
      * @param name Display name of the setting
      * @param categories Categories to categorize the setting under
      */
-    public SettingNode(String name, SettingsEditor.Category... categories) {
+    public SettingNode(String name, Category... categories) {
         this.name = name;
         this.categories = categories;
         initialize();
@@ -39,8 +39,8 @@ public abstract class SettingNode implements Updatable {
      * @param category Category to check if SettingNode is a part of
      * @return {@code true} if the setting node is classified under the given category, {@code false} otherwise
      */
-    public boolean isCategory(SettingsEditor.Category category) {
-        for(SettingsEditor.Category c : categories) {
+    public boolean isCategory(Category category) {
+        for(Category c : categories) {
             if(c == category) {
                 return true;
             }

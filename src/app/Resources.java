@@ -3,6 +3,7 @@ package app;
 import com.google.gson.stream.JsonReader;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
+import settings.Settings;
 
 import java.io.File;
 import java.io.FileReader;
