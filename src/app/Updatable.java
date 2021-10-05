@@ -2,10 +2,11 @@ package app;
 
 /**
  * Indicates that an object is updatable, and thus has a {@link #update()} method
- * @since 1.0.0
- * @version 1.0.0
+ *
  * @author Thomas Kwashnak
+ * @version 1.0.0
  * @see App#update()
+ * @since 1.0.0
  */
 public interface Updatable {
     /**

@@ -24,35 +24,32 @@ import javafx.stage.Stage;
  * <p>Categories are derived from the {@link Category} enumerator</p>
  * <p>Configurable Settings are displayed using a {@link SettingNode}, which connects the link between a setting and its
  * editing node</p>
- * @see Settings
+ *
  * @author Thomas Kwashnak
- * @since 1.0.0
  * @version 1.0.0
+ * @see Settings
+ * @since 1.0.0
  */
 public class SettingsEditor extends Stage implements Updatable {
 
     /**
      * The currently opened instance of the SettingsEditor. Prevents multiple instances from being opened
-     *
      */
     private static SettingsEditor openedInstance;
 
     /**
      * List of all editing node objects
-     *
      */
     private final SettingNode[] settingNodes;
     /**
      * GridPane where all currently-displaying settings are listed, children are cleared whenever category
      * is changed
-     *
      */
     private final GridPane settingsPanel;
 
     /**
      * Creates a new SettingsEditor. If there is already an instance opened, it will attempt to close that instance
      * and sets {@link #openedInstance} to itself. Also is set to set {@link #openedInstance} to null once it closes
-     *
      */
     public SettingsEditor() {
         super();
@@ -60,7 +57,7 @@ public class SettingsEditor extends Stage implements Updatable {
         getIcons().add(Resources.APPLICATION_ICON);
 
         setOnCloseRequest(e -> {
-            if(openedInstance == this) {
+            if (openedInstance == this) {
                 openedInstance = null;
             }
             App.removeUpdatable(this);
@@ -83,7 +80,7 @@ public class SettingsEditor extends Stage implements Updatable {
 
         ListView<Category> categoryPanel = new ListView<>();
         categoryPanel.getItems().addAll(Category.values());
-        categoryPanel.getSelectionModel().selectedItemProperty().addListener((e,o,n) -> populateSettings(n));
+        categoryPanel.getSelectionModel().selectedItemProperty().addListener((e, o, n) -> populateSettings(n));
         categoryPanel.getSelectionModel().select(0);
         borderPane.setLeft(categoryPanel);
 
@@ -95,26 +92,26 @@ public class SettingsEditor extends Stage implements Updatable {
 
     /**
      * Updates the GridPane with all settings that are classified under the specified category
-     * @param category Filter of which settings to display
      *
+     * @param category Filter of which settings to display
      */
     private void populateSettings(Category category) {
         settingsPanel.getChildren().clear();
         int index = 0;
         final Font font = new Font(13);
-        for(SettingNode settingNode : settingNodes) {
+        for (SettingNode settingNode : settingNodes) {
             if (settingNode.isCategory(category)) {
                 Text label = new Text(settingNode.getName());
                 label.setFont(font);
-                settingsPanel.addRow(index++,label,settingNode.getNode());
+                settingsPanel.addRow(index++, label, settingNode.getNode());
             }
         }
     }
 
     /**
      * Generates the entire list of settings to include in the SettingsEditor
-     * @return Array of Settings using the SettingNode class
      *
+     * @return Array of Settings using the SettingNode class
      */
     private SettingNode[] generateSettings() {
         return new SettingNode[]{
@@ -215,7 +212,8 @@ public class SettingsEditor extends Stage implements Updatable {
                         return checkBox;
                     }
                 },
-                new SettingNode("Aggressive Save Memory", Category.OPTIMIZATIONS, Category.FILES, Category.APPLICATION) {
+                new SettingNode("Aggressive Save Memory", Category.OPTIMIZATIONS, Category.FILES,
+                                Category.APPLICATION) {
                     CheckBox checkBox;
 
                     public void initialize() {
@@ -268,7 +266,6 @@ public class SettingsEditor extends Stage implements Updatable {
 
     /**
      * Sends an update ping to all {@code SettingNodes} in {@link #settingNodes}
-     *
      */
     public void update() {
         for (SettingNode settingNode : settingNodes) {
@@ -278,10 +275,9 @@ public class SettingsEditor extends Stage implements Updatable {
 
     /**
      * Requests the current instance to be closed, only does so if it is populated.
-     *
      */
     public static void closeRequest() {
-        if(openedInstance != null) {
+        if (openedInstance != null) {
             openedInstance.close();
             openedInstance = null;
         }

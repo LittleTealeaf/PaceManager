@@ -26,7 +26,6 @@ public class Time {
      * {@link #Time()} (sets {@code value = 0}) or {@link #Time(long)} (allows for specification of {@code value})
      *
      * @see #getValue()
-     *
      */
     private final long value;
 
@@ -36,7 +35,6 @@ public class Time {
      * Creates a new {@code Time} object with {@code value} set to {@code 0}
      *
      * @see #Time(long)
-     *
      */
     public Time() {
         value = 0;
@@ -48,7 +46,6 @@ public class Time {
      * @param value Time in number of ms
      * @see #Time()
      * @see #value
-     *
      */
     public Time(long value) {
         this.value = value;
@@ -82,7 +79,6 @@ public class Time {
      * @return A new {@code Time} object representing the difference between {@code start} and {@code end}
      * @see #value
      * @see #absolute()
-     *
      */
     public static Time difference(Time start, Time end) {
         return new Time(end.getValue() - start.getValue());
@@ -94,7 +90,6 @@ public class Time {
      * Similarly, if {@code value = 100}, then will also return a {@code Time} object with {@code value = 100}.
      *
      * @return A new {@code Time} object with a positive {@code value}
-     *
      */
     public Time absolute() {
         return new Time(Math.abs(value));
@@ -110,7 +105,6 @@ public class Time {
     /**
      * @param other
      * @return
-     *
      */
     public Time add(Time other) {
         return new Time(getValue() + other.getValue());
@@ -119,7 +113,6 @@ public class Time {
     /**
      * @param other
      * @return
-     *
      */
     public Time subtract(Time other) {
         return new Time(getValue() - other.getValue());
@@ -174,7 +167,6 @@ public class Time {
      *
      * @author Thomas Kwashnak
      * @version 1.0.0
-     *
      */
     public static class TimeSerializer implements JsonSerializer<Time> {
         public JsonElement serialize(Time time, Type type, JsonSerializationContext jsonSerializationContext) {
@@ -188,7 +180,6 @@ public class Time {
      *
      * @author Thomas Kwashnak
      * @version 1.0.0
-     *
      */
     public static class TimeDeserializer implements JsonDeserializer<Time> {
         public Time deserialize(JsonElement jsonElement, Type type,

@@ -31,7 +31,7 @@ public class Resources {
      * Future versions may move this folder to {@code %APPDATA%} on Windows machines, or similarly change the location on other
      * platforms as well.
      *
-     * @return String directory path of the working directory, such as {@code C:\Users\Thomas\.paceManager\}
+     * @return String directory path of the working directory, such as "{@code C:\Users\Thomas\.paceManager\}"
      * @see File#separatorChar
      */
     public static String getWorkingDirectory() {
@@ -65,9 +65,9 @@ public class Resources {
 
     /**
      * Prompts the user to open a pace file.
+     *
      * @return A {@code File} object referring to the pace file. Returns {@code null} if the user canceled out without
      * selecting a file or selected a file that does not exist
-     *
      * @see #promptSavePace()
      * @see #generatePacePrompt()
      */
@@ -83,9 +83,9 @@ public class Resources {
 
     /**
      * Prompts the user to save a pace file.
+     *
      * @return A {@code File} object referring to the desired location to save the Pace file. Returns {@code null} if
      * the user canceled out without selecting a file
-     *
      * @see #promptOpenPace()
      * @see #generatePacePrompt()
      */
@@ -102,10 +102,11 @@ public class Resources {
     /**
      * Generates a File prompt for use in {@link #promptOpenPace()} and {@link #promptSavePace()}. Configures the
      * prompt to filter out files by file extensions provided in user settings.
+     *
+     * @return Generated File Chooser prompt
      * @see Settings#getFileExtensions()
      * @see #promptSavePace()
      * @see #generatePacePrompt()
-     * @return Generated File Chooser prompt
      */
     private static FileChooser generatePacePrompt() {
         FileChooser fileChooser = new FileChooser();
@@ -125,8 +126,8 @@ public class Resources {
     /**
      * Grabs a system resources as a stream.
      * <p>
-     *     Make sure to run a {@code maven compile} cycle before testing, otherwise the file will not be included in
-     *     the resources
+     * Make sure to run a {@code maven compile} cycle before testing, otherwise the file will not be included in
+     * the resources
      * </p>
      *
      * @param name Resource Path of resource <br>If in a subdirectory, format such as {@code /dev/pace2021.json},

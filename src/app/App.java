@@ -27,39 +27,46 @@ Potentially add additional thread to have a "backup" of the pace
 
 /**
  * Application Class, includes the starting point of the program and additional universally-accessible references
+ *
  * @author Thomas Kwashnak
- * @since 1.0.0
  * @version 1.0.0
+ * @since 1.0.0
  */
 public class App extends Application {
 
     /**
-     * The current version of the Application
+     * The current development version of the application.
      */
     public static final String version = "1.0.0";
     /**
-     * Application instance of settings
+     * Registered instance of the Settings object. Initialized on launch.
      */
     public static final Settings settings = Resources.getSettings();
     /**
-     * Currently opened pace
+     * The currently opened Pace. Only one Pace is opened at a time. Used as a reference for any code reading or
+     * modifying the pace's state.
      */
     public static Pace openedPace;
     /**
-     * Currently opened main-application stage
+     * The currently opened stage displaying the main application. If the application is closed back to the launcher,
+     * this value is overwritten.
      */
     private static Stage appStage;
     /**
-     * List of all updatable objects
+     * List of updatable objects. Master list of all objects in the queue for updating. Each time the application
+     * updates, the {@link Updatable#update()} method is called from each object in this list.
+     *
      * @see #update()
      */
     private static List<Updatable> updateList;
+
+
+    //TODO include launch arguments for immediately opening a pace
 
     /**
      * Application Launch Point
      *
      * @param args Launch Arguments
-     *
      */
     public static void main(String[] args) {
         updateList = new LinkedList<>();
@@ -67,10 +74,11 @@ public class App extends Application {
     }
 
     /**
-     * Opens a pace from a specified file path
+     * Attempts to open a pace from a specified file path. First checks that the file is not null and exists. If the
+     * file is invalid, then will open a new pace file. Note that the new pace file will not have a correlating file,
+     * and will not attempt to save to the attempted file location.
      *
-     * @param file Pace File to open
-     *
+     * @param file Pace File to attempt to open. File extension does not matter.
      */
     public static void open(File file) {
         if (file != null && file.exists()) {
@@ -91,10 +99,10 @@ public class App extends Application {
      * <p><b>Modifications:</b>
      * <ul><li>Sets Closable to false</li><li>Sets the content to the provided node</li><li>Sets the title of the
      * tab to the provided name</li></ul></p>
-     * @param node Initial content of the pane
-     * @param name Initial name/title of the tab
-     * @return Configured {@code Tab} object
      *
+     * @param node Content of the pane. Content will be displayed in the tab-pane when the tab is selected and opened
+     * @param name Name/Title of the tab. Text is displayed on the tab itself.
+     * @return Configured {@code Tab} object
      */
     private static Tab createTab(Node node, String name) {
         Tab tab = new Tab(name);
@@ -104,10 +112,7 @@ public class App extends Application {
     }
 
     /**
-     * Sends update notifications to all updatable objects
-     * @see #updateList
-     * @see Updatable
-     *
+     * Calls the {@link Updatable#update()} method from all objects listed in {@link #updateList}
      */
     public static void update() {
         openedPace.update();
@@ -121,8 +126,9 @@ public class App extends Application {
 
     /**
      * Development Method that imports the data from the 2021 hunter pace. Pulls from resources/dev/pace2021.json
-     * @since 1.0.0-development
+     *
      * @return Pace with values from 2021
+     * @since 1.0.0-development
      */
     private static Pace pace2021() {
         return Pace.fromJson(new JsonReader(new InputStreamReader(Resources.getResource("/dev/pace2021.json"))));
@@ -133,7 +139,6 @@ public class App extends Application {
      *
      * @param name Display Name of the item the user may want to delete
      * @return {@code True} if the user decided to delete, {@code false} otherwise.
-     *
      */
     public static boolean warnDelete(String name) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -146,8 +151,8 @@ public class App extends Application {
 
     /**
      * Generates the scene of the application
-     * @return Scene with all the application elements within it
      *
+     * @return Scene with all the application elements within it
      */
     private static Scene generateScene() {
         BorderPane borderPane = new BorderPane();
@@ -160,7 +165,7 @@ public class App extends Application {
         tabPane.getTabs().addAll(
                 createTab(teamTable, "Teams"),
                 createTab(divisionView, "Divisions"),
-                createTab(winnersView,"Winners")
+                createTab(winnersView, "Winners")
         );
 
         updateList.add(teamTable);
@@ -233,7 +238,6 @@ public class App extends Application {
      * Application stage start point
      *
      * @see Application
-     *
      */
     public void start(Stage stage) {
         appStage = stage;
@@ -250,9 +254,9 @@ public class App extends Application {
 
     /**
      * Adds an updatable to list, executing {@link Updatable#update()} each time the application is sent an update
-     * @see #update()
-     * @param updatable Updatable object that implements the {@link Updatable} interface
      *
+     * @param updatable Updatable object that implements the {@link Updatable} interface
+     * @see #update()
      */
     public static void addUpdatable(Updatable updatable) {
         updateList.add(updatable);
@@ -261,9 +265,9 @@ public class App extends Application {
     /**
      * Removes an updatable from the update list. The object will no longer be pinged any time the application
      * is updated
+     *
      * @param updatable Updatable object that implements the {@link Updatable} interface
      * @return {@code true} if this list contained the specified element
-     *
      */
     public static boolean removeUpdatable(Updatable updatable) {
         return updateList.remove(updatable);

@@ -28,32 +28,27 @@ public class Pace {
 
     /**
      * Unique Identifier of the Pace
-     *
      */
     private final UUID uuid;
     /**
      * List of all divisions included in the pace. The first division listed is considered the "default" division,
      * and cannot (or should not) be removed from the list (resulting in an empty list). Any teams that have no division
      * selected will be automatically included in this division
-     *
      */
     private final List<Division> divisions;
     /**
      * List of all teams in the pace
-     *
      */
     private final List<Team> teams;
     /**
      * The file that the pace is stored in. If the pace is brand new, or does not have a file, this value is {@code null}.
      * The data is stored in the file in a JSON file format, regardless of whether the extension is of any extension
      * listed in {@link Settings#getFileExtensions()}
-     *
      */
     private transient File file;
 
     /**
      * Creates a new pace, initializing values.
-     *
      */
     public Pace() {
         uuid = UUID.randomUUID();
@@ -118,7 +113,6 @@ public class Pace {
 
     /**
      * Wipes out all division team lists and repopulates them
-     *
      */
     public void updateDivisionLists() {
         for (Division division : divisions) {
@@ -133,7 +127,6 @@ public class Pace {
 
     /**
      * Populates each {@link Team team's} {@link Division} value based on their {@code DivisionUUID} parameter
-     *
      */
     public void populateDivisions() {
         boolean clear = App.settings.isAggressiveMemorySave();
@@ -160,7 +153,6 @@ public class Pace {
 
     /**
      * Attempts to save the Pace to the file specified
-     *
      */
     public void save() {
         if (file != null) {

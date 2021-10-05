@@ -20,14 +20,11 @@ public class DivisionSelector extends ComboBox<String> {
      * List of the divisions selected from the currently opened pace
      *
      * @see App#openedPace
-     *
      */
     private Division[] divisions;
 
     /**
      * Creates a new division selector object
-     *
-     *
      */
     public DivisionSelector() {
         super();
@@ -39,7 +36,6 @@ public class DivisionSelector extends ComboBox<String> {
      * Updates the division list to the current list of divisions from the currently opened pace
      *
      * @see App#openedPace
-     *
      */
     private void updateDivisionList() {
         divisions = App.openedPace.getDivisions().toArray(new Division[0]);
@@ -53,7 +49,6 @@ public class DivisionSelector extends ComboBox<String> {
      *
      * @return The selected division if the user selected a division from the given list.
      * <p>If the user typed in a custom division, it returns a new division with the given name</p>
-     *
      */
     public Division getDivision() {
         if (getSelectionModel().getSelectedIndex() != -1) {
@@ -71,7 +66,6 @@ public class DivisionSelector extends ComboBox<String> {
      * listed.
      *
      * @param division Division to select
-     *
      */
     public void setDivision(Division division) {
         int index = -1;

@@ -16,10 +16,11 @@ import java.io.File;
 
 /**
  * Pace-Launcher allowing the user to open a pace, create a new pace, or open a recently opened pace
+ *
  * @author Thomas Kwashnak
- * @since 1.0.0
  * @version 1.0.0
  * @bug Clicking on a recent file and then clicking on empty space opens the selected item
+ * @since 1.0.0
  */
 public class Launcher {
 
@@ -34,16 +35,14 @@ public class Launcher {
 
     /**
      * Currently opened stage of launcher, is null if the launcher is not opened
-     *
      */
     private static Stage stage;
 
     /**
      * Closes any previous persistent stages, opens the launcher as a new stage, and sets up interface.
-     *
      */
     public static void open() {
-        if(stage != null && stage.isShowing()) {
+        if (stage != null && stage.isShowing()) {
             stage.close();
         }
         stage = new Stage();
@@ -68,8 +67,8 @@ public class Launcher {
 
     /**
      * Creates the vertical set of buttons on the left side of the launcher
-     * @return VBox element containing all buttons
      *
+     * @return VBox element containing all buttons
      */
     private static VBox buttonPanel() {
         VBox panel = new VBox();
@@ -83,8 +82,8 @@ public class Launcher {
 
     /**
      * Generates the list of buttons to be included on the left hand of the launcher
-     * @return Array of buttons to include
      *
+     * @return Array of buttons to include
      */
     private static Button[] generateButtons() {
         //New, Open, Copy, Info, Exit
@@ -115,8 +114,8 @@ public class Launcher {
 
     /**
      * Generates the borderpane responsible for displaying all recently opened files
-     * @return Border Pane with all elements pertaining to listing recent files
      *
+     * @return Border Pane with all elements pertaining to listing recent files
      */
     private static BorderPane generateRecentFiles() {
         BorderPane borderPane = new BorderPane();
@@ -154,8 +153,8 @@ public class Launcher {
 
     /**
      * Opens a selected pace in the application, closes the launcher and marks launcher for garbage collection
-     * @param file File of pace to open
      *
+     * @param file File of pace to open
      * @see App#open(File)
      */
     private static void openPace(File file) {
