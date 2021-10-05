@@ -15,7 +15,7 @@ public abstract class SettingNode implements Updatable {
     /**
      * Array of categories the setting is classified under
      */
-    final SettingsEditor.Category[] categories;
+    private final SettingsEditor.Category[] categories;
     /**
      * Display name of the setting
      */
