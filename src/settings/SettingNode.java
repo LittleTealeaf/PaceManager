@@ -59,7 +59,15 @@ public abstract class SettingNode implements Updatable {
      */
     public abstract Node getNode();
 
+    /**
+     * Gets the display name of the object
+     * @return Name of the setting
+     */
     public String getName() {
         return name;
+    }
+
+    public String toString() {
+        return getName();
     }
 }
