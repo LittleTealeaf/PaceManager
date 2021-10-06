@@ -17,10 +17,23 @@ import java.text.DecimalFormat;
  */
 public class Time {
 
+    /**
+     * Number of milliseconds in a second
+     */
     private static final long MILLISECONDS_PER_SECOND = 1000;
+    /**
+     * Number of milliseconds in a minute
+     */
     private static final long MILLISECONDS_PER_MINUTE = 60 * MILLISECONDS_PER_SECOND;
+    /**
+     * Number of milliseconds in an hour
+     */
     private static final long MILLISECONDS_PER_HOUR = 60 * MILLISECONDS_PER_MINUTE;
+    /**
+     * Number of milliseconds in a day
+     */
     private static final long MILLISECONDS_PER_DAY = 24 * MILLISECONDS_PER_HOUR;
+
     /**
      * Value of Time stored as ms. The only way to specify this value is by creating a new Time using either
      * {@link #Time()} (sets {@code value = 0}) or {@link #Time(long)} (allows for specification of {@code value})
@@ -29,6 +42,10 @@ public class Time {
      */
     private final long value;
 
+    /**
+     * Generated string representation of the value. Is generated upon the first call of {@link #toString()} and is
+     * referenced every time after
+     */
     private String string;
 
     /**
@@ -43,7 +60,7 @@ public class Time {
     /**
      * Creates a new {@code Time} object with the specified {@code value}
      *
-     * @param value Time in number of ms
+     * @param value Time as number of milliseconds
      * @see #Time()
      * @see #value
      */

@@ -39,7 +39,8 @@ public class Launcher {
     private static Stage stage;
 
     /**
-     * Closes any previous persistent stages, opens the launcher as a new stage, and sets up interface.
+     * Opens the launcher.
+     * Closes any old instances of the launcher, sets up and configures a new launcher, and displays it
      */
     public static void open() {
         if (stage != null && stage.isShowing()) {
