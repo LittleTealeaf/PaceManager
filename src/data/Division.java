@@ -250,7 +250,7 @@ public class Division {
         return count == 0 ? null : new Time(sum / count);
     }
 
-    
+
     public boolean equals(Object other) {
         return other instanceof Division && ((Division) other).uuid.equals(uuid);
     }
