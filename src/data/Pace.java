@@ -116,7 +116,7 @@ public class Pace {
      */
     public void updateDivisionLists() {
         for (Division division : divisions) {
-            division.clearTeams();
+            division.clearTeamsShallow();
         }
         for (Team team : teams) {
             if (team.getDivision() != null) {
@@ -288,7 +288,6 @@ public class Pace {
      * Lets the pace know that there has been an update to one of its child objects
      */
     public void update() {
-        updateDivisionLists();
         if (App.settings.isAggressiveSave()) {
             save();
         }

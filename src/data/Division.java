@@ -151,9 +151,10 @@ public class Division {
     }
 
     /**
-     * Clears all teams from the division list
+     * Clears all teams from the division list. Does not specifically remove each division from the list. Used when
+     * updating each team's specific division.
      */
-    public void clearTeams() {
+    public void clearTeamsShallow() {
         teams.clear();
     }
 

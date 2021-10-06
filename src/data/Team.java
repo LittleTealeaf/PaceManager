@@ -83,6 +83,12 @@ public class Team implements Serializable {
         if (division != null) {
             division.addTeam(this);
         }
+        //Updates divisionUUID
+        if(division != null) {
+            this.divisionUUID = division.getUUID();
+        } else {
+            this.divisionUUID = null;
+        }
     }
 
     /**
