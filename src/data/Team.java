@@ -207,7 +207,7 @@ public class Team implements Serializable {
         if (division == null || division.getGoalTime() == null || !isCompleted()) {
             return null;
         } else {
-            return division.getGoalTime().subtract(getElapsedTime()).absolute();
+            return division.getUsedGoalTime().subtract(getElapsedTime()).absolute();
         }
     }
 

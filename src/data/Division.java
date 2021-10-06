@@ -1,6 +1,7 @@
 package data;
 
 import app.App;
+import settings.Settings;
 
 import java.io.Writer;
 import java.util.ArrayList;
@@ -32,7 +33,8 @@ public class Division {
      */
     private final transient List<Team> teams;
     /**
-     * Display Name of the Division
+     * Display Name of the Division. Whenever the application needs to display a human-readable name for the division,
+     * it uses this string.
      */
     private String name;
     /**
@@ -41,7 +43,7 @@ public class Division {
     private Time goalTime;
 
     /**
-     * Creates a new division
+     * Creates a new division. Assigns a random UUID and initializes the array list
      */
     public Division() {
         uuid = UUID.randomUUID();
@@ -49,46 +51,63 @@ public class Division {
     }
 
     /**
-     * Creates a division with a given name
+     * Creates a division with a given name. Assigns a random UUID, initializes the array list, and sets the name
      *
-     * @param name Display Name of the Division
+     * @param name Display name of the division.
+     * @see #setName(String)
      */
     public Division(String name) {
         this();
-        this.name = name;
+        setName(name);
     }
 
     /**
-     * Gets the display name
-     *
-     * @return Display name of the Division
+     * Gets the human-readable display name of the division.
+     * @return Display name of the Division.
+     * @see #setName(String)
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Sets the display name
-     *
-     * @param name new Display Name for the division
+     * Registers the string to display in places as the "name" of the division. Whenever the program needs to display
+     * the division, it uses this string
+     * @param name Display Name
+     * @see #getName()
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * Gets the goal time
-     *
+     * Returns the optimum time for the division. This value specifies the rankings and winners for the specified
+     * division.
      * @return Gets the optimum time for the division
+     * @see #getUsedGoalTime()
      */
     public Time getGoalTime() {
-        return (goalTime != null) ? goalTime : App.settings.useAverageAsGoalTime() ? getAverageTime() : null;
+        return goalTime;
     }
 
     /**
-     * Sets the goal time
-     *
-     * @param goalTime Optimum time for the division
+     * Fetches the calculation optimum time for the division. If {@link #goalTime} = {@code null}, this will check
+     * if the user has specified to use averages as goal times. If so, will return the average goal time, or return
+     * {@code null} if the setting is set to false.
+     * @return {@code goalTime} if {@code goalTime != null}<p>{@link #getAverageTime()} if
+     * {@code goalTime = null} and {@link Settings#useAverageAsGoalTime()} {@code = true}</p><p>{@code null}
+     * otherwise.</p>
+     * @see Settings#useAverageAsGoalTime()
+     * @see #getGoalTime()
+     */
+    public Time getUsedGoalTime() {
+        return (getGoalTime() != null) ? getGoalTime() : App.settings.useAverageAsGoalTime() ? getAverageTime() : null;
+    }
+
+    /**
+     * Registers the optimum time for the division. If set to {@code null}, then calculations will be based off of the
+     * division's average if {@link Settings#useAverageAsGoalTime()} {@code = true}.
+     * @param goalTime Optimum time for the division. {@code null} if removing goal time
      */
     public void setGoalTime(Time goalTime) {
         this.goalTime = goalTime;
@@ -107,24 +126,10 @@ public class Division {
     }
 
     /**
-     * Moves all teams from the provided division into this division.
-     * Removes all teams from the specified division respectfully
-     *
-     * @param division Division to "steal" all teams from
-     */
-    public void importTeamsFrom(Division division) {
-        for (Team team : division.getTeams()) {
-            team.setDivision(this);
-            addTeam(team);
-            division.removeTeam(team);
-        }
-    }
-
-    /**
      * Removes a team from the division
      *
      * @param team Team to remove from the division
-     * @return {@code true} if the team was able to be removed, {@code false} otherwise
+     * @return {@code true} if the team was able to remove, {@code false} otherwise
      * @see List#remove(Object)
      */
     public boolean removeTeam(Team team) {
@@ -245,6 +250,7 @@ public class Division {
         return count == 0 ? null : new Time(sum / count);
     }
 
+    
     public boolean equals(Object other) {
         return other instanceof Division && ((Division) other).uuid.equals(uuid);
     }
