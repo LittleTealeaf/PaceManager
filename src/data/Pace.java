@@ -174,8 +174,6 @@ public class Pace {
      * @param writer Writer to serialize the data to
      */
     public void serialize(Writer writer) {
-        //Updates all
-        updateDivisionLists();
         for (Team team : teams) {
             if (team.getDivision() != divisions.get(0)) {
                 team.updateDivisionUUID();
