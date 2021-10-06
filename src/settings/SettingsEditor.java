@@ -229,7 +229,7 @@ public class SettingsEditor extends Stage implements Updatable {
                         return checkBox;
                     }
                 },
-                new SettingNode("Use Average as default Goal Time", Category.CALCULATIONS, Category.GENERAL) {
+                new SettingNode("Use Average as Default Goal Time", Category.CALCULATIONS, Category.GENERAL) {
                     CheckBox checkBox;
 
                     public void initialize() {
