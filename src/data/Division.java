@@ -10,11 +10,25 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Class representing all data for a given Division
+ * Division objects represent a given "division", or "section" of the pace. Each team chooses a specific division they
+ *  wish to compete in. For example, the 2021 Hunter Pace had the divisions <i>Pleasure, Hunt, Western, Junior</i>. Each
+ *  division has its own "optimum time", which winners are calculated off of. The goal of the pace is to get as close to
+ *  the optimum time as possible.
  *
+ * <p>The optimum time of the division can be set in two ways. Firstly, a goal time can be specified to be a certain
+ * time, either from a prior run or an estimated time based off of a trial run. Alternatively, the user can choose to
+ * run off of the average (if a goal time is not specified), using the {@link Settings#useAverageAsGoalTime()} setting.
+ *
+ * <p>Each division has its own UUID. Each team has a field {@link Team#getDivisionUUID()} that stores their division's
+ * UUID. When a pace is loaded, each team looks up their UUID with all given divisions, and then sets their reference
+ * to the division. Additionally, each division keeps its own list of its teams, which is also populated during the
+ * loading process. Whenever a team is added or removed from their division, this list is updated using the
+ * {@link #addTeam(Team)} and {@link #removeTeam(Team)} methods. During saving, each team's division UUID is updated
+ * such that they can be assigned at the next load.
  * @author Thomas Kwashnak
  * @version 1.0.0
  * @since 1.0.0
+ * @see Team
  */
 public class Division {
 
@@ -94,8 +108,8 @@ public class Division {
      * Fetches the calculation optimum time for the division. If {@link #goalTime} = {@code null}, this will check
      * if the user has specified to use averages as goal times. If so, will return the average goal time, or return
      * {@code null} if the setting is set to false.
-     * @return {@code goalTime} if {@code goalTime != null}<p>{@link #getAverageTime()} if
-     * {@code goalTime = null} and {@link Settings#useAverageAsGoalTime()} {@code = true}</p><p>{@code null}
+     * @return <b>{@code goalTime}</b> if {@code goalTime != null}<p><b>{@link #getAverageTime()}</b> if
+     * {@code goalTime = null}and {@link Settings#useAverageAsGoalTime()} {@code = true}</p><p><b>{@code null}</b>
      * otherwise.</p>
      * @see Settings#useAverageAsGoalTime()
      * @see #getGoalTime()
