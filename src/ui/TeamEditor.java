@@ -2,6 +2,7 @@ package ui;
 
 import app.App;
 import app.Resources;
+import app.Updatable;
 import data.Team;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -14,6 +15,9 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @since 1.0.0
+ */
 public class TeamEditor extends Stage implements Updatable {
 
     private static final List<TeamEditor> EDITORS = new ArrayList<>();
@@ -35,7 +39,7 @@ public class TeamEditor extends Stage implements Updatable {
     public TeamEditor(Team team) {
         super();
 
-        if(!App.settings.isMultipleTeamsEditing()) {
+        if (!App.settings.isMultipleTeamsEditing()) {
             closeAll();
         }
 
@@ -82,7 +86,6 @@ public class TeamEditor extends Stage implements Updatable {
 
     /**
      * @return
-     * @since 1.0.0
      */
     public String[] parseRiders() {
         String[] raw = nodeRiders.getText().replace(',', '\n').split("\n");
@@ -137,9 +140,9 @@ public class TeamEditor extends Stage implements Updatable {
             nodeRiders.setText("");
         }
     }
+
     /**
      * @return
-     * @since 1.0.0
      */
     private Scene generateScene() {
         BorderPane borderPane = new BorderPane();
@@ -182,7 +185,6 @@ public class TeamEditor extends Stage implements Updatable {
 
     /**
      * @return
-     * @since 1.0.0
      */
     private BorderPane generateBottomPane() {
         BorderPane pane = new BorderPane();
@@ -211,7 +213,7 @@ public class TeamEditor extends Stage implements Updatable {
     }
 
     public static void closeAll() {
-        while(EDITORS.size() > 0) {
+        while (EDITORS.size() > 0) {
             TeamEditor editor = EDITORS.get(0);
             EDITORS.remove(editor);
             editor.close();

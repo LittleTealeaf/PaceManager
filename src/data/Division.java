@@ -21,34 +21,27 @@ public class Division {
      * Unique identifier of this division object
      *
      * @see #getUUID()
-     * @since 1.0.0
      */
     private final UUID uuid;
     /**
      * List of team objects within the division.
      * <br>is transitive such that teams are not double copied in {@link Pace#serialize(Writer)}
+     *
      * @see #addTeam(Team)
      * @see #removeTeam(Team)
-     * @since 1.0.0
      */
     private final transient List<Team> teams;
     /**
      * Display Name of the Division
-     *
-     * @since 1.0.0
      */
     private String name;
     /**
      * Optimum Time for the division
-     *
-     * @since 1.0.0
      */
     private Time goalTime;
 
     /**
      * Creates a new division
-     *
-     * @since 1.0.0
      */
     public Division() {
         uuid = UUID.randomUUID();
@@ -59,7 +52,6 @@ public class Division {
      * Creates a division with a given name
      *
      * @param name Display Name of the Division
-     * @since 1.0.0
      */
     public Division(String name) {
         this();
@@ -70,7 +62,6 @@ public class Division {
      * Gets the display name
      *
      * @return Display name of the Division
-     * @since 1.0.0
      */
     public String getName() {
         return name;
@@ -80,7 +71,6 @@ public class Division {
      * Sets the display name
      *
      * @param name new Display Name for the division
-     * @since 1.0.0
      */
     public void setName(String name) {
         this.name = name;
@@ -90,7 +80,6 @@ public class Division {
      * Gets the goal time
      *
      * @return Gets the optimum time for the division
-     * @since 1.0.0
      */
     public Time getGoalTime() {
         return (goalTime != null) ? goalTime : App.settings.useAverageAsGoalTime() ? getAverageTime() : null;
@@ -100,7 +89,6 @@ public class Division {
      * Sets the goal time
      *
      * @param goalTime Optimum time for the division
-     * @since 1.0.0
      */
     public void setGoalTime(Time goalTime) {
         this.goalTime = goalTime;
@@ -113,7 +101,6 @@ public class Division {
      * <p>Does not modify the team or check if the team is set to the division in any way.</p>
      *
      * @param team Team to add to the division
-     * @since 1.0.0
      */
     public void addTeam(Team team) {
         teams.add(team);
@@ -139,7 +126,6 @@ public class Division {
      * @param team Team to remove from the division
      * @return {@code true} if the team was able to be removed, {@code false} otherwise
      * @see List#remove(Object)
-     * @since 1.0.0
      */
     public boolean removeTeam(Team team) {
         return teams.remove(team);
@@ -147,8 +133,6 @@ public class Division {
 
     /**
      * Clears all teams from the division list
-     *
-     * @since 1.0.0
      */
     public void clearTeams() {
         teams.clear();
@@ -158,7 +142,6 @@ public class Division {
      * Gets the division UUID
      *
      * @return Unique Identifier of the division
-     * @since 1.0.0
      */
     public UUID getUUID() {
         return uuid;
@@ -169,7 +152,6 @@ public class Division {
      *
      * @return Division's name
      * @see #getName()
-     * @since 1.0.0
      */
     public String toString() {
         return getName();
@@ -181,7 +163,6 @@ public class Division {
      *
      * @return Array List of eligible teams in order of closeness to the goal time
      * @see #goalTime
-     * @since 1.0.0
      */
     public Team[] getPlaceOrder() {
         if (getGoalTime() == null) {
@@ -235,7 +216,6 @@ public class Division {
      * Gets all the teams listed in the division
      *
      * @return List of teams recorded in the division
-     * @since 1.0.0
      */
     public List<Team> getTeams() {
         return teams;

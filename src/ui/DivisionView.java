@@ -1,6 +1,7 @@
 package ui;
 
 import app.App;
+import app.Updatable;
 import data.Division;
 import data.Pace;
 import data.Time;
@@ -25,9 +26,10 @@ import java.util.List;
  * <p>A view listing all current divisions. The first tab is a general tab that provides an overview
  * of all the divisions and their stats. Then, each tab afterward is dedicated to a given division, listed in the order
  * that they are presented in {@link Pace#getTeams()}</p>
+ *
  * @author Thomas Kwashnak
- * @since 1.0.0
  * @version 1.0.0
+ * @since 1.0.0
  */
 public class DivisionView extends TabPane implements Updatable {
 

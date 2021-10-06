@@ -7,3 +7,7 @@ If there is any issues, uh... figure it out!</p>
 
 
 **Currently used JDK:** [JDK Version 17 Download](https://www.oracle.com/java/technologies/downloads/)
+
+
+TODO List:
+- Factor out any sub-classes into other classes, terrified of naming conventions but it is what it is

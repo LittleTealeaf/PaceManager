@@ -1,7 +1,8 @@
-package ui;
+package settings;
 
 import app.App;
 import app.Resources;
+import app.Updatable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -15,20 +16,50 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * <p>Application window that allows the user to modify configurable settings. A panel on the left lists different
+ * categories that settings are categorized under. When the user clicks or changes the category, the content on the
+ * right changes to display the names and configuration elements of settings that are categorized under that
+ * category.</p>
+ * <p>Categories are derived from the {@link Category} enumerator</p>
+ * <p>Configurable Settings are displayed using a {@link SettingNode}, which connects the link between a setting and its
+ * editing node</p>
+ *
+ * @author Thomas Kwashnak
+ * @version 1.0.0
+ * @see Settings
+ * @since 1.0.0
+ */
 public class SettingsEditor extends Stage implements Updatable {
 
+    /**
+     * The currently opened instance of the SettingsEditor. Prevents multiple instances from being opened
+     */
     private static SettingsEditor openedInstance;
 
+    /**
+     * List of all editing node objects
+     */
     private final SettingNode[] settingNodes;
+    /**
+     * GridPane where all currently-displaying settings are listed, children are cleared whenever category
+     * is changed
+     */
     private final GridPane settingsPanel;
 
+    /**
+     * Creates a new SettingsEditor. If there is already an instance opened, it will attempt to close that instance
+     * and sets {@link #openedInstance} to itself. Also is set to set {@link #openedInstance} to null once it closes
+     */
     public SettingsEditor() {
         super();
         setTitle("Settings");
         getIcons().add(Resources.APPLICATION_ICON);
 
         setOnCloseRequest(e -> {
-            openedInstance = null;
+            if (openedInstance == this) {
+                openedInstance = null;
+            }
             App.removeUpdatable(this);
         });
 
@@ -49,7 +80,7 @@ public class SettingsEditor extends Stage implements Updatable {
 
         ListView<Category> categoryPanel = new ListView<>();
         categoryPanel.getItems().addAll(Category.values());
-        categoryPanel.getSelectionModel().selectedItemProperty().addListener((e,o,n) -> populateSettings(n));
+        categoryPanel.getSelectionModel().selectedItemProperty().addListener((e, o, n) -> populateSettings(n));
         categoryPanel.getSelectionModel().select(0);
         borderPane.setLeft(categoryPanel);
 
@@ -59,26 +90,32 @@ public class SettingsEditor extends Stage implements Updatable {
         show();
     }
 
+    /**
+     * Updates the GridPane with all settings that are classified under the specified category
+     *
+     * @param category Filter of which settings to display
+     */
     private void populateSettings(Category category) {
         settingsPanel.getChildren().clear();
         int index = 0;
         final Font font = new Font(13);
-        for(SettingNode settingNode : settingNodes) {
+        for (SettingNode settingNode : settingNodes) {
             if (settingNode.isCategory(category)) {
-                Text label = new Text(settingNode.name);
+                Text label = new Text(settingNode.getName());
                 label.setFont(font);
-                settingsPanel.addRow(index++,label,settingNode.getNode());
+                settingsPanel.addRow(index++, label, settingNode.getNode());
             }
         }
     }
 
     /**
      * Generates the entire list of settings to include in the SettingsEditor
+     *
      * @return Array of Settings using the SettingNode class
      */
     private SettingNode[] generateSettings() {
         return new SettingNode[]{
-                new SettingNode("File Extensions", Category.GENERAL,Category.FILES) {
+                new SettingNode("File Extensions", Category.GENERAL, Category.FILES) {
 
                     TextField field;
 
@@ -139,7 +176,7 @@ public class SettingsEditor extends Stage implements Updatable {
                         return checkBox;
                     }
                 },
-                new SettingNode("Warn on Delete",Category.GENERAL,Category.APPLICATION) {
+                new SettingNode("Warn on Delete", Category.GENERAL, Category.APPLICATION) {
 
                     CheckBox checkBox;
 
@@ -156,7 +193,7 @@ public class SettingsEditor extends Stage implements Updatable {
                         return checkBox;
                     }
                 },
-                new SettingNode("Exclude Outliers",Category.CALCULATIONS,Category.GENERAL) {
+                new SettingNode("Exclude Outliers", Category.CALCULATIONS, Category.GENERAL) {
                     CheckBox checkBox;
 
                     public void initialize() {
@@ -175,12 +212,13 @@ public class SettingsEditor extends Stage implements Updatable {
                         return checkBox;
                     }
                 },
-                new SettingNode("Aggressive Save Memory", Category.OPTIMIZATIONS,Category.FILES, Category.APPLICATION) {
+                new SettingNode("Aggressive Save Memory", Category.OPTIMIZATIONS, Category.FILES,
+                                Category.APPLICATION) {
                     CheckBox checkBox;
 
                     public void initialize() {
                         checkBox = new CheckBox();
-                        checkBox.setOnAction(e -> App.settings.setExcludeOutliers(checkBox.isSelected()));
+                        checkBox.setOnAction(e -> App.settings.setAggressiveMemorySave(checkBox.isSelected()));
                     }
 
                     public void update() {
@@ -191,7 +229,7 @@ public class SettingsEditor extends Stage implements Updatable {
                         return checkBox;
                     }
                 },
-                new SettingNode("Use Average as default Goal Time",Category.CALCULATIONS,Category.GENERAL) {
+                new SettingNode("Use Average as default Goal Time", Category.CALCULATIONS, Category.GENERAL) {
                     CheckBox checkBox;
 
                     public void initialize() {
@@ -207,7 +245,7 @@ public class SettingsEditor extends Stage implements Updatable {
                         return checkBox;
                     }
                 },
-                new SettingNode("Allow Multiple Team Editors open",Category.APPLICATION,Category.GENERAL) {
+                new SettingNode("Allow Multiple Team Editors open", Category.APPLICATION, Category.GENERAL) {
                     CheckBox checkBox;
 
                     public void initialize() {
@@ -226,6 +264,9 @@ public class SettingsEditor extends Stage implements Updatable {
         };
     }
 
+    /**
+     * Sends an update ping to all {@code SettingNodes} in {@link #settingNodes}
+     */
     public void update() {
         for (SettingNode settingNode : settingNodes) {
             settingNode.update();
@@ -233,104 +274,12 @@ public class SettingsEditor extends Stage implements Updatable {
     }
 
     /**
-     * Categorization of settings. Each setting may have one or many categories. Filters within the SettingsEditor
-     * allow the user to filter out settings by category.
+     * Requests the current instance to be closed, only does so if it is populated.
      */
-    enum Category {
-        /**
-         * Category for more general settings that the user will most likely wish to change at some point
-         */
-        GENERAL("General"),
-        /**
-         * Category for any application specific settings
-         */
-        APPLICATION("Application"),
-        /**
-         * Settings pertaining more to the calculation of average times and winners
-         */
-        CALCULATIONS("Calculations"),
-        /**
-         * Settings pertaining to the storing of config or other files
-         */
-        FILES("Files"),
-        /**
-         * Settings pertaining to application optimizations, such as freeing up memory (allowing for garbage collection)
-         * or other optimizations
-         */
-        OPTIMIZATIONS("Optimizations");
-
-
-        final String display;
-
-        Category(String display) {
-            this.display = display;
-        }
-
-        public String toString() {
-            return display;
-        }
-    }
-
-    /**
-     * Abstract class depicting a SettingNode, functionality should be implemented using the following methods
-     * <ul><li>{@link #initialize()}: Executed immediately after the {@link #SettingNode(String, Category...)} constructor</li>
-     * <li>{@link #getNode()}: Returns the node of the setting editor</li></ul>
-     * @author Thomas Kwashnak
-     * @since 1.0.0
-     * @version 1.0.0
-     */
-    private abstract static class SettingNode implements Updatable {
-
-        /**
-         * Array of categories the setting is classified under
-         */
-        final Category[] categories;
-        /**
-         * Name of the setting
-         */
-        final String name;
-
-        /**
-         * Creates a new abstract SettingNode with the setting name and its categories
-         * @param name Title of the setting
-         * @param categories List of categories to list the setting under
-         */
-        public SettingNode(String name, Category... categories) {
-            this.name = name;
-            this.categories = categories;
-            initialize();
-        }
-
-
-        /**
-         * Checks if the SettingNode is classified under a specific category
-         * @param category Category to check if SettingNode is a part of
-         * @return {@code true} if the setting node is classified under the given category, {@code false} otherwise
-         */
-        public boolean isCategory(Category category) {
-            for(Category c : categories) {
-                if(c == category) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        /**
-         * Method called immediately after the constructor, used for initializing and configuring the editing nodes
-         */
-        public abstract void initialize();
-
-        /**
-         * Returns the node used to edit the setting
-         * @return Node of the setting editor
-         */
-        public abstract Node getNode();
-    }
-
     public static void closeRequest() {
-        if(openedInstance != null) {
+        if (openedInstance != null) {
             openedInstance.close();
+            openedInstance = null;
         }
     }
 }

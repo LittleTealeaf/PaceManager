@@ -1,9 +1,15 @@
-package app;
+package settings;
+
+import app.App;
+import app.Launcher;
+import app.Serialization;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
+
+//TODO use standardized description style
 
 /**
  * Class containing all current settings of the program. Stores these values in a location dependent on the operating
@@ -22,60 +28,60 @@ public class Settings {
 
     /**
      * Current application version of the settings object
+     *
      * @settings.default see {@link App#version}
      * @see App#version
-     * @since 1.0.0
      */
     private final String settingsVersion;
     /**
      * List of recently opened Pace files
+     *
      * @settings.default Empty List
      * @see Launcher
-     * @since 1.0.0
      */
     private final List<String> recentFiles;
 
     /**
      * What the file extension should be for files opened by the program. Extensions are in the format {@code .___}
+     *
      * @settings.default [{@code .pace}, {@code .json}]
-     * @since 1.0.0
      */
     private String[] fileExtensions;
     /**
      * Default directory to begin looking for pace files in
+     *
      * @settings.default User Documents directory
      * @see Launcher
-     * @since 1.0.0
      */
     private String paceDirectory;
 
     /**
      * Determines if the file should be automatically saved every update
+     *
      * @settings.default {@code true}
      * @see App#update()
-     * @since 1.0.0
      */
     private boolean aggressiveSave;
 
     /**
      * Determines if additional steps are taken to reduce memory used by the program.
+     *
      * @settings.default {@code false}
-     * @since 1.0.0
      */
     private boolean aggressiveMemorySave;
 
     /**
      * Determines whether the launcher should be initially maximized to the whole screen or as a small and movable window
      * <p>{@code true} if the launcher should be maximized, {@code false} otherwise</p>
+     *
      * @settings.default {@code false}
-     * @since 1.0.0
      */
     private boolean launcherMaximized;
     /**
      * Determines whether the application should be initially maximized to the whole screen or as a small and movable
      * window<p>{@code true} if the application should be maximized, {@code false} otherwise</p>
+     *
      * @settings.default {@code true}
-     * @since 1.0.0
      */
     private boolean appMaximized;
 
@@ -83,23 +89,28 @@ public class Settings {
      * Determines if the application should warn the user first before deleting anything or to just delete it outright
      * <p>If set to {@code true}, will display a prompt to the user asking if they really want to delete whatever,
      * and then if they verify that they wish to delete it, will continue with the process</p>
+     *
      * @settings.default {@code true}
-     * @since 1.0.0
      * @see App#warnDelete(String)
      */
     private boolean warnOnDelete;
 
     /**
-     * Determines if in calculations, the longest and the shortest team are not included in averaging
+     * <p>Whether the fastest and slowest team should be excluded from averages.</p>
+     * <ul><li>If set to {@code true}, then the slowest and fastest team in any division will not be included when
+     * calculating the average time. This will only happen if the division has at least 3 riders, in which the
+     * calculated average will be of at least one team</li>
+     * <li>If set to {@code false}, then all teams within a division will be included when calculating the average time
+     * </li></ul>
+     *
      * @settings.default {@code true}
-     * @since 1.0.0
      */
     private boolean excludeOutliers;
 
     /**
      * Whether to default to the average if no goal-time is presented for a division
+     *
      * @settings.default {@code true}
-     * @since 1.0.0
      */
     private boolean useAverageAsGoalTime;
 
@@ -110,8 +121,6 @@ public class Settings {
 
     /**
      * Creates a new {@code Settings} object and sets values to their defaults.
-     *
-     * @since 1.0.0
      */
     public Settings() {
         aggressiveMemorySave = false;
@@ -129,8 +138,6 @@ public class Settings {
 
     /**
      * Saves the current configuration
-     *
-     * @since 1.0.0
      */
     public void save() {
         if (settingsFile.getParentFile().mkdirs()) {
@@ -148,19 +155,17 @@ public class Settings {
      *
      * @return {@code true} if the setting is set to true, {@code false} if the setting is set to false
      * @see #aggressiveMemorySave
-     * @since 1.0.0
      */
     public boolean isAggressiveMemorySave() {
         return aggressiveMemorySave;
     }
 
     /**
-     * Sets whether the program should be concerned about aggressively saving values
+     * <p> Sets whether the program should be concerned about aggressively saving values</p>
      * <p>Will save settings to the settings file after the modification</p>
      *
      * @param value {@code true} if the program should take extra steps to reduce memory, {@code false} if not
      * @see #aggressiveMemorySave
-     * @since 1.0.0
      */
     public void setAggressiveMemorySave(boolean value) {
         //Only updates / saves if there is a change
@@ -175,19 +180,17 @@ public class Settings {
      *
      * @return String array of valid file extensions. Extensions are in the format {@code .___}.
      * @see #fileExtensions
-     * @since 1.0.0
      */
     public String[] getFileExtensions() {
         return fileExtensions;
     }
 
     /**
-     * Sets the list of file extensions.
+     * <p>Sets the list of file extensions.</p>
      * <p>Will save settings to the settings file after the modification</p>
      *
      * @param fileExtensions String array of valid file extensions. Extensions are in the format {@code .___}.
      * @see #fileExtensions
-     * @since 1.0.0
      */
     public void setFileExtensions(String[] fileExtensions) {
         this.fileExtensions = fileExtensions;
@@ -199,19 +202,17 @@ public class Settings {
      *
      * @return String Path of the default directory to begin looking for pace files in
      * @see #paceDirectory
-     * @since 1.0.0
      */
     public String getPaceDirectory() {
         return paceDirectory;
     }
 
     /**
-     * Sets the pace directory
+     * <p>Sets the pace directory</p>
      * <p>Will save settings to the settings file after the modification</p>
      *
      * @param directory String Path of the default directory to begin looking for pace files in
      * @see #paceDirectory
-     * @since 1.0.0
      */
     public void setPaceDirectory(String directory) {
         paceDirectory = directory;
@@ -222,19 +223,17 @@ public class Settings {
      *
      * @return List of recently opened files stored as strings of the file locations
      * @see #recentFiles
-     * @since 1.0.0
      */
     public List<String> getRecentFiles() {
         return recentFiles;
     }
 
     /**
-     * Adds a new recent file to the list of recent files if that file is not already listed
+     * <p>Adds a new recent file to the list of recent files if that file is not already listed</p>
      * <p>Will save settings to the settings file after the modification</p>
      *
      * @param path String Path representation of the new file to add
      * @see #recentFiles
-     * @since 1.0.0
      */
     public void addRecentFile(String path) {
         if (path != null) {
@@ -251,11 +250,10 @@ public class Settings {
     }
 
     /**
-     * Clears the list of recently opened pace files
+     * <p>Clears the list of recently opened pace files</p>
      * <p>Will save settings to the settings file after the modification</p>
      *
      * @see #recentFiles
-     * @since 1.0.0
      */
     public void cleanRecentFiles() {
         int size = recentFiles.size();
@@ -274,20 +272,18 @@ public class Settings {
      * @return {@code true} if a pace object should attempt to save whenever a modification ping is sent to it,
      * {@code false} otherwise
      * @see #aggressiveSave
-     * @since 1.0.0
      */
     public boolean isAggressiveSave() {
         return aggressiveSave;
     }
 
     /**
-     * Sets whether to aggressively save the pace file whenever a modification has been made to it
+     * <p>Sets whether to aggressively save the pace file whenever a modification has been made to it</p>
      * <p>Will save settings to the settings file after the modification</p>
      *
      * @param aggressiveSave {@code true} if a pace object should attempt to save whenever a modification ping is sent
      *                       to it, {@code false} otherwise
      * @see #aggressiveSave
-     * @since 1.0.0
      */
     public void setAggressiveSave(boolean aggressiveSave) {
         this.aggressiveSave = aggressiveSave;
@@ -296,68 +292,139 @@ public class Settings {
 
     /**
      * Returns whether the launcher should be opened maximized or in window mode
+     *
      * @return {@code true} if the launcher should take up the whole screen, {@code false} otherwise
-     * @since 1.0.0
+     * @see #launcherMaximized
      */
     public boolean isLauncherMaximized() {
         return launcherMaximized;
     }
 
     /**
-     * Sets whether the launcher should be opened maximized or in window mode
+     * <p>Sets whether the launcher should be opened maximized or in window mode</p>
      * <p>Will save settings to the settings file after the modification</p>
-     * @since 1.0.0
+     *
      * @param launcherMaximized {@code true} if the launcher should be opened maximized, {@code false} otherwise
+     * @see #launcherMaximized
      */
     public void setLauncherMaximized(boolean launcherMaximized) {
         this.launcherMaximized = launcherMaximized;
         save();
     }
 
+    /**
+     * Checks if the application should be maximized next time it is opened
+     *
+     * @return {@code true} if the application should take up the whole screen, {@code false} if it should be in
+     * windowed mode
+     * @see #appMaximized
+     */
     public boolean isAppMaximized() {
         return appMaximized;
     }
 
+    /**
+     * <p>Sets whether the application should be maximized next time it is opened</p>
+     * <p>Will save settings to the settings file after the modification</p>
+     *
+     * @param appMaximized {@code true} if the application should take up the whole screen, {@code false} if it
+     *                     should be in windowed mode
+     * @see #appMaximized
+     */
     public void setAppMaximized(boolean appMaximized) {
         this.appMaximized = appMaximized;
         save();
     }
 
+    /**
+     * Checks if the application should warn the user before deleting anything
+     *
+     * @return {@code true} if the user should be prompted to verify they wish to delete an object, {@code false} if
+     * the user is taking the risk and the object should be deleted immediately without verification
+     * @see #warnOnDelete
+     */
     public boolean warnOnDelete() {
         return warnOnDelete;
     }
 
+    /**
+     * <p>Sets whether the user should be warned before deleting anything</p>
+     * <p>Will save settings to the settings file after the modification</p>
+     *
+     * @param warnOnDelete {@code true} if the user should be prompted to verify they wish to delete an object, {@code false} if
+     *                     the user is taking the risk and the object should be deleted immediately without verification
+     * @see #warnOnDelete
+     */
     public void setWarnOnDelete(boolean warnOnDelete) {
         this.warnOnDelete = warnOnDelete;
         save();
     }
 
+    /**
+     * Checks whether the calculations for division average should exclude the slowest and the fastest team
+     *
+     * @return {@code true} if the slowest and fastest should be excluded, {@code false} if they should be included
+     * @see #excludeOutliers
+     */
     public boolean excludeOutliers() {
         return excludeOutliers;
     }
 
+    /**
+     * <p>Sets whether the calculations for division average should exclude the slowest and fastest team</p>
+     * <p>Will save settings to the settings file after the modification</p>
+     *
+     * @param excludeOutliers {@code true} if the slowest and fastest should be excluded, {@code false} if they should
+     *                        be included
+     * @see #excludeOutliers
+     */
     public void setExcludeOutliers(boolean excludeOutliers) {
         this.excludeOutliers = excludeOutliers;
         save();
     }
 
-    public String getSettingsVersion() {
-        return settingsVersion;
-    }
-
+    /**
+     * Checks whether the average should be used as the goal time if there is no goal time specified
+     *
+     * @return {@code true} if the average time should be used when no goal time is specified, {@code false} otherwise
+     * @see #useAverageAsGoalTime
+     */
     public boolean useAverageAsGoalTime() {
         return useAverageAsGoalTime;
     }
 
+    /**
+     * Sets whether the average should be used as the goal time if there is no goal time specified
+     * <p>Will save settings to the settings file after the modification</p>
+     *
+     * @param useAverageAsGoalTime {@code true} if the average time should be used when no goal time is specified,
+     *                             {@code false} otherwise
+     * @see #useAverageAsGoalTime
+     */
     public void setUseAverageAsGoalTime(boolean useAverageAsGoalTime) {
         this.useAverageAsGoalTime = useAverageAsGoalTime;
         save();
     }
 
+    /**
+     * Checks whether multiple team editors are allowed to be opened at once
+     *
+     * @return {@code true} if multiple team editors are allowed to be open at the same time, {@code false} if only
+     * one should be allowed to be opened
+     * @see #multipleTeamsEditing
+     */
     public boolean isMultipleTeamsEditing() {
         return multipleTeamsEditing;
     }
 
+    /**
+     * Sets whether multiple team editors are allowed to be opened at once.
+     * <p>Will save settings to the settings file after the modification</p>
+     *
+     * @param multipleTeamsEditing if multiple team editors are allowed to be open at the same time, {@code false} if
+     *                             only one should be allowed to be opened
+     * @see #multipleTeamsEditing
+     */
     public void setMultipleTeamsEditing(Boolean multipleTeamsEditing) {
         this.multipleTeamsEditing = multipleTeamsEditing;
     }
