@@ -308,6 +308,10 @@ public class Pace {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public Team newTeam() {
         Team team = new Team();
         team.setDivision(divisions.get(0));
@@ -315,6 +319,10 @@ public class Pace {
         return team;
     }
 
+    /**
+     *
+     * @return
+     */
     public Division getDefaultDivision() {
         return divisions.get(0);
     }

@@ -106,7 +106,8 @@ public class Team implements Serializable {
     }
 
     /**
-     *
+     * Sets the divisionUUID to null. Specifically used if the division is listed under the default division, therefore
+     * storing the division they are classified under is not needed
      */
     public void clearDivisionUUID() {
         divisionUUID = null;
