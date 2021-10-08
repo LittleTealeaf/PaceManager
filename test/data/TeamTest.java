@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TeamTest {
 
+    private static final int TEST_CASES = 1024;
+
     @Test
     public void testDivision() {
         Team team = new Team();
@@ -119,6 +121,23 @@ public class TeamTest {
 
     @Test
     public void getElapsedTime() {
+        Team team = new Team();
+        for(int i = 0; i < TEST_CASES; i++) {
+            Time a = TimeTest.randomTime(), b = TimeTest.randomTime();
+            long difference = 0;
+
+            if(a.getValue() < b.getValue()) {
+                team.setStartTime(a);
+                team.setEndTime(b);
+                difference = b.subtract(a).getValue();
+            } else {
+                team.setStartTime(b);
+                team.setEndTime(a);
+                difference = a.subtract(b).getValue();
+            }
+
+            assertEquals(team.getElapsedTime().getValue(),difference);
+        }
     }
 
     @Test

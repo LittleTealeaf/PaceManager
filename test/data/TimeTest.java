@@ -8,12 +8,16 @@ public class TimeTest {
 
     private static final int NUM_TRIALS = 1024;
 
-    private Time[] generateRandomSet() {
+    public static Time[] generateRandomSet() {
         Time[] times = new Time[NUM_TRIALS];
         for(int i = 0; i < times.length; i++) {
-            times[i] = new Time((long) (100000000L * Math.random()));
+            times[i] = randomTime();
         }
         return times;
+    }
+
+    public static Time randomTime() {
+        return new Time((long) (86400000L * Math.random()));
     }
 
     @Test
