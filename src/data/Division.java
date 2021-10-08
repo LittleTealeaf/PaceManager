@@ -1,49 +1,63 @@
 package data;
 
+import app.App;
+import settings.Settings;
+
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
 /**
- * Class representing all data for a given Division
+ * Division objects represent a given "division", or "section" of the pace. Each team chooses a specific division they
+ *  wish to compete in. For example, the 2021 Hunter Pace had the divisions <i>Pleasure, Hunt, Western, Junior</i>. Each
+ *  division has its own "optimum time", which winners are calculated off of. The goal of the pace is to get as close to
+ *  the optimum time as possible.
  *
+ * <p>The optimum time of the division can be set in two ways. Firstly, a goal time can be specified to be a certain
+ * time, either from a prior run or an estimated time based off of a trial run. Alternatively, the user can choose to
+ * run off of the average (if a goal time is not specified), using the {@link Settings#useAverageAsGoalTime()} setting.
+ *
+ * <p>Each division has its own UUID. Each team has a field {@link Team#getDivisionUUID()} that stores their division's
+ * UUID. When a pace is loaded, each team looks up their UUID with all given divisions, and then sets their reference
+ * to the division. Additionally, each division keeps its own list of its teams, which is also populated during the
+ * loading process. Whenever a team is added or removed from their division, this list is updated using the
+ * {@link #addTeam(Team)} and {@link #removeTeam(Team)} methods. During saving, each team's division UUID is updated
+ * such that they can be assigned at the next load.
  * @author Thomas Kwashnak
  * @version 1.0.0
  * @since 1.0.0
+ * @see Team
  */
 public class Division {
 
     /**
-     * Unique identifier of this division object
-     *
-     * @see #getUUID()
-     * @since 1.0.0
+     * Unique identifier of this division object. This is how Teams store which division they are in during serialization
+     * without referencing the whole object.
+     * @see Team#getDivisionUUID() 
      */
     private final UUID uuid;
     /**
      * List of team objects within the division.
+     * <br>is transitive such that teams are not double copied in {@link Pace#serialize(Writer)}
      *
-     * @apiNote is transitive such that teams are not double copied in {@link Pace#serialize(Writer)}
      * @see #addTeam(Team)
      * @see #removeTeam(Team)
-     * @since 1.0.0
      */
     private final transient List<Team> teams;
     /**
-     * Display Name of the Division
-     * @since 1.0.0
+     * Display Name of the Division. Whenever the application needs to display a human-readable name for the division,
+     * it uses this string.
      */
     private String name;
     /**
      * Optimum Time for the division
-     * @since 1.0.0
      */
     private Time goalTime;
 
     /**
-     * Creates a new division
-     * @since 1.0.0
+     * Creates a new division. Assigns a random UUID and initializes the array list
      */
     public Division() {
         uuid = UUID.randomUUID();
@@ -51,46 +65,63 @@ public class Division {
     }
 
     /**
-     * Creates a division with a given name
-     * @param name Display Name of the Division
-     * @since 1.0.0
+     * Creates a division with a given name. Assigns a random UUID, initializes the array list, and sets the name
+     *
+     * @param name Display name of the division.
+     * @see #setName(String)
      */
     public Division(String name) {
         this();
-        this.name = name;
+        setName(name);
     }
 
     /**
-     * Gets the display name
-     * @return Display name of the Division
-     * @since 1.0.0
+     * Gets the human-readable display name of the division.
+     * @return Display name of the Division.
+     * @see #setName(String)
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Sets the display name
-     * @param name new Display Name for the division
-     * @since 1.0.0
+     * Registers the string to display in places as the "name" of the division. Whenever the program needs to display
+     * the division, it uses this string
+     * @param name Display Name
+     * @see #getName()
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * Gets the goal time
+     * Returns the optimum time for the division. This value specifies the rankings and winners for the specified
+     * division.
      * @return Gets the optimum time for the division
-     * @since 1.0.0
+     * @see #getUsedGoalTime()
      */
     public Time getGoalTime() {
         return goalTime;
     }
 
     /**
-     * Sets the goal time
-     * @param goalTime Optimum time for the division
-     * @since 1.0.0
+     * Fetches the calculation optimum time for the division. If {@link #goalTime} = {@code null}, this will check
+     * if the user has specified to use averages as goal times. If so, will return the average goal time, or return
+     * {@code null} if the setting is set to false.
+     * @return <b>{@code goalTime}</b> if {@code goalTime != null}<p><b>{@link #getAverageTime()}</b> if
+     * {@code goalTime = null}and {@link Settings#useAverageAsGoalTime()} {@code = true}</p><p><b>{@code null}</b>
+     * otherwise.</p>
+     * @see Settings#useAverageAsGoalTime()
+     * @see #getGoalTime()
+     */
+    public Time getUsedGoalTime() {
+        return (getGoalTime() != null) ? getGoalTime() : App.settings.useAverageAsGoalTime() ? getAverageTime() : null;
+    }
+
+    /**
+     * Registers the optimum time for the division. If set to {@code null}, then calculations will be based off of the
+     * division's average if {@link Settings#useAverageAsGoalTime()} {@code = true}.
+     * @param goalTime Optimum time for the division. {@code null} if removing goal time
      */
     public void setGoalTime(Time goalTime) {
         this.goalTime = goalTime;
@@ -101,50 +132,36 @@ public class Division {
     /**
      * Adds a new team to the division.
      * <p>Does not modify the team or check if the team is set to the division in any way.</p>
+     *
      * @param team Team to add to the division
-     * @since 1.0.0
      */
     public void addTeam(Team team) {
         teams.add(team);
     }
 
     /**
-     * Moves all teams from the provided division into this division.
-     * Removes all teams from the specified division respectfully
-     * @param division Division to "steal" all teams from
-     */
-    public void importTeamsFrom(Division division) {
-        for (Team team : division.getTeams()) {
-            team.setDivision(this);
-            addTeam(team);
-            division.removeTeam(team);
-        }
-    }
-
-    /**
      * Removes a team from the division
      *
      * @param team Team to remove from the division
-     * @return {@code true} if the team was able to be removed, {@code false} otherwise
+     * @return {@code true} if the team was able to remove, {@code false} otherwise
      * @see List#remove(Object)
-     * @since 1.0.0
      */
     public boolean removeTeam(Team team) {
         return teams.remove(team);
     }
 
     /**
-     * Clears all teams from the division list
-     * @since 1.0.0
+     * Clears all teams from the division list. Does not specifically remove each division from the list. Used when
+     * updating each team's specific division.
      */
-    public void clearTeams() {
+    public void clearTeamsShallow() {
         teams.clear();
     }
 
     /**
      * Gets the division UUID
+     *
      * @return Unique Identifier of the division
-     * @since 1.0.0
      */
     public UUID getUUID() {
         return uuid;
@@ -152,8 +169,8 @@ public class Division {
 
     /**
      * String representation of the division
+     *
      * @return Division's name
-     * @since 1.0.0
      * @see #getName()
      */
     public String toString() {
@@ -163,12 +180,12 @@ public class Division {
     /**
      * Obtains a list of teams in the division who have completed and are eligible for a place, in order from closest
      * to the optimum time to farthest from the optimum time
+     *
      * @return Array List of eligible teams in order of closeness to the goal time
-     * @since 1.0.0
      * @see #goalTime
      */
     public Team[] getPlaceOrder() {
-        if (goalTime == null) {
+        if (getGoalTime() == null) {
             return null;
         }
 
@@ -177,7 +194,6 @@ public class Division {
         for (Team team : teams) {
             if (team.hasElapsed() && !team.isExcluded()) {
                 count++;
-                team.setDistanceToGoal(Time.difference(team.getElapsedTime(), goalTime).absolute());
             }
         }
 
@@ -193,58 +209,64 @@ public class Division {
 
         //Sorting using a quick bubble sort
         //TODO implement better sorting method
-        boolean edited;
-        for (int i = 0; i < standings.length; i++) {
-            edited = false;
-            for (int j = 0; j < standings.length - i - 1; j++) {
-                if (standings[i].getDistanceToGoal().compareTo(standings[i + 1].getDistanceToGoal()) == 1) {
-                    Team tmp = standings[i];
-                    standings[i] = standings[i + 1];
-                    standings[i + 1] = tmp;
-                    edited = true;
-                }
-            }
-            if (!edited) {
-                break;
-            }
-        }
+//        boolean edited;
+//        for (int i = 0; i < standings.length; i++) {
+//            edited = false;
+//            for (int j = 0; j < standings.length - i - 1; j++) {
+//                if (standings[i].getDistanceToGoal().compareTo(standings[i + 1].getDistanceToGoal()) == 1) {
+//                    Team tmp = standings[i];
+//                    standings[i] = standings[i + 1];
+//                    standings[i + 1] = tmp;
+//                    edited = true;
+//                }
+//            }
+//            if (!edited) {
+//                break;
+//            }
+//        }
+        Arrays.sort(standings, (a, b) ->
+                a.getDistanceToGoal().compareTo(b.getDistanceToGoal())
+        );
+
 
         return standings;
     }
 
     /**
      * Gets all the teams listed in the division
+     *
      * @return List of teams recorded in the division
-     * @since 1.0.0
      */
     public List<Team> getTeams() {
         return teams;
     }
 
-    /**
-     * Gets all teh teams listed in the division in array form
-     * @return Array of all teams recorded in the division
-     * @since 1.0.0
-     */
-    public Team[] getTeamsAsArray() {
-        Team[] array = new Team[teams.size()];
-        for (int i = 0; i < array.length; i++) {
-            array[i] = teams.get(i);
-        }
-        return array;
-    }
-
     public Time getAverageTime() {
-        long sum = 0;
+        long sum = 0, outLow = -1, outHigh = -1;
         int count = 0;
         for (Team team : teams) {
             Time elapsed = team.getElapsedTime();
-            if (elapsed != null) {
-                sum += elapsed.getValue();
+            if (elapsed != null && !team.isExcluded()) {
+                long elapsedTime = elapsed.getValue();
+                sum += elapsedTime;
                 count++;
+                if (elapsedTime < outLow || outLow == -1) {
+                    outLow = elapsedTime;
+                }
+                if (elapsedTime > outHigh || outHigh == -1) {
+                    outHigh = elapsedTime;
+                }
             }
+        }
+        if (App.settings.excludeOutliers() && count > 2) {
+            sum -= outHigh + outLow;
+            count -= 2;
         }
         return count == 0 ? null : new Time(sum / count);
     }
 
+
+    public boolean equals(Object other) {
+        return other instanceof Division && ((Division) other).uuid.equals(uuid);
+    }
 }

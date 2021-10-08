@@ -18,8 +18,6 @@ public class Serialization {
      *
      * @see #createGson()
      * @see #getGson()
-     * @see Gson
-     * @since 1.0.0
      */
     private static final Gson gson = createGson();
 
@@ -28,8 +26,6 @@ public class Serialization {
      *
      * @return Gson object, specified in {@link #createGson()}
      * @see #gson
-     * @see #createGson()
-     * @since 1.0.0
      */
     public static Gson getGson() {
         return gson;
@@ -49,9 +45,7 @@ public class Serialization {
      * </ul>
      *
      * @return Completed {@link Gson} object for use in the project
-     * @see Gson
-     * @see GsonBuilder
-     * @since 1.0.0
+     * @see #gson
      */
     private static Gson createGson() {
         //TODO remove pretty printing before release

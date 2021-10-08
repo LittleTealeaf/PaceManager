@@ -1,6 +1,7 @@
 package ui;
 
 import app.App;
+import app.Updatable;
 import data.Team;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
@@ -9,18 +10,24 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 
+import java.util.List;
+
 /**
  * @author Thomas Kwashnak
  * @version 1.0.0
  * @since 1.0.0
  */
+@SuppressWarnings("unchecked")
 public class TeamTable extends TableView<Team> implements Updatable {
     //TODO BUG clicking on a selected item and then clicking on empty space opens the selected item
 
-    public TeamTable() {
+    private final TeamUpdater updater;
+
+    public TeamTable(TeamUpdater updater) {
         super();
+        this.updater = updater;
         addColumns();
-        update();
+        setContextMenu(createContextMenu());
 
         setOnMouseClicked(e -> {
             if (e.getClickCount() == 2 && e.getButton() == MouseButton.PRIMARY) {
@@ -37,9 +44,11 @@ public class TeamTable extends TableView<Team> implements Updatable {
                     }
                 }
                 case F5 -> update();
+                case DELETE -> App.openedPace.removeTeam(getSelectionModel().getSelectedItem());
             }
         });
-        setContextMenu(createContextMenu());
+
+        update();
     }
 
     private ContextMenu createContextMenu() {
@@ -52,7 +61,7 @@ public class TeamTable extends TableView<Team> implements Updatable {
         newItem.setOnAction(e -> new TeamEditor(App.openedPace.newTeam()));
 
         MenuItem deleteItem = new MenuItem("Delete");
-        deleteItem.setOnAction(e -> App.openedPace.deleteTeam(getSelectionModel().getSelectedItem()));
+        deleteItem.setOnAction(e -> App.openedPace.removeTeam(getSelectionModel().getSelectedItem()));
 
         contextMenu.getItems().addAll(openItem, newItem, deleteItem);
         return contextMenu;
@@ -71,7 +80,7 @@ public class TeamTable extends TableView<Team> implements Updatable {
 
         getColumns().addAll(
                 columnFactory("Division", "division"),
-                columnFactory("Team", "teamNumber"),
+                columnFactory("Team", "teamName"),
                 columnFactory("Riders", "ridersString"),
                 times,
                 columnFactory("Notes", "notesDisplay")
@@ -90,10 +99,14 @@ public class TeamTable extends TableView<Team> implements Updatable {
         int selectedIndex = getSelectionModel().getSelectedIndex();
 
         getItems().clear();
-        getItems().addAll(App.openedPace.getTeams());
+        getItems().addAll(updater.getTeams());
 
         if (selectedIndex >= 0) {
             getSelectionModel().select(selectedIndex);
         }
+    }
+
+    public interface TeamUpdater {
+        List<Team> getTeams();
     }
 }

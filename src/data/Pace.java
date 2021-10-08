@@ -2,7 +2,7 @@ package data;
 
 import app.App;
 import app.Serialization;
-import app.Settings;
+import settings.Settings;
 import com.google.gson.stream.JsonReader;
 
 import java.io.File;
@@ -28,37 +28,27 @@ public class Pace {
 
     /**
      * Unique Identifier of the Pace
-     *
-     * @since 1.0.0
      */
     private final UUID uuid;
     /**
      * List of all divisions included in the pace. The first division listed is considered the "default" division,
      * and cannot (or should not) be removed from the list (resulting in an empty list). Any teams that have no division
      * selected will be automatically included in this division
-     *
-     * @since 1.0.0
      */
     private final List<Division> divisions;
     /**
      * List of all teams in the pace
-     *
-     * @since 1.0.0
      */
     private final List<Team> teams;
     /**
      * The file that the pace is stored in. If the pace is brand new, or does not have a file, this value is {@code null}.
      * The data is stored in the file in a JSON file format, regardless of whether the extension is of any extension
      * listed in {@link Settings#getFileExtensions()}
-     *
-     * @since 1.0.0
      */
     private transient File file;
 
     /**
      * Creates a new pace, initializing values.
-     *
-     * @since 1.0.0
      */
     public Pace() {
         uuid = UUID.randomUUID();
@@ -72,10 +62,10 @@ public class Pace {
      * <p>If the file doesn't exist, or if there are errors in
      * parsing the file, returns a new {@code Pace} object with a reference to that file, such that the pace will save
      * to that file.</p>
+     *
      * @param file File reference to the saved pace data
      * @return A {@code Pace} object, set to save to the provided file. The {@code Pace} object is an empty pace if
      * there were errors in parsing the file
-     * @since 1.0.0
      */
     public static Pace fromFile(File file) {
         try {
@@ -92,9 +82,9 @@ public class Pace {
 
     /**
      * Returns a pace object derived from a Json reader. Populates divisions and updates the division list.
+     *
      * @param reader JsonReader to read the pace data from
      * @return Pace object derived from data in the JsonReader
-     * @since 1.0.0
      */
     public static Pace fromJson(JsonReader reader) {
         Pace pace = Serialization.getGson().fromJson(reader, Pace.class);
@@ -105,8 +95,8 @@ public class Pace {
 
     /**
      * Gets a list of divisions
+     *
      * @return List of division included in the pace
-     * @since 1.0.0
      */
     public List<Division> getDivisions() {
         return divisions;
@@ -114,8 +104,8 @@ public class Pace {
 
     /**
      * Gets a list of teams
+     *
      * @return List of teams tracked in the pace
-     * @since 1.0.0
      */
     public List<Team> getTeams() {
         return teams;
@@ -123,12 +113,10 @@ public class Pace {
 
     /**
      * Wipes out all division team lists and repopulates them
-     *
-     * @since 1.0.0
      */
     public void updateDivisionLists() {
         for (Division division : divisions) {
-            division.clearTeams();
+            division.clearTeamsShallow();
         }
         for (Team team : teams) {
             if (team.getDivision() != null) {
@@ -139,8 +127,6 @@ public class Pace {
 
     /**
      * Populates each {@link Team team's} {@link Division} value based on their {@code DivisionUUID} parameter
-     *
-     * @since 1.0.0
      */
     public void populateDivisions() {
         boolean clear = App.settings.isAggressiveMemorySave();
@@ -167,8 +153,6 @@ public class Pace {
 
     /**
      * Attempts to save the Pace to the file specified
-     *
-     * @since 1.0.0
      */
     public void save() {
         if (file != null) {
@@ -188,11 +172,8 @@ public class Pace {
      * Serializes the data within this object to a writer
      *
      * @param writer Writer to serialize the data to
-     * @since 1.0.0
      */
     public void serialize(Writer writer) {
-        //Updates all
-        updateDivisionLists();
         for (Team team : teams) {
             if (team.getDivision() != divisions.get(0)) {
                 team.updateDivisionUUID();
@@ -215,7 +196,6 @@ public class Pace {
      *
      * @return File referencing the location of save-data for the pace
      * @see #file
-     * @since 1.0.0
      */
     public File getFile() {
         return file;
@@ -223,8 +203,8 @@ public class Pace {
 
     /**
      * Sets the save file
+     *
      * @param file File referencing the location of save-data for the pace
-     * @since 1.0.0
      * @see #file
      */
     public void setFile(File file) {
@@ -236,7 +216,6 @@ public class Pace {
      *
      * @return Unique Identifier of the pace
      * @see #uuid
-     * @since 1.0.0
      */
     public UUID getUUID() {
         return uuid;
@@ -247,7 +226,6 @@ public class Pace {
      *
      * @param name Name of the new division
      * @return UUID of the newly created division
-     * @since 1.0.0
      */
     public UUID newDivision(String name) {
         Division division = new Division();
@@ -260,7 +238,6 @@ public class Pace {
      * Adds a given division to the list
      *
      * @param division Division to add to the list
-     * @since 1.0.0
      */
     public void addDivision(Division division) {
         divisions.add(division);
@@ -276,9 +253,8 @@ public class Pace {
      */
     public boolean removeDivision(Division division) {
         if (divisions.indexOf(division) > 0) {
-            updateDivisionLists();
-            for (Team team : division.getTeams()) {
-                team.setDivision(divisions.get(0));
+            while (division.getTeams().size() > 0) {
+                division.getTeams().get(0).setDivision(divisions.get(0));
             }
             return divisions.remove(division);
         } else {
@@ -309,8 +285,7 @@ public class Pace {
     /**
      * Lets the pace know that there has been an update to one of its child objects
      */
-    public void pingUpdate() {
-        updateDivisionLists();
+    public void update() {
         if (App.settings.isAggressiveSave()) {
             save();
         }
@@ -321,11 +296,11 @@ public class Pace {
      *
      * @param team Team to delete
      */
-    public boolean deleteTeam(Team team) {
-        if (App.settings.doWarnOnDelete() == App.warnDelete(team.getTeamNumber())) {
+    public boolean removeTeam(Team team) {
+        if (App.settings.warnOnDelete() == App.warnDelete(team.getTeamName())) {
             boolean result = teams.remove(team);
             if (result) {
-                App.pingUpdate();
+                App.update();
             }
             return result;
         } else {
@@ -333,9 +308,22 @@ public class Pace {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public Team newTeam() {
         Team team = new Team();
+        team.setDivision(divisions.get(0));
         teams.add(team);
         return team;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Division getDefaultDivision() {
+        return divisions.get(0);
     }
 }

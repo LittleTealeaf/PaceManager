@@ -17,26 +17,41 @@ import java.text.DecimalFormat;
  */
 public class Time {
 
+    /**
+     * Number of milliseconds in a second
+     */
     private static final long MILLISECONDS_PER_SECOND = 1000;
+    /**
+     * Number of milliseconds in a minute
+     */
     private static final long MILLISECONDS_PER_MINUTE = 60 * MILLISECONDS_PER_SECOND;
+    /**
+     * Number of milliseconds in an hour
+     */
     private static final long MILLISECONDS_PER_HOUR = 60 * MILLISECONDS_PER_MINUTE;
+    /**
+     * Number of milliseconds in a day
+     */
     private static final long MILLISECONDS_PER_DAY = 24 * MILLISECONDS_PER_HOUR;
+
     /**
      * Value of Time stored as ms. The only way to specify this value is by creating a new Time using either
      * {@link #Time()} (sets {@code value = 0}) or {@link #Time(long)} (allows for specification of {@code value})
      *
      * @see #getValue()
-     * @since 1.0.0
      */
     private final long value;
 
+    /**
+     * Generated string representation of the value. Is generated upon the first call of {@link #toString()} and is
+     * referenced every time after
+     */
     private String string;
 
     /**
      * Creates a new {@code Time} object with {@code value} set to {@code 0}
      *
      * @see #Time(long)
-     * @since 1.0.0
      */
     public Time() {
         value = 0;
@@ -45,10 +60,9 @@ public class Time {
     /**
      * Creates a new {@code Time} object with the specified {@code value}
      *
-     * @param value Time in number of ms
+     * @param value Time as number of milliseconds
      * @see #Time()
      * @see #value
-     * @since 1.0.0
      */
     public Time(long value) {
         this.value = value;
@@ -82,7 +96,6 @@ public class Time {
      * @return A new {@code Time} object representing the difference between {@code start} and {@code end}
      * @see #value
      * @see #absolute()
-     * @since 1.0.0
      */
     public static Time difference(Time start, Time end) {
         return new Time(end.getValue() - start.getValue());
@@ -94,14 +107,13 @@ public class Time {
      * Similarly, if {@code value = 100}, then will also return a {@code Time} object with {@code value = 100}.
      *
      * @return A new {@code Time} object with a positive {@code value}
-     * @since 1.0.0
      */
     public Time absolute() {
         return new Time(Math.abs(value));
     }
 
     /**
-     * @since 1.0.0
+     *
      */
     public long getValue() {
         return value;
@@ -110,7 +122,6 @@ public class Time {
     /**
      * @param other
      * @return
-     * @since 1.0.0
      */
     public Time add(Time other) {
         return new Time(getValue() + other.getValue());
@@ -119,7 +130,6 @@ public class Time {
     /**
      * @param other
      * @return
-     * @since 1.0.0
      */
     public Time subtract(Time other) {
         return new Time(getValue() - other.getValue());
@@ -140,8 +150,11 @@ public class Time {
         if (string != null) {
             return string;
         } else {
+            boolean negative = value < 0;
             long val = value;
-            StringBuilder builder = new StringBuilder();
+            if (negative) {
+                val *= -1;
+            }
             while (val >= MILLISECONDS_PER_DAY) {
                 val -= MILLISECONDS_PER_DAY;
             }
@@ -160,7 +173,8 @@ public class Time {
             }
 
             DecimalFormat formatter = new DecimalFormat("00");
-            return string = formatter.format(h) + ":" + formatter.format(m) + ":" + formatter.format(s);
+            return string = (negative ? "-" : "") + formatter.format(h) + ":" + formatter.format(
+                    m) + ":" + formatter.format(s);
         }
     }
 
@@ -170,7 +184,6 @@ public class Time {
      *
      * @author Thomas Kwashnak
      * @version 1.0.0
-     * @since 1.0.0
      */
     public static class TimeSerializer implements JsonSerializer<Time> {
         public JsonElement serialize(Time time, Type type, JsonSerializationContext jsonSerializationContext) {
@@ -184,7 +197,6 @@ public class Time {
      *
      * @author Thomas Kwashnak
      * @version 1.0.0
-     * @since 1.0.0
      */
     public static class TimeDeserializer implements JsonDeserializer<Time> {
         public Time deserialize(JsonElement jsonElement, Type type,
