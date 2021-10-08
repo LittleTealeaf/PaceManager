@@ -28,6 +28,12 @@
                 <directory>resources</directory>
             </resource>
         </resources>
+        <sourceDirectory>
+            src
+        </sourceDirectory>
+        <testSourceDirectory>
+            test
+        </testSourceDirectory>
     </build>
     <dependencies>
         <dependency>
