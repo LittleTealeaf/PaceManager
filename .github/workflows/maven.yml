@@ -9,10 +9,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Set up JDK 13
+    - name: Set up JDK 16
       uses: actions/setup-java@v1
       with:
-        java-version: 13
+        java-version: 16
     - name: Build with Maven
       run: mvn -B install
     - name: Test with Maven
