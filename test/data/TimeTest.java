@@ -27,19 +27,19 @@ public class TimeTest {
     @Test
     public void timeFromMS() {
         Time[] set = generateRandomSet();
-        for(int i = 0; i < set.length; i++) {
-            Time time = new Time(set[i].getValue());
-            assertEquals(time.getValue(),set[i].getValue());
+        for (Time value : set) {
+            Time time = new Time(value.getValue());
+            assertEquals(time.getValue(), value.getValue());
         }
     }
 
     @Test
     public void timeFromString() {
         Time[] set = generateRandomSet();
-        for(int i = 0; i < set.length; i++) {
-            String string = set[i].toString();
+        for (Time value : set) {
+            String string = value.toString();
             Time time = new Time(string);
-            assertEquals(new Time(time.toString()).getValue(),time.getValue());
+            assertEquals(new Time(time.toString()).getValue(), time.getValue());
         }
     }
 
