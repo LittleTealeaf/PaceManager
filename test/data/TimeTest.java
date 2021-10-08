@@ -69,7 +69,7 @@ public class TimeTest {
         for(int i = 0; i < NUM_TRIALS; i++) {
             long val = randomTimeValue();
             Time time = new Time(val);
-            assertEquals(time.getValue(),time);
+            assertEquals(time.getValue(),val);
         }
     }
 
