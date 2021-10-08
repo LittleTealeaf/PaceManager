@@ -100,33 +100,19 @@ public class TeamTest {
     }
 
     @Test
-    public void getStartTime() {
+    public void testStartTime() {
         Team team = new Team();
         assertNull(team.getStartTime());
-        team.setStartTime(new Time());
-        assertNotNull(team.getStartTime());
-    }
-
-    @Test
-    public void setStartTime() {
-        Team team = new Team();
-        Time time = new Time(10);
+        Time time = new Time(124124);
         team.setStartTime(time);
         assertEquals(time,team.getStartTime());
     }
 
     @Test
-    public void getEndTime() {
+    public void testEndTime() {
         Team team = new Team();
         assertNull(team.getEndTime());
-        team.setEndTime(new Time());
-        assertNotNull(team.getEndTime());
-    }
-
-    @Test
-    public void setEndTime() {
-        Team team = new Team();
-        Time time = new Time(10);
+        Time time = new Time(198423);
         team.setEndTime(time);
         assertEquals(time,team.getEndTime());
     }
