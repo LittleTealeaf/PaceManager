@@ -122,6 +122,16 @@ public class TeamTest {
     @Test
     public void getElapsedTime() {
         Team team = new Team();
+
+        //Check nulls
+        assertNull(team.getElapsedTime());
+        team.setStartTime(new Time(5));
+        assertNull(team.getElapsedTime());
+        team.setStartTime(null);
+        team.setEndTime(new Time(5));
+        assertNull(team.getElapsedTime());
+
+        //Test differences
         for(int i = 0; i < TEST_CASES; i++) {
             Time a = TimeTest.randomTime(), b = TimeTest.randomTime();
             long difference = 0;
@@ -142,6 +152,7 @@ public class TeamTest {
 
     @Test
     public void hasElapsed() {
+
     }
 
     @Test
