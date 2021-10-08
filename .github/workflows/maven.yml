@@ -15,5 +15,3 @@ jobs:
         java-version: 16
     - name: Build with Maven
       run: mvn -B install
-    - name: Test with Maven
-      run: mvn -B test
