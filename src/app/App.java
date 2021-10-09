@@ -35,7 +35,6 @@ Potentially add additional thread to have a "backup" of the pace
 public class App extends Application {
 
 
-
     /**
      * The current development version of the application.
      */
@@ -238,24 +237,6 @@ public class App extends Application {
     }
 
     /**
-     * Application stage start point
-     *
-     * @see Application
-     */
-    public void start(Stage stage) {
-        appStage = stage;
-        stage.getIcons().add(Resources.APPLICATION_ICON);
-        stage.setOnCloseRequest(e -> {
-            SettingsEditor.closeRequest();
-            updateList.clear();
-            TeamEditor.closeAll();
-        });
-        stage.setMaximized(settings.isAppMaximized());
-        stage.maximizedProperty().addListener(e -> settings.setAppMaximized(stage.isMaximized()));
-        Launcher.open();
-    }
-
-    /**
      * Adds an updatable to list, executing {@link Updatable#update()} each time the application is sent an update
      *
      * @param updatable Updatable object that implements the {@link Updatable} interface
@@ -274,6 +255,24 @@ public class App extends Application {
      */
     public static boolean removeUpdatable(Updatable updatable) {
         return updateList.remove(updatable);
+    }
+
+    /**
+     * Application stage start point
+     *
+     * @see Application
+     */
+    public void start(Stage stage) {
+        appStage = stage;
+        stage.getIcons().add(Resources.APPLICATION_ICON);
+        stage.setOnCloseRequest(e -> {
+            SettingsEditor.closeRequest();
+            updateList.clear();
+            TeamEditor.closeAll();
+        });
+        stage.setMaximized(settings.isAppMaximized());
+        stage.maximizedProperty().addListener(e -> settings.setAppMaximized(stage.isMaximized()));
+        Launcher.open();
     }
 
 }

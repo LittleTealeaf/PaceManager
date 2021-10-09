@@ -75,17 +75,17 @@ public class Team implements Serializable {
      * @param division Division the team is to compete in
      */
     public void setDivision(Division division) {
-                //Removes itself from previous division
-                if (this.division != null) {
-                    this.division.removeTeam(this);
-                }
-                this.division = division;
-                if (division != null) {
-                    division.addTeam(this);
-                }
-                //Updates divisionUUID
-                if(division != null) {
-                    this.divisionUUID = division.getUUID();
+        //Removes itself from previous division
+        if (this.division != null) {
+            this.division.removeTeam(this);
+        }
+        this.division = division;
+        if (division != null) {
+            division.addTeam(this);
+        }
+        //Updates divisionUUID
+        if (division != null) {
+            this.divisionUUID = division.getUUID();
         } else {
             this.divisionUUID = null;
         }

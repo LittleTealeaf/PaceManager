@@ -2,8 +2,8 @@ package data;
 
 import app.App;
 import app.Serialization;
-import settings.Settings;
 import com.google.gson.stream.JsonReader;
+import settings.Settings;
 
 import java.io.File;
 import java.io.FileReader;
@@ -309,7 +309,6 @@ public class Pace {
     }
 
     /**
-     *
      * @return
      */
     public Team newTeam() {
@@ -320,7 +319,6 @@ public class Pace {
     }
 
     /**
-     *
      * @return
      */
     public Division getDefaultDivision() {

@@ -91,6 +91,16 @@ public class SettingsEditor extends Stage implements Updatable {
     }
 
     /**
+     * Requests the current instance to be closed, only does so if it is populated.
+     */
+    public static void closeRequest() {
+        if (openedInstance != null) {
+            openedInstance.close();
+            openedInstance = null;
+        }
+    }
+
+    /**
      * Updates the GridPane with all settings that are classified under the specified category
      *
      * @param category Filter of which settings to display
@@ -270,16 +280,6 @@ public class SettingsEditor extends Stage implements Updatable {
     public void update() {
         for (SettingNode settingNode : settingNodes) {
             settingNode.update();
-        }
-    }
-
-    /**
-     * Requests the current instance to be closed, only does so if it is populated.
-     */
-    public static void closeRequest() {
-        if (openedInstance != null) {
-            openedInstance.close();
-            openedInstance = null;
         }
     }
 }

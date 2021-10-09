@@ -24,7 +24,7 @@ public class TeamTest {
         Division division = new Division();
         assertNull(team.getDivisionUUID());
         team.setDivision(division);
-        assertEquals(team.getDivisionUUID(),division.getUUID());
+        assertEquals(team.getDivisionUUID(), division.getUUID());
     }
 
     @Test
@@ -34,7 +34,7 @@ public class TeamTest {
         team.setDivision(division);
         team.clearDivisionUUID();
         team.updateDivisionUUID();
-        assertEquals(team.getDivisionUUID(),division.getUUID());
+        assertEquals(team.getDivisionUUID(), division.getUUID());
         team.setDivision(null);
         team.clearDivisionUUID();
         assertNull(team.getDivisionUUID());
@@ -54,7 +54,7 @@ public class TeamTest {
         Team a = new Team(), b = new Team();
         assertNotNull(a.getUUID());
         assertNotNull(b.getUUID());
-        assertNotEquals(a.getUUID(),b.getUUID());
+        assertNotEquals(a.getUUID(), b.getUUID());
     }
 
     @Test
@@ -63,7 +63,7 @@ public class TeamTest {
         assertNull(team.getTeamName());
         String name = "12345";
         team.setTeamName(name);
-        assertEquals(name,team.getTeamName());
+        assertEquals(name, team.getTeamName());
         team.setTeamName(null);
         assertNull(team.getTeamName());
     }
@@ -72,7 +72,7 @@ public class TeamTest {
     public void getRiders() {
         Team team = new Team();
         assertNull(team.getRiders());
-        String[] riders = {"a","b","c"};
+        String[] riders = {"a", "b", "c"};
         team.setRiders(riders);
         assertNotNull(team.getRiders());
     }
@@ -80,9 +80,9 @@ public class TeamTest {
     @Test
     public void setRiders() {
         Team team = new Team();
-        String[] riders = {"a","b","c"};
+        String[] riders = {"a", "b", "c"};
         team.setRiders(riders);
-        assertEquals(team.getRiders(),riders);
+        assertEquals(team.getRiders(), riders);
     }
 
     @Test
@@ -98,7 +98,7 @@ public class TeamTest {
         Team team = new Team();
         String notes = "test";
         team.setNotes(notes);
-        assertEquals(team.getNotes(),notes);
+        assertEquals(team.getNotes(), notes);
     }
 
     @Test
@@ -107,7 +107,7 @@ public class TeamTest {
         assertNull(team.getStartTime());
         Time time = new Time(124124);
         team.setStartTime(time);
-        assertEquals(time,team.getStartTime());
+        assertEquals(time, team.getStartTime());
     }
 
     @Test
@@ -116,7 +116,7 @@ public class TeamTest {
         assertNull(team.getEndTime());
         Time time = new Time(198423);
         team.setEndTime(time);
-        assertEquals(time,team.getEndTime());
+        assertEquals(time, team.getEndTime());
     }
 
     @Test
@@ -132,11 +132,11 @@ public class TeamTest {
         assertNull(team.getElapsedTime());
 
         //Test differences
-        for(int i = 0; i < TEST_CASES; i++) {
+        for (int i = 0; i < TEST_CASES; i++) {
             Time a = TimeTest.randomTime(), b = TimeTest.randomTime();
-            long difference = 0;
+            long difference;
 
-            if(a.getValue() < b.getValue()) {
+            if (a.getValue() < b.getValue()) {
                 team.setStartTime(a);
                 team.setEndTime(b);
                 difference = b.subtract(a).getValue();
@@ -146,7 +146,7 @@ public class TeamTest {
                 difference = a.subtract(b).getValue();
             }
 
-            assertEquals(team.getElapsedTime().getValue(),difference);
+            assertEquals(team.getElapsedTime().getValue(), difference);
         }
     }
 
