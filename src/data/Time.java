@@ -147,6 +147,10 @@ public class Time {
         return Long.compare(getValue(), other.getValue());
     }
 
+    public boolean equals(Object other) {
+        return other instanceof Time && ((Time) other).getValue() == this.getValue();
+    }
+
     public String toString() {
         if (string != null) {
             return string;

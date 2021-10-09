@@ -34,6 +34,8 @@ Potentially add additional thread to have a "backup" of the pace
  */
 public class App extends Application {
 
+
+
     /**
      * The current development version of the application.
      */
@@ -71,6 +73,7 @@ public class App extends Application {
     public static void main(String[] args) {
         updateList = new LinkedList<>();
         launch(args);
+
     }
 
     /**
