@@ -1,5 +1,5 @@
 package settings;
 
-class SettingsEditorTest {
+public class SettingsEditorTest {
 
 }

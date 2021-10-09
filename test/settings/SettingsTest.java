@@ -1,5 +1,5 @@
 package settings;
 
-class SettingsTest {
+public class SettingsTest {
 
 }

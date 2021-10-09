@@ -1,5 +1,5 @@
 package app;
 
-class LauncherTest {
+public class LauncherTest {
 
 }

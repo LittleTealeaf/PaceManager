@@ -1,5 +1,5 @@
 package settings;
 
-class SettingNodeTest {
+public class SettingNodeTest {
 
 }

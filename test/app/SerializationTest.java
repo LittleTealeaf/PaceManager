@@ -1,5 +1,5 @@
 package app;
 
-class SerializationTest {
+public class SerializationTest {
 
 }

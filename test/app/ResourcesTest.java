@@ -1,5 +1,5 @@
 package app;
 
-class ResourcesTest {
+public class ResourcesTest {
 
 }

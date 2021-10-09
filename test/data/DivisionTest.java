@@ -1,5 +1,5 @@
 package data;
 
-class DivisionTest {
+public class DivisionTest {
 
 }

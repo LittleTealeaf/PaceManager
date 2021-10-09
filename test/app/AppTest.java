@@ -1,5 +1,5 @@
 package app;
 
-class AppTest {
+public class AppTest {
 
 }
