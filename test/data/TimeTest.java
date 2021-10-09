@@ -6,8 +6,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TimeTest {
 
+    /**
+     * The number of times each "repeating" test case should execute for
+     */
     private static final int NUM_TRIALS = 1024;
 
+    /**
+     * Creates a random Time object using {@link #randomTimeValue()}
+     * @return A new {@code Time} object with a random value as stated in {@link #randomTimeValue()}
+     */
     public static Time randomTime() {
         return new Time((long) (86400000L * Math.random()));
     }
@@ -22,7 +29,8 @@ public class TimeTest {
     }
 
     /**
-     * Tests the {@link Time#Time(long)} constructor. Creates random values using {@link #randomTimeValue()}, creates
+     * Tests the {@link Time#Time(long)} constructor. Executes {@link #NUM_TRIALS} times.
+     * <br>Creates random values using {@link #randomTimeValue()}, creates
      * a {@link Time} object using the {@code Time(long)} constructor, and checks if {@link Time#getValue()} is equal
      * to the original value
      */
@@ -34,6 +42,14 @@ public class TimeTest {
         }
     }
 
+    /**
+     * Tests the {@link Time#Time(String)} constructor. Executes {@link #NUM_TRIALS} times.
+     * <ul><li>Creates a new time value using the {@link #randomTimeValue()} constructor, pruning off the last 3 digits,
+     * which are not represented in {@link Time#toString()}</li>
+     * <li>Creates a new time object using the random value. </li>
+     * <li>Checks if the original value is equal to the value from creating a time object using the previous time
+     * object's {@link Time#toString()} method</li></ul>
+     */
     @Test
     public void timeFromString() {
        for(int i = 0; i < NUM_TRIALS; i++) {
@@ -43,12 +59,17 @@ public class TimeTest {
        }
     }
 
+    /**
+     * Tests the {@link Time#difference(Time, Time)} constructor in cases where one or more of the parameters is {@code null}.
+     * Tests when the first, second, and both parameters are null.
+     */
     @Test
     public void differenceNull() {
         assertNull(Time.difference(null,null));
         assertNull(Time.difference(randomTime(),null));
         assertNull(Time.difference(null,randomTime()));
     }
+
 
     @Test
     public void difference() {
