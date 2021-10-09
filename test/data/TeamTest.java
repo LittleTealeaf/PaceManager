@@ -1,6 +1,7 @@
 package data;
 
 import org.junit.jupiter.api.Test;
+import test.RandGen;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -133,7 +134,7 @@ public class TeamTest {
 
         //Test differences
         for (int i = 0; i < TEST_CASES; i++) {
-            Time a = TimeTest.randomTime(), b = TimeTest.randomTime();
+            Time a = RandGen.randomTime(), b = RandGen.randomTime();
             long difference;
 
             if (a.getValue() < b.getValue()) {
