@@ -2,7 +2,7 @@ package data;
 
 import org.junit.jupiter.api.Test;
 import test.Config;
-import test.RandGen;
+import test.Util;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -116,7 +116,7 @@ public class TeamTest {
     public void testEndTime() {
         Team team = new Team();
         assertNull(team.getEndTime());
-        Time time = RandGen.randomTime();
+        Time time = Util.randomTime();
         team.setEndTime(time);
         assertEquals(time, team.getEndTime());
     }
@@ -135,7 +135,7 @@ public class TeamTest {
 
         //Test differences
         for (int i = 0; i < NUM_TRIALS; i++) {
-            Time a = RandGen.randomTime(), b = RandGen.randomTime();
+            Time a = Util.randomTime(), b = Util.randomTime();
             long difference;
 
             if (a.getValue() < b.getValue()) {
@@ -156,9 +156,9 @@ public class TeamTest {
     public void hasElapsed() {
         Team team = new Team();
         assertFalse(team.hasElapsed());
-        team.setStartTime(RandGen.randomTime());
+        team.setStartTime(Util.randomTime());
         assertFalse(team.hasElapsed());
-        team.setEndTime(RandGen.randomTime());;
+        team.setEndTime(Util.randomTime());;
         assertTrue(team.hasElapsed());
     }
 
@@ -170,9 +170,9 @@ public class TeamTest {
         team.setDivision(division);
         assertNull(team.getElapsedTime());
         for(int i = 0; i < NUM_TRIALS; i++) {
-            division.setGoalTime(RandGen.randomTime());
-            team.setStartTime(RandGen.randomTime());
-            team.setEndTime(new Time(team.getStartTime().getValue() + RandGen.randomTimeValue()));
+            division.setGoalTime(Util.randomTime());
+            team.setStartTime(Util.randomTime());
+            team.setEndTime(new Time(team.getStartTime().getValue() + Util.randomTimeValue()));
             Time expected = division.getGoalTime().subtract(team.getElapsedTime()).absolute();
             assertEquals(expected,team.getDistanceToGoal());
         }
@@ -192,9 +192,9 @@ public class TeamTest {
     public void isCompleted() {
         Team team = new Team();
         assertFalse(team.isCompleted());
-        team.setStartTime(RandGen.randomTime());
+        team.setStartTime(Util.randomTime());
         assertFalse(team.isCompleted());
-        team.setEndTime(RandGen.randomTime());
+        team.setEndTime(Util.randomTime());
         assertTrue(team.isCompleted());
         team.setExcluded(true);
         assertFalse(team.isCompleted());
@@ -203,7 +203,7 @@ public class TeamTest {
     public static String[] randomRiders(int length) {
         String[] riders = new String[length];
         for(int i = 0; i < length; i++) {
-            riders[i] = RandGen.randomFullName();
+            riders[i] = Util.randomFullName();
         }
         return riders;
     }

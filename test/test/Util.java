@@ -5,11 +5,12 @@ import app.Serialization;
 import com.google.gson.stream.JsonReader;
 import data.Time;
 
+import java.io.File;
 import java.io.InputStreamReader;
 import java.io.Serial;
 import java.util.Scanner;
 
-public class RandGen {
+public class Util {
 
     private static String[] names;
 
