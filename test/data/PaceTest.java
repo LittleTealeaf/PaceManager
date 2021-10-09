@@ -5,77 +5,79 @@ import app.Resources;
 import com.google.gson.stream.JsonReader;
 import org.junit.jupiter.api.Test;
 import settings.Settings;
+import test.Util;
 
-import java.io.InputStreamReader;
+import java.io.*;
+import java.nio.file.StandardCopyOption;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PaceTest {
+public class PaceTest {
 
     @Test
-    void fromFile() {
+    public void fromFile() throws IOException {
 
     }
 
     @Test
-    void fromJson() {
+    public void fromJson() {
         assertNotNull(Pace.fromJson(new JsonReader(new InputStreamReader(Resources.getResource("/pace.json")))));
     }
 
     @Test
-    void getDivisions() {
+    public void getDivisions() {
     }
 
     @Test
-    void getTeams() {
+    public void getTeams() {
     }
 
     @Test
-    void updateDivisionLists() {
+    public void updateDivisionLists() {
     }
 
     @Test
-    void populateDivisions() {
+    public void populateDivisions() {
     }
 
     @Test
-    void save() {
+    public void save() {
     }
 
     @Test
-    void serialize() {
+    public void serialize() {
     }
 
     @Test
-    void getFile() {
+    public void getFile() {
     }
 
     @Test
-    void getUUID() {
+    public void getUUID() {
     }
 
     @Test
-    void newDivision() {
+    public void newDivision() {
     }
 
     @Test
-    void addDivision() {
+    public void addDivision() {
     }
 
     @Test
-    void removeDivision() {
+    public void removeDivision() {
     }
 
     @Test
-    void setDefaultDivision() {
+    public void setDefaultDivision() {
     }
 
     @Test
-    void update() {
+    public void update() {
     }
 
     @Test
-    void removeTeam() {
+    public void removeTeam() {
         Pace pace = new Pace();
         App.openedPace = pace;
         Team team = pace.newTeam();
@@ -87,7 +89,7 @@ class PaceTest {
     }
 
     @Test
-    void newTeam() {
+    public void newTeam() {
         Pace pace = new Pace();
         Team team = pace.newTeam();
         assertTrue(pace.getTeams().contains(team));
@@ -95,7 +97,7 @@ class PaceTest {
     }
 
     @Test
-    void getDefaultDivision() {
+    public void getDefaultDivision() {
         Pace pace = new Pace();
         assertNotNull(pace.getDefaultDivision());
         Division division = new Division();

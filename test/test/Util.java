@@ -6,13 +6,16 @@ import com.google.gson.stream.JsonReader;
 import data.Time;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Serial;
+import java.nio.file.Files;
 import java.util.Scanner;
 
 public class Util {
 
     private static String[] names;
+    private static File testFile;
 
     /**
      * Creates a random Time object using {@link #randomTimeValue()}
