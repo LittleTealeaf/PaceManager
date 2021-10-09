@@ -5,6 +5,7 @@ import app.Resources;
 import com.google.gson.stream.JsonReader;
 import org.junit.jupiter.api.Test;
 import settings.Settings;
+import test.Config;
 import test.Util;
 
 import java.io.*;
@@ -26,10 +27,25 @@ public class PaceTest {
 
     @Test
     public void getDivisions() {
+        Pace pace = new Pace();
+        assertNotNull(pace.getDivisions());
+        assertEquals(1,pace.getDivisions().size());
+        Division division = new Division();
+        pace.addDivision(division);
+        assertEquals(2,pace.getDivisions().size());
+        assertEquals(division,pace.getDivisions().get(1));
     }
 
     @Test
     public void getTeams() {
+        Pace pace = new Pace();
+        Team[] teams = new Team[Config.ARRAY_SIZE];
+        for(int i = 0; i < Config.ARRAY_SIZE; i++) {
+            teams[i] = pace.newTeam();
+        }
+        for(int i = 0; i < teams.length; i++) {
+            assertTrue(pace.getTeams().contains(teams[i]));
+        }
     }
 
     @Test
@@ -68,9 +84,6 @@ public class PaceTest {
     public void removeDivision() {
     }
 
-    @Test
-    public void setDefaultDivision() {
-    }
 
     @Test
     public void update() {
@@ -97,7 +110,7 @@ public class PaceTest {
     }
 
     @Test
-    public void getDefaultDivision() {
+    public void testDefaultDivision() {
         Pace pace = new Pace();
         assertNotNull(pace.getDefaultDivision());
         Division division = new Division();
