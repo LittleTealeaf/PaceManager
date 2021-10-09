@@ -3,7 +3,8 @@ package data;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static test.RandGen.randomTimeValue;
+
+import test.Config;
 import test.RandGen;
 
 public class TimeTest {
@@ -11,7 +12,7 @@ public class TimeTest {
     /**
      * The number of times each "repeating" test case should execute for
      */
-    private static final int NUM_TRIALS = 1024;
+    private static final int NUM_TRIALS = Config.NUM_TRIALS;
 
 
 
@@ -24,7 +25,7 @@ public class TimeTest {
     @Test
     public void timeFromMS() {
         for (int i = 0; i < NUM_TRIALS; i++) {
-            long val = randomTimeValue();
+            long val = RandGen.randomTimeValue();
             assertEquals(new Time(val).getValue(), val);
         }
     }
@@ -40,7 +41,7 @@ public class TimeTest {
     @Test
     public void timeFromString() {
         for (int i = 0; i < NUM_TRIALS; i++) {
-            long val = ((new Time(randomTimeValue()).getValue()) / 1000) * 1000;
+            long val = ((new Time(RandGen.randomTimeValue()).getValue()) / 1000) * 1000;
             Time testTime = new Time(val);
             assertEquals(val, new Time(testTime.toString()).getValue());
         }
@@ -61,7 +62,7 @@ public class TimeTest {
     @Test
     public void difference() {
         for (int i = 0; i < NUM_TRIALS; i++) {
-            long a = randomTimeValue(), b = randomTimeValue();
+            long a = RandGen.randomTimeValue(), b = RandGen.randomTimeValue();
             long difference = b - a;
             assertEquals(Time.difference(new Time(a), new Time(b)).getValue(), difference);
         }
@@ -70,7 +71,7 @@ public class TimeTest {
     @Test
     public void absolute() {
         for (int i = 0; i < NUM_TRIALS; i++) {
-            long val = randomTimeValue();
+            long val = RandGen.randomTimeValue();
             assertEquals(new Time(val * (i % 2 == 0 ? -1 : 1)).absolute().getValue(), val);
         }
     }
@@ -78,7 +79,7 @@ public class TimeTest {
     @Test
     public void getValue() {
         for (int i = 0; i < NUM_TRIALS; i++) {
-            long val = randomTimeValue();
+            long val = RandGen.randomTimeValue();
             Time time = new Time(val);
             assertEquals(time.getValue(), val);
         }
@@ -87,7 +88,7 @@ public class TimeTest {
     @Test
     public void add() {
         for (int i = 0; i < NUM_TRIALS; i++) {
-            long a = randomTimeValue(), b = randomTimeValue();
+            long a = RandGen.randomTimeValue(), b = RandGen.randomTimeValue();
             long sum = a + b;
             assertEquals(new Time(a).add(new Time(b)).getValue(), sum);
         }
@@ -95,8 +96,9 @@ public class TimeTest {
 
     @Test
     public void subtract() {
+        assertNull(RandGen.randomTime().subtract(null));
         for (int i = 0; i < NUM_TRIALS; i++) {
-            long a = randomTimeValue(), b = randomTimeValue();
+            long a = RandGen.randomTimeValue(), b = RandGen.randomTimeValue();
             long difference = a - b;
             assertEquals(new Time(a).subtract(new Time(b)).getValue(), difference);
         }
@@ -105,7 +107,7 @@ public class TimeTest {
     @Test
     public void compareTo() {
         for (int i = 0; i < NUM_TRIALS; i++) {
-            long a = randomTimeValue(), b = randomTimeValue();
+            long a = RandGen.randomTimeValue(), b = RandGen.randomTimeValue();
             assertEquals(new Time(a).compareTo(new Time(b)), a < b ? -1 : 1);
         }
     }
@@ -113,7 +115,7 @@ public class TimeTest {
     @Test
     public void testEquals() {
         for (int i = 0; i < NUM_TRIALS; i++) {
-            long val = randomTimeValue();
+            long val = RandGen.randomTimeValue();
             assertEquals(new Time(val), new Time(val));
             assertNotEquals(new Time(val), new Time(val + 1));
         }

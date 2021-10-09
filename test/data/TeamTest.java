@@ -1,13 +1,14 @@
 package data;
 
 import org.junit.jupiter.api.Test;
+import test.Config;
 import test.RandGen;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TeamTest {
 
-    private static final int TEST_CASES = 1024;
+    private static final int NUM_TRIALS = Config.NUM_TRIALS;
 
     @Test
     public void testDivision() {
@@ -115,7 +116,7 @@ public class TeamTest {
     public void testEndTime() {
         Team team = new Team();
         assertNull(team.getEndTime());
-        Time time = new Time(198423);
+        Time time = RandGen.randomTime();
         team.setEndTime(time);
         assertEquals(time, team.getEndTime());
     }
@@ -133,7 +134,7 @@ public class TeamTest {
         assertNull(team.getElapsedTime());
 
         //Test differences
-        for (int i = 0; i < TEST_CASES; i++) {
+        for (int i = 0; i < NUM_TRIALS; i++) {
             Time a = RandGen.randomTime(), b = RandGen.randomTime();
             long difference;
 
@@ -153,50 +154,92 @@ public class TeamTest {
 
     @Test
     public void hasElapsed() {
-
+        Team team = new Team();
+        assertFalse(team.hasElapsed());
+        team.setStartTime(RandGen.randomTime());
+        assertFalse(team.hasElapsed());
+        team.setEndTime(RandGen.randomTime());;
+        assertTrue(team.hasElapsed());
     }
 
     @Test
     public void getDistanceToGoal() {
+        Team team = new Team();
+        assertNull(team.getElapsedTime());
+        Division division = new Division();
+        team.setDivision(division);
+        assertNull(team.getElapsedTime());
+        for(int i = 0; i < NUM_TRIALS; i++) {
+            division.setGoalTime(RandGen.randomTime());
+            team.setStartTime(RandGen.randomTime());
+            team.setEndTime(new Time(team.getStartTime().getValue() + RandGen.randomTimeValue()));
+            Time expected = division.getGoalTime().subtract(team.getElapsedTime()).absolute();
+            assertEquals(expected,team.getDistanceToGoal());
+        }
     }
 
     @Test
-    public void isExcluded() {
-    }
-
-    @Test
-    public void setExcluded() {
+    public void excluded() {
+        Team team = new Team();
+        assertFalse(team.isExcluded());
+        team.setExcluded(true);
+        assertTrue(team.isExcluded());
+        team.setExcluded(false);
+        assertFalse(team.isExcluded());
     }
 
     @Test
     public void isCompleted() {
+        Team team = new Team();
+        assertFalse(team.isCompleted());
+        team.setStartTime(RandGen.randomTime());
+        assertFalse(team.isCompleted());
+        team.setEndTime(RandGen.randomTime());
+        assertTrue(team.isCompleted());
+        team.setExcluded(true);
+        assertFalse(team.isCompleted());
+    }
+
+    public static String[] randomRiders(int length) {
+        String[] riders = new String[length];
+        for(int i = 0; i < length; i++) {
+            riders[i] = RandGen.randomFullName();
+        }
+        return riders;
     }
 
     @Test
     public void getNumberOfRiders() {
+        Team team = new Team();
+        for(int i = 0; i < NUM_TRIALS; i++) {
+            int expected = (int) (Math.random() * 50);
+            team.setRiders(randomRiders(expected));
+            assertEquals(expected,team.getNumberOfRiders());
+        }
     }
 
+    //TODO test
     @Test
     public void getRidersString() {
     }
 
+    //TODO test
     @Test
     public void getStartString() {
     }
 
+    //TODO test
     @Test
     public void getEndString() {
     }
 
+    //TODO test
     @Test
     public void getElapsedString() {
     }
 
+    //TODO test
     @Test
     public void getNotesDisplay() {
-    }
-
-    @Test
-    public void testToString() {
     }
 }

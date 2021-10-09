@@ -133,7 +133,7 @@ public class Time {
      * @return
      */
     public Time subtract(Time other) {
-        return new Time(getValue() - other.getValue());
+        return other != null ? new Time(getValue() - other.getValue()) : null;
     }
 
     /**

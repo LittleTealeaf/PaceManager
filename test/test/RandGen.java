@@ -1,8 +1,18 @@
 package test;
 
+import app.Resources;
+import app.Serialization;
+import com.google.gson.stream.JsonReader;
 import data.Time;
 
+import java.io.InputStreamReader;
+import java.io.Serial;
+import java.util.Scanner;
+
 public class RandGen {
+
+    private static String[] names;
+
     /**
      * Creates a random Time object using {@link #randomTimeValue()}
      *
@@ -20,5 +30,20 @@ public class RandGen {
      */
     public static long randomTimeValue() {
         return (long) (86400000L * Math.random());
+    }
+
+    private static void loadNames() {
+        names = Serialization.getGson().fromJson(new JsonReader(new InputStreamReader(Resources.getResource("/names.json"))),String[].class);
+    }
+
+    public static String randomName() {
+        if(names == null) {
+            loadNames();
+        }
+        return names[(int) (Math.random() * names.length)];
+    }
+
+    public static String randomFullName() {
+        return new StringBuilder(randomName()).append(" ").append(randomName()).toString();
     }
 }

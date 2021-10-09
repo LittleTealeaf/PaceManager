@@ -42,7 +42,7 @@ public class App extends Application {
     /**
      * Registered instance of the Settings object. Initialized on launch.
      */
-    public static final Settings settings = Resources.getSettings();
+    public static Settings settings = Resources.getSettings();
     /**
      * The currently opened Pace. Only one Pace is opened at a time. Used as a reference for any code reading or
      * modifying the pace's state.
@@ -140,7 +140,7 @@ public class App extends Application {
      * Prompts the user to verify whether they want to delete an item
      *
      * @param name Display Name of the item the user may want to delete
-     * @return {@code True} if the user decided to delete, {@code false} otherwise.
+     * @return {@code True} if the user decided to delete, {@code false} otherwise.<br>If {@link App#settings} is {@code null}
      */
     public static boolean warnDelete(String name) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
