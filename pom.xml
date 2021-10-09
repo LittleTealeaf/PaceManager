@@ -27,6 +27,7 @@
             <resource>
                 <directory>resources</directory>
             </resource>
+
         </resources>
         <sourceDirectory>
             src
@@ -34,6 +35,13 @@
         <testSourceDirectory>
             test
         </testSourceDirectory>
+        <testResources>
+            <testResource>
+                <directory>
+                    resources_tests
+                </directory>
+            </testResource>
+        </testResources>
     </build>
     <dependencies>
         <dependency>
