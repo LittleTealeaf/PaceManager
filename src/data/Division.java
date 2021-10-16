@@ -35,7 +35,7 @@ public class Division {
     /**
      * Unique identifier of this division object. This is how Teams store which division they are in during serialization
      * without referencing the whole object.
-     * @see Team#getDivisionUUID() 
+     * @see Team#getDivisionUUID()
      */
     private final UUID uuid;
     /**
