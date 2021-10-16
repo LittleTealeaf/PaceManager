@@ -93,12 +93,13 @@ public class Time {
      *
      * @param start the first {@code Time}, typically less in value than {@code end}
      * @param end   the second {@code Time}, typically greater in value than {@code start}
-     * @return A new {@code Time} object representing the difference between {@code start} and {@code end}
+     * @return A new {@code Time} object representing the difference between {@code start} and {@code end}. If either
+     * or both start and end are null, returns null
      * @see #value
      * @see #absolute()
      */
     public static Time difference(Time start, Time end) {
-        return new Time(end.getValue() - start.getValue());
+        return start == null || end == null ? null : new Time(end.getValue() - start.getValue());
     }
 
     /**
@@ -132,7 +133,7 @@ public class Time {
      * @return
      */
     public Time subtract(Time other) {
-        return new Time(getValue() - other.getValue());
+        return other != null ? new Time(getValue() - other.getValue()) : null;
     }
 
     /**
@@ -144,6 +145,10 @@ public class Time {
      */
     public int compareTo(Time other) {
         return Long.compare(getValue(), other.getValue());
+    }
+
+    public boolean equals(Object other) {
+        return other instanceof Time && ((Time) other).getValue() == this.getValue();
     }
 
     public String toString() {

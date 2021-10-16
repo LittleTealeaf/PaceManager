@@ -34,6 +34,7 @@ Potentially add additional thread to have a "backup" of the pace
  */
 public class App extends Application {
 
+
     /**
      * The current development version of the application.
      */
@@ -41,7 +42,7 @@ public class App extends Application {
     /**
      * Registered instance of the Settings object. Initialized on launch.
      */
-    public static final Settings settings = Resources.getSettings();
+    public static Settings settings = Resources.getSettings();
     /**
      * The currently opened Pace. Only one Pace is opened at a time. Used as a reference for any code reading or
      * modifying the pace's state.
@@ -71,6 +72,7 @@ public class App extends Application {
     public static void main(String[] args) {
         updateList = new LinkedList<>();
         launch(args);
+
     }
 
     /**
@@ -138,7 +140,7 @@ public class App extends Application {
      * Prompts the user to verify whether they want to delete an item
      *
      * @param name Display Name of the item the user may want to delete
-     * @return {@code True} if the user decided to delete, {@code false} otherwise.
+     * @return {@code True} if the user decided to delete, {@code false} otherwise.<br>If {@link App#settings} is {@code null}
      */
     public static boolean warnDelete(String name) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -235,24 +237,6 @@ public class App extends Application {
     }
 
     /**
-     * Application stage start point
-     *
-     * @see Application
-     */
-    public void start(Stage stage) {
-        appStage = stage;
-        stage.getIcons().add(Resources.APPLICATION_ICON);
-        stage.setOnCloseRequest(e -> {
-            SettingsEditor.closeRequest();
-            updateList.clear();
-            TeamEditor.closeAll();
-        });
-        stage.setMaximized(settings.isAppMaximized());
-        stage.maximizedProperty().addListener(e -> settings.setAppMaximized(stage.isMaximized()));
-        Launcher.open();
-    }
-
-    /**
      * Adds an updatable to list, executing {@link Updatable#update()} each time the application is sent an update
      *
      * @param updatable Updatable object that implements the {@link Updatable} interface
@@ -271,6 +255,24 @@ public class App extends Application {
      */
     public static boolean removeUpdatable(Updatable updatable) {
         return updateList.remove(updatable);
+    }
+
+    /**
+     * Application stage start point
+     *
+     * @see Application
+     */
+    public void start(Stage stage) {
+        appStage = stage;
+        stage.getIcons().add(Resources.APPLICATION_ICON);
+        stage.setOnCloseRequest(e -> {
+            SettingsEditor.closeRequest();
+            updateList.clear();
+            TeamEditor.closeAll();
+        });
+        stage.setMaximized(settings.isAppMaximized());
+        stage.maximizedProperty().addListener(e -> settings.setAppMaximized(stage.isMaximized()));
+        Launcher.open();
     }
 
 }

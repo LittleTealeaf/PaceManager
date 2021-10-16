@@ -64,6 +64,14 @@ public class TeamEditor extends Stage implements Updatable {
         show();
     }
 
+    public static void closeAll() {
+        while (EDITORS.size() > 0) {
+            TeamEditor editor = EDITORS.get(0);
+            EDITORS.remove(editor);
+            editor.close();
+        }
+    }
+
     public void update() {
         //update name
         setTitle(team.getTeamName() != null && !team.getTeamName().equals("") ? "Editing Team " + team
@@ -210,14 +218,6 @@ public class TeamEditor extends Stage implements Updatable {
         pane.setRight(rightBox);
 
         return pane;
-    }
-
-    public static void closeAll() {
-        while (EDITORS.size() > 0) {
-            TeamEditor editor = EDITORS.get(0);
-            EDITORS.remove(editor);
-            editor.close();
-        }
     }
 
     public Team getTeam() {

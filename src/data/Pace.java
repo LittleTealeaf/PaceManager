@@ -2,8 +2,8 @@ package data;
 
 import app.App;
 import app.Serialization;
-import settings.Settings;
 import com.google.gson.stream.JsonReader;
+import settings.Settings;
 
 import java.io.File;
 import java.io.FileReader;
@@ -293,23 +293,28 @@ public class Pace {
 
     /**
      * Prompts the user to delete if settings require
-     *
      * @param team Team to delete
+     * @return SOMETHING
      */
-    public boolean removeTeam(Team team) {
-        if (App.settings.warnOnDelete() == App.warnDelete(team.getTeamName())) {
-            boolean result = teams.remove(team);
-            if (result) {
-                App.update();
-            }
-            return result;
-        } else {
-            return false;
-        }
+    public boolean promptRemoveTeam(Team team) {
+        return (!App.settings.warnOnDelete() || App.warnDelete(team.getTeamName())) && removeTeam(team);
     }
 
     /**
      *
+     *
+     * @param team Team to delete
+     * @return SOMETHING
+     */
+    public boolean removeTeam(Team team) {
+        boolean result = teams.remove(team);
+        if (result) {
+            App.update();
+        }
+        return result;
+    }
+
+    /**
      * @return
      */
     public Team newTeam() {
@@ -320,7 +325,6 @@ public class Pace {
     }
 
     /**
-     *
      * @return
      */
     public Division getDefaultDivision() {
