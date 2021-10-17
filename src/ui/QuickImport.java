@@ -102,5 +102,4 @@ public class QuickImport extends Stage {
         }
         App.update();
     }
-
 }

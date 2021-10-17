@@ -55,5 +55,4 @@ public class Serialization {
         return new GsonBuilder().excludeFieldsWithModifiers(java.lang.reflect.Modifier.TRANSIENT).registerTypeAdapter(Time.class, new Time.TimeSerializer()).registerTypeAdapter(
                 Time.class, new Time.TimeDeserializer()).setPrettyPrinting().create();
     }
-
 }

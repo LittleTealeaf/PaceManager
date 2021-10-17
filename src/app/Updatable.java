@@ -15,5 +15,4 @@ public interface Updatable {
      * and should contain commands that updates values within the object
      */
     void update();
-
 }

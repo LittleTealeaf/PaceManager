@@ -75,5 +75,4 @@ public abstract class SettingNode implements Updatable {
     public String getName() {
         return name;
     }
-
 }

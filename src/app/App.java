@@ -71,7 +71,6 @@ public class App extends Application {
     public static void main(String[] args) {
         updateList = new LinkedList<>();
         launch(args);
-
     }
 
     /**
@@ -272,5 +271,4 @@ public class App extends Application {
         stage.maximizedProperty().addListener(e -> settings.setAppMaximized(stage.isMaximized()));
         Launcher.open();
     }
-
 }

@@ -140,7 +140,6 @@ public class SettingsEditor extends Stage implements Updatable {
                     public Node getNode() {
                         return field;
                     }
-
                 }, new SettingNode("Aggressive Save", Category.OPTIMIZATIONS, Category.FILES, Category.APPLICATION) {
             CheckBox checkBox;
 
@@ -275,5 +274,4 @@ public class SettingsEditor extends Stage implements Updatable {
             openedInstance = null;
         }
     }
-
 }

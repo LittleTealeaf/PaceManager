@@ -12,5 +12,4 @@ public class WinnersView extends TabPane implements Updatable {
     public void update() {
 
     }
-
 }

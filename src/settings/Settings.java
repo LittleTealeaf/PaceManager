@@ -452,5 +452,4 @@ public class Settings {
     public void setMultipleTeamsEditing(Boolean multipleTeamsEditing) {
         this.multipleTeamsEditing = multipleTeamsEditing;
     }
-
 }

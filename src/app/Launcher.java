@@ -148,7 +148,6 @@ public class Launcher {
         buttons[4].setOnAction(e -> System.exit(0));
 
         return buttons;
-
     }
 
     /**
@@ -163,5 +162,4 @@ public class Launcher {
         stage.close();
         stage = null;
     }
-
 }

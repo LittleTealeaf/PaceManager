@@ -59,7 +59,6 @@ public class TeamTable extends TableView<Team> implements Updatable {
         times.getColumns().addAll(columnFactory("Start", "startString"), columnFactory("End", "endString"), columnFactory("Elapsed", "elapsedString"));
 
         getColumns().addAll(columnFactory("Division", "division"), columnFactory("Team", "teamName"), columnFactory("Riders", "ridersString"), times, columnFactory("Notes", "notesDisplay"));
-
     }
 
     private ContextMenu createContextMenu() {
@@ -99,7 +98,5 @@ public class TeamTable extends TableView<Team> implements Updatable {
     public interface TeamUpdater {
 
         List<Team> getTeams();
-
     }
-
 }

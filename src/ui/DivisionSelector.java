@@ -80,5 +80,4 @@ public class DivisionSelector extends ComboBox<String> {
         }
         //TODO add an else clause that manually adds division to the list
     }
-
 }

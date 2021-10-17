@@ -221,5 +221,4 @@ public class TeamEditor extends Stage implements Updatable {
     public Team getTeam() {
         return team;
     }
-
 }

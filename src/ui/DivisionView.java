@@ -79,7 +79,6 @@ public class DivisionView extends TabPane implements Updatable {
             if (selIndex > 0) {
                 getSelectionModel().select(selIndex);
             }
-
         } else {
             for (DivisionTab divisionTab : divisionTabs) {
                 divisionTab.update();
@@ -132,7 +131,6 @@ public class DivisionView extends TabPane implements Updatable {
                 }
             }
         }
-
     }
 
     private static class DivisionTab extends Tab implements Updatable {
@@ -203,7 +201,6 @@ public class DivisionView extends TabPane implements Updatable {
             }
             divisionPanel.update();
         }
-
     }
 
     private static class DivisionPanel implements Updatable {
@@ -278,7 +275,5 @@ public class DivisionView extends TabPane implements Updatable {
                     name, goalTime, averageTime, deviationTime, deviationPercent
             };
         }
-
     }
-
 }

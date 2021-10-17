@@ -116,7 +116,6 @@ public class Pace {
             if (team.getDivisionUUID() == null) {
                 team.setDivision(divisions.get(0));
             }
-
         }
     }
 
@@ -346,5 +345,4 @@ public class Pace {
     public Division getDefaultDivision() {
         return divisions.get(0);
     }
-
 }

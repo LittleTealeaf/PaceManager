@@ -200,7 +200,6 @@ public class Time {
         public JsonElement serialize(Time time, Type type, JsonSerializationContext jsonSerializationContext) {
             return new JsonPrimitive(time.getValue());
         }
-
     }
 
     /**
@@ -217,7 +216,5 @@ public class Time {
                                ) throws JsonParseException {
             return new Time(jsonElement.getAsLong());
         }
-
     }
-
 }
