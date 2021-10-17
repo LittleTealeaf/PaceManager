@@ -1,5 +1,6 @@
 package app;
 
+import exceptions.ExceptionAlert;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -158,8 +159,12 @@ public class Launcher {
      * @see App#open(File)
      */
     private static void openPace(File file) {
-        App.open(file);
-        stage.close();
-        stage = null;
+        try {
+            App.open(file);
+            stage.close();
+            stage = null;
+        } catch (Exception e) {
+            new ExceptionAlert(e);
+        }
     }
 }

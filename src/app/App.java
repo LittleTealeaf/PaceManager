@@ -2,6 +2,7 @@ package app;
 
 import com.google.gson.stream.JsonReader;
 import data.Pace;
+import exceptions.ExceptionAlert;
 import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -61,7 +62,8 @@ public class App extends Application {
      */
     private static List<Updatable> updateList;
 
-    //TODO include launch arguments for immediately opening a pace
+    private static String[] launchArguments;
+
 
     /**
      * Application Launch Point
@@ -70,17 +72,16 @@ public class App extends Application {
      */
     public static void main(String... args) {
         updateList = new LinkedList<>();
-        if(args != null && args[0] != null) {
-            try {
-                openedPace = Pace.fromFile(new File(args[0]));
-            }catch(Exception e) {
-                e.printStackTrace();
-//                TODO: implement a error message. This could also add the reporting function
-                System.out.println("Could not open file: '" + args[0] + "'");
-                //
-            }
-        }
+        launchArguments = args == null ? new String[0] : args;
         launch(args);
+    }
+
+    public static void openIgnoreException(File file) {
+        try {
+            open(file);
+        } catch (Exception e) {
+            new ExceptionAlert(e);
+        }
     }
 
     /**
@@ -90,17 +91,10 @@ public class App extends Application {
      *
      * @param file Pace File to attempt to open. File extension does not matter.
      */
-    public static void open(File file) {
-        if (file != null && file.exists()) {
-            openedPace = Pace.fromFile(file);
-            appStage.setTitle(file.getName());
-        } else {
-            openedPace = pace2021();
-        }
-
+    public static void open(File file) throws Exception {
+        openedPace = file == null ? new Pace() : Pace.fromFile(file);
         appStage.setScene(generateScene());
         openedPace.save();
-
         appStage.show();
     }
 
@@ -143,7 +137,12 @@ public class App extends Application {
      * @since 1.0.0-development
      */
     private static Pace pace2021() {
-        return Pace.fromJson(new JsonReader(new InputStreamReader(Resources.getResource("/dev/pace2021.json"))));
+        try {
+            return Pace.fromJson(new JsonReader(new InputStreamReader(Resources.getResource("/dev/pace2021.json"))));
+        } catch (Exception exception) {
+            new ExceptionAlert(exception);
+            return null;
+        }
     }
 
     /**
@@ -189,7 +188,7 @@ public class App extends Application {
         openPace.setOnAction(e -> {
             File file = Resources.promptOpenPace();
             if (file != null) {
-                open(file);
+                openIgnoreException(file);
             }
         });
 
@@ -280,11 +279,10 @@ public class App extends Application {
         stage.setMaximized(settings.isAppMaximized());
         stage.maximizedProperty().addListener(e -> settings.setAppMaximized(stage.isMaximized()));
 
-        if(openedPace == null) {
-            Launcher.open();
+        if (launchArguments.length > 0) {
+            openIgnoreException(new File(launchArguments[0]));
         } else {
-//            Yes, while it does cause the file to get read twice, it works I guess?
-            open(openedPace.getFile());
+            Launcher.open();
         }
     }
 }

@@ -3,6 +3,7 @@ package data;
 import app.App;
 import app.Serialization;
 import com.google.gson.stream.JsonReader;
+import exceptions.ParsePaceException;
 import settings.Settings;
 
 import java.io.File;
@@ -67,16 +68,14 @@ public class Pace {
      * @return A {@code Pace} object, set to save to the provided file. The {@code Pace} object is an empty pace if
      * there were errors in parsing the file
      */
-    public static Pace fromFile(File file) {
+    public static Pace fromFile(File file) throws Exception {
+        JsonReader reader = new JsonReader(new FileReader(file));
         try {
-            JsonReader reader = new JsonReader(new FileReader(file));
             Pace pace = fromJson(reader);
             pace.setFile(file);
             return pace;
-        } catch (Exception e) {
-            Pace pace = new Pace();
-            pace.setFile(file);
-            return pace;
+        } catch (ParsePaceException ignored) {
+            throw new ParsePaceException(file);
         }
     }
 
@@ -87,7 +86,12 @@ public class Pace {
      *
      * @return Pace object derived from data in the JsonReader
      */
-    public static Pace fromJson(JsonReader reader) {
+    public static Pace fromJson(JsonReader reader) throws ParsePaceException {
+        //First check if it is a pace object
+        if (((UUIDContainer) Serialization.getGson().fromJson(reader, UUIDContainer.class)).uuid == null) {
+            throw new ParsePaceException();
+        }
+
         Pace pace = Serialization.getGson().fromJson(reader, Pace.class);
         pace.populateDivisions();
         pace.updateDivisionLists();
@@ -344,5 +348,13 @@ public class Pace {
      */
     public Division getDefaultDivision() {
         return divisions.get(0);
+    }
+
+    private static class UUIDContainer {
+
+        public UUID uuid;
+
+        public UUIDContainer() {
+        }
     }
 }

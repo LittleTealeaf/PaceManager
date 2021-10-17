@@ -6,7 +6,7 @@ import com.google.gson.stream.JsonReader;
 import org.junit.jupiter.api.Test;
 import test.Config;
 
-import java.io.*;
+import java.io.InputStreamReader;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,7 +18,7 @@ public class PaceTest {
     }
 
     @Test
-    public void fromJson() {
+    public void fromJson() throws Exception {
         assertNotNull(Pace.fromJson(new JsonReader(new InputStreamReader(Resources.getResource("/pace.json")))));
     }
 
