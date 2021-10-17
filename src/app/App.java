@@ -68,8 +68,17 @@ public class App extends Application {
      *
      * @param args Launch Arguments
      */
-    public static void main(String[] args) {
+    public static void main(String... args) {
         updateList = new LinkedList<>();
+        if(args != null && args[0] != null) {
+            try {
+                openedPace = Pace.fromFile(new File(args[0]));
+            }catch(Exception e) {
+                e.printStackTrace();
+//                TODO: implement a error message. This could also add the reporting function
+                System.out.println("Could not open file: '" + args[0] + "'");
+            }
+        }
         launch(args);
     }
 
@@ -269,6 +278,12 @@ public class App extends Application {
         });
         stage.setMaximized(settings.isAppMaximized());
         stage.maximizedProperty().addListener(e -> settings.setAppMaximized(stage.isMaximized()));
-        Launcher.open();
+
+        if(openedPace == null) {
+            Launcher.open();
+        } else {
+//            Yes, while it does cause the file to get read twice, it works I guess?
+            open(openedPace.getFile());
+        }
     }
 }
