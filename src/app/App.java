@@ -77,6 +77,7 @@ public class App extends Application {
                 e.printStackTrace();
 //                TODO: implement a error message. This could also add the reporting function
                 System.out.println("Could not open file: '" + args[0] + "'");
+                //
             }
         }
         launch(args);
