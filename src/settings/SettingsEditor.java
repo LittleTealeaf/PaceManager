@@ -51,7 +51,7 @@ public class SettingsEditor extends Stage implements Updatable {
      * Creates a new SettingsEditor. If there is already an instance opened, it will attempt to close that instance
      * and sets {@link #openedInstance} to itself. Also is set to set {@link #openedInstance} to null once it closes
      */
-    public SettingsEditor() {
+    public SettingsEditor () {
         super();
         setTitle("Settings");
         getIcons().add(Resources.APPLICATION_ICON);
@@ -91,45 +91,17 @@ public class SettingsEditor extends Stage implements Updatable {
     }
 
     /**
-     * Requests the current instance to be closed, only does so if it is populated.
-     */
-    public static void closeRequest() {
-        if (openedInstance != null) {
-            openedInstance.close();
-            openedInstance = null;
-        }
-    }
-
-    /**
-     * Updates the GridPane with all settings that are classified under the specified category
-     *
-     * @param category Filter of which settings to display
-     */
-    private void populateSettings(Category category) {
-        settingsPanel.getChildren().clear();
-        int index = 0;
-        final Font font = new Font(13);
-        for (SettingNode settingNode : settingNodes) {
-            if (settingNode.isCategory(category)) {
-                Text label = new Text(settingNode.getName());
-                label.setFont(font);
-                settingsPanel.addRow(index++, label, settingNode.getNode());
-            }
-        }
-    }
-
-    /**
      * Generates the entire list of settings to include in the SettingsEditor
      *
      * @return Array of Settings using the SettingNode class
      */
-    private SettingNode[] generateSettings() {
+    private SettingNode[] generateSettings () {
         return new SettingNode[]{
                 new SettingNode("File Extensions", Category.GENERAL, Category.FILES) {
 
                     TextField field;
 
-                    public void initialize() {
+                    public void initialize () {
                         field = new TextField();
                         field.focusedProperty().addListener((e, o, n) -> {
                             if (!e.getValue().booleanValue()) {
@@ -144,7 +116,7 @@ public class SettingsEditor extends Stage implements Updatable {
                         });
                     }
 
-                    private void parse() {
+                    private void parse () {
                         String text = field.getText();
                         text = text.replace(" ", "");
                         String[] extensions = text.split(",");
@@ -152,7 +124,7 @@ public class SettingsEditor extends Stage implements Updatable {
                         update();
                     }
 
-                    public void update() {
+                    public void update () {
                         StringBuilder text = new StringBuilder();
                         String[] extensions = App.settings.getFileExtensions();
                         for (int i = 0; i < extensions.length; i++) {
@@ -165,121 +137,143 @@ public class SettingsEditor extends Stage implements Updatable {
                     }
 
                     @Override
-                    public Node getNode() {
+                    public Node getNode () {
                         return field;
                     }
 
-                },
-                new SettingNode("Aggressive Save", Category.OPTIMIZATIONS, Category.FILES, Category.APPLICATION) {
-                    CheckBox checkBox;
+                }, new SettingNode("Aggressive Save", Category.OPTIMIZATIONS, Category.FILES, Category.APPLICATION) {
+            CheckBox checkBox;
 
-                    public void initialize() {
-                        checkBox = new CheckBox();
-                        checkBox.setOnAction(e -> App.settings.setAggressiveSave(checkBox.isSelected()));
-                    }
+            public void initialize () {
+                checkBox = new CheckBox();
+                checkBox.setOnAction(e -> App.settings.setAggressiveSave(checkBox.isSelected()));
+            }
 
-                    public void update() {
-                        checkBox.setSelected(App.settings.isAggressiveSave());
-                    }
+            public Node getNode () {
+                return checkBox;
+            }
 
-                    public Node getNode() {
-                        return checkBox;
-                    }
-                },
-                new SettingNode("Warn on Delete", Category.GENERAL, Category.APPLICATION) {
+            public void update () {
+                checkBox.setSelected(App.settings.isAggressiveSave());
+            }
+        }, new SettingNode("Warn on Delete", Category.GENERAL, Category.APPLICATION) {
 
-                    CheckBox checkBox;
+            CheckBox checkBox;
 
-                    public void initialize() {
-                        checkBox = new CheckBox();
-                        checkBox.setOnAction(e -> App.settings.setWarnOnDelete(checkBox.isSelected()));
-                    }
+            public void initialize () {
+                checkBox = new CheckBox();
+                checkBox.setOnAction(e -> App.settings.setWarnOnDelete(checkBox.isSelected()));
+            }
 
-                    public void update() {
-                        checkBox.setSelected(App.settings.warnOnDelete());
-                    }
+            public Node getNode () {
+                return checkBox;
+            }
 
-                    public Node getNode() {
-                        return checkBox;
-                    }
-                },
-                new SettingNode("Exclude Outliers", Category.CALCULATIONS, Category.GENERAL) {
-                    CheckBox checkBox;
+            public void update () {
+                checkBox.setSelected(App.settings.warnOnDelete());
+            }
+        }, new SettingNode("Exclude Outliers", Category.CALCULATIONS, Category.GENERAL) {
+            CheckBox checkBox;
 
-                    public void initialize() {
-                        checkBox = new CheckBox();
-                        checkBox.setOnAction(e -> {
-                            App.settings.setExcludeOutliers(checkBox.isSelected());
-                            App.update();
-                        });
-                    }
+            public void initialize () {
+                checkBox = new CheckBox();
+                checkBox.setOnAction(e -> {
+                    App.settings.setExcludeOutliers(checkBox.isSelected());
+                    App.update();
+                });
+            }
 
-                    public void update() {
-                        checkBox.setSelected(App.settings.excludeOutliers());
-                    }
+            public Node getNode () {
+                return checkBox;
+            }
 
-                    public Node getNode() {
-                        return checkBox;
-                    }
-                },
-                new SettingNode("Aggressive Save Memory", Category.OPTIMIZATIONS, Category.FILES,
-                                Category.APPLICATION) {
-                    CheckBox checkBox;
+            public void update () {
+                checkBox.setSelected(App.settings.excludeOutliers());
+            }
+        }, new SettingNode("Aggressive Save Memory", Category.OPTIMIZATIONS, Category.FILES, Category.APPLICATION) {
+            CheckBox checkBox;
 
-                    public void initialize() {
-                        checkBox = new CheckBox();
-                        checkBox.setOnAction(e -> App.settings.setAggressiveMemorySave(checkBox.isSelected()));
-                    }
+            public void initialize () {
+                checkBox = new CheckBox();
+                checkBox.setOnAction(e -> App.settings.setAggressiveMemorySave(checkBox.isSelected()));
+            }
 
-                    public void update() {
-                        checkBox.setSelected(App.settings.excludeOutliers());
-                    }
+            public Node getNode () {
+                return checkBox;
+            }
 
-                    public Node getNode() {
-                        return checkBox;
-                    }
-                },
-                new SettingNode("Use Average as Default Goal Time", Category.CALCULATIONS, Category.GENERAL) {
-                    CheckBox checkBox;
+            public void update () {
+                checkBox.setSelected(App.settings.excludeOutliers());
+            }
+        }, new SettingNode("Use Average as Default Goal Time", Category.CALCULATIONS, Category.GENERAL) {
+            CheckBox checkBox;
 
-                    public void initialize() {
-                        checkBox = new CheckBox();
-                        checkBox.setOnAction(e -> App.settings.setUseAverageAsGoalTime(checkBox.isSelected()));
-                    }
+            public void initialize () {
+                checkBox = new CheckBox();
+                checkBox.setOnAction(e -> App.settings.setUseAverageAsGoalTime(checkBox.isSelected()));
+            }
 
-                    public void update() {
-                        checkBox.setSelected(App.settings.useAverageAsGoalTime());
-                    }
+            public Node getNode () {
+                return checkBox;
+            }
 
-                    public Node getNode() {
-                        return checkBox;
-                    }
-                },
-                new SettingNode("Allow Multiple Team Editors open", Category.APPLICATION, Category.GENERAL) {
-                    CheckBox checkBox;
+            public void update () {
+                checkBox.setSelected(App.settings.useAverageAsGoalTime());
+            }
+        }, new SettingNode("Allow Multiple Team Editors open", Category.APPLICATION, Category.GENERAL) {
+            CheckBox checkBox;
 
-                    public void initialize() {
-                        checkBox = new CheckBox();
-                        checkBox.setOnAction(e -> App.settings.setMultipleTeamsEditing(checkBox.isSelected()));
-                    }
+            public void initialize () {
+                checkBox = new CheckBox();
+                checkBox.setOnAction(e -> App.settings.setMultipleTeamsEditing(checkBox.isSelected()));
+            }
 
-                    public void update() {
-                        checkBox.setSelected(App.settings.isMultipleTeamsEditing());
-                    }
+            public Node getNode () {
+                return checkBox;
+            }
 
-                    public Node getNode() {
-                        return checkBox;
-                    }
-                }
+            public void update () {
+                checkBox.setSelected(App.settings.isMultipleTeamsEditing());
+            }
+        }
         };
+    }
+
+    /**
+     * Updates the GridPane with all settings that are classified under the specified category
+     *
+     * @param category Filter of which settings to display
+     */
+    private void populateSettings (Category category) {
+        settingsPanel.getChildren().clear();
+        int index = 0;
+        final Font font = new Font(13);
+        for (SettingNode settingNode : settingNodes) {
+            if (settingNode.isCategory(category)) {
+                Text label = new Text(settingNode.getName());
+                label.setFont(font);
+                settingsPanel.addRow(index++, label, settingNode.getNode());
+            }
+        }
     }
 
     /**
      * Sends an update ping to all {@code SettingNodes} in {@link #settingNodes}
      */
-    public void update() {
+    public void update () {
         for (SettingNode settingNode : settingNodes) {
             settingNode.update();
         }
     }
+
+    /**
+     * Requests the current instance to be closed, only does so if it is populated.
+     */
+    public static void closeRequest () {
+        if (openedInstance != null) {
+            openedInstance.close();
+            openedInstance = null;
+        }
+    }
+
 }

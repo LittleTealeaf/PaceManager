@@ -12,6 +12,7 @@ import data.Time;
  * @since 1.0.0
  */
 public class Serialization {
+
     /**
      * Stores the generated {@code Gson} object used for serialization and deserialization of objects.
      * This value is generated at application launch using the {@link #createGson()} method.
@@ -25,9 +26,10 @@ public class Serialization {
      * Provides the {@code Gson} object for serialization and deserialization.
      *
      * @return Gson object, specified in {@link #createGson()}
+     *
      * @see #gson
      */
-    public static Gson getGson() {
+    public static Gson getGson () {
         return gson;
     }
 
@@ -45,15 +47,13 @@ public class Serialization {
      * </ul>
      *
      * @return Completed {@link Gson} object for use in the project
+     *
      * @see #gson
      */
-    private static Gson createGson() {
+    private static Gson createGson () {
         //TODO remove pretty printing before release
-        return new GsonBuilder().excludeFieldsWithModifiers(java.lang.reflect.Modifier.TRANSIENT)
-                                .registerTypeAdapter(Time.class, new Time.TimeSerializer())
-                                .registerTypeAdapter(Time.class, new Time.TimeDeserializer()).setPrettyPrinting()
-                                .create();
+        return new GsonBuilder().excludeFieldsWithModifiers(java.lang.reflect.Modifier.TRANSIENT).registerTypeAdapter(Time.class, new Time.TimeSerializer()).registerTypeAdapter(
+                Time.class, new Time.TimeDeserializer()).setPrettyPrinting().create();
     }
-
 
 }

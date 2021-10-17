@@ -53,7 +53,7 @@ public class Time {
      *
      * @see #Time(long)
      */
-    public Time() {
+    public Time () {
         value = 0;
     }
 
@@ -61,14 +61,15 @@ public class Time {
      * Creates a new {@code Time} object with the specified {@code value}
      *
      * @param value Time as number of milliseconds
+     *
      * @see #Time()
      * @see #value
      */
-    public Time(long value) {
+    public Time (long value) {
         this.value = value;
     }
 
-    public Time(String string) {
+    public Time (String string) {
         //TODO optimize this using character pointer and an intermediate value that gets increased in potency
         long value = 0;
         String cleanedString = string.replace(" ", "");
@@ -93,13 +94,22 @@ public class Time {
      *
      * @param start the first {@code Time}, typically less in value than {@code end}
      * @param end   the second {@code Time}, typically greater in value than {@code start}
+     *
      * @return A new {@code Time} object representing the difference between {@code start} and {@code end}. If either
      * or both start and end are null, returns null
+     *
      * @see #value
      * @see #absolute()
      */
-    public static Time difference(Time start, Time end) {
+    public static Time difference (Time start, Time end) {
         return start == null || end == null ? null : new Time(end.getValue() - start.getValue());
+    }
+
+    /**
+     *
+     */
+    public long getValue () {
+        return value;
     }
 
     /**
@@ -109,30 +119,25 @@ public class Time {
      *
      * @return A new {@code Time} object with a positive {@code value}
      */
-    public Time absolute() {
+    public Time absolute () {
         return new Time(Math.abs(value));
     }
 
     /**
-     *
-     */
-    public long getValue() {
-        return value;
-    }
-
-    /**
      * @param other
+     *
      * @return
      */
-    public Time add(Time other) {
+    public Time add (Time other) {
         return new Time(getValue() + other.getValue());
     }
 
     /**
      * @param other
+     *
      * @return
      */
-    public Time subtract(Time other) {
+    public Time subtract (Time other) {
         return other != null ? new Time(getValue() - other.getValue()) : null;
     }
 
@@ -140,18 +145,19 @@ public class Time {
      * Compares the time to another {@code Time} object's time
      *
      * @param other {@code Time} object to compare to
+     *
      * @return the value 0 if this Time is equal to the other Time; a value less than 0 if this Time is numerically less than
      * the other Time; and a value greater than 0 if this Time is numerically greater than the other Time (signed comparison).
      */
-    public int compareTo(Time other) {
+    public int compareTo (Time other) {
         return Long.compare(getValue(), other.getValue());
     }
 
-    public boolean equals(Object other) {
+    public boolean equals (Object other) {
         return other instanceof Time && ((Time) other).getValue() == this.getValue();
     }
 
-    public String toString() {
+    public String toString () {
         if (string != null) {
             return string;
         } else {
@@ -178,8 +184,7 @@ public class Time {
             }
 
             DecimalFormat formatter = new DecimalFormat("00");
-            return string = (negative ? "-" : "") + formatter.format(h) + ":" + formatter.format(
-                    m) + ":" + formatter.format(s);
+            return string = (negative ? "-" : "") + formatter.format(h) + ":" + formatter.format(m) + ":" + formatter.format(s);
         }
     }
 
@@ -191,9 +196,11 @@ public class Time {
      * @version 1.0.0
      */
     public static class TimeSerializer implements JsonSerializer<Time> {
-        public JsonElement serialize(Time time, Type type, JsonSerializationContext jsonSerializationContext) {
+
+        public JsonElement serialize (Time time, Type type, JsonSerializationContext jsonSerializationContext) {
             return new JsonPrimitive(time.getValue());
         }
+
     }
 
     /**
@@ -204,10 +211,13 @@ public class Time {
      * @version 1.0.0
      */
     public static class TimeDeserializer implements JsonDeserializer<Time> {
-        public Time deserialize(JsonElement jsonElement, Type type,
-                                JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+
+        public Time deserialize (
+                JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext
+                                ) throws JsonParseException {
             return new Time(jsonElement.getAsLong());
         }
+
     }
 
 }

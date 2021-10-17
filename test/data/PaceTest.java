@@ -4,19 +4,16 @@ import app.App;
 import app.Resources;
 import com.google.gson.stream.JsonReader;
 import org.junit.jupiter.api.Test;
-import settings.Settings;
 import test.Config;
-import test.Util;
 
 import java.io.*;
-import java.nio.file.StandardCopyOption;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PaceTest {
 
     @Test
-    public void fromFile() throws IOException {
+    public void fromFile() {
 
     }
 
@@ -43,8 +40,8 @@ public class PaceTest {
         for(int i = 0; i < Config.ARRAY_SIZE; i++) {
             teams[i] = pace.newTeam();
         }
-        for(int i = 0; i < teams.length; i++) {
-            assertTrue(pace.getTeams().contains(teams[i]));
+        for (Team team : teams) {
+            assertTrue(pace.getTeams().contains(team));
         }
     }
 

@@ -158,7 +158,7 @@ public class TeamTest {
         assertFalse(team.hasElapsed());
         team.setStartTime(Util.randomTime());
         assertFalse(team.hasElapsed());
-        team.setEndTime(Util.randomTime());;
+        team.setEndTime(Util.randomTime());
         assertTrue(team.hasElapsed());
     }
 

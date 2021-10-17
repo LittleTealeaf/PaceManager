@@ -42,7 +42,7 @@ public class App extends Application {
     /**
      * Registered instance of the Settings object. Initialized on launch.
      */
-    public static Settings settings = Resources.getSettings();
+    public static final Settings settings = Resources.getSettings();
     /**
      * The currently opened Pace. Only one Pace is opened at a time. Used as a reference for any code reading or
      * modifying the pace's state.
@@ -61,7 +61,6 @@ public class App extends Application {
      */
     private static List<Updatable> updateList;
 
-
     //TODO include launch arguments for immediately opening a pace
 
     /**
@@ -69,7 +68,7 @@ public class App extends Application {
      *
      * @param args Launch Arguments
      */
-    public static void main(String[] args) {
+    public static void main (String[] args) {
         updateList = new LinkedList<>();
         launch(args);
 
@@ -82,7 +81,7 @@ public class App extends Application {
      *
      * @param file Pace File to attempt to open. File extension does not matter.
      */
-    public static void open(File file) {
+    public static void open (File file) {
         if (file != null && file.exists()) {
             openedPace = Pace.fromFile(file);
             appStage.setTitle(file.getName());
@@ -104,9 +103,10 @@ public class App extends Application {
      *
      * @param node Content of the pane. Content will be displayed in the tab-pane when the tab is selected and opened
      * @param name Name/Title of the tab. Text is displayed on the tab itself.
+     *
      * @return Configured {@code Tab} object
      */
-    private static Tab createTab(Node node, String name) {
+    private static Tab createTab (Node node, String name) {
         Tab tab = new Tab(name);
         tab.setClosable(false);
         tab.setContent(node);
@@ -116,7 +116,7 @@ public class App extends Application {
     /**
      * Calls the {@link Updatable#update()} method from all objects listed in {@link #updateList}
      */
-    public static void update() {
+    public static void update () {
         openedPace.update();
         if (updateList != null) {
             for (Updatable updatable : updateList) {
@@ -130,9 +130,10 @@ public class App extends Application {
      * Development Method that imports the data from the 2021 hunter pace. Pulls from resources/dev/pace2021.json
      *
      * @return Pace with values from 2021
+     *
      * @since 1.0.0-development
      */
-    private static Pace pace2021() {
+    private static Pace pace2021 () {
         return Pace.fromJson(new JsonReader(new InputStreamReader(Resources.getResource("/dev/pace2021.json"))));
     }
 
@@ -140,9 +141,10 @@ public class App extends Application {
      * Prompts the user to verify whether they want to delete an item
      *
      * @param name Display Name of the item the user may want to delete
+     *
      * @return {@code True} if the user decided to delete, {@code false} otherwise.<br>If {@link App#settings} is {@code null}
      */
-    public static boolean warnDelete(String name) {
+    public static boolean warnDelete (String name) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete " + name + "?");
         alert.setHeaderText("Are you sure you want to delete " + name + "?");
@@ -156,7 +158,7 @@ public class App extends Application {
      *
      * @return Scene with all the application elements within it
      */
-    private static Scene generateScene() {
+    private static Scene generateScene () {
         BorderPane borderPane = new BorderPane();
         TabPane tabPane = new TabPane();
 
@@ -164,11 +166,7 @@ public class App extends Application {
         DivisionView divisionView = new DivisionView();
         WinnersView winnersView = new WinnersView();
 
-        tabPane.getTabs().addAll(
-                createTab(teamTable, "Teams"),
-                createTab(divisionView, "Divisions"),
-                createTab(winnersView, "Winners")
-        );
+        tabPane.getTabs().addAll(createTab(teamTable, "Teams"), createTab(divisionView, "Divisions"), createTab(winnersView, "Winners"));
 
         updateList.add(teamTable);
         updateList.add(divisionView);
@@ -228,10 +226,8 @@ public class App extends Application {
         menuFile.getItems().addAll(openPace, savePace, savePaceAs, closePace, openSettings, exitApp);
         menuTools.getItems().addAll(quickImport, newTeam);
 
-
         borderPane.setTop(menuBar);
         borderPane.setCenter(tabPane);
-
 
         return new Scene(borderPane);
     }
@@ -240,9 +236,10 @@ public class App extends Application {
      * Adds an updatable to list, executing {@link Updatable#update()} each time the application is sent an update
      *
      * @param updatable Updatable object that implements the {@link Updatable} interface
+     *
      * @see #update()
      */
-    public static void addUpdatable(Updatable updatable) {
+    public static void addUpdatable (Updatable updatable) {
         updateList.add(updatable);
     }
 
@@ -251,9 +248,10 @@ public class App extends Application {
      * is updated
      *
      * @param updatable Updatable object that implements the {@link Updatable} interface
+     *
      * @return {@code true} if this list contained the specified element
      */
-    public static boolean removeUpdatable(Updatable updatable) {
+    public static boolean removeUpdatable (Updatable updatable) {
         return updateList.remove(updatable);
     }
 
@@ -262,7 +260,7 @@ public class App extends Application {
      *
      * @see Application
      */
-    public void start(Stage stage) {
+    public void start (Stage stage) {
         appStage = stage;
         stage.getIcons().add(Resources.APPLICATION_ICON);
         stage.setOnCloseRequest(e -> {

@@ -23,7 +23,7 @@ public class TeamTable extends TableView<Team> implements Updatable {
 
     private final TeamUpdater updater;
 
-    public TeamTable(TeamUpdater updater) {
+    public TeamTable (TeamUpdater updater) {
         super();
         this.updater = updater;
         addColumns();
@@ -51,7 +51,18 @@ public class TeamTable extends TableView<Team> implements Updatable {
         update();
     }
 
-    private ContextMenu createContextMenu() {
+    private void addColumns () {
+        getColumns().clear();
+
+        TableColumn<Team, String> times = new TableColumn<>("Times");
+        times.setReorderable(false);
+        times.getColumns().addAll(columnFactory("Start", "startString"), columnFactory("End", "endString"), columnFactory("Elapsed", "elapsedString"));
+
+        getColumns().addAll(columnFactory("Division", "division"), columnFactory("Team", "teamName"), columnFactory("Riders", "ridersString"), times, columnFactory("Notes", "notesDisplay"));
+
+    }
+
+    private ContextMenu createContextMenu () {
         ContextMenu contextMenu = new ContextMenu();
 
         MenuItem openItem = new MenuItem("Open");
@@ -67,35 +78,7 @@ public class TeamTable extends TableView<Team> implements Updatable {
         return contextMenu;
     }
 
-    private void addColumns() {
-        getColumns().clear();
-
-        TableColumn<Team, String> times = new TableColumn<>("Times");
-        times.setReorderable(false);
-        times.getColumns().addAll(
-                columnFactory("Start", "startString"),
-                columnFactory("End", "endString"),
-                columnFactory("Elapsed", "elapsedString")
-        );
-
-        getColumns().addAll(
-                columnFactory("Division", "division"),
-                columnFactory("Team", "teamName"),
-                columnFactory("Riders", "ridersString"),
-                times,
-                columnFactory("Notes", "notesDisplay")
-        );
-
-    }
-
-    private TableColumn<Team, String> columnFactory(String name, String propertyName) {
-        TableColumn<Team, String> column = new TableColumn<>(name);
-        column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
-        column.setReorderable(false);
-        return column;
-    }
-
-    public void update() {
+    public void update () {
         int selectedIndex = getSelectionModel().getSelectedIndex();
 
         getItems().clear();
@@ -106,7 +89,17 @@ public class TeamTable extends TableView<Team> implements Updatable {
         }
     }
 
-    public interface TeamUpdater {
-        List<Team> getTeams();
+    private TableColumn<Team, String> columnFactory (String name, String propertyName) {
+        TableColumn<Team, String> column = new TableColumn<>(name);
+        column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
+        column.setReorderable(false);
+        return column;
     }
+
+    public interface TeamUpdater {
+
+        List<Team> getTeams ();
+
+    }
+
 }

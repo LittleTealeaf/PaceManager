@@ -42,7 +42,7 @@ public class Launcher {
      * Opens the launcher.
      * Closes any old instances of the launcher, sets up and configures a new launcher, and displays it
      */
-    public static void open() {
+    public static void open () {
         if (stage != null && stage.isShowing()) {
             stage.close();
         }
@@ -59,7 +59,6 @@ public class Launcher {
 
         Scene scene = new Scene(borderPane);
 
-
         stage.setScene(scene);
         stage.setMinWidth(500);
 
@@ -71,7 +70,7 @@ public class Launcher {
      *
      * @return VBox element containing all buttons
      */
-    private static VBox buttonPanel() {
+    private static VBox buttonPanel () {
         VBox panel = new VBox();
         panel.setSpacing(10);
         panel.setPadding(new Insets(10));
@@ -82,43 +81,11 @@ public class Launcher {
     }
 
     /**
-     * Generates the list of buttons to be included on the left hand of the launcher
-     *
-     * @return Array of buttons to include
-     */
-    private static Button[] generateButtons() {
-        //New, Open, Copy, Info, Exit
-        Button[] buttons = new Button[5];
-
-        buttons[0] = new Button("New");
-        buttons[0].setOnAction(e -> openPace(null));
-
-        buttons[1] = new Button("Open");
-        buttons[1].setOnAction(e -> {
-            File file = Resources.promptOpenPace();
-            if (file != null) {
-                openPace(file);
-            }
-        });
-
-        buttons[2] = new Button("Info");
-
-        buttons[3] = new Button("Settings");
-        buttons[3].setOnAction(e -> new SettingsEditor());
-
-        buttons[4] = new Button("Close");
-        buttons[4].setOnAction(e -> System.exit(0));
-
-        return buttons;
-
-    }
-
-    /**
      * Generates the borderpane responsible for displaying all recently opened files
      *
      * @return Border Pane with all elements pertaining to listing recent files
      */
-    private static BorderPane generateRecentFiles() {
+    private static BorderPane generateRecentFiles () {
         BorderPane borderPane = new BorderPane();
 
         ScrollPane scrollPane = new ScrollPane();
@@ -153,12 +120,45 @@ public class Launcher {
     }
 
     /**
+     * Generates the list of buttons to be included on the left hand of the launcher
+     *
+     * @return Array of buttons to include
+     */
+    private static Button[] generateButtons () {
+        //New, Open, Copy, Info, Exit
+        Button[] buttons = new Button[5];
+
+        buttons[0] = new Button("New");
+        buttons[0].setOnAction(e -> openPace(null));
+
+        buttons[1] = new Button("Open");
+        buttons[1].setOnAction(e -> {
+            File file = Resources.promptOpenPace();
+            if (file != null) {
+                openPace(file);
+            }
+        });
+
+        buttons[2] = new Button("Info");
+
+        buttons[3] = new Button("Settings");
+        buttons[3].setOnAction(e -> new SettingsEditor());
+
+        buttons[4] = new Button("Close");
+        buttons[4].setOnAction(e -> System.exit(0));
+
+        return buttons;
+
+    }
+
+    /**
      * Opens a selected pace in the application, closes the launcher and marks launcher for garbage collection
      *
      * @param file File of pace to open
+     *
      * @see App#open(File)
      */
-    private static void openPace(File file) {
+    private static void openPace (File file) {
         App.open(file);
         stage.close();
         stage = null;

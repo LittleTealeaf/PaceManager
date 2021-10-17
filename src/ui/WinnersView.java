@@ -5,11 +5,12 @@ import javafx.scene.control.TabPane;
 
 public class WinnersView extends TabPane implements Updatable {
 
-    public WinnersView() {
+    public WinnersView () {
         super();
     }
 
-    public void update() {
+    public void update () {
 
     }
+
 }

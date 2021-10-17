@@ -43,14 +43,14 @@ public class DivisionView extends TabPane implements Updatable {
     /**
      *
      */
-    public DivisionView() {
+    public DivisionView () {
         super();
         divisionTabs = new ArrayList<>();
         getTabs().add(generalTab = new GeneralTab(this));
         update();
     }
 
-    public void update() {
+    public void update () {
         generalTab.update();
         if (divisionTabs.size() != App.openedPace.getDivisions().size()) {
             int selIndex = getSelectionModel().getSelectedIndex();
@@ -94,7 +94,7 @@ public class DivisionView extends TabPane implements Updatable {
         DivisionPanel[] panels;
 
 
-        GeneralTab(DivisionView parent) {
+        GeneralTab (DivisionView parent) {
             super("General");
             setClosable(false);
             gridPane = new GridPane();
@@ -107,19 +107,16 @@ public class DivisionView extends TabPane implements Updatable {
             update();
         }
 
-        public void update() {
+        public void update () {
             if (panels == null || panels.length != App.openedPace.getDivisions().size()) {
                 gridPane.getChildren().clear();
                 Text[] headers = new Text[]{
-                        new Text("Name"), new Text("Optimum Time"), new Text("Average Time"), new Text(
-                        "Deviation Time"),
-                        new Text("Deviation %")
+                        new Text("Name"), new Text("Optimum Time"), new Text("Average Time"), new Text("Deviation Time"), new Text("Deviation %")
                 };
                 for (Text t : headers) {
                     t.setFont(new Font(15));
                 }
                 gridPane.addRow(0, headers);
-
 
                 panels = new DivisionPanel[App.openedPace.getDivisions().size()];
                 for (int i = 0; i < panels.length; i++) {
@@ -135,6 +132,7 @@ public class DivisionView extends TabPane implements Updatable {
                 }
             }
         }
+
     }
 
     private static class DivisionTab extends Tab implements Updatable {
@@ -149,7 +147,7 @@ public class DivisionView extends TabPane implements Updatable {
         final HBox boxButtons;
 
 
-        DivisionTab(DivisionView parent, Division division) {
+        DivisionTab (DivisionView parent, Division division) {
             super(division.getName());
             setClosable(false);
             this.division = division;
@@ -161,8 +159,7 @@ public class DivisionView extends TabPane implements Updatable {
             //Button Panel
             buttonDeleteDivision = new Button("Delete");
             buttonDeleteDivision.setOnAction(e -> {
-                if ((!App.settings.warnOnDelete() || App.warnDelete(
-                        this.division.getName())) && App.openedPace.removeDivision(this.division)) {
+                if ((!App.settings.warnOnDelete() || App.warnDelete(this.division.getName())) && App.openedPace.removeDivision(this.division)) {
                     App.update();
                 }
             });
@@ -193,7 +190,7 @@ public class DivisionView extends TabPane implements Updatable {
             update();
         }
 
-        public void update() {
+        public void update () {
             table.update();
             setText(division.getName());
 
@@ -206,7 +203,6 @@ public class DivisionView extends TabPane implements Updatable {
             }
             divisionPanel.update();
         }
-
 
     }
 
@@ -223,7 +219,7 @@ public class DivisionView extends TabPane implements Updatable {
         final Text deviationPercent;
 
 
-        public DivisionPanel(Division division) {
+        public DivisionPanel (Division division) {
             this.division = division;
             name = new TextField();
             name.focusedProperty().addListener((e, o, n) -> {
@@ -246,7 +242,7 @@ public class DivisionView extends TabPane implements Updatable {
             deviationPercent.setFont(font);
         }
 
-        public void update() {
+        public void update () {
             name.setText(division.getName());
             goalTime.setTime(division.getGoalTime());
 
@@ -263,28 +259,26 @@ public class DivisionView extends TabPane implements Updatable {
             }
         }
 
-        public HBox asHBox() {
+        public HBox asHBox () {
             Text[] labels = new Text[]{
-                    new Text("Division:"),
-                    new Text("Goal Time:"),
-                    new Text("Average:"),
-                    new Text("Deviation")
+                    new Text("Division:"), new Text("Goal Time:"), new Text("Average:"), new Text("Deviation")
             };
             Font font = new Font(FONT_SIZE);
             for (Text text : labels) {
                 text.setFont(font);
             }
-            HBox hbox = new HBox(labels[0], name, labels[1], goalTime, labels[2], averageTime, labels[3], deviationTime,
-                                 deviationPercent);
+            HBox hbox = new HBox(labels[0], name, labels[1], goalTime, labels[2], averageTime, labels[3], deviationTime, deviationPercent);
             hbox.setSpacing(7);
 
             return hbox;
         }
 
-        public Node[] asArray() {
+        public Node[] asArray () {
             return new Node[]{
                     name, goalTime, averageTime, deviationTime, deviationPercent
             };
         }
+
     }
+
 }

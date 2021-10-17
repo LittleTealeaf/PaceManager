@@ -30,7 +30,7 @@ public class TimeInput extends TextField {
     /**
      * Creates a new {@code TimeInput} object with a set Time of 0
      */
-    public TimeInput() {
+    public TimeInput () {
         this(new Time());
     }
 
@@ -39,7 +39,7 @@ public class TimeInput extends TextField {
      *
      * @param time Initial Time value
      */
-    public TimeInput(Time time) {
+    public TimeInput (Time time) {
         super();
         timeListeners = new ArrayList<>();
         focusedProperty().addListener((e, o, n) -> {
@@ -58,42 +58,12 @@ public class TimeInput extends TextField {
     }
 
     /**
-     * Updates the text-box to the value provided from the current Time
-     *
-     * @see Time#toString()
-     */
-    private void updateText() {
-        setText(time != null ? time.toString() : "");
-    }
-
-    /**
-     * Returns the currently selected time. Note that each time the time is changed, it is a new value instead of
-     * just modifying the initial {@code Time} object
-     *
-     * @return Current time specified. Returns {@code null} if no time is specified
-     */
-    public Time getTime() {
-        return time;
-    }
-
-    /**
-     * Sets the current time and updates the text
-     *
-     * @param time The new time to display
-     * @see #updateText()
-     */
-    public void setTime(Time time) {
-        this.time = time;
-        updateText();
-    }
-
-    /**
      * Parses the current text within the object into a {@code Time} object. Sets the time to null if
      * there is no text specified
      *
      * @see Time#Time(String)
      */
-    private void parseText() {
+    private void parseText () {
         Time oldValue = time;
         try {
             if (getText() == null || getText().contentEquals("")) {
@@ -101,7 +71,8 @@ public class TimeInput extends TextField {
             } else {
                 time = new Time(getText());
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
 
         Time newValue = time;
         if (oldValue != newValue) {
@@ -113,19 +84,53 @@ public class TimeInput extends TextField {
         updateText();
     }
 
-    public List<TimeListener> getTimeListeners() {
+    /**
+     * Updates the text-box to the value provided from the current Time
+     *
+     * @see Time#toString()
+     */
+    private void updateText () {
+        setText(time != null ? time.toString() : "");
+    }
+
+    /**
+     * Returns the currently selected time. Note that each time the time is changed, it is a new value instead of
+     * just modifying the initial {@code Time} object
+     *
+     * @return Current time specified. Returns {@code null} if no time is specified
+     */
+    public Time getTime () {
+        return time;
+    }
+
+    /**
+     * Sets the current time and updates the text
+     *
+     * @param time The new time to display
+     *
+     * @see #updateText()
+     */
+    public void setTime (Time time) {
+        this.time = time;
+        updateText();
+    }
+
+    public List<TimeListener> getTimeListeners () {
         return timeListeners;
     }
 
-    public void setTimeListeners(List<TimeListener> listeners) {
+    public void setTimeListeners (List<TimeListener> listeners) {
         this.timeListeners = listeners;
     }
 
-    public void addTimeListener(TimeListener listener) {
+    public void addTimeListener (TimeListener listener) {
         timeListeners.add(listener);
     }
 
     public interface TimeListener {
-        void valueChanged(Time oldValue, Time newValue);
+
+        void valueChanged (Time oldValue, Time newValue);
+
     }
+
 }

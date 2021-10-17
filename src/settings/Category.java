@@ -41,7 +41,7 @@ public enum Category {
      *
      * @param display Name to display within the application when referring to the category
      */
-    Category(String display) {
+    Category (String display) {
         this.display = display;
     }
 
@@ -50,7 +50,7 @@ public enum Category {
      *
      * @return Display Name of the category
      */
-    public String toString() {
+    public String toString () {
         return display;
     }
 }

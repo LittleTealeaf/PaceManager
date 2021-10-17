@@ -55,7 +55,7 @@ public class Team implements Serializable {
      *
      * @see #uuid
      */
-    public Team() {
+    public Team () {
         uuid = UUID.randomUUID();
     }
 
@@ -64,7 +64,7 @@ public class Team implements Serializable {
      *
      * @return Division the team is competing in
      */
-    public Division getDivision() {
+    public Division getDivision () {
         return division;
     }
 
@@ -74,7 +74,7 @@ public class Team implements Serializable {
      *
      * @param division Division the team is to compete in
      */
-    public void setDivision(Division division) {
+    public void setDivision (Division division) {
         //Removes itself from previous division
         if (this.division != null) {
             this.division.removeTeam(this);
@@ -94,14 +94,14 @@ public class Team implements Serializable {
     /**
      * @return
      */
-    public UUID getDivisionUUID() {
+    public UUID getDivisionUUID () {
         return divisionUUID;
     }
 
     /**
      *
      */
-    public void updateDivisionUUID() {
+    public void updateDivisionUUID () {
         divisionUUID = division == null ? null : division.getUUID();
     }
 
@@ -109,85 +109,103 @@ public class Team implements Serializable {
      * Sets the divisionUUID to null. Specifically used if the division is listed under the default division, therefore
      * storing the division they are classified under is not needed
      */
-    public void clearDivisionUUID() {
+    public void clearDivisionUUID () {
         divisionUUID = null;
     }
 
     /**
      * @return
      */
-    public UUID getUUID() {
+    public UUID getUUID () {
         return uuid;
     }
 
     /**
      * @return
      */
-    public String getTeamName() {
+    public String getTeamName () {
         return teamName;
     }
 
     /**
      * @param teamName
      */
-    public void setTeamName(String teamName) {
+    public void setTeamName (String teamName) {
         this.teamName = teamName;
     }
 
     /**
      * @return
      */
-    public String[] getRiders() {
+    public String[] getRiders () {
         return riders;
     }
 
     /**
      * @param riders
      */
-    public void setRiders(String[] riders) {
+    public void setRiders (String[] riders) {
         this.riders = riders;
     }
 
     /**
      * @return
      */
-    public String getNotes() {
+    public String getNotes () {
         return notes;
     }
 
     /**
      * @param notes
      */
-    public void setNotes(String notes) {
+    public void setNotes (String notes) {
         this.notes = notes;
     }
 
     /**
      * @return
      */
-    public Time getStartTime() {
+    public Time getStartTime () {
         return startTime;
     }
 
     /**
      * @param startTime
      */
-    public void setStartTime(Time startTime) {
+    public void setStartTime (Time startTime) {
         this.startTime = startTime;
     }
 
     /**
      * @return
      */
-    public Time getEndTime() {
+    public Time getEndTime () {
         return endTime;
     }
 
     /**
      * @param endTime
      */
-    public void setEndTime(Time endTime) {
+    public void setEndTime (Time endTime) {
         this.endTime = endTime;
+    }
+
+    public Time getDistanceToGoal () {
+        if (division == null || division.getGoalTime() == null || !isCompleted()) {
+            return null;
+        } else {
+            return division.getUsedGoalTime().subtract(getElapsedTime()).absolute();
+        }
+    }
+
+    /**
+     * Checks if the team is eligible for final times
+     *
+     * @return {@code true} if the team has an elapsed time (meaning that they have a start time and an end time), and they are not excluded
+     * for any reason
+     */
+    public boolean isCompleted () {
+        return !isExcluded() && hasElapsed();
     }
 
     /**
@@ -197,8 +215,15 @@ public class Team implements Serializable {
      * otherwise returns a new {@link Time} object representing the time elapsed between {@code startTime}
      * and {@code endTime}.
      */
-    public Time getElapsedTime() {
+    public Time getElapsedTime () {
         return !hasElapsed() ? null : Time.difference(startTime, endTime);
+    }
+
+    /**
+     * @return
+     */
+    public boolean isExcluded () {
+        return excluded != null && excluded;
     }
 
     /**
@@ -206,50 +231,25 @@ public class Team implements Serializable {
      *
      * @return {@code false} if either {@code startTime} or {@code endTime} are {@code null}
      */
-    public boolean hasElapsed() {
+    public boolean hasElapsed () {
         return startTime != null && endTime != null;
-    }
-
-    public Time getDistanceToGoal() {
-        if (division == null || division.getGoalTime() == null || !isCompleted()) {
-            return null;
-        } else {
-            return division.getUsedGoalTime().subtract(getElapsedTime()).absolute();
-        }
-    }
-
-    /**
-     * @return
-     */
-    public boolean isExcluded() {
-        return excluded != null && excluded;
     }
 
     /**
      * @param excluded
      */
-    public void setExcluded(boolean excluded) {
+    public void setExcluded (boolean excluded) {
         this.excluded = excluded ? true : null;
-    }
-
-    /**
-     * Checks if the team is eligible for final times
-     *
-     * @return {@code true} if the team has an elapsed time (meaning that they have a start time and an end time), and they are not excluded
-     * for any reason
-     */
-    public boolean isCompleted() {
-        return !isExcluded() && hasElapsed();
     }
 
     /**
      * @return Number of riders in the team
      */
-    public int getNumberOfRiders() {
+    public int getNumberOfRiders () {
         return riders.length;
     }
 
-    public String getRidersString() {
+    public String getRidersString () {
         if (riders != null) {
             StringBuilder builder = new StringBuilder();
             for (int i = 0; i < riders.length; i++) {
@@ -264,20 +264,20 @@ public class Team implements Serializable {
         }
     }
 
-    public String getStartString() {
+    public String getStartString () {
         return startTime == null ? "-" : startTime.toString();
     }
 
-    public String getEndString() {
+    public String getEndString () {
         return endTime == null ? "-" : endTime.toString();
     }
 
-    public String getElapsedString() {
+    public String getElapsedString () {
         Time elapsed = getElapsedTime();
         return elapsed == null ? "-" : elapsed.toString();
     }
 
-    public String getNotesDisplay() {
+    public String getNotesDisplay () {
         StringBuilder builder = new StringBuilder();
         if (isExcluded()) {
             builder.append("[Excluded from placements]\n");
@@ -292,7 +292,8 @@ public class Team implements Serializable {
         return builder.toString();
     }
 
-    public String toString() {
+    public String toString () {
         return "Team: " + teamName;
     }
+
 }
