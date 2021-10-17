@@ -22,7 +22,7 @@ public class QuickImport extends Stage {
     private Team team;
     private ComboBox<String> comboBox;
 
-    public QuickImport () {
+    public QuickImport() {
         super();
 
         if (instance != null) {
@@ -34,7 +34,7 @@ public class QuickImport extends Stage {
         show();
     }
 
-    private void generateInterface () {
+    private void generateInterface() {
         BorderPane borderPane = new BorderPane();
 
         timeInput = new TimeInput();
@@ -76,7 +76,7 @@ public class QuickImport extends Stage {
         setScene(new Scene(borderPane));
     }
 
-    public void loadTeam () {
+    public void loadTeam() {
         String value = teamId.getText().toUpperCase();
         team = null;
         for (Team team : App.openedPace.getTeams()) {
@@ -88,7 +88,7 @@ public class QuickImport extends Stage {
         timeInput.setTime(team == null ? null : comboBox.getSelectionModel().getSelectedIndex() == 0 ? team.getStartTime() : team.getEndTime());
     }
 
-    public void saveTeam () {
+    public void saveTeam() {
         if (team != null) {
             if (comboBox.getSelectionModel().getSelectedIndex() == 0) {
                 team.setStartTime(timeInput.getTime());

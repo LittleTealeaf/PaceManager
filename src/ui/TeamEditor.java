@@ -32,11 +32,11 @@ public class TeamEditor extends Stage implements Updatable {
     private final DivisionSelector nodeDivision;
     private final CheckBox nodeExcluded;
 
-    public TeamEditor () {
+    public TeamEditor() {
         this(App.openedPace.newTeam());
     }
 
-    public TeamEditor (Team team) {
+    public TeamEditor(Team team) {
         super();
 
         if (!App.settings.isMultipleTeamsEditing()) {
@@ -64,7 +64,7 @@ public class TeamEditor extends Stage implements Updatable {
         show();
     }
 
-    public static void closeAll () {
+    public static void closeAll() {
         while (EDITORS.size() > 0) {
             TeamEditor editor = EDITORS.get(0);
             EDITORS.remove(editor);
@@ -73,9 +73,9 @@ public class TeamEditor extends Stage implements Updatable {
     }
 
     /**
-     * @return
+     * @return Generated Scene for the Team Editor
      */
-    private Scene generateScene () {
+    private Scene generateScene() {
         BorderPane borderPane = new BorderPane();
         borderPane.setPadding(new Insets(10));
 
@@ -113,16 +113,16 @@ public class TeamEditor extends Stage implements Updatable {
         return new Scene(borderPane);
     }
 
-    public void update () {
+    public void update() {
         //update name
         setTitle(team.getTeamName() != null && !team.getTeamName().equals("") ? "Editing Team " + team.getTeamName() : "Creating New Team");
         updateNodes();
     }
 
     /**
-     * @return
+     * @return Generated Bottom Pane of the Scene
      */
-    private BorderPane generateBottomPane () {
+    private BorderPane generateBottomPane() {
         BorderPane pane = new BorderPane();
 
         Button buttonClose = new Button("Close");
@@ -148,7 +148,7 @@ public class TeamEditor extends Stage implements Updatable {
         return pane;
     }
 
-    private void updateNodes () {
+    private void updateNodes() {
         nodeTeamName.setText(team.getTeamName());
         nodeNotes.setText(team.getNotes());
         nodeStartTime.setTime(team.getStartTime());
@@ -171,7 +171,7 @@ public class TeamEditor extends Stage implements Updatable {
         }
     }
 
-    private void updateTeam () {
+    private void updateTeam() {
 
         team.setTeamName(nodeTeamName.getText());
         team.setNotes(nodeNotes.getText());
@@ -185,9 +185,9 @@ public class TeamEditor extends Stage implements Updatable {
     }
 
     /**
-     * @return
+     * @return Riders parsed into a String Array
      */
-    public String[] parseRiders () {
+    public String[] parseRiders() {
         String[] raw = nodeRiders.getText().replace(',', '\n').split("\n");
         boolean[] delete = new boolean[raw.length];
         int delCount = 0;
@@ -218,7 +218,7 @@ public class TeamEditor extends Stage implements Updatable {
         return riders;
     }
 
-    public Team getTeam () {
+    public Team getTeam() {
         return team;
     }
 

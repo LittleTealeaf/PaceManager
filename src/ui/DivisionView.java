@@ -43,14 +43,14 @@ public class DivisionView extends TabPane implements Updatable {
     /**
      *
      */
-    public DivisionView () {
+    public DivisionView() {
         super();
         divisionTabs = new ArrayList<>();
         getTabs().add(generalTab = new GeneralTab(this));
         update();
     }
 
-    public void update () {
+    public void update() {
         generalTab.update();
         if (divisionTabs.size() != App.openedPace.getDivisions().size()) {
             int selIndex = getSelectionModel().getSelectedIndex();
@@ -94,7 +94,7 @@ public class DivisionView extends TabPane implements Updatable {
         DivisionPanel[] panels;
 
 
-        GeneralTab (DivisionView parent) {
+        GeneralTab(DivisionView parent) {
             super("General");
             setClosable(false);
             gridPane = new GridPane();
@@ -107,7 +107,7 @@ public class DivisionView extends TabPane implements Updatable {
             update();
         }
 
-        public void update () {
+        public void update() {
             if (panels == null || panels.length != App.openedPace.getDivisions().size()) {
                 gridPane.getChildren().clear();
                 Text[] headers = new Text[]{
@@ -147,7 +147,7 @@ public class DivisionView extends TabPane implements Updatable {
         final HBox boxButtons;
 
 
-        DivisionTab (DivisionView parent, Division division) {
+        DivisionTab(DivisionView parent, Division division) {
             super(division.getName());
             setClosable(false);
             this.division = division;
@@ -190,7 +190,7 @@ public class DivisionView extends TabPane implements Updatable {
             update();
         }
 
-        public void update () {
+        public void update() {
             table.update();
             setText(division.getName());
 
@@ -219,7 +219,7 @@ public class DivisionView extends TabPane implements Updatable {
         final Text deviationPercent;
 
 
-        public DivisionPanel (Division division) {
+        public DivisionPanel(Division division) {
             this.division = division;
             name = new TextField();
             name.focusedProperty().addListener((e, o, n) -> {
@@ -242,7 +242,7 @@ public class DivisionView extends TabPane implements Updatable {
             deviationPercent.setFont(font);
         }
 
-        public void update () {
+        public void update() {
             name.setText(division.getName());
             goalTime.setTime(division.getGoalTime());
 
@@ -259,7 +259,7 @@ public class DivisionView extends TabPane implements Updatable {
             }
         }
 
-        public HBox asHBox () {
+        public HBox asHBox() {
             Text[] labels = new Text[]{
                     new Text("Division:"), new Text("Goal Time:"), new Text("Average:"), new Text("Deviation")
             };
@@ -273,7 +273,7 @@ public class DivisionView extends TabPane implements Updatable {
             return hbox;
         }
 
-        public Node[] asArray () {
+        public Node[] asArray() {
             return new Node[]{
                     name, goalTime, averageTime, deviationTime, deviationPercent
             };

@@ -30,7 +30,7 @@ public class TimeInput extends TextField {
     /**
      * Creates a new {@code TimeInput} object with a set Time of 0
      */
-    public TimeInput () {
+    public TimeInput() {
         this(new Time());
     }
 
@@ -39,7 +39,7 @@ public class TimeInput extends TextField {
      *
      * @param time Initial Time value
      */
-    public TimeInput (Time time) {
+    public TimeInput(Time time) {
         super();
         timeListeners = new ArrayList<>();
         focusedProperty().addListener((e, o, n) -> {
@@ -63,7 +63,7 @@ public class TimeInput extends TextField {
      *
      * @see Time#Time(String)
      */
-    private void parseText () {
+    private void parseText() {
         Time oldValue = time;
         try {
             if (getText() == null || getText().contentEquals("")) {
@@ -89,7 +89,7 @@ public class TimeInput extends TextField {
      *
      * @see Time#toString()
      */
-    private void updateText () {
+    private void updateText() {
         setText(time != null ? time.toString() : "");
     }
 
@@ -99,7 +99,7 @@ public class TimeInput extends TextField {
      *
      * @return Current time specified. Returns {@code null} if no time is specified
      */
-    public Time getTime () {
+    public Time getTime() {
         return time;
     }
 
@@ -110,26 +110,26 @@ public class TimeInput extends TextField {
      *
      * @see #updateText()
      */
-    public void setTime (Time time) {
+    public void setTime(Time time) {
         this.time = time;
         updateText();
     }
 
-    public List<TimeListener> getTimeListeners () {
+    public List<TimeListener> getTimeListeners() {
         return timeListeners;
     }
 
-    public void setTimeListeners (List<TimeListener> listeners) {
+    public void setTimeListeners(List<TimeListener> listeners) {
         this.timeListeners = listeners;
     }
 
-    public void addTimeListener (TimeListener listener) {
+    public void addTimeListener(TimeListener listener) {
         timeListeners.add(listener);
     }
 
     public interface TimeListener {
 
-        void valueChanged (Time oldValue, Time newValue);
+        void valueChanged(Time oldValue, Time newValue);
 
     }
 

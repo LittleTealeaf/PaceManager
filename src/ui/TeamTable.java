@@ -23,7 +23,7 @@ public class TeamTable extends TableView<Team> implements Updatable {
 
     private final TeamUpdater updater;
 
-    public TeamTable (TeamUpdater updater) {
+    public TeamTable(TeamUpdater updater) {
         super();
         this.updater = updater;
         addColumns();
@@ -51,7 +51,7 @@ public class TeamTable extends TableView<Team> implements Updatable {
         update();
     }
 
-    private void addColumns () {
+    private void addColumns() {
         getColumns().clear();
 
         TableColumn<Team, String> times = new TableColumn<>("Times");
@@ -62,7 +62,7 @@ public class TeamTable extends TableView<Team> implements Updatable {
 
     }
 
-    private ContextMenu createContextMenu () {
+    private ContextMenu createContextMenu() {
         ContextMenu contextMenu = new ContextMenu();
 
         MenuItem openItem = new MenuItem("Open");
@@ -78,7 +78,7 @@ public class TeamTable extends TableView<Team> implements Updatable {
         return contextMenu;
     }
 
-    public void update () {
+    public void update() {
         int selectedIndex = getSelectionModel().getSelectedIndex();
 
         getItems().clear();
@@ -89,7 +89,7 @@ public class TeamTable extends TableView<Team> implements Updatable {
         }
     }
 
-    private TableColumn<Team, String> columnFactory (String name, String propertyName) {
+    private TableColumn<Team, String> columnFactory(String name, String propertyName) {
         TableColumn<Team, String> column = new TableColumn<>(name);
         column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
         column.setReorderable(false);
@@ -98,7 +98,7 @@ public class TeamTable extends TableView<Team> implements Updatable {
 
     public interface TeamUpdater {
 
-        List<Team> getTeams ();
+        List<Team> getTeams();
 
     }
 

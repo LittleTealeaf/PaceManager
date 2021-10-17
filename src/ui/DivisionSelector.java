@@ -11,7 +11,7 @@ import javafx.scene.control.ComboBox;
  * expands on its functionality
  *
  * @author Thomas Kwashnak
- * @verison 1.0.0
+ * @version 1.0.0
  * @since 1.0.0
  */
 public class DivisionSelector extends ComboBox<String> {
@@ -26,7 +26,7 @@ public class DivisionSelector extends ComboBox<String> {
     /**
      * Creates a new division selector object
      */
-    public DivisionSelector () {
+    public DivisionSelector() {
         super();
         setEditable(true);
         updateDivisionList();
@@ -37,7 +37,7 @@ public class DivisionSelector extends ComboBox<String> {
      *
      * @see App#openedPace
      */
-    private void updateDivisionList () {
+    private void updateDivisionList() {
         divisions = App.openedPace.getDivisions().toArray(new Division[0]);
         for (Division division : divisions) {
             getItems().add(division.getName());
@@ -50,7 +50,7 @@ public class DivisionSelector extends ComboBox<String> {
      * @return The selected division if the user selected a division from the given list.
      * <p>If the user typed in a custom division, it returns a new division with the given name</p>
      */
-    public Division getDivision () {
+    public Division getDivision() {
         if (getSelectionModel().getSelectedIndex() != -1) {
             return divisions[getSelectionModel().getSelectedIndex()];
         } else {
@@ -67,7 +67,7 @@ public class DivisionSelector extends ComboBox<String> {
      *
      * @param division Division to select
      */
-    public void setDivision (Division division) {
+    public void setDivision(Division division) {
         int index = -1;
         for (int i = 0; i < divisions.length && index == -1; i++) {
             if (divisions[i] == division) {

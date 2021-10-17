@@ -14,6 +14,6 @@ public interface Updatable {
      * This method is called whenever the application pings an update, if the object is stored within the list in {@link App},
      * and should contain commands that updates values within the object
      */
-    void update ();
+    void update();
 
 }

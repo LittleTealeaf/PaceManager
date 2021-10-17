@@ -123,7 +123,7 @@ public class Settings {
     /**
      * Creates a new {@code Settings} object and sets values to their defaults.
      */
-    public Settings () {
+    public Settings() {
         aggressiveMemorySave = false;
         fileExtensions = new String[]{".pace", ".json"};
         settingsVersion = App.version;
@@ -144,7 +144,7 @@ public class Settings {
      *
      * @see #aggressiveMemorySave
      */
-    public boolean isAggressiveMemorySave () {
+    public boolean isAggressiveMemorySave() {
         return aggressiveMemorySave;
     }
 
@@ -156,7 +156,7 @@ public class Settings {
      *
      * @see #aggressiveMemorySave
      */
-    public void setAggressiveMemorySave (boolean value) {
+    public void setAggressiveMemorySave(boolean value) {
         //Only updates / saves if there is a change
         if (aggressiveMemorySave != value) {
             aggressiveMemorySave = value;
@@ -167,7 +167,7 @@ public class Settings {
     /**
      * Saves the current configuration
      */
-    public void save () {
+    public void save() {
         if (settingsFile.getParentFile().mkdirs()) {
             System.out.println("Created " + settingsFile.getParentFile().getPath());
         }
@@ -186,7 +186,7 @@ public class Settings {
      *
      * @see #fileExtensions
      */
-    public String[] getFileExtensions () {
+    public String[] getFileExtensions() {
         return fileExtensions;
     }
 
@@ -198,7 +198,7 @@ public class Settings {
      *
      * @see #fileExtensions
      */
-    public void setFileExtensions (String[] fileExtensions) {
+    public void setFileExtensions(String[] fileExtensions) {
         this.fileExtensions = fileExtensions;
         save();
     }
@@ -210,7 +210,7 @@ public class Settings {
      *
      * @see #paceDirectory
      */
-    public String getPaceDirectory () {
+    public String getPaceDirectory() {
         return paceDirectory;
     }
 
@@ -222,7 +222,7 @@ public class Settings {
      *
      * @see #paceDirectory
      */
-    public void setPaceDirectory (String directory) {
+    public void setPaceDirectory(String directory) {
         paceDirectory = directory;
     }
 
@@ -233,7 +233,7 @@ public class Settings {
      *
      * @see #recentFiles
      */
-    public List<String> getRecentFiles () {
+    public List<String> getRecentFiles() {
         return recentFiles;
     }
 
@@ -245,7 +245,7 @@ public class Settings {
      *
      * @see #recentFiles
      */
-    public void addRecentFile (String path) {
+    public void addRecentFile(String path) {
         if (path != null) {
             int length = recentFiles.size();
             for (int i = 0; i < length; i++) {
@@ -265,7 +265,7 @@ public class Settings {
      *
      * @see #recentFiles
      */
-    public void cleanRecentFiles () {
+    public void cleanRecentFiles() {
         int size = recentFiles.size();
         for (int i = 0; i < size; i++) {
             if (recentFiles.get(i) == null || !new File(recentFiles.get(i)).exists()) {
@@ -284,7 +284,7 @@ public class Settings {
      *
      * @see #aggressiveSave
      */
-    public boolean isAggressiveSave () {
+    public boolean isAggressiveSave() {
         return aggressiveSave;
     }
 
@@ -297,7 +297,7 @@ public class Settings {
      *
      * @see #aggressiveSave
      */
-    public void setAggressiveSave (boolean aggressiveSave) {
+    public void setAggressiveSave(boolean aggressiveSave) {
         this.aggressiveSave = aggressiveSave;
         save();
     }
@@ -309,7 +309,7 @@ public class Settings {
      *
      * @see #launcherMaximized
      */
-    public boolean isLauncherMaximized () {
+    public boolean isLauncherMaximized() {
         return launcherMaximized;
     }
 
@@ -321,7 +321,7 @@ public class Settings {
      *
      * @see #launcherMaximized
      */
-    public void setLauncherMaximized (boolean launcherMaximized) {
+    public void setLauncherMaximized(boolean launcherMaximized) {
         this.launcherMaximized = launcherMaximized;
         save();
     }
@@ -334,7 +334,7 @@ public class Settings {
      *
      * @see #appMaximized
      */
-    public boolean isAppMaximized () {
+    public boolean isAppMaximized() {
         return appMaximized;
     }
 
@@ -347,7 +347,7 @@ public class Settings {
      *
      * @see #appMaximized
      */
-    public void setAppMaximized (boolean appMaximized) {
+    public void setAppMaximized(boolean appMaximized) {
         this.appMaximized = appMaximized;
         save();
     }
@@ -360,7 +360,7 @@ public class Settings {
      *
      * @see #warnOnDelete
      */
-    public boolean warnOnDelete () {
+    public boolean warnOnDelete() {
         return warnOnDelete;
     }
 
@@ -373,7 +373,7 @@ public class Settings {
      *
      * @see #warnOnDelete
      */
-    public void setWarnOnDelete (boolean warnOnDelete) {
+    public void setWarnOnDelete(boolean warnOnDelete) {
         this.warnOnDelete = warnOnDelete;
         save();
     }
@@ -385,7 +385,7 @@ public class Settings {
      *
      * @see #excludeOutliers
      */
-    public boolean excludeOutliers () {
+    public boolean excludeOutliers() {
         return excludeOutliers;
     }
 
@@ -398,7 +398,7 @@ public class Settings {
      *
      * @see #excludeOutliers
      */
-    public void setExcludeOutliers (boolean excludeOutliers) {
+    public void setExcludeOutliers(boolean excludeOutliers) {
         this.excludeOutliers = excludeOutliers;
         save();
     }
@@ -410,7 +410,7 @@ public class Settings {
      *
      * @see #useAverageAsGoalTime
      */
-    public boolean useAverageAsGoalTime () {
+    public boolean useAverageAsGoalTime() {
         return useAverageAsGoalTime;
     }
 
@@ -423,7 +423,7 @@ public class Settings {
      *
      * @see #useAverageAsGoalTime
      */
-    public void setUseAverageAsGoalTime (boolean useAverageAsGoalTime) {
+    public void setUseAverageAsGoalTime(boolean useAverageAsGoalTime) {
         this.useAverageAsGoalTime = useAverageAsGoalTime;
         save();
     }
@@ -436,7 +436,7 @@ public class Settings {
      *
      * @see #multipleTeamsEditing
      */
-    public boolean isMultipleTeamsEditing () {
+    public boolean isMultipleTeamsEditing() {
         return multipleTeamsEditing;
     }
 
@@ -449,7 +449,7 @@ public class Settings {
      *
      * @see #multipleTeamsEditing
      */
-    public void setMultipleTeamsEditing (Boolean multipleTeamsEditing) {
+    public void setMultipleTeamsEditing(Boolean multipleTeamsEditing) {
         this.multipleTeamsEditing = multipleTeamsEditing;
     }
 

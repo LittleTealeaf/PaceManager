@@ -68,7 +68,7 @@ public class App extends Application {
      *
      * @param args Launch Arguments
      */
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         updateList = new LinkedList<>();
         launch(args);
 
@@ -81,7 +81,7 @@ public class App extends Application {
      *
      * @param file Pace File to attempt to open. File extension does not matter.
      */
-    public static void open (File file) {
+    public static void open(File file) {
         if (file != null && file.exists()) {
             openedPace = Pace.fromFile(file);
             appStage.setTitle(file.getName());
@@ -106,7 +106,7 @@ public class App extends Application {
      *
      * @return Configured {@code Tab} object
      */
-    private static Tab createTab (Node node, String name) {
+    private static Tab createTab(Node node, String name) {
         Tab tab = new Tab(name);
         tab.setClosable(false);
         tab.setContent(node);
@@ -116,7 +116,7 @@ public class App extends Application {
     /**
      * Calls the {@link Updatable#update()} method from all objects listed in {@link #updateList}
      */
-    public static void update () {
+    public static void update() {
         openedPace.update();
         if (updateList != null) {
             for (Updatable updatable : updateList) {
@@ -133,7 +133,7 @@ public class App extends Application {
      *
      * @since 1.0.0-development
      */
-    private static Pace pace2021 () {
+    private static Pace pace2021() {
         return Pace.fromJson(new JsonReader(new InputStreamReader(Resources.getResource("/dev/pace2021.json"))));
     }
 
@@ -144,7 +144,7 @@ public class App extends Application {
      *
      * @return {@code True} if the user decided to delete, {@code false} otherwise.<br>If {@link App#settings} is {@code null}
      */
-    public static boolean warnDelete (String name) {
+    public static boolean warnDelete(String name) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete " + name + "?");
         alert.setHeaderText("Are you sure you want to delete " + name + "?");
@@ -158,7 +158,7 @@ public class App extends Application {
      *
      * @return Scene with all the application elements within it
      */
-    private static Scene generateScene () {
+    private static Scene generateScene() {
         BorderPane borderPane = new BorderPane();
         TabPane tabPane = new TabPane();
 
@@ -239,7 +239,7 @@ public class App extends Application {
      *
      * @see #update()
      */
-    public static void addUpdatable (Updatable updatable) {
+    public static void addUpdatable(Updatable updatable) {
         updateList.add(updatable);
     }
 
@@ -251,7 +251,7 @@ public class App extends Application {
      *
      * @return {@code true} if this list contained the specified element
      */
-    public static boolean removeUpdatable (Updatable updatable) {
+    public static boolean removeUpdatable(Updatable updatable) {
         return updateList.remove(updatable);
     }
 
@@ -260,7 +260,7 @@ public class App extends Application {
      *
      * @see Application
      */
-    public void start (Stage stage) {
+    public void start(Stage stage) {
         appStage = stage;
         stage.getIcons().add(Resources.APPLICATION_ICON);
         stage.setOnCloseRequest(e -> {

@@ -36,6 +36,7 @@ public class Division {
     /**
      * Unique identifier of this division object. This is how Teams store which division they are in during serialization
      * without referencing the whole object.
+     *
      * @see Team#getDivisionUUID()
      */
     private final UUID uuid;
@@ -64,7 +65,7 @@ public class Division {
      *
      * @see #setName(String)
      */
-    public Division (String name) {
+    public Division(String name) {
         this();
         setName(name);
     }
@@ -72,7 +73,7 @@ public class Division {
     /**
      * Creates a new division. Assigns a random UUID and initializes the array list
      */
-    public Division () {
+    public Division() {
         uuid = UUID.randomUUID();
         teams = new ArrayList<>();
     }
@@ -89,7 +90,7 @@ public class Division {
      * @see Settings#useAverageAsGoalTime()
      * @see #getGoalTime()
      */
-    public Time getUsedGoalTime () {
+    public Time getUsedGoalTime() {
         return (getGoalTime() != null) ? getGoalTime() : App.settings.useAverageAsGoalTime() ? getAverageTime() : null;
     }
 
@@ -101,7 +102,7 @@ public class Division {
      *
      * @see #getUsedGoalTime()
      */
-    public Time getGoalTime () {
+    public Time getGoalTime() {
         return goalTime;
     }
 
@@ -111,11 +112,11 @@ public class Division {
      *
      * @param goalTime Optimum time for the division. {@code null} if removing goal time
      */
-    public void setGoalTime (Time goalTime) {
+    public void setGoalTime(Time goalTime) {
         this.goalTime = goalTime;
     }
 
-    public Time getAverageTime () {
+    public Time getAverageTime() {
         long sum = 0, outLow = -1, outHigh = -1;
         int count = 0;
         for (Team team : teams) {
@@ -145,7 +146,7 @@ public class Division {
      *
      * @param team Team to add to the division
      */
-    public void addTeam (Team team) {
+    public void addTeam(Team team) {
         teams.add(team);
     }
 
@@ -160,7 +161,7 @@ public class Division {
      *
      * @see List#remove(Object)
      */
-    public boolean removeTeam (Team team) {
+    public boolean removeTeam(Team team) {
         return teams.remove(team);
     }
 
@@ -168,7 +169,7 @@ public class Division {
      * Clears all teams from the division list. Does not specifically remove each division from the list. Used when
      * updating each team's specific division.
      */
-    public void clearTeamsShallow () {
+    public void clearTeamsShallow() {
         teams.clear();
     }
 
@@ -177,7 +178,7 @@ public class Division {
      *
      * @return Unique Identifier of the division
      */
-    public UUID getUUID () {
+    public UUID getUUID() {
         return uuid;
     }
 
@@ -189,7 +190,7 @@ public class Division {
      *
      * @see #goalTime
      */
-    public Team[] getPlaceOrder () {
+    public Team[] getPlaceOrder() {
         if (getGoalTime() == null) {
             return null;
         }
@@ -224,11 +225,11 @@ public class Division {
      *
      * @return List of teams recorded in the division
      */
-    public List<Team> getTeams () {
+    public List<Team> getTeams() {
         return teams;
     }
 
-    public boolean equals (Object other) {
+    public boolean equals(Object other) {
         return other instanceof Division && ((Division) other).uuid.equals(uuid);
     }
 
@@ -239,7 +240,7 @@ public class Division {
      *
      * @see #getName()
      */
-    public String toString () {
+    public String toString() {
         return getName();
     }
 
@@ -250,7 +251,7 @@ public class Division {
      *
      * @see #setName(String)
      */
-    public String getName () {
+    public String getName() {
         return name;
     }
 
@@ -262,7 +263,7 @@ public class Division {
      *
      * @see #getName()
      */
-    public void setName (String name) {
+    public void setName(String name) {
         this.name = name;
     }
 

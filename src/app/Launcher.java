@@ -42,7 +42,7 @@ public class Launcher {
      * Opens the launcher.
      * Closes any old instances of the launcher, sets up and configures a new launcher, and displays it
      */
-    public static void open () {
+    public static void open() {
         if (stage != null && stage.isShowing()) {
             stage.close();
         }
@@ -70,7 +70,7 @@ public class Launcher {
      *
      * @return VBox element containing all buttons
      */
-    private static VBox buttonPanel () {
+    private static VBox buttonPanel() {
         VBox panel = new VBox();
         panel.setSpacing(10);
         panel.setPadding(new Insets(10));
@@ -85,7 +85,7 @@ public class Launcher {
      *
      * @return Border Pane with all elements pertaining to listing recent files
      */
-    private static BorderPane generateRecentFiles () {
+    private static BorderPane generateRecentFiles() {
         BorderPane borderPane = new BorderPane();
 
         ScrollPane scrollPane = new ScrollPane();
@@ -124,7 +124,7 @@ public class Launcher {
      *
      * @return Array of buttons to include
      */
-    private static Button[] generateButtons () {
+    private static Button[] generateButtons() {
         //New, Open, Copy, Info, Exit
         Button[] buttons = new Button[5];
 
@@ -158,7 +158,7 @@ public class Launcher {
      *
      * @see App#open(File)
      */
-    private static void openPace (File file) {
+    private static void openPace(File file) {
         App.open(file);
         stage.close();
         stage = null;

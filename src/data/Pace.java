@@ -49,7 +49,7 @@ public class Pace {
     /**
      * Creates a new pace, initializing values.
      */
-    public Pace () {
+    public Pace() {
         uuid = UUID.randomUUID();
         teams = new LinkedList<>();
         divisions = new ArrayList<>();
@@ -67,7 +67,7 @@ public class Pace {
      * @return A {@code Pace} object, set to save to the provided file. The {@code Pace} object is an empty pace if
      * there were errors in parsing the file
      */
-    public static Pace fromFile (File file) {
+    public static Pace fromFile(File file) {
         try {
             JsonReader reader = new JsonReader(new FileReader(file));
             Pace pace = fromJson(reader);
@@ -87,7 +87,7 @@ public class Pace {
      *
      * @return Pace object derived from data in the JsonReader
      */
-    public static Pace fromJson (JsonReader reader) {
+    public static Pace fromJson(JsonReader reader) {
         Pace pace = Serialization.getGson().fromJson(reader, Pace.class);
         pace.populateDivisions();
         pace.updateDivisionLists();
@@ -97,7 +97,7 @@ public class Pace {
     /**
      * Populates each {@link Team team's} {@link Division} value based on their {@code DivisionUUID} parameter
      */
-    public void populateDivisions () {
+    public void populateDivisions() {
         boolean clear = App.settings.isAggressiveMemorySave();
         for (Team team : teams) {
             if (team.getDivisionUUID() != null) {
@@ -123,7 +123,7 @@ public class Pace {
     /**
      * Wipes out all division team lists and repopulates them
      */
-    public void updateDivisionLists () {
+    public void updateDivisionLists() {
         for (Division division : divisions) {
             division.clearTeamsShallow();
         }
@@ -139,7 +139,7 @@ public class Pace {
      *
      * @return List of division included in the pace
      */
-    public List<Division> getDivisions () {
+    public List<Division> getDivisions() {
         return divisions;
     }
 
@@ -148,7 +148,7 @@ public class Pace {
      *
      * @return List of teams tracked in the pace
      */
-    public List<Team> getTeams () {
+    public List<Team> getTeams() {
         return teams;
     }
 
@@ -159,7 +159,7 @@ public class Pace {
      *
      * @see #uuid
      */
-    public UUID getUUID () {
+    public UUID getUUID() {
         return uuid;
     }
 
@@ -170,7 +170,7 @@ public class Pace {
      *
      * @return UUID of the newly created division
      */
-    public UUID newDivision (String name) {
+    public UUID newDivision(String name) {
         Division division = new Division();
         division.setName(name);
         divisions.add(division);
@@ -184,7 +184,7 @@ public class Pace {
      *
      * @param division Division to add to the list
      */
-    public void addDivision (Division division) {
+    public void addDivision(Division division) {
         divisions.add(division);
     }
 
@@ -197,7 +197,7 @@ public class Pace {
      * @return {@code true} if removing was successful, {@code false} if the division is not in the list, or if the division
      * is the default division and cannot be removed
      */
-    public boolean removeDivision (Division division) {
+    public boolean removeDivision(Division division) {
         if (divisions.indexOf(division) > 0) {
             while (division.getTeams().size() > 0) {
                 division.getTeams().get(0).setDivision(divisions.get(0));
@@ -217,7 +217,7 @@ public class Pace {
      * @return {@code true} if the provided division was set as default, {@code false} if the division is not in the
      * current list of divisions, or it is already the default division
      */
-    public boolean setDefaultDivision (Division division) {
+    public boolean setDefaultDivision(Division division) {
         if (!divisions.contains(division) || divisions.get(0) == division) {
             return false;
         } else {
@@ -232,7 +232,7 @@ public class Pace {
     /**
      * Lets the pace know that there has been an update to one of its child objects
      */
-    public void update () {
+    public void update() {
         if (App.settings.isAggressiveSave()) {
             save();
         }
@@ -241,7 +241,7 @@ public class Pace {
     /**
      * Attempts to save the Pace to the file specified
      */
-    public void save () {
+    public void save() {
         if (file != null) {
             try {
                 if (file.createNewFile()) {
@@ -261,7 +261,7 @@ public class Pace {
      *
      * @param writer Writer to serialize the data to
      */
-    public void serialize (Writer writer) {
+    public void serialize(Writer writer) {
         for (Team team : teams) {
             if (team.getDivision() != divisions.get(0)) {
                 team.updateDivisionUUID();
@@ -284,7 +284,7 @@ public class Pace {
      *
      * @see #file
      */
-    public File getFile () {
+    public File getFile() {
         return file;
     }
 
@@ -295,7 +295,7 @@ public class Pace {
      *
      * @see #file
      */
-    public void setFile (File file) {
+    public void setFile(File file) {
         this.file = file;
     }
 
@@ -306,7 +306,7 @@ public class Pace {
      *
      * @return SOMETHING
      */
-    public boolean promptRemoveTeam (Team team) {
+    public boolean promptRemoveTeam(Team team) {
         return (!App.settings.warnOnDelete() || App.warnDelete(team.getTeamName())) && removeTeam(team);
     }
 
@@ -315,7 +315,7 @@ public class Pace {
      *
      * @return SOMETHING
      */
-    public boolean removeTeam (Team team) {
+    public boolean removeTeam(Team team) {
         boolean result = teams.remove(team);
         if (result) {
             App.update();
@@ -324,19 +324,26 @@ public class Pace {
     }
 
     /**
-     * @return
+     * Generates a new team and registers it in the Pace. Sets its division to the default division.
+     *
+     * @return new {@code Team} object.
+     *
+     * @see #getDefaultDivision()
      */
-    public Team newTeam () {
+    public Team newTeam() {
         Team team = new Team();
-        team.setDivision(divisions.get(0));
+        team.setDivision(getDefaultDivision());
         teams.add(team);
         return team;
     }
 
     /**
-     * @return
+     * Returns the default division, which is stored as the first division in the array. The default division is the given division
+     * for any new team, or teams who have not been specified a division.
+     *
+     * @return The pace's default division.
      */
-    public Division getDefaultDivision () {
+    public Division getDefaultDivision() {
         return divisions.get(0);
     }
 

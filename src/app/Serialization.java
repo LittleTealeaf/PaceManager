@@ -29,7 +29,7 @@ public class Serialization {
      *
      * @see #gson
      */
-    public static Gson getGson () {
+    public static Gson getGson() {
         return gson;
     }
 
@@ -50,7 +50,7 @@ public class Serialization {
      *
      * @see #gson
      */
-    private static Gson createGson () {
+    private static Gson createGson() {
         //TODO remove pretty printing before release
         return new GsonBuilder().excludeFieldsWithModifiers(java.lang.reflect.Modifier.TRANSIENT).registerTypeAdapter(Time.class, new Time.TimeSerializer()).registerTypeAdapter(
                 Time.class, new Time.TimeDeserializer()).setPrettyPrinting().create();

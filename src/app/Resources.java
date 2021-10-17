@@ -32,7 +32,7 @@ public class Resources {
      *
      * @see Settings
      */
-    public static Settings getSettings () {
+    public static Settings getSettings() {
         Settings.settingsFile = new File(getWorkingDirectory() + "config.json");
         Settings settings = new Settings();
         try {
@@ -62,7 +62,7 @@ public class Resources {
      *
      * @see File#separatorChar
      */
-    public static String getWorkingDirectory () {
+    public static String getWorkingDirectory() {
         return System.getProperty("user.home") + File.separatorChar + ".paceManager" + File.separatorChar;
     }
 
@@ -75,7 +75,7 @@ public class Resources {
      * @see #promptSavePace()
      * @see #generatePacePrompt()
      */
-    public static File promptOpenPace () {
+    public static File promptOpenPace() {
         FileChooser fileChooser = generatePacePrompt();
         fileChooser.setTitle("Open Pace");
         File file = fileChooser.showOpenDialog(null);
@@ -95,7 +95,7 @@ public class Resources {
      * @see #promptSavePace()
      * @see #generatePacePrompt()
      */
-    private static FileChooser generatePacePrompt () {
+    private static FileChooser generatePacePrompt() {
         FileChooser fileChooser = new FileChooser();
         File startingDirectory = new File(App.settings.getPaceDirectory());
         if (!startingDirectory.exists()) {
@@ -119,7 +119,7 @@ public class Resources {
      * @see #promptOpenPace()
      * @see #generatePacePrompt()
      */
-    public static File promptSavePace () {
+    public static File promptSavePace() {
         FileChooser fileChooser = generatePacePrompt();
         fileChooser.setTitle("Save Pace");
         File file = fileChooser.showSaveDialog(null);
@@ -141,7 +141,7 @@ public class Resources {
      *
      * @return Input Stream of desired resource
      */
-    public static InputStream getResource (String name) {
+    public static InputStream getResource(String name) {
         return Resources.class.getResourceAsStream(name);
     }
 
