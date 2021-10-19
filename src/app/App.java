@@ -92,7 +92,7 @@ public class App extends Application {
      * @param file Pace File to attempt to open. File extension does not matter.
      */
     public static void open(File file) throws Exception {
-        openedPace = file == null ? new Pace() : Pace.fromFile(file);
+        openedPace = file == null ? Pace.newPace() : Pace.fromFile(file);
         appStage.setScene(generateScene());
         openedPace.save();
         appStage.show();

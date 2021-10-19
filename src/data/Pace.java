@@ -29,7 +29,7 @@ public class Pace {
     /**
      * Unique Identifier of the Pace
      */
-    private final UUID uuid;
+    private UUID uuid;
     /**
      * List of all divisions included in the pace. The first division listed is considered the "default" division,
      * and cannot (or should not) be removed from the list (resulting in an empty list). Any teams that have no division
@@ -51,10 +51,19 @@ public class Pace {
      * Creates a new pace, initializing values.
      */
     public Pace() {
-        uuid = UUID.randomUUID();
         teams = new LinkedList<>();
         divisions = new ArrayList<>();
         divisions.add(new Division("Default"));
+    }
+
+    /**
+     * Creates a new pace and assigns its uuid
+     * @return new pace
+     */
+    public static Pace newPace() {
+        Pace pace = new Pace();
+        pace.uuid = UUID.randomUUID();
+        return pace;
     }
 
     /**
@@ -87,12 +96,12 @@ public class Pace {
      * @return Pace object derived from data in the JsonReader
      */
     public static Pace fromJson(JsonReader reader) throws ParsePaceException {
-        //First check if it is a pace object
-        if (((UUIDContainer) Serialization.getGson().fromJson(reader, UUIDContainer.class)).uuid == null) {
+        Pace pace = Serialization.getGson().fromJson(reader,Pace.class);
+
+        if(pace.getUUID() == null) {
             throw new ParsePaceException();
         }
 
-        Pace pace = Serialization.getGson().fromJson(reader, Pace.class);
         pace.populateDivisions();
         pace.updateDivisionLists();
         return pace;
@@ -265,6 +274,10 @@ public class Pace {
      * @param writer Writer to serialize the data to
      */
     public void serialize(Writer writer) {
+        if(uuid == null) {
+            uuid = UUID.randomUUID();
+        }
+
         for (Team team : teams) {
             if (team.getDivision() != divisions.get(0)) {
                 team.updateDivisionUUID();
