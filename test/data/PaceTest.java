@@ -2,11 +2,14 @@ package data;
 
 import app.App;
 import app.Resources;
+import app.Serialization;
 import com.google.gson.stream.JsonReader;
 import org.junit.jupiter.api.Test;
 import test.Config;
 
+import java.io.File;
 import java.io.InputStreamReader;
+import java.io.StringWriter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -59,14 +62,26 @@ public class PaceTest {
 
     @Test
     public void serialize() {
+        StringWriter writer = new StringWriter();
+        Pace pace = Pace.newPace();
+        pace.serialize(writer);
+        String string = writer.toString();
+        assertNotNull(string);
+        assertNotNull(Serialization.getGson().fromJson(string, Pace.class));
     }
 
     @Test
-    public void getFile() {
+    public void file() {
+        Pace pace = Pace.newPace();
+        File file = new File("");
+        pace.setFile(file);
+        assertEquals(file, pace.getFile());
     }
 
     @Test
     public void getUUID() {
+        Pace pace = Pace.newPace();
+        assertNotNull(pace.getUUID());
     }
 
     @Test
