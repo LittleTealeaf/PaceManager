@@ -16,11 +16,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PaceTest {
 
     @Test
-    public void fromFile() {
-
-    }
-
-    @Test
     public void fromJson() throws Exception {
         assertNotNull(Pace.fromJson(new JsonReader(new InputStreamReader(Resources.getResource("/pace.json")))));
     }
@@ -54,10 +49,6 @@ public class PaceTest {
 
     @Test
     public void populateDivisions() {
-    }
-
-    @Test
-    public void save() {
     }
 
     @Test
