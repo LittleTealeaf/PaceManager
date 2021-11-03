@@ -6,7 +6,6 @@ import com.google.gson.stream.JsonReader;
 import org.junit.jupiter.api.Test;
 import test.Config;
 
-import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -76,6 +75,11 @@ public class PaceTest {
 
     @Test
     public void addDivision() {
+        Pace pace = Pace.newPace();
+        Division division = new Division();
+        assertFalse(pace.getDivisions().contains(division));
+        pace.addDivision(division);
+        assertTrue(pace.getDivisions().contains(division));
     }
 
     @Test
