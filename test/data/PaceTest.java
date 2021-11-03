@@ -71,6 +71,13 @@ public class PaceTest {
 
     @Test
     public void newDivision() {
+        Pace pace = new Pace();
+        String divName = "";
+        pace.newDivision(divName);
+        assertEquals(divName, pace.getDivisions().get(1).getName());
+        String divName2 = "";
+        pace.newDivision(divName2);
+        assertEquals(divName2, pace.getDivisions().get(2).getName());
     }
 
     @Test
