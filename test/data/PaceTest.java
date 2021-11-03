@@ -80,6 +80,16 @@ public class PaceTest {
 
     @Test
     public void removeDivision() {
+        Pace pace = Pace.newPace();
+        Division division = new Division();
+        pace.addDivision(division);
+        assertTrue(pace.getDivisions().contains(division));
+        pace.removeDivision(division);
+        assertFalse(pace.getDivisions().contains(division));
+        pace.addDivision(division);
+        pace.setDefaultDivision(division);
+        pace.removeDivision(division);
+        assertTrue(pace.getDivisions().contains(division));
     }
 
 
