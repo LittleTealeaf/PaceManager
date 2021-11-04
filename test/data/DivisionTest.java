@@ -3,8 +3,7 @@ package data;
 import org.junit.jupiter.api.Test;
 import test.Util;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class DivisionTest {
@@ -19,55 +18,50 @@ public class DivisionTest {
     }
 
     @Test
-    public void testAverageTime() {
-        //        for(int j = 0; j < 2; j++) {
-        //            App.settings.setExcludeOutliers(!App.settings.excludeOutliers());
-        //            Division division = new Division(null);
-        //            Time sum = new Time(0);
-        //            long max = 0,min = 0;
-        //            int count = 100;
-        //            for(int i = 0; i < count; i++) {
-        //                Team team = new Team();
-        //                team.setStartTime(Util.randomTime());
-        //                team.setEndTime(Util.randomTime().add(team.getStartTime()));
-        //                sum = sum.add(team.getElapsedTime());
-        //                if(max < team.getElapsedTime().getValue() || i == 0) {
-        //                    max = team.getElapsedTime().getValue();
-        //                }
-        //                if(min > team.getElapsedTime().getValue() || i == 0) {
-        //                    min = team.getElapsedTime().getValue();
-        //                }
-        //                division.addTeam(team);
-        //            }
-        //            if(App.settings.excludeOutliers()) {
-        //                sum = sum.subtract(new Time(max + min));
-        //            }
-        //            assertEquals(sum.getValue() / count, division.getAverageTime().getValue());
-        //        }
-    }
-
-    @Test
     public void testTeams() {
-
+        Division division = new Division();
+        Team team = Util.randomTeam();
+        assertEquals(0, division.getTeams().size());
+        assertFalse(division.getTeams().contains(team));
+        division.addTeam(team);
+        assertTrue(division.getTeams().contains(team));
+        division.removeTeam(team);
+        assertFalse(division.getTeams().contains(team));
     }
 
     @Test
     public void testClearTeamShallow() {
-
+        Division division = new Division();
+        Team team = Util.randomTeam();
+        division.addTeam(team);
+        team.setDivision(division);
+        assertTrue(division.getTeams().contains(team));
+        assertEquals(division, team.getDivision());
+        division.clearTeamsShallow();
+        assertFalse(division.getTeams().contains(team));
+        assertEquals(division, team.getDivision());
     }
 
     @Test
     public void testGetUUID() {
-
+        Division division = new Division();
+        assertNotNull(division.getUUID());
+        assertNotEquals(division.getUUID(), new Division().getUUID());
     }
 
     @Test
     public void testEquals() {
-
+        Division division = new Division();
+        assertEquals(division, division);
+        assertNotEquals(division, new Division());
     }
 
     @Test
     public void testName() {
-
+        Division division = new Division();
+        assertNull(division.getName());
+        String name = Util.randomName();
+        division.setName(name);
+        assertEquals(name, division.getName());
     }
 }

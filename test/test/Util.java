@@ -3,6 +3,7 @@ package test;
 import app.Resources;
 import app.Serialization;
 import com.google.gson.stream.JsonReader;
+import data.Team;
 import data.Time;
 
 import java.io.File;
@@ -37,7 +38,7 @@ public class Util {
     }
 
     public static String randomName() {
-        if(names == null) {
+        if (names == null) {
             loadNames();
         }
         return names[(int) (Math.random() * names.length)];
@@ -45,5 +46,25 @@ public class Util {
 
     public static String randomFullName() {
         return randomName() + " " + randomName();
+    }
+
+    public static Team[] randomTeams(int num) {
+        Team[] teams = new Team[num];
+        for (int i = 0; i < teams.length; i++) {
+            teams[i] = randomTeam();
+        }
+        return teams;
+    }
+
+    public static Team randomTeam() {
+        Team team = new Team();
+        team.setTeamName(randomName());
+        String[] riders = new String[(int) (4 * Math.random() + 1)];
+        for (int i = 0; i < riders.length; i++) {
+            riders[i] = randomFullName();
+        }
+        team.setRiders(riders);
+
+        return team;
     }
 }
