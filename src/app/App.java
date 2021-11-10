@@ -35,6 +35,10 @@ Potentially add additional thread to have a "backup" of the pace
  */
 public class App extends Application {
 
+    /**
+     * Whether the build is a development build, which opens up some changes such as the example pulling
+     */
+    public static final boolean DEV_BUILD = true;
 
     /**
      * The current development version of the application.
@@ -92,7 +96,7 @@ public class App extends Application {
      * @param file Pace File to attempt to open. File extension does not matter.
      */
     public static void open(File file) throws Exception {
-        openedPace = file == null ? Pace.newPace() : Pace.fromFile(file);
+        openedPace = file == null ? (DEV_BUILD ? pace2021() : Pace.newPace()) : Pace.fromFile(file);
         appStage.setScene(generateScene());
         openedPace.save();
         appStage.show();
