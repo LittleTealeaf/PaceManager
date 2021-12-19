@@ -142,7 +142,7 @@ public class App extends Application {
      */
     private static Pace pace2021() {
         try {
-            return Pace.fromJson(new JsonReader(new InputStreamReader(Resources.getResource("/dev/pace2021.json"))));
+            return Pace.fromJson(new JsonReader(new InputStreamReader(Resources.getResource("/tmp/dev/pace2021.json"))));
         } catch (Exception exception) {
             new ExceptionAlert(exception);
             return null;

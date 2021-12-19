@@ -21,7 +21,7 @@ public class Resources {
     /**
      * Application Icon to display on window border and task-bar
      */
-    public static final Image APPLICATION_ICON = new Image(getResource("/icons/application.png"));
+    public static final Image APPLICATION_ICON = new Image(getResource("/tmp/icons/application.png"));
 
     /**
      * Attempts to get the settings file from the predicted location. If no file exists, or if there was an error in
