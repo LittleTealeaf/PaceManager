@@ -37,7 +37,6 @@ public class QuickImport extends Stage {
     private void generateInterface() {
         BorderPane borderPane = new BorderPane();
 
-
         timeInput = new TimeInput();
 
         GridPane center = new GridPane();
@@ -86,8 +85,7 @@ public class QuickImport extends Stage {
                 break;
             }
         }
-        timeInput.setTime(team == null ? null : comboBox.getSelectionModel()
-                                                        .getSelectedIndex() == 0 ? team.getStartTime() : team.getEndTime());
+        timeInput.setTime(team == null ? null : comboBox.getSelectionModel().getSelectedIndex() == 0 ? team.getStartTime() : team.getEndTime());
     }
 
     public void saveTeam() {
@@ -104,5 +102,4 @@ public class QuickImport extends Stage {
         }
         App.update();
     }
-
 }

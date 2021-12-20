@@ -2,8 +2,9 @@ package data;
 
 import app.App;
 import app.Serialization;
-import settings.Settings;
 import com.google.gson.stream.JsonReader;
+import exceptions.ParsePaceException;
+import settings.Settings;
 
 import java.io.File;
 import java.io.FileReader;
@@ -13,7 +14,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
-
 
 //Idea: Additional Thread for periodical saving
 
@@ -29,7 +29,7 @@ public class Pace {
     /**
      * Unique Identifier of the Pace
      */
-    private final UUID uuid;
+    private UUID uuid;
     /**
      * List of all divisions included in the pace. The first division listed is considered the "default" division,
      * and cannot (or should not) be removed from the list (resulting in an empty list). Any teams that have no division
@@ -51,10 +51,19 @@ public class Pace {
      * Creates a new pace, initializing values.
      */
     public Pace() {
-        uuid = UUID.randomUUID();
         teams = new LinkedList<>();
         divisions = new ArrayList<>();
         divisions.add(new Division("Default"));
+    }
+
+    /**
+     * Creates a new pace and assigns its uuid
+     * @return new pace
+     */
+    public static Pace newPace() {
+        Pace pace = new Pace();
+        pace.uuid = UUID.randomUUID();
+        return pace;
     }
 
     /**
@@ -64,19 +73,18 @@ public class Pace {
      * to that file.</p>
      *
      * @param file File reference to the saved pace data
+     *
      * @return A {@code Pace} object, set to save to the provided file. The {@code Pace} object is an empty pace if
      * there were errors in parsing the file
      */
-    public static Pace fromFile(File file) {
+    public static Pace fromFile(File file) throws Exception {
+        JsonReader reader = new JsonReader(new FileReader(file));
         try {
-            JsonReader reader = new JsonReader(new FileReader(file));
             Pace pace = fromJson(reader);
             pace.setFile(file);
             return pace;
-        } catch (Exception e) {
-            Pace pace = new Pace();
-            pace.setFile(file);
-            return pace;
+        } catch (ParsePaceException ignored) {
+            throw new ParsePaceException(file);
         }
     }
 
@@ -84,45 +92,19 @@ public class Pace {
      * Returns a pace object derived from a Json reader. Populates divisions and updates the division list.
      *
      * @param reader JsonReader to read the pace data from
+     *
      * @return Pace object derived from data in the JsonReader
      */
-    public static Pace fromJson(JsonReader reader) {
-        Pace pace = Serialization.getGson().fromJson(reader, Pace.class);
+    public static Pace fromJson(JsonReader reader) throws ParsePaceException {
+        Pace pace = Serialization.getGson().fromJson(reader,Pace.class);
+
+        if(pace.getUUID() == null) {
+            throw new ParsePaceException();
+        }
+
         pace.populateDivisions();
         pace.updateDivisionLists();
         return pace;
-    }
-
-    /**
-     * Gets a list of divisions
-     *
-     * @return List of division included in the pace
-     */
-    public List<Division> getDivisions() {
-        return divisions;
-    }
-
-    /**
-     * Gets a list of teams
-     *
-     * @return List of teams tracked in the pace
-     */
-    public List<Team> getTeams() {
-        return teams;
-    }
-
-    /**
-     * Wipes out all division team lists and repopulates them
-     */
-    public void updateDivisionLists() {
-        for (Division division : divisions) {
-            division.clearTeamsShallow();
-        }
-        for (Team team : teams) {
-            if (team.getDivision() != null) {
-                team.getDivision().addTeam(team);
-            }
-        }
     }
 
     /**
@@ -147,74 +129,46 @@ public class Pace {
             if (team.getDivisionUUID() == null) {
                 team.setDivision(divisions.get(0));
             }
-
         }
     }
 
     /**
-     * Attempts to save the Pace to the file specified
+     * Wipes out all division team lists and repopulates them
      */
-    public void save() {
-        if (file != null) {
-            try {
-                if (file.createNewFile()) {
-                    System.out.println("Created file " + file.getPath());
-                }
-                FileWriter writer = new FileWriter(file);
-                serialize(writer);
-                writer.close();
-                App.settings.addRecentFile(getFile().getPath());
-            } catch (Exception ignored) {}
+    public void updateDivisionLists() {
+        for (Division division : divisions) {
+            division.clearTeamsShallow();
         }
-    }
-
-    /**
-     * Serializes the data within this object to a writer
-     *
-     * @param writer Writer to serialize the data to
-     */
-    public void serialize(Writer writer) {
         for (Team team : teams) {
-            if (team.getDivision() != divisions.get(0)) {
-                team.updateDivisionUUID();
-            } else {
-                team.clearDivisionUUID();
-            }
-        }
-        Serialization.getGson().toJson(this, writer);
-        if (App.settings.isAggressiveMemorySave()) {
-            for (Team team : teams) {
-                team.clearDivisionUUID();
+            if (team.getDivision() != null) {
+                team.getDivision().addTeam(team);
             }
         }
     }
 
-    //these comments are not good lol
-
     /**
-     * Gets the save file
+     * Gets a list of divisions
      *
-     * @return File referencing the location of save-data for the pace
-     * @see #file
+     * @return List of division included in the pace
      */
-    public File getFile() {
-        return file;
+    public List<Division> getDivisions() {
+        return divisions;
     }
 
     /**
-     * Sets the save file
+     * Gets a list of teams
      *
-     * @param file File referencing the location of save-data for the pace
-     * @see #file
+     * @return List of teams tracked in the pace
      */
-    public void setFile(File file) {
-        this.file = file;
+    public List<Team> getTeams() {
+        return teams;
     }
 
     /**
      * Gets the pace's UUID
      *
      * @return Unique Identifier of the pace
+     *
      * @see #uuid
      */
     public UUID getUUID() {
@@ -225,6 +179,7 @@ public class Pace {
      * Creates a new division from a given name, adding it to the list, and returning its UUID
      *
      * @param name Name of the new division
+     *
      * @return UUID of the newly created division
      */
     public UUID newDivision(String name) {
@@ -233,6 +188,8 @@ public class Pace {
         divisions.add(division);
         return division.getUUID();
     }
+
+    //these comments are not good lol
 
     /**
      * Adds a given division to the list
@@ -248,6 +205,7 @@ public class Pace {
      * default division.
      *
      * @param division Division to remove
+     *
      * @return {@code true} if removing was successful, {@code false} if the division is not in the list, or if the division
      * is the default division and cannot be removed
      */
@@ -267,6 +225,7 @@ public class Pace {
      * <p>Useful if there is a need for changing default divisions to remove the previous default division</p>
      *
      * @param division Division to set as default
+     *
      * @return {@code true} if the provided division was set as default, {@code false} if the division is not in the
      * current list of divisions, or it is already the default division
      */
@@ -292,38 +251,123 @@ public class Pace {
     }
 
     /**
-     * Prompts the user to delete if settings require
-     *
-     * @param team Team to delete
+     * Attempts to save the Pace to the file specified
      */
-    public boolean removeTeam(Team team) {
-        if (App.settings.warnOnDelete() == App.warnDelete(team.getTeamName())) {
-            boolean result = teams.remove(team);
-            if (result) {
-                App.update();
+    public void save() {
+        if (file != null) {
+            try {
+                if (file.createNewFile()) {
+                    System.out.println("Created file " + file.getPath());
+                }
+                FileWriter writer = new FileWriter(file);
+                serialize(writer);
+                writer.close();
+                App.settings.addRecentFile(getFile().getPath());
+            } catch (Exception ignored) {
             }
-            return result;
-        } else {
-            return false;
         }
     }
 
     /**
+     * Serializes the data within this object to a writer
      *
-     * @return
+     * @param writer Writer to serialize the data to
+     */
+    public void serialize(Writer writer) {
+        if(uuid == null) {
+            uuid = UUID.randomUUID();
+        }
+
+        for (Team team : teams) {
+            if (team.getDivision() != divisions.get(0)) {
+                team.updateDivisionUUID();
+            } else {
+                team.clearDivisionUUID();
+            }
+        }
+        Serialization.getGson().toJson(this, writer);
+        if (App.settings.isAggressiveMemorySave()) {
+            for (Team team : teams) {
+                team.clearDivisionUUID();
+            }
+        }
+    }
+
+    /**
+     * Gets the save file
+     *
+     * @return File referencing the location of save-data for the pace
+     *
+     * @see #file
+     */
+    public File getFile() {
+        return file;
+    }
+
+    /**
+     * Sets the save file
+     *
+     * @param file File referencing the location of save-data for the pace
+     *
+     * @see #file
+     */
+    public void setFile(File file) {
+        this.file = file;
+    }
+
+    /**
+     * Prompts the user to delete if settings require
+     *
+     * @param team Team to delete
+     *
+     * @return SOMETHING
+     */
+    public boolean promptRemoveTeam(Team team) {
+        return (!App.settings.warnOnDelete() || App.warnDelete(team.getTeamName())) && removeTeam(team);
+    }
+
+    /**
+     * @param team Team to delete
+     *
+     * @return SOMETHING
+     */
+    public boolean removeTeam(Team team) {
+        boolean result = teams.remove(team);
+        if (result) {
+            App.update();
+        }
+        return result;
+    }
+
+    /**
+     * Generates a new team and registers it in the Pace. Sets its division to the default division.
+     *
+     * @return new {@code Team} object.
+     *
+     * @see #getDefaultDivision()
      */
     public Team newTeam() {
         Team team = new Team();
-        team.setDivision(divisions.get(0));
+        team.setDivision(getDefaultDivision());
         teams.add(team);
         return team;
     }
 
     /**
+     * Returns the default division, which is stored as the first division in the array. The default division is the given division
+     * for any new team, or teams who have not been specified a division.
      *
-     * @return
+     * @return The pace's default division.
      */
     public Division getDefaultDivision() {
         return divisions.get(0);
+    }
+
+    private static class UUIDContainer {
+
+        public UUID uuid;
+
+        public UUIDContainer() {
+        }
     }
 }

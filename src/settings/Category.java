@@ -5,7 +5,7 @@ package settings;
  * allow the user to filter out settings by category.
  *
  * @author Thomas Kwashnak
- * @verion 1.0.0
+ * @version 1.0.0
  * @since 1.0.0
  */
 public enum Category {

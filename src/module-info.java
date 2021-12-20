@@ -7,6 +7,7 @@ module paceManager {
     exports data;
     opens settings to com.google.gson;
     exports settings to javafx.graphics;
+    exports exceptions to javafx.graphics;
 
     requires javafx.graphics;
     requires javafx.controls;

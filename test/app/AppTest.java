@@ -1,7 +1,5 @@
 package app;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class AppTest {
+public class AppTest {
 
 }

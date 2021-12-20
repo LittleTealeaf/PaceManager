@@ -2,6 +2,7 @@ package app;
 
 import com.google.gson.stream.JsonReader;
 import data.Pace;
+import exceptions.ExceptionAlert;
 import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -35,6 +36,11 @@ Potentially add additional thread to have a "backup" of the pace
 public class App extends Application {
 
     /**
+     * Whether the build is a development build, which opens up some changes such as the example pulling
+     */
+    public static final boolean DEV_BUILD = true;
+
+    /**
      * The current development version of the application.
      */
     public static final String version = "1.0.0";
@@ -60,17 +66,26 @@ public class App extends Application {
      */
     private static List<Updatable> updateList;
 
+    private static String[] launchArguments;
 
-    //TODO include launch arguments for immediately opening a pace
 
     /**
      * Application Launch Point
      *
      * @param args Launch Arguments
      */
-    public static void main(String[] args) {
+    public static void main(String... args) {
         updateList = new LinkedList<>();
+        launchArguments = args == null ? new String[0] : args;
         launch(args);
+    }
+
+    public static void openIgnoreException(File file) {
+        try {
+            open(file);
+        } catch (Exception e) {
+            new ExceptionAlert(e);
+        }
     }
 
     /**
@@ -80,17 +95,10 @@ public class App extends Application {
      *
      * @param file Pace File to attempt to open. File extension does not matter.
      */
-    public static void open(File file) {
-        if (file != null && file.exists()) {
-            openedPace = Pace.fromFile(file);
-            appStage.setTitle(file.getName());
-        } else {
-            openedPace = pace2021();
-        }
-
+    public static void open(File file) throws Exception {
+        openedPace = file == null ? (DEV_BUILD ? pace2021() : Pace.newPace()) : Pace.fromFile(file);
         appStage.setScene(generateScene());
         openedPace.save();
-
         appStage.show();
     }
 
@@ -102,6 +110,7 @@ public class App extends Application {
      *
      * @param node Content of the pane. Content will be displayed in the tab-pane when the tab is selected and opened
      * @param name Name/Title of the tab. Text is displayed on the tab itself.
+     *
      * @return Configured {@code Tab} object
      */
     private static Tab createTab(Node node, String name) {
@@ -128,17 +137,24 @@ public class App extends Application {
      * Development Method that imports the data from the 2021 hunter pace. Pulls from resources/dev/pace2021.json
      *
      * @return Pace with values from 2021
+     *
      * @since 1.0.0-development
      */
     private static Pace pace2021() {
-        return Pace.fromJson(new JsonReader(new InputStreamReader(Resources.getResource("/dev/pace2021.json"))));
+        try {
+            return Pace.fromJson(new JsonReader(new InputStreamReader(Resources.getResource("/dev/pace2021.json"))));
+        } catch (Exception exception) {
+            new ExceptionAlert(exception);
+            return null;
+        }
     }
 
     /**
      * Prompts the user to verify whether they want to delete an item
      *
      * @param name Display Name of the item the user may want to delete
-     * @return {@code True} if the user decided to delete, {@code false} otherwise.
+     *
+     * @return {@code True} if the user decided to delete, {@code false} otherwise.<br>If {@link App#settings} is {@code null}
      */
     public static boolean warnDelete(String name) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -162,11 +178,7 @@ public class App extends Application {
         DivisionView divisionView = new DivisionView();
         WinnersView winnersView = new WinnersView();
 
-        tabPane.getTabs().addAll(
-                createTab(teamTable, "Teams"),
-                createTab(divisionView, "Divisions"),
-                createTab(winnersView, "Winners")
-        );
+        tabPane.getTabs().addAll(createTab(teamTable, "Teams"), createTab(divisionView, "Divisions"), createTab(winnersView, "Winners"));
 
         updateList.add(teamTable);
         updateList.add(divisionView);
@@ -180,7 +192,7 @@ public class App extends Application {
         openPace.setOnAction(e -> {
             File file = Resources.promptOpenPace();
             if (file != null) {
-                open(file);
+                openIgnoreException(file);
             }
         });
 
@@ -226,12 +238,33 @@ public class App extends Application {
         menuFile.getItems().addAll(openPace, savePace, savePaceAs, closePace, openSettings, exitApp);
         menuTools.getItems().addAll(quickImport, newTeam);
 
-
         borderPane.setTop(menuBar);
         borderPane.setCenter(tabPane);
 
-
         return new Scene(borderPane);
+    }
+
+    /**
+     * Adds an updatable to list, executing {@link Updatable#update()} each time the application is sent an update
+     *
+     * @param updatable Updatable object that implements the {@link Updatable} interface
+     *
+     * @see #update()
+     */
+    public static void addUpdatable(Updatable updatable) {
+        updateList.add(updatable);
+    }
+
+    /**
+     * Removes an updatable from the update list. The object will no longer be pinged any time the application
+     * is updated
+     *
+     * @param updatable Updatable object that implements the {@link Updatable} interface
+     *
+     * @return {@code true} if this list contained the specified element
+     */
+    public static boolean removeUpdatable(Updatable updatable) {
+        return updateList.remove(updatable);
     }
 
     /**
@@ -249,28 +282,11 @@ public class App extends Application {
         });
         stage.setMaximized(settings.isAppMaximized());
         stage.maximizedProperty().addListener(e -> settings.setAppMaximized(stage.isMaximized()));
-        Launcher.open();
-    }
 
-    /**
-     * Adds an updatable to list, executing {@link Updatable#update()} each time the application is sent an update
-     *
-     * @param updatable Updatable object that implements the {@link Updatable} interface
-     * @see #update()
-     */
-    public static void addUpdatable(Updatable updatable) {
-        updateList.add(updatable);
+        if (launchArguments.length > 0) {
+            openIgnoreException(new File(launchArguments[0]));
+        } else {
+            Launcher.open();
+        }
     }
-
-    /**
-     * Removes an updatable from the update list. The object will no longer be pinged any time the application
-     * is updated
-     *
-     * @param updatable Updatable object that implements the {@link Updatable} interface
-     * @return {@code true} if this list contained the specified element
-     */
-    public static boolean removeUpdatable(Updatable updatable) {
-        return updateList.remove(updatable);
-    }
-
 }

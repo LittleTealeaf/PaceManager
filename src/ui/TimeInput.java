@@ -58,6 +58,33 @@ public class TimeInput extends TextField {
     }
 
     /**
+     * Parses the current text within the object into a {@code Time} object. Sets the time to null if
+     * there is no text specified
+     *
+     * @see Time#Time(String)
+     */
+    private void parseText() {
+        Time oldValue = time;
+        try {
+            if (getText() == null || getText().contentEquals("")) {
+                time = null;
+            } else {
+                time = new Time(getText());
+            }
+        } catch (Exception ignored) {
+        }
+
+        Time newValue = time;
+        if (oldValue != newValue) {
+            for (TimeListener listener : timeListeners) {
+                listener.valueChanged(oldValue, newValue);
+            }
+        }
+
+        updateText();
+    }
+
+    /**
      * Updates the text-box to the value provided from the current Time
      *
      * @see Time#toString()
@@ -80,36 +107,11 @@ public class TimeInput extends TextField {
      * Sets the current time and updates the text
      *
      * @param time The new time to display
+     *
      * @see #updateText()
      */
     public void setTime(Time time) {
         this.time = time;
-        updateText();
-    }
-
-    /**
-     * Parses the current text within the object into a {@code Time} object. Sets the time to null if
-     * there is no text specified
-     *
-     * @see Time#Time(String)
-     */
-    private void parseText() {
-        Time oldValue = time;
-        try {
-            if (getText() == null || getText().contentEquals("")) {
-                time = null;
-            } else {
-                time = new Time(getText());
-            }
-        } catch (Exception ignored) {}
-
-        Time newValue = time;
-        if (oldValue != newValue) {
-            for (TimeListener listener : timeListeners) {
-                listener.valueChanged(oldValue, newValue);
-            }
-        }
-
         updateText();
     }
 
@@ -126,6 +128,7 @@ public class TimeInput extends TextField {
     }
 
     public interface TimeListener {
+
         void valueChanged(Time oldValue, Time newValue);
     }
 }

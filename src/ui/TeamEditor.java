@@ -64,85 +64,16 @@ public class TeamEditor extends Stage implements Updatable {
         show();
     }
 
-    public void update() {
-        //update name
-        setTitle(team.getTeamName() != null && !team.getTeamName().equals("") ? "Editing Team " + team
-                .getTeamName() : "Creating New Team");
-        updateNodes();
-    }
-
-    private void updateTeam() {
-
-        team.setTeamName(nodeTeamName.getText());
-        team.setNotes(nodeNotes.getText());
-        team.setStartTime(nodeStartTime.getTime());
-        team.setEndTime(nodeEndTime.getTime());
-        team.setDivision(nodeDivision.getDivision());
-        //TODO cleanse data in separate function
-        team.setRiders(parseRiders());
-        team.setExcluded(nodeExcluded.isSelected());
-        App.update();
-    }
-
-    /**
-     * @return
-     */
-    public String[] parseRiders() {
-        String[] raw = nodeRiders.getText().replace(',', '\n').split("\n");
-        boolean[] delete = new boolean[raw.length];
-        int delCount = 0;
-        for (int i = 0; i < raw.length; i++) {
-            while (raw[i].length() > 0 && raw[i].charAt(0) == ' ') {
-                raw[i] = raw[i].substring(1);
-            }
-            while (raw[i].length() > 0 && raw[i].charAt(raw[i].length() - 1) == ' ') {
-                raw[i] = raw[i].substring(0, raw[i].length() - 1);
-            }
-            if (raw[i].equals("")) {
-                delete[i] = true;
-                delCount++;
-            }
-        }
-        String[] riders = new String[raw.length - delCount];
-        int i = 0, j = 0;
-        while (i < riders.length) {
-            if (delete[j]) {
-                j++;
-            } else {
-                riders[i] = raw[j];
-                j++;
-                i++;
-            }
-        }
-
-        return riders;
-    }
-
-    private void updateNodes() {
-        nodeTeamName.setText(team.getTeamName());
-        nodeNotes.setText(team.getNotes());
-        nodeStartTime.setTime(team.getStartTime());
-        nodeEndTime.setTime(team.getEndTime());
-        nodeDivision.setDivision(team.getDivision());
-        nodeExcluded.setSelected(team.isExcluded());
-
-        if (team.getRiders() != null) {
-            StringBuilder builder = new StringBuilder();
-            int riderLength = team.getRiders().length;
-            for (int i = 0; i < riderLength; i++) {
-                builder.append(team.getRiders()[i]);
-                if (i < riderLength - 1) {
-                    builder.append("\n");
-                }
-            }
-            nodeRiders.setText(builder.toString());
-        } else {
-            nodeRiders.setText("");
+    public static void closeAll() {
+        while (EDITORS.size() > 0) {
+            TeamEditor editor = EDITORS.get(0);
+            EDITORS.remove(editor);
+            editor.close();
         }
     }
 
     /**
-     * @return
+     * @return Generated Scene for the Team Editor
      */
     private Scene generateScene() {
         BorderPane borderPane = new BorderPane();
@@ -177,14 +108,19 @@ public class TeamEditor extends Stage implements Updatable {
 
         center.add(nodeNotes, 2, 3, 2, 1);
 
-
         borderPane.setBottom(generateBottomPane());
 
         return new Scene(borderPane);
     }
 
+    public void update() {
+        //update name
+        setTitle(team.getTeamName() != null && !team.getTeamName().equals("") ? "Editing Team " + team.getTeamName() : "Creating New Team");
+        updateNodes();
+    }
+
     /**
-     * @return
+     * @return Generated Bottom Pane of the Scene
      */
     private BorderPane generateBottomPane() {
         BorderPane pane = new BorderPane();
@@ -212,12 +148,74 @@ public class TeamEditor extends Stage implements Updatable {
         return pane;
     }
 
-    public static void closeAll() {
-        while (EDITORS.size() > 0) {
-            TeamEditor editor = EDITORS.get(0);
-            EDITORS.remove(editor);
-            editor.close();
+    private void updateNodes() {
+        nodeTeamName.setText(team.getTeamName());
+        nodeNotes.setText(team.getNotes());
+        nodeStartTime.setTime(team.getStartTime());
+        nodeEndTime.setTime(team.getEndTime());
+        nodeDivision.setDivision(team.getDivision());
+        nodeExcluded.setSelected(team.isExcluded());
+
+        if (team.getRiders() != null) {
+            StringBuilder builder = new StringBuilder();
+            int riderLength = team.getRiders().length;
+            for (int i = 0; i < riderLength; i++) {
+                builder.append(team.getRiders()[i]);
+                if (i < riderLength - 1) {
+                    builder.append("\n");
+                }
+            }
+            nodeRiders.setText(builder.toString());
+        } else {
+            nodeRiders.setText("");
         }
+    }
+
+    private void updateTeam() {
+
+        team.setTeamName(nodeTeamName.getText());
+        team.setNotes(nodeNotes.getText());
+        team.setStartTime(nodeStartTime.getTime());
+        team.setEndTime(nodeEndTime.getTime());
+        team.setDivision(nodeDivision.getDivision());
+        //TODO cleanse data in separate function
+        team.setRiders(parseRiders());
+        team.setExcluded(nodeExcluded.isSelected());
+        App.update();
+    }
+
+    /**
+     * @return Riders parsed into a String Array
+     */
+    public String[] parseRiders() {
+        String[] raw = nodeRiders.getText().replace(',', '\n').split("\n");
+        boolean[] delete = new boolean[raw.length];
+        int delCount = 0;
+        for (int i = 0; i < raw.length; i++) {
+            while (raw[i].length() > 0 && raw[i].charAt(0) == ' ') {
+                raw[i] = raw[i].substring(1);
+            }
+            while (raw[i].length() > 0 && raw[i].charAt(raw[i].length() - 1) == ' ') {
+                raw[i] = raw[i].substring(0, raw[i].length() - 1);
+            }
+            if (raw[i].equals("")) {
+                delete[i] = true;
+                delCount++;
+            }
+        }
+        String[] riders = new String[raw.length - delCount];
+        int i = 0, j = 0;
+        while (i < riders.length) {
+            if (delete[j]) {
+                j++;
+            } else {
+                riders[i] = raw[j];
+                j++;
+                i++;
+            }
+        }
+
+        return riders;
     }
 
     public Team getTeam() {

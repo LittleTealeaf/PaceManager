@@ -35,11 +35,16 @@ public abstract class SettingNode implements Updatable {
         initialize();
     }
 
+    /**
+     * Method called immediately after the constructor, used for initializing and configuring the editing nodes
+     */
+    public abstract void initialize();
 
     /**
      * Checks if the SettingNode is classified under a specific category
      *
      * @param category Category to check if SettingNode is a part of
+     *
      * @return {@code true} if the setting node is classified under the given category, {@code false} otherwise
      */
     public boolean isCategory(Category category) {
@@ -52,16 +57,15 @@ public abstract class SettingNode implements Updatable {
     }
 
     /**
-     * Method called immediately after the constructor, used for initializing and configuring the editing nodes
-     */
-    public abstract void initialize();
-
-    /**
      * Returns the node used to edit the setting
      *
      * @return Node of the setting editor
      */
     public abstract Node getNode();
+
+    public String toString() {
+        return getName();
+    }
 
     /**
      * Gets the display name of the object
@@ -70,9 +74,5 @@ public abstract class SettingNode implements Updatable {
      */
     public String getName() {
         return name;
-    }
-
-    public String toString() {
-        return getName();
     }
 }

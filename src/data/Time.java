@@ -61,6 +61,7 @@ public class Time {
      * Creates a new {@code Time} object with the specified {@code value}
      *
      * @param value Time as number of milliseconds
+     *
      * @see #Time()
      * @see #value
      */
@@ -93,12 +94,22 @@ public class Time {
      *
      * @param start the first {@code Time}, typically less in value than {@code end}
      * @param end   the second {@code Time}, typically greater in value than {@code start}
-     * @return A new {@code Time} object representing the difference between {@code start} and {@code end}
+     *
+     * @return A new {@code Time} object representing the difference between {@code start} and {@code end}. If either
+     * or both start and end are null, returns null
+     *
      * @see #value
      * @see #absolute()
      */
     public static Time difference(Time start, Time end) {
-        return new Time(end.getValue() - start.getValue());
+        return start == null || end == null ? null : new Time(end.getValue() - start.getValue());
+    }
+
+    /**
+     *
+     */
+    public long getValue() {
+        return value;
     }
 
     /**
@@ -113,37 +124,37 @@ public class Time {
     }
 
     /**
+     * @param other Time to add
      *
-     */
-    public long getValue() {
-        return value;
-    }
-
-    /**
-     * @param other
-     * @return
+     * @return Sum of this time and the other time's values
      */
     public Time add(Time other) {
         return new Time(getValue() + other.getValue());
     }
 
     /**
-     * @param other
-     * @return
+     * @param other Time to subtract
+     *
+     * @return Difference of this time and other time's values
      */
     public Time subtract(Time other) {
-        return new Time(getValue() - other.getValue());
+        return other != null ? new Time(getValue() - other.getValue()) : null;
     }
 
     /**
      * Compares the time to another {@code Time} object's time
      *
      * @param other {@code Time} object to compare to
+     *
      * @return the value 0 if this Time is equal to the other Time; a value less than 0 if this Time is numerically less than
      * the other Time; and a value greater than 0 if this Time is numerically greater than the other Time (signed comparison).
      */
     public int compareTo(Time other) {
         return Long.compare(getValue(), other.getValue());
+    }
+
+    public boolean equals(Object other) {
+        return other instanceof Time && ((Time) other).getValue() == this.getValue();
     }
 
     public String toString() {
@@ -173,8 +184,7 @@ public class Time {
             }
 
             DecimalFormat formatter = new DecimalFormat("00");
-            return string = (negative ? "-" : "") + formatter.format(h) + ":" + formatter.format(
-                    m) + ":" + formatter.format(s);
+            return string = (negative ? "-" : "") + formatter.format(h) + ":" + formatter.format(m) + ":" + formatter.format(s);
         }
     }
 
@@ -186,6 +196,7 @@ public class Time {
      * @version 1.0.0
      */
     public static class TimeSerializer implements JsonSerializer<Time> {
+
         public JsonElement serialize(Time time, Type type, JsonSerializationContext jsonSerializationContext) {
             return new JsonPrimitive(time.getValue());
         }
@@ -199,10 +210,11 @@ public class Time {
      * @version 1.0.0
      */
     public static class TimeDeserializer implements JsonDeserializer<Time> {
-        public Time deserialize(JsonElement jsonElement, Type type,
-                                JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+
+        public Time deserialize(
+                JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext
+                               ) throws JsonParseException {
             return new Time(jsonElement.getAsLong());
         }
     }
-
 }

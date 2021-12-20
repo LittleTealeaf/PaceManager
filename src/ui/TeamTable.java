@@ -44,11 +44,21 @@ public class TeamTable extends TableView<Team> implements Updatable {
                     }
                 }
                 case F5 -> update();
-                case DELETE -> App.openedPace.removeTeam(getSelectionModel().getSelectedItem());
+                case DELETE -> App.openedPace.promptRemoveTeam(getSelectionModel().getSelectedItem());
             }
         });
 
         update();
+    }
+
+    private void addColumns() {
+        getColumns().clear();
+
+        TableColumn<Team, String> times = new TableColumn<>("Times");
+        times.setReorderable(false);
+        times.getColumns().addAll(columnFactory("Start", "startString"), columnFactory("End", "endString"), columnFactory("Elapsed", "elapsedString"));
+
+        getColumns().addAll(columnFactory("Division", "division"), columnFactory("Team", "teamName"), columnFactory("Riders", "ridersString"), times, columnFactory("Notes", "notesDisplay"));
     }
 
     private ContextMenu createContextMenu() {
@@ -61,38 +71,10 @@ public class TeamTable extends TableView<Team> implements Updatable {
         newItem.setOnAction(e -> new TeamEditor(App.openedPace.newTeam()));
 
         MenuItem deleteItem = new MenuItem("Delete");
-        deleteItem.setOnAction(e -> App.openedPace.removeTeam(getSelectionModel().getSelectedItem()));
+        deleteItem.setOnAction(e -> App.openedPace.promptRemoveTeam(getSelectionModel().getSelectedItem()));
 
         contextMenu.getItems().addAll(openItem, newItem, deleteItem);
         return contextMenu;
-    }
-
-    private void addColumns() {
-        getColumns().clear();
-
-        TableColumn<Team, String> times = new TableColumn<>("Times");
-        times.setReorderable(false);
-        times.getColumns().addAll(
-                columnFactory("Start", "startString"),
-                columnFactory("End", "endString"),
-                columnFactory("Elapsed", "elapsedString")
-        );
-
-        getColumns().addAll(
-                columnFactory("Division", "division"),
-                columnFactory("Team", "teamName"),
-                columnFactory("Riders", "ridersString"),
-                times,
-                columnFactory("Notes", "notesDisplay")
-        );
-
-    }
-
-    private TableColumn<Team, String> columnFactory(String name, String propertyName) {
-        TableColumn<Team, String> column = new TableColumn<>(name);
-        column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
-        column.setReorderable(false);
-        return column;
     }
 
     public void update() {
@@ -106,7 +88,15 @@ public class TeamTable extends TableView<Team> implements Updatable {
         }
     }
 
+    private TableColumn<Team, String> columnFactory(String name, String propertyName) {
+        TableColumn<Team, String> column = new TableColumn<>(name);
+        column.setCellValueFactory(new PropertyValueFactory<>(propertyName));
+        column.setReorderable(false);
+        return column;
+    }
+
     public interface TeamUpdater {
+
         List<Team> getTeams();
     }
 }

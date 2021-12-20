@@ -24,26 +24,12 @@ public class Resources {
     public static final Image APPLICATION_ICON = new Image(getResource("/icons/application.png"));
 
     /**
-     * Provides a working directory for use of data, settings, or other files within the project.
-     * <p>Uses {@link System#getProperty(String) System.getProperty("user.home")} to obtain the base directory, and then includes a
-     * subdirectory for paceManager. This folder is set as hidden on all systems except windows by naming the directory ".paceManager".
-     * <p>
-     * Future versions may move this folder to {@code %APPDATA%} on Windows machines, or similarly change the location on other
-     * platforms as well.
-     *
-     * @return String directory path of the working directory, such as "{@code C:\Users\Thomas\.paceManager\}"
-     * @see File#separatorChar
-     */
-    public static String getWorkingDirectory() {
-        return System.getProperty("user.home") + File.separatorChar + ".paceManager" + File.separatorChar;
-    }
-
-    /**
      * Attempts to get the settings file from the predicted location. If no file exists, or if there was an error in
      * parsing the Settings file, it will create a new settings object and save it, overwriting the damaged file if
      * it had exists
      *
      * @return Settings object with program settings
+     *
      * @see Settings
      */
     public static Settings getSettings() {
@@ -57,10 +43,27 @@ public class Resources {
                     settings = new Settings();
                 }
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
         assert settings != null;
         settings.save();
         return settings;
+    }
+
+    /**
+     * Provides a working directory for use of data, settings, or other files within the project.
+     * <p>Uses {@link System#getProperty(String) System.getProperty("user.home")} to obtain the base directory, and then includes a
+     * subdirectory for paceManager. This folder is set as hidden on all systems except windows by naming the directory ".paceManager".
+     * <p>
+     * Future versions may move this folder to {@code %APPDATA%} on Windows machines, or similarly change the location on other
+     * platforms as well.
+     *
+     * @return String directory path of the working directory, such as "{@code C:\Users\Thomas\.paceManager\}"
+     *
+     * @see File#separatorChar
+     */
+    public static String getWorkingDirectory() {
+        return System.getProperty("user.home") + File.separatorChar + ".paceManager" + File.separatorChar;
     }
 
     /**
@@ -68,6 +71,7 @@ public class Resources {
      *
      * @return A {@code File} object referring to the pace file. Returns {@code null} if the user canceled out without
      * selecting a file or selected a file that does not exist
+     *
      * @see #promptSavePace()
      * @see #generatePacePrompt()
      */
@@ -82,28 +86,11 @@ public class Resources {
     }
 
     /**
-     * Prompts the user to save a pace file.
-     *
-     * @return A {@code File} object referring to the desired location to save the Pace file. Returns {@code null} if
-     * the user canceled out without selecting a file
-     * @see #promptOpenPace()
-     * @see #generatePacePrompt()
-     */
-    public static File promptSavePace() {
-        FileChooser fileChooser = generatePacePrompt();
-        fileChooser.setTitle("Save Pace");
-        File file = fileChooser.showSaveDialog(null);
-        if (file != null) {
-            App.settings.setPaceDirectory(file.getParent());
-        }
-        return file;
-    }
-
-    /**
      * Generates a File prompt for use in {@link #promptOpenPace()} and {@link #promptSavePace()}. Configures the
      * prompt to filter out files by file extensions provided in user settings.
      *
      * @return Generated File Chooser prompt
+     *
      * @see Settings#getFileExtensions()
      * @see #promptSavePace()
      * @see #generatePacePrompt()
@@ -124,6 +111,25 @@ public class Resources {
     }
 
     /**
+     * Prompts the user to save a pace file.
+     *
+     * @return A {@code File} object referring to the desired location to save the Pace file. Returns {@code null} if
+     * the user canceled out without selecting a file
+     *
+     * @see #promptOpenPace()
+     * @see #generatePacePrompt()
+     */
+    public static File promptSavePace() {
+        FileChooser fileChooser = generatePacePrompt();
+        fileChooser.setTitle("Save Pace");
+        File file = fileChooser.showSaveDialog(null);
+        if (file != null) {
+            App.settings.setPaceDirectory(file.getParent());
+        }
+        return file;
+    }
+
+    /**
      * Grabs a system resources as a stream.
      * <p>
      * Make sure to run a {@code maven compile} cycle before testing, otherwise the file will not be included in
@@ -132,6 +138,7 @@ public class Resources {
      *
      * @param name Resource Path of resource <br>If in a subdirectory, format such as {@code /dev/pace2021.json},
      *             if not format such as {@code pace2021.json}
+     *
      * @return Input Stream of desired resource
      */
     public static InputStream getResource(String name) {

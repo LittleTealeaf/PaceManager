@@ -32,6 +32,7 @@ public class Settings {
      * @settings.default see {@link App#version}
      * @see App#version
      */
+    @SuppressWarnings("FieldCanBeLocal")
     private final String settingsVersion;
     /**
      * List of recently opened Pace files
@@ -137,23 +138,10 @@ public class Settings {
     }
 
     /**
-     * Saves the current configuration
-     */
-    public void save() {
-        if (settingsFile.getParentFile().mkdirs()) {
-            System.out.println("Created " + settingsFile.getParentFile().getPath());
-        }
-        try {
-            FileWriter writer = new FileWriter(settingsFile);
-            Serialization.getGson().toJson(this, Settings.class, writer);
-            writer.close();
-        } catch (Exception ignored) {}
-    }
-
-    /**
      * Returns whether to aggressively save memory (ram)
      *
      * @return {@code true} if the setting is set to true, {@code false} if the setting is set to false
+     *
      * @see #aggressiveMemorySave
      */
     public boolean isAggressiveMemorySave() {
@@ -165,6 +153,7 @@ public class Settings {
      * <p>Will save settings to the settings file after the modification</p>
      *
      * @param value {@code true} if the program should take extra steps to reduce memory, {@code false} if not
+     *
      * @see #aggressiveMemorySave
      */
     public void setAggressiveMemorySave(boolean value) {
@@ -176,9 +165,25 @@ public class Settings {
     }
 
     /**
+     * Saves the current configuration
+     */
+    public void save() {
+        if (settingsFile.getParentFile().mkdirs()) {
+            System.out.println("Created " + settingsFile.getParentFile().getPath());
+        }
+        try {
+            FileWriter writer = new FileWriter(settingsFile);
+            Serialization.getGson().toJson(this, Settings.class, writer);
+            writer.close();
+        } catch (Exception ignored) {
+        }
+    }
+
+    /**
      * Gets the list of file extensions used when opening a pace file
      *
      * @return String array of valid file extensions. Extensions are in the format {@code .___}.
+     *
      * @see #fileExtensions
      */
     public String[] getFileExtensions() {
@@ -190,6 +195,7 @@ public class Settings {
      * <p>Will save settings to the settings file after the modification</p>
      *
      * @param fileExtensions String array of valid file extensions. Extensions are in the format {@code .___}.
+     *
      * @see #fileExtensions
      */
     public void setFileExtensions(String[] fileExtensions) {
@@ -201,6 +207,7 @@ public class Settings {
      * Gets the pace directory path string
      *
      * @return String Path of the default directory to begin looking for pace files in
+     *
      * @see #paceDirectory
      */
     public String getPaceDirectory() {
@@ -212,6 +219,7 @@ public class Settings {
      * <p>Will save settings to the settings file after the modification</p>
      *
      * @param directory String Path of the default directory to begin looking for pace files in
+     *
      * @see #paceDirectory
      */
     public void setPaceDirectory(String directory) {
@@ -222,6 +230,7 @@ public class Settings {
      * Returns a list of recently opened pace files
      *
      * @return List of recently opened files stored as strings of the file locations
+     *
      * @see #recentFiles
      */
     public List<String> getRecentFiles() {
@@ -233,6 +242,7 @@ public class Settings {
      * <p>Will save settings to the settings file after the modification</p>
      *
      * @param path String Path representation of the new file to add
+     *
      * @see #recentFiles
      */
     public void addRecentFile(String path) {
@@ -271,6 +281,7 @@ public class Settings {
      *
      * @return {@code true} if a pace object should attempt to save whenever a modification ping is sent to it,
      * {@code false} otherwise
+     *
      * @see #aggressiveSave
      */
     public boolean isAggressiveSave() {
@@ -283,6 +294,7 @@ public class Settings {
      *
      * @param aggressiveSave {@code true} if a pace object should attempt to save whenever a modification ping is sent
      *                       to it, {@code false} otherwise
+     *
      * @see #aggressiveSave
      */
     public void setAggressiveSave(boolean aggressiveSave) {
@@ -294,6 +306,7 @@ public class Settings {
      * Returns whether the launcher should be opened maximized or in window mode
      *
      * @return {@code true} if the launcher should take up the whole screen, {@code false} otherwise
+     *
      * @see #launcherMaximized
      */
     public boolean isLauncherMaximized() {
@@ -305,6 +318,7 @@ public class Settings {
      * <p>Will save settings to the settings file after the modification</p>
      *
      * @param launcherMaximized {@code true} if the launcher should be opened maximized, {@code false} otherwise
+     *
      * @see #launcherMaximized
      */
     public void setLauncherMaximized(boolean launcherMaximized) {
@@ -317,6 +331,7 @@ public class Settings {
      *
      * @return {@code true} if the application should take up the whole screen, {@code false} if it should be in
      * windowed mode
+     *
      * @see #appMaximized
      */
     public boolean isAppMaximized() {
@@ -329,6 +344,7 @@ public class Settings {
      *
      * @param appMaximized {@code true} if the application should take up the whole screen, {@code false} if it
      *                     should be in windowed mode
+     *
      * @see #appMaximized
      */
     public void setAppMaximized(boolean appMaximized) {
@@ -341,6 +357,7 @@ public class Settings {
      *
      * @return {@code true} if the user should be prompted to verify they wish to delete an object, {@code false} if
      * the user is taking the risk and the object should be deleted immediately without verification
+     *
      * @see #warnOnDelete
      */
     public boolean warnOnDelete() {
@@ -353,6 +370,7 @@ public class Settings {
      *
      * @param warnOnDelete {@code true} if the user should be prompted to verify they wish to delete an object, {@code false} if
      *                     the user is taking the risk and the object should be deleted immediately without verification
+     *
      * @see #warnOnDelete
      */
     public void setWarnOnDelete(boolean warnOnDelete) {
@@ -364,6 +382,7 @@ public class Settings {
      * Checks whether the calculations for division average should exclude the slowest and the fastest team
      *
      * @return {@code true} if the slowest and fastest should be excluded, {@code false} if they should be included
+     *
      * @see #excludeOutliers
      */
     public boolean excludeOutliers() {
@@ -376,6 +395,7 @@ public class Settings {
      *
      * @param excludeOutliers {@code true} if the slowest and fastest should be excluded, {@code false} if they should
      *                        be included
+     *
      * @see #excludeOutliers
      */
     public void setExcludeOutliers(boolean excludeOutliers) {
@@ -387,6 +407,7 @@ public class Settings {
      * Checks whether the average should be used as the goal time if there is no goal time specified
      *
      * @return {@code true} if the average time should be used when no goal time is specified, {@code false} otherwise
+     *
      * @see #useAverageAsGoalTime
      */
     public boolean useAverageAsGoalTime() {
@@ -399,6 +420,7 @@ public class Settings {
      *
      * @param useAverageAsGoalTime {@code true} if the average time should be used when no goal time is specified,
      *                             {@code false} otherwise
+     *
      * @see #useAverageAsGoalTime
      */
     public void setUseAverageAsGoalTime(boolean useAverageAsGoalTime) {
@@ -411,6 +433,7 @@ public class Settings {
      *
      * @return {@code true} if multiple team editors are allowed to be open at the same time, {@code false} if only
      * one should be allowed to be opened
+     *
      * @see #multipleTeamsEditing
      */
     public boolean isMultipleTeamsEditing() {
@@ -423,11 +446,10 @@ public class Settings {
      *
      * @param multipleTeamsEditing if multiple team editors are allowed to be open at the same time, {@code false} if
      *                             only one should be allowed to be opened
+     *
      * @see #multipleTeamsEditing
      */
     public void setMultipleTeamsEditing(Boolean multipleTeamsEditing) {
         this.multipleTeamsEditing = multipleTeamsEditing;
     }
-
-
 }

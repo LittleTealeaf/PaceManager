@@ -1,5 +1,6 @@
 package app;
 
+import exceptions.ExceptionAlert;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -59,7 +60,6 @@ public class Launcher {
 
         Scene scene = new Scene(borderPane);
 
-
         stage.setScene(scene);
         stage.setMinWidth(500);
 
@@ -79,38 +79,6 @@ public class Launcher {
             panel.getChildren().add(button);
         }
         return panel;
-    }
-
-    /**
-     * Generates the list of buttons to be included on the left hand of the launcher
-     *
-     * @return Array of buttons to include
-     */
-    private static Button[] generateButtons() {
-        //New, Open, Copy, Info, Exit
-        Button[] buttons = new Button[5];
-
-        buttons[0] = new Button("New");
-        buttons[0].setOnAction(e -> openPace(null));
-
-        buttons[1] = new Button("Open");
-        buttons[1].setOnAction(e -> {
-            File file = Resources.promptOpenPace();
-            if (file != null) {
-                openPace(file);
-            }
-        });
-
-        buttons[2] = new Button("Info");
-
-        buttons[3] = new Button("Settings");
-        buttons[3].setOnAction(e -> new SettingsEditor());
-
-        buttons[4] = new Button("Close");
-        buttons[4].setOnAction(e -> System.exit(0));
-
-        return buttons;
-
     }
 
     /**
@@ -153,15 +121,50 @@ public class Launcher {
     }
 
     /**
+     * Generates the list of buttons to be included on the left hand of the launcher
+     *
+     * @return Array of buttons to include
+     */
+    private static Button[] generateButtons() {
+        //New, Open, Copy, Info, Exit
+        Button[] buttons = new Button[5];
+
+        buttons[0] = new Button("New");
+        buttons[0].setOnAction(e -> openPace(null));
+
+        buttons[1] = new Button("Open");
+        buttons[1].setOnAction(e -> {
+            File file = Resources.promptOpenPace();
+            if (file != null) {
+                openPace(file);
+            }
+        });
+
+        buttons[2] = new Button("Info");
+
+        buttons[3] = new Button("Settings");
+        buttons[3].setOnAction(e -> new SettingsEditor());
+
+        buttons[4] = new Button("Close");
+        buttons[4].setOnAction(e -> System.exit(0));
+
+        return buttons;
+    }
+
+    /**
      * Opens a selected pace in the application, closes the launcher and marks launcher for garbage collection
      *
      * @param file File of pace to open
+     *
      * @see App#open(File)
      */
     private static void openPace(File file) {
-        App.open(file);
-        stage.close();
-        stage = null;
+        try {
+            App.open(file);
+            stage.close();
+            stage = null;
+        } catch (Exception e) {
+            new ExceptionAlert(e);
+        }
     }
-
 }
