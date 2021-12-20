@@ -8,6 +8,7 @@ If there is any issues, uh... figure it out!</p>
 
 **Currently used JDK:** [JDK Version 17 Download](https://www.oracle.com/java/technologies/downloads/)
 
+## Backlog:
 
-TODO List:
-- Factor out any sub-classes into other classes, terrified of naming conventions but it is what it is
+1. Finish Writing Test-Cases, practicing best techniques
+2. Implement importing from Excel Sheet
