@@ -15,3 +15,28 @@ updates:
     schedule:
       interval: "daily"
      
+# - directory: /
+#   package-ecosystem: maven
+#   schedule:
+#     interval: daily
+#   target-branch: master
+# - directory: /
+#   package-ecosystem: maven
+#   schedule:
+#     interval: daily
+#   target-branch: 1.0.0
+#   - directory: /
+#     package-ecosystem: maven
+#     schedule:
+#       interval: daily
+#     target-branch: bug-fixes
+#   - directory: /
+#     package-ecosystem: maven
+#     schedule:
+#       interval: daily
+#     target-branch: 1.1.0
+#   - directory: /
+#     package-ecosystem: maven
+#     schedule:
+#       interval: daily
+#     target-branch: 1.1.0.1

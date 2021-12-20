@@ -14,4 +14,14 @@ updates:
   schedule:
     interval: daily
   target-branch: bug-fixes
+- directory: /
+  package-ecosystem: maven
+  schedule:
+    interval: daily
+  target-branch: 1.1.0
+- directory: /
+  package-ecosystem: maven
+  schedule:
+    interval: daily
+  target-branch: 1.1.0.1
 version: 2
