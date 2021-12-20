@@ -1,33 +1,25 @@
 package data;
 
-import interfaces.Nameable;
-import interfaces.UniqueIdentifier;
+import interfaces.JsonProcessable;
 
-import java.io.Serializable;
-import java.util.List;
-import java.util.UUID;
+public class Team implements JsonProcessable {
 
-public class Team implements Serializable, UniqueIdentifier, Nameable {
+    private DivisionPointer division;
 
-    private final UUID uuid;
-
-    private String name;
-
-    private List<Rider> riders;
-
-    public Team() {
-        uuid = UUID.randomUUID();
+    public Division getDivision() {
+        return division == null ? null : (Division) (division instanceof Division ? division : (division = division.asDivision()));
     }
 
-    public UUID getUUID() {
-        return uuid;
+    public void lookupDivision(Iterable<Division> divisions) {
+        divisions.forEach(division -> {
+            if (this.division.getUUID().equals(division.getUUID())) {
+                this.division = division;
+            }
+        });
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public void preSerialization() {
+        division = division.asDivisionPointer();
     }
 }

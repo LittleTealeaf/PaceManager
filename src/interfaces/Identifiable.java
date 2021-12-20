@@ -2,7 +2,7 @@ package interfaces;
 
 import java.util.UUID;
 
-public interface UniqueIdentifier {
+public interface Identifiable {
 
     UUID getUUID();
 }

@@ -1,7 +1,6 @@
 package ui;
 
 import app.App;
-import data.Team;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;

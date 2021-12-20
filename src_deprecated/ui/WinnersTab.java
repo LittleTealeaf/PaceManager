@@ -1,7 +1,6 @@
 package ui;
 
 import data.Division;
-import data.Team;
 import javafx.scene.control.Tab;
 
 //https://www.baeldung.com/java-pdf-creation

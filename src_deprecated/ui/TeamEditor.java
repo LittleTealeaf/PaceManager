@@ -3,7 +3,6 @@ package ui;
 import app.App;
 import app.Resources;
 import app.Updatable;
-import data.Team;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;

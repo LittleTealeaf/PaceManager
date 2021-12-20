@@ -2,7 +2,6 @@ package ui;
 
 import app.App;
 import app.Updatable;
-import data.Team;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
