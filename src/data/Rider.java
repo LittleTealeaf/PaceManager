@@ -39,4 +39,12 @@ public class Rider implements Serializable {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
+    public String getName() {
+        return toString();
+    }
+
+    public String toString() {
+        return String.format("%s %s", firstName, lastName);
+    }
 }

@@ -4,7 +4,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,13 +13,13 @@ public class Team implements Serializable {
     private static final long serialVersionUID = 42L;
     private List<Rider> riders;
     private DivisionPointer division;
-    private String notes, teamName;
+    private String notes, name;
     private boolean excluded;
     private Time startTime, endTime;
 
     public Team() {
         riders = new ArrayList<>();
-        teamName = "";
+        name = "";
         notes = "";
         excluded = false;
     }
@@ -63,9 +62,9 @@ public class Team implements Serializable {
 
     @Serial
     private void writeObject(ObjectOutputStream out) throws IOException {
-        out.writeObject(teamName);
+        out.writeObject(name);
         out.writeObject(division.getUUID());
-        out.writeObject(riders.toArray());
+        out.writeObject(riders);
         out.writeObject(startTime);
         out.writeObject(endTime);
         out.writeObject(notes);
@@ -73,10 +72,11 @@ public class Team implements Serializable {
     }
 
     @Serial
+    @SuppressWarnings("unchecked")
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-        teamName = (String) in.readObject();
+        name = (String) in.readObject();
         division = new DivisionPointer((UUID) in.readObject());
-        riders = Arrays.asList((Rider[]) in.readObject());
+        riders = (ArrayList<Rider>) in.readObject();
         startTime = (Time) in.readObject();
         endTime = (Time) in.readObject();
         notes = (String) in.readObject();
@@ -95,5 +95,17 @@ public class Team implements Serializable {
 
     public void setExcluded(boolean excluded) {
         this.excluded = excluded;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDivision(DivisionPointer division) {
+        this.division = division;
+    }
+
+    public String toString() {
+        return name;
     }
 }

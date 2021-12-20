@@ -39,4 +39,9 @@ public class DivisionPointer implements Serializable, Identifiable {
     public DivisionPointer asDivisionPointer() {
         return this;
     }
+
+    @Override
+    public String toString() {
+        return uuid.toString();
+    }
 }
