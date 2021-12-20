@@ -1,11 +1,15 @@
-package data_deprecated;
+package data;
 
 import interfaces.Identifiable;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.UUID;
 
-@Deprecated
-public class DivisionPointer implements Identifiable {
+public class DivisionPointer implements Serializable, Identifiable {
+
+    @Serial
+    private static final long serialVersionUID = 42L;
 
     protected UUID uuid;
     private transient Division division;

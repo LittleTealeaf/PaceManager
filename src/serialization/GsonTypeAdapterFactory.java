@@ -18,8 +18,7 @@ public class GsonTypeAdapterFactory implements TypeAdapterFactory {
 
         return new TypeAdapter<T>() {
             public void write(JsonWriter out, T value) throws IOException {
-                if (value instanceof JsonProcessable) {
-                    JsonProcessable processable = (JsonProcessable) value;
+                if (value instanceof JsonProcessable processable) {
                     processable.preSerialization();
                     delegate.write(out, value);
                     processable.postSerialization();
@@ -30,8 +29,8 @@ public class GsonTypeAdapterFactory implements TypeAdapterFactory {
 
             public T read(JsonReader in) throws IOException {
                 T obj = delegate.read(in);
-                if (obj instanceof JsonProcessable) {
-                    ((JsonProcessable) obj).postDeserialization();
+                if (obj instanceof JsonProcessable processable) {
+                    processable.postDeserialization();
                 }
                 return obj;
             }
