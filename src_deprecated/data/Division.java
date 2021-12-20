@@ -1,4 +1,4 @@
-package data;
+package data_deprecated;
 
 import app.App;
 import settings.Settings;

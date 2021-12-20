@@ -1,7 +1,7 @@
 package ui;
 
 import app.App;
-import data.Division;
+import data_deprecated.Division;
 import javafx.scene.control.ComboBox;
 
 //TODO update javadocs

@@ -2,7 +2,7 @@ package app;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import data.Time;
+import data_deprecated.Time;
 
 /**
  * Contains functions related to Serializing / Deserializing data
@@ -42,7 +42,7 @@ public class Serialization {
      *     either to save space or to prevent excess connections.
      *     </li>
      *     <li>Use of custom Serializers and Deserializers:
-     *     <ul><li>{@link Time} class ({@link data.Time.TimeSerializer Serializer}, {@link data.Time.TimeDeserializer Deserializer})</li></ul>
+     *     <ul><li>{@link Time} class ({@link data_deprecated.Time.TimeSerializer Serializer}, {@link data_deprecated.Time.TimeDeserializer Deserializer})</li></ul>
      *     </li>
      * </ul>
      *

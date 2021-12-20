@@ -1,7 +1,8 @@
-package data;
+package data_deprecated;
 
 import interfaces.JsonProcessable;
 
+@Deprecated
 public class Team implements JsonProcessable {
 
     private DivisionPointer division;

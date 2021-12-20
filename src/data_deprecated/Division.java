@@ -1,8 +1,9 @@
-package data;
+package data_deprecated;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Deprecated
 public class Division extends DivisionPointer {
 
     private final transient List<Team> teams;

@@ -2,7 +2,7 @@ package ui;
 
 import app.App;
 import app.Updatable;
-import data.Division;
+import data_deprecated.Division;
 import javafx.scene.control.TabPane;
 
 public class WinnersView extends TabPane implements Updatable {

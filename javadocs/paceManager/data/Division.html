@@ -74,7 +74,7 @@ loadScripts(document, 'script');</script>
 <h1 title="Class Division" class="title">Class Division</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance">data.DivisionOld</div>
+<div class="inheritance">data_deprecated.DivisionOld</div>
 </div>
 <section class="class-description" id="class-description">
 <hr>
@@ -93,7 +93,7 @@ loadScripts(document, 'script');</script>
  UUID. When a pace is loaded, each team looks up their UUID with all given divisions, and then sets their reference
  to the division. Additionally, each division keeps its own list of its teams, which is also populated during the
  loading process. Whenever a team is added or removed from their division, this list is updated using the
- <a href="#addTeam(data.Team)"><code>addTeam(Team)</code></a> and <a href="#removeTeam(data.Team)"><code>removeTeam(Team)</code></a> methods. During saving, each team's division UUID is updated
+ <a href="#addTeam(data_deprecated.Team)"><code>addTeam(Team)</code></a> and <a href="#removeTeam(data_deprecated.Team)"><code>removeTeam(Team)</code></a> methods. During saving, each team's division UUID is updated
  such that they can be assigned at the next load.</div>
 <dl class="notes">
 <dt>Since:</dt>
@@ -175,7 +175,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addTeam(data.Team)" class="member-name-link">addTeam</a><wbr>(<a href="Team.html" title="class in data">Team</a>&nbsp;team)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addTeam(data_deprecated.Team)" class="member-name-link">addTeam</a><wbr>(<a href="Team.html" title="class in data">Team</a>&nbsp;team)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Adds a new team to the division.</div>
 </div>
@@ -222,12 +222,12 @@ loadScripts(document, 'script');</script>
 <div class="block">Gets the division UUID</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeTeam(data.Team)" class="member-name-link">removeTeam</a><wbr>(<a href="Team.html" title="class in data">Team</a>&nbsp;team)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeTeam(data_deprecated.Team)" class="member-name-link">removeTeam</a><wbr>(<a href="Team.html" title="class in data">Team</a>&nbsp;team)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Removes a team from the division</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setGoalTime(data.Time)" class="member-name-link">setGoalTime</a><wbr>(<a href="Time.html" title="class in data">Time</a>&nbsp;goalTime)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setGoalTime(data_deprecated.Time)" class="member-name-link">setGoalTime</a><wbr>(<a href="Time.html" title="class in data">Time</a>&nbsp;goalTime)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Registers the optimum time for the division.</div>
 </div>
@@ -284,8 +284,8 @@ loadScripts(document, 'script');</script>
 <dt>See Also:</dt>
 <dd>
 <ul class="see-list">
-<li><a href="#addTeam(data.Team)"><code>addTeam(Team)</code></a></li>
-<li><a href="#removeTeam(data.Team)"><code>removeTeam(Team)</code></a></li>
+<li><a href="#addTeam(data_deprecated.Team)"><code>addTeam(Team)</code></a></li>
+<li><a href="#removeTeam(data_deprecated.Team)"><code>removeTeam(Team)</code></a></li>
 </ul>
 </dd>
 </dl>
@@ -387,7 +387,7 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="setGoalTime(data.Time)">
+<section class="detail" id="setGoalTime(data_deprecated.Time)">
 <h3>setGoalTime</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setGoalTime</span><wbr><span class="parameters">(<a href="Time.html" title="class in data">Time</a>&nbsp;goalTime)</span></div>
 <div class="block">Registers the optimum time for the division. If set to <code>null</code>, then calculations will be based off of the
@@ -405,7 +405,7 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="addTeam(data.Team)">
+<section class="detail" id="addTeam(data_deprecated.Team)">
 <h3>addTeam</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addTeam</span><wbr><span class="parameters">(<a href="Team.html" title="class in data">Team</a>&nbsp;team)</span></div>
 <div class="block">Adds a new team to the division.
@@ -417,7 +417,7 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="removeTeam(data.Team)">
+<section class="detail" id="removeTeam(data_deprecated.Team)">
 <h3>removeTeam</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">removeTeam</span><wbr><span class="parameters">(<a href="Team.html" title="class in data">Team</a>&nbsp;team)</span></div>
 <div class="block">Removes a team from the division</div>

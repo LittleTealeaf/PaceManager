@@ -1,7 +1,7 @@
 package app;
 
 import com.google.gson.stream.JsonReader;
-import data.Pace;
+import data_deprecated.Pace;
 import exceptions.ExceptionAlert;
 import javafx.application.Application;
 import javafx.scene.Node;

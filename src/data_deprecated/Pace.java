@@ -1,4 +1,4 @@
-package data;
+package data_deprecated;
 
 import interfaces.JsonProcessable;
 
@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+@Deprecated
 public class Pace implements JsonProcessable, Serializable {
 
     private final Set<Team> teams;

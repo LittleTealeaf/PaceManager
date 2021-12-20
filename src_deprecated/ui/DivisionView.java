@@ -2,9 +2,9 @@ package ui;
 
 import app.App;
 import app.Updatable;
-import data.Division;
-import data.Pace;
-import data.Time;
+import data_deprecated.Division;
+import data_deprecated.Pace;
+import data_deprecated.Time;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;

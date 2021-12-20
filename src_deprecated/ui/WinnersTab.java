@@ -1,6 +1,6 @@
 package ui;
 
-import data.Division;
+import data_deprecated.Division;
 import javafx.scene.control.Tab;
 
 //https://www.baeldung.com/java-pdf-creation

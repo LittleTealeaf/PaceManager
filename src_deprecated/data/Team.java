@@ -1,4 +1,4 @@
-package data;
+package data_deprecated;
 
 import java.io.Serializable;
 import java.util.UUID;

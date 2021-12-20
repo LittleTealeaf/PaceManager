@@ -1,9 +1,10 @@
-package data;
+package data_deprecated;
 
 import interfaces.Identifiable;
 
 import java.util.UUID;
 
+@Deprecated
 public class DivisionPointer implements Identifiable {
 
     protected UUID uuid;
