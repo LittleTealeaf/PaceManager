@@ -1,7 +1,6 @@
 package data;
 
-import java.io.Serial;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,5 +15,15 @@ public class Pace implements Serializable {
     public Pace() {
         divisions = new ArrayList<>();
         teams = new ArrayList<>();
+    }
+
+    @Serial
+    private void writeObject(ObjectOutputStream out) throws IOException {
+
+    }
+
+    @Serial
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+
     }
 }

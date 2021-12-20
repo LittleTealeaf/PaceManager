@@ -6,4 +6,5 @@ module paceManager {
     exports interfaces to com.google.gson;
 
     requires com.google.gson;
+    requires org.jetbrains.annotations;
 }

@@ -1,5 +1,6 @@
 package interfaces;
 
+@Deprecated
 public interface JsonProcessable {
 
     default void preSerialization() {}
