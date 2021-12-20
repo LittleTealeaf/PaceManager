@@ -1,6 +1,7 @@
 package app;
 
 import data.*;
+import serialization.Serializer;
 
 import java.io.File;
 
@@ -24,9 +25,9 @@ public class App {
         pace.getTeams().add(teamA);
         printPace(pace);
         try {
-            pace.serialize(new File("test.ser"));
+            pace.serialize(new File("target/test.ser"));
             System.out.println("Deserializing");
-            Pace pace2 = new Pace(new File("test.ser"));
+            Pace pace2 = new Serializer<Pace>().deserialize(new File("target/test.ser"));
             printPace(pace2);
         } catch (Exception e) {
             e.printStackTrace();

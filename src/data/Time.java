@@ -44,8 +44,15 @@ public class Time implements Serializable, Cloneable {
     }
 
     @Override
-    public Time clone() {
-        return new Time(this);
+    public Time clone() throws CloneNotSupportedException {
+        Time clone;
+        try {
+            clone = (Time) super.clone();
+            clone.setTime(this.time);
+        } catch (CloneNotSupportedException exception) {
+            clone = new Time(this);
+        }
+        return clone;
     }
 
     @Serial
