@@ -11,11 +11,15 @@ public class DivisionPointer implements Serializable, Identifiable {
     @Serial
     private static final long serialVersionUID = 42L;
 
-    protected UUID uuid;
+    protected final UUID uuid;
     private transient Division division;
 
     public DivisionPointer() {
-        uuid = UUID.randomUUID();
+        this(UUID.randomUUID());
+    }
+
+    public DivisionPointer(UUID uuid) {
+        this.uuid = uuid;
     }
 
     protected DivisionPointer(Division division) {
