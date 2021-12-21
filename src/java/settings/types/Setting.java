@@ -1,5 +1,6 @@
 package settings.types;
 
+import interfaces.Valuable;
 import settings.Category;
 
 import java.io.Serializable;
@@ -16,7 +17,7 @@ import java.util.Arrays;
  * @author Thomas Kwashnak
  * @param <T> Type of value of the setting
  */
-public abstract class Setting<T> implements Serializable {
+public abstract class Setting<T> implements Serializable, Valuable<T> {
 
     private final String name;
     private T value;

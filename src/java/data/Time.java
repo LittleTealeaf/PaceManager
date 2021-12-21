@@ -1,8 +1,12 @@
 package data;
 
+import interfaces.Copyable;
+import interfaces.ITime;
+import interfaces.Valuable;
+
 import java.io.*;
 
-public class Time implements Serializable, Cloneable {
+public class Time implements Serializable, Cloneable, ITime, Valuable<Long>, Copyable<Time> {
 
     @Serial
     private static final long serialVersionUID = 42L;
@@ -63,5 +67,33 @@ public class Time implements Serializable, Cloneable {
     @Serial
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         time = in.readLong();
+    }
+
+    @Override
+    public Time absolute() {
+        return new Time(Math.abs(time));
+    }
+
+    @Override
+    public Time add(Time other) {
+        return new Time(time + other.time);
+    }
+
+    @Override
+    public Time negative() {
+        return new Time(-time);
+    }
+
+    public Long getValue() {
+        return getTime();
+    }
+
+    public void setValue(Long value) {
+        setTime(value);
+    }
+
+    @Override
+    public Time copy() {
+        return new Time(this);
     }
 }

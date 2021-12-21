@@ -1,13 +1,16 @@
 package data;
 
+import interfaces.Copyable;
+
 import java.io.Serial;
 import java.io.Serializable;
 
 /**
  * Represents an individual rider, or participant in the competition.
+ *
  * @author Thomas Kwashnak
  */
-public class Rider implements Serializable {
+public class Rider implements Serializable, Copyable<Rider> {
 
     @Serial
     private static final long serialVersionUID = 42L;
@@ -75,10 +78,17 @@ public class Rider implements Serializable {
      * Combines both the given first name and last name to create a complete name. <p>For example, if {@code firstName = "thomas"} and {@code
      * lastName = "kwashnak"}, this method would return {@code "thomas kwashnak"}. If only one name is provided, then it will return only that
      * provided name.
+     *
      * @return Full name of the rider, as a {@code String}
+     *
      * @see #toString()
      */
     public String getName() {
         return firstName.equals("") ? lastName : lastName.equals("") ? firstName : String.format("%s %s", firstName, lastName);
+    }
+
+    @Override
+    public Rider copy() {
+        return new Rider(new String(firstName.toCharArray()), new String(lastName.toCharArray()));
     }
 }
