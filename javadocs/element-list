@@ -1,7 +1,8 @@
 module:paceManager
 app
 data
-exceptions
+interfaces
+serialization
 settings
-test
-ui
+settings.types
+testutility

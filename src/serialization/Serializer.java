@@ -1,14 +1,31 @@
 package serialization;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import java.io.*;
 
-public class Serializer {
+public class Serializer<T extends Serializable> {
 
-    public static Gson createGson() {
-        GsonBuilder builder = new GsonBuilder();
-        builder.excludeFieldsWithModifiers(java.lang.reflect.Modifier.TRANSIENT);
-        builder.registerTypeAdapterFactory(new GsonTypeAdapterFactory());
-        return builder.create();
+    public void serialize(T serializable, File file) throws IOException {
+        if (serializable instanceof Fileable fileable) {
+            fileable.setFile(file);
+        }
+
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(serializable);
+        objectOutputStream.close();
+        fileOutputStream.close();
+    }
+
+    public T deserialize(File file) throws IOException, ClassNotFoundException {
+        FileInputStream fileInputStream = new FileInputStream(file);
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        Object object = objectInputStream.readObject();
+        objectInputStream.close();
+        fileInputStream.close();
+
+        if (object instanceof Fileable fileable) {
+            fileable.setFile(file);
+        }
+        return (T) object;
     }
 }

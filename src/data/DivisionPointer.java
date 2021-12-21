@@ -2,15 +2,27 @@ package data;
 
 import interfaces.Identifiable;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.UUID;
 
-public class DivisionPointer implements Identifiable {
+/**
+ * @author Thomas Kwashnak
+ */
+public class DivisionPointer implements Serializable, Identifiable {
 
-    protected UUID uuid;
+    @Serial
+    private static final long serialVersionUID = 42L;
+
+    protected final UUID uuid;
     private transient Division division;
 
     public DivisionPointer() {
-        uuid = UUID.randomUUID();
+        this(UUID.randomUUID());
+    }
+
+    public DivisionPointer(UUID uuid) {
+        this.uuid = uuid;
     }
 
     protected DivisionPointer(Division division) {
@@ -27,7 +39,16 @@ public class DivisionPointer implements Identifiable {
         return division;
     }
 
+    public DivisionPointer tryDivision() {
+        return division != null ? division : this;
+    }
+
     public DivisionPointer asDivisionPointer() {
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return uuid.toString();
     }
 }
