@@ -7,10 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Represents a single team in a given competition. A team is composed of one or more riders, is given a team number and division, and stores
+ * additional values pertaining to the pace
+ * @author Thomas Kwashnak
+ */
 public class Team implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 42L;
+
     private List<Rider> riders;
     private DivisionPointer division;
     private String notes, name;
@@ -24,6 +30,11 @@ public class Team implements Serializable {
         excluded = false;
     }
 
+    /**
+     * Attempts to return the division of the pace
+     * @return The team's {@code division}, if it is referenced by the pointer. Returns {@code null} if the pointer does not have a reference to
+     * the division.
+     */
     public Division getDivision() {
         if(division instanceof Division division) {
             return division;
@@ -34,10 +45,19 @@ public class Team implements Serializable {
         }
     }
 
+    /**
+     * Returns the raw pointer to the team's division
+     * @return The division pointer, which should have a reference to the team's division, or at least have the UUID of the proper division.
+     */
     public DivisionPointer getDivisionPointer() {
         return division;
     }
 
+    /**
+     * Updates the team's division pointer from a provided list of divisions. If one of the divisions provided has the same UUID as the current
+     * pointer, then the team sets its current pointer to that division.
+     * @param divisions List of divisions (as an {@link Iterable}) to check division UUIDs with.
+     */
     public void lookupDivision(@NotNull Iterable<Division> divisions) {
         divisions.forEach(div -> {
             if (division.getUUID().equals(div.getUUID())) {
@@ -47,6 +67,10 @@ public class Team implements Serializable {
 
     }
 
+    /**
+     * Gets the elapsed time between the start and the end time. Only returns the elapsed time if both times are not null
+     * @return The elapsed time between the start and end time. Returns {@code null} if either or both start and end times are null.
+     */
     public Time getElapsedTime() {
         return startTime == null || endTime == null ? null : new Time(endTime.getTime() - startTime.getTime());
     }
