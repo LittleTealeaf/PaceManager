@@ -23,7 +23,7 @@ public class BooleanSetting extends Setting<Boolean> implements Comparable<Boole
         return get().compareTo(o);
     }
 
-    public boolean booleanValue() {
-        return get();
+    public void set(String string) {
+        set(Boolean.parseBoolean(string));
     }
 }
