@@ -9,7 +9,7 @@ assignees: 'LittleTealeaf'
 **Background**
 What were you just doing when this happened?
 
-<Type here>
+(Type here)
 
 **Crash Report**
 

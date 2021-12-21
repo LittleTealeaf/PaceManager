@@ -1,8 +1,0 @@
-0.1.1
-- Created this fancy Change Log
-- Added Various Errors
-- All Windows now close when main window is closed
-- Updated Team Editing interface
-
-0.1.0
- - PACE MANAGER WAS CREATED!!!!
