@@ -39,6 +39,10 @@ public class DivisionPointer implements Serializable, Identifiable {
         return division;
     }
 
+    public DivisionPointer tryDivision() {
+        return division != null ? division : this;
+    }
+
     public DivisionPointer asDivisionPointer() {
         return this;
     }

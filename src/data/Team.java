@@ -25,7 +25,17 @@ public class Team implements Serializable {
     }
 
     public Division getDivision() {
-        return division == null ? null : (Division) (division instanceof Division ? division : (division = division.asDivision()));
+        if(division instanceof Division division) {
+            return division;
+        } else if(division != null && (division = division.tryDivision()) instanceof Division division) {
+            return division;
+        } else {
+            return null;
+        }
+    }
+
+    public DivisionPointer getDivisionPointer() {
+        return division;
     }
 
     public void lookupDivision(@NotNull Iterable<Division> divisions) {
@@ -34,10 +44,11 @@ public class Team implements Serializable {
                 division = div;
             }
         });
+
     }
 
     public Time getElapsedTime() {
-        return startTime == null || endTime == null ? null : new Time(startTime.getTime() + endTime.getTime());
+        return startTime == null || endTime == null ? null : new Time(endTime.getTime() - startTime.getTime());
     }
 
     public Time getStartTime() {
@@ -91,7 +102,11 @@ public class Team implements Serializable {
         this.startTime = startTime;
     }
 
-    public void setNotes(String notes) {this.notes = notes;}
+    public void setNotes(String notes) {
+        if(notes != null) {
+            this.notes = notes;
+        }
+    }
 
     public boolean isExcluded() {
         return excluded;

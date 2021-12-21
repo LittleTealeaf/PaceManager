@@ -14,7 +14,7 @@ public class Division extends DivisionPointer {
     private Time goalTime;
 
     public Division() {
-
+        name = "";
     }
 
     public Division(String name) {

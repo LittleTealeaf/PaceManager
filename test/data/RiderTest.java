@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import serialization.Serializer;
-import testutil.TestUtilRandom;
+import testutility.RandomFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,21 +18,19 @@ public class RiderTest {
     public void serialization(@TempDir Path tempDir) throws IOException, ClassNotFoundException {
         File file = tempDir.resolve("rider.ser").toFile();
         Serializer<Rider> serializer = new Serializer<>();
-        Rider before = randomRider();
+        Rider before = RandomFactory.randomRider();
         serializer.serialize(before, file);
         Rider after = serializer.deserialize(file);
         assertEquals(before, after);
     }
 
-    private static Rider randomRider() {
-        return new Rider(TestUtilRandom.randomName(), TestUtilRandom.randomName());
-    }
+
 
     @Test
     public void firstName() {
         Rider rider = new Rider();
         assertEquals("", rider.getFirstName());
-        String name = TestUtilRandom.randomName();
+        String name = RandomFactory.randomName();
         rider.setFirstName(name);
         Assertions.assertSame(name, rider.getFirstName());
     }
@@ -41,7 +39,7 @@ public class RiderTest {
     public void lastName() {
         Rider rider = new Rider();
         assertEquals("", rider.getLastName());
-        String name = TestUtilRandom.randomName();
+        String name = RandomFactory.randomName();
         rider.setLastName(name);
         Assertions.assertSame(name, rider.getLastName());
     }
@@ -52,7 +50,7 @@ public class RiderTest {
     @Test
     public void nameFull() {
         Rider rider = new Rider();
-        String first = TestUtilRandom.randomName(), last = TestUtilRandom.randomName();
+        String first = RandomFactory.randomName(), last = RandomFactory.randomName();
         rider.setFirstName(first);
         rider.setLastName(last);
         assertEquals(String.format("%s %s", first, last), rider.getName());
@@ -64,7 +62,7 @@ public class RiderTest {
      */
     @Test
     public void nameFirstOnly() {
-        String name = TestUtilRandom.randomName();
+        String name = RandomFactory.randomName();
         Rider rider = new Rider(name);
         assertEquals(name, rider.getName());
         assertEquals(name, rider.toString());
@@ -75,7 +73,7 @@ public class RiderTest {
      */
     @Test
     public void nameLastOnly() {
-        String name = TestUtilRandom.randomName();
+        String name = RandomFactory.randomName();
         Rider rider = new Rider();
         rider.setLastName(name);
         assertEquals(name, rider.getName());
@@ -86,7 +84,7 @@ public class RiderTest {
     public void equals() {
         Rider a = new Rider();
         Rider b = new Rider();
-        String first = TestUtilRandom.randomName(), last = TestUtilRandom.randomName();
+        String first = RandomFactory.randomName(), last = RandomFactory.randomName();
         a.setFirstName(first);
         a.setLastName(last);
         assertEquals(a, a);
@@ -105,7 +103,7 @@ public class RiderTest {
 
     @Test
     public void constructorString() {
-        String name = TestUtilRandom.randomName();
+        String name = RandomFactory.randomName();
         Rider rider = new Rider(name);
         assertEquals(name, rider.getFirstName());
         assertEquals("", rider.getLastName());
@@ -113,7 +111,7 @@ public class RiderTest {
 
     @Test
     public void constructorStringString() {
-        String first = TestUtilRandom.randomName(), last = TestUtilRandom.randomName();
+        String first = RandomFactory.randomName(), last = RandomFactory.randomName();
         Rider rider = new Rider(first, last);
         assertEquals(first, rider.getFirstName());
         assertEquals(last, rider.getLastName());
