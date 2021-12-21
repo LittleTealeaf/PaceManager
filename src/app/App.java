@@ -2,12 +2,18 @@ package app;
 
 import data.*;
 import serialization.Serializer;
+import settings.Category;
+import settings.types.BooleanSetting;
 
 import java.io.File;
 
 public class App {
 
     public static void main(String[] args) {
+        BooleanSetting booleanSetting = new BooleanSetting("test.id", Category.APPLICATION, false);
+    }
+
+    public static void testSerialization() {
         Pace pace = new Pace();
         Division divisionA = new Division();
         divisionA.setName("Hunt");
