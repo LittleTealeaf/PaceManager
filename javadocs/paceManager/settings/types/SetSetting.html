@@ -74,8 +74,10 @@ loadScripts(document, 'script');</script>
 <h1 class="title" title="Class SetSetting">Class SetSetting&lt;T&gt;</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang">java.lang.Object</a>
-<div class="inheritance"><a href="Setting.html" title="class in settings.types">settings.types.Setting</a>&lt;<a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html" title="class or interface in java.util">Set</a>&lt;T&gt;&gt;
-<div class="inheritance">settings.types.SetSetting&lt;T&gt;</div>
+<div class="inheritance"><a href="Setting.html" title="class in settings.types">java.settings.types.Setting</a>&lt;<a
+        class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html"
+        title="class or interface in java.util">Set</a>&lt;T&gt;&gt;
+    <div class="inheritance">settings.types.SetSetting&lt;T&gt;</div>
 </div>
 </div>
 <section class="class-description" id="class-description">
@@ -106,16 +108,29 @@ implements <a class="external-link" href="https://docs.oracle.com/en/java/javase
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a class="member-name-link" href="#%3Cinit%3E(java.lang.String,settings.Category...)">SetSetting</a><wbr>(<a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang">String</a>&nbsp;name,
- <a href="../Category.html" title="enum class in settings">Category</a>...&nbsp;categories)</code></div>
+    <div class="col-constructor-name even-row-color"><code><a class="member-name-link"
+                                                              href="#%3Cinit%3E(java.lang.String,java.settings.Category...)">SetSetting</a>
+        <wbr>
+        (<a class="external-link"
+            href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html"
+            title="class or interface in java.lang">String</a>&nbsp;name,
+        <a href="../Category.html" title="enum class in settings">Category</a>...&nbsp;categories)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-constructor-name odd-row-color"><code><a class="member-name-link" href="#%3Cinit%3E(java.lang.String,settings.Category%5B%5D,java.util.Set)">SetSetting</a><wbr>(<a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang">String</a>&nbsp;name,
  <a href="../Category.html" title="enum class in settings">Category</a>[]&nbsp;categories,
  <a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html" title="class or interface in java.util">Set</a>&lt;<a href="SetSetting.html" title="type parameter in SetSetting">T</a>&gt;&nbsp;value)</code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-constructor-name even-row-color"><code><a class="member-name-link" href="#%3Cinit%3E(java.lang.String,settings.Category,java.util.Set)">SetSetting</a><wbr>(<a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang">String</a>&nbsp;name,
- <a href="../Category.html" title="enum class in settings">Category</a>&nbsp;category,
- <a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html" title="class or interface in java.util">Set</a>&lt;<a href="SetSetting.html" title="type parameter in SetSetting">T</a>&gt;&nbsp;value)</code></div>
+    <div class="col-constructor-name even-row-color"><code><a class="member-name-link"
+                                                              href="#%3Cinit%3E(java.lang.String,java.settings.Category,java.util.Set)">SetSetting</a>
+        <wbr>
+        (<a class="external-link"
+            href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html"
+            title="class or interface in java.lang">String</a>&nbsp;name,
+        <a href="../Category.html" title="enum class in settings">Category</a>&nbsp;category,
+        <a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html"
+           title="class or interface in java.util">Set</a>&lt;<a href="SetSetting.html"
+                                                                 title="type parameter in SetSetting">T</a>&gt;&nbsp;value)</code>
+    </div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
@@ -173,9 +188,15 @@ implements <a class="external-link" href="https://docs.oracle.com/en/java/javase
 </div>
 </div>
 </div>
-<div class="inherited-list">
-<h3 id="methods-inherited-from-class-settings.types.Setting">Methods inherited from class&nbsp;settings.types.<a href="Setting.html" title="class in settings.types">Setting</a></h3>
-<code><a href="Setting.html#equals(java.lang.Object)">equals</a>, <a href="Setting.html#get()">get</a>, <a href="Setting.html#getCategories()">getCategories</a>, <a href="Setting.html#getName()">getName</a>, <a href="Setting.html#getValue()">getValue</a>, <a href="Setting.html#hashCode()">hashCode</a>, <a href="Setting.html#isCategory(java.lang.Iterable)">isCategory</a>, <a href="Setting.html#isCategory(settings.Category...)">isCategory</a>, <a href="Setting.html#set(T)">set</a>, <a href="Setting.html#setValue(T)">setValue</a>, <a href="Setting.html#toString()">toString</a></code></div>
+    <div class="inherited-list">
+        <h3 id="methods-inherited-from-class-java.settings.types.Setting">Methods inherited from class&nbsp;settings.types.<a
+                href="Setting.html" title="class in settings.types">Setting</a></h3>
+        <code><a href="Setting.html#equals(java.lang.Object)">equals</a>, <a href="Setting.html#get()">get</a>, <a
+                href="Setting.html#getCategories()">getCategories</a>, <a href="Setting.html#getName()">getName</a>, <a
+                href="Setting.html#getValue()">getValue</a>, <a href="Setting.html#hashCode()">hashCode</a>, <a
+                href="Setting.html#isCategory(java.lang.Iterable)">isCategory</a>, <a
+                href="Setting.html#isCategory(java.settings.Category...)">isCategory</a>, <a href="Setting.html#set(T)">set</a>,
+            <a href="Setting.html#setValue(T)">setValue</a>, <a href="Setting.html#toString()">toString</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang">Object</a></h3>
 <code><a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang">clone</a>, <a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang">finalize</a>, <a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang">getClass</a>, <a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang">notify</a>, <a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang">notifyAll</a>, <a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang">wait</a>, <a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang">wait</a>, <a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang">wait</a></code></div>
@@ -200,11 +221,16 @@ implements <a class="external-link" href="https://docs.oracle.com/en/java/javase
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(java.lang.String,settings.Category...)">
-<h3>SetSetting</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SetSetting</span><wbr><span class="parameters">(<a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang">String</a>&nbsp;name,
+    <section class="detail" id="&lt;init&gt;(java.lang.String,java.settings.Category...)">
+        <h3>SetSetting</h3>
+        <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span
+                class="element-name">SetSetting</span>
+            <wbr>
+            <span class="parameters">(<a class="external-link"
+                                         href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html"
+                                         title="class or interface in java.lang">String</a>&nbsp;name,
  <a href="../Category.html" title="enum class in settings">Category</a>...&nbsp;categories)</span></div>
-</section>
+    </section>
 </li>
 <li>
 <section class="detail" id="&lt;init&gt;(java.lang.String,settings.Category[],java.util.Set)">
@@ -215,12 +241,20 @@ implements <a class="external-link" href="https://docs.oracle.com/en/java/javase
 </section>
 </li>
 <li>
-<section class="detail" id="&lt;init&gt;(java.lang.String,settings.Category,java.util.Set)">
-<h3>SetSetting</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SetSetting</span><wbr><span class="parameters">(<a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang">String</a>&nbsp;name,
+    <section class="detail" id="&lt;init&gt;(java.lang.String,java.settings.Category,java.util.Set)">
+        <h3>SetSetting</h3>
+        <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span
+                class="element-name">SetSetting</span>
+            <wbr>
+            <span class="parameters">(<a class="external-link"
+                                         href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html"
+                                         title="class or interface in java.lang">String</a>&nbsp;name,
  <a href="../Category.html" title="enum class in settings">Category</a>&nbsp;category,
- <a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html" title="class or interface in java.util">Set</a>&lt;<a href="SetSetting.html" title="type parameter in SetSetting">T</a>&gt;&nbsp;value)</span></div>
-</section>
+ <a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Set.html"
+    title="class or interface in java.util">Set</a>&lt;<a href="SetSetting.html"
+                                                          title="type parameter in SetSetting">T</a>&gt;&nbsp;value)</span>
+        </div>
+    </section>
 </li>
 </ul>
 </section>
