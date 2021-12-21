@@ -16,6 +16,7 @@ public class Serializer<T extends Serializable> {
         fileOutputStream.close();
     }
 
+    @SuppressWarnings("unchecked")
     public T deserialize(File file) throws IOException, ClassNotFoundException {
         FileInputStream fileInputStream = new FileInputStream(file);
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
@@ -26,6 +27,7 @@ public class Serializer<T extends Serializable> {
         if (object instanceof Fileable fileable) {
             fileable.setFile(file);
         }
+
         return (T) object;
     }
 }
