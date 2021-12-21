@@ -4,13 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 
-public interface SelfSerializer<T extends Serializable> extends Serializable, Fileable {
-
-    default void serialize() throws IOException, ClassNotFoundException {
-        serialize(getFile());
-    }
+public interface SelfSerializer<T extends Serializable> extends Serializable {
 
     default void serialize(File file) throws IOException, ClassNotFoundException {
-        new Serializer<SelfSerializer>().serialize(this, file);
+        new Serializer<SelfSerializer<T>>().serialize(this, file);
     }
 }

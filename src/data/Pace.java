@@ -1,7 +1,6 @@
 package data;
 
-import serialization.Fileable;
-import serialization.SelfSerializer;
+import serialization.FileSelfSerializer;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -10,7 +9,7 @@ import java.util.List;
 /**
  * @author Thomas Kwashnak
  */
-public class Pace implements Serializable, Fileable, SelfSerializer {
+public class Pace implements Serializable, FileSelfSerializer<Pace> {
 
     @Serial
     private static final long serialVersionUID = 1101L;
