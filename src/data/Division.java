@@ -1,22 +1,45 @@
 package data;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serial;
 
+/**
+ * @author Thomas Kwashnak
+ */
 public class Division extends DivisionPointer {
 
-    private final transient List<Team> teams;
+    @Serial
+    private static final long serialVersionUID = 42L;
+
+    private String name;
+    private Time goalTime;
 
     public Division() {
-        teams = new ArrayList<>();
+        name = "";
     }
 
-    public void registerTeam(Team team) {
-        teams.add(team);
+    public Division(String name) {
+        this.name = name;
     }
 
-    public void unregisterTeam(Team team) {
-        teams.remove(team);
+    public Division(String name, Time goalTime) {
+        this.name = name;
+        this.goalTime = goalTime;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Time getGoalTime() {
+        return goalTime;
+    }
+
+    public void setGoalTime(Time goalTime) {
+        this.goalTime = goalTime;
     }
 
     @Override
@@ -27,5 +50,10 @@ public class Division extends DivisionPointer {
     @Override
     public DivisionPointer asDivisionPointer() {
         return new DivisionPointer(this);
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

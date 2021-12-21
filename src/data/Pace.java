@@ -1,23 +1,51 @@
 package data;
 
-import interfaces.JsonProcessable;
+import serialization.Fileable;
+import serialization.SelfSerializer;
 
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Pace implements JsonProcessable, Serializable {
+/**
+ * @author Thomas Kwashnak
+ */
+public class Pace implements Serializable, Fileable, SelfSerializer {
 
-    private final Set<Team> teams;
-    private final Set<Division> divisions;
+    @Serial
+    private static final long serialVersionUID = 1101L;
+
+    private final List<Division> divisions;
+    private final List<Team> teams;
+
+    private transient File file;
 
     public Pace() {
-        teams = new HashSet<>();
-        divisions = new HashSet<>();
+        divisions = new ArrayList<>();
+        teams = new ArrayList<>();
+    }
+
+    public List<Team> getTeams() {
+        return teams;
     }
 
     @Override
-    public void postDeserialization() {
+    public void setFile(File file) {
+        this.file = file;
+    }
+
+    public List<Division> getDivisions() {
+        return divisions;
+    }
+
+    @Override
+    public File getFile() {
+        return file;
+    }
+
+    @Serial
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
         teams.forEach(team -> team.lookupDivision(divisions));
     }
 }
