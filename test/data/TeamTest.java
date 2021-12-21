@@ -8,6 +8,10 @@ import serialization.Serializer;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 
 public class TeamTest {
 
@@ -27,5 +31,30 @@ public class TeamTest {
         serializer.serialize(before, file);
         Team after = serializer.deserialize(file);
         Assertions.assertEquals(before, after);
+    }
+
+    @Test
+    public void constructor() {
+        Team team = new Team();
+        assertEquals("",team.getName());
+        assertEquals("",team.getNotes());
+        assertEquals(new ArrayList<Rider>(), team.getRiders());
+        assertFalse(team.isExcluded());
+        assertNull(team.getDivision());
+    }
+
+    @Test
+    public void getDivision() {
+
+        Team team = new Team();
+        Division division = new Division();
+
+        assertNull(team.getDivision());
+
+        team.setDivision(division);
+        assertEquals(division,team.getDivision());
+
+        team.setDivision(division.asDivisionPointer());
+        assertEquals(division,team.getDivision());
     }
 }

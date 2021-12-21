@@ -60,6 +60,10 @@ public class Team implements Serializable {
         this.endTime = endTime;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Serial
     private void writeObject(ObjectOutputStream out) throws IOException {
         out.writeObject(name);
