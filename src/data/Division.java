@@ -2,6 +2,9 @@ package data;
 
 import java.io.Serial;
 
+/**
+ * @author Thomas Kwashnak
+ */
 public class Division extends DivisionPointer {
 
     @Serial

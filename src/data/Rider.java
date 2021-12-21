@@ -3,6 +3,10 @@ package data;
 import java.io.Serial;
 import java.io.Serializable;
 
+/**
+ * Represents an individual rider, or participant in the competition.
+ * @author Thomas Kwashnak
+ */
 public class Rider implements Serializable {
 
     @Serial
@@ -40,8 +44,13 @@ public class Rider implements Serializable {
         this.firstName = firstName;
     }
 
-    public String getName() {
-        return toString();
+    /**
+     * Returns the full name of the rider
+     * @return Output of {@link #getName()}
+     * @see #getName()
+     */
+    public String toString() {
+        return getName();
     }
 
     @Override
@@ -62,7 +71,14 @@ public class Rider implements Serializable {
         return getLastName() != null ? getLastName().equals(rider.getLastName()) : rider.getLastName() == null;
     }
 
-    public String toString() {
+    /**
+     * Combines both the given first name and last name to create a complete name. <p>For example, if {@code firstName = "thomas"} and {@code
+     * lastName = "kwashnak"}, this method would return {@code "thomas kwashnak"}. If only one name is provided, then it will return only that
+     * provided name.
+     * @return Full name of the rider, as a {@code String}
+     * @see #toString()
+     */
+    public String getName() {
         return firstName.equals("") ? lastName : lastName.equals("") ? firstName : String.format("%s %s", firstName, lastName);
     }
 }

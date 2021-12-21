@@ -6,6 +6,9 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.UUID;
 
+/**
+ * @author Thomas Kwashnak
+ */
 public class DivisionPointer implements Serializable, Identifiable {
 
     @Serial
