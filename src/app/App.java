@@ -3,14 +3,14 @@ package app;
 import data.*;
 import serialization.Serializer;
 import settings.Category;
-import settings.types.BooleanSetting;
+import settings.types.FileListSetting;
 
 import java.io.File;
 
 public class App {
 
     public static void main(String[] args) {
-        BooleanSetting booleanSetting = new BooleanSetting("test.id", Category.APPLICATION, false);
+        FileListSetting fileListSetting = new FileListSetting("id", Category.FILES);
     }
 
     public static void testSerialization() {

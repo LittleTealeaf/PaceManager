@@ -10,12 +10,16 @@ import java.util.Set;
 
 public abstract class SetSetting<T> extends Setting<Set<T>> implements Set<T> {
 
-    public SetSetting(String id, Category category) {
-        this(id, category, new HashSet<>());
+    public SetSetting(String name, Category... categories) {
+        this(name, categories, new HashSet<>());
     }
 
-    public SetSetting(String id, Category category, Set<T> value) {
-        super(id, category, value);
+    public SetSetting(String name, Category[] categories, Set<T> value) {
+        super(name, categories, value);
+    }
+
+    public SetSetting(String name, Category category, Set<T> value) {
+        super(name, category, value);
     }
 
     @Override

@@ -9,8 +9,16 @@ public class IntSetting extends Setting<Integer> {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    public IntSetting(String id, Category category, Integer value) {
-        super(id, category, value);
+    public IntSetting(String name, Category... categories) {
+        this(name, categories, 0);
+    }
+
+    public IntSetting(String name, Category[] categories, Integer value) {
+        super(name, categories, value);
+    }
+
+    public IntSetting(String name, Category category, Integer value) {
+        super(name, category, value);
     }
 
     public void set(String string) {
@@ -19,15 +27,5 @@ public class IntSetting extends Setting<Integer> {
 
     public void set(String string, int radix) {
         set(Integer.parseInt(string, radix));
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return get().equals(other);
-    }
-
-    @Override
-    public String toString() {
-        return get().toString();
     }
 }

@@ -11,12 +11,16 @@ import java.util.Set;
 
 public abstract class MapSetting<K, V> extends Setting<Map<K, V>> implements Map<K, V> {
 
-    public MapSetting(String id, Category category) {
-        this(id, category, new HashMap<>());
+    public MapSetting(String name, Category... categories) {
+        this(name, categories, new HashMap<>());
     }
 
-    public MapSetting(String id, Category category, Map<K, V> value) {
-        super(id, category, value);
+    public MapSetting(String name, Category[] categories, Map<K, V> value) {
+        super(name, categories, value);
+    }
+
+    public MapSetting(String name, Category category, Map<K, V> value) {
+        super(name, category, value);
     }
 
     @Override

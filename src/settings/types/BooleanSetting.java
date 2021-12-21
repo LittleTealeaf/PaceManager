@@ -10,24 +10,17 @@ public class BooleanSetting extends Setting<Boolean> implements Comparable<Boole
     @Serial
     private static final long serialVersionUID = 1L;
 
-    public BooleanSetting(String id, Category category, Boolean value) {
-        super(id, category, value);
+    public BooleanSetting(String name, Category category, Boolean value) {
+        super(name, category, value);
+    }
+
+    public BooleanSetting(String name, Category[] categories, Boolean value) {
+        super(name, categories, value);
     }
 
     @Override
     public int compareTo(@NotNull Boolean o) {
         return get().compareTo(o);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other instanceof Boolean otherBoolean) {
-            return get().equals(otherBoolean);
-        } else if (other instanceof BooleanSetting booleanSetting) {
-            return get().equals(booleanSetting.get());
-        } else {
-            return false;
-        }
     }
 
     public boolean booleanValue() {

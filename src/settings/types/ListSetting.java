@@ -3,15 +3,20 @@ package settings.types;
 import org.jetbrains.annotations.NotNull;
 import settings.Category;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 public abstract class ListSetting<T> extends Setting<List<T>> implements List<T> {
 
-    public ListSetting(String id, Category category, List<T> value) {
-        super(id, category, value);
+    public ListSetting(String name, Category... categories) {
+        this(name, categories, new ArrayList<>());
+    }
+
+    public ListSetting(String name, Category[] categories, List<T> value) {
+        super(name, categories, value);
+    }
+
+    public ListSetting(String name, Category category, List<T> value) {
+        super(name, category, value);
     }
 
     @Override
