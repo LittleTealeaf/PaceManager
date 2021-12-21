@@ -3,7 +3,7 @@ updates:
   package-ecosystem: maven
   schedule:
     interval: daily
-  target-branch: master
+  target-branch: main
 - directory: /
   package-ecosystem: maven
   schedule:
