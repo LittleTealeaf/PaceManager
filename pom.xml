@@ -86,6 +86,11 @@
             <artifactId>annotations</artifactId>
             <version>23.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>net.harawata</groupId>
+            <artifactId>appdirs</artifactId>
+            <version>1.2.1</version>
+        </dependency>
     </dependencies>
     <properties>
         <maven.compiler.source>1.16</maven.compiler.source>

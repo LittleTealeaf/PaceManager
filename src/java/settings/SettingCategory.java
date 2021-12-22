@@ -5,9 +5,10 @@ import interfaces.EnumStringable;
 
 public enum SettingCategory implements EnumStringable, Category {
     GENERAL,
-    APPLICATION,
-    CALCULATIONS,
-    FILES;
+    TIME,
+    APPEARANCE,
+    SAVING,
+    SETTINGS;
 
     private String string;
 

@@ -27,8 +27,28 @@ public abstract class Setting<T> implements Serializable, Valuable<T> {
         set(value);
     }
 
-    public void set(T value) {
-        this.value = value;
+    protected <K> K autoSave(K returnValue) {
+        autoSave();
+        return returnValue;
+    }
+
+    protected void autoSave() {
+        if (Settings.AUTO_SAVE_SETTINGS.get()) {
+            Settings.save();
+        }
+    }
+
+    public boolean isCategory(Category... categories) {
+        if (categories != null) {
+            for (Category a : categories) {
+                for (Category b : this.categories) {
+                    if (a.equals(b)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     public T get() {
@@ -39,14 +59,19 @@ public abstract class Setting<T> implements Serializable, Valuable<T> {
         return categories;
     }
 
-    public boolean isCategory(Category... categories) {
-        for(Category a : categories) {
-            for(Category b : this.categories) {
-                if(a.equals(b)) {
-                    return true;
-                }
+    @SuppressWarnings("unchecked")
+    void tryCopy(Object other) {
+        if (other != null) {
+            try {
+                set(((Setting<T>) getClass().cast(other)).get());
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
-        return false;
+    }
+
+    public void set(T value) {
+        this.value = value;
+        autoSave();
     }
 }

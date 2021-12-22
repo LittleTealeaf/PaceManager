@@ -48,12 +48,12 @@ public abstract class ImplementsCollectionSetting<T extends Collection<K>, K> ex
 
     @Override
     public boolean add(K k) {
-        return get().add(k);
+        return autoSave(get().add(k));
     }
 
     @Override
     public boolean remove(Object o) {
-        return get().remove(o);
+        return autoSave(get().remove(o));
     }
 
     @Override
@@ -63,21 +63,22 @@ public abstract class ImplementsCollectionSetting<T extends Collection<K>, K> ex
 
     @Override
     public boolean addAll(@NotNull Collection<? extends K> c) {
-        return get().addAll(c);
+        return autoSave(get().addAll(c));
     }
 
     @Override
     public boolean removeAll(@NotNull Collection<?> c) {
-        return get().removeAll(c);
+        return autoSave(get().removeAll(c));
     }
 
     @Override
     public boolean retainAll(@NotNull Collection<?> c) {
-        return get().retainAll(c);
+        return autoSave(get().retainAll(c));
     }
 
     @Override
     public void clear() {
         get().clear();
+        autoSave();
     }
 }
