@@ -27,15 +27,24 @@ public abstract class Setting<T> implements Serializable, Valuable<T> {
         set(value);
     }
 
-    protected <K> K autoSave(K returnValue) {
+    public void set(T value) {
+        this.value = value;
         autoSave();
-        return returnValue;
     }
 
     protected void autoSave() {
         if (Settings.AUTO_SAVE_SETTINGS.get()) {
             Settings.save();
         }
+    }
+
+    public T get() {
+        return value;
+    }
+
+    protected <K> K autoSave(K returnValue) {
+        autoSave();
+        return returnValue;
     }
 
     public boolean isCategory(Category... categories) {
@@ -51,10 +60,6 @@ public abstract class Setting<T> implements Serializable, Valuable<T> {
         return false;
     }
 
-    public T get() {
-        return value;
-    }
-
     public Category[] getCategories() {
         return categories;
     }
@@ -68,10 +73,5 @@ public abstract class Setting<T> implements Serializable, Valuable<T> {
                 e.printStackTrace();
             }
         }
-    }
-
-    public void set(T value) {
-        this.value = value;
-        autoSave();
     }
 }
