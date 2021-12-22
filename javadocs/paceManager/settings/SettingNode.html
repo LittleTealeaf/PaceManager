@@ -88,10 +88,10 @@ implements <a href="../app/Updatable.html" title="interface in app">Updatable</a
 <div class="block">Abstract class depicting a SettingNode, functionality should be implemented using the following methods
  <ul>
      <li><a href="#initialize()"><code>initialize()</code></a>: Executed immediately after the <a
-             href="#%3Cinit%3E(java.lang.String,java.settings.Category...)"><code>SettingNode(String,
+             href="#%3Cinit%3E(java.lang.String,java.settings.SettingCategory...)"><code>SettingNode(String,
          Category...)</code></a> constructor
      </li>
-     <li><a href="#getNode()"><code>getNode()</code></a>: Returns the node of the setting editor</li>
+     <li><a href="#getNode()"><code>getNode()</code></a>: Returns the node of the settingDeprecated editor</li>
  </ul></div>
 <dl class="notes">
 <dt>Since:</dt>
@@ -116,12 +116,12 @@ implements <a href="../app/Updatable.html" title="interface in app">Updatable</a
 <div class="col-first even-row-color"><code>private final <a href="Category.html" title="enum class in settings">Category</a>[]</code></div>
 <div class="col-second even-row-color"><code><a href="#categories" class="member-name-link">categories</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">Array of categories the setting is classified under</div>
+<div class="block">Array of categories the settingDeprecated is classified under</div>
 </div>
 <div class="col-first odd-row-color"><code>private final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#name" class="member-name-link">name</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">Display name of the setting</div>
+<div class="block">Display name of the settingDeprecated</div>
 </div>
 </div>
 </section>
@@ -135,14 +135,14 @@ implements <a href="../app/Updatable.html" title="interface in app">Updatable</a
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
     <div class="col-constructor-name even-row-color"><code><a class="member-name-link"
-                                                              href="#%3Cinit%3E(java.lang.String,java.settings.Category...)">SettingNode</a>
+                                                              href="#%3Cinit%3E(java.lang.String,java.settings.SettingCategory...)">SettingNode</a>
         <wbr>
         (<a class="external-link"
             href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html"
             title="class or interface in java.lang">String</a>&nbsp;name,
         <a href="Category.html" title="enum class in settings">Category</a>...&nbsp;categories)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Creates a new abstract SettingNode with the setting name and its categories</div>
+<div class="block">Creates a new abstract SettingNode with the settingDeprecated name and its categories</div>
 </div>
 </div>
 </section>
@@ -166,7 +166,7 @@ implements <a href="../app/Updatable.html" title="interface in app">Updatable</a
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract javafx.scene.Node</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getNode()" class="member-name-link">getNode</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Returns the node used to edit the setting</div>
+<div class="block">Returns the node used to edit the settingDeprecated</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#initialize()" class="member-name-link">initialize</a>()</code></div>
@@ -174,9 +174,9 @@ implements <a href="../app/Updatable.html" title="interface in app">Updatable</a
 <div class="block">Method called immediately after the constructor, used for initializing and configuring the editing nodes</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isCategory(settings.Category)" class="member-name-link">isCategory</a><wbr>(<a href="Category.html" title="enum class in settings">Category</a>&nbsp;category)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a class="member-name-link" href="#isCategory(settings.Category)">isCategory</a><wbr>(<a href="Category.html" title="enum class in settings">Category</a>&nbsp;settingCategory)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Checks if the SettingNode is classified under a specific category</div>
+<div class="block">Checks if the SettingNode is classified under a specific settingCategory</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
@@ -205,14 +205,14 @@ implements <a href="../app/Updatable.html" title="interface in app">Updatable</a
 <section class="detail" id="categories">
 <h3>categories</h3>
 <div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="Category.html" title="enum class in settings">Category</a>[]</span>&nbsp;<span class="element-name">categories</span></div>
-<div class="block">Array of categories the setting is classified under</div>
+<div class="block">Array of categories the settingDeprecated is classified under</div>
 </section>
 </li>
 <li>
 <section class="detail" id="name">
 <h3>name</h3>
 <div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">name</span></div>
-<div class="block">Display name of the setting</div>
+<div class="block">Display name of the settingDeprecated</div>
 </section>
 </li>
 </ul>
@@ -224,7 +224,7 @@ implements <a href="../app/Updatable.html" title="interface in app">Updatable</a
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-    <section class="detail" id="&lt;init&gt;(java.lang.String,java.settings.Category...)">
+    <section class="detail" id="&lt;init&gt;(java.lang.String,java.settings.SettingCategory...)">
         <h3>SettingNode</h3>
         <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span
                 class="element-name">SettingNode</span>
@@ -233,11 +233,11 @@ implements <a href="../app/Updatable.html" title="interface in app">Updatable</a
                     href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html"
                     title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  <a href="Category.html" title="enum class in settings">Category</a>...&nbsp;categories)</span></div>
-        <div class="block">Creates a new abstract SettingNode with the setting name and its categories</div>
+        <div class="block">Creates a new abstract SettingNode with the settingDeprecated name and its categories</div>
         <dl class="notes">
             <dt>Parameters:</dt>
-            <dd><code>name</code> - Display name of the setting</dd>
-            <dd><code>categories</code> - Categories to categorize the setting under</dd>
+            <dd><code>name</code> - Display name of the settingDeprecated</dd>
+            <dd><code>categories</code> - Categories to categorize the settingDeprecated under</dd>
         </dl>
     </section>
 </li>
@@ -259,13 +259,13 @@ implements <a href="../app/Updatable.html" title="interface in app">Updatable</a
 <li>
 <section class="detail" id="isCategory(settings.Category)">
 <h3>isCategory</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isCategory</span><wbr><span class="parameters">(<a href="Category.html" title="enum class in settings">Category</a>&nbsp;category)</span></div>
-<div class="block">Checks if the SettingNode is classified under a specific category</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isCategory</span><wbr><span class="parameters">(<a href="Category.html" title="enum class in settings">Category</a>&nbsp;settingCategory)</span></div>
+<div class="block">Checks if the SettingNode is classified under a specific settingCategory</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>category</code> - Category to check if SettingNode is a part of</dd>
+<dd><code>settingCategory</code> - Category to check if SettingNode is a part of</dd>
 <dt>Returns:</dt>
-<dd><code>true</code> if the setting node is classified under the given category, <code>false</code> otherwise</dd>
+<dd><code>true</code> if the settingDeprecated node is classified under the given settingCategory, <code>false</code> otherwise</dd>
 </dl>
 </section>
 </li>
@@ -273,10 +273,10 @@ implements <a href="../app/Updatable.html" title="interface in app">Updatable</a
 <section class="detail" id="getNode()">
 <h3>getNode</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">javafx.scene.Node</span>&nbsp;<span class="element-name">getNode</span>()</div>
-<div class="block">Returns the node used to edit the setting</div>
+<div class="block">Returns the node used to edit the settingDeprecated</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>Node of the setting editor</dd>
+<dd>Node of the settingDeprecated editor</dd>
 </dl>
 </section>
 </li>
@@ -297,7 +297,7 @@ implements <a href="../app/Updatable.html" title="interface in app">Updatable</a
 <div class="block">Gets the display name of the object</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>Name of the setting</dd>
+<dd>Name of the settingDeprecated</dd>
 </dl>
 </section>
 </li>

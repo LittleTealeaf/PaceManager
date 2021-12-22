@@ -1,26 +1,18 @@
 package settings.types;
 
+import interfaces.Category;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import settings.Category;
+import settings.Setting;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public abstract class MapSetting<K, V> extends Setting<Map<K, V>> implements Map<K, V> {
+public abstract class ImplementsMapSetting<T extends Map<K,V>,K,V> extends Setting<T> implements Map<K,V> {
 
-    public MapSetting(String name, Category... categories) {
-        this(name, categories, new HashMap<>());
-    }
-
-    public MapSetting(String name, Category[] categories, Map<K, V> value) {
-        super(name, categories, value);
-    }
-
-    public MapSetting(String name, Category category, Map<K, V> value) {
-        super(name, category, value);
+    public ImplementsMapSetting(String name, T value, Category... categories) {
+        super(name, value, categories);
     }
 
     @Override
@@ -51,7 +43,7 @@ public abstract class MapSetting<K, V> extends Setting<Map<K, V>> implements Map
     @Nullable
     @Override
     public V put(K key, V value) {
-        return get().put(key, value);
+        return get().put(key,value);
     }
 
     @Override

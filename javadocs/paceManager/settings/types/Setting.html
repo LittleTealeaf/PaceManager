@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 <meta content="2021-12-21" name="dc.created">
-<meta content="declaration: module: paceManager, package: settings.types, class: Setting" name="description">
+<meta content="declaration: module: paceManager, package: settings.typesDeprecated, class: Setting" name="description">
 <meta content="javadoc/ClassWriterImpl" name="generator">
 <link href="../../../stylesheet.css" rel="stylesheet" title="Style" type="text/css">
 <link href="../../../script-dir/jquery-ui.min.css" rel="stylesheet" title="Style" type="text/css">
@@ -70,16 +70,16 @@ loadScripts(document, 'script');</script>
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="sub-title"><span class="module-label-in-type">Module</span>&nbsp;<a href="../../module-summary.html">paceManager</a></div>
-<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">settings.types</a></div>
+<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">settings.typesDeprecated</a></div>
 <h1 class="title" title="Class Setting">Class Setting&lt;T&gt;</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang">java.lang.Object</a>
-<div class="inheritance">settings.types.Setting&lt;T&gt;</div>
+<div class="inheritance">settings.typesDeprecated.Setting&lt;T&gt;</div>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>Type Parameters:</dt>
-<dd><code>T</code> - Type of value of the setting</dd>
+<dd><code>T</code> - Type of value of the settingDeprecated</dd>
 </dl>
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
@@ -87,7 +87,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <dl class="notes">
 <dt>Direct Known Subclasses:</dt>
-<dd><code><a href="BooleanSetting.html" title="class in settings.types">BooleanSetting</a></code>, <code><a href="FileSetting.html" title="class in settings.types">FileSetting</a></code>, <code><a href="IntSetting.html" title="class in settings.types">IntSetting</a></code>, <code><a href="ListSetting.html" title="class in settings.types">ListSetting</a></code>, <code><a href="MapSetting.html" title="class in settings.types">MapSetting</a></code>, <code><a href="SetSetting.html" title="class in settings.types">SetSetting</a></code>, <code><a href="StringSetting.html" title="class in settings.types">StringSetting</a></code></dd>
+<dd><code><a href="BooleanSetting.html" title="class in settings.typesDeprecated">BooleanSetting</a></code>, <code><a href="FileSetting.html" title="class in settings.typesDeprecated">FileSetting</a></code>, <code><a href="IntSetting.html" title="class in settings.typesDeprecated">IntSetting</a></code>, <code><a href="ListSetting.html" title="class in settings.typesDeprecated">ListSetting</a></code>, <code><a href="MapSetting.html" title="class in settings.typesDeprecated">MapSetting</a></code>, <code><a href="SetSetting.html" title="class in settings.typesDeprecated">SetSetting</a></code>, <code><a href="StringSetting.html" title="class in settings.typesDeprecated">StringSetting</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">Setting&lt;T&gt;</span>
@@ -96,9 +96,9 @@ implements <a class="external-link" href="https://docs.oracle.com/en/java/javase
 <div class="block">An abstract method that provides method dictations, parameters, and methods a Setting class should have. This class provides the following
  implementations:
  <ul><li>Setting value, of type <code>T</code>, including methods to <a href="#get()"><code>get</code></a> and <a href="#set(T)"><code>set</code></a> the value</li>
- <li>Setting name. Initialized in constructors, and represents the official name for the setting.</li>
- <li>Categories the setting falls under, including methods to <a href="#getCategories()"><code>get</code></a> the categories, as well as to check if the setting
- falls under any category in a provided set.
+ <li>Setting name. Initialized in constructors, and represents the official name for the settingDeprecated.</li>
+ <li>Categories the settingDeprecated falls under, including methods to <a href="#getCategories()"><code>get</code></a> the categories, as well as to check if the settingDeprecated
+ falls under any settingCategory in a provided set.
  </li></ul></div>
 <dl class="notes">
 <dt>Author:</dt>
@@ -147,11 +147,11 @@ implements <a class="external-link" href="https://docs.oracle.com/en/java/javase
  <a href="Setting.html" title="type parameter in Setting">T</a>&nbsp;value)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-constructor-name odd-row-color"><code><a class="member-name-link"
-                                                         href="#%3Cinit%3E(java.lang.String,java.settings.Category,T)">Setting</a>
+                                                         href="#%3Cinit%3E(java.lang.String,java.settings.SettingCategory,T)">Setting</a>
     <wbr>
     (<a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html"
         title="class or interface in java.lang">String</a>&nbsp;name,
-    <a href="../Category.html" title="enum class in settings">Category</a>&nbsp;category,
+    <a href="../Category.html" title="enum class in settings">Category</a>&nbsp;settingCategory,
     <a href="Setting.html" title="type parameter in Setting">T</a>&nbsp;value)</code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 </div>
@@ -174,22 +174,22 @@ implements <a class="external-link" href="https://docs.oracle.com/en/java/javase
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Setting.html" title="type parameter in Setting">T</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a class="member-name-link" href="#get()">get</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Gets the current value of the setting</div>
+<div class="block">Gets the current value of the settingDeprecated</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Category.html" title="enum class in settings">Category</a>[]</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a class="member-name-link" href="#getCategories()">getCategories</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Gets the current list of categories that the setting falls under.</div>
+<div class="block">Gets the current list of categories that the settingDeprecated falls under.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a class="member-name-link" href="#getName()">getName</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the setting name</div>
+<div class="block">Returns the settingDeprecated name</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Setting.html" title="type parameter in Setting">T</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a class="member-name-link" href="#getValue()">getValue</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Gets the current value of the setting</div>
+<div class="block">Gets the current value of the settingDeprecated</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a class="member-name-link" href="#hashCode()">hashCode</a>()</code></div>
@@ -197,15 +197,15 @@ implements <a class="external-link" href="https://docs.oracle.com/en/java/javase
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a class="member-name-link" href="#isCategory(java.lang.Iterable)">isCategory</a><wbr>(<a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang">Iterable</a>&lt;<a href="../Category.html" title="enum class in settings">Category</a>&gt;&nbsp;categories)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Checks if the setting contains any of the categories provided</div>
+<div class="block">Checks if the settingDeprecated contains any of the categories provided</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
     <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-        <code><a class="member-name-link" href="#isCategory(java.settings.Category...)">isCategory</a>
+        <code><a class="member-name-link" href="#isCategory(java.settings.SettingCategory...)">isCategory</a>
             <wbr>
             (<a href="../Category.html" title="enum class in settings">Category</a>...&nbsp;categories)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Checks if the setting contains any of the categories provided</div>
+<div class="block">Checks if the settingDeprecated contains any of the categories provided</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a class="member-name-link" href="#set(T)">set</a><wbr>(<a href="Setting.html" title="type parameter in Setting">T</a>&nbsp;value)</code></div>
@@ -264,15 +264,15 @@ implements <a class="external-link" href="https://docs.oracle.com/en/java/javase
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-    <section class="detail" id="&lt;init&gt;(java.lang.String,java.settings.Category,T)">
-        <h3 id="&lt;init&gt;(java.lang.String,java.settings.Category,java.lang.Object)">Setting</h3>
+    <section class="detail" id="&lt;init&gt;(java.lang.String,java.settings.SettingCategory,T)">
+        <h3 id="&lt;init&gt;(java.lang.String,java.settings.SettingCategory,java.lang.Object)">Setting</h3>
         <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span
                 class="element-name">Setting</span>
             <wbr>
             <span class="parameters">(<a class="external-link"
                                          href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html"
                                          title="class or interface in java.lang">String</a>&nbsp;name,
- <a href="../Category.html" title="enum class in settings">Category</a>&nbsp;category,
+ <a href="../Category.html" title="enum class in settings">Category</a>&nbsp;settingCategory,
  <a href="Setting.html" title="type parameter in Setting">T</a>&nbsp;value)</span></div>
     </section>
 </li>
@@ -299,7 +299,7 @@ implements <a class="external-link" href="https://docs.oracle.com/en/java/javase
 <div class="block">Sets the current value to the provided value.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>value</code> - Value that the setting should be set to.</dd>
+<dd><code>value</code> - Value that the settingDeprecated should be set to.</dd>
 </dl>
 </section>
 </li>
@@ -307,10 +307,10 @@ implements <a class="external-link" href="https://docs.oracle.com/en/java/javase
 <section class="detail" id="get()">
 <h3>get</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Setting.html" title="type parameter in Setting">T</a></span>&nbsp;<span class="element-name">get</span>()</div>
-<div class="block">Gets the current value of the setting</div>
+<div class="block">Gets the current value of the settingDeprecated</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>The current setting value</dd>
+<dd>The current settingDeprecated value</dd>
 </dl>
 </section>
 </li>
@@ -318,22 +318,22 @@ implements <a class="external-link" href="https://docs.oracle.com/en/java/javase
 <section class="detail" id="getCategories()">
 <h3>getCategories</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Category.html" title="enum class in settings">Category</a>[]</span>&nbsp;<span class="element-name">getCategories</span>()</div>
-<div class="block">Gets the current list of categories that the setting falls under.</div>
+<div class="block">Gets the current list of categories that the settingDeprecated falls under.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd><code>Category[]</code> array of all categories this setting falls under.</dd>
+<dd><code>Category[]</code> array of all categories this settingDeprecated falls under.</dd>
 </dl>
 </section>
 </li>
 <li>
-    <section class="detail" id="isCategory(java.settings.Category...)">
+    <section class="detail" id="isCategory(java.settings.SettingCategory...)">
         <h3>isCategory</h3>
         <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span
                 class="return-type">boolean</span>&nbsp;<span class="element-name">isCategory</span>
             <wbr>
             <span class="parameters">(<a href="../Category.html" title="enum class in settings">Category</a>...&nbsp;categories)</span>
         </div>
-        <div class="block">Checks if the setting contains any of the categories provided</div>
+        <div class="block">Checks if the settingDeprecated contains any of the categories provided</div>
         <dl class="notes">
             <dt>Parameters:</dt>
             <dd><code>categories</code> - List of categories (as <code>Category[]</code> or as independent parameters),
@@ -341,8 +341,8 @@ implements <a class="external-link" href="https://docs.oracle.com/en/java/javase
                 it is a part of at least one of them.
             </dd>
             <dt>Returns:</dt>
-            <dd><code>true</code> if this setting is a part of at least one of the given categories. <code>false</code>
-                if the setting is not a part of any
+            <dd><code>true</code> if this settingDeprecated is a part of at least one of the given categories. <code>false</code>
+                if the settingDeprecated is not a part of any
                 categories listed, or no categories were provided.
             </dd>
 </dl>
@@ -352,12 +352,12 @@ implements <a class="external-link" href="https://docs.oracle.com/en/java/javase
 <section class="detail" id="isCategory(java.lang.Iterable)">
 <h3>isCategory</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isCategory</span><wbr><span class="parameters">(<a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang">Iterable</a>&lt;<a href="../Category.html" title="enum class in settings">Category</a>&gt;&nbsp;categories)</span></div>
-<div class="block">Checks if the setting contains any of the categories provided</div>
+<div class="block">Checks if the settingDeprecated contains any of the categories provided</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>categories</code> - An iterable object of categories.</dd>
 <dt>Returns:</dt>
-<dd><code>true</code> if this setting is a part of at least one of the given categories. <code>false</code> if the setting is not a part of any
+<dd><code>true</code> if this settingDeprecated is a part of at least one of the given categories. <code>false</code> if the settingDeprecated is not a part of any
  categories listed, or no categories were provided.</dd>
 </dl>
 </section>
@@ -386,7 +386,7 @@ implements <a class="external-link" href="https://docs.oracle.com/en/java/javase
 <section class="detail" id="getName()">
 <h3>getName</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a class="external-link" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang">String</a></span>&nbsp;<span class="element-name">getName</span>()</div>
-<div class="block">Returns the setting name</div>
+<div class="block">Returns the settingDeprecated name</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>Setting name as a String object</dd>
@@ -397,10 +397,10 @@ implements <a class="external-link" href="https://docs.oracle.com/en/java/javase
 <section class="detail" id="getValue()">
 <h3>getValue</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Setting.html" title="type parameter in Setting">T</a></span>&nbsp;<span class="element-name">getValue</span>()</div>
-<div class="block">Gets the current value of the setting</div>
+<div class="block">Gets the current value of the settingDeprecated</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>The current setting value</dd>
+<dd>The current settingDeprecated value</dd>
 <dt>See Also:</dt>
 <dd>
 <ul class="see-list">
@@ -417,7 +417,7 @@ implements <a class="external-link" href="https://docs.oracle.com/en/java/javase
 <div class="block">Sets the current value to the provided value.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>value</code> - Value that the setting should be set to.</dd>
+<dd><code>value</code> - Value that the settingDeprecated should be set to.</dd>
 <dt>See Also:</dt>
 <dd>
 <ul class="see-list">

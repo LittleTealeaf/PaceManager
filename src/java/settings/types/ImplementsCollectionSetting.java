@@ -1,25 +1,16 @@
 package settings.types;
 
+import interfaces.Category;
 import org.jetbrains.annotations.NotNull;
-import settings.Category;
+import settings.Setting;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Set;
 
-public abstract class SetSetting<T> extends Setting<Set<T>> implements Set<T> {
+public abstract class ImplementsCollectionSetting<T extends Collection<K>, K> extends Setting<T> implements Collection<K> {
 
-    public SetSetting(String name, Category... categories) {
-        this(name, categories, new HashSet<>());
-    }
-
-    public SetSetting(String name, Category[] categories, Set<T> value) {
-        super(name, categories, value);
-    }
-
-    public SetSetting(String name, Category category, Set<T> value) {
-        super(name, category, value);
+    public ImplementsCollectionSetting(String name, T value, Category... categories) {
+        super(name, value, categories);
     }
 
     @Override
@@ -39,7 +30,7 @@ public abstract class SetSetting<T> extends Setting<Set<T>> implements Set<T> {
 
     @NotNull
     @Override
-    public Iterator<T> iterator() {
+    public Iterator<K> iterator() {
         return get().iterator();
     }
 
@@ -51,13 +42,13 @@ public abstract class SetSetting<T> extends Setting<Set<T>> implements Set<T> {
 
     @NotNull
     @Override
-    public <T1> T1[] toArray(@NotNull T1[] a) {
+    public <T> T[] toArray(@NotNull T[] a) {
         return get().toArray(a);
     }
 
     @Override
-    public boolean add(T t) {
-        return get().add(t);
+    public boolean add(K k) {
+        return get().add(k);
     }
 
     @Override
@@ -71,18 +62,18 @@ public abstract class SetSetting<T> extends Setting<Set<T>> implements Set<T> {
     }
 
     @Override
-    public boolean addAll(@NotNull Collection<? extends T> c) {
+    public boolean addAll(@NotNull Collection<? extends K> c) {
         return get().addAll(c);
-    }
-
-    @Override
-    public boolean retainAll(@NotNull Collection<?> c) {
-        return get().retainAll(c);
     }
 
     @Override
     public boolean removeAll(@NotNull Collection<?> c) {
         return get().removeAll(c);
+    }
+
+    @Override
+    public boolean retainAll(@NotNull Collection<?> c) {
+        return get().retainAll(c);
     }
 
     @Override

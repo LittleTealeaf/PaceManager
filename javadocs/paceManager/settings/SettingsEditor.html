@@ -90,11 +90,11 @@ loadScripts(document, 'script');</script>
 <span class="extends-implements">extends javafx.stage.Stage
 implements <a href="../app/Updatable.html" title="interface in app">Updatable</a></span></div>
 <div class="block"><p>Application window that allows the user to modify configurable settings. A panel on the left lists different
- categories that settings are categorized under. When the user clicks or changes the category, the content on the
+ categories that settings are categorized under. When the user clicks or changes the settingCategory, the content on the
  right changes to display the names and configuration elements of settings that are categorized under that
- category.</p>
+ settingCategory.</p>
  <p>Categories are derived from the <a href="Category.html" title="enum class in settings"><code>Category</code></a> enumerator</p>
- <p>Configurable Settings are displayed using a <a href="SettingNode.html" title="class in settings"><code>SettingNode</code></a>, which connects the link between a setting and its
+ <p>Configurable Settings are displayed using a <a href="SettingNode.html" title="class in settings"><code>SettingNode</code></a>, which connects the link between a settingDeprecated and its
  editing node</p></div>
 <dl class="notes">
 <dt>Since:</dt>
@@ -147,7 +147,7 @@ implements <a href="../app/Updatable.html" title="interface in app">Updatable</a
 <div class="col-first even-row-color"><code>private final javafx.scene.layout.GridPane</code></div>
 <div class="col-second even-row-color"><code><a href="#settingsPanel" class="member-name-link">settingsPanel</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">GridPane where all currently-displaying settings are listed, children are cleared whenever category
+<div class="block">GridPane where all currently-displaying settings are listed, children are cleared whenever settingCategory
  is changed</div>
 </div>
 </div>
@@ -190,9 +190,9 @@ implements <a href="../app/Updatable.html" title="interface in app">Updatable</a
 <div class="block">Generates the entire list of settings to include in the SettingsEditor</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#populateSettings(settings.Category)" class="member-name-link">populateSettings</a><wbr>(<a href="Category.html" title="enum class in settings">Category</a>&nbsp;category)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a class="member-name-link" href="#populateSettings(settings.Category)">populateSettings</a><wbr>(<a href="Category.html" title="enum class in settings">Category</a>&nbsp;settingCategory)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Updates the GridPane with all settings that are classified under the specified category</div>
+<div class="block">Updates the GridPane with all settings that are classified under the specified settingCategory</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#update()" class="member-name-link">update</a>()</code></div>
@@ -240,7 +240,7 @@ implements <a href="../app/Updatable.html" title="interface in app">Updatable</a
 <section class="detail" id="settingsPanel">
 <h3>settingsPanel</h3>
 <div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type">javafx.scene.layout.GridPane</span>&nbsp;<span class="element-name">settingsPanel</span></div>
-<div class="block">GridPane where all currently-displaying settings are listed, children are cleared whenever category
+<div class="block">GridPane where all currently-displaying settings are listed, children are cleared whenever settingCategory
  is changed</div>
 </section>
 </li>
@@ -282,11 +282,11 @@ implements <a href="../app/Updatable.html" title="interface in app">Updatable</a
 <li>
 <section class="detail" id="populateSettings(settings.Category)">
 <h3>populateSettings</h3>
-<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">populateSettings</span><wbr><span class="parameters">(<a href="Category.html" title="enum class in settings">Category</a>&nbsp;category)</span></div>
-<div class="block">Updates the GridPane with all settings that are classified under the specified category</div>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">populateSettings</span><wbr><span class="parameters">(<a href="Category.html" title="enum class in settings">Category</a>&nbsp;settingCategory)</span></div>
+<div class="block">Updates the GridPane with all settings that are classified under the specified settingCategory</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>category</code> - Filter of which settings to display</dd>
+<dd><code>settingCategory</code> - Filter of which settings to display</dd>
 </dl>
 </section>
 </li>

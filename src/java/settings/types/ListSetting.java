@@ -1,22 +1,18 @@
 package settings.types;
 
+import interfaces.Category;
 import org.jetbrains.annotations.NotNull;
-import settings.Category;
+import settings.Setting;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
-public abstract class ListSetting<T> extends Setting<List<T>> implements List<T> {
+public class ListSetting<T> extends Setting<List<T>> implements List<T> {
 
-    public ListSetting(String name, Category... categories) {
-        this(name, categories, new ArrayList<>());
-    }
-
-    public ListSetting(String name, Category[] categories, List<T> value) {
-        super(name, categories, value);
-    }
-
-    public ListSetting(String name, Category category, List<T> value) {
-        super(name, category, value);
+    public ListSetting(String name, List<T> value, Category... categories) {
+        super(name, value, categories);
     }
 
     @Override
@@ -43,7 +39,7 @@ public abstract class ListSetting<T> extends Setting<List<T>> implements List<T>
     @NotNull
     @Override
     public Object[] toArray() {
-        return get().toArray(new Object[0]);
+        return get().toArray();
     }
 
     @NotNull
@@ -52,8 +48,9 @@ public abstract class ListSetting<T> extends Setting<List<T>> implements List<T>
         return get().toArray(a);
     }
 
-    public boolean add(T item) {
-        return get().add(item);
+    @Override
+    public boolean add(T t) {
+        return get().add(t);
     }
 
     @Override
@@ -73,7 +70,7 @@ public abstract class ListSetting<T> extends Setting<List<T>> implements List<T>
 
     @Override
     public boolean addAll(int index, @NotNull Collection<? extends T> c) {
-        return get().addAll(index, c);
+        return get().addAll(index,c);
     }
 
     @Override
@@ -98,12 +95,12 @@ public abstract class ListSetting<T> extends Setting<List<T>> implements List<T>
 
     @Override
     public T set(int index, T element) {
-        return get().set(index, element);
+        return get().set(index,element);
     }
 
     @Override
     public void add(int index, T element) {
-        get().add(index, element);
+        get().add(index,element);
     }
 
     @Override
@@ -136,6 +133,6 @@ public abstract class ListSetting<T> extends Setting<List<T>> implements List<T>
     @NotNull
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
-        return get().subList(fromIndex, toIndex);
+        return get().subList(fromIndex,toIndex);
     }
 }

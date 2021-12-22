@@ -2,15 +2,18 @@ package app;
 
 import data.*;
 import serialization.Serializer;
-import settings.Category;
-import settings.types.FileListSetting;
 
 import java.io.File;
 
 public class App {
 
     public static void main(String[] args) {
-        FileListSetting fileListSetting = new FileListSetting("id", Category.FILES);
+
+
+
+        Pace pace = new Pace();
+        pace.getDivisions().add(new Division());
+        pace.getTeams().add(new Team());
     }
 
     public static void testSerialization() {
