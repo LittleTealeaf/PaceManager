@@ -9,9 +9,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class ListSetting<T> extends Setting<List<T>> implements List<T> {
+public class OldListSetting<T> extends Setting<List<T>> implements List<T> {
 
-    public ListSetting(String name, List<T> value, Category... categories) {
+    public OldListSetting(String name, List<T> value, Category... categories) {
         super(name, value, categories);
     }
 

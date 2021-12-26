@@ -1,11 +1,10 @@
 package settings;
 
 import interfaces.Category;
-import interfaces.Valuable;
 
 import java.io.Serializable;
 
-public abstract class Setting<T> implements Serializable, Valuable<T> {
+public abstract class Setting<T> implements Serializable, ISetting<T> {
 
     private final transient String name;
     private final transient Category[] categories;
@@ -17,34 +16,13 @@ public abstract class Setting<T> implements Serializable, Valuable<T> {
         this.categories = categories;
     }
 
-    @Override
-    public T getValue() {
-        return get();
-    }
-
-    @Override
-    public void setValue(T value) {
-        set(value);
-    }
-
     public void set(T value) {
         this.value = value;
         autoSave();
     }
 
-    protected void autoSave() {
-        if (Settings.AUTO_SAVE_SETTINGS.get()) {
-            Settings.save();
-        }
-    }
-
     public T get() {
         return value;
-    }
-
-    protected <K> K autoSave(K returnValue) {
-        autoSave();
-        return returnValue;
     }
 
     public boolean isCategory(Category... categories) {
