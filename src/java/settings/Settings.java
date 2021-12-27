@@ -4,6 +4,7 @@ import app.Resources;
 import settings.enums.SaveMethod;
 import settings.types.BooleanSetting;
 import settings.types.ChoiceSetting;
+import settings.types.SetSetting;
 import settings.types.StackSetting;
 
 import java.io.*;
@@ -22,9 +23,10 @@ public class Settings implements Serializable {
     public static final BooleanSetting AUTO_SAVE_SETTINGS;
     public static final ChoiceSetting<SaveMethod> SAVE_METHOD;
     public static final StackSetting<File> RECENT_PACE_FILES;
+    public static final SetSetting<String> READABLE_PACE_TYPES;
     private static final String FILE_NAME;
 
-    private static final List<EditableSetting> SETTINGS_LIST;
+    private static final List<Setting> SETTINGS_LIST;
 
     static {
         FILE_NAME = "settings.ser";
@@ -33,6 +35,7 @@ public class Settings implements Serializable {
         SAVE_METHOD = new ChoiceSetting<>("Save Method", SaveMethod.A, GENERAL);
         AUTO_SAVE_SETTINGS = new BooleanSetting("Autosave Settings", true, SETTINGS);
         RECENT_PACE_FILES = new StackSetting<>("Recent Files", GENERAL);
+        READABLE_PACE_TYPES = new SetSetting<>("Pace Types", SETTINGS);
 
         SETTINGS_LIST = new LinkedList<>() {{
             add(DISPLAY_24HOUR_TIME);

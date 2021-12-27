@@ -36,13 +36,13 @@ public abstract class ImplementsCollectionSetting<T extends Collection<K>, K> ex
 
     @NotNull
     @Override
-    public Object[] toArray() {
+    public Object @NotNull [] toArray() {
         return get().toArray();
     }
 
     @NotNull
     @Override
-    public <T> T[] toArray(@NotNull T[] a) {
+    public <T> T @NotNull [] toArray(@NotNull T[] a) {
         return get().toArray(a);
     }
 
