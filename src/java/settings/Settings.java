@@ -4,11 +4,14 @@ import app.Resources;
 import settings.enums.SaveMethod;
 import settings.types.BooleanSetting;
 import settings.types.ChoiceSetting;
+import settings.types.StackSetting;
 
 import java.io.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import static settings.SettingCategory.*;
@@ -18,7 +21,10 @@ public class Settings implements Serializable {
     public static final BooleanSetting DISPLAY_24HOUR_TIME;
     public static final BooleanSetting AUTO_SAVE_SETTINGS;
     public static final ChoiceSetting<SaveMethod> SAVE_METHOD;
+    public static final StackSetting<File> RECENT_PACE_FILES;
     private static final String FILE_NAME;
+
+    private static final List<EditableSetting> SETTINGS_LIST;
 
     static {
         FILE_NAME = "settings.ser";
@@ -26,6 +32,12 @@ public class Settings implements Serializable {
         DISPLAY_24HOUR_TIME = new BooleanSetting("Show 24 hour time", false, APPEARANCE, TIME);
         SAVE_METHOD = new ChoiceSetting<>("Save Method", SaveMethod.A, GENERAL);
         AUTO_SAVE_SETTINGS = new BooleanSetting("Autosave Settings", true, SETTINGS);
+        RECENT_PACE_FILES = new StackSetting<>("Recent Files", GENERAL);
+
+        SETTINGS_LIST = new LinkedList<>() {{
+            add(DISPLAY_24HOUR_TIME);
+            add(AUTO_SAVE_SETTINGS);
+        }};
 
         load();
     }

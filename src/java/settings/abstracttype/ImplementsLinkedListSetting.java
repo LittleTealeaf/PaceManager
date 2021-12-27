@@ -1,4 +1,4 @@
-package settings.types;
+package settings.abstracttype;
 
 import interfaces.Category;
 import org.jetbrains.annotations.NotNull;
@@ -7,9 +7,9 @@ import java.util.Deque;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class LinkedListSetting<T extends LinkedList<K>, K> extends ImplementsListSetting<T, K> implements Deque<K> {
+public abstract class ImplementsLinkedListSetting<T extends LinkedList<K>, K> extends ImplementsListSetting<T, K> implements Deque<K> {
 
-    public LinkedListSetting(String name, T value, Category... categories) {
+    public ImplementsLinkedListSetting(String name, T value, Category... categories) {
         super(name, value, categories);
     }
 

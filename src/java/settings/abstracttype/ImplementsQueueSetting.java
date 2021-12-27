@@ -1,10 +1,10 @@
-package settings.types;
+package settings.abstracttype;
 
 import interfaces.Category;
 
 import java.util.Queue;
 
-public class ImplementsQueueSetting<T extends Queue<K>, K> extends ImplementsCollectionSetting<T, K> implements Queue<K> {
+public abstract class ImplementsQueueSetting<T extends Queue<K>, K> extends ImplementsCollectionSetting<T, K> implements Queue<K> {
 
     public ImplementsQueueSetting(String name, T value, Category... categories) {
         super(name, value, categories);
@@ -12,17 +12,17 @@ public class ImplementsQueueSetting<T extends Queue<K>, K> extends ImplementsCol
 
     @Override
     public boolean offer(K k) {
-        return get().offer(k);
+        return autoSave(get().offer(k));
     }
 
     @Override
     public K remove() {
-        return get().remove();
+        return autoSave(get().remove());
     }
 
     @Override
     public K poll() {
-        return get().poll();
+        return autoSave(get().poll());
     }
 
     @Override

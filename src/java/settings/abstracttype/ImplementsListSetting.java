@@ -1,4 +1,4 @@
-package settings.types;
+package settings.abstracttype;
 
 import interfaces.Category;
 import org.jetbrains.annotations.NotNull;
