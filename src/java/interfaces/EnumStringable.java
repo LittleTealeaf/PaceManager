@@ -2,6 +2,21 @@ package interfaces;
 
 import java.util.Arrays;
 
+/**
+ * Interface to allow for easy creation of a string builder. Add the following code snippets:
+ *
+ * <pre>
+ * private String string;
+ *
+ * Enum() {
+ *     string = asString();
+ * }
+ *
+ * public String toString() {
+ *     return string == null ? super.toString() : string;
+ * }
+ * </pre>
+ */
 public interface EnumStringable {
 
     default String asString() {
