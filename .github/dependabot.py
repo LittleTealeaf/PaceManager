@@ -2,7 +2,7 @@ import yaml
 import sys, os
 
 # List of branch names to add dependabot to
-branches = ["main","1.0.0","bug-fixes","1.1.0"]
+branches = ["main","1.0.0","1.1.0"]
 
 __location__ = os.path.realpath(
     os.path.join(os.getcwd(), os.path.dirname(__file__)))
