@@ -1,6 +1,6 @@
 # Pace Manager 1.0.0
 
-[![Java CI](https://github.com/LittleTealeaf/paceManager/actions/workflows/maven.yml/badge.svg)](https://github.com/LittleTealeaf/paceManager/actions/workflows/maven.yml)
+[![Java CI](https://github.com/LittleTealeaf/paceManager/actions/workflows/maven.yml/badge.svg)](https://github.com/LittleTealeaf/paceManager/actions/workflows/maven.yml) [![pages-build-deployment](https://github.com/LittleTealeaf/paceManager/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/LittleTealeaf/paceManager/actions/workflows/pages/pages-build-deployment)
 
 <p>This is a complete reworking from the ground up of the Pace Manager project.
 This <code>README.md</code> will be worked on in the future.</p>
