@@ -1,5 +1,7 @@
 # Pace Manager 1.0.0
 
+[![Java CI](https://github.com/LittleTealeaf/paceManager/actions/workflows/maven.yml/badge.svg)](https://github.com/LittleTealeaf/paceManager/actions/workflows/maven.yml)
+
 <p>This is a complete reworking from the ground up of the Pace Manager project.
 This <code>README.md</code> will be worked on in the future.</p>
 <p>This project is currently being developed using Intellij IDEA on the latest version.
