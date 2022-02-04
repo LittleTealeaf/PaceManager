@@ -12,7 +12,7 @@ If there is any issues, uh... figure it out!</p>
 
 ## Backlog:
 
-**GRADLE**
+**GRADLE** - 2.0.0 will be the new developed program, using Gradle instead of Maven
 
 1. Finish Writing Test-Cases, practicing best techniques
 2. Implement importing from Excel Sheet
