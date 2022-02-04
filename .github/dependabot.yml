@@ -8,10 +8,5 @@ updates:
   package-ecosystem: maven
   schedule:
     interval: daily
-  target-branch: 1.0.0
-- directory: /
-  package-ecosystem: maven
-  schedule:
-    interval: daily
   target-branch: 1.1.0
 version: 2
