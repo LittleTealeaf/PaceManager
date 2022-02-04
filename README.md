@@ -12,5 +12,7 @@ If there is any issues, uh... figure it out!</p>
 
 ## Backlog:
 
+**GRADLE**
+
 1. Finish Writing Test-Cases, practicing best techniques
 2. Implement importing from Excel Sheet
