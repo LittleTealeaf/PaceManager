@@ -1,5 +1,0 @@
-package ui;
-
-class DivisionSelectorTest {
-
-}

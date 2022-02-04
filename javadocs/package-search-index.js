@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"paceManager","l":"app"},{"m":"paceManager","l":"data"},{"m":"paceManager","l":"exceptions"},{"m":"paceManager","l":"settings"},{"m":"paceManager","l":"test"},{"m":"paceManager","l":"ui"}];updateSearchResults();
