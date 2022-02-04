@@ -1,6 +1,6 @@
 package api.database;
 
-public interface Division {
+public interface IDivision {
 
     String getName();
 }
