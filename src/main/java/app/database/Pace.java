@@ -17,4 +17,8 @@ public class Pace implements IPace {
     public List<ITeam> getTeams() {
         return null;
     }
+
+    public void onLoad() {
+
+    }
 }
