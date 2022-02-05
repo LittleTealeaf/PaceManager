@@ -16,6 +16,11 @@ public class Rider implements IRider {
         this.lastName = null;
     }
 
+    public Rider(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     @Override
     public String getFullName() {
         if (hasFirstName()) {
@@ -31,11 +36,6 @@ public class Rider implements IRider {
                 return "";
             }
         }
-    }
-
-    public Rider(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
     }
 
     @Override
