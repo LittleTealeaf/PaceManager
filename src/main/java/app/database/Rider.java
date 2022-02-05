@@ -4,40 +4,65 @@ import api.database.IRider;
 
 public class Rider implements IRider {
 
-    public Rider() {
+    private String firstName, lastName;
 
+    public Rider() {
+        firstName = null;
+        lastName = null;
     }
 
     public Rider(String firstName) {
-
-    }
-
-    public Rider(String firstName, String lastName) {
-
-    }
-
-    @Override
-    public String getFirstName() {
-        return null;
-    }
-
-    @Override
-    public void setFirstName(String firstName) {
-
-    }
-
-    @Override
-    public String getLastName() {
-        return null;
-    }
-
-    @Override
-    public void setLastName(String lastName) {
-
+        this.firstName = firstName;
+        this.lastName = null;
     }
 
     @Override
     public String getFullName() {
-        return null;
+        if (hasFirstName()) {
+            if (hasLastName()) {
+                return String.format("%s %s", getFirstName(), getLastName());
+            } else {
+                return getFirstName();
+            }
+        } else {
+            if (hasLastName()) {
+                return getLastName();
+            } else {
+                return "";
+            }
+        }
+    }
+
+    public Rider(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    @Override
+    public String getFirstName() {
+        return firstName != null ? firstName : "";
+    }
+
+    @Override
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    @Override
+    public String getLastName() {
+        return lastName != null ? lastName : "";
+    }
+
+    @Override
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public boolean hasFirstName() {
+        return firstName != null && !firstName.replace(" ", "").equals("");
+    }
+
+    public boolean hasLastName() {
+        return lastName != null && !lastName.replace(" ", "").equals("");
     }
 }
