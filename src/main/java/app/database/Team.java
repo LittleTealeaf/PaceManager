@@ -9,7 +9,9 @@ public class Team implements ITeam {
 
     private String name;
     private List<IRider> riders;
+    private UUID divisionUUID;
 
+    private transient IDivision division;
     private transient IPace pace;
 
     public Team() {
@@ -93,7 +95,8 @@ public class Team implements ITeam {
 
     @Override
     public void setDivision(IDivision division) {
-
+        this.division = division;
+        divisionUUID = division.getUUID();
     }
 
     @Override
