@@ -1,8 +1,11 @@
 package api.database;
 
-public interface IDivision {
+import api.interfaces.PaceComponent;
+
+import java.util.UUID;
+
+public interface IDivision extends PaceComponent {
 
     String getName();
-
-    void setPace(IPace pace);
+    UUID getUUID();
 }

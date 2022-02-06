@@ -5,6 +5,7 @@ import api.database.IPace;
 import api.database.ITeam;
 
 import java.util.List;
+import java.util.UUID;
 
 public class Pace implements IPace {
 
@@ -18,7 +19,8 @@ public class Pace implements IPace {
         return null;
     }
 
-    public void onLoad() {
-
+    @Override
+    public IDivision findDivisionByUUID(UUID uuid) {
+        return null;
     }
 }
