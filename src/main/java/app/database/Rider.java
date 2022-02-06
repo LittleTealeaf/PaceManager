@@ -2,6 +2,9 @@ package app.database;
 
 import api.database.IRider;
 
+/**
+ * @author Thomas Kwashnak
+ */
 public class Rider implements IRider {
 
     private String firstName, lastName;

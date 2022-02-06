@@ -5,6 +5,9 @@ import api.database.*;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * @author Thomas Kwashnak
+ */
 public class Team implements ITeam {
 
     private String name;

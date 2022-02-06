@@ -1,5 +1,8 @@
 package api.database;
 
+/**
+ * @author Thomas Kwashnak
+ */
 public interface ITimeInstance {
     int getTime();
     void setTime(int time);

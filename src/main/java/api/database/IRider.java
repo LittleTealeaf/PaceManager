@@ -1,5 +1,8 @@
 package api.database;
 
+/**
+ * @author Thomas Kwashnak
+ */
 public interface IRider {
 
     String getFirstName();

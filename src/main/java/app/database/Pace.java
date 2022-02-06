@@ -7,6 +7,9 @@ import api.database.ITeam;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * @author Thomas Kwashnak
+ */
 public class Pace implements IPace {
 
     @Override

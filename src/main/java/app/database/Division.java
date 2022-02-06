@@ -5,6 +5,9 @@ import api.database.IPace;
 
 import java.util.UUID;
 
+/**
+ * @author Thomas Kwashnak
+ */
 public class Division implements IDivision {
 
     private transient IPace pace;

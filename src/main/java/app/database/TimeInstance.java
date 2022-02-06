@@ -2,6 +2,9 @@ package app.database;
 
 import api.database.ITimeInstance;
 
+/**
+ * @author Thomas Kwashnak
+ */
 public class TimeInstance implements ITimeInstance {
 
     private int time;

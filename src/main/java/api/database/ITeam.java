@@ -5,6 +5,9 @@ import api.interfaces.PaceComponent;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * @author Thomas Kwashnak
+ */
 public interface ITeam extends PaceComponent {
 
     String getName();
