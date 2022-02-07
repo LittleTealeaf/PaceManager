@@ -6,14 +6,18 @@ import java.util.List;
 import java.util.UUID;
 
 public interface IPace {
+
     List<IDivision> getDivisions();
+
     List<ITeam> getTeams();
+
     IDivision lookupDivision(UUID uuid);
-    List<PaceComponent> getPaceComponents();
 
     default void initializeReferences() {
-        for(PaceComponent component : getPaceComponents()) {
+        for (PaceComponent component : getPaceComponents()) {
             component.setPace(this);
         }
     }
+
+    List<PaceComponent> getPaceComponents();
 }

@@ -5,25 +5,39 @@ import api.util.PaceComponent;
 import java.util.List;
 
 public interface ITeam extends PaceComponent {
+
     String getName();
-    List<IRider> getRiders();
+
+    void setName(String name);
+
     IClock getStartTime();
+
+    void setStartTime(IClock startTime);
+
     IClock getEndTime();
+
+    void setEndTime(IClock endTime);
+
     IClock getElapsedTime();
+
     IDivision getDivision();
+
+    void setDivision(IDivision division);
+
     String getNotes();
-    Boolean isExcluded();
 
     void setNotes(String notes);
-    void setName(String name);
-    void setStartTime(IClock startTime);
-    void setEndTime(IClock endTime);
-    void setDivision(IDivision division);
+
+    Boolean isExcluded();
+
     void setExcluded(Boolean excluded);
 
     default boolean addRider(IRider rider) {
         return getRiders().add(rider);
     }
+
+    List<IRider> getRiders();
+
     default boolean removeRider(IRider rider) {
         return getRiders().remove(rider);
     }
