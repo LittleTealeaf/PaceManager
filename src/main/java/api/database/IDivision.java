@@ -1,19 +1,14 @@
 package api.database;
 
-import api.interfaces.PaceComponent;
+import api.util.PaceComponent;
+import api.util.UniqueIdentity;
 
 import java.util.UUID;
 
-/**
- * @author Thomas Kwashnak
- */
-public interface IDivision extends PaceComponent {
-
+public interface IDivision extends PaceComponent, UniqueIdentity {
     String getName();
+    IClock getGoalTime();
 
-    /**
-     * Gets the unique identifier that identifies the Division separately from it's name or values
-     * @return Unique Identifier of the Division as a UUID
-     */
-    UUID getUUID();
+    void setGoalTime(IClock goalTime);
+    void setName(String name);
 }

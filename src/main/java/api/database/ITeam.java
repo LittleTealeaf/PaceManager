@@ -1,33 +1,30 @@
 package api.database;
 
-import api.interfaces.PaceComponent;
+import api.util.PaceComponent;
 
 import java.util.List;
-import java.util.UUID;
 
-/**
- * @author Thomas Kwashnak
- */
 public interface ITeam extends PaceComponent {
-
     String getName();
-    void setName(String name);
     List<IRider> getRiders();
-    void clearRiders();
-    void addRider(IRider rider);
-    void removeRider(IRider rider);
-    String getNotes();
-    void setNotes(String notes);
-
-//    time instances
-    ITimeInstance getTimeStart();
-    void setTimeStart(ITimeInstance timeStart);
-    ITimeInstance getTimeFinish();
-    void setTimeFinish(ITimeInstance timeFinish);
-    ITimeInstance getTimeElapsed();
-
-    //Division
-    UUID getDivisionUUID();
+    IClock getStartTime();
+    IClock getEndTime();
+    IClock getElapsedTime();
     IDivision getDivision();
+    String getNotes();
+    Boolean isExcluded();
+
+    void setNotes(String notes);
+    void setName(String name);
+    void setStartTime(IClock startTime);
+    void setEndTime(IClock endTime);
     void setDivision(IDivision division);
+    void setExcluded(Boolean excluded);
+
+    default boolean addRider(IRider rider) {
+        return getRiders().add(rider);
+    }
+    default boolean removeRider(IRider rider) {
+        return getRiders().remove(rider);
+    }
 }
