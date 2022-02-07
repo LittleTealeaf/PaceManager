@@ -10,5 +10,10 @@ import java.util.UUID;
 public interface IDivision extends PaceComponent {
 
     String getName();
+
+    /**
+     * Gets the unique identifier that identifies the Division separately from it's name or values
+     * @return Unique Identifier of the Division as a UUID
+     */
     UUID getUUID();
 }
