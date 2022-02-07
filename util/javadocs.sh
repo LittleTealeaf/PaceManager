@@ -2,4 +2,5 @@
 cd ..
 chmod +x gradlew
 ./gradlew javadoc
-mv ./build/docs/javadoc ./docs
+rm -r ./docs
+mv -u ./build/docs/javadoc ./docs
