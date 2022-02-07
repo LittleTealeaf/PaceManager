@@ -1,3 +1,5 @@
 #!/usr/bin/env sh
 cd ..
-# Simple script that generates javadocs
+chmod +x gradlew
+./gradlew javadoc
+mv ./build/docs/javadoc ./javadoc
