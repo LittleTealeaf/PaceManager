@@ -10,6 +10,10 @@ import api.util.UniqueIdentity;
  */
 public interface IDivision extends PaceComponent, UniqueIdentity {
 
+    /**
+     * Display name of the Division
+     * @return Name of the division
+     */
     String getName();
 
     void setName(String name);
