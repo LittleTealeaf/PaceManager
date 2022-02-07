@@ -9,7 +9,6 @@ name: Gradle Javadocs
 
 on:
   push:
-  pull_request:
 
 jobs:
   build:
@@ -29,3 +28,12 @@ jobs:
         uses: gradle/gradle-build-action@937999e9cc2425eddc7fd62d1053baf041147db7
         with:
           arguments: javadoc
+      - name: Move Javadocs to ./docs folder
+        run: mv "./build/docs/javadoc" "./docs"
+      - name: Push to Main
+        run: |
+          git config --global user.name 'Thomas Kwashnak'
+          git config --global user.email 'LittleTealeaf@users.noreply.github.com'
+          git add .
+          git commit -am "Generate Javadocs"
+          git push
