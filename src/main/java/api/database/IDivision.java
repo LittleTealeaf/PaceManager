@@ -9,9 +9,12 @@ import api.util.UniqueIdentity;
  * @version 2.0.0
  */
 public interface IDivision extends PaceComponent, UniqueIdentity {
+
     String getName();
+
     IClock getGoalTime();
 
     void setGoalTime(IClock goalTime);
+
     void setName(String name);
 }
