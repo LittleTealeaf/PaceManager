@@ -1,5 +1,4 @@
 api.database
-api.interfaces
+api.util
 app
-app.database
 test.resources
