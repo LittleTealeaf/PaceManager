@@ -29,7 +29,9 @@ jobs:
         with:
           arguments: javadoc
       - name: Move Javadocs to ./docs folder
-        run: mv "./build/docs/javadoc" "./docs"
+        run: |
+          rm -r "./docs"
+          mv "./build/docs/javadoc" "./docs"
       - name: Push to Main
         run: |
           git config --global user.name 'Thomas Kwashnak'
