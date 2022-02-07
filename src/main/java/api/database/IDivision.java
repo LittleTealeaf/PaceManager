@@ -16,6 +16,10 @@ public interface IDivision extends PaceComponent, UniqueIdentity {
      */
     String getName();
 
+    /**
+     * Sets the display name of the Division
+     * @param name Division Name
+     */
     void setName(String name);
 
     IClock getGoalTime();
