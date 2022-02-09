@@ -1,7 +1,10 @@
 package api.util;
 
-import api.database.IPace;
+import api.data.IPace;
 
+/**
+ * @author Thomas Kwashnak
+ */
 public interface PaceComponent {
 
     IPace getPace();

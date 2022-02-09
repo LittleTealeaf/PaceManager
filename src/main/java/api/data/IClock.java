@@ -1,4 +1,4 @@
-package api.database;
+package api.data;
 
 /**
  * Custom representation of Times within the pace. A "Time", or a "Clock", is the current time in the day that instances occur. The time will range

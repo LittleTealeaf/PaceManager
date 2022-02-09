@@ -1,4 +1,4 @@
-package api.database;
+package api.data;
 
 /**
  * A Rider is an individual person in a hunter pace.
