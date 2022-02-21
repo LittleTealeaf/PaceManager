@@ -22,6 +22,10 @@ public interface IDivision extends PaceComponent, UniqueIdentity {
      */
     void setName(String name);
 
+    /**
+     * Returns the goal time that participants in the division should return
+     * @return The goal time
+     */
     IClock getGoalTime();
 
     void setGoalTime(IClock goalTime);
