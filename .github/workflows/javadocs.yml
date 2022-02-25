@@ -1,4 +1,4 @@
-name: Test Javadocs
+name: Javadocs
 
 on:
   pull_request:
