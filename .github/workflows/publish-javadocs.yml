@@ -5,10 +5,11 @@
 # This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
 
-name: Javadocs Build
+name: Publish Javadocs
 
 on:
-  push: [ main ]
+  push: 
+    branches: [ main ]
 
 env:
   GH_TOKEN: ${{secrets.GH_TOKEN}}
