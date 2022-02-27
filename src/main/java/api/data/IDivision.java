@@ -7,6 +7,8 @@ package api.data;
  */
 public interface IDivision extends Identifiable, PaceComponent {
 
+    String NAME = IDivision.class.getName() + ".name";
+    String GOAL_TIME = IDivision.class.getName() + ".goalTime";
 
     String getName();
     void setName(String name);
