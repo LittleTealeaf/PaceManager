@@ -1,4 +1,6 @@
-package api.data;
+package data.interfaces;
+
+import data.api.IPace;
 
 /**
  * Indicates that an object is part of an {@link IPace}, and should have a back-reference to the {@link IPace} it is a part of

@@ -1,4 +1,8 @@
-package api.data;
+package data.api;
+
+import data.TeamStatus;
+import data.interfaces.PaceComponent;
+import data.interfaces.Identifiable;
 
 /**
  * @author Thomas Kwashnak

@@ -1,7 +1,8 @@
-package api.data;
+package data.api;
 
 import java.util.Collection;
 import java.util.UUID;
+import data.interfaces.PaceComponent;
 
 /**
  * @author Thomas Kwashnak
