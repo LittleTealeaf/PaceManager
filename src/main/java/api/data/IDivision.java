@@ -4,4 +4,6 @@ package api.data;
  * @author Thomas Kwashnak
  * @since 2.0.0
  */
-public interface IDivision {}
+public interface IDivision extends Identifiable, PaceComponent {
+
+}
