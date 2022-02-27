@@ -11,7 +11,7 @@ public interface Identifiable {
     /**
      * Classpath Tag for the UUID parameter
      */
-    String UUID = Identifiable.class.getName() + ".UUID";
+    String KEY_UUID = Identifiable.class.getName() + ".UUID";
 
     /**
      * The unique identifier of the object.

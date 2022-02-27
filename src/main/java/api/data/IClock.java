@@ -9,7 +9,7 @@ public interface IClock {
     /**
      * Tag for the TIME variable
      */
-    String TIME = IClock.class.getName() + ":TIME";
+    String KEY_TIME = IClock.class.getName() + ":TIME";
 
     /**
      * Returns the current time on the clock
