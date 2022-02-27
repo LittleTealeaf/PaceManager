@@ -3,22 +3,20 @@ package data.interfaces;
 import data.api.IPace;
 
 /**
- * Indicates that an object is part of an {@link IPace}, and should have a back-reference to the {@link IPace} it is a part of
+ * Indicates that a class has a reference to a pace object. Outlines the ability to get and set the {@link IPace} reference using {@link #getPace()} and {@link #setPace(IPace pace)} respectivevly.
  * @author Thomas Kwashnak
  * @since 2.0.0
- * @version 2.0.0
  */
 public interface PaceComponent {
 
     /**
-     * Gets the pace that this object is a part of
-     * @return The IPace object
+     * Returns the reference to the provided {@link IPace}
      */
     IPace getPace();
 
     /**
-     * Updates the object's current pace
-     * @param pace The pace this object is a part of
+     * Updates the object's current reference
+     * @param pace The new reference to assign to this object
      */
     void setPace(IPace pace);
 }
