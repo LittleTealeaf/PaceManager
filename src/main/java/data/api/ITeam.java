@@ -29,8 +29,16 @@ public interface ITeam extends Identifiable, PaceComponent {
     IClock getEndTime();
     void setEndTime(IClock endTime);
 
+    Status getStatus();
     IClock getElapsedTime();
+    
 
     boolean isIncluded();
-    void setIncluded(boolean included);
+    void setIncluded(boolean included); 
+
+    enum Status {
+        NOT_STARTED,
+        IN_PROGRESS,
+        COMPLETED;
+    }
 }
