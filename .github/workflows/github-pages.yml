@@ -1,4 +1,4 @@
-name: Publish Javadocs
+name: Build Javadocs
 
 on:
   push:
