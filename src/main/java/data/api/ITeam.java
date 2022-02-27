@@ -2,8 +2,10 @@ package data.api;
 
 import data.interfaces.PaceComponent;
 import data.interfaces.Identifiable;
+import java.util.Collection;
 
 /**
+ * Outlines the requirements that a team object must implement. This includes getters and setters for the name, division, start and end time, as well as riders
  * @author Thomas Kwashnak
  * @since 2.0.0
  * @version 2.0.0
@@ -31,7 +33,10 @@ public interface ITeam extends Identifiable, PaceComponent {
 
     Status getStatus();
     IClock getElapsedTime();
-    
+
+    Collection<IRider> getRiders();
+    boolean addRider(IRider rider);
+    boolean removeRider(IRider rider);
 
     boolean isIncluded();
     void setIncluded(boolean included); 
