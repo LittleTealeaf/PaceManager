@@ -4,6 +4,7 @@ import java.util.UUID;
 
 /**
  * Indicates that a class has a unique identifier, or a UUID.
+ * @version 2.0.0
  */
 public interface Identifiable {
 

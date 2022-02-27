@@ -1,6 +1,9 @@
 package api.data;
 
-
+/**
+ * @author Thomas Kwashnak
+ * @version 2.0.0
+ */
 public interface IClock {
 
     /**
