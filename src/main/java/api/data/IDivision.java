@@ -7,4 +7,13 @@ package api.data;
  */
 public interface IDivision extends Identifiable, PaceComponent {
 
+
+    String getName();
+    void setName(String name);
+
+    IClock getGoalTime();
+    void setGoalTime(IClock time);
+
+
+
 }
