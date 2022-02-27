@@ -36,4 +36,6 @@ public interface IPace {
     default void removePaceComponent(PaceComponent component) {
         component.setPace(null);
     }
+
+    IDivision getDefaultDivision();
 }

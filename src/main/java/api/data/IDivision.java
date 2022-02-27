@@ -16,6 +16,8 @@ public interface IDivision extends Identifiable, PaceComponent {
     IClock getGoalTime();
     void setGoalTime(IClock time);
 
-
+    default boolean isDefaultDivision() {
+        return getPace().getDefaultDivision() == this;
+    }
 
 }
