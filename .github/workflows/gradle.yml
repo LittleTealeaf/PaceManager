@@ -11,37 +11,56 @@ on:
   push:
 
 jobs:
-  ubuntu-latest:
-
-    runs-on: ubuntu-latest
-
+  build:
+    strategy:
+      matrix:
+        java: [17]
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK 11
-        uses: actions/setup-java@v2
-        with:
-          java-version: '11'
-          distribution: 'temurin'
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-      - name: Build with Gradle
-        uses: gradle/gradle-build-action@937999e9cc2425eddc7fd62d1053baf041147db7
-        with:
-          arguments: build
-  windows-latest:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Step up Java
+      uses: actions/setup-java@v2
+      with:
+        java-version: ${{ matrix.java }}
+    - name: Make Gradlew Executible
+      run: chmod +x gradlew
+    - name: Build with Gradle
+      uses: gradle/gradle-build-action@937999e9cc2425eddc7fd62d1053baf041147db7
+      with:
+        arguments: build
+#   ubuntu-latest:
 
-    runs-on: ubuntu-latest
+#     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK 11
-        uses: actions/setup-java@v2
-        with:
-          java-version: '11'
-          distribution: 'temurin'
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-      - name: Build with Gradle
-        uses: gradle/gradle-build-action@937999e9cc2425eddc7fd62d1053baf041147db7
-        with:
-          arguments: build
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Set up JDK 11
+#         uses: actions/setup-java@v2
+#         with:
+#           java-version: '11'
+#           distribution: 'temurin'
+#       - name: Grant execute permission for gradlew
+#         run: chmod +x gradlew
+#       - name: Build with Gradle
+#         uses: gradle/gradle-build-action@937999e9cc2425eddc7fd62d1053baf041147db7
+#         with:
+#           arguments: build
+#   windows-latest:
+
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Set up JDK 11
+#         uses: actions/setup-java@v2
+#         with:
+#           java-version: '11'
+#           distribution: 'temurin'
+#       - name: Grant execute permission for gradlew
+#         run: chmod +x gradlew
+#       - name: Build with Gradle
+#         uses: gradle/gradle-build-action@937999e9cc2425eddc7fd62d1053baf041147db7
+#         with:
+#           arguments: build
