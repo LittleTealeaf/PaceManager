@@ -7,8 +7,8 @@ package api.data;
  */
 public interface IRider {
 
-    String FIRST_NAME = IRider.class.getName() + ".FirstName";
-    String LAST_NAME = IRider.class.getName() + ".LastName";
+    String KEY_FIRST_NAME = IRider.class.getName() + ".FirstName";
+    String KEY_LAST_NAME = IRider.class.getName() + ".LastName";
 
     String getFirstName();
 

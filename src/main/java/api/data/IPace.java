@@ -10,8 +10,8 @@ import java.util.UUID;
  */
 public interface IPace {
 
-    String TEAMS = IPace.class.getName() + ".Teams";
-    String DIVISIONS = IPace.class.getName() + ".Divisions";
+    String KEY_TEAMS = IPace.class.getName() + ".Teams";
+    String KEY_DIVISIONS = IPace.class.getName() + ".Divisions";
 
     ITeam getTeam(UUID uuid);
 
@@ -36,4 +36,6 @@ public interface IPace {
     default void removePaceComponent(PaceComponent component) {
         component.setPace(null);
     }
+
+    IDivision getDefaultDivision();
 }
