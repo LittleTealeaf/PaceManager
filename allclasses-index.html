@@ -26,8 +26,8 @@
     catch(err) {
     }
 //-->
-var data = {"i0":1,"i1":1,"i2":1,"i3":1,"i4":1,"i5":1,"i6":2,"i7":1};
-var tabs = {65535:["t0","All Classes"],1:["t1","Interface Summary"],2:["t2","Class Summary"]};
+var data = {"i0":1,"i1":1,"i2":1,"i3":1,"i4":1,"i5":1,"i6":2,"i7":1,"i8":4};
+var tabs = {65535:["t0","All Classes"],1:["t1","Interface Summary"],2:["t2","Class Summary"],4:["t3","Enum Summary"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -104,7 +104,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <table class="typeSummary">
-<caption><span id="t0" class="activeTableTab"><span>All Classes</span><span class="tabEnd">&nbsp;</span></span><span id="t1" class="tableTab"><span><a href="javascript:show(1);">Interface Summary</a></span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Class Summary</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Classes</span><span class="tabEnd">&nbsp;</span></span><span id="t1" class="tableTab"><span><a href="javascript:show(1);">Interface Summary</a></span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Class Summary</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Enum Summary</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Class</th>
 <th class="colLast" scope="col">Description</th>
@@ -143,6 +143,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <td class="colFirst"><a href="api/data/PaceComponent.html" title="interface in api.data">PaceComponent</a></td>
 <th class="colLast" scope="row">
 <div class="block">Indicates that an object is part of an <a href="api/data/IPace.html" title="interface in api.data"><code>IPace</code></a>, and should have a back-reference to the <a href="api/data/IPace.html" title="interface in api.data"><code>IPace</code></a> it is a part of</div>
+</th>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><a href="api/data/TeamStatus.html" title="enum in api.data">TeamStatus</a></td>
+<th class="colLast" scope="row">
+<div class="block">The current status of a given Team</div>
 </th>
 </tr>
 </table>
