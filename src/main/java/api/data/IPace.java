@@ -9,6 +9,9 @@ import java.util.UUID;
  */
 public interface IPace {
 
+    String TEAMS = IPace.class.getName() + ".Teams";
+    String DIVISIONS = IPace.class.getName() + ".Divisions";
+
     ITeam getTeam(UUID uuid);
 
     IDivision getDivision(UUID uuid);
