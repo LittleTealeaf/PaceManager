@@ -18,9 +18,21 @@ public interface ITeam extends Identifiable, PaceComponent {
     String KEY_END_TIME = ITeam.class.getName() + ".timeEnd";
     String KEY_INCLUDED = ITeam.class.getName() + ".included";
 
+    /**
+     * Returns the name, or ID, of the team
+     * @return Team name/id
+     */
     String getName();
+    /**
+     * Sets the name or id of the team
+     * @param name New name to give the team.
+     */
     void setName(String name);
 
+    /**
+     * Gets the division object referencing the division that this team is categorized under.
+     * @return Reference to the division this team is placed under
+     */
     IDivision getDivision();
     void setDivision(IDivision division);
     void setDivision(java.util.UUID divisionUUID);
