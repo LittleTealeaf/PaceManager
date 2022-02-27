@@ -1,6 +1,5 @@
 package data.api;
 
-// import data.TeamStatus;
 import data.interfaces.PaceComponent;
 import data.interfaces.Identifiable;
 
@@ -31,7 +30,6 @@ public interface ITeam extends Identifiable, PaceComponent {
     void setEndTime(IClock endTime);
 
     IClock getElapsedTime();
-    // TeamStatus getStatus();
 
     boolean isIncluded();
     void setIncluded(boolean included);
