@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"app.data","l":"Clock"},{"p":"api.data","l":"IClock"},{"p":"api.data","l":"IDivision"},{"p":"api.data","l":"IPace"},{"p":"api.data","l":"IRider"},{"p":"api.data","l":"ITeam"},{"p":"app","l":"Main"},{"p":"api.util","l":"PaceComponent"},{"p":"api.util","l":"UniqueIdentity"}]
