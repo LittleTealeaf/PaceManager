@@ -1,4 +1,4 @@
-name: Javadocs Publication
+name: Publish Javadocs
 
 on:
   push:
