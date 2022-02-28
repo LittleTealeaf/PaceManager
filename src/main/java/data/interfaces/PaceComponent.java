@@ -11,6 +11,7 @@ public interface PaceComponent {
 
     /**
      * Returns the reference to the provided {@link IPace}
+     * @return Reference to the IPace assigned to this object
      */
     IPace getPace();
 
