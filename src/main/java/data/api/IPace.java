@@ -31,4 +31,6 @@ public interface IPace {
     boolean removeDivision(IDivision division);
 
     IDivision getDefaultDivision();
+
+    void setDefaultDivision(IDivision division);
 }

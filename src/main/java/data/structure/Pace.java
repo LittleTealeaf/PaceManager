@@ -6,13 +6,13 @@ import data.api.ITeam;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 public class Pace implements IPace {
 
-    private final Collection<ITeam> teams = new ArrayList<>();
-    private final Collection<IDivision> divisions = new ArrayList<>();
-    private IDivision defaultDivision;
+    private final List<ITeam> teams = new ArrayList<>();
+    private final List<IDivision> divisions = new ArrayList<>();
 
     public Pace() {
 
@@ -84,6 +84,19 @@ public class Pace implements IPace {
 
     @Override
     public IDivision getDefaultDivision() {
-        return defaultDivision;
+        return divisions.get(0);
+    }
+
+    @Override
+    public void setDefaultDivision(IDivision division) {
+        if(!divisions.contains(division)) {
+            addDivision(division);
+        }
+        if(divisions.indexOf(division) != 0) {
+            IDivision temp = divisions.get(0);
+            divisions.remove(division);
+            divisions.set(0,division);
+            divisions.add(temp);
+        }
     }
 }
