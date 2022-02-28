@@ -34,15 +34,41 @@ public interface ITeam extends Identifiable, PaceComponent {
      * @return Reference to the division this team is placed under
      */
     IDivision getDivision();
+
+    /**
+     * Sets the current division of the team
+     * @param division The new division that the team should be listed under
+     */
     void setDivision(IDivision division);
+
+    /**
+     * Sets the current division of the team
+     * @param divisionUUID The UUID Of the division the team should be listed under
+     */
     void setDivision(java.util.UUID divisionUUID);
 
+    /**
+     * The time that the riders began the pace
+     * @return The clock time the riders left and began the race. Returns {@code null} if the riders have not yet left
+     */
     IClock getStartTime();
+
+    /**
+     * Sets the time that the riders began the pace
+     * @param startTime The clock time that the team started the pace at
+     */
     void setStartTime(IClock startTime);
 
+
     IClock getEndTime();
+
+
     void setEndTime(IClock endTime);
 
+    /**
+     * Gets the current status of the team
+     * @return The current status, as listed in {@link Status}
+     */
     Status getStatus();
     IClock getElapsedTime();
 
@@ -57,8 +83,17 @@ public interface ITeam extends Identifiable, PaceComponent {
     void setNotes(String notes);
 
     enum Status {
+        /**
+         * Indicates that the team has not yet begun the pace.
+         */
         NOT_STARTED,
+        /**
+         * Indicates that the team is currently in progress of completing the pace
+         */
         IN_PROGRESS,
+        /**
+         * Indicates that the team has completed the pace
+         */
         COMPLETED;
     }
 }
