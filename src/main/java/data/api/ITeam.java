@@ -51,7 +51,10 @@ public interface ITeam extends Identifiable, PaceComponent {
     boolean removeRider(IRider rider);
 
     boolean isIncluded();
-    void setIncluded(boolean included); 
+    void setIncluded(boolean included);
+
+    String getNotes();
+    void setNotes(String notes);
 
     enum Status {
         NOT_STARTED,
