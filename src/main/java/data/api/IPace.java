@@ -30,13 +30,5 @@ public interface IPace {
 
     boolean removeDivision(IDivision division);
 
-    default void addPaceComponent(PaceComponent component) {
-        component.setPace(this);
-    }
-
-    default void removePaceComponent(PaceComponent component) {
-        component.setPace(null);
-    }
-
     IDivision getDefaultDivision();
 }
