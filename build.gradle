@@ -17,7 +17,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.fxmisc.richtext:richtextfx:0.10.8'
+    implementation 'org.fxmisc.richtext:richtextfx:0.10.9'
     implementation 'com.google.code.gson:gson:2.9.0'
     implementation 'org.apache.poi:poi:5.0.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
