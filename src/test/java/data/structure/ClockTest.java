@@ -1,5 +1,6 @@
 package data.structure;
 
+import data.api.IClock;
 import org.junit.jupiter.api.Test;
 import test.resources.RandomUtil;
 
@@ -9,9 +10,29 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 class ClockTest implements RandomUtil {
 
     @Test
-    void emptyConstructor() {
+    void constructor() {
         Clock clock = new Clock();
         assertEquals(0, clock.getTime());
+    }
+
+    @Test
+    void constructorInt() {
+        int val = RANDOM.nextInt();
+        Clock clock = new Clock(val);
+        assertEquals(val,clock.getTime());
+    }
+
+    @Test
+    void constructorIClock() {
+        int val = RANDOM.nextInt();
+        IClock clock = new Clock() {
+            @Override
+            public int getTime() {
+                return val;
+            }
+        };
+        Clock copyClock = new Clock(clock);
+        assertEquals(val,copyClock.getTime());
     }
 
     @Test
