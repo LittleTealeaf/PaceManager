@@ -9,7 +9,7 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class RandomNames {
+public class RandomUtils {
 
     private static final String[] NAMES;
     private static final Random RANDOM;
@@ -18,7 +18,7 @@ public class RandomNames {
         RANDOM = new Random();
 
         List<String> names_list;
-        InputStream stream = Objects.requireNonNull(RandomNames.class.getResourceAsStream("/names.txt"));
+        InputStream stream = Objects.requireNonNull(RandomUtils.class.getResourceAsStream("/names.txt"));
         InputStreamReader streamReader = new InputStreamReader(stream);
         BufferedReader reader = new BufferedReader(streamReader);
         names_list = reader.lines().collect(Collectors.toList());
