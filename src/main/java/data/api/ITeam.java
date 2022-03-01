@@ -49,7 +49,7 @@ public interface ITeam extends Identifiable, PaceComponent {
 
     /**
      * The time that the riders began the pace
-     * @return The clock time the riders left and began the race. Returns {@code null} if the riders have not yet left
+     * @return The clock time the riders left and began the pace. Returns {@code null} if the riders have not yet left
      */
     IClock getStartTime();
 
@@ -59,10 +59,16 @@ public interface ITeam extends Identifiable, PaceComponent {
      */
     void setStartTime(IClock startTime);
 
-
+    /**
+     * The time that the riders finished the pace
+     * @return The clock time that the riders returned from completing the pace. Returns {@code null} if the riders have not returned yet.
+     */
     IClock getEndTime();
 
-
+    /**
+     * Sets the time that the riders finished the pace
+     * @param endTime The clock time that the team finished the pace at.
+     */
     void setEndTime(IClock endTime);
 
     /**
@@ -70,6 +76,11 @@ public interface ITeam extends Identifiable, PaceComponent {
      * @return The current status, as listed in {@link Status}
      */
     Status getStatus();
+
+    /**
+     * Gets the elapsed time between the start time and the end time
+     * @return Elapsed time that the team took to complete the pace. Returns {@code null} if the team has not completed the pace.
+     */
     IClock getElapsedTime();
 
     Collection<IRider> getRiders();
@@ -82,6 +93,10 @@ public interface ITeam extends Identifiable, PaceComponent {
     String getNotes();
     void setNotes(String notes);
 
+    /**
+     * Indicates the current status of the team, whether they've not started, in progress, or completing the pace.
+     * @author Thomas Kwashnak
+     */
     enum Status {
         /**
          * Indicates that the team has not yet begun the pace.
