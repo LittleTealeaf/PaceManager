@@ -1,38 +1,36 @@
 package data.structure;
 
 import org.junit.jupiter.api.Test;
+import test.resources.RandomUtil;
 
-import java.util.Random;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class ClockTest {
-
-
+class ClockTest implements RandomUtil {
 
     @Test
     void emptyConstructor() {
         Clock clock = new Clock();
-        assertEquals(0,clock.getTime());
+        assertEquals(0, clock.getTime());
     }
 
     @Test
     void getTime() {
-        int val = new Random().nextInt();
+        int val = RANDOM.nextInt();
         Clock clock = new Clock(val);
-        assertEquals(val,clock.getTime());
-        val = new Random().nextInt();
-        assertNotEquals(val,clock.getTime());
+        assertEquals(val, clock.getTime());
+        val = RANDOM.nextInt();
+        assertNotEquals(val, clock.getTime());
         clock.setTime(val);
-        assertEquals(val,clock.getTime());
+        assertEquals(val, clock.getTime());
     }
 
     @Test
     void setTime() {
         Clock clock = new Clock();
-        int val = new Random().nextInt();
-        assertNotEquals(val,clock.getTime());
+        int val = RANDOM.nextInt();
+        assertNotEquals(val, clock.getTime());
         clock.setTime(val);
-        assertEquals(val,clock.getTime());
+        assertEquals(val, clock.getTime());
     }
 }
