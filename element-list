@@ -2,4 +2,5 @@ app
 data.api
 data.interfaces
 data.structure
+test.resources
 util
