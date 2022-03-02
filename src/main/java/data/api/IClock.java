@@ -1,6 +1,7 @@
-package api.data;
+package data.api;
 
 /**
+ * A Clock interface that stores the number of seconds since 00:00, or midnight.
  * @author Thomas Kwashnak
  * @version 2.0.0
  */
@@ -12,14 +13,14 @@ public interface IClock {
     String KEY_TIME = IClock.class.getName() + ":TIME";
 
     /**
-     * Returns the current time on the clock
-     * @return Current time, in seconds.
+     * Returns the clock time stored
+     * @return Clock time, in seconds
      */
     int getTime();
 
     /**
-     * Sets the current time to the provided variable
-     * @param time The new time, in seconds, to set
+     * Sets the clock time
+     * @param time time value, in seconds
      */
     void setTime(int time);
 
