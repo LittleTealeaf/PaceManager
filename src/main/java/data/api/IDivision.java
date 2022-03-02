@@ -2,6 +2,9 @@ package data.api;
 
 import data.interfaces.PaceComponent;
 import data.interfaces.Identifiable;
+import util.ClassUtil;
+
+import static util.ClassUtil.formatKey;
 
 /**
  * @author Thomas Kwashnak
@@ -11,13 +14,9 @@ import data.interfaces.Identifiable;
 public interface IDivision extends Identifiable, PaceComponent {
 
     /**
-     * Tag for the Name variable
+     * Key tags used for variables used in implementations of IDivision
      */
-    String KEY_NAME = IDivision.class.getName() + ".name";
-    /**
-     * Tag for the Goal Time variable
-     */
-    String KEY_GOAL_TIME = IDivision.class.getName() + ".goalTime";
+    String KEY_NAME = formatKey(IDivision.class,"name"), KEY_GOAL_TIME = formatKey(IDivision.class,"goalTime");
 
     /**
      * The displayable name of the division

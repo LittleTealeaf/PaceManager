@@ -4,6 +4,8 @@ import data.interfaces.PaceComponent;
 import data.interfaces.Identifiable;
 import java.util.Collection;
 
+import static util.ClassUtil.formatKey;
+
 /**
  * Outlines the requirements that a team object must implement. This includes getters and setters for the name, division, start and end time, as well as riders
  * @author Thomas Kwashnak
@@ -13,10 +15,11 @@ import java.util.Collection;
 public interface ITeam extends Identifiable, PaceComponent {
 
     /**
-     * Key values for variables saved within instances of this interface
+     * Tag keys for variables used within implementations of ITeam
      */
-    String KEY_NAME = ITeam.class.getName() + ".name", KEY_DIVISION_UUID = ITeam.class.getName() + ".divisionUUID", KEY_START_TIME = ITeam.class.getName() + ".timeStart", KEY_END_TIME = ITeam.class.getName() + ".timeEnd", KEY_INCLUDED = ITeam.class.getName() + ".included";
-
+    String KEY_NAME = formatKey(ITeam.class,"name"), KEY_DIVISION_UUID = formatKey(ITeam.class,"divisionUUID"), KEY_START_TIME =
+            formatKey(ITeam.class,"startTime"), KEY_END_TIME = formatKey(ITeam.class,"endTime"), KEY_INCLUDED = formatKey(ITeam.class,"included"),
+            KEY_NOTES = formatKey(ITeam.class,"notes");
     /**
      * Returns the name, or ID, of the team
      * @return Team name/id

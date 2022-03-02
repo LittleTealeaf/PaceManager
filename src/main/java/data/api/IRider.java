@@ -1,6 +1,7 @@
 package data.api;
 
 
+import static util.ClassUtil.formatKey;
 
 /**
  * @author Thomas Kwashnak
@@ -9,8 +10,10 @@ package data.api;
  */
 public interface IRider {
 
-    String KEY_FIRST_NAME = IRider.class.getName() + ".FirstName";
-    String KEY_LAST_NAME = IRider.class.getName() + ".LastName";
+    /**
+     * Tag keys for variables used within implementations of IRider
+     */
+    String KEY_FIRST_NAME = formatKey(IRider.class,"firstName"), KEY_LAST_NAME = formatKey(IRider.class,"lastName");
 
     /**
      * The first name of the rider
