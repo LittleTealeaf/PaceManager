@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 /**
  * Test Utilities that randomize a test in some way
  */
-public class RandomUtils implements RandomUtil {
+public class RandomUtils implements Randomizable {
 
     /**
      * List of dummy names used for randomizing names
