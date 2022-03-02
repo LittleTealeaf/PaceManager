@@ -2,12 +2,12 @@ package data.structure;
 
 import data.api.IClock;
 import org.junit.jupiter.api.Test;
-import test.resources.RandomUtil;
+import test.resources.Randomizable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-class ClockTest implements RandomUtil {
+class ClockTest implements Randomizable {
 
     /**
      * Tests the {@link Clock#Clock()} constructor.
