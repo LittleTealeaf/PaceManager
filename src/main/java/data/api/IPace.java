@@ -2,23 +2,24 @@ package data.api;
 
 import java.util.Collection;
 import java.util.UUID;
-import data.interfaces.PaceComponent;
+
+import static util.ClassUtil.formatKey;
 
 /**
  * @author Thomas Kwashnak
- * @since 2.0.0
  * @version 2.0.0
+ * @since 2.0.0
  */
 public interface IPace {
 
     /**
-     * Tag for the teams list variable
+     * Tag key for variables used within implementations of IPace
      */
-    String KEY_TEAMS = IPace.class.getName() + ".Teams";
+    String KEY_TEAMS = formatKey(IPace.class, "teams");
     /**
-     * Tag for the divisions list variable
+     * Tag key for variables used within implementations of IPace
      */
-    String KEY_DIVISIONS = IPace.class.getName() + ".Divisions";
+    String KEY_DIVISIONS = formatKey(IPace.class, "divisions");
 
     /**
      * Finds a team based on its UUID

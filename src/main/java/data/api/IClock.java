@@ -1,5 +1,7 @@
 package data.api;
 
+import util.ClassUtil;
+
 /**
  * A Clock interface that stores the number of seconds since 00:00, or midnight.
  * @author Thomas Kwashnak
@@ -10,7 +12,7 @@ public interface IClock {
     /**
      * Tag for the TIME variable
      */
-    String KEY_TIME = IClock.class.getName() + ":TIME";
+    String KEY_TIME = ClassUtil.formatKey(IClock.class,"time");
 
     /**
      * Returns the clock time stored
