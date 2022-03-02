@@ -109,4 +109,8 @@ public class Pace implements IPace {
             divisions.add(temp);
         }
     }
+
+    private static IDivision createDefaultDivision() {
+        return null;
+    }
 }
