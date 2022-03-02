@@ -1,102 +1,141 @@
 package data.api;
 
-import data.interfaces.PaceComponent;
 import data.interfaces.Identifiable;
+import data.interfaces.PaceComponent;
+
 import java.util.Collection;
 
 import static util.ClassUtil.formatKey;
 
 /**
- * Outlines the requirements that a team object must implement. This includes getters and setters for the name, division, start and end time, as well as riders
+ * Outlines the requirements that a team object must implement. This includes getters and setters for the name, division, start and end time, as well
+ * as riders
+ *
  * @author Thomas Kwashnak
- * @since 2.0.0
  * @version 2.0.0
+ * @since 2.0.0
  */
 public interface ITeam extends Identifiable, PaceComponent {
 
     /**
-     * Tag keys for variables used within implementations of ITeam
+     * Tag key for variables used within implementations of ITeam
      */
-    String KEY_NAME = formatKey(ITeam.class,"name"), KEY_DIVISION_UUID = formatKey(ITeam.class,"divisionUUID"), KEY_START_TIME =
-            formatKey(ITeam.class,"startTime"), KEY_END_TIME = formatKey(ITeam.class,"endTime"), KEY_INCLUDED = formatKey(ITeam.class,"included"),
-            KEY_NOTES = formatKey(ITeam.class,"notes");
+    String KEY_NAME = formatKey(ITeam.class, "name");
+    /**
+     * Tag key for variables used within implementations of ITeam
+     */
+    String KEY_DIVISION_UUID = formatKey(ITeam.class, "divisionUUID");
+    /**
+     * Tag key for variables used within implementations of ITeam
+     */
+    String KEY_START_TIME = formatKey(ITeam.class, "startTime");
+    /**
+     * Tag key for variables used within implementations of ITeam
+     */
+    String KEY_END_TIME = formatKey(ITeam.class, "endTime");
+    /**
+     * Tag key for variables used within implementations of ITeam
+     */
+    String KEY_INCLUDED = formatKey(ITeam.class, "included");
+    /**
+     * Tag key for variables used within implementations of ITeam
+     */
+    String KEY_NOTES = formatKey(ITeam.class, "notes");
+
     /**
      * Returns the name, or ID, of the team
+     *
      * @return Team name/id
      */
     String getName();
+
     /**
      * Sets the name or id of the team
+     *
      * @param name New name to give the team.
      */
     void setName(String name);
 
     /**
      * Gets the division object referencing the division that this team is categorized under.
+     *
      * @return Reference to the division this team is placed under
      */
     IDivision getDivision();
 
     /**
      * Sets the current division of the team
+     *
      * @param division The new division that the team should be listed under
      */
     void setDivision(IDivision division);
 
     /**
      * Sets the current division of the team
+     *
      * @param divisionUUID The UUID Of the division the team should be listed under
      */
     void setDivision(java.util.UUID divisionUUID);
 
     /**
      * The time that the riders began the pace
+     *
      * @return The clock time the riders left and began the pace. Returns {@code null} if the riders have not yet left
      */
     IClock getStartTime();
 
     /**
      * Sets the time that the riders began the pace
+     *
      * @param startTime The clock time that the team started the pace at
      */
     void setStartTime(IClock startTime);
 
     /**
      * The time that the riders finished the pace
+     *
      * @return The clock time that the riders returned from completing the pace. Returns {@code null} if the riders have not returned yet.
      */
     IClock getEndTime();
 
     /**
      * Sets the time that the riders finished the pace
+     *
      * @param endTime The clock time that the team finished the pace at.
      */
     void setEndTime(IClock endTime);
 
     /**
      * Gets the current status of the team
+     *
      * @return The current status, as listed in {@link Status}
      */
     Status getStatus();
 
     /**
      * Gets the elapsed time between the start time and the end time
+     *
      * @return Elapsed time that the team took to complete the pace. Returns {@code null} if the team has not completed the pace.
      */
     IClock getElapsedTime();
 
     Collection<IRider> getRiders();
+
     boolean addRider(IRider rider);
+
     boolean removeRider(IRider rider);
 
     boolean isIncluded();
+
     void setIncluded(boolean included);
 
     String getNotes();
+
     void setNotes(String notes);
 
     /**
      * Indicates the current status of the team, whether they've not started, in progress, or completing the pace.
+     *
      * @author Thomas Kwashnak
      */
     enum Status {
