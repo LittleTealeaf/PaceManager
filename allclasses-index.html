@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":1,"i1":1,"i2":1,"i3":1,"i4":1,"i5":1,"i6":2,"i7":1,"i8":4};
+var data = {"i0":2,"i1":2,"i2":1,"i3":1,"i4":1,"i5":1,"i6":1,"i7":1,"i8":4,"i9":2,"i10":2,"i11":1,"i12":2};
 var tabs = {65535:["t0","All Classes"],1:["t1","Interface Summary"],2:["t2","Class Summary"],4:["t3","Enum Summary"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -110,46 +110,66 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><a href="api/data/IClock.html" title="interface in api.data">IClock</a></td>
+<td class="colFirst"><a href="util/ClassUtil.html" title="class in util">ClassUtil</a></td>
 <th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><a href="api/data/Identifiable.html" title="interface in api.data">Identifiable</a></td>
+<td class="colFirst"><a href="data/structure/Clock.html" title="class in data.structure">Clock</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><a href="data/api/IClock.html" title="interface in data.api">IClock</a></td>
+<th class="colLast" scope="row">
+<div class="block">A Clock interface that stores the number of seconds since 00:00, or midnight.</div>
+</th>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><a href="data/interfaces/Identifiable.html" title="interface in data.interfaces">Identifiable</a></td>
 <th class="colLast" scope="row">
 <div class="block">Indicates that a class has a unique identifier, or a UUID.</div>
 </th>
 </tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><a href="api/data/IDivision.html" title="interface in api.data">IDivision</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
-</tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><a href="api/data/IPace.html" title="interface in api.data">IPace</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
-</tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><a href="api/data/IRider.html" title="interface in api.data">IRider</a></td>
+<td class="colFirst"><a href="data/api/IDivision.html" title="interface in data.api">IDivision</a></td>
 <th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><a href="api/data/ITeam.html" title="interface in api.data">ITeam</a></td>
+<td class="colFirst"><a href="data/api/IPace.html" title="interface in data.api">IPace</a></td>
 <th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i6" class="altColor">
-<td class="colFirst"><a href="Main.html" title="class in &lt;Unnamed&gt;">Main</a></td>
+<td class="colFirst"><a href="data/api/IRider.html" title="interface in data.api">IRider</a></td>
 <th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><a href="api/data/PaceComponent.html" title="interface in api.data">PaceComponent</a></td>
+<td class="colFirst"><a href="data/api/ITeam.html" title="interface in data.api">ITeam</a></td>
 <th class="colLast" scope="row">
-<div class="block">Indicates that an object is part of an <a href="api/data/IPace.html" title="interface in api.data"><code>IPace</code></a>, and should have a back-reference to the <a href="api/data/IPace.html" title="interface in api.data"><code>IPace</code></a> it is a part of</div>
+<div class="block">Outlines the requirements that a team object must implement.</div>
 </th>
 </tr>
 <tr id="i8" class="altColor">
-<td class="colFirst"><a href="api/data/TeamStatus.html" title="enum in api.data">TeamStatus</a></td>
+<td class="colFirst"><a href="data/api/ITeam.Status.html" title="enum in data.api">ITeam.Status</a></td>
 <th class="colLast" scope="row">
-<div class="block">The current status of a given Team</div>
+<div class="block">Indicates the current status of the team, whether they've not started, in progress, or completing the pace.</div>
 </th>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><a href="app/Main.html" title="class in app">Main</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
+</tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><a href="data/structure/Pace.html" title="class in data.structure">Pace</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
+</tr>
+<tr id="i11" class="rowColor">
+<td class="colFirst"><a href="data/interfaces/PaceComponent.html" title="interface in data.interfaces">PaceComponent</a></td>
+<th class="colLast" scope="row">
+<div class="block">Indicates that a class has a reference to a pace object.</div>
+</th>
+</tr>
+<tr id="i12" class="altColor">
+<td class="colFirst"><a href="data/structure/Rider.html" title="class in data.structure">Rider</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
 </tr>
 </table>
 </li>
