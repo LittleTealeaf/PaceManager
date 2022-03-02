@@ -3,23 +3,12 @@ package data.api;
 import java.util.Collection;
 import java.util.UUID;
 
-import static util.ClassUtil.formatKey;
-
 /**
  * @author Thomas Kwashnak
  * @version 2.0.0
  * @since 2.0.0
  */
 public interface IPace {
-
-    /**
-     * Variable Key for the Teams list in implementations of IPace
-     */
-    String KEY_TEAMS = formatKey(IPace.class, "teams");
-    /**
-     * Variable Key for the Divisions list in implementations of IPace
-     */
-    String KEY_DIVISIONS = formatKey(IPace.class, "divisions");
 
     /**
      * Finds a team based on its UUID

@@ -5,8 +5,6 @@ import data.interfaces.PaceComponent;
 
 import java.util.Collection;
 
-import static util.ClassUtil.formatKey;
-
 /**
  * Outlines the requirements that a team object must implement. This includes getters and setters for the name, division, start and end time, as well
  * as riders
@@ -16,31 +14,6 @@ import static util.ClassUtil.formatKey;
  * @since 2.0.0
  */
 public interface ITeam extends Identifiable, PaceComponent {
-
-    /**
-     * Tag key for variables used within implementations of ITeam
-     */
-    String KEY_NAME = formatKey(ITeam.class, "name");
-    /**
-     * Tag key for variables used within implementations of ITeam
-     */
-    String KEY_DIVISION_UUID = formatKey(ITeam.class, "divisionUUID");
-    /**
-     * Tag key for variables used within implementations of ITeam
-     */
-    String KEY_START_TIME = formatKey(ITeam.class, "startTime");
-    /**
-     * Tag key for variables used within implementations of ITeam
-     */
-    String KEY_END_TIME = formatKey(ITeam.class, "endTime");
-    /**
-     * Tag key for variables used within implementations of ITeam
-     */
-    String KEY_INCLUDED = formatKey(ITeam.class, "included");
-    /**
-     * Tag key for variables used within implementations of ITeam
-     */
-    String KEY_NOTES = formatKey(ITeam.class, "notes");
 
     /**
      * Returns the name, or ID, of the team
@@ -150,6 +123,6 @@ public interface ITeam extends Identifiable, PaceComponent {
         /**
          * Indicates that the team has completed the pace
          */
-        COMPLETED;
+        COMPLETED
     }
 }
