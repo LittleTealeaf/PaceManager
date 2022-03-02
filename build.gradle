@@ -26,5 +26,6 @@ test {
 }
 
 javadoc {
-
+    classpath += sourceSets.test.compileClasspath
+    source += sourceSets.test.allJava
 }
