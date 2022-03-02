@@ -83,6 +83,16 @@ public class Pace implements IPace {
     }
 
     @Override
+    public boolean removeDivisionForced(IDivision division) {
+        if(divisions.size() > 0 && divisions.remove(division)) {
+            division.setPace(null);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
     public IDivision getDefaultDivision() {
         return divisions.get(0);
     }

@@ -11,7 +11,13 @@ import data.interfaces.PaceComponent;
  */
 public interface IPace {
 
+    /**
+     * Tag for the teams list variable
+     */
     String KEY_TEAMS = IPace.class.getName() + ".Teams";
+    /**
+     * Tag for the divisions list variable
+     */
     String KEY_DIVISIONS = IPace.class.getName() + ".Divisions";
 
     /**
@@ -52,12 +58,36 @@ public interface IPace {
      * @return {@code true} if the removal was successful, {@code false} otherwise
      */
     boolean removeTeam(ITeam team);
-
+    
+    /**
+     * Adds a division to the pace
+     * @param division The division to add to the pace
+     */
     void addDivision(IDivision division);
 
+    /**
+     * Removes a division from the pace. Will not remove the division if it is not the default division in the pace. 
+     * @param division The division to remove
+     * @return {@code true} if the division was removed, {@code false} if the division was unable to be removed, or if it was the default division
+     */
     boolean removeDivision(IDivision division);
 
+    /**
+     * Removes a division from the pace. If the division is the default division, the next division will become the new division. Will not remove the division if it is the last division in the pace
+     * @param division The division to remove
+     * @return {@code true} if the division was removed, {@code false} if it could not remove, or if it was the last division
+     */
+    boolean removeDivisionForced(IDivision division);
+
+    /**
+     * Gets the default division. The default division is a protected division that can only be removed if forced, and never be removed if it is the last division. By default, any new team will be assigned to this division
+      * @return The default division
+     */
     IDivision getDefaultDivision();
 
+    /**
+    * Sets the default division for the pace. This division is indicated as the first division in the pace. This will add the division if it is not already in the division list.
+    * @param division The new default division
+    */
     void setDefaultDivision(IDivision division);
 }
