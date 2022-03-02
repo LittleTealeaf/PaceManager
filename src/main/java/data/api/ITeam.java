@@ -12,11 +12,10 @@ import java.util.Collection;
  */
 public interface ITeam extends Identifiable, PaceComponent {
 
-    String KEY_NAME = ITeam.class.getName() + ".name";
-    String KEY_DIVISION_UUID = ITeam.class.getName() + ".divisionUUID";
-    String KEY_START_TIME = ITeam.class.getName() + ".timeStart";
-    String KEY_END_TIME = ITeam.class.getName() + ".timeEnd";
-    String KEY_INCLUDED = ITeam.class.getName() + ".included";
+    /**
+     * Key values for variables saved within instances of this interface
+     */
+    String KEY_NAME = ITeam.class.getName() + ".name", KEY_DIVISION_UUID = ITeam.class.getName() + ".divisionUUID", KEY_START_TIME = ITeam.class.getName() + ".timeStart", KEY_END_TIME = ITeam.class.getName() + ".timeEnd", KEY_INCLUDED = ITeam.class.getName() + ".included";
 
     /**
      * Returns the name, or ID, of the team
