@@ -13,11 +13,11 @@ import static util.ClassUtil.formatKey;
 public interface IPace {
 
     /**
-     * Tag key for variables used within implementations of IPace
+     * Variable Key for the Teams list in implementations of IPace
      */
     String KEY_TEAMS = formatKey(IPace.class, "teams");
     /**
-     * Tag key for variables used within implementations of IPace
+     * Variable Key for the Divisions list in implementations of IPace
      */
     String KEY_DIVISIONS = formatKey(IPace.class, "divisions");
 
@@ -36,13 +36,14 @@ public interface IPace {
     IDivision getDivision(UUID uuid);
 
     /**
+     * Gets the collection of teams currently participating in the pace
      *
      * @return The teams currently in the pace
      */
     Collection<ITeam> getTeams();
 
     /**
-     *
+     * Gets the collection of divisions that the pace currently has
      * @return The divisions currently in the pace
      */
     Collection<IDivision> getDivisions();
@@ -69,26 +70,30 @@ public interface IPace {
     /**
      * Removes a division from the pace. Will not remove the division if it is not the default division in the pace. 
      * @param division The division to remove
-     * @return {@code true} if the division was removed, {@code false} if the division was unable to be removed, or if it was the default division
+     * @return {@code true} if the division was removed, {@code false} if the division was unable to be removed, or if it
+     * was the default division
      */
     boolean removeDivision(IDivision division);
 
     /**
-     * Removes a division from the pace. If the division is the default division, the next division will become the new division. Will not remove the division if it is the last division in the pace
+     * Removes a division from the pace. If the division is the default division, the next division will become the new
+     * division. Will not remove the division if it is the last division in the pace
      * @param division The division to remove
      * @return {@code true} if the division was removed, {@code false} if it could not remove, or if it was the last division
      */
     boolean removeDivisionForced(IDivision division);
 
     /**
-     * Gets the default division. The default division is a protected division that can only be removed if forced, and never be removed if it is the last division. By default, any new team will be assigned to this division
-      * @return The default division
+     * Gets the default division. The default division is a protected division that can only be removed if forced,
+     * and never be removed if it is the last division. By default, any new team will be assigned to this division
+     * @return The default division
      */
     IDivision getDefaultDivision();
 
     /**
-    * Sets the default division for the pace. This division is indicated as the first division in the pace. This will add the division if it is not already in the division list.
-    * @param division The new default division
+     * Sets the default division for the pace. This division is indicated as the first division in the pace.
+     * This will add the division if it is not already in the division list.
+     * @param division The new default division
     */
     void setDefaultDivision(IDivision division);
 }

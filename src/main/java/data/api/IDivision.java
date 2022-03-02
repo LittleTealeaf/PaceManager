@@ -13,11 +13,11 @@ import static util.ClassUtil.formatKey;
 public interface IDivision extends Identifiable, PaceComponent {
 
     /**
-     * Variable Key for the Name value in implementations of IDivision
+     * Key tags used for variables used in implementations of IDivision
      */
     String KEY_NAME = formatKey(IDivision.class, "name");
     /**
-     * Variable Key for the Goal Time value in implementations of IDivision
+     * Key tags used for variables used in implementations of IDivision
      */
     String KEY_GOAL_TIME = formatKey(IDivision.class, "goalTime");
 
