@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
  * @version 2.0.0
  * @since 2.0.0
  */
-interface PaceComponentTest {
+public interface PaceComponentTest {
 
     /**
      * Runs tests on instances of the PaceComponent object.
