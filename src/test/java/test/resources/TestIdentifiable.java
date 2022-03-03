@@ -45,6 +45,11 @@ public interface TestIdentifiable {
      */
     interface IdentifiableFactory {
 
+        /**
+         * Builds the Identifiable object
+         *
+         * @return A new Identifiable object instance
+         */
         Identifiable create();
     }
 }
