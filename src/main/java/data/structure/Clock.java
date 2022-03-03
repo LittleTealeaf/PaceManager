@@ -47,4 +47,19 @@ public class Clock implements IClock {
     public String asString() {
         return "";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Clock)) return false;
+
+        Clock clock = (Clock) o;
+
+        return getTime() == clock.getTime();
+    }
+
+    @Override
+    public int hashCode() {
+        return getTime();
+    }
 }
