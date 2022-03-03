@@ -10,6 +10,15 @@ public class Rider implements IRider {
 
     }
 
+    public Rider(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public Rider(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     @Override
     public String getFirstName() {
         return firstName;
