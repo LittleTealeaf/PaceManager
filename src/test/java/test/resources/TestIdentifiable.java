@@ -6,6 +6,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * Provides tests used to test a class that extends the {@link Identifiable} class.
+ *
+ * @author Thomas Kwashnak
+ * @version 2.0.0
+ * @since 2.0.0
+ */
 public interface TestIdentifiable {
 
     /**
