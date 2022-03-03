@@ -20,17 +20,17 @@ public class TeamTest implements TestIdentifiable, PaceComponentTest {
         return new Pace();
     }
 
-    @Test
-    public void testDivisionUUID() {
-        Team team = new Team();
-        IDivision division = newDivision();
-        assertNotNull(division);
-        IPace pace = newPace();
-        pace.addDivision(division);
-        team.setPace(pace);
-        team.setDivision(division.getUUID());
-        assertEquals(division, team.getDivision());
-    }
+//    @Test
+//    public void testDivisionUUID() {
+//        Team team = new Team();
+//        IDivision division = newDivision();
+//        assertNotNull(division);
+//        IPace pace = newPace();
+//        pace.addDivision(division);
+//        team.setPace(pace);
+//        team.setDivision(division.getUUID());
+//        assertEquals(division, team.getDivision());
+//    }
 
     @Test
     @Override
