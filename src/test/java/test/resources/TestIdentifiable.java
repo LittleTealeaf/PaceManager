@@ -8,9 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public interface TestIdentifiable {
 
-    @Test
-    void testIdentifiable();
-
     /**
      * Runs tests on instances of the identifiable factory.
      *
@@ -18,7 +15,15 @@ public interface TestIdentifiable {
      * <ul><li>Creating two instances does not make them innately equal to each other</li>
      * <li>Creating an instance does not result in a null uuid</li><li>UUIDs between two objects are not the same</li></ul>
      *
-     * @param factory
+     * @see #doIdentifiableTests(IdentifiableFactory)
+     */
+    @Test
+    void testIdentifiable();
+
+    /**
+     * Performs the tests indicated in {@link #testIdentifiable()}
+     *
+     * @param factory The factory builder for the identifiable object
      */
     default void doIdentifiableTests(IdentifiableFactory factory) {
         Identifiable a = factory.create(), b = factory.create();
@@ -28,6 +33,9 @@ public interface TestIdentifiable {
         assertNotEquals(a.getUUID(), b.getUUID());
     }
 
+    /**
+     * A simple factory that creates an instance of the Identifiable class
+     */
     interface IdentifiableFactory {
 
         Identifiable create();
