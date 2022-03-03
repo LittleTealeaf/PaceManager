@@ -2,7 +2,9 @@ package data.structure;
 
 import data.api.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 public class Team implements ITeam {
@@ -12,11 +14,21 @@ public class Team implements ITeam {
 
     private String name;
 
+    private IClock startTime;
+    private IClock endTime;
+
+    private List<IRider> riders;
+
     private transient IDivision division;
     private UUID divisionUUID;
 
+    private String notes;
+    private boolean included;
+
     public Team() {
         this.uuid = UUID.randomUUID();
+        riders = new ArrayList<>();
+        included = true;
     }
 
     @Override
@@ -47,27 +59,27 @@ public class Team implements ITeam {
 
     @Override
     public IClock getStartTime() {
-        return null;
+        return startTime;
     }
 
     @Override
     public void setStartTime(IClock startTime) {
-
+        this.startTime = startTime;
     }
 
     @Override
     public IClock getEndTime() {
-        return null;
+        return endTime;
     }
 
     @Override
     public void setEndTime(IClock endTime) {
-
+        this.endTime = endTime;
     }
 
     @Override
     public Status getStatus() {
-        return null;
+        return getStartTime() == null ? Status.NOT_STARTED : getEndTime() == null ? Status.IN_PROGRESS : Status.COMPLETED;
     }
 
     @Override
@@ -77,37 +89,37 @@ public class Team implements ITeam {
 
     @Override
     public Collection<IRider> getRiders() {
-        return null;
+        return riders;
     }
 
     @Override
     public boolean addRider(IRider rider) {
-        return false;
+        return riders.add(rider);
     }
 
     @Override
     public boolean removeRider(IRider rider) {
-        return false;
+        return riders.remove(rider);
     }
 
     @Override
     public boolean isIncluded() {
-        return false;
+        return included;
     }
 
     @Override
     public void setIncluded(boolean included) {
-
+        this.included = included;
     }
 
     @Override
     public String getNotes() {
-        return null;
+        return notes;
     }
 
     @Override
     public void setNotes(String notes) {
-
+        this.notes = notes;
     }
 
     @Override
