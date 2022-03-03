@@ -29,6 +29,7 @@ public class TeamTest implements TestIdentifiable, PaceComponentTest {
         assertTrue(team.isIncluded());
         assertEquals(0, team.getRiders().size());
         assertNull(team.getName());
+        assertNull(team.getDivision());
     }
 
     @Test
@@ -38,5 +39,11 @@ public class TeamTest implements TestIdentifiable, PaceComponentTest {
         String name = RandomUtils.randomName();
         team.setName(name);
         assertEquals(name, team.getName());
+    }
+
+    @Test
+    public void testDivision() {
+        Team team = new Team();
+        assertNull(team.getDivision());
     }
 }

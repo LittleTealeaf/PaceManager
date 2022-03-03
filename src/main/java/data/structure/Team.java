@@ -43,7 +43,15 @@ public class Team implements ITeam {
 
     @Override
     public IDivision getDivision() {
-        return division == null || !division.getUUID().equals(divisionUUID) ? division = getPace().getDivision(divisionUUID) : division;
+        if (division == null) {
+            if (divisionUUID == null || getPace() == null) {
+                return null;
+            } else {
+                return division = getPace().getDivision(divisionUUID);
+            }
+        } else {
+            return division;
+        }
     }
 
     @Override
