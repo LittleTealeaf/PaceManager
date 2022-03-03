@@ -7,33 +7,42 @@ import java.util.UUID;
 
 public class Team implements ITeam {
 
-    public Team() {
+    private UUID uuid;
+    private IPace pace;
 
+    private String name;
+
+    private transient IDivision division;
+    private UUID divisionUUID;
+
+    public Team() {
+        this.uuid = UUID.randomUUID();
     }
 
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     @Override
     public void setName(String name) {
-
+        this.name = name;
     }
 
     @Override
     public IDivision getDivision() {
-        return null;
+        return division == null || !division.getUUID().equals(divisionUUID) ? division = getPace().getDivision(divisionUUID) : division;
     }
 
     @Override
     public void setDivision(IDivision division) {
-
+        this.division = division;
+        this.divisionUUID = division.getUUID();
     }
 
     @Override
     public void setDivision(UUID divisionUUID) {
-
+        this.divisionUUID = divisionUUID;
     }
 
     @Override
@@ -102,17 +111,17 @@ public class Team implements ITeam {
     }
 
     @Override
-    public UUID getUUID() {
-        return null;
-    }
-
-    @Override
     public IPace getPace() {
-        return null;
+        return pace;
     }
 
     @Override
     public void setPace(IPace pace) {
+        this.pace = pace;
+    }
 
+    @Override
+    public UUID getUUID() {
+        return uuid;
     }
 }
