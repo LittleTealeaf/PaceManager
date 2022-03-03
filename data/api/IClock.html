@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":6,"i2":6};
+var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -149,24 +149,45 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code><a href="IClock.html" title="interface in data.api">IClock</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#add(data.api.IClock)">add</a></span>&#8203;(<a href="IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</code></th>
+<td class="colLast">
+<div class="block">Adds the two clock object values together</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#asString()">asString</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Provides a human-readable form of the time</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="IClock.html" title="interface in data.api">IClock</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#difference(data.api.IClock)">difference</a></span>&#8203;(<a href="IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</code></th>
+<td class="colLast">
+<div class="block">Finds the absolute difference between two clock values</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTime()">getTime</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the clock time stored</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTime(int)">setTime</a></span>&#8203;(int&nbsp;time)</code></th>
 <td class="colLast">
 <div class="block">Sets the clock time</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code><a href="IClock.html" title="interface in data.api">IClock</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#subtract(data.api.IClock)">subtract</a></span>&#8203;(<a href="IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</code></th>
+<td class="colLast">
+<div class="block">Subtracts two clock objects from each other</div>
 </td>
 </tr>
 </table>
@@ -211,6 +232,54 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>time</code> - time value, in seconds</dd>
+</dl>
+</li>
+</ul>
+<a id="add(data.api.IClock)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>add</h4>
+<pre class="methodSignature"><a href="IClock.html" title="interface in data.api">IClock</a>&nbsp;add&#8203;(<a href="IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</pre>
+<div class="block">Adds the two clock object values together</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>other</code> - The other clock value to add</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A new IClock instance that has a value equal to the sum of the two IClock's values</dd>
+</dl>
+</li>
+</ul>
+<a id="subtract(data.api.IClock)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>subtract</h4>
+<pre class="methodSignature"><a href="IClock.html" title="interface in data.api">IClock</a>&nbsp;subtract&#8203;(<a href="IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</pre>
+<div class="block">Subtracts two clock objects from each other</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>other</code> - The clock value to subtract</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A new IClock instance that takes the value of this object and subtracts the value of the other IClock</dd>
+</dl>
+</li>
+</ul>
+<a id="difference(data.api.IClock)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>difference</h4>
+<pre class="methodSignature"><a href="IClock.html" title="interface in data.api">IClock</a>&nbsp;difference&#8203;(<a href="IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</pre>
+<div class="block">Finds the absolute difference between two clock values</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>other</code> - THe clock value to compare against</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A new IClock instance that contains the value of the absolute difference between this and the other IClock</dd>
 </dl>
 </li>
 </ul>
