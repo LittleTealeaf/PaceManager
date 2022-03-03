@@ -29,6 +29,21 @@ public class Clock implements IClock {
     }
 
     @Override
+    public IClock add(IClock other) {
+        return new Clock(getTime() + other.getTime());
+    }
+
+    @Override
+    public IClock subtract(IClock other) {
+        return new Clock(getTime() - other.getTime());
+    }
+
+    @Override
+    public IClock difference(IClock other) {
+        return new Clock(Math.abs(getTime() - other.getTime()));
+    }
+
+    @Override
     public String asString() {
         return "";
     }
