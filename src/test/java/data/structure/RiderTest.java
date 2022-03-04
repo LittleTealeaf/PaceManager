@@ -6,7 +6,7 @@ import test.resources.RandomUtils;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-class RiderTest {
+public class RiderTest {
 
     /**
      * Tests the {@link Rider#Rider()} constructor.

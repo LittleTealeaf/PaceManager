@@ -7,7 +7,7 @@ import test.resources.Randomizable;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-class ClockTest implements Randomizable {
+public class ClockTest implements Randomizable {
 
     /**
      * Tests the {@link Clock#Clock()} constructor.
