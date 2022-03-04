@@ -9,7 +9,7 @@ import data.interfaces.IdentifiableTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TeamTest implements TestIdentifiable, PaceComponentTest {
+public class TeamTest implements IdentifiableTest, PaceComponentTest {
 
     /**
      * Creates a new Pace object
