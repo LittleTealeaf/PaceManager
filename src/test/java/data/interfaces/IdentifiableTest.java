@@ -1,4 +1,4 @@
-package test.resources;
+package data.interfaces;
 
 import data.interfaces.Identifiable;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  * @version 2.0.0
  * @since 2.0.0
  */
-public interface TestIdentifiable {
+public interface IdentifiableTest {
 
     /**
      * Runs tests on instances of the identifiable factory.

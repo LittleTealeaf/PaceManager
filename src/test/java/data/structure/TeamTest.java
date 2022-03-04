@@ -5,7 +5,7 @@ import data.api.IPace;
 import data.interfaces.PaceComponentTest;
 import org.junit.jupiter.api.Test;
 import test.resources.RandomUtils;
-import test.resources.TestIdentifiable;
+import data.interfaces.IdentifiableTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
