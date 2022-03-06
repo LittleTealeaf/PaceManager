@@ -101,8 +101,12 @@ public class Clock implements IClock {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Clock)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Clock)) {
+            return false;
+        }
 
         Clock clock = (Clock) o;
 
