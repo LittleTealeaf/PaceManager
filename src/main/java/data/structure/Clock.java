@@ -15,7 +15,7 @@ public class Clock implements IClock {
     }
 
     public Clock(IClock clock) {
-        this(clock.getTime());
+        this(clock == null ? 0 : clock.getTime());
     }
 
     @Override
@@ -30,7 +30,7 @@ public class Clock implements IClock {
 
     @Override
     public IClock getAdd(IClock other) {
-        return new Clock(this).add(other);
+        return other == null ? null : getAdd(other.getTime());
     }
 
     @Override
@@ -40,7 +40,7 @@ public class Clock implements IClock {
 
     @Override
     public IClock getSubtract(IClock other) {
-        return new Clock(this).subtract(other);
+        return other == null ? null : getSubtract(other.getTime());
     }
 
     @Override
@@ -55,12 +55,12 @@ public class Clock implements IClock {
 
     @Override
     public IClock getElapsed(IClock other) {
-        return getSubtract(other).getAbs();
+        return other == null ? null : getSubtract(other).getAbs();
     }
 
     @Override
     public IClock add(IClock other) {
-        return add(other.getTime());
+        return other == null ? this : add(other.getTime());
     }
 
     @Override
@@ -71,12 +71,12 @@ public class Clock implements IClock {
 
     @Override
     public IClock subtract(IClock other) {
-        return subtract(other.getTime());
+        return other == null ? this : subtract(other.getTime());
     }
 
     @Override
     public IClock subtract(int time) {
-        this.time += time;
+        this.time -= time;
         return this;
     }
 
@@ -92,5 +92,20 @@ public class Clock implements IClock {
     public String asString() {
         //TODO: implement
         return "";
+    }
+
+    @Override
+    public int hashCode() {
+        return getTime();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Clock)) return false;
+
+        Clock clock = (Clock) o;
+
+        return getTime() == clock.getTime();
     }
 }
