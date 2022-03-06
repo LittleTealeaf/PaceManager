@@ -121,10 +121,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
-<dl>
-<dt>All Known Implementing Classes:</dt>
-<dd><code><a href="../structure/TeamTest.html" title="class in data.structure">TeamTest</a></code></dd>
-</dl>
 <hr>
 <pre>public interface <span class="typeNameLabel">IdentifiableTest</span></pre>
 <div class="block">Provides tests used to test a class that extends the <a href="Identifiable.html" title="interface in data.interfaces"><code>Identifiable</code></a> class.</div>
@@ -154,7 +150,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static interface&nbsp;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="IdentifiableTest.IdentifiableFactory.html" title="interface in data.interfaces">IdentifiableTest.IdentifiableFactory</a></span></code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="IdentifiableTest.Builder.html" title="interface in data.interfaces">IdentifiableTest.Builder</a></span></code></th>
 <td class="colLast">
 <div class="block">A simple factory that creates an instance of the Identifiable class</div>
 </td>
@@ -179,16 +175,20 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>default void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#doIdentifiableTests(data.interfaces.IdentifiableTest.IdentifiableFactory)">doIdentifiableTests</a></span>&#8203;(<a href="IdentifiableTest.IdentifiableFactory.html" title="interface in data.interfaces">IdentifiableTest.IdentifiableFactory</a>&nbsp;factory)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#doIdentifiableTests(data.interfaces.IdentifiableTest.Builder)">doIdentifiableTests</a></span>&#8203;(<a href="IdentifiableTest.Builder.html" title="interface in data.interfaces">IdentifiableTest.Builder</a>&nbsp;builder)</code></th>
 <td class="colLast">
-<div class="block">Performs the tests indicated in <a href="#testIdentifiable()"><code>testIdentifiable()</code></a></div>
+<div class="block">Runs tests on instances of the identifiable builder
+
+ Creating two instances does not make them innately equal to each other
+ Creating an instance does not result in a null uuidUUIDs between two objects are not the sameThe UUID of a given
+ object is persistent between fetches</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#testIdentifiable()">testIdentifiable</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Runs tests on instances of the identifiable factory.</div>
+<div class="block">Runs tests on the Identifiable object.</div>
 </td>
 </tr>
 </table>
@@ -216,28 +216,30 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <h4>testIdentifiable</h4>
 <pre class="methodSignature">@Test
 void&nbsp;testIdentifiable()</pre>
-<div class="block">Runs tests on instances of the identifiable factory.
+<div class="block">Runs tests on the Identifiable object.
 
- Checks the following
- <ul><li>Creating two instances does not make them innately equal to each other</li>
- <li>Creating an instance does not result in a null uuid</li><li>UUIDs between two objects are not the same</li></ul></div>
+ Tests are performed in <a href="#doIdentifiableTests(data.interfaces.IdentifiableTest.Builder)"><code>doIdentifiableTests(Builder)</code></a>.</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="#doIdentifiableTests(data.interfaces.IdentifiableTest.IdentifiableFactory)"><code>doIdentifiableTests(IdentifiableFactory)</code></a></dd>
+<dd><a href="#doIdentifiableTests(data.interfaces.IdentifiableTest.Builder)"><code>doIdentifiableTests(Builder)</code></a></dd>
 </dl>
 </li>
 </ul>
-<a id="doIdentifiableTests(data.interfaces.IdentifiableTest.IdentifiableFactory)">
+<a id="doIdentifiableTests(data.interfaces.IdentifiableTest.Builder)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>doIdentifiableTests</h4>
-<pre class="methodSignature">default&nbsp;void&nbsp;doIdentifiableTests&#8203;(<a href="IdentifiableTest.IdentifiableFactory.html" title="interface in data.interfaces">IdentifiableTest.IdentifiableFactory</a>&nbsp;factory)</pre>
-<div class="block">Performs the tests indicated in <a href="#testIdentifiable()"><code>testIdentifiable()</code></a></div>
+<pre class="methodSignature">default&nbsp;void&nbsp;doIdentifiableTests&#8203;(<a href="IdentifiableTest.Builder.html" title="interface in data.interfaces">IdentifiableTest.Builder</a>&nbsp;builder)</pre>
+<div class="block">Runs tests on instances of the identifiable builder
+
+ <ul><li>Creating two instances does not make them innately equal to each other</li>
+ <li>Creating an instance does not result in a null uuid</li><li>UUIDs between two objects are not the same</li><li>The UUID of a given
+ object is persistent between fetches</li></ul></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>factory</code> - The factory builder for the identifiable object</dd>
+<dd><code>builder</code> - The factory builder for the identifiable object</dd>
 </dl>
 </li>
 </ul>

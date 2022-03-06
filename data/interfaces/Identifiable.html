@@ -26,8 +26,8 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
+var data = {"i0":1,"i1":6};
+var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -125,10 +125,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt>All Known Subinterfaces:</dt>
 <dd><code><a href="../api/IDivision.html" title="interface in data.api">IDivision</a></code>, <code><a href="../api/ITeam.html" title="interface in data.api">ITeam</a></code></dd>
 </dl>
-<dl>
-<dt>All Known Implementing Classes:</dt>
-<dd><code><a href="../structure/Team.html" title="class in data.structure">Team</a></code></dd>
-</dl>
 <hr>
 <pre>public interface <span class="typeNameLabel">Identifiable</span></pre>
 <div class="block">Indicates that a class has a unique identifier, or a UUID.</div>
@@ -146,13 +142,19 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t1" class="tableTab"><span><a href="javascript:show(1);">Static Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colSecond" scope="col">Method</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>static &lt;E extends <a href="Identifiable.html" title="interface in data.interfaces">Identifiable</a>&gt;<br>E</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#findInCollection(java.util.Collection,java.util.UUID)">findInCollection</a></span>&#8203;(java.util.Collection&lt;E&gt;&nbsp;collection,
+                java.util.UUID&nbsp;uuid)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>java.util.UUID</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getUUID()">getUUID</a></span>()</code></th>
 <td class="colLast">
@@ -179,7 +181,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <a id="getUUID()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>getUUID</h4>
 <pre class="methodSignature">java.util.UUID&nbsp;getUUID()</pre>
@@ -188,6 +190,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A UUID uniquely identifying the object it was created under.</dd>
 </dl>
+</li>
+</ul>
+<a id="findInCollection(java.util.Collection,java.util.UUID)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>findInCollection</h4>
+<pre class="methodSignature">static&nbsp;&lt;E extends <a href="Identifiable.html" title="interface in data.interfaces">Identifiable</a>&gt;&nbsp;E&nbsp;findInCollection&#8203;(java.util.Collection&lt;E&gt;&nbsp;collection,
+                                                   java.util.UUID&nbsp;uuid)</pre>
 </li>
 </ul>
 </li>

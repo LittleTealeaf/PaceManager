@@ -26,8 +26,8 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":6,"i2":18,"i3":6,"i4":6};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
+var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -128,10 +128,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public interface <span class="typeNameLabel">IDivision</span>
 extends <a href="../interfaces/Identifiable.html" title="interface in data.interfaces">Identifiable</a>, <a href="../interfaces/PaceComponent.html" title="interface in data.interfaces">PaceComponent</a></pre>
-<dl>
-<dt><span class="simpleTagLabel">Since:</span></dt>
-<dd>2.0.0</dd>
-</dl>
 </li>
 </ul>
 </div>
@@ -146,7 +142,7 @@ extends <a href="../interfaces/Identifiable.html" title="interface in data.inter
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t5" class="tableTab"><span><a href="javascript:show(16);">Default Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colSecond" scope="col">Method</th>
@@ -155,37 +151,32 @@ extends <a href="../interfaces/Identifiable.html" title="interface in data.inter
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="IClock.html" title="interface in data.api">IClock</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getGoalTime()">getGoalTime</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Gets the current goal time that teams in the division should aim for</div>
-</td>
+<td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getName()">getName</a></span>()</code></th>
-<td class="colLast">
-<div class="block">The displayable name of the division</div>
-</td>
+<td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>default boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isDefaultDivision()">isDefaultDivision</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Checks if this division is the default division in the pace.</div>
-</td>
+<td class="colFirst"><code>java.util.List&lt;<a href="ITeam.html" title="interface in data.api">ITeam</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTeams()">getTeams</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setGoalTime(data.api.IClock)">setGoalTime</a></span>&#8203;(<a href="IClock.html" title="interface in data.api">IClock</a>&nbsp;time)</code></th>
-<td class="colLast">
-<div class="block">Sets the goal time that teams in the division should aim for</div>
-</td>
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isDefaultDivision()">isDefaultDivision</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setGoalTime(data.api.IClock)">setGoalTime</a></span>&#8203;(<a href="IClock.html" title="interface in data.api">IClock</a>&nbsp;goalTime)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setName(java.lang.String)">setName</a></span>&#8203;(java.lang.String&nbsp;name)</code></th>
-<td class="colLast">
-<div class="block">Sets the displayable name of the division</div>
-</td>
+<td class="colLast">&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -225,11 +216,6 @@ extends <a href="../interfaces/Identifiable.html" title="interface in data.inter
 <li class="blockList">
 <h4>getName</h4>
 <pre class="methodSignature">java.lang.String&nbsp;getName()</pre>
-<div class="block">The displayable name of the division</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The current name of the division</dd>
-</dl>
 </li>
 </ul>
 <a id="setName(java.lang.String)">
@@ -239,11 +225,6 @@ extends <a href="../interfaces/Identifiable.html" title="interface in data.inter
 <li class="blockList">
 <h4>setName</h4>
 <pre class="methodSignature">void&nbsp;setName&#8203;(java.lang.String&nbsp;name)</pre>
-<div class="block">Sets the displayable name of the division</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>name</code> - The division's displayable name</dd>
-</dl>
 </li>
 </ul>
 <a id="getGoalTime()">
@@ -253,11 +234,6 @@ extends <a href="../interfaces/Identifiable.html" title="interface in data.inter
 <li class="blockList">
 <h4>getGoalTime</h4>
 <pre class="methodSignature"><a href="IClock.html" title="interface in data.api">IClock</a>&nbsp;getGoalTime()</pre>
-<div class="block">Gets the current goal time that teams in the division should aim for</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The clock time that the teams should be aiming for</dd>
-</dl>
 </li>
 </ul>
 <a id="setGoalTime(data.api.IClock)">
@@ -266,12 +242,16 @@ extends <a href="../interfaces/Identifiable.html" title="interface in data.inter
 <ul class="blockList">
 <li class="blockList">
 <h4>setGoalTime</h4>
-<pre class="methodSignature">void&nbsp;setGoalTime&#8203;(<a href="IClock.html" title="interface in data.api">IClock</a>&nbsp;time)</pre>
-<div class="block">Sets the goal time that teams in the division should aim for</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>time</code> - The clock time that teams should aim for.</dd>
-</dl>
+<pre class="methodSignature">void&nbsp;setGoalTime&#8203;(<a href="IClock.html" title="interface in data.api">IClock</a>&nbsp;goalTime)</pre>
+</li>
+</ul>
+<a id="getTeams()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getTeams</h4>
+<pre class="methodSignature">java.util.List&lt;<a href="ITeam.html" title="interface in data.api">ITeam</a>&gt;&nbsp;getTeams()</pre>
 </li>
 </ul>
 <a id="isDefaultDivision()">
@@ -280,13 +260,7 @@ extends <a href="../interfaces/Identifiable.html" title="interface in data.inter
 <ul class="blockListLast">
 <li class="blockList">
 <h4>isDefaultDivision</h4>
-<pre class="methodSignature">default&nbsp;boolean&nbsp;isDefaultDivision()</pre>
-<div class="block">Checks if this division is the default division in the pace.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd><code>true</code> if this is the default division. <code>false</code> if this division is not the default division, or if no pace has been
- specified</dd>
-</dl>
+<pre class="methodSignature">boolean&nbsp;isDefaultDivision()</pre>
 </li>
 </ul>
 </li>

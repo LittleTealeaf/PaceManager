@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -179,81 +179,64 @@ implements <a href="../api/IPace.html" title="interface in data.api">IPace</a></
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>void</code></td>
+<td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addDivision(data.api.IDivision)">addDivision</a></span>&#8203;(<a href="../api/IDivision.html" title="interface in data.api">IDivision</a>&nbsp;division)</code></th>
-<td class="colLast">
-<div class="block">Adds a division to the pace</div>
-</td>
+<td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>void</code></td>
+<td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addTeam(data.api.ITeam)">addTeam</a></span>&#8203;(<a href="../api/ITeam.html" title="interface in data.api">ITeam</a>&nbsp;team)</code></th>
-<td class="colLast">
-<div class="block">Adds a team object to the pace</div>
-</td>
+<td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../api/IDivision.html" title="interface in data.api">IDivision</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDefaultDivision()">getDefaultDivision</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Gets the default division.</div>
-</td>
+<td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="../api/IDivision.html" title="interface in data.api">IDivision</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDivision(java.util.UUID)">getDivision</a></span>&#8203;(java.util.UUID&nbsp;uuid)</code></th>
-<td class="colLast">
-<div class="block">Finds a division based on its UUID</div>
-</td>
+<td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>java.util.Collection&lt;<a href="../api/IDivision.html" title="interface in data.api">IDivision</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDivisions()">getDivisions</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Gets the collection of divisions that the pace currently has</div>
-</td>
+<td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="../api/ITeam.html" title="interface in data.api">ITeam</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTeam(java.util.UUID)">getTeam</a></span>&#8203;(java.util.UUID&nbsp;uuid)</code></th>
-<td class="colLast">
-<div class="block">Finds a team based on its UUID</div>
-</td>
+<td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i6" class="altColor">
-<td class="colFirst"><code>java.util.Collection&lt;<a href="../api/ITeam.html" title="interface in data.api">ITeam</a>&gt;</code></td>
+<td class="colFirst"><code>java.util.List&lt;<a href="../api/ITeam.html" title="interface in data.api">ITeam</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTeams()">getTeams</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Gets the collection of teams currently participating in the pace</div>
-</td>
+<td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeDivision(data.api.IDivision)">removeDivision</a></span>&#8203;(<a href="../api/IDivision.html" title="interface in data.api">IDivision</a>&nbsp;division)</code></th>
-<td class="colLast">
-<div class="block">Removes a division from the pace.</div>
-</td>
+<td class="colFirst"><code>java.util.List&lt;<a href="../api/ITeam.html" title="interface in data.api">ITeam</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTeams(data.api.IDivision)">getTeams</a></span>&#8203;(<a href="../api/IDivision.html" title="interface in data.api">IDivision</a>&nbsp;division)</code></th>
+<td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeDivisionForced(data.api.IDivision)">removeDivisionForced</a></span>&#8203;(<a href="../api/IDivision.html" title="interface in data.api">IDivision</a>&nbsp;division)</code></th>
-<td class="colLast">
-<div class="block">Removes a division from the pace.</div>
-</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeDivision(data.api.IDivision)">removeDivision</a></span>&#8203;(<a href="../api/IDivision.html" title="interface in data.api">IDivision</a>&nbsp;division)</code></th>
+<td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeTeam(data.api.ITeam)">removeTeam</a></span>&#8203;(<a href="../api/ITeam.html" title="interface in data.api">ITeam</a>&nbsp;team)</code></th>
-<td class="colLast">
-<div class="block">Removes a team object from the pace</div>
-</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeDivisionForced(data.api.IDivision)">removeDivisionForced</a></span>&#8203;(<a href="../api/IDivision.html" title="interface in data.api">IDivision</a>&nbsp;division)</code></th>
+<td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i10" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeTeam(data.api.ITeam)">removeTeam</a></span>&#8203;(<a href="../api/ITeam.html" title="interface in data.api">ITeam</a>&nbsp;team)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDefaultDivision(data.api.IDivision)">setDefaultDivision</a></span>&#8203;(<a href="../api/IDivision.html" title="interface in data.api">IDivision</a>&nbsp;division)</code></th>
-<td class="colLast">
-<div class="block">Sets the default division for the pace.</div>
-</td>
+<td class="colLast">&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -305,15 +288,9 @@ implements <a href="../api/IPace.html" title="interface in data.api">IPace</a></
 <li class="blockList">
 <h4>getTeam</h4>
 <pre class="methodSignature">public&nbsp;<a href="../api/ITeam.html" title="interface in data.api">ITeam</a>&nbsp;getTeam&#8203;(java.util.UUID&nbsp;uuid)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../api/IPace.html#getTeam(java.util.UUID)">IPace</a></code></span></div>
-<div class="block">Finds a team based on its UUID</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../api/IPace.html#getTeam(java.util.UUID)">getTeam</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IPace.html" title="interface in data.api">IPace</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>uuid</code> - The team's unique identifier</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The team, if a team by that UUID exists, otherwise returns <code>null</code>.</dd>
 </dl>
 </li>
 </ul>
@@ -324,15 +301,9 @@ implements <a href="../api/IPace.html" title="interface in data.api">IPace</a></
 <li class="blockList">
 <h4>getDivision</h4>
 <pre class="methodSignature">public&nbsp;<a href="../api/IDivision.html" title="interface in data.api">IDivision</a>&nbsp;getDivision&#8203;(java.util.UUID&nbsp;uuid)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../api/IPace.html#getDivision(java.util.UUID)">IPace</a></code></span></div>
-<div class="block">Finds a division based on its UUID</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../api/IPace.html#getDivision(java.util.UUID)">getDivision</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IPace.html" title="interface in data.api">IPace</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>uuid</code> - The division's unique identifier</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The division, if a division by that UUID exists, otherwise returns <code>null</code></dd>
 </dl>
 </li>
 </ul>
@@ -342,14 +313,23 @@ implements <a href="../api/IPace.html" title="interface in data.api">IPace</a></
 <ul class="blockList">
 <li class="blockList">
 <h4>getTeams</h4>
-<pre class="methodSignature">public&nbsp;java.util.Collection&lt;<a href="../api/ITeam.html" title="interface in data.api">ITeam</a>&gt;&nbsp;getTeams()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../api/IPace.html#getTeams()">IPace</a></code></span></div>
-<div class="block">Gets the collection of teams currently participating in the pace</div>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="../api/ITeam.html" title="interface in data.api">ITeam</a>&gt;&nbsp;getTeams()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../api/IPace.html#getTeams()">getTeams</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IPace.html" title="interface in data.api">IPace</a></code></dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The teams currently in the pace</dd>
+</dl>
+</li>
+</ul>
+<a id="getTeams(data.api.IDivision)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getTeams</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="../api/ITeam.html" title="interface in data.api">ITeam</a>&gt;&nbsp;getTeams&#8203;(<a href="../api/IDivision.html" title="interface in data.api">IDivision</a>&nbsp;division)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../api/IPace.html#getTeams(data.api.IDivision)">getTeams</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IPace.html" title="interface in data.api">IPace</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -360,13 +340,9 @@ implements <a href="../api/IPace.html" title="interface in data.api">IPace</a></
 <li class="blockList">
 <h4>getDivisions</h4>
 <pre class="methodSignature">public&nbsp;java.util.Collection&lt;<a href="../api/IDivision.html" title="interface in data.api">IDivision</a>&gt;&nbsp;getDivisions()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../api/IPace.html#getDivisions()">IPace</a></code></span></div>
-<div class="block">Gets the collection of divisions that the pace currently has</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../api/IPace.html#getDivisions()">getDivisions</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IPace.html" title="interface in data.api">IPace</a></code></dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The divisions currently in the pace</dd>
 </dl>
 </li>
 </ul>
@@ -376,14 +352,10 @@ implements <a href="../api/IPace.html" title="interface in data.api">IPace</a></
 <ul class="blockList">
 <li class="blockList">
 <h4>addTeam</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;addTeam&#8203;(<a href="../api/ITeam.html" title="interface in data.api">ITeam</a>&nbsp;team)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../api/IPace.html#addTeam(data.api.ITeam)">IPace</a></code></span></div>
-<div class="block">Adds a team object to the pace</div>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;addTeam&#8203;(<a href="../api/ITeam.html" title="interface in data.api">ITeam</a>&nbsp;team)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../api/IPace.html#addTeam(data.api.ITeam)">addTeam</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IPace.html" title="interface in data.api">IPace</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>team</code> - The new team object</dd>
 </dl>
 </li>
 </ul>
@@ -394,15 +366,9 @@ implements <a href="../api/IPace.html" title="interface in data.api">IPace</a></
 <li class="blockList">
 <h4>removeTeam</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;removeTeam&#8203;(<a href="../api/ITeam.html" title="interface in data.api">ITeam</a>&nbsp;team)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../api/IPace.html#removeTeam(data.api.ITeam)">IPace</a></code></span></div>
-<div class="block">Removes a team object from the pace</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../api/IPace.html#removeTeam(data.api.ITeam)">removeTeam</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IPace.html" title="interface in data.api">IPace</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>team</code> - The team object to remove</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd><code>true</code> if the removal was successful, <code>false</code> otherwise</dd>
 </dl>
 </li>
 </ul>
@@ -412,14 +378,10 @@ implements <a href="../api/IPace.html" title="interface in data.api">IPace</a></
 <ul class="blockList">
 <li class="blockList">
 <h4>addDivision</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;addDivision&#8203;(<a href="../api/IDivision.html" title="interface in data.api">IDivision</a>&nbsp;division)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../api/IPace.html#addDivision(data.api.IDivision)">IPace</a></code></span></div>
-<div class="block">Adds a division to the pace</div>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;addDivision&#8203;(<a href="../api/IDivision.html" title="interface in data.api">IDivision</a>&nbsp;division)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../api/IPace.html#addDivision(data.api.IDivision)">addDivision</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IPace.html" title="interface in data.api">IPace</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>division</code> - The division to add to the pace</dd>
 </dl>
 </li>
 </ul>
@@ -430,16 +392,9 @@ implements <a href="../api/IPace.html" title="interface in data.api">IPace</a></
 <li class="blockList">
 <h4>removeDivision</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;removeDivision&#8203;(<a href="../api/IDivision.html" title="interface in data.api">IDivision</a>&nbsp;division)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../api/IPace.html#removeDivision(data.api.IDivision)">IPace</a></code></span></div>
-<div class="block">Removes a division from the pace. Will not remove the division if it is not the default division in the pace.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../api/IPace.html#removeDivision(data.api.IDivision)">removeDivision</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IPace.html" title="interface in data.api">IPace</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>division</code> - The division to remove</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd><code>true</code> if the division was removed, <code>false</code> if the division was unable to be removed, or if it
- was the default division</dd>
 </dl>
 </li>
 </ul>
@@ -450,16 +405,9 @@ implements <a href="../api/IPace.html" title="interface in data.api">IPace</a></
 <li class="blockList">
 <h4>removeDivisionForced</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;removeDivisionForced&#8203;(<a href="../api/IDivision.html" title="interface in data.api">IDivision</a>&nbsp;division)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../api/IPace.html#removeDivisionForced(data.api.IDivision)">IPace</a></code></span></div>
-<div class="block">Removes a division from the pace. If the division is the default division, the next division will become the new
- division. Will not remove the division if it is the last division in the pace</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../api/IPace.html#removeDivisionForced(data.api.IDivision)">removeDivisionForced</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IPace.html" title="interface in data.api">IPace</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>division</code> - The division to remove</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd><code>true</code> if the division was removed, <code>false</code> if it could not remove, or if it was the last division</dd>
 </dl>
 </li>
 </ul>
@@ -470,14 +418,9 @@ implements <a href="../api/IPace.html" title="interface in data.api">IPace</a></
 <li class="blockList">
 <h4>getDefaultDivision</h4>
 <pre class="methodSignature">public&nbsp;<a href="../api/IDivision.html" title="interface in data.api">IDivision</a>&nbsp;getDefaultDivision()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../api/IPace.html#getDefaultDivision()">IPace</a></code></span></div>
-<div class="block">Gets the default division. The default division is a protected division that can only be removed if forced,
- and never be removed if it is the last division. By default, any new team will be assigned to this division</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../api/IPace.html#getDefaultDivision()">getDefaultDivision</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IPace.html" title="interface in data.api">IPace</a></code></dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The default division</dd>
 </dl>
 </li>
 </ul>
@@ -488,14 +431,9 @@ implements <a href="../api/IPace.html" title="interface in data.api">IPace</a></
 <li class="blockList">
 <h4>setDefaultDivision</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setDefaultDivision&#8203;(<a href="../api/IDivision.html" title="interface in data.api">IDivision</a>&nbsp;division)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../api/IPace.html#setDefaultDivision(data.api.IDivision)">IPace</a></code></span></div>
-<div class="block">Sets the default division for the pace. This division is indicated as the first division in the pace.
- This will add the division if it is not already in the division list.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../api/IPace.html#setDefaultDivision(data.api.IDivision)">setDefaultDivision</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IPace.html" title="interface in data.api">IPace</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>division</code> - The new default division</dd>
 </dl>
 </li>
 </ul>

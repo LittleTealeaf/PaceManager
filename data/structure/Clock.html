@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -165,7 +165,7 @@ implements <a href="../api/IClock.html" title="interface in data.api">IClock</a>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(data.api.IClock)">Clock</a></span>&#8203;(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(data.api.IClock)">Clock</a></span>&#8203;(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;clock)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -188,55 +188,83 @@ implements <a href="../api/IClock.html" title="interface in data.api">IClock</a>
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#add(data.api.IClock)">add</a></span>&#8203;(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</code></th>
-<td class="colLast">
-<div class="block">Adds the two clock object values together</div>
-</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#abs()">abs</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#asString()">asString</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Provides a human-readable form of the time</div>
-</td>
+<td class="colFirst"><code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#add(int)">add</a></span>&#8203;(int&nbsp;time)</code></th>
+<td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#difference(data.api.IClock)">difference</a></span>&#8203;(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</code></th>
-<td class="colLast">
-<div class="block">Finds the absolute difference between two clock values</div>
-</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#add(data.api.IClock)">add</a></span>&#8203;(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</code></th>
+<td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#asString()">asString</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#equals(java.lang.Object)">equals</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAbs()">getAbs</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAdd(int)">getAdd</a></span>&#8203;(int&nbsp;time)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAdd(data.api.IClock)">getAdd</a></span>&#8203;(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getElapsed(data.api.IClock)">getElapsed</a></span>&#8203;(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSubtract(int)">getSubtract</a></span>&#8203;(int&nbsp;time)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSubtract(data.api.IClock)">getSubtract</a></span>&#8203;(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTime()">getTime</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Returns the clock time stored</div>
-</td>
+<td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hashCode()">hashCode</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTime(int)">setTime</a></span>&#8203;(int&nbsp;time)</code></th>
-<td class="colLast">
-<div class="block">Sets the clock time</div>
-</td>
+<td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i14" class="altColor">
+<td class="colFirst"><code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#subtract(int)">subtract</a></span>&#8203;(int&nbsp;time)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#subtract(data.api.IClock)">subtract</a></span>&#8203;(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</code></th>
-<td class="colLast">
-<div class="block">Subtracts two clock objects from each other</div>
-</td>
+<td class="colLast">&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -286,7 +314,7 @@ implements <a href="../api/IClock.html" title="interface in data.api">IClock</a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>Clock</h4>
-<pre>public&nbsp;Clock&#8203;(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</pre>
+<pre>public&nbsp;Clock&#8203;(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;clock)</pre>
 </li>
 </ul>
 </li>
@@ -306,13 +334,9 @@ implements <a href="../api/IClock.html" title="interface in data.api">IClock</a>
 <li class="blockList">
 <h4>getTime</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;getTime()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../api/IClock.html#getTime()">IClock</a></code></span></div>
-<div class="block">Returns the clock time stored</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../api/IClock.html#getTime()">getTime</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>Clock time, in seconds</dd>
 </dl>
 </li>
 </ul>
@@ -323,13 +347,87 @@ implements <a href="../api/IClock.html" title="interface in data.api">IClock</a>
 <li class="blockList">
 <h4>setTime</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setTime&#8203;(int&nbsp;time)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../api/IClock.html#setTime(int)">IClock</a></code></span></div>
-<div class="block">Sets the clock time</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../api/IClock.html#setTime(int)">setTime</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>time</code> - time value, in seconds</dd>
+</dl>
+</li>
+</ul>
+<a id="getAdd(data.api.IClock)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getAdd</h4>
+<pre class="methodSignature">public&nbsp;<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;getAdd&#8203;(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../api/IClock.html#getAdd(data.api.IClock)">getAdd</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="getAdd(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getAdd</h4>
+<pre class="methodSignature">public&nbsp;<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;getAdd&#8203;(int&nbsp;time)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../api/IClock.html#getAdd(int)">getAdd</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="getSubtract(data.api.IClock)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getSubtract</h4>
+<pre class="methodSignature">public&nbsp;<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;getSubtract&#8203;(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../api/IClock.html#getSubtract(data.api.IClock)">getSubtract</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="getSubtract(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getSubtract</h4>
+<pre class="methodSignature">public&nbsp;<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;getSubtract&#8203;(int&nbsp;time)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../api/IClock.html#getSubtract(int)">getSubtract</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="getAbs()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getAbs</h4>
+<pre class="methodSignature">public&nbsp;<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;getAbs()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../api/IClock.html#getAbs()">getAbs</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="getElapsed(data.api.IClock)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getElapsed</h4>
+<pre class="methodSignature">public&nbsp;<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;getElapsed&#8203;(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../api/IClock.html#getElapsed(data.api.IClock)">getElapsed</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -340,15 +438,22 @@ implements <a href="../api/IClock.html" title="interface in data.api">IClock</a>
 <li class="blockList">
 <h4>add</h4>
 <pre class="methodSignature">public&nbsp;<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;add&#8203;(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../api/IClock.html#add(data.api.IClock)">IClock</a></code></span></div>
-<div class="block">Adds the two clock object values together</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../api/IClock.html#add(data.api.IClock)">add</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>other</code> - The other clock value to add</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>A new IClock instance that has a value equal to the sum of the two IClock's values</dd>
+</dl>
+</li>
+</ul>
+<a id="add(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>add</h4>
+<pre class="methodSignature">public&nbsp;<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;add&#8203;(int&nbsp;time)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../api/IClock.html#add(int)">add</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -359,34 +464,35 @@ implements <a href="../api/IClock.html" title="interface in data.api">IClock</a>
 <li class="blockList">
 <h4>subtract</h4>
 <pre class="methodSignature">public&nbsp;<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;subtract&#8203;(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../api/IClock.html#subtract(data.api.IClock)">IClock</a></code></span></div>
-<div class="block">Subtracts two clock objects from each other</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../api/IClock.html#subtract(data.api.IClock)">subtract</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>other</code> - The clock value to subtract</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>A new IClock instance that takes the value of this object and subtracts the value of the other IClock</dd>
 </dl>
 </li>
 </ul>
-<a id="difference(data.api.IClock)">
+<a id="subtract(int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>difference</h4>
-<pre class="methodSignature">public&nbsp;<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;difference&#8203;(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../api/IClock.html#difference(data.api.IClock)">IClock</a></code></span></div>
-<div class="block">Finds the absolute difference between two clock values</div>
+<h4>subtract</h4>
+<pre class="methodSignature">public&nbsp;<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;subtract&#8203;(int&nbsp;time)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../api/IClock.html#difference(data.api.IClock)">difference</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>other</code> - THe clock value to compare against</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>A new IClock instance that contains the value of the absolute difference between this and the other IClock</dd>
+<dd><code><a href="../api/IClock.html#subtract(int)">subtract</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="abs()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>abs</h4>
+<pre class="methodSignature">public&nbsp;<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;abs()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../api/IClock.html#abs()">abs</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -397,39 +503,35 @@ implements <a href="../api/IClock.html" title="interface in data.api">IClock</a>
 <li class="blockList">
 <h4>asString</h4>
 <pre class="methodSignature">public&nbsp;java.lang.String&nbsp;asString()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../api/IClock.html#asString()">IClock</a></code></span></div>
-<div class="block">Provides a human-readable form of the time</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../api/IClock.html#asString()">asString</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>Time represented as a String object</dd>
-</dl>
-</li>
-</ul>
-<a id="equals(java.lang.Object)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>equals</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;equals&#8203;(java.lang.Object&nbsp;o)</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code>equals</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
 </dl>
 </li>
 </ul>
 <a id="hashCode()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>hashCode</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;hashCode()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>hashCode</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+</dl>
+</li>
+</ul>
+<a id="equals(java.lang.Object)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>equals</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;equals&#8203;(java.lang.Object&nbsp;o)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>equals</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
 </dl>
 </li>
 </ul>
