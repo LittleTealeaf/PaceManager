@@ -1,6 +1,5 @@
 package data.interfaces;
 
-import data.interfaces.Identifiable;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;

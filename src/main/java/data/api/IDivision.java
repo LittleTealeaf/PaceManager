@@ -16,5 +16,4 @@ public interface IDivision extends Identifiable, PaceComponent {
     default boolean isDefaultDivision() {
         return getPace() != null && getPace().getDefaultDivision() == this;
     }
-
 }
