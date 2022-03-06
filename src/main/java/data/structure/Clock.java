@@ -35,22 +35,22 @@ public class Clock implements IClock {
 
     @Override
     public IClock getAdd(int time) {
-        return new Clock(getTime() + time);
+        return new Clock(this).add(time);
     }
 
     @Override
     public IClock getSubtract(IClock other) {
-        return new Clock(getTime() - other.getTime());
+        return new Clock(this).subtract(other);
     }
 
     @Override
     public IClock getSubtract(int time) {
-        return new Clock(getTime() - time);
+        return new Clock(this).subtract(time);
     }
 
     @Override
     public IClock getAbs() {
-        return new Clock(Math.abs(getTime()));
+        return new Clock(this).abs();
     }
 
     @Override
@@ -60,8 +60,7 @@ public class Clock implements IClock {
 
     @Override
     public IClock add(IClock other) {
-        this.time += other.getTime();
-        return this;
+        return add(other.getTime());
     }
 
     @Override
@@ -72,8 +71,7 @@ public class Clock implements IClock {
 
     @Override
     public IClock subtract(IClock other) {
-        this.time -= other.getTime();
-        return this;
+        return subtract(other.getTime());
     }
 
     @Override
