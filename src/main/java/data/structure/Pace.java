@@ -4,10 +4,7 @@ import data.api.IDivision;
 import data.api.IPace;
 import data.api.ITeam;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class Pace implements IPace {
 
@@ -44,13 +41,24 @@ public class Pace implements IPace {
     }
 
     @Override
+    public Collection<ITeam> getTeams(IDivision division) {
+        Collection<ITeam> t = new LinkedList<>();
+        for (ITeam team : teams) {
+            if (team.getDivision().equals(division)) {
+                t.add(team);
+            }
+        }
+        return t;
+    }
+
+    @Override
     public Collection<IDivision> getDivisions() {
         return divisions;
     }
 
     @Override
     public void addTeam(ITeam team) {
-        if(!teams.contains(team)) {
+        if (!teams.contains(team)) {
             teams.add(team);
             team.setPace(this);
         }

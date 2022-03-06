@@ -32,7 +32,17 @@ public interface IPace {
     Collection<ITeam> getTeams();
 
     /**
+     * Gets the list of teams in a specific division
+     *
+     * @param division The division to filter by
+     *
+     * @return Collection of teams in that division
+     */
+    Collection<ITeam> getTeams(IDivision division);
+
+    /**
      * Gets the collection of divisions that the pace currently has
+     *
      * @return The divisions currently in the pace
      */
     Collection<IDivision> getDivisions();
