@@ -1,6 +1,7 @@
 package data.api;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 public interface IPace {
@@ -9,9 +10,9 @@ public interface IPace {
 
     IDivision getDivision(UUID uuid);
 
-    Collection<ITeam> getTeams();
+    List<ITeam> getTeams();
 
-    Collection<ITeam> getTeams(IDivision division);
+    List<ITeam> getTeams(IDivision division);
 
     Collection<IDivision> getDivisions();
 

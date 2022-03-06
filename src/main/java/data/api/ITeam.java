@@ -3,7 +3,8 @@ package data.api;
 import data.interfaces.Identifiable;
 import data.interfaces.PaceComponent;
 
-import java.util.Collection;
+import java.util.List;
+import java.util.UUID;
 
 public interface ITeam extends Identifiable, PaceComponent {
 
@@ -15,7 +16,7 @@ public interface ITeam extends Identifiable, PaceComponent {
 
     void setDivision(IDivision division);
 
-    void setDivision(java.util.UUID divisionUUID);
+    void setDivision(UUID divisionUUID);
 
     IClock getStartTime();
 
@@ -29,7 +30,7 @@ public interface ITeam extends Identifiable, PaceComponent {
 
     IClock getElapsedTime();
 
-    Collection<IRider> getRiders();
+    List<IRider> getRiders();
 
     boolean addRider(IRider rider);
 
