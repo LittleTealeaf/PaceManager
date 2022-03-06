@@ -10,7 +10,9 @@ public interface IClock {
 
     IClock subtract(IClock other);
 
-    IClock difference(IClock other);
+    IClock abs();
+
+    IClock absoluteDifference(IClock other);
 
     String asString();
 }
