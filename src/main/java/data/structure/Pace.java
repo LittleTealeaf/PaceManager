@@ -3,44 +3,44 @@ package data.structure;
 import data.api.IDivision;
 import data.api.IPace;
 import data.api.ITeam;
+import data.interfaces.Identifiable;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class Pace implements IPace {
 
-    private final List<ITeam> teams = new ArrayList<>();
-    private final List<IDivision> divisions = new ArrayList<>();
+    private final List<ITeam> teams;
+    private final List<IDivision> divisions;
 
     public Pace() {
-
+        teams = new ArrayList<>();
+        divisions = new ArrayList<>();
     }
 
     @Override
     public ITeam getTeam(UUID uuid) {
-        for(ITeam team : teams) {
-            if(team.getUUID().equals(uuid)) {
-                return team;
-            }
-        }
-        return null;
+        return Identifiable.findInCollection(teams, uuid);
     }
 
     @Override
     public IDivision getDivision(UUID uuid) {
-        for(IDivision division : divisions) {
-            if(division.getUUID().equals(uuid)) {
-                return division;
-            }
-        }
-        return null;
+        return Identifiable.findInCollection(divisions, uuid);
     }
 
     @Override
-    public Collection<ITeam> getTeams() {
+    public List<ITeam> getTeams() {
         return teams;
+    }
+
+    @Override
+    public List<ITeam> getTeams(IDivision division) {
+        List<ITeam> group = new LinkedList<>();
+        for (ITeam team : teams) {
+            if (team.getDivision() == division) {
+                group.add(team);
+            }
+        }
+        return group;
     }
 
     @Override
@@ -49,47 +49,28 @@ public class Pace implements IPace {
     }
 
     @Override
-    public void addTeam(ITeam team) {
-        if(!teams.contains(team)) {
-            teams.add(team);
-            team.setPace(this);
-        }
+    public boolean addTeam(ITeam team) {
+        return teams.add(team);
     }
 
     @Override
     public boolean removeTeam(ITeam team) {
-        if(teams.remove(team)) {
-            team.setPace(null);
-            return true;
-        } else {
-            return false;
-        }
+        return teams.remove(team);
     }
 
     @Override
-    public void addDivision(IDivision division) {
-        divisions.add(division);
-        division.setPace(this);
+    public boolean addDivision(IDivision division) {
+        return divisions.add(division);
     }
 
     @Override
     public boolean removeDivision(IDivision division) {
-        if(!division.isDefaultDivision() && divisions.remove(division)) {
-            division.setPace(null);
-            return true;
-        } else {
-            return false;
-        }
+        return division != getDefaultDivision() && divisions.remove(division);
     }
 
     @Override
     public boolean removeDivisionForced(IDivision division) {
-        if(divisions.size() > 0 && divisions.remove(division)) {
-            division.setPace(null);
-            return true;
-        } else {
-            return false;
-        }
+        return divisions.size() > 1 && divisions.remove(division);
     }
 
     @Override
@@ -99,18 +80,9 @@ public class Pace implements IPace {
 
     @Override
     public void setDefaultDivision(IDivision division) {
-        if(!divisions.contains(division)) {
-            addDivision(division);
-        }
-        if(divisions.indexOf(division) != 0) {
-            IDivision temp = divisions.get(0);
-            divisions.remove(division);
-            divisions.set(0,division);
-            divisions.add(temp);
-        }
-    }
-
-    private static IDivision createDefaultDivision() {
-        return null;
+        divisions.remove(division);
+        IDivision prev = divisions.get(0);
+        divisions.set(0, division);
+        divisions.add(prev);
     }
 }

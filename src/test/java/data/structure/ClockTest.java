@@ -4,115 +4,172 @@ import data.api.IClock;
 import org.junit.jupiter.api.Test;
 import test.resources.Randomizable;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ClockTest implements Randomizable {
 
-    /**
-     * Tests the {@link Clock#Clock()} constructor.
-     *
-     * Checks that it properly sets the initial value to 0
-     */
     @Test
-    void constructor() {
+    public void testConstructor() {
         Clock clock = new Clock();
         assertEquals(0, clock.getTime());
     }
 
-    /**
-     * Tests the {@link Clock#Clock(int)} constructor.
-     *
-     * Checks that it properly sets the initial value
-     */
     @Test
-    void constructorInt() {
-        int val = RANDOM.nextInt();
-        Clock clock = new Clock(val);
-        assertEquals(val, clock.getTime());
+    public void testConstructorInt() {
+        int time = RANDOM.nextInt();
+        Clock clock = new Clock(time);
+        assertEquals(time, clock.getTime());
     }
 
-    /**
-     * Tests the {@link Clock#Clock(IClock)} constructor.
-     *
-     * Checks that it properly copies the value of another clock
-     */
     @Test
-    void constructorIClock() {
-        int val = RANDOM.nextInt();
-        IClock clock = new Clock() {
-            @Override
-            public int getTime() {
-                return val;
-            }
-        };
-        Clock copyClock = new Clock(clock);
-        assertEquals(val, copyClock.getTime());
+    public void testConstructorIClock() {
+        //Test proper
+        Clock a = new Clock(RANDOM.nextInt());
+        Clock b = new Clock(a);
+        assertEquals(a.getTime(), b.getTime());
+
+        //Test Null
+        Clock c = new Clock(null);
+        assertEquals(0, c.getTime());
     }
 
-    /**
-     * Tests the {@link Clock#getTime()} method.
-     *
-     * Checks that it properly gets the time, whether the time was set using {@link Clock#Clock()} or {@link Clock#setTime(int)}
-     */
     @Test
-    void getTime() {
-        int val = RANDOM.nextInt();
-        Clock clock = new Clock(val);
-        assertEquals(val, clock.getTime());
-        val = RANDOM.nextInt();
-        assertNotEquals(val, clock.getTime());
-        clock.setTime(val);
-        assertEquals(val, clock.getTime());
+    public void testGetTime() {
+        int time = RANDOM.nextInt();
+        Clock clock = new Clock(time);
+        assertEquals(time, clock.getTime());
+        time = RANDOM.nextInt();
+        assertNotEquals(time, clock.getTime());
+        clock.setTime(time);
+        assertEquals(time, clock.getTime());
     }
 
-    /**
-     * Tests the {@link Clock#setTime(int)} method.
-     *
-     * Checks that it properly sets the value of the {@link Clock}
-     */
     @Test
-    void setTime() {
-        Clock clock = new Clock();
-        int val = RANDOM.nextInt();
-        assertNotEquals(val, clock.getTime());
-        clock.setTime(val);
-        assertEquals(val, clock.getTime());
+    public void testGetAddIClock() {
+        //Test a proper addition
+        int timeA = RANDOM.nextInt(), timeB = RANDOM.nextInt();
+        Clock clockA = new Clock(timeA), clockB = new Clock(timeB);
+        IClock result = clockA.getAdd(clockB);
+        assertNotSame(clockA, result);
+        assertNotSame(clockB, result);
+        assertEquals(timeA + timeB, result.getTime());
+
+        //Test if adding a null value
+        result = clockA.getAdd(null);
+        assertNull(result);
     }
 
-    /**
-     * Tests the {@link Clock#add(IClock)} method.
-     *
-     * Checks that adding two clocks together results in a clock whose value is the sum of the two clock values
-     */
     @Test
-    void add() {
-        int a = RANDOM.nextInt(), b = RANDOM.nextInt();
-        Clock clockA = new Clock(a), clockB = new Clock(b);
-        assertEquals(a + b, clockA.add(clockB).getTime());
+    public void testGetAddInt() {
+        int timeA = RANDOM.nextInt(), timeB = RANDOM.nextInt();
+        Clock clockA = new Clock(timeA);
+        IClock result = clockA.getAdd(timeB);
+        assertNotSame(clockA, result);
+        assertEquals(timeA + timeB, result.getTime());
     }
 
-    /**
-     * Tests that {@link Clock#subtract(IClock)} method.
-     *
-     * Checks that subtracting a clock B from A returns a new Clock object with the proper difference
-     */
     @Test
-    void subtract() {
-        int a = RANDOM.nextInt(), b = RANDOM.nextInt();
-        Clock clockA = new Clock(a), clockB = new Clock(b);
-        assertEquals(a - b, clockA.subtract(clockB).getTime());
+    public void testGetSubtractIClock() {
+        //Test proper subtract
+        int timeA = RANDOM.nextInt(), timeB = RANDOM.nextInt();
+        Clock clockA = new Clock(timeA), clockB = new Clock(timeB);
+        IClock result = clockA.getSubtract(clockB);
+        assertNotSame(clockA, result);
+        assertNotSame(clockB, result);
+        assertEquals(timeA - timeB, result.getTime());
+
+        //Test if subtracting a null value
+        result = clockA.getSubtract(null);
+        assertNull(result);
     }
 
-    /**
-     * Tests the {@link Clock#difference(IClock)} method.
-     *
-     * Checks that taking the absolute difference of two clocks with set values returns the absolute difference
-     */
     @Test
-    void difference() {
-        int a = RANDOM.nextInt(), b = RANDOM.nextInt();
-        Clock clockA = new Clock(a), clockB = new Clock(b);
-        assertEquals(Math.abs(a - b), clockA.difference(clockB).getTime());
+    public void testGetSubtractInt() {
+        int timeA = RANDOM.nextInt(), timeB = RANDOM.nextInt();
+        Clock clock = new Clock(timeA);
+        IClock result = clock.getSubtract(timeB);
+        assertNotSame(clock, result);
+        assertEquals(timeA - timeB, result.getTime());
+    }
+
+    @Test
+    public void testGetAbs() {
+        int time = RANDOM.nextInt();
+        Clock clock = new Clock(time);
+        Clock negClock = new Clock(-time);
+        IClock clockAbs = clock.getAbs();
+        IClock negClockAbs = negClock.getAbs();
+
+        assertEquals(Math.abs(time), clockAbs.getTime());
+        assertEquals(Math.abs(time), negClockAbs.getTime());
+    }
+
+    @Test
+    public void testGetElapsed() {
+        //Test proper elapsed
+        int timeA = RANDOM.nextInt(), timeB = RANDOM.nextInt();
+        Clock clockA = new Clock(timeA), clockB = new Clock(timeB);
+        int diff = Math.abs(timeA - timeB);
+        IClock resultA = clockA.getElapsed(clockB);
+        IClock resultB = clockB.getElapsed(clockA);
+        assertNotSame(clockA, resultA);
+        assertNotSame(clockB, resultA);
+        assertNotSame(resultA, resultB);
+        assertEquals(diff, resultA.getTime());
+        assertEquals(diff, resultB.getTime());
+
+        //Test null
+        IClock result = clockA.getElapsed(null);
+        assertNull(result);
+    }
+
+    @Test
+    public void testAddIClock() {
+        int timeA = RANDOM.nextInt(), timeB = RANDOM.nextInt();
+        Clock clockA = new Clock(timeA), clockB = new Clock(timeB);
+        assertSame(clockA, clockA.add(clockB));
+        assertEquals(timeA + timeB, clockA.getTime());
+
+        assertSame(clockA, clockA.add(null));
+        assertEquals(timeA + timeB, clockA.getTime());
+    }
+
+    @Test
+    public void testAddInt() {
+        int timeA = RANDOM.nextInt(), timeB = RANDOM.nextInt();
+        Clock clock = new Clock(timeA);
+        assertSame(clock, clock.add(timeB));
+        assertEquals(timeA + timeB, clock.getTime());
+    }
+
+    @Test
+    public void testSubtractIClock() {
+        int timeA = RANDOM.nextInt(), timeB = RANDOM.nextInt();
+        Clock clockA = new Clock(timeA), clockB = new Clock(timeB);
+        assertSame(clockA, clockA.subtract(clockB));
+        assertEquals(timeA - timeB, clockA.getTime());
+
+        assertSame(clockA, clockA.subtract(null));
+        assertEquals(timeA - timeB, clockA.getTime());
+    }
+
+    @Test
+    public void testSubtractInt() {
+        int timeA = RANDOM.nextInt(), timeB = RANDOM.nextInt();
+        Clock clock = new Clock(timeA);
+        assertSame(clock, clock.subtract(timeB));
+        assertEquals(timeA - timeB, clock.getTime());
+    }
+
+    @Test
+    public void testAbs() {
+        int time = RANDOM.nextInt();
+        Clock clock = new Clock(time);
+        assertSame(clock, clock.abs());
+        assertEquals(Math.abs(time), clock.getTime());
+
+        clock = new Clock(-time);
+        assertSame(clock, clock.abs());
+        assertEquals(Math.abs(time), clock.getTime());
     }
 }
