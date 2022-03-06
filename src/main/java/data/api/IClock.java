@@ -18,15 +18,15 @@ public interface IClock {
 
     IClock getElapsed(IClock other);
 
-    void add(IClock other);
+    IClock add(IClock other);
 
-    void add(int time);
+    IClock add(int time);
 
-    void subtract(IClock other);
+    IClock subtract(IClock other);
 
-    void subtract(int time);
+    IClock subtract(int time);
 
-    void abs();
+    IClock abs();
 
     String asString();
 }

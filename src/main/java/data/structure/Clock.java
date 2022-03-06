@@ -30,7 +30,7 @@ public class Clock implements IClock {
 
     @Override
     public IClock getAdd(IClock other) {
-        return new Clock(getTime() + other.getTime());
+        return new Clock(this).add(other);
     }
 
     @Override
@@ -59,30 +59,35 @@ public class Clock implements IClock {
     }
 
     @Override
-    public void add(IClock other) {
+    public IClock add(IClock other) {
         this.time += other.getTime();
+        return this;
     }
 
     @Override
-    public void add(int time) {
+    public IClock add(int time) {
         this.time += time;
+        return this;
     }
 
     @Override
-    public void subtract(IClock other) {
+    public IClock subtract(IClock other) {
         this.time -= other.getTime();
+        return this;
     }
 
     @Override
-    public void subtract(int time) {
+    public IClock subtract(int time) {
         this.time += time;
+        return this;
     }
 
     @Override
-    public void abs() {
+    public IClock abs() {
         if (time < 0) {
             time = -time;
         }
+        return this;
     }
 
     @Override
