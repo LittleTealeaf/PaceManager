@@ -1,6 +1,6 @@
 package app;
 
-public class Main {
+public final class Main {
 
     private Main() {}
 
