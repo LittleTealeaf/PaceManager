@@ -16,11 +16,11 @@ public interface IPace {
 
     Collection<IDivision> getDivisions();
 
-    void addTeam(ITeam team);
+    boolean addTeam(ITeam team);
 
     boolean removeTeam(ITeam team);
 
-    void addDivision(IDivision division);
+    boolean addDivision(IDivision division);
 
     boolean removeDivision(IDivision division);
 
