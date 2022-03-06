@@ -29,23 +29,60 @@ public class Clock implements IClock {
     }
 
     @Override
-    public IClock add(IClock other) {
+    public IClock getAdd(IClock other) {
         return new Clock(getTime() + other.getTime());
     }
 
     @Override
-    public IClock subtract(IClock other) {
+    public IClock getAdd(int time) {
+        return new Clock(getTime() + time);
+    }
+
+    @Override
+    public IClock getSubtract(IClock other) {
         return new Clock(getTime() - other.getTime());
     }
 
     @Override
-    public IClock abs() {
+    public IClock getSubtract(int time) {
+        return new Clock(getTime() - time);
+    }
+
+    @Override
+    public IClock getAbs() {
         return new Clock(Math.abs(getTime()));
     }
 
     @Override
-    public IClock absoluteDifference(IClock other) {
-        return subtract(other).abs();
+    public IClock getElapsed(IClock other) {
+        return getSubtract(other).getAbs();
+    }
+
+    @Override
+    public void add(IClock other) {
+        this.time += other.getTime();
+    }
+
+    @Override
+    public void add(int time) {
+        this.time += time;
+    }
+
+    @Override
+    public void subtract(IClock other) {
+        this.time -= other.getTime();
+    }
+
+    @Override
+    public void subtract(int time) {
+        this.time += time;
+    }
+
+    @Override
+    public void abs() {
+        if (time < 0) {
+            time = -time;
+        }
     }
 
     @Override

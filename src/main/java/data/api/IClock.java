@@ -6,13 +6,27 @@ public interface IClock {
 
     void setTime(int time);
 
-    IClock add(IClock other);
+    IClock getAdd(IClock other);
 
-    IClock subtract(IClock other);
+    IClock getAdd(int time);
 
-    IClock abs();
+    IClock getSubtract(IClock other);
 
-    IClock absoluteDifference(IClock other);
+    IClock getSubtract(int time);
+
+    IClock getAbs();
+
+    IClock getElapsed(IClock other);
+
+    void add(IClock other);
+
+    void add(int time);
+
+    void subtract(IClock other);
+
+    void subtract(int time);
+
+    void abs();
 
     String asString();
 }
