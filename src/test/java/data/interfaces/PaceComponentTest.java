@@ -1,10 +1,6 @@
 package data.interfaces;
 
-import data.structure.Pace;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
 
 /**
  * Provides tests used to test a class that extends the {@link PaceComponent} interface.
@@ -26,22 +22,22 @@ public interface PaceComponentTest {
     @Test
     void testPaceComponent();
 
-    /**
-     * Performs the tests indicated in {@link #testPaceComponent()}.
-     *
-     * @param factory The factory builder for the class that extends PaceComponent
-     *
-     * @see Pace#Pace()
-     */
-    default void doPaceComponentTests(PaceComponentFactory factory) {
-        PaceComponent paceComponent = factory.build();
-        assertNull(paceComponent.getPace());
-        Pace pace = new Pace();
-        paceComponent.setPace(pace);
-        assertSame(pace, paceComponent.getPace());
-        paceComponent.setPace(null);
-        assertNull(paceComponent.getPace());
-    }
+//    /**
+//     * Performs the tests indicated in {@link #testPaceComponent()}.
+//     *
+//     * @param factory The factory builder for the class that extends PaceComponent
+//     *
+//     * @see Pace#Pace()
+//     */
+//    default void doPaceComponentTests(PaceComponentFactory factory) {
+//        PaceComponent paceComponent = factory.build();
+//        assertNull(paceComponent.getPace());
+//        Pace pace = new Pace();
+//        paceComponent.setPace(pace);
+//        assertSame(pace, paceComponent.getPace());
+//        paceComponent.setPace(null);
+//        assertNull(paceComponent.getPace());
+//    }
 
     /**
      * A factory that creates an instance of the PaceComponent interface
