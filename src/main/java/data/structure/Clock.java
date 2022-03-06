@@ -15,7 +15,7 @@ public class Clock implements IClock {
     }
 
     public Clock(IClock clock) {
-        this.time = clock.getTime();
+        this(clock.getTime());
     }
 
     @Override
