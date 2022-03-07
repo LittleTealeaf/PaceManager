@@ -14,8 +14,8 @@ public class Clock implements IClock {
         this.time = time;
     }
 
-    public Clock(IClock other) {
-        this.time = other.getTime();
+    public Clock(IClock clock) {
+        this(clock == null ? 0 : clock.getTime());
     }
 
     @Override
@@ -29,37 +29,87 @@ public class Clock implements IClock {
     }
 
     @Override
+    public IClock getAdd(IClock other) {
+        return other == null ? null : getAdd(other.getTime());
+    }
+
+    @Override
+    public IClock getAdd(int time) {
+        return new Clock(this).add(time);
+    }
+
+    @Override
+    public IClock getSubtract(IClock other) {
+        return other == null ? null : getSubtract(other.getTime());
+    }
+
+    @Override
+    public IClock getSubtract(int time) {
+        return new Clock(this).subtract(time);
+    }
+
+    @Override
+    public IClock getAbs() {
+        return new Clock(this).abs();
+    }
+
+    @Override
+    public IClock getElapsed(IClock other) {
+        return other == null ? null : getSubtract(other).getAbs();
+    }
+
+    @Override
     public IClock add(IClock other) {
-        return new Clock(getTime() + other.getTime());
+        return other == null ? this : add(other.getTime());
+    }
+
+    @Override
+    public IClock add(int time) {
+        this.time += time;
+        return this;
     }
 
     @Override
     public IClock subtract(IClock other) {
-        return new Clock(getTime() - other.getTime());
+        return other == null ? this : subtract(other.getTime());
     }
 
     @Override
-    public IClock difference(IClock other) {
-        return new Clock(Math.abs(getTime() - other.getTime()));
+    public IClock subtract(int time) {
+        this.time -= time;
+        return this;
+    }
+
+    @Override
+    public IClock abs() {
+        if (time < 0) {
+            time = -time;
+        }
+        return this;
     }
 
     @Override
     public String asString() {
+        //TODO: implement
         return "";
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Clock)) return false;
-
-        Clock clock = (Clock) o;
-
-        return getTime() == clock.getTime();
     }
 
     @Override
     public int hashCode() {
         return getTime();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Clock)) {
+            return false;
+        }
+
+        Clock clock = (Clock) o;
+
+        return getTime() == clock.getTime();
     }
 }
