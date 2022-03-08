@@ -1,35 +1,34 @@
 <!DOCTYPE html>
 <html>
-
-<!-- https://stackoverflow.com/questions/18712338/make-header-and-footer-files-to-be-included-in-multiple-html-pages -->
-
-<head>
-    <title>Pace Manager</title>
-    <link rel="stylesheet" href="style.css">
-
-    <script src="./index.js"></script>
-    <div class="header">
-        <div class="title">
-            <h1>Pace Manager</h1>
-        </div>
-        <!-- maybe make this a flexbox? -->
-        <ul class="navbar">
-            <li><button>Home</button></li>
-            <li><button>Download</button></li>
-            <li><button>Documentation</button></li>
-            <li><button>About</button></li>
-        </ul>
-    </div>
-    
-</head>
-
-
-<body>
-    <div id="body"><a href="./javadoc/index.html">Javadocs link here</a>  because this website is a work in progress and I wanted to clean up pull requests</div>
-    
-
-</body>
-<footer>
-</footer>
-
+ <head>
+  <title>
+   Pace Manager
+  </title>
+  <link href="style.css" rel="stylesheet"/>
+  <header class="header">
+   <script src="/navigation.js">
+   </script>
+   <div class="title">
+    <h1>
+     Pace Manager
+    </h1>
+   </div>
+   <div class="navbar">
+    <button id="home" onclick="navHome()">
+     Home
+    </button>
+    <button id="download" onclick="navDownload()">
+     Download
+    </button>
+    <button id="docs" onclick="navDocs()">
+     Documentation
+    </button>
+    <button id="github" onclick="navGithub()">
+     Github
+    </button>
+   </div>
+  </header>
+ </head>
+ <body>
+ </body>
 </html>

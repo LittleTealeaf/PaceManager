@@ -77,4 +77,4 @@ build/
 .gradle/
 bin/
 
-pages/javadoc/
+.vscode/
