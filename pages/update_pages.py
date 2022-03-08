@@ -11,14 +11,16 @@ for root, subdirectories, files in os.walk('./'):
     for file in files:
         if file == 'index.html':
             if './docs/javadoc' != str(root):
-                indexes.append(os.path.join(root,file))
+                indexes.append((root,file))
 
 for index in indexes:
-    print("------------ " + index)
+    path = os.path.join(index[0],index[1])
     soup = []
-    with open(index) as inf:
+    with open(path) as inf:
         txt = inf.read()
         soup = bs.BeautifulSoup(txt,features="html.parser")
     soup.find('header').replace_with(load_html('./snippets/header.html'))
-    with open(index,"w") as outf:
+    soup.find('body').replace_with(load_html(os.path.join(index[0],'content.html')))
+    with open(path,"w") as outf:
         outf.write(soup.prettify())
+    
