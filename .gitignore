@@ -76,5 +76,3 @@ fabric.properties
 build/
 .gradle/
 bin/
-
-pages/javadoc/
