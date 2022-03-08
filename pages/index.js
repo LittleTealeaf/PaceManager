@@ -1,12 +1,11 @@
 
 
 function navHome() {
-    loadBodyHTML("./content/home.html");
 }
 
 function navDocs() {
     
-    document.getElementById("body").innerHTML = "";
+    
 }
 
 function loadBodyHTML(htmlFile) {
