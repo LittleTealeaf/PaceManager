@@ -20,9 +20,13 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: javadoc
+      - name: Move Javadocs into pages directory
+        run: |
+          rm -r ./pages/javadoc
+          mv ./build/docs/javadoc ./pages/javadoc
       - name: Publish to Github Pages
         if: success()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build/docs/javadoc
+          publish_dir: pages
