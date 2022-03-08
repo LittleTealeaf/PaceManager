@@ -16,11 +16,7 @@ jobs:
           distribution: 'temurin'
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-      - name: Build Javadocs with Gradle
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: javadoc
-      - name: Build Pages
+      - name: Build Github Pages
         run: ./pages.sh
       - name: Publish to Github Pages
         if: success()
