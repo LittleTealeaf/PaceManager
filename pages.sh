@@ -7,7 +7,3 @@ chmod +x ./gradlew
 # Move docs over to 
 rm -r ./pages/javadoc
 mv ./build/docs/javadoc ./pages/javadoc
-
-# fix dejavu .css
-mkdir -p ./pages/javadoc/resources/fonts
-echo "" >> ./pages/javadoc/resources/fonts/dejavu.css
