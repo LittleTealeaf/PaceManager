@@ -1,11 +1,14 @@
+
+
 function navHome() {
-    console.log("clicked");
+    loadBodyHTML("./content/home.html");
 }
 
 function navDocs() {
-    document.getElementById("body").innerHTML = insertPage("./javadoc/index.html")
+    
+    document.getElementById("body").innerHTML = "";
 }
 
-function insertPage(link) {
-    return "<iframe src=\"" + link + "\"></iframe>"
+function loadBodyHTML(htmlFile) {
+    fetch(htmlFile).then(response => response.text()).then(data => document.getElementById("body").innerHTML = data);
 }
