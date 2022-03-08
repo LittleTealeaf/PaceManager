@@ -1,4 +1,4 @@
-name: Pages
+name: Test Pages
 
 on:
   pull_request:
@@ -8,12 +8,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        name: Checkout Repository
-      - name: Set up JDK 11
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Set up Java
         uses: actions/setup-java@v2
         with:
-          java-version: '11'
+          java-version: '17'
           distribution: 'temurin'
       - name: Run build script
         run: ./pages.sh
