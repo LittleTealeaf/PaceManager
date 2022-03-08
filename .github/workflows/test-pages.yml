@@ -1,10 +1,10 @@
-name: Test Pages
+name: Pages
 
 on:
   push:
 
 jobs:
-  publish:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
