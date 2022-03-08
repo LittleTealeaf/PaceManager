@@ -6,7 +6,7 @@ chmod +x ./gradlew
 
 # Move docs over to 
 rm -r ./pages/javadoc
-mv ./build/docs/javadoc ./pages/javadoc
+cp -r ./build/docs/javadoc ./pages/javadoc
 
 cd pages
 npm install
