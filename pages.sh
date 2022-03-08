@@ -8,3 +8,6 @@ chmod +x ./gradlew
 rm -r ./pages/javadoc
 mv ./build/docs/javadoc ./pages/javadoc
 
+cd pages
+npm install
+cd ..
