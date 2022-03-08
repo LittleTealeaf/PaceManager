@@ -20,6 +20,8 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: javadoc
+      - name: Build Pages
+        run: ./pages.sh
       - name: Publish to Github Pages
         if: success()
         uses: peaceiris/actions-gh-pages@v3
