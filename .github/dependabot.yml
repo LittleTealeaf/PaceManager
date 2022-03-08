@@ -15,5 +15,5 @@ updates:
       interval: "weekly"
   - package-ecosystem: "npm"
     directory: "/pages/"
-    scheudle:
+    schedule:
       interval: "daily"
