@@ -1,61 +1,23 @@
-body {
+html {
+    --background-color:#a0d485;
     --primary-color: #68af44;
     --secondary-color: #638055;
+    --selected-color: #2c6611;
+    --active-color: #223519;
+
+
+    background-color: var(--background-color);
+}
+
+body {
+    
 
 
     margin: 0;
     font-family:Arial, Helvetica, sans-serif;
 }
 
-.header {
-    background: var(--secondary-color);
-    --bottom-radius: 5%;
-    /* position: fixed; */
-    top: 0;
-    width: 100%;
 
-
-    border-bottom-left-radius: var(--bottom-radius);
-    border-bottom-right-radius: var(--bottom-radius);
-}
-
-.navbar {
-
-    list-style-type: none;
-    overflow: hidden;
-    padding: 0;
-    margin: 0;
-
-    padding-left: 20px;
-    padding-right: 20px;
-
-}
-
-.navbar li {
-    float: left;
-    margin: 0px 2px;
-    align-items: center;
-}
-
-.navbar li button {
-    transition-duration: 0.5s;
-    display: block;
-    background-color: var(--secondary-color);
-    border-color: transparent;
-    color: white;
-    text-align: center;
-    padding: 10px 5px;
-    text-decoration: none;
-    border-radius: 10%;
-    border-style:outset;
-    font-size: 19px;
-    cursor: pointer;
-}
-
-.navbar li button:hover {
-    background-color: rgb(18, 70, 18);
-    padding: 10px 10px;
-}
 
 .title {
     --bottom-radius: 15%;
@@ -67,3 +29,48 @@ body {
     border-bottom-left-radius: var(--bottom-radius);
     border-bottom-right-radius: var(--bottom-radius);
 }
+
+.header {
+    background: var(--secondary-color);
+    --bottom-radius: 5%;
+    top: 0;
+    width: 100%;
+
+
+    border-bottom-left-radius: var(--bottom-radius);
+    border-bottom-right-radius: var(--bottom-radius);
+}
+
+
+
+.navbar {
+    display: flex;
+    flex-wrap:wrap;
+    padding: 3px 35px;
+}
+
+.navbar button {
+    background-color: transparent;
+    transition-duration: 0.25s;
+    text-align: center;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    flex-grow: 4;
+    font-size: 20px;
+    cursor:pointer;
+    text-decoration: none;
+    border-style:none;
+}
+
+.navbar button:hover {
+    background-color:var(--selected-color);
+    flex-grow: 5;
+}
+
+.navbar button:active {
+    padding: 5px 15px;
+    background-color: var(--active-color);
+    transition-duration: 0.5s;
+}
+
