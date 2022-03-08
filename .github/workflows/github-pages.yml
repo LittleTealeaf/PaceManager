@@ -22,7 +22,6 @@ jobs:
           arguments: javadoc
       - name: Move Javadocs into pages directory
         run: |
-          rm -r ./pages/javadoc
           mv ./build/docs/javadoc ./pages/javadoc
       - name: Publish to Github Pages
         if: success()
