@@ -15,6 +15,7 @@ for root, subdirectories, files in os.walk('./'):
 
 for index in indexes:
     path = os.path.join(index[0],index[1])
+    print(path)
     soup = []
     with open(path) as inf:
         txt = inf.read()
