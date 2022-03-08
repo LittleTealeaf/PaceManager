@@ -16,7 +16,8 @@ body {
 
 
     border-bottom-left-radius: var(--bottom-radius);
-    border-bottom-right-radius: var(--bottom-radius);
+    border-bottom-right-radius:
+    pages/javadoc/ var(--bottom-radius);
 }
 
 .navbar {
