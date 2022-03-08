@@ -9,5 +9,9 @@ function navDocs() {
 }
 
 function navDownload() {
-    location.href = "/download"
+    location.href = "https://github.com/LittleTealeaf/paceManager/releases"
+}
+
+function navGithub() {
+    location.href = "https://github.com/LittleTealeaf/paceManager"
 }
