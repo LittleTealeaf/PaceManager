@@ -7,7 +7,3 @@ chmod +x ./gradlew
 # Move docs over to 
 rm -r ./pages/javadoc
 cp -r ./build/docs/javadoc ./pages/javadoc
-
-cd pages
-./build.sh
-cd ..
