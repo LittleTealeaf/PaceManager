@@ -9,5 +9,5 @@ rm -r ./pages/javadoc
 cp -r ./build/docs/javadoc ./pages/javadoc
 
 cd pages
-npm install
+./build.sh
 cd ..
