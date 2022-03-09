@@ -44,7 +44,7 @@ header .navigation button {
     color: white;
     border-radius: 5px;
     padding: 5px;
-    flex-grow: 4;
+    flex-grow: 3;
     font-size: 20px;
     cursor:pointer;
     text-decoration: none;
@@ -53,7 +53,7 @@ header .navigation button {
 
 header .navigation button:hover {
     background-color:var(--selected-color);
-    flex-grow: 5;
+    flex-grow: 4;
 }
 
 header .navigation button:active {
