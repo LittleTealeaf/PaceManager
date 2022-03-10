@@ -17,6 +17,8 @@ jobs:
           distribution: 'temurin'
       - name: Run build script
         run: ./pages.sh
+      - name: Remove Gitignore
+        run: rm ./pages/.gitignore
       - name: Publish to Github Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
