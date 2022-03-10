@@ -5,7 +5,7 @@
 [![Gradle CI](https://github.com/LittleTealeaf/paceManager/actions/workflows/gradle.yml/badge.svg)](https://github.com/LittleTealeaf/paceManager/actions/workflows/gradle.yml) [![CodeQL](https://github.com/LittleTealeaf/paceManager/actions/workflows/codeql.yml/badge.svg)](https://github.com/LittleTealeaf/paceManager/actions/workflows/codeql.yml) [![pmd](https://github.com/LittleTealeaf/paceManager/actions/workflows/pmd.yml/badge.svg)](https://github.com/LittleTealeaf/paceManager/actions/workflows/pmd.yml) [![Publish Pages](https://github.com/LittleTealeaf/paceManager/actions/workflows/pages-publish.yml/badge.svg)](https://github.com/LittleTealeaf/paceManager/actions/workflows/pages-publish.yml) 
 
 Website: https://littletealeaf.github.io/paceManager/  
-Warning, website is currently under development, and is quite literally my first ever experience building an actual website, so I'll be very... not knowing what I'm doing
+> Website is currently in development, things may be broken
 
 ## What is this project?
 
