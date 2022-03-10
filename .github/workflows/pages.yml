@@ -17,7 +17,13 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Run build script
+      - name: Make Gradlew Executable
+        run: chmod +x gradlew
+      - name: Build Javadocs with Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: javadoc
+      - name: Run pages.sh build script
         run: ./pages.sh
       - name: Remove Gitignore
         run: rm ./pages/.gitignore
