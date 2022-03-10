@@ -3,6 +3,8 @@ name: Publish Pages
 on:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   publish:
@@ -21,6 +23,7 @@ jobs:
         run: rm ./pages/.gitignore
       - name: Publish to Github Pages
         uses: peaceiris/actions-gh-pages@v3
+        if: github.event_name == 'push'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: pages
