@@ -1,0 +1,11 @@
+name: "Pull Request Labeler"
+on: [pull_request]
+
+jobs:
+  label_pull_request:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/labeler@v4
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        sync-labels: true
