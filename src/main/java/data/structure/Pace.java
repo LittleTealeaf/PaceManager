@@ -7,6 +7,7 @@ import data.interfaces.Identifiable;
 
 import java.util.*;
 
+
 public class Pace implements IPace {
 
     private final List<ITeam> teams;
