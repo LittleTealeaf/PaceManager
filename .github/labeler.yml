@@ -1,0 +1,38 @@
+#Github
+dependabot: '.github/dependabot.yml'
+
+github_actions: '.github/workflows/**/*'
+
+github: '.github/**/*'
+
+gitignore: '**/*.gitignore'
+
+#Dependencies
+gradle: ['gradlew', 'gradlew.bat', 'settings.gradle', 'build.gradle', 'gradle/**/*']
+
+dependencies: ['build.gradle']
+
+# Paths
+website: 'pages/*'
+
+source: 'src/main/**/*'
+
+tests: 'src/tests/**/*'
+
+#File Formats
+java: '**/*.java'
+
+javascript: '**/*.js'
+
+python: '**/*.py'
+
+markdown: '**/*.md'
+
+css: '**/*.css'
+
+json: '**/*.json'
+
+yml: '**/*.yml'
+
+html: '**/*.html'
+
