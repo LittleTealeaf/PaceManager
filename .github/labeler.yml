@@ -3,6 +3,7 @@ dependabot: '.github/dependabot.yml'
 github_actions: '.github/workflows/**/*'
 github: '.github/**/*'
 gitignore: '**/*.gitignore'
+labels: ['.github/labeler.yml', '.github/workflows/labeler.yml']
 
 #Dependencies
 gradle: [ 'gradlew', 'gradlew.bat', 'settings.gradle', 'build.gradle', 'gradle/**/*' ]
