@@ -7,6 +7,10 @@
 Website: https://littletealeaf.github.io/paceManager/  
 > Website is currently in development, things may be broken
 
+Javadoc: https://littletealeaf.github.io/paceManager/javadoc/
+
+> This may change..
+
 
 ## What is this project?
 
