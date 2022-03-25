@@ -8,6 +8,7 @@ import java.util.List;
 /**
  * Represents a division of riders with a goal time
  * @author Thomas Kwashnak
+ * @since 2.0.0
  */
 public interface IDivision extends Identifiable, PaceComponent {
 
