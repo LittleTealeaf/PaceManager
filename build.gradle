@@ -10,7 +10,7 @@ javafx {
 }
 
 group 'org.tealeaf'
-version '2.0-DEVELOPMENT'
+version '2.0.0-DEV'
 
 repositories {
     mavenCentral()
