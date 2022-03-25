@@ -7,6 +7,11 @@
 Website: https://littletealeaf.github.io/paceManager/  
 > Website is currently in development, things may be broken
 
+Javadoc: https://littletealeaf.github.io/paceManager/javadoc/
+
+> This may change..
+
+
 ## What is this project?
 
 For several years, I've helped out at a local bridle-land association, where I run the calculations and determine the
