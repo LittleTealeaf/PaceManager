@@ -78,3 +78,5 @@ build/
 bin/
 
 .vscode/
+
+javadoc/
