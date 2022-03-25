@@ -11,7 +11,7 @@ public class Rider implements IRider {
      * Creates a rider with no name
      */
     public Rider() {
-
+        //Empty Constructor
     }
 
     /**
