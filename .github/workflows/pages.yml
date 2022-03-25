@@ -45,7 +45,7 @@ jobs:
       - name: Run Python Script
         run: |
           cd pages
-          python ./python/copy-javadocs.py
+          python python/build.py
           cd ..
       - name: Run Node Compile
         run: |

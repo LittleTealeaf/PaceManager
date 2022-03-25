@@ -80,3 +80,5 @@ bin/
 .vscode/
 
 javadoc/
+
+__pycache__/

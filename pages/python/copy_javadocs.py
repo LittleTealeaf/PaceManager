@@ -9,5 +9,3 @@ if os.path.exists(path_soruce):
     if os.path.exists(path_target):
         shutil.rmtree(path_target)
     shutil.copytree(path_soruce,path_target)
-
-    
