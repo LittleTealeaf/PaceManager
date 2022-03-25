@@ -62,7 +62,11 @@ public class Rider implements IRider {
                 return firstName;
             }
         } else {
-            return "";
+            if(lastName != null) {
+                return lastName;
+            } else {
+                return "";
+            }
         }
     }
 
