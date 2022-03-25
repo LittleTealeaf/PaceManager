@@ -19,19 +19,42 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.10'
+      - name: Set up Node 17
+        uses: actions/setup-node@v3
+        with:
+          node-version: '17'
+      - name: Update Pip
+        run: python -m pip install --upgrade pip
+      - name: Install Python Dependencies
+        run: python -m pip install -r ./pages/python/requirements.txt
+      - name: Install Javascript Dependencies
+        run: |
+          cd pages
+          npm ci
+          cd ..
       - name: Make Gradlew Executable
         run: chmod +x gradlew
       - name: Build Javadocs with Gradle
         uses: gradle/gradle-build-action@v2
         with:
           arguments: javadoc
-      - name: Run pages.sh build script
-        run: ./pages.sh
-      - name: Remove Gitignore
-        run: rm ./pages/.gitignore
+      - name: Run Python Script
+        run: |
+          cd pages
+          python ./python/copy-javadocs.py
+          cd ..
+      - name: Run Node Compile
+        run: |
+          cd pages
+          npm run compile
+          cd ..
       - name: Publish to Github Pages
         uses: peaceiris/actions-gh-pages@v3
-        if: github.event_name == 'push'
+        if:  ${{github.event_name == 'push' || github.event_name == 'schedule'}}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: pages
+          publish_dir: pages/out
