@@ -20,3 +20,11 @@ updates:
     labels:
       - "dependencies"
       - "github_actions"
+  - package-ecosystem: "npm"
+    directory: "pages/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pip"
+    directory: "pages/python/"
+    schedule:
+      interval: "daily"
