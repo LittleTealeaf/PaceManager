@@ -7,14 +7,27 @@ public class Rider implements IRider {
     private String firstName;
     private String lastName;
 
+    /**
+     * Creates a rider with no name
+     */
     public Rider() {
 
     }
 
+    /**
+     * Creates a rider with a first name
+     * 
+     * @param firstName The first name of the rider
+     */
     public Rider(String firstName) {
         this.firstName = firstName;
     }
 
+    /**
+     * Creates a rider with a full name
+     * @param firstName The first name of the rider
+     * @param lastName The last name of the rider
+     */
     public Rider(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -42,8 +55,8 @@ public class Rider implements IRider {
 
     @Override
     public String getFullName() {
-        if(firstName != null) {
-            if(lastName != null) {
+        if (firstName != null) {
+            if (lastName != null) {
                 return firstName + " " + lastName;
             } else {
                 return firstName;
@@ -56,8 +69,6 @@ public class Rider implements IRider {
     @Override
     public String toString() {
         return getFullName();
-    } 
+    }
 
-    
-        
 }
