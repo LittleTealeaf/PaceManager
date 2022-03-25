@@ -78,6 +78,11 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">IDivision</span><span class="extends-implements">
 extends <a href="../interfaces/Identifiable.html" title="interface in data.interfaces">Identifiable</a>, <a href="../interfaces/PaceComponent.html" title="interface in data.interfaces">PaceComponent</a></span></div>
+<div class="block">Represents a division of riders with a goal time</div>
+<dl class="notes">
+<dt>Since:</dt>
+<dd>2.0.0</dd>
+</dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -94,22 +99,34 @@ extends <a href="../interfaces/Identifiable.html" title="interface in data.inter
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="IClock.html" title="interface in data.api">IClock</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getGoalTime()" class="member-name-link">getGoalTime</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets the current goal time that riders within the division should aim for</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getName()" class="member-name-link">getName</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets the display name of the division</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="ITeam.html" title="interface in data.api">ITeam</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getTeams()" class="member-name-link">getTeams</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Gets the list of teams that are currently stored within the division</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isDefaultDivision()" class="member-name-link">isDefaultDivision</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Checks the associated IPace to see if this is the default division</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setGoalTime(data.api.IClock)" class="member-name-link">setGoalTime</a><wbr>(<a href="IClock.html" title="interface in data.api">IClock</a>&nbsp;goalTime)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Sets the goal time that riders within the division should aim for</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setName(java.lang.String)" class="member-name-link">setName</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Sets the display name of the division</div>
+</div>
 </div>
 </div>
 </div>
@@ -134,36 +151,66 @@ extends <a href="../interfaces/Identifiable.html" title="interface in data.inter
 <section class="detail" id="getName()">
 <h3>getName</h3>
 <div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getName</span>()</div>
+<div class="block">Gets the display name of the division</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>Name of the division</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setName(java.lang.String)">
 <h3>setName</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">setName</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="block">Sets the display name of the division</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>name</code> - Display name of the division</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getGoalTime()">
 <h3>getGoalTime</h3>
 <div class="member-signature"><span class="return-type"><a href="IClock.html" title="interface in data.api">IClock</a></span>&nbsp;<span class="element-name">getGoalTime</span>()</div>
+<div class="block">Gets the current goal time that riders within the division should aim for</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>The current goal time of the division</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setGoalTime(data.api.IClock)">
 <h3>setGoalTime</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">setGoalTime</span><wbr><span class="parameters">(<a href="IClock.html" title="interface in data.api">IClock</a>&nbsp;goalTime)</span></div>
+<div class="block">Sets the goal time that riders within the division should aim for</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>goalTime</code> - The new goal time</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getTeams()">
 <h3>getTeams</h3>
 <div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="ITeam.html" title="interface in data.api">ITeam</a>&gt;</span>&nbsp;<span class="element-name">getTeams</span>()</div>
+<div class="block">Gets the list of teams that are currently stored within the division</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>List of teams in the division</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="isDefaultDivision()">
 <h3>isDefaultDivision</h3>
 <div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">isDefaultDivision</span>()</div>
+<div class="block">Checks the associated IPace to see if this is the default division</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd><code>true</code> if this division is the default division, <code>false</code> otherwise.</dd>
+</dl>
 </section>
 </li>
 </ul>

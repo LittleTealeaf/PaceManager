@@ -115,52 +115,80 @@ implements <a href="../api/IClock.html" title="interface in data.api">IClock</a>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#abs()" class="member-name-link">abs</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Calls the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Math.html#abs(double)" title="class or interface in java.lang" class="external-link"><code>Math.abs(int)</code></a> method on the time, essentially making it positive if it was negative</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#add(int)" class="member-name-link">add</a><wbr>(int&nbsp;time)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Adds time to this clock's value</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#add(data.api.IClock)" class="member-name-link">add</a><wbr>(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Adds another clock's value to this value</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#asString()" class="member-name-link">asString</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Compiles the time into a human-readable format</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#equals(java.lang.Object)" class="member-name-link">equals</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;o)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAbs()" class="member-name-link">getAbs</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the absolute value of this clock, but returns a new instance without modifying this clock's time</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAdd(int)" class="member-name-link">getAdd</a><wbr>(int&nbsp;time)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Adds time to this clock's value, but returns a new instance without modifying any clock's time value</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAdd(data.api.IClock)" class="member-name-link">getAdd</a><wbr>(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Adds another clock's time to this clock's value, but returns a new instance without modifying any clock's time value</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getElapsed(data.api.IClock)" class="member-name-link">getElapsed</a><wbr>(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the absolute difference between this clock's time and another clock's time.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSubtract(int)" class="member-name-link">getSubtract</a><wbr>(int&nbsp;time)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Subtracts time to this clock's value, but returns a new instance without modifying any clock's time value</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSubtract(data.api.IClock)" class="member-name-link">getSubtract</a><wbr>(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Subtracts another clock's value from this clock's value, but returns a new instance without modifying either clock's value</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTime()" class="member-name-link">getTime</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the current time represented in the Clock</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hashCode()" class="member-name-link">hashCode</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setTime(int)" class="member-name-link">setTime</a><wbr>(int&nbsp;time)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the represented time in the clock</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#subtract(int)" class="member-name-link">subtract</a><wbr>(int&nbsp;time)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Subtracts time from this clock</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#subtract(data.api.IClock)" class="member-name-link">subtract</a><wbr>(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Subtracts another clock's value from this value</div>
+</div>
 </div>
 </div>
 </div>
@@ -208,9 +236,13 @@ implements <a href="../api/IClock.html" title="interface in data.api">IClock</a>
 <section class="detail" id="getTime()">
 <h3>getTime</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getTime</span>()</div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../api/IClock.html#getTime()">IClock</a></code></span></div>
+<div class="block">Returns the current time represented in the Clock</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/IClock.html#getTime()">getTime</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
+<dt>Returns:</dt>
+<dd>The current time, in seconds</dd>
 </dl>
 </section>
 </li>
@@ -218,9 +250,13 @@ implements <a href="../api/IClock.html" title="interface in data.api">IClock</a>
 <section class="detail" id="setTime(int)">
 <h3>setTime</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setTime</span><wbr><span class="parameters">(int&nbsp;time)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../api/IClock.html#setTime(int)">IClock</a></code></span></div>
+<div class="block">Sets the represented time in the clock</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/IClock.html#setTime(int)">setTime</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>time</code> - The new time to represent, in seconds.</dd>
 </dl>
 </section>
 </li>
@@ -228,9 +264,15 @@ implements <a href="../api/IClock.html" title="interface in data.api">IClock</a>
 <section class="detail" id="getAdd(data.api.IClock)">
 <h3>getAdd</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../api/IClock.html" title="interface in data.api">IClock</a></span>&nbsp;<span class="element-name">getAdd</span><wbr><span class="parameters">(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../api/IClock.html#getAdd(data.api.IClock)">IClock</a></code></span></div>
+<div class="block">Adds another clock's time to this clock's value, but returns a new instance without modifying any clock's time value</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/IClock.html#getAdd(data.api.IClock)">getAdd</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>other</code> - The other clock to add to this clock</dd>
+<dt>Returns:</dt>
+<dd>A new IClock instance with a value equal to this clock's value plus the provided clock's value</dd>
 </dl>
 </section>
 </li>
@@ -238,9 +280,15 @@ implements <a href="../api/IClock.html" title="interface in data.api">IClock</a>
 <section class="detail" id="getAdd(int)">
 <h3>getAdd</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../api/IClock.html" title="interface in data.api">IClock</a></span>&nbsp;<span class="element-name">getAdd</span><wbr><span class="parameters">(int&nbsp;time)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../api/IClock.html#getAdd(int)">IClock</a></code></span></div>
+<div class="block">Adds time to this clock's value, but returns a new instance without modifying any clock's time value</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/IClock.html#getAdd(int)">getAdd</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>time</code> - The number of seconds to add to this clock's value</dd>
+<dt>Returns:</dt>
+<dd>A new IClock instance with a value equal to this clock's value plus the provided time in seconds</dd>
 </dl>
 </section>
 </li>
@@ -248,9 +296,15 @@ implements <a href="../api/IClock.html" title="interface in data.api">IClock</a>
 <section class="detail" id="getSubtract(data.api.IClock)">
 <h3>getSubtract</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../api/IClock.html" title="interface in data.api">IClock</a></span>&nbsp;<span class="element-name">getSubtract</span><wbr><span class="parameters">(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../api/IClock.html#getSubtract(data.api.IClock)">IClock</a></code></span></div>
+<div class="block">Subtracts another clock's value from this clock's value, but returns a new instance without modifying either clock's value</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/IClock.html#getSubtract(data.api.IClock)">getSubtract</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>other</code> - The other clock to remove from this clock</dd>
+<dt>Returns:</dt>
+<dd>A new IClock instance with a value equal to this clock's value minus the provided clock's value</dd>
 </dl>
 </section>
 </li>
@@ -258,9 +312,15 @@ implements <a href="../api/IClock.html" title="interface in data.api">IClock</a>
 <section class="detail" id="getSubtract(int)">
 <h3>getSubtract</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../api/IClock.html" title="interface in data.api">IClock</a></span>&nbsp;<span class="element-name">getSubtract</span><wbr><span class="parameters">(int&nbsp;time)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../api/IClock.html#getSubtract(int)">IClock</a></code></span></div>
+<div class="block">Subtracts time to this clock's value, but returns a new instance without modifying any clock's time value</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/IClock.html#getSubtract(int)">getSubtract</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>time</code> - The number of seconds to subtract from this clock's value</dd>
+<dt>Returns:</dt>
+<dd>A new IClock instance with a value equal to this clock's value minus the provided time</dd>
 </dl>
 </section>
 </li>
@@ -268,9 +328,13 @@ implements <a href="../api/IClock.html" title="interface in data.api">IClock</a>
 <section class="detail" id="getAbs()">
 <h3>getAbs</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../api/IClock.html" title="interface in data.api">IClock</a></span>&nbsp;<span class="element-name">getAbs</span>()</div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../api/IClock.html#getAbs()">IClock</a></code></span></div>
+<div class="block">Gets the absolute value of this clock, but returns a new instance without modifying this clock's time</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/IClock.html#getAbs()">getAbs</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
+<dt>Returns:</dt>
+<dd>A new IClock instance with a value equal to the absolute value of this clock's time</dd>
 </dl>
 </section>
 </li>
@@ -278,9 +342,15 @@ implements <a href="../api/IClock.html" title="interface in data.api">IClock</a>
 <section class="detail" id="getElapsed(data.api.IClock)">
 <h3>getElapsed</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../api/IClock.html" title="interface in data.api">IClock</a></span>&nbsp;<span class="element-name">getElapsed</span><wbr><span class="parameters">(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../api/IClock.html#getElapsed(data.api.IClock)">IClock</a></code></span></div>
+<div class="block">Returns the absolute difference between this clock's time and another clock's time.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/IClock.html#getElapsed(data.api.IClock)">getElapsed</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>other</code> - The other clock to measure the distance between</dd>
+<dt>Returns:</dt>
+<dd>A new IClock instance with a value equal to the absolute difference between this clock and the provided clock</dd>
 </dl>
 </section>
 </li>
@@ -288,9 +358,15 @@ implements <a href="../api/IClock.html" title="interface in data.api">IClock</a>
 <section class="detail" id="add(data.api.IClock)">
 <h3>add</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../api/IClock.html" title="interface in data.api">IClock</a></span>&nbsp;<span class="element-name">add</span><wbr><span class="parameters">(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../api/IClock.html#add(data.api.IClock)">IClock</a></code></span></div>
+<div class="block">Adds another clock's value to this value</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/IClock.html#add(data.api.IClock)">add</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>other</code> - The other clock to add to this value</dd>
+<dt>Returns:</dt>
+<dd>A reference to this IClock instance</dd>
 </dl>
 </section>
 </li>
@@ -298,9 +374,15 @@ implements <a href="../api/IClock.html" title="interface in data.api">IClock</a>
 <section class="detail" id="add(int)">
 <h3>add</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../api/IClock.html" title="interface in data.api">IClock</a></span>&nbsp;<span class="element-name">add</span><wbr><span class="parameters">(int&nbsp;time)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../api/IClock.html#add(int)">IClock</a></code></span></div>
+<div class="block">Adds time to this clock's value</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/IClock.html#add(int)">add</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>time</code> - The time, in seconds, to add to this clock</dd>
+<dt>Returns:</dt>
+<dd>A reference to this IClock instance</dd>
 </dl>
 </section>
 </li>
@@ -308,9 +390,15 @@ implements <a href="../api/IClock.html" title="interface in data.api">IClock</a>
 <section class="detail" id="subtract(data.api.IClock)">
 <h3>subtract</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../api/IClock.html" title="interface in data.api">IClock</a></span>&nbsp;<span class="element-name">subtract</span><wbr><span class="parameters">(<a href="../api/IClock.html" title="interface in data.api">IClock</a>&nbsp;other)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../api/IClock.html#subtract(data.api.IClock)">IClock</a></code></span></div>
+<div class="block">Subtracts another clock's value from this value</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/IClock.html#subtract(data.api.IClock)">subtract</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>other</code> - The other clock to subtract this value by</dd>
+<dt>Returns:</dt>
+<dd>A reference to this IClock instance</dd>
 </dl>
 </section>
 </li>
@@ -318,9 +406,15 @@ implements <a href="../api/IClock.html" title="interface in data.api">IClock</a>
 <section class="detail" id="subtract(int)">
 <h3>subtract</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../api/IClock.html" title="interface in data.api">IClock</a></span>&nbsp;<span class="element-name">subtract</span><wbr><span class="parameters">(int&nbsp;time)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../api/IClock.html#subtract(int)">IClock</a></code></span></div>
+<div class="block">Subtracts time from this clock</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/IClock.html#subtract(int)">subtract</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>time</code> - The time, in seconds, to subtract this clock by</dd>
+<dt>Returns:</dt>
+<dd>A reference to this IClock instance</dd>
 </dl>
 </section>
 </li>
@@ -328,9 +422,13 @@ implements <a href="../api/IClock.html" title="interface in data.api">IClock</a>
 <section class="detail" id="abs()">
 <h3>abs</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../api/IClock.html" title="interface in data.api">IClock</a></span>&nbsp;<span class="element-name">abs</span>()</div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../api/IClock.html#abs()">IClock</a></code></span></div>
+<div class="block">Calls the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Math.html#abs(double)" title="class or interface in java.lang" class="external-link"><code>Math.abs(int)</code></a> method on the time, essentially making it positive if it was negative</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/IClock.html#abs()">abs</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
+<dt>Returns:</dt>
+<dd>A reference to this IClock instance</dd>
 </dl>
 </section>
 </li>
@@ -338,9 +436,13 @@ implements <a href="../api/IClock.html" title="interface in data.api">IClock</a>
 <section class="detail" id="asString()">
 <h3>asString</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">asString</span>()</div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../api/IClock.html#asString()">IClock</a></code></span></div>
+<div class="block">Compiles the time into a human-readable format</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/IClock.html#asString()">asString</a></code>&nbsp;in interface&nbsp;<code><a href="../api/IClock.html" title="interface in data.api">IClock</a></code></dd>
+<dt>Returns:</dt>
+<dd>The human-readable string representing this time</dd>
 </dl>
 </section>
 </li>
