@@ -59,7 +59,7 @@ jobs:
             ~/.cache/pip
           key: ${{github.repository}}/${{github.head_ref}}-pip-${{hashFiles('**/requirements.txt')}}
           restore-keys: |
-            ${{github.repository}}/${{gituhb.head_ref}}-pip-
+            ${{github.repository}}/${{github.head_ref}}-pip-
             ${{github.repository}}/-pip-
       - name: Install Python Dependencies
         working-directory: ./pages
