@@ -40,28 +40,28 @@ jobs:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: ${{github.repository}}/${{github.head_ref}}-gradle-${{ hashFiles('**/*.gradle','**/*.gradle-wrapper.properties')}}
+          key: ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-gradle-${{ hashFiles('**/*.gradle','**/*.gradle-wrapper.properties')}}
           restore-keys: |
-            ${{github.repository}}/${{github.head_ref}}-gradle-
-            ${{github.repository}}/-gradle-
+            ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-gradle-
+            ${{runner.os}}-${{github.repository}}/-gradle-
       - name: Cache Nextjs
         uses: actions/cache@v3
         with:
           path: |
             ./pages/.next/cache
-          key: ${{github.repository}}/${{github.head_ref}}-nextjs-${{hashFiles('.git/**/*')}}
+          key: ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-nextjs-${{hashFiles('.git/**/*')}}
           restore-keys: |
-            ${{github.repository}}/${{github.head_ref}}-nextjs-
-            ${{github.repository}}/-nextjs-
+            ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-nextjs-
+            ${{runner.os}}-${{github.repository}}/-nextjs-
       - name: Cache Pip
         uses: actions/cache@v3
         with:
           path: |
             ~/.cache/pip
-          key: ${{github.repository}}/${{github.head_ref}}-pip-${{hashFiles('**/requirements.txt')}}
+          key: ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-pip-${{hashFiles('**/requirements.txt')}}
           restore-keys: |
-            ${{github.repository}}/${{github.head_ref}}-pip-
-            ${{github.repository}}/-pip-
+            ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-pip-
+            ${{runner.os}}-${{github.repository}}/-pip-
       - name: Install Python Dependencies
         working-directory: pages
         run: python -m pip install -r python/requirements.txt
