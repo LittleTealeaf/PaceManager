@@ -49,7 +49,7 @@ jobs:
         with:
           path: |
             ./pages/.next/cache
-          key: ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-nextjs-${{hashFiles('.git/**/*')}}
+          key: ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-nextjs-${{github.run_id}}
           restore-keys: |
             ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-nextjs-
             ${{runner.os}}-${{github.repository}}/-nextjs-
