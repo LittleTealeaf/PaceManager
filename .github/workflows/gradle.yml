@@ -26,10 +26,11 @@ jobs:
         path: |
           ~/.gradle/caches
           ~/.gradle/wrapper
-        key: ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-gradle-${{ hashFiles('**/*.gradle','**/*.gradle-wrapper.properties')}}
+        key: ${{github.repository}}/${{github.head_ref}}-gradle-${{runner.os}}-${{matrix.java}}-${{hashFiles('**/*.gradle','**/*.gradle-wrapper.properties')}}
         restore-keys: |
-          ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-gradle-
-          ${{runner.os}}-${{github.repository}}/-gradle-
+          ${{github.repository}}/${{github.head_ref}}-gradle-${{runner.os}}-${{matrix.java}}-
+          ${{github.repository}}/${{github.head_ref}}-gradle-${{runner.os}}-
+          ${{github.repository}}/${{github.head_ref}}-gradle-
     - name: Make Gradlew Executable
       run: chmod +x gradlew
     - name: Build with Gradle
