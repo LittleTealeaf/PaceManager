@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         gradlescript: [ build ]
-        java: [16, 17]
+        java: [16, 17, 18]
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
