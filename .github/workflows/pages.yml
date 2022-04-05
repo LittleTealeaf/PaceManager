@@ -10,6 +10,8 @@ on:
 
 jobs:
   build-pages:
+    concurrency:
+      group: ${{github.head_ref || github.ref }}
     name: "Build Pages"
     runs-on: ubuntu-latest
     steps:
