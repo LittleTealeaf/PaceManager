@@ -33,7 +33,7 @@ jobs:
         with:
           node-version: '17'
           cache: 'npm'
-          cache-dependency-path: pages/package-lock.json
+          cache-dependency-path: docs/package-lock.json
       - name: Cache Gradle
         uses: actions/cache@v3
         with:
@@ -48,7 +48,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            ./pages/.next/cache
+            ./docs/.next/cache
           key: ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-nextjs-${{github.run_id}}
           restore-keys: |
             ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-nextjs-
@@ -76,13 +76,13 @@ jobs:
           arguments: javadoc
       - name: Run Python Build Script
         run: python ./python/build.py
-        working-directory: ./pages
+        working-directory: ./docs
       - name: Run Nextjs Compile
-        working-directory: ./pages
+        working-directory: ./docs
         run: npm run compile
       - name: Publish to Github Pages
         if:  ${{github.event_name == 'push' || github.event_name == 'schedule'}}
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
-          publish_dir: ./pages/out
+          publish_dir: ./docs/out
