@@ -50,3 +50,4 @@ please feel free to create an issue.
 
 The complete javadocs is compiled and published to the [Github Pages](https://littletealeaf.github.io/paceManager/) for
 each update made to the main branch (Using a [github action](./.github/workflows/github-pages.yml)).
+ 
