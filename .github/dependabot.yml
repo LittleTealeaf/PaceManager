@@ -21,10 +21,10 @@ updates:
       - "dependencies"
       - "github_actions"
   - package-ecosystem: "npm"
-    directory: "pages/"
+    directory: "docs/"
     schedule:
       interval: "daily"
   - package-ecosystem: "pip"
-    directory: "pages/python/"
+    directory: "docs/python/"
     schedule:
       interval: "daily"
