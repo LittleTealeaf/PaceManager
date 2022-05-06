@@ -12,11 +12,7 @@ repositories {
     mavenCentral()
 }
 
-ext {
-    junitVersion = '5.8.2'
-}
-
-    sourceCompatibility = JavaVersion.VERSION_18
+sourceCompatibility = JavaVersion.VERSION_18
 targetCompatibility = JavaVersion.VERSION_18
 
 tasks.withType(JavaCompile) {
@@ -46,9 +42,14 @@ dependencies {
     implementation('eu.hansolo:tilesfx:17.1.9') {
         exclude(group: 'org.openjfx')
     }
+    implementation 'org.junit.jupiter:junit-jupiter:5.8.2'
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+    testImplementation("org.testfx:testfx-junit5:4.0.16-alpha")
+
+    testImplementation group: 'org.hamcrest', name: 'hamcrest', version: '2.2'
+
 }
 
 test {
