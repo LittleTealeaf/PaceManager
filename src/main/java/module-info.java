@@ -5,10 +5,9 @@ module org.tealeaf.pacemanager {
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
-    requires validatorfx;
+    requires net.synedra.validatorfx;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
-    requires eu.hansolo.tilesfx;
 
     opens org.tealeaf.pacemanager to javafx.fxml;
     exports org.tealeaf.pacemanager;

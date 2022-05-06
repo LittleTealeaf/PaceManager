@@ -16,8 +16,8 @@ ext {
     junitVersion = '5.8.2'
 }
 
-sourceCompatibility = '17'
-targetCompatibility = '17'
+    sourceCompatibility = JavaVersion.VERSION_18
+targetCompatibility = JavaVersion.VERSION_18
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
@@ -35,15 +35,15 @@ javafx {
 
 dependencies {
     implementation('org.controlsfx:controlsfx:11.1.1')
-    implementation('com.dlsc.formsfx:formsfx-core:11.3.2') {
+    implementation('com.dlsc.formsfx:formsfx-core:11.5.0') {
         exclude(group: 'org.openjfx')
     }
-    implementation('net.synedra:validatorfx:0.2.1') {
+    implementation('net.synedra:validatorfx:0.3.1') {
         exclude(group: 'org.openjfx')
     }
-    implementation('org.kordamp.ikonli:ikonli-javafx:12.3.0')
+    implementation('org.kordamp.ikonli:ikonli-javafx:12.3.1')
     implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
-    implementation('eu.hansolo:tilesfx:11.48') {
+    implementation('eu.hansolo:tilesfx:17.1.9') {
         exclude(group: 'org.openjfx')
     }
 
