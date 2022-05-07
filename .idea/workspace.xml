@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b9a42fd-9f26-4d77-9a6e-5f621fbf7f2f" name="Changes" comment="Headless now?">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/PaceManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/PaceManagerTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="5b9a42fd-9f26-4d77-9a6e-5f621fbf7f2f" name="Changes" comment="Attempted Headless?" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -214,6 +210,11 @@
     </configuration>
     <configuration name="paceManager [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
+        <option name="env">
+          <map>
+            <entry key="headless" value="true" />
+          </map>
+        </option>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
@@ -322,7 +323,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651964863353</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Attempted Headless?">
+      <created>1651965209254</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1651965209254</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -349,6 +357,7 @@
     <MESSAGE value="Ok, think I should merge this now" />
     <MESSAGE value="Headless!" />
     <MESSAGE value="Headless now?" />
-    <option name="LAST_COMMIT_MESSAGE" value="Headless now?" />
+    <MESSAGE value="Attempted Headless?" />
+    <option name="LAST_COMMIT_MESSAGE" value="Attempted Headless?" />
   </component>
 </project>
