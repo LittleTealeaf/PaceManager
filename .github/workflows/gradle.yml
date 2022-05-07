@@ -21,7 +21,7 @@ jobs:
         distribution: 'temurin'
         cache: 'gradle'
     - name: Make Gradlew Executable
-      run: chmox +x gradlew
+      run: chmod +x gradlew
     - name: Build with Gradle
       uses: gradle/gradle-build-action@v2
       with:
