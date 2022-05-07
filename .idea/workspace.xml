@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b9a42fd-9f26-4d77-9a6e-5f621fbf7f2f" name="Changes" comment="Things to work on: DATABASE">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/database/dataobjects/Division.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/database/dataobjects/Team.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/database/Database.java" afterDir="false" />
-    </list>
+    <list default="true" id="5b9a42fd-9f26-4d77-9a6e-5f621fbf7f2f" name="Changes" comment="Ok, think I should merge this now" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -297,7 +292,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651962966137</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Ok, think I should merge this now">
+      <created>1651963507863</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1651963507863</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -321,6 +323,7 @@
     <MESSAGE value="Things look to be working" />
     <MESSAGE value="Stuff" />
     <MESSAGE value="Things to work on: DATABASE" />
-    <option name="LAST_COMMIT_MESSAGE" value="Things to work on: DATABASE" />
+    <MESSAGE value="Ok, think I should merge this now" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ok, think I should merge this now" />
   </component>
 </project>
