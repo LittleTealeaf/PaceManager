@@ -1,4 +1,4 @@
-package org.tealeaf.pacemanager.test;
+package org.tealeaf.pacemanager;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

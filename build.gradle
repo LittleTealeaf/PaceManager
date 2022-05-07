@@ -3,6 +3,13 @@ plugins {
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.10'
     id 'org.beryx.jlink' version '2.24.1'
+    id 'org.javamodularity.moduleplugin' version '1.8.10'
+}
+
+plugins.withType(JavaPlugin).configureEach {
+    java {
+        modularity.inferModulePath = true
+    }
 }
 
 group 'org.tealeaf'
@@ -21,7 +28,7 @@ tasks.withType(JavaCompile) {
 
 application {
     mainModule = 'org.tealeaf.pacemanager'
-    mainClass = 'org.tealeaf.pacemanager.HelloApplication'
+    mainClass = 'org.tealeaf.pacemanager.app.PaceManager'
 }
 
 javafx {
@@ -44,7 +51,7 @@ dependencies {
     }
     implementation 'org.junit.jupiter:junit-jupiter:5.8.2'
 
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
     testImplementation("org.testfx:testfx-junit5:4.0.16-alpha")
@@ -56,7 +63,32 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    moduleOptions {
+        runOnClasspath = true
+    }
+
 }
+compileTestJava {
+    moduleOptions {
+        compileOnClasspath = true
+    }
+}
+
+//compileJava {
+//    options.compilerArgs = [
+//            '--module-path', classpath.asPath,
+//            '--add-modules', 'javafx.controls',
+//            '--add-modules', 'javafx.fxml',
+//            '--add-modules', 'javafx.web',
+//            '--add-modules', 'javafx.graphics',
+//            '--add-modules', 'javafx.media',
+//            '--add-modules', 'org.junit.jupiter.api',
+//            '--add-reads', "$moduleName=org.junit.jupiter.api",
+//            '--patch-module', "$moduleName=" + files(sourceSets.test.java.srcDirs).asPath,
+//    ]
+//    classpath = files()
+//}
+
 
 jlink {
     imageZip = project.file("${buildDir}/distributions/app-${javafx.platform.classifier}.zip")

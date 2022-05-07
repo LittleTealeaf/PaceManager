@@ -1,4 +1,4 @@
-package org.tealeaf.pacemanager.test.threads;
+package org.tealeaf.pacemanager.threads;
 
 import javafx.application.Platform;
 

@@ -1,14 +1,13 @@
-package org.tealeaf.pacemanager.test.app;
+package org.tealeaf.pacemanager.app;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
 
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import org.tealeaf.pacemanager.test.listeners.IListenerManager;
-import org.tealeaf.pacemanager.test.listeners.ListenerManager;
+import org.tealeaf.pacemanager.listeners.IListenerManager;
+import org.tealeaf.pacemanager.listeners.ListenerManager;
 
-import java.util.List;
 import java.util.Set;
 import java.util.prefs.Preferences;
 
@@ -64,6 +63,7 @@ public class PaceManager extends Application implements IListenerManager {
 
 
         stage.setScene(new Scene(new BorderPane(),500,500));
+
 
 
         stage.show();

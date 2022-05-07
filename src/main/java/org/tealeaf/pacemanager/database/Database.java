@@ -1,4 +1,4 @@
-package org.tealeaf.pacemanager.test.database;
+package org.tealeaf.pacemanager.database;
 
 import java.util.HashSet;
 import java.util.LinkedList;
