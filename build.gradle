@@ -58,6 +58,7 @@ dependencies {
     testImplementation("org.testfx:testfx-core:4.0.16-alpha")
 
     testImplementation group: 'org.hamcrest', name: 'hamcrest', version: '2.2'
+    testImplementation 'org.testfx:openjfx-monocle:1.8.0_20'
 
 }
 
@@ -66,6 +67,7 @@ test {
     moduleOptions {
         runOnClasspath = true
     }
+    jvmArgs "-Dheadless=${project.hasProperty('headless') ? project.headless : false}"
 
 }
 compileTestJava {
