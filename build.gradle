@@ -57,6 +57,8 @@ dependencies {
     testImplementation("org.testfx:testfx-junit5:4.0.16-alpha")
     testImplementation("org.testfx:testfx-core:4.0.16-alpha")
 
+    testRuntimeOnly 'org.testfx:openjfx-monocle:1.8.0_20'
+
     testImplementation group: 'org.hamcrest', name: 'hamcrest', version: '2.2'
     testImplementation 'org.testfx:openjfx-monocle:1.8.0_20'
 
