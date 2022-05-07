@@ -33,6 +33,7 @@ public class ListenerManagerTest {
 
     @Test
     public void callListeners() {
+        listenerManager.registerListener(this);
         listenerManager.registerListener(new TestClass());
         listenerManager.callListeners(TestInterface.class, TestInterface::execute);
         assertEquals(1,executed);

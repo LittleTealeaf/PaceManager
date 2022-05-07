@@ -44,4 +44,9 @@ public class PaceManagerTest extends ApplicationTest {
     public <T extends Node> T find(final String query) {
         return (T) lookup(query).queryAll().iterator().next();
     }
+
+    @Test
+    public void testLaunching() {
+
+    }
 }

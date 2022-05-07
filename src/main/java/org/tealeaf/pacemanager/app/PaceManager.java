@@ -62,7 +62,9 @@ public class PaceManager extends Application implements IListenerManager {
         preferences = Preferences.userRoot().node("org/tealeaf/pacemanager/preferences");
 
 
-        stage.setScene(new Scene(new BorderPane(),500,500));
+        stage.setScene(new Scene(new BorderPane() {{
+            setId(R.registerID());
+        }},500,500));
 
 
 
