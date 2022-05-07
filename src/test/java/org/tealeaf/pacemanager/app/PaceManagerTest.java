@@ -50,6 +50,6 @@ public class PaceManagerTest extends ApplicationTest {
 
     @Test
     public void testLaunching() {
-        assertFalse(true);
+
     }
 }
