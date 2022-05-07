@@ -1,4 +1,4 @@
-package org.tealeaf.pacemanager;
+package org.tealeaf.pacemanager.test;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

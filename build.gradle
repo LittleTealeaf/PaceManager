@@ -46,11 +46,11 @@ dependencies {
 
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
 
-    testCompileOnly("org.junit.jupiter:junit-jupiter-api:5.8.2")
-    testCompileOnly("org.testfx:testfx-junit5:4.0.16-alpha")
-    testCompileOnly("org.testfx:testfx-core:4.0.16-alpha")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
+    testImplementation("org.testfx:testfx-junit5:4.0.16-alpha")
+    testImplementation("org.testfx:testfx-core:4.0.16-alpha")
 
-    testCompileOnly group: 'org.hamcrest', name: 'hamcrest', version: '2.2'
+    testImplementation group: 'org.hamcrest', name: 'hamcrest', version: '2.2'
 
 }
 
