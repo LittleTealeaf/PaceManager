@@ -69,29 +69,12 @@ test {
     moduleOptions {
         runOnClasspath = true
     }
-    jvmArgs "-Dheadless=${project.hasProperty('headless') ? project.headless : false}"
-
 }
 compileTestJava {
     moduleOptions {
         compileOnClasspath = true
     }
 }
-
-//compileJava {
-//    options.compilerArgs = [
-//            '--module-path', classpath.asPath,
-//            '--add-modules', 'javafx.controls',
-//            '--add-modules', 'javafx.fxml',
-//            '--add-modules', 'javafx.web',
-//            '--add-modules', 'javafx.graphics',
-//            '--add-modules', 'javafx.media',
-//            '--add-modules', 'org.junit.jupiter.api',
-//            '--add-reads', "$moduleName=org.junit.jupiter.api",
-//            '--patch-module', "$moduleName=" + files(sourceSets.test.java.srcDirs).asPath,
-//    ]
-//    classpath = files()
-//}
 
 
 jlink {
