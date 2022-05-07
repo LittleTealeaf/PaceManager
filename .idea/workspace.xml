@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b9a42fd-9f26-4d77-9a6e-5f621fbf7f2f" name="Changes" comment="Stuff">
+    <list default="true" id="5b9a42fd-9f26-4d77-9a6e-5f621fbf7f2f" name="Changes" comment="Things to work on: DATABASE">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/database/dataobjects/Division.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/database/dataobjects/Team.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/PaceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/PaceManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/PaceManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/PaceManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/listeners/ListenerManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/listeners/ListenerManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/database/Database.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +130,20 @@
       <recent name="org.tealeaf.pacemanager" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.PaceManagerTest.testLaunching">
+  <component name="RunManager" selected="Application.PaceManager">
+    <configuration name="PaceManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.tealeaf.pacemanager.app.PaceManager" />
+      <module name="paceManager.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.tealeaf.pacemanager.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ListenerManagerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -169,29 +181,6 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;org.tealeaf.pacemanager.listeners.ListenerManagerTest.callListeners&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="ListenerManagerTest.registerListener" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;org.tealeaf.pacemanager.listeners.ListenerManagerTest.registerListener&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -249,11 +238,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.PaceManager" />
         <item itemvalue="Gradle.PaceManagerTest.testLaunching" />
         <item itemvalue="Gradle.ListenerManagerTest" />
         <item itemvalue="Gradle.ListenerManagerTest.callListeners" />
         <item itemvalue="Gradle.ListenerManagerTest.unregisterListener" />
-        <item itemvalue="Gradle.ListenerManagerTest.registerListener" />
       </list>
     </recent_temporary>
   </component>
@@ -301,7 +290,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651962589408</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Things to work on: DATABASE">
+      <created>1651962966137</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1651962966137</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -324,6 +320,7 @@
     <MESSAGE value="... junit testing is not going out well" />
     <MESSAGE value="Things look to be working" />
     <MESSAGE value="Stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="Stuff" />
+    <MESSAGE value="Things to work on: DATABASE" />
+    <option name="LAST_COMMIT_MESSAGE" value="Things to work on: DATABASE" />
   </component>
 </project>
