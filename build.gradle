@@ -1,31 +1,103 @@
 plugins {
     id 'java'
     id 'application'
-    id 'org.openjfx.javafxplugin' version '0.0.12'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
+    id 'org.beryx.jlink' version '2.24.1'
+    id 'org.javamodularity.moduleplugin' version '1.8.10'
 }
 
-javafx {
-    version = "17.0.1"
-    modules = ['javafx.controls']
+plugins.withType(JavaPlugin).configureEach {
+    java {
+        modularity.inferModulePath = true
+    }
 }
 
 group 'org.tealeaf'
-version '2.0.0-DEV'
+version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
 
+sourceCompatibility = JavaVersion.VERSION_18
+targetCompatibility = JavaVersion.VERSION_18
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+application {
+    mainModule = 'org.tealeaf.pacemanager'
+    mainClass = 'org.tealeaf.pacemanager.app.PaceManager'
+}
+
+javafx {
+    version = '17.0.1'
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.web']
+}
+
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    implementation('org.controlsfx:controlsfx:11.1.1')
+    implementation('com.dlsc.formsfx:formsfx-core:11.5.0') {
+        exclude(group: 'org.openjfx')
+    }
+    implementation('net.synedra:validatorfx:0.3.1') {
+        exclude(group: 'org.openjfx')
+    }
+    implementation('org.kordamp.ikonli:ikonli-javafx:12.3.1')
+    implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
+    implementation('eu.hansolo:tilesfx:17.1.9') {
+        exclude(group: 'org.openjfx')
+    }
+    implementation 'org.junit.jupiter:junit-jupiter:5.8.2'
+
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
+    testImplementation("org.testfx:testfx-junit5:4.0.16-alpha")
+    testImplementation("org.testfx:testfx-core:4.0.16-alpha")
+
+    testImplementation group: 'org.hamcrest', name: 'hamcrest', version: '2.2'
+
 }
 
 test {
     useJUnitPlatform()
+    moduleOptions {
+        runOnClasspath = true
+    }
+
+}
+compileTestJava {
+    moduleOptions {
+        compileOnClasspath = true
+    }
 }
 
-javadoc {
-    classpath += sourceSets.test.compileClasspath
-    source += sourceSets.test.allJava
+//compileJava {
+//    options.compilerArgs = [
+//            '--module-path', classpath.asPath,
+//            '--add-modules', 'javafx.controls',
+//            '--add-modules', 'javafx.fxml',
+//            '--add-modules', 'javafx.web',
+//            '--add-modules', 'javafx.graphics',
+//            '--add-modules', 'javafx.media',
+//            '--add-modules', 'org.junit.jupiter.api',
+//            '--add-reads', "$moduleName=org.junit.jupiter.api",
+//            '--patch-module', "$moduleName=" + files(sourceSets.test.java.srcDirs).asPath,
+//    ]
+//    classpath = files()
+//}
+
+
+jlink {
+    imageZip = project.file("${buildDir}/distributions/app-${javafx.platform.classifier}.zip")
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    launcher {
+        name = 'app'
+    }
+}
+
+jlinkZip {
+    group = 'distribution'
 }

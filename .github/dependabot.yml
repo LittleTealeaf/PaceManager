@@ -20,11 +20,3 @@ updates:
     labels:
       - "dependencies"
       - "github_actions"
-  - package-ecosystem: "npm"
-    directory: "docs/"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "pip"
-    directory: "docs/python/"
-    schedule:
-      interval: "daily"
