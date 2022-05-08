@@ -52,4 +52,4 @@ jobs:
       - name: Headless Build with Gradle
         uses: GradleBB/xvfb-action@v1
         with:
-            run: gradle build --no-daemon
+            run: gradle javadoc --no-daemon
