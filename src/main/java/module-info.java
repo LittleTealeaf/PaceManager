@@ -7,4 +7,6 @@ module org.tealeaf.pacemanager {
     exports org.tealeaf.pacemanager;
     exports org.tealeaf.pacemanager.app;
     exports org.tealeaf.pacemanager.events;
+    exports org.tealeaf.pacemanager.database;
+    exports org.tealeaf.pacemanager.database.dataobjects;
 }

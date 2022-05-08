@@ -4,11 +4,16 @@ import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
 
 public enum Identifier {
-    APPLICATION,
+    APP,
+    WINDOW_ABOUT,
     MENU,
     MENU_FILE,
     MENU_FILE_EXIT,
-    MENU_FILE_OPEN;
+    MENU_FILE_OPEN,
+    MENU_FILE_SAVE,
+    MENU_FILE_SAVE_AS,
+    MENU_HELP,
+    MENU_HELP_ABOUT;
 
     @Override
     public String toString() {

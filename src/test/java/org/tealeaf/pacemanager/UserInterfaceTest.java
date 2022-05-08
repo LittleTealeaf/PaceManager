@@ -5,8 +5,8 @@ import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.tealeaf.pacemanager.app.App;
 import org.tealeaf.pacemanager.app.Identifier;
-import org.tealeaf.pacemanager.app.PaceManager;
 import org.testfx.api.FxRobotInterface;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
@@ -14,9 +14,12 @@ import org.testfx.service.query.NodeQuery;
 
 public class UserInterfaceTest extends ApplicationTest {
 
+    protected App app;
+
     @BeforeEach
     public void beforeEachTest() throws Exception {
-        launch(PaceManager.class);
+        launch(Launcher.class);
+        app = get(App.class,lookup(Identifier.APP));
     }
 
     @Override
@@ -29,6 +32,10 @@ public class UserInterfaceTest extends ApplicationTest {
         FxToolkit.cleanupStages();
         release(new KeyCode[]{});
         release(new MouseButton[]{});
+    }
+
+    public <T> T get(Class<T> tClass, NodeQuery nodeQuery) {
+        return tClass.cast(nodeQuery.query());
     }
 
     public NodeQuery lookup(Identifier identifier) {
@@ -44,5 +51,7 @@ public class UserInterfaceTest extends ApplicationTest {
         return clickOn(identifier.toString());
     }
 
-
+    public boolean exists(Identifier identifier) {
+        return lookup(identifier).tryQuery().isPresent();
+    }
 }
