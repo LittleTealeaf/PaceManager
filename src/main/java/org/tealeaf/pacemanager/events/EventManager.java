@@ -1,10 +1,11 @@
 package org.tealeaf.pacemanager.events;
 
+import org.tealeaf.pacemanager.threads.ThreadManager;
+
 import java.util.HashSet;
 import java.util.Set;
 
 public class EventManager implements EventCoordinator {
-
 
     private final Set<Object> listeners = new HashSet<>();
 
@@ -25,10 +26,11 @@ public class EventManager implements EventCoordinator {
 
     @Override
     public <T> void runEvent(Class<T> listener, EventAction<T> action) {
-        listeners.forEach(item -> {
-            if(listener.isInstance(item)) {
-                action.execute(listener.cast(item));
-            }
-        });
+
+        listeners.parallelStream() //Using Parallelization to improve performance
+                 .filter(listener::isInstance) //Filter to items that are instance of the listener
+                 .map(listener::cast) //Maps to the listener type
+                 .sequential() //Go back to sequential (on this thread)
+                 .forEach(action::execute); //Execute the action
     }
 }

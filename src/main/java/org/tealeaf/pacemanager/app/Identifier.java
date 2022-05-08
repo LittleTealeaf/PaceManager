@@ -2,8 +2,9 @@ package org.tealeaf.pacemanager.app;
 
 import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
+import org.tealeaf.pacemanager.util.Identifiable;
 
-public enum Identifier {
+public enum Identifier implements Identifiable {
     APP,
     WINDOW_ABOUT,
     MENU,
@@ -26,5 +27,10 @@ public enum Identifier {
 
     public void set(MenuItem menuItem) {
         menuItem.setId(toString());
+    }
+
+    @Override
+    public String getID() {
+        return toString();
     }
 }

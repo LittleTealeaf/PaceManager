@@ -13,6 +13,7 @@ import static org.tealeaf.pacemanager.app.Identifier.*;
 public class AppMenu extends MenuBar {
 
 
+
     public AppMenu(App app) {
         MENU.set(this);
 
@@ -29,11 +30,6 @@ public class AppMenu extends MenuBar {
             }}, new MenuItem() {{
                 setText("Save As");
                 MENU_FILE_SAVE_AS.set(this);
-            }},new MenuItem() {{
-                MENU_FILE_EXIT.set(this);
-                setText("Exit");
-                setOnAction((action) -> app.runEvent(OnMenuExit.class,OnMenuExit::onMenuExit));
-
             }});
         }}, new Menu() {{
             MENU_HELP.set(this);
@@ -45,9 +41,5 @@ public class AppMenu extends MenuBar {
                setOnAction(action -> app.launchWindow(About.build(app)));
             }});
         }});
-    }
-
-    public interface OnMenuExit {
-        void onMenuExit();
     }
 }

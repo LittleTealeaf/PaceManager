@@ -16,12 +16,6 @@ class AppMenuTest extends UserInterfaceTest {
     void getApp() {
         app = get(App.class, lookup(Identifier.APP));
     }
-    @Test
-    void testFileExit() {
-        clickOn(Identifier.MENU_FILE);
-        clickOn(Identifier.MENU_FILE_EXIT);
-        assertFalse(exists(Identifier.APP));
-    }
 
     @Test
     void testHelpAbout() {

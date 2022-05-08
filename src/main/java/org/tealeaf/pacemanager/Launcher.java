@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import org.tealeaf.pacemanager.app.App;
 import org.tealeaf.pacemanager.app.components.AppMenu;
 
-public class Launcher extends Application  {
+public class Launcher extends Application {
 
     private App app;
 
@@ -25,21 +25,22 @@ public class Launcher extends Application  {
     public void init() throws Exception {
         super.init();
     }
+
     @Override
     public void start(Stage stage) {
 
-
-
         stage.setScene(new Scene(app = new App(stage)));
-        stage.setOnCloseRequest((action) -> app.runEvent(OnClose.class,OnClose::onClose));
+        stage.setOnCloseRequest((action) -> app.runEvent(OnClose.class, OnClose::onClose));
         stage.show();
     }
 
     public interface OnClose {
+
         void onClose();
     }
 
     public interface OnStop {
+
         void onStop();
     }
 }

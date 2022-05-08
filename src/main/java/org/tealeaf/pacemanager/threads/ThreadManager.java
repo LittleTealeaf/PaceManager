@@ -8,10 +8,18 @@ public class ThreadManager {
     private static final ExecutorService service = Executors.newCachedThreadPool();
 
     public static <T> void startFunction(Function<T> function, Listener<T> listener) {
-        service.execute(() -> {
+        run(() -> {
             T item = function.run();
-            Platform.runLater(() -> listener.onListen((item)));
+            schedule(() -> listener.onListen((item)));
         });
+    }
+
+    public static void run(Runnable runnable) {
+        service.execute(runnable);
+    }
+
+    public static void schedule(Runnable runnable) {
+        Platform.runLater(runnable);
     }
 
     public interface Function<T> {

@@ -37,7 +37,7 @@ javafx {
 }
 
 dependencies {
-    implementation group: 'net.harawata', name: 'appdirs', version: '1.2.1'
+    implementation 'net.harawata:appdirs:1.2.1'
     implementation('org.controlsfx:controlsfx:11.1.1')
     implementation('com.dlsc.formsfx:formsfx-core:11.5.0') {
         exclude(group: 'org.openjfx')
