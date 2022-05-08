@@ -56,18 +56,4 @@ class DivisionTest implements RandomDataObjects {
         eventManager.addListener((Pace.OnDivisionAdded) division -> assertSame(pace, division.getPace()));
         pace.addDivision(randomDivision());
     }
-
-    @Test
-    void getName() {
-        assertNotNull(randomDivision().getName());
-    }
-
-    @Test
-    void setName() {
-        eventManager.addListener((Pace.OnDivisionModified) division -> executed = true);
-        Division division = randomDivision();
-        pace.addDivision(division);
-        division.setName(randomName());
-        assertTrue(executed);
-    }
 }

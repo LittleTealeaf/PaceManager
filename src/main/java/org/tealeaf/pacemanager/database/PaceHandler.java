@@ -47,4 +47,5 @@ public class PaceHandler implements AppMenu.OnFileNew {
     public interface OnPaceEdited {
         void onPaceEdited(Pace pace);
     }
+
 }

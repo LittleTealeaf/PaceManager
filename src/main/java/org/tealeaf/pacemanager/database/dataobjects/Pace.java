@@ -1,13 +1,10 @@
 package org.tealeaf.pacemanager.database.dataobjects;
 
-import org.tealeaf.pacemanager.database.PaceHandler;
 import org.tealeaf.pacemanager.events.EventCoordinator;
 import org.tealeaf.pacemanager.util.Closable;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Stream;
 
 public class Pace implements Closable {
@@ -78,8 +75,12 @@ public class Pace implements Closable {
         }
     }
 
-    public void onDivisionModified(Division division) {
+    public void notifyDivisionModified(Division division) {
         eventCoordinator.runEvent(OnDivisionModified.class,i -> i.onDivisionModified(division));
+    }
+
+    public void notifyTeamModified(Team team) {
+        eventCoordinator.runEvent(OnTeamModified.class,i -> i.onTeamModified(team));
     }
 
     @Override
@@ -109,5 +110,9 @@ public class Pace implements Closable {
     public interface OnDivisionRemoved {
 
         void onDivisionRemoved(Division division);
+    }
+
+    public interface OnTeamModified {
+        void onTeamModified(Team team);
     }
 }

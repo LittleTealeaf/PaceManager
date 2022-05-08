@@ -34,12 +34,6 @@ public class Division implements Identifiable, PaceComponent {
 
     public void setName(String name) {
         this.name = name;
-        modified();
     }
 
-    protected void modified() {
-        if(pace != null) {
-            pace.onDivisionModified(this);
-        }
-    }
 }
