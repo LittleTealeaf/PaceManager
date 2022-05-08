@@ -127,8 +127,11 @@ implements <a href="../../util/Closable.html" title="interface in org.tealeaf.pa
 <div class="col-second odd-row-color"><code><a href="Pace.OnTeamAdded.html" class="type-name-link" title="interface in org.tealeaf.pacemanager.database.dataobjects">Pace.OnTeamAdded</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>static interface&nbsp;</code></div>
-<div class="col-second even-row-color"><code><a href="Pace.OnTeamRemoved.html" class="type-name-link" title="interface in org.tealeaf.pacemanager.database.dataobjects">Pace.OnTeamRemoved</a></code></div>
+<div class="col-second even-row-color"><code><a href="Pace.OnTeamModified.html" class="type-name-link" title="interface in org.tealeaf.pacemanager.database.dataobjects">Pace.OnTeamModified</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>static interface&nbsp;</code></div>
+<div class="col-second odd-row-color"><code><a href="Pace.OnTeamRemoved.html" class="type-name-link" title="interface in org.tealeaf.pacemanager.database.dataobjects">Pace.OnTeamRemoved</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -181,14 +184,17 @@ implements <a href="../../util/Closable.html" title="interface in org.tealeaf.pa
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#initialize()" class="member-name-link">initialize</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onDivisionModified(org.tealeaf.pacemanager.database.dataobjects.Division)" class="member-name-link">onDivisionModified</a><wbr>(<a href="Division.html" title="class in org.tealeaf.pacemanager.database.dataobjects">Division</a>&nbsp;division)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#notifyDivisionModified(org.tealeaf.pacemanager.database.dataobjects.Division)" class="member-name-link">notifyDivisionModified</a><wbr>(<a href="Division.html" title="class in org.tealeaf.pacemanager.database.dataobjects">Division</a>&nbsp;division)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeDivision(org.tealeaf.pacemanager.database.dataobjects.Division)" class="member-name-link">removeDivision</a><wbr>(<a href="Division.html" title="class in org.tealeaf.pacemanager.database.dataobjects">Division</a>&nbsp;division)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#notifyTeamModified(org.tealeaf.pacemanager.database.dataobjects.Team)" class="member-name-link">notifyTeamModified</a><wbr>(<a href="Team.html" title="class in org.tealeaf.pacemanager.database.dataobjects">Team</a>&nbsp;team)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeTeam(org.tealeaf.pacemanager.database.dataobjects.Team)" class="member-name-link">removeTeam</a><wbr>(<a href="Team.html" title="class in org.tealeaf.pacemanager.database.dataobjects">Team</a>&nbsp;team)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeDivision(org.tealeaf.pacemanager.database.dataobjects.Division)" class="member-name-link">removeDivision</a><wbr>(<a href="Division.html" title="class in org.tealeaf.pacemanager.database.dataobjects">Division</a>&nbsp;division)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeTeam(org.tealeaf.pacemanager.database.dataobjects.Team)" class="member-name-link">removeTeam</a><wbr>(<a href="Team.html" title="class in org.tealeaf.pacemanager.database.dataobjects">Team</a>&nbsp;team)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -275,9 +281,15 @@ implements <a href="../../util/Closable.html" title="interface in org.tealeaf.pa
 </section>
 </li>
 <li>
-<section class="detail" id="onDivisionModified(org.tealeaf.pacemanager.database.dataobjects.Division)">
-<h3>onDivisionModified</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onDivisionModified</span><wbr><span class="parameters">(<a href="Division.html" title="class in org.tealeaf.pacemanager.database.dataobjects">Division</a>&nbsp;division)</span></div>
+<section class="detail" id="notifyDivisionModified(org.tealeaf.pacemanager.database.dataobjects.Division)">
+<h3>notifyDivisionModified</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">notifyDivisionModified</span><wbr><span class="parameters">(<a href="Division.html" title="class in org.tealeaf.pacemanager.database.dataobjects">Division</a>&nbsp;division)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="notifyTeamModified(org.tealeaf.pacemanager.database.dataobjects.Team)">
+<h3>notifyTeamModified</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">notifyTeamModified</span><wbr><span class="parameters">(<a href="Team.html" title="class in org.tealeaf.pacemanager.database.dataobjects">Team</a>&nbsp;team)</span></div>
 </section>
 </li>
 <li>

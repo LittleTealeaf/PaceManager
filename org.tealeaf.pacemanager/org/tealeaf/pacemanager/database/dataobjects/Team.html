@@ -114,8 +114,8 @@ implements <a href="../../util/Identifiable.html" title="interface in org.tealea
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Class</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>static interface&nbsp;</code></div>
-<div class="col-second even-row-color"><code><a href="Team.OnTeamUpdated.html" class="type-name-link" title="interface in org.tealeaf.pacemanager.database.dataobjects">Team.OnTeamUpdated</a></code></div>
+<div class="col-first even-row-color"><code>static enum&nbsp;</code></div>
+<div class="col-second even-row-color"><code><a href="Team.Status.html" class="type-name-link" title="enum class in org.tealeaf.pacemanager.database.dataobjects">Team.Status</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
@@ -150,11 +150,23 @@ implements <a href="../../util/Identifiable.html" title="interface in org.tealea
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDivisionId()" class="member-name-link">getDivisionId</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="EventTime.html" title="class in org.tealeaf.pacemanager.database.dataobjects">EventTime</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getElapsed()" class="member-name-link">getElapsed</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="EventTime.html" title="class in org.tealeaf.pacemanager.database.dataobjects">EventTime</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getEndTime()" class="member-name-link">getEndTime</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getID()" class="member-name-link">getID</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Pace.html" title="class in org.tealeaf.pacemanager.database.dataobjects">Pace</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPace()" class="member-name-link">getPace</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="EventTime.html" title="class in org.tealeaf.pacemanager.database.dataobjects">EventTime</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getStartTime()" class="member-name-link">getStartTime</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Team.Status.html" title="enum class in org.tealeaf.pacemanager.database.dataobjects">Team.Status</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getStatus()" class="member-name-link">getStatus</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDivision(org.tealeaf.pacemanager.database.dataobjects.Division)" class="member-name-link">setDivision</a><wbr>(<a href="Division.html" title="class in org.tealeaf.pacemanager.database.dataobjects">Division</a>&nbsp;division)</code></div>
@@ -163,7 +175,13 @@ implements <a href="../../util/Identifiable.html" title="interface in org.tealea
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDivisionId(java.lang.String)" class="member-name-link">setDivisionId</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;id)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPace(org.tealeaf.pacemanager.database.dataobjects.Pace)" class="member-name-link">setPace</a><wbr>(<a href="Pace.html" title="class in org.tealeaf.pacemanager.database.dataobjects">Pace</a>&nbsp;pace)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setEndTime(org.tealeaf.pacemanager.database.dataobjects.EventTime)" class="member-name-link">setEndTime</a><wbr>(<a href="EventTime.html" title="class in org.tealeaf.pacemanager.database.dataobjects">EventTime</a>&nbsp;endTime)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPace(org.tealeaf.pacemanager.database.dataobjects.Pace)" class="member-name-link">setPace</a><wbr>(<a href="Pace.html" title="class in org.tealeaf.pacemanager.database.dataobjects">Pace</a>&nbsp;pace)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setStartTime(org.tealeaf.pacemanager.database.dataobjects.EventTime)" class="member-name-link">setStartTime</a><wbr>(<a href="EventTime.html" title="class in org.tealeaf.pacemanager.database.dataobjects">EventTime</a>&nbsp;startTime)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
@@ -248,6 +266,42 @@ implements <a href="../../util/Identifiable.html" title="interface in org.tealea
 <dt>Specified by:</dt>
 <dd><code><a href="PaceComponent.html#getPace()">getPace</a></code>&nbsp;in interface&nbsp;<code><a href="PaceComponent.html" title="interface in org.tealeaf.pacemanager.database.dataobjects">PaceComponent</a></code></dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getEndTime()">
+<h3>getEndTime</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="EventTime.html" title="class in org.tealeaf.pacemanager.database.dataobjects">EventTime</a></span>&nbsp;<span class="element-name">getEndTime</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="setEndTime(org.tealeaf.pacemanager.database.dataobjects.EventTime)">
+<h3>setEndTime</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setEndTime</span><wbr><span class="parameters">(<a href="EventTime.html" title="class in org.tealeaf.pacemanager.database.dataobjects">EventTime</a>&nbsp;endTime)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="getStartTime()">
+<h3>getStartTime</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="EventTime.html" title="class in org.tealeaf.pacemanager.database.dataobjects">EventTime</a></span>&nbsp;<span class="element-name">getStartTime</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="setStartTime(org.tealeaf.pacemanager.database.dataobjects.EventTime)">
+<h3>setStartTime</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setStartTime</span><wbr><span class="parameters">(<a href="EventTime.html" title="class in org.tealeaf.pacemanager.database.dataobjects">EventTime</a>&nbsp;startTime)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="getElapsed()">
+<h3>getElapsed</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="EventTime.html" title="class in org.tealeaf.pacemanager.database.dataobjects">EventTime</a></span>&nbsp;<span class="element-name">getElapsed</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="getStatus()">
+<h3>getStatus</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Team.Status.html" title="enum class in org.tealeaf.pacemanager.database.dataobjects">Team.Status</a></span>&nbsp;<span class="element-name">getStatus</span>()</div>
 </section>
 </li>
 </ul>
