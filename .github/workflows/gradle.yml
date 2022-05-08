@@ -64,3 +64,8 @@ jobs:
         uses: GabrielBB/xvfb-action@v1
         with:
             run: gradle javadoc --no-daemon
+      - name: Publish to Github Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          publish_dir: ./build/docs/javadoc

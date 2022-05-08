@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b9a42fd-9f26-4d77-9a6e-5f621fbf7f2f" name="Changes" comment="Added label to tests">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/events/EventManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/UserInterfaceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/components/AppMenuTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/events/EventManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/Identifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/Identifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/PaceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/PaceManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/components/AppMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/components/AppMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/listeners/IListenerManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/listeners/ListenerManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/PaceManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/PaceManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/listeners/ListenerManagerTest.java" beforeDir="false" />
-    </list>
+    <list default="true" id="5b9a42fd-9f26-4d77-9a6e-5f621fbf7f2f" name="Changes" comment="Stuff!" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -149,19 +134,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "create.test.in.the.same.root": "true",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -183,7 +168,7 @@
       <recent name="org.tealeaf.pacemanager.test.listeners" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.AppMenuTest.testMenuFile">
+  <component name="RunManager" selected="Gradle.paceManager [javadoc]">
     <configuration name="PaceManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.tealeaf.pacemanager.app.PaceManager" />
       <module name="paceManager.main" />
@@ -211,29 +196,6 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;org.tealeaf.pacemanager.app.components.AppMenuTest.testMenuFile&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="EventManagerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;org.tealeaf.pacemanager.events.EventManagerTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -287,20 +249,41 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="paceManager [javadoc]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="javadoc" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Application.PaceManager" />
+      <item itemvalue="Gradle.paceManager [javadoc]" />
       <item itemvalue="Gradle.AppMenuTest.testMenuFile" />
-      <item itemvalue="Gradle.EventManagerTest" />
       <item itemvalue="Gradle.PaceManagerTest (1)" />
       <item itemvalue="Gradle.Tests in 'paceManager.test'" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.paceManager [javadoc]" />
         <item itemvalue="Gradle.AppMenuTest.testMenuFile" />
         <item itemvalue="Application.PaceManager" />
         <item itemvalue="Gradle.PaceManagerTest (1)" />
         <item itemvalue="Gradle.Tests in 'paceManager.test'" />
-        <item itemvalue="Gradle.EventManagerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -537,7 +520,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651974983827</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Stuff!">
+      <created>1651977441829</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1651977441829</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -555,7 +545,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Things look to be working" />
     <MESSAGE value="Stuff" />
     <MESSAGE value="Things to work on: DATABASE" />
     <MESSAGE value="Ok, think I should merge this now" />
@@ -580,7 +569,8 @@
     <MESSAGE value="Fix Stuff" />
     <MESSAGE value="Fix stuff" />
     <MESSAGE value="Added label to tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added label to tests" />
+    <MESSAGE value="Stuff!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Stuff!" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
