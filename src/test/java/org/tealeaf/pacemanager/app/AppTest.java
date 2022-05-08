@@ -1,13 +1,8 @@
 package org.tealeaf.pacemanager.app;
 
-import javafx.application.Platform;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Timeout;
-import org.tealeaf.pacemanager.Launcher;
-import org.tealeaf.pacemanager.UserInterfaceTest;
-import org.tealeaf.pacemanager.events.EventManagerTest;
+import test.org.tealeaf.pacemanager.UserInterfaceTest;
 
 import java.util.Random;
 

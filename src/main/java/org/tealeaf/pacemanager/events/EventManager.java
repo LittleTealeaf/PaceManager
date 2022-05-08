@@ -27,7 +27,7 @@ public class EventManager implements EventCoordinator {
     @Override
     public <T> void runEvent(Class<T> listener, EventAction<T> action) {
 
-        listeners.parallelStream() //Using Parallelization to improve performance
+        new HashSet<> (listeners).parallelStream() //Using Parallelization to improve performance
                  .filter(listener::isInstance) //Filter to items that are instance of the listener
                  .map(listener::cast) //Maps to the listener type
                  .sequential() //Go back to sequential (on this thread)

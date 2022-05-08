@@ -2,14 +2,12 @@ package org.tealeaf.pacemanager.database;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.tealeaf.pacemanager.UserInterfaceTest;
-import org.tealeaf.pacemanager.app.App;
-import org.tealeaf.pacemanager.app.Identifier;
+import test.org.tealeaf.pacemanager.UserInterfaceTest;
 import org.tealeaf.pacemanager.database.dataobjects.Pace;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ProjectManagerTest extends UserInterfaceTest {
+class PaceHandlerTest extends UserInterfaceTest {
 
     private Pace pace;
     private boolean executed;
@@ -27,7 +25,7 @@ class ProjectManagerTest extends UserInterfaceTest {
     @Test
     void openNewPace() {
 
-        app.addListener((ProjectManager.OnPaceOpened) pace -> ProjectManagerTest.this.pace = pace);
+        app.addListener((PaceHandler.OnPaceOpened) pace -> PaceHandlerTest.this.pace = pace);
         app.getProjectManager().openNewPace();
         assertNotNull(pace);
         assertNotNull(app.getProjectManager().getPace());
@@ -35,7 +33,7 @@ class ProjectManagerTest extends UserInterfaceTest {
 
     @Test
     void closePace() {
-        app.addListener((ProjectManager.OnPaceClosed) () -> executed = true);
+        app.addListener((PaceHandler.OnPaceClosed) () -> executed = true);
         app.getProjectManager().openNewPace();
         app.getProjectManager().closePace();
         assertTrue(executed);

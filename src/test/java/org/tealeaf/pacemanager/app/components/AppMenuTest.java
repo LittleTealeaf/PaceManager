@@ -1,13 +1,9 @@
 package org.tealeaf.pacemanager.app.components;
 
-import javafx.scene.input.KeyCode;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.tealeaf.pacemanager.UserInterfaceTest;
+import test.org.tealeaf.pacemanager.UserInterfaceTest;
 import org.tealeaf.pacemanager.app.App;
 import org.tealeaf.pacemanager.app.Identifier;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class AppMenuTest extends UserInterfaceTest {
 
@@ -17,11 +13,11 @@ class AppMenuTest extends UserInterfaceTest {
         app = get(App.class, lookup(Identifier.APP));
     }
 
-    @Test
-    void testHelpAbout() {
-        clickOn(Identifier.MENU_HELP);
-        clickOn(Identifier.MENU_HELP_ABOUT);
-        assertTrue(exists(Identifier.WINDOW_ABOUT));
-    }
+//    @Test
+//    void testHelpAbout() {
+//        clickOn(Identifier.MENU_HELP);
+//        clickOn(Identifier.MENU_HELP_ABOUT);
+//        assertTrue(exists(Identifier.WINDOW_ABOUT));
+//    }
 
 }

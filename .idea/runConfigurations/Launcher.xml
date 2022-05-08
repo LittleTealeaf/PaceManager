@@ -4,7 +4,7 @@
     <module name="paceManager.main" />
     <extension name="coverage">
       <pattern>
-        <option name="PATTERN" value="org.tealeaf.pacemanager.*" />
+        <option name="PATTERN" value="test.org.tealeaf.pacemanager.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>

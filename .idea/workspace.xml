@@ -4,22 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b9a42fd-9f26-4d77-9a6e-5f621fbf7f2f" name="Changes" comment="Continued work on opening / closing stuff">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/system/Preferences.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/util/Identifiable.java" afterDir="false" />
+    <list default="true" id="5b9a42fd-9f26-4d77-9a6e-5f621fbf7f2f" name="Changes" comment="Changes">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/database/dataobjects/PaceComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/util/Closable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/database/dataobjects/DivisionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/database/dataobjects/PaceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/test/org/tealeaf/pacemanager/RandomValues.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/test/org/tealeaf/pacemanager/database/dataobjects/RandomDataObjects.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/names.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Launcher.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/Launcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/Identifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/Identifier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/components/AppMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/components/AppMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/database/ProjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/database/PaceHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/database/dataobjects/Division.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/database/dataobjects/Division.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/database/dataobjects/Pace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/database/dataobjects/Pace.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/database/dataobjects/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/database/dataobjects/Team.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/events/EventManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/events/EventManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/threads/ThreadManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/threads/ThreadManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/UserInterfaceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/org/tealeaf/pacemanager/UserInterfaceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/AppTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/components/AppMenuTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/components/AppMenuTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/database/ProjectManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/database/PaceHandlerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,9 +129,9 @@
         <option value="package-info" />
         <option value="module-info" />
         <option value="Enum" />
-        <option value="JUnit5 Test Class" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -144,7 +150,7 @@
     <setting file="file://$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/Launcher.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/Identifier.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/components/AppMenu.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/database/ProjectManager.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/database/PaceHandler.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -162,6 +168,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ToolWindowRun.ShowToolbar": "false",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "create.test.in.the.same.root": "true",
@@ -199,8 +206,8 @@
       <command value="gradle build" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.Launcher">
-    <configuration name="AppMenuTest.testFileExit" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.Tests in 'paceManager.test'">
+    <configuration name="DivisionTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -213,7 +220,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;org.tealeaf.pacemanager.app.components.AppMenuTest.testFileExit&quot;" />
+            <option value="&quot;org.tealeaf.pacemanager.database.dataobjects.DivisionTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -223,7 +230,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="AppMenuTest.testHelpAbout" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="DivisionTest.getPace" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -236,7 +243,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;org.tealeaf.pacemanager.app.components.AppMenuTest.testHelpAbout&quot;" />
+            <option value="&quot;org.tealeaf.pacemanager.database.dataobjects.DivisionTest.getPace&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -246,7 +253,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="AppTest.onExit" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="DivisionTest.setName" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -259,7 +266,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;org.tealeaf.pacemanager.app.AppTest.onExit&quot;" />
+            <option value="&quot;org.tealeaf.pacemanager.database.dataobjects.DivisionTest.setName&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -269,7 +276,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ProjectManagerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestRandomValues.testRandomNames" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -282,7 +289,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;org.tealeaf.pacemanager.database.ProjectManagerTest&quot;" />
+            <option value="&quot;test.org.tealeaf.pacemanager.TestRandomValues.testRandomNames&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -315,19 +322,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.Launcher" />
-      <item itemvalue="Gradle.AppMenuTest.testFileExit" />
-      <item itemvalue="Gradle.AppTest.onExit" />
-      <item itemvalue="Gradle.ProjectManagerTest" />
-      <item itemvalue="Gradle.AppMenuTest.testHelpAbout" />
+      <item itemvalue="Gradle.DivisionTest" />
+      <item itemvalue="Gradle.DivisionTest.getPace" />
+      <item itemvalue="Gradle.DivisionTest.setName" />
+      <item itemvalue="Gradle.TestRandomValues.testRandomNames" />
       <item itemvalue="Gradle.Tests in 'paceManager.test'" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.Tests in 'paceManager.test'" />
-        <item itemvalue="Gradle.ProjectManagerTest" />
-        <item itemvalue="Gradle.AppMenuTest.testFileExit" />
-        <item itemvalue="Gradle.AppMenuTest.testHelpAbout" />
-        <item itemvalue="Gradle.AppTest.onExit" />
+        <item itemvalue="Gradle.TestRandomValues.testRandomNames" />
+        <item itemvalue="Gradle.DivisionTest" />
+        <item itemvalue="Gradle.DivisionTest.setName" />
+        <item itemvalue="Gradle.DivisionTest.getPace" />
       </list>
     </recent_temporary>
   </component>
@@ -592,7 +599,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652024705123</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Changes">
+      <created>1652027423717</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1652027423717</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -610,7 +624,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Headless!" />
     <MESSAGE value="Headless now?" />
     <MESSAGE value="Attempted Headless?" />
     <MESSAGE value="Hmm.." />
@@ -635,7 +648,18 @@
     <MESSAGE value="Added Javadoc Step" />
     <MESSAGE value="Added Identifier Tests" />
     <MESSAGE value="Continued work on opening / closing stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="Continued work on opening / closing stuff" />
+    <MESSAGE value="Changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.util.ConcurrentModificationException" package="java.util" />
+          <option name="timeStamp" value="9" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

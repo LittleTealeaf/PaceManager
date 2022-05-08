@@ -22,6 +22,10 @@ public class AppMenu extends MenuBar {
 
             setText("File");
             getItems().addAll(new MenuItem() {{
+                setText("New");
+                MENU_FILE_NEW.set(this);
+                setOnAction(event -> app.runEvent(OnFileNew.class,OnFileNew::onMenuFileNew));
+            }},new MenuItem() {{
                 setText("Open");
                 MENU_FILE_OPEN.set(this);
             }}, new MenuItem() {{
@@ -41,5 +45,9 @@ public class AppMenu extends MenuBar {
                setOnAction(action -> app.launchWindow(About.build(app)));
             }});
         }});
+    }
+
+    public interface OnFileNew {
+        void onMenuFileNew();
     }
 }

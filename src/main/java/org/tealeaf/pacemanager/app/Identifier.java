@@ -14,7 +14,8 @@ public enum Identifier implements Identifiable {
     MENU_FILE_SAVE,
     MENU_FILE_SAVE_AS,
     MENU_HELP,
-    MENU_HELP_ABOUT;
+    MENU_HELP_ABOUT,
+    MENU_FILE_NEW;
 
     @Override
     public String toString() {

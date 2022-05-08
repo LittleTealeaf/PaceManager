@@ -1,10 +1,11 @@
-package org.tealeaf.pacemanager;
+package test.org.tealeaf.pacemanager;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.tealeaf.pacemanager.Launcher;
 import org.tealeaf.pacemanager.app.App;
 import org.tealeaf.pacemanager.app.Identifier;
 import org.testfx.api.FxRobotInterface;

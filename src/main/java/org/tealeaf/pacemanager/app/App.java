@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import org.tealeaf.pacemanager.Launcher;
 import org.tealeaf.pacemanager.app.components.AppMenu;
 import org.tealeaf.pacemanager.system.Preferences;
-import org.tealeaf.pacemanager.database.ProjectManager;
+import org.tealeaf.pacemanager.database.PaceHandler;
 import org.tealeaf.pacemanager.events.EventCoordinator;
 import org.tealeaf.pacemanager.events.EventManager;
 
@@ -22,7 +22,7 @@ public class App extends BorderPane implements EventCoordinator, Launcher.OnStop
 
     private final Preferences preferences;
 
-    private final ProjectManager projectManager;
+    private final PaceHandler paceHandler;
 
     private final Stage stage;
 
@@ -36,7 +36,7 @@ public class App extends BorderPane implements EventCoordinator, Launcher.OnStop
         this.stage = stage;
 
         eventCoordinator = new EventManager();
-        projectManager = new ProjectManager(this);
+        paceHandler = new PaceHandler(this);
         preferences = new Preferences(this);
 
         addListener(this);
@@ -76,8 +76,8 @@ public class App extends BorderPane implements EventCoordinator, Launcher.OnStop
         return preferences;
     }
 
-    public ProjectManager getProjectManager() {
-        return projectManager;
+    public PaceHandler getProjectManager() {
+        return paceHandler;
     }
 
     @Override

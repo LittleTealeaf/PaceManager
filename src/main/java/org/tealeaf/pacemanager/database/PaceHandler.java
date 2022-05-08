@@ -1,16 +1,18 @@
 package org.tealeaf.pacemanager.database;
 
+import org.tealeaf.pacemanager.app.components.AppMenu;
 import org.tealeaf.pacemanager.database.dataobjects.Pace;
 import org.tealeaf.pacemanager.events.EventCoordinator;
 
-public class ProjectManager {
+public class PaceHandler implements AppMenu.OnFileNew {
 
     private final EventCoordinator eventCoordinator;
 
     private Pace pace;
 
-    public ProjectManager(EventCoordinator eventCoordinator) {
+    public PaceHandler(EventCoordinator eventCoordinator) {
         this.eventCoordinator = eventCoordinator;
+        eventCoordinator.addListener(this);
     }
 
 
@@ -28,11 +30,21 @@ public class ProjectManager {
         return pace;
     }
 
+    @Override
+    public void onMenuFileNew() {
+        openNewPace();
+
+    }
+
     public interface OnPaceOpened {
         void onPaceOpened(Pace pace);
     }
 
     public interface OnPaceClosed {
         void onPaceClosed();
+    }
+
+    public interface OnPaceEdited {
+        void onPaceEdited(Pace pace);
     }
 }
