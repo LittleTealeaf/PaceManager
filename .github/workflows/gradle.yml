@@ -35,12 +35,19 @@ jobs:
     - name: Build with Gradle
       if: matrix.os == 'windows-latest'
       run: gradle build --no-daemon
+  tests:
+    needs:
+      - build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Completed Tests
+        run: echo "Tests completed"
   javadoc:
     name: Javadocs
     runs-on: ubuntu-latest
     if: ${{github.event_name == 'push' || github.event_name == 'schedule'}}
     needs:
-      - build
+      - tests
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
