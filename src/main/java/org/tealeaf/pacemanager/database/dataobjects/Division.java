@@ -2,7 +2,9 @@ package org.tealeaf.pacemanager.database.dataobjects;
 
 import org.tealeaf.pacemanager.util.Identifiable;
 
-public class Division implements Identifiable, PaceComponent {
+import java.io.Serializable;
+
+public class Division implements Identifiable, PaceComponent, Serializable {
     private final String id;
 
     private String name;

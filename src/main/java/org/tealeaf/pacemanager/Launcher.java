@@ -4,8 +4,8 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 
 import javafx.stage.Stage;
-import org.tealeaf.pacemanager.app.App;
-import org.tealeaf.pacemanager.app.components.AppMenu;
+import org.tealeaf.pacemanager.app.layouts.App;
+import org.tealeaf.pacemanager.system.AppData;
 
 public class Launcher extends Application {
 
@@ -31,6 +31,7 @@ public class Launcher extends Application {
 
         stage.setScene(new Scene(app = new App(stage)));
         stage.setOnCloseRequest((action) -> app.runEvent(OnClose.class, OnClose::onClose));
+        stage.setTitle("Pace Manager");
         stage.show();
     }
 

@@ -1,18 +1,15 @@
-package org.tealeaf.pacemanager.app.windows;
+package org.tealeaf.pacemanager.app.layouts;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import org.tealeaf.pacemanager.app.App;
 
-import static org.tealeaf.pacemanager.app.Identifier.WINDOW_ABOUT;
+import static org.tealeaf.pacemanager.app.Identifier.LAYOUT_ABOUT;
 
 public class About extends BorderPane {
     public About(App app) {
-        WINDOW_ABOUT.set(this);
+        LAYOUT_ABOUT.set(this);
         setPadding(new Insets(10));
         setCenter(new Text() {{
             setText("Hi, this is the about page");

@@ -6,10 +6,14 @@ import net.harawata.appdirs.AppDirsFactory;
 import org.tealeaf.pacemanager.Launcher;
 import org.tealeaf.pacemanager.events.EventCoordinator;
 
+import java.io.File;
+
 public class Preferences implements Launcher.OnClose {
 
-    private static AppDirs appdirs = AppDirsFactory.getInstance();
+
     private static Preferences preferences;
+
+
 
 
     public Preferences(EventCoordinator eventCoordinator) {
@@ -25,4 +29,6 @@ public class Preferences implements Launcher.OnClose {
     public static Preferences getInstance() {
         return preferences;
     }
+
+
 }

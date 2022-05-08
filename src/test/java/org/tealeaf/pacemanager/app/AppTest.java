@@ -19,6 +19,7 @@ class AppTest extends UserInterfaceTest {
         count = 0;
     }
 
+
     @Test
     void getListeners() {
         assertNotNull(app.getListeners());

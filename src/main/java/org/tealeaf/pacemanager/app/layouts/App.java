@@ -1,24 +1,29 @@
-package org.tealeaf.pacemanager.app;
+package org.tealeaf.pacemanager.app.layouts;
 
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.tealeaf.pacemanager.Launcher;
 import org.tealeaf.pacemanager.app.components.AppMenu;
+import org.tealeaf.pacemanager.app.layouts.content.AppContent;
+import org.tealeaf.pacemanager.app.layouts.content.OpenPaceContent;
+import org.tealeaf.pacemanager.database.dataobjects.Pace;
 import org.tealeaf.pacemanager.system.Preferences;
 import org.tealeaf.pacemanager.database.PaceHandler;
 import org.tealeaf.pacemanager.events.EventCoordinator;
 import org.tealeaf.pacemanager.events.EventManager;
+import org.tealeaf.pacemanager.util.Closable;
 
 import java.util.Set;
 
-import static org.tealeaf.pacemanager.app.Identifier.APP;
+import static org.tealeaf.pacemanager.app.Identifier.LAYOUT_APP;
 
 /**
  * The root application
  */
-public class App extends BorderPane implements EventCoordinator, Launcher.OnStop, Launcher.OnClose {
+public class App extends BorderPane implements EventCoordinator, Launcher.OnStop, Launcher.OnClose, PaceHandler.OnPaceOpened, PaceHandler.OnPaceClosed {
 
     private final Preferences preferences;
 
@@ -30,8 +35,10 @@ public class App extends BorderPane implements EventCoordinator, Launcher.OnStop
 
     public App(Stage stage) {
         super();
+        stage.setWidth(1000);
+        stage.setHeight(1000);
 
-        APP.set(this);
+        LAYOUT_APP.set(this);
 
         this.stage = stage;
 
@@ -42,7 +49,7 @@ public class App extends BorderPane implements EventCoordinator, Launcher.OnStop
         addListener(this);
 
         setTop(new AppMenu(this));
-
+        setContent(new OpenPaceContent(this));
     }
     @Override
     public Set<Object> getListeners() {
@@ -64,6 +71,8 @@ public class App extends BorderPane implements EventCoordinator, Launcher.OnStop
         eventCoordinator.runEvent(listener,action);
     }
 
+    public Stage getStage() {return stage;}
+
     public void launchWindow(Scene scene) {
         Stage stage = new Stage();
         stage.setScene(scene);
@@ -72,11 +81,18 @@ public class App extends BorderPane implements EventCoordinator, Launcher.OnStop
         stage.show();
     }
 
+    public void setContent(Node node) {
+        if(getCenter() instanceof Closable closable) {
+            closable.close();
+        }
+        setCenter(node);
+    }
+
     public Preferences getPreferences() {
         return preferences;
     }
 
-    public PaceHandler getProjectManager() {
+    public PaceHandler getPaceHandler() {
         return paceHandler;
     }
 
@@ -91,5 +107,13 @@ public class App extends BorderPane implements EventCoordinator, Launcher.OnStop
         System.out.println("Close");
     }
 
+    @Override
+    public void onPaceOpened(Pace pace) {
+        setContent(new AppContent(this));
+    }
 
+    @Override
+    public void onPaceClosed() {
+        setContent(new OpenPaceContent(this));
+    }
 }

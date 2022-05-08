@@ -13,6 +13,10 @@ public interface RandomValues {
     Random RANDOM = new Random();
     String[] NAMES = loadNames();
 
+
+    default <T> T randomItem(List<T> list) {
+        return list.get(RANDOM.nextInt(list.size()));
+    }
     default String randomName() {
         return new String(NAMES[RANDOM.nextInt(NAMES.length)].toCharArray());
     }

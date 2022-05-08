@@ -3,16 +3,17 @@ package org.tealeaf.pacemanager.database.dataobjects;
 import org.tealeaf.pacemanager.events.EventCoordinator;
 import org.tealeaf.pacemanager.util.Closable;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class Pace implements Closable {
+public class Pace implements Closable, Serializable {
 
     private final List<Division> divisions = new ArrayList<>();
     private final List<Team> teams = new ArrayList<>();
 
-    private final EventCoordinator eventCoordinator;
+    private transient final EventCoordinator eventCoordinator;
 
     public Pace(EventCoordinator eventCoordinator) {
         this.eventCoordinator = eventCoordinator;
@@ -23,6 +24,14 @@ public class Pace implements Closable {
     public void initialize() {
         Stream.concat(divisions.parallelStream().map(i -> (PaceComponent) i), teams.parallelStream().map(i -> (PaceComponent) i)).parallel().forEach(
                 item -> item.setPace(this));
+    }
+
+    public List<Division> getDivisions() {
+        return new ArrayList<>(divisions);
+    }
+
+    public List<Team> getTeams() {
+        return new ArrayList<>(teams);
     }
 
     public Division getDivision(String id) {

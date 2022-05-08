@@ -11,7 +11,7 @@ public class EventManager implements EventCoordinator {
 
     @Override
     public Set<Object> getListeners() {
-        return listeners;
+        return new HashSet<>(listeners);
     }
 
     @Override
@@ -26,11 +26,11 @@ public class EventManager implements EventCoordinator {
 
     @Override
     public <T> void runEvent(Class<T> listener, EventAction<T> action) {
-
-        new HashSet<> (listeners).parallelStream() //Using Parallelization to improve performance
-                 .filter(listener::isInstance) //Filter to items that are instance of the listener
-                 .map(listener::cast) //Maps to the listener type
-                 .sequential() //Go back to sequential (on this thread)
-                 .forEach(action::execute); //Execute the action
+        
+        getListeners().parallelStream() //Using Parallelization to improve performance
+                      .filter(listener::isInstance) //Filter to items that are instance of the listener
+                      .map(listener::cast) //Maps to the listener type
+                      .sequential() //Go back to sequential (on this thread)
+                      .forEach(action::execute); //Execute the action
     }
 }

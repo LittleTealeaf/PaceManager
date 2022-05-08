@@ -2,6 +2,7 @@ package org.tealeaf.pacemanager.database;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.tealeaf.pacemanager.app.Identifier;
 import test.org.tealeaf.pacemanager.UserInterfaceTest;
 import org.tealeaf.pacemanager.database.dataobjects.Pace;
 
@@ -26,18 +27,18 @@ class PaceHandlerTest extends UserInterfaceTest {
     void openNewPace() {
 
         app.addListener((PaceHandler.OnPaceOpened) pace -> PaceHandlerTest.this.pace = pace);
-        app.getProjectManager().openNewPace();
+        actionOpenNewPace();
         assertNotNull(pace);
-        assertNotNull(app.getProjectManager().getPace());
+        assertNotNull(app.getPaceHandler().getPace());
     }
 
     @Test
     void closePace() {
         app.addListener((PaceHandler.OnPaceClosed) () -> executed = true);
-        app.getProjectManager().openNewPace();
-        app.getProjectManager().closePace();
+        actionOpenNewPace();
+        clickSequence(Identifier.MENU_FILE,Identifier.MENU_FILE_CLOSE);
         assertTrue(executed);
-        assertNull(app.getProjectManager().getPace());
+        assertNull(app.getPaceHandler().getPace());
     }
 
 

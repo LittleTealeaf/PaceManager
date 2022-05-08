@@ -1,8 +1,9 @@
 package org.tealeaf.pacemanager.database.dataobjects;
 
+import java.io.Serializable;
 import java.util.function.Function;
 
-public class EventTime {
+public class EventTime implements Serializable {
     private long time;
 
     public EventTime() {
