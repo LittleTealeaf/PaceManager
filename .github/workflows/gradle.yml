@@ -28,7 +28,7 @@ jobs:
       if: matrix.os != 'windows-latest'
       uses: GabrielBB/xvfb-action@v1
       with:
-        run: gradle build
+        run: gradle build --no-daemon
     - name: Build with Gradle
       if: matrix.os == 'windows-latest'
-      run: gradle build
+      run: gradle build --no-daemon
