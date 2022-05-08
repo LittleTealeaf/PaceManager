@@ -28,6 +28,6 @@ class TeamsTabTest extends UserInterfaceTest implements RandomDataObjects {
     void hasItems(@TempDir Path tmpdir) throws IOException {
         Pace pace = randomPace(new EventManager());
         actionOpenPaceFile(pace,tmpdir.resolve("test.json"));
-        actionSelectItemTable(Identifier.TAB_TEAMS_CONTENT_TABLE,RANDOM.nextInt(pace.getTeams().size()));
+//        actionSelectItemTable(Identifier.TAB_TEAMS_CONTENT_TABLE,RANDOM.nextInt(pace.getTeams().size()));
     }
 }
