@@ -36,6 +36,7 @@ jobs:
       if: matrix.os == 'windows-latest'
       run: gradle build --no-daemon
   tests:
+    name: "Tests Completed"
     needs:
       - build
     runs-on: ubuntu-latest
