@@ -3,6 +3,7 @@ package org.tealeaf.pacemanager.app;
 import javafx.application.Application;
 import javafx.scene.Scene;
 
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import org.tealeaf.pacemanager.listeners.IListenerManager;
@@ -63,7 +64,14 @@ public class PaceManager extends Application implements IListenerManager {
 
 
         stage.setScene(new Scene(new BorderPane() {{
-            setId(R.registerID());
+            setId(R.APPLICATION);
+            setBottom(new Button() {{
+                setId(R.DEBUG_BUTTON);
+                setOnMouseClicked((event) -> {
+                    setText("Hello");
+                });
+                setText("Click");
+            }});
         }},500,500));
 
 

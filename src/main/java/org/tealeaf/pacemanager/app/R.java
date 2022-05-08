@@ -2,11 +2,13 @@ package org.tealeaf.pacemanager.app;
 
 public class R {
 
+    public static String APPLICATION = registerID();
+    public static String DEBUG_BUTTON = registerID();
 
     private static int c = 1;
 
 
-    public static String registerID() {
-        return "#%d".formatted(c++);
+    private static String registerID() {
+        return "#%d".formatted(c = c + 1);
     }
 }
