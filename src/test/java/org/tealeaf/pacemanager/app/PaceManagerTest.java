@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.tealeaf.pacemanager.UserInterfaceTest;
 import org.testfx.api.*;
 import org.testfx.assertions.api.Assertions;
 import org.testfx.framework.junit5.ApplicationExtension;
@@ -29,47 +30,11 @@ import static org.testfx.api.FxAssert.verifyThat;
 
 import static org.tealeaf.pacemanager.app.Identifier.*;
 
-public class PaceManagerTest extends ApplicationTest {
-
-
-    @BeforeEach
-    public void beforeEachTest() throws Exception {
-
-        launch(PaceManager.class);
-    }
-
-    @Override
-    public void start(Stage stage) throws Exception {
-        stage.show();
-    }
-
-    @AfterEach
-    public void afterEachTest() throws Exception {
-        FxToolkit.cleanupStages();
-        release(new KeyCode[]{});
-        release(new MouseButton[]{});
-    }
-
-    public <T> T find(Class<T> tClass, String query) {
-        return tClass.cast(lookup(query).query());
-    }
-
-    @Override
-    public NodeQuery lookup(String query) {
-        return lookup((node) -> query.equals(node.getId()));
-    }
-
-    public FxRobotInterface clickOn(Identifier identifier) {
-        return clickOn(identifier.toString());
-    }
+public class PaceManagerTest extends UserInterfaceTest {
 
     @Test
-    public void testLaunch() {}
+    public void testLaunch() {
 
-    @Test
-    public void testExit() {
-        clickOn(MENU_FILE);
-        clickOn(MENU_FILE_EXIT);
     }
 
 }

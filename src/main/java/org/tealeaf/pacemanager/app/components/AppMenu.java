@@ -18,8 +18,11 @@ public class AppMenu extends MenuBar {
 
             setText("File");
             getItems().addAll(new MenuItem() {{
+                setText("Open");
+                MENU_FILE_OPEN.set(this);
+            }},new MenuItem() {{
                 MENU_FILE_EXIT.set(this);
-                setText("Hello");
+                setText("Exit");
             }});
         }});
     }

@@ -7,7 +7,8 @@ public enum Identifier {
     APPLICATION,
     MENU,
     MENU_FILE,
-    MENU_FILE_EXIT;
+    MENU_FILE_EXIT,
+    MENU_FILE_OPEN;
 
     @Override
     public String toString() {
