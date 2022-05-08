@@ -1,0 +1,8 @@
+module:org.tealeaf.pacemanager
+org.tealeaf.pacemanager
+org.tealeaf.pacemanager.app
+org.tealeaf.pacemanager.app.components
+org.tealeaf.pacemanager.database
+org.tealeaf.pacemanager.database.dataobjects
+org.tealeaf.pacemanager.events
+org.tealeaf.pacemanager.threads
