@@ -3,16 +3,21 @@ package org.tealeaf.pacemanager.app;
 import javafx.application.Application;
 import javafx.scene.Scene;
 
-import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import org.tealeaf.pacemanager.app.components.AppMenu;
 import org.tealeaf.pacemanager.listeners.IListenerManager;
 import org.tealeaf.pacemanager.listeners.ListenerManager;
 
 import java.util.Set;
 import java.util.prefs.Preferences;
 
-public class PaceManager extends Application implements IListenerManager {
+import static org.tealeaf.pacemanager.app.Identifier.*;
+
+public class PaceManager extends Application implements IListenerManager, AppMenu.Listener {
 
     private final IListenerManager listenerManager = new ListenerManager();
 
@@ -64,14 +69,10 @@ public class PaceManager extends Application implements IListenerManager {
 
 
         stage.setScene(new Scene(new BorderPane() {{
-            setId(R.APPLICATION);
-            setBottom(new Button() {{
-                setId(R.DEBUG_BUTTON);
-                setOnMouseClicked((event) -> {
-                    setText("Hello");
-                });
-                setText("Click");
-            }});
+            APPLICATION.set(this);
+
+            setTop(new AppMenu(PaceManager.this));
+
         }},500,500));
 
 

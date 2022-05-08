@@ -13,10 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.testfx.api.FxAssert;
-import org.testfx.api.FxRobot;
-import org.testfx.api.FxRobotContext;
-import org.testfx.api.FxToolkit;
+import org.testfx.api.*;
 import org.testfx.assertions.api.Assertions;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.ApplicationTest;
@@ -29,6 +26,8 @@ import javax.management.Query;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.testfx.api.FxAssert.verifyThat;
+
+import static org.tealeaf.pacemanager.app.Identifier.*;
 
 public class PaceManagerTest extends ApplicationTest {
 
@@ -51,12 +50,6 @@ public class PaceManagerTest extends ApplicationTest {
         release(new MouseButton[]{});
     }
 
-
-    @Test
-    public void testLaunching() {
-
-    }
-
     public <T> T find(Class<T> tClass, String query) {
         return tClass.cast(lookup(query).query());
     }
@@ -66,10 +59,17 @@ public class PaceManagerTest extends ApplicationTest {
         return lookup((node) -> query.equals(node.getId()));
     }
 
-    @Test
-    public void testButton() throws Exception {
-        clickOn(R.DEBUG_BUTTON);
-        assertEquals("Hello",find(Button.class,R.DEBUG_BUTTON).getText());
-
+    public FxRobotInterface clickOn(Identifier identifier) {
+        return clickOn(identifier.toString());
     }
+
+    @Test
+    public void testLaunch() {}
+
+    @Test
+    public void testExit() {
+        clickOn(MENU_FILE);
+        clickOn(MENU_FILE_EXIT);
+    }
+
 }

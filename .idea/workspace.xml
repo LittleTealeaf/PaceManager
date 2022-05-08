@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b9a42fd-9f26-4d77-9a6e-5f621fbf7f2f" name="Changes" comment="Oh, fix test">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/gradle.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/gradle.yml" afterDir="false" />
+    <list default="true" id="5b9a42fd-9f26-4d77-9a6e-5f621fbf7f2f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/Identifier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/components/AppMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/PaceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/PaceManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/R.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/R.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/R.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/PaceManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/PaceManagerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,6 +74,7 @@
         <option value="package-info" />
         <option value="module-info" />
         <option value="JUnit5 Test Class" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -108,7 +110,7 @@
     "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -131,21 +133,8 @@
       <recent name="org.tealeaf.pacemanager" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.PaceManagerTest.testButton">
-    <configuration name="PaceManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.tealeaf.pacemanager.app.PaceManager" />
-      <module name="paceManager.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.tealeaf.pacemanager.app.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PaceManagerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.PaceManagerTest (1)">
+    <configuration name="PaceManagerTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -182,6 +171,29 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;org.tealeaf.pacemanager.app.PaceManagerTest.testButton&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="PaceManagerTest.testExit" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;org.tealeaf.pacemanager.app.PaceManagerTest.testExit&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -236,19 +248,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.PaceManager" />
-      <item itemvalue="Gradle.PaceManagerTest" />
+      <item itemvalue="Gradle.PaceManagerTest (1)" />
+      <item itemvalue="Gradle.PaceManagerTest.testExit" />
       <item itemvalue="Gradle.PaceManagerTest.testButton" />
       <item itemvalue="Gradle.paceManager [test]" />
       <item itemvalue="Gradle.PaceManagerTest.testLaunching" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.PaceManagerTest (1)" />
+        <item itemvalue="Gradle.PaceManagerTest.testExit" />
         <item itemvalue="Gradle.PaceManagerTest.testButton" />
-        <item itemvalue="Gradle.PaceManagerTest" />
         <item itemvalue="Gradle.PaceManagerTest.testLaunching" />
         <item itemvalue="Gradle.paceManager [test]" />
-        <item itemvalue="Application.PaceManager" />
       </list>
     </recent_temporary>
   </component>
@@ -476,5 +488,9 @@
     <MESSAGE value="Test Removing Dependencies" />
     <MESSAGE value="Oh, fix test" />
     <option name="LAST_COMMIT_MESSAGE" value="Oh, fix test" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
