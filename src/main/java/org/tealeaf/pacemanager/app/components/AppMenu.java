@@ -9,7 +9,6 @@ import static org.tealeaf.pacemanager.app.Identifier.*;
 public class AppMenu extends MenuBar {
 
 
-
     public AppMenu(Listener listener) {
         MENU.set(this);
 
@@ -26,6 +25,8 @@ public class AppMenu extends MenuBar {
             }});
         }});
     }
+
+
 
 
 
