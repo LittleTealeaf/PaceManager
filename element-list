@@ -6,4 +6,6 @@ org.tealeaf.pacemanager.app.windows
 org.tealeaf.pacemanager.database
 org.tealeaf.pacemanager.database.dataobjects
 org.tealeaf.pacemanager.events
+org.tealeaf.pacemanager.system
 org.tealeaf.pacemanager.threads
+org.tealeaf.pacemanager.util
