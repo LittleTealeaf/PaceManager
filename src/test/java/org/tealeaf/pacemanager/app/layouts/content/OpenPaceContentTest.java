@@ -21,6 +21,7 @@ class OpenPaceContentTest extends UserInterfaceTest implements RandomDataObjects
         GsonWrapper.write(randomPace(new EventManager()), file);
         clickOn(Identifier.LAYOUT_CONTENT_OPEN_PACE_BUTTON);
         applyPath(file.getPath());
+        sleep(500);
         assertTrue(exists(Identifier.LAYOUT_CONTENT_APP));
     }
 }
