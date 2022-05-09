@@ -1,12 +1,18 @@
 package test.org.tealeaf.pacemanager.database.dataobjects;
 
+import org.junit.jupiter.api.io.TempDir;
 import org.tealeaf.pacemanager.database.dataobjects.Division;
 import org.tealeaf.pacemanager.database.dataobjects.Pace;
 import org.tealeaf.pacemanager.database.dataobjects.Team;
 import org.tealeaf.pacemanager.events.EventCoordinator;
+import org.tealeaf.pacemanager.events.EventManager;
+import org.tealeaf.pacemanager.system.GsonWrapper;
 import org.tealeaf.pacemanager.threads.ThreadManager;
 import test.org.tealeaf.pacemanager.RandomValues;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -25,6 +31,12 @@ public interface RandomDataObjects extends RandomValues {
         Stream.generate(RandomDataObjects.this::randomDivision).limit(RANDOM.nextInt(1,20)).parallel().forEach(pace::addDivision);
         pace.getTeams().parallelStream().forEach(team -> team.setDivision(randomItem(pace.getDivisions())));
         return pace;
+    }
+
+    default File randomPaceFile(Path tempDir) throws IOException {
+        File file = tempDir.resolve("a.json").toFile();
+        GsonWrapper.write(randomPace(new EventManager()),file);
+        return file;
     }
 
     default Team randomTeam() {

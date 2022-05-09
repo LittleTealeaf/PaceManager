@@ -1,5 +1,7 @@
 package org.tealeaf.pacemanager.app.layouts.content;
 
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.tealeaf.pacemanager.app.Identifier;
@@ -17,11 +19,13 @@ class OpenPaceContentTest extends UserInterfaceTest implements RandomDataObjects
 
     @Test
     void testOpen(@TempDir Path tempPath) throws Exception {
-        File file = tempPath.resolve("abc.json").toFile();
-        GsonWrapper.write(randomPace(new EventManager()), file);
+        press(KeyCode.ALT);
         clickOn(Identifier.LAYOUT_CONTENT_OPEN_PACE_BUTTON);
-        applyPath(file.getPath());
-        sleep(500);
+        release(KeyCode.ALT);
+        clickOn(Identifier.LAYOUT_MANUAL_FILE_ENTRY_TEXT).write(randomPaceFile(tempPath).getPath());
+        clickOn(Identifier.LAYOUT_MANUAL_FILE_ENTRY_BUTTON);
         assertTrue(exists(Identifier.LAYOUT_CONTENT_APP));
     }
+
+
 }

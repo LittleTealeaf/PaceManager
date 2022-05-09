@@ -4,9 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b9a42fd-9f26-4d77-9a6e-5f621fbf7f2f" name="Changes" comment="macos use built in">
+    <list default="true" id="5b9a42fd-9f26-4d77-9a6e-5f621fbf7f2f" name="Changes" comment="Added Sleeping">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/KeyManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/layouts/ManualFileEntry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/util/StageHolder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/Identifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/Identifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/layouts/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/layouts/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/layouts/content/OpenPaceContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/layouts/content/OpenPaceContent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/layouts/content/AppContentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/layouts/content/AppContentTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/layouts/content/OpenPaceContentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/layouts/content/OpenPaceContentTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/org/tealeaf/pacemanager/UserInterfaceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/org/tealeaf/pacemanager/UserInterfaceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/org/tealeaf/pacemanager/database/dataobjects/RandomDataObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/org/tealeaf/pacemanager/database/dataobjects/RandomDataObjects.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,9 +119,9 @@
         <option value="package-info" />
         <option value="module-info" />
         <option value="Enum" />
-        <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -187,7 +196,7 @@
       <command value="gradle build" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.OpenPaceContentTest.testOpen">
+  <component name="RunManager" selected="Gradle.AppContentTest.switchTabs">
     <configuration name="AppContentTest.switchTabs" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -311,9 +320,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.OpenPaceContentTest.testOpen" />
-        <item itemvalue="Gradle.Tests in 'paceManager.test'" />
         <item itemvalue="Gradle.AppContentTest.switchTabs" />
+        <item itemvalue="Gradle.Tests in 'paceManager.test'" />
+        <item itemvalue="Gradle.OpenPaceContentTest.testOpen" />
         <item itemvalue="Gradle.TeamsTabTest.hasItems" />
         <item itemvalue="Gradle.TeamsTabTest.testContentVisible" />
       </list>
@@ -327,20 +336,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1651858064643</updated>
-    </task>
-    <task id="LOCAL-00001" summary="Updates!">
-      <created>1651858130551</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1651858130551</updated>
-    </task>
-    <task id="LOCAL-00002" summary="It works!">
-      <created>1651858529802</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1651858529802</updated>
     </task>
     <task id="LOCAL-00003" summary="... junit testing is not going out well">
       <created>1651950355129</created>
@@ -671,7 +666,21 @@
       <option name="project" value="LOCAL" />
       <updated>1652066946577</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Fixed Test">
+      <created>1652067387650</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1652067387650</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Added Sleeping">
+      <created>1652067467376</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1652067467376</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -689,8 +698,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Test Removing Dependencies" />
-    <MESSAGE value="Oh, fix test" />
     <MESSAGE value="Implemented Menu Bar" />
     <MESSAGE value="No Daemon" />
     <MESSAGE value="Added Javadoc" />
@@ -714,7 +721,9 @@
     <MESSAGE value="Stuff" />
     <MESSAGE value="Changed Executions" />
     <MESSAGE value="macos use built in" />
-    <option name="LAST_COMMIT_MESSAGE" value="macos use built in" />
+    <MESSAGE value="Fixed Test" />
+    <MESSAGE value="Added Sleeping" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Sleeping" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

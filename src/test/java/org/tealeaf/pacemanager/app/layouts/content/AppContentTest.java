@@ -13,8 +13,8 @@ import java.nio.file.Path;
 class AppContentTest extends UserInterfaceTest implements RandomDataObjects {
 
     @Test
-    void switchTabs() {
-        actionOpenNewPace();
+    void switchTabs(@TempDir Path tempPath) throws IOException {
+        actionOpenRandomPaceFile(tempPath);
         get(AppContent.class,lookup(Identifier.LAYOUT_CONTENT_APP)).getTabs().forEach(tab -> clickOn(tab.getId()));
         get(AppContent.class,lookup(Identifier.LAYOUT_CONTENT_APP)).getTabs().forEach(tab -> clickOn(tab.getId()));
     }

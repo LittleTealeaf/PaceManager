@@ -29,7 +29,9 @@ public enum Identifier implements Identifiable {
     TEST_B,
     TEST_C,
     TEST_D,
-    TAB_STANDINGS;
+    TAB_STANDINGS,
+    LAYOUT_MANUAL_FILE_ENTRY_TEXT,
+    LAYOUT_MANUAL_FILE_ENTRY_BUTTON;
 
     private static int dynamic = 0;
 

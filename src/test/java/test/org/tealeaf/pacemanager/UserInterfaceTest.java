@@ -18,6 +18,7 @@ import org.testfx.api.FxRobotInterface;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.service.query.NodeQuery;
+import test.org.tealeaf.pacemanager.database.dataobjects.RandomDataObjects;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -96,6 +97,10 @@ public class UserInterfaceTest extends ApplicationTest {
         return clickOn(identifier.toString());
     }
 
+    public FxRobotInterface clickOn(Identifier identifier, MouseButton... buttons) {
+        return clickOn(identifier.getID(),buttons);
+    }
+
     public boolean exists(Identifier identifier) {
         return lookup(identifier).tryQuery().isPresent();
     }
@@ -109,9 +114,21 @@ public class UserInterfaceTest extends ApplicationTest {
     protected void actionOpenPaceFile(Pace pace, Path filePath) throws IOException {
         File file = filePath.toFile();
         GsonWrapper.write(pace, file);
+        press(KeyCode.ALT);
         clickOn(Identifier.LAYOUT_CONTENT_OPEN_PACE_BUTTON);
+        release(KeyCode.ALT);
+        clickOn(Identifier.LAYOUT_MANUAL_FILE_ENTRY_TEXT).write(file.getPath());
+        clickOn(Identifier.LAYOUT_MANUAL_FILE_ENTRY_BUTTON);
         applyPath(file.getPath());
-        sleep(500);
+    }
+
+    protected void actionOpenRandomPaceFile(Path tempDir) throws IOException {
+        press(KeyCode.ALT);
+        clickOn(Identifier.LAYOUT_CONTENT_OPEN_PACE_BUTTON);
+        release(KeyCode.ALT);
+        clickOn(Identifier.LAYOUT_MANUAL_FILE_ENTRY_TEXT).write(new RandomDataObjects() {}.randomPaceFile(tempDir).getPath());
+        clickOn(Identifier.LAYOUT_MANUAL_FILE_ENTRY_BUTTON);
+        assertTrue(exists(Identifier.LAYOUT_CONTENT_APP));
     }
 
     protected void actionOpenNewPace() {

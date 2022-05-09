@@ -1,14 +1,17 @@
 package org.tealeaf.pacemanager.app.layouts;
 
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.tealeaf.pacemanager.Launcher;
+import org.tealeaf.pacemanager.app.KeyManager;
 import org.tealeaf.pacemanager.app.components.AppMenu;
 import org.tealeaf.pacemanager.app.layouts.content.AppContent;
 import org.tealeaf.pacemanager.app.layouts.content.OpenPaceContent;
+import org.tealeaf.pacemanager.app.util.StageHolder;
 import org.tealeaf.pacemanager.database.dataobjects.Pace;
 import org.tealeaf.pacemanager.system.Preferences;
 import org.tealeaf.pacemanager.database.PaceHandler;
@@ -24,6 +27,7 @@ import static org.tealeaf.pacemanager.app.Identifier.LAYOUT_APP;
  * The root application
  */
 public class App extends BorderPane implements EventCoordinator, Launcher.OnStop, Launcher.OnClose, PaceHandler.OnPaceOpened, PaceHandler.OnPaceClosed {
+
 
     private final Preferences preferences;
 
@@ -41,7 +45,6 @@ public class App extends BorderPane implements EventCoordinator, Launcher.OnStop
         LAYOUT_APP.set(this);
 
         this.stage = stage;
-
         eventCoordinator = new EventManager();
         paceHandler = new PaceHandler(this);
         preferences = new Preferences(this);
@@ -74,8 +77,25 @@ public class App extends BorderPane implements EventCoordinator, Launcher.OnStop
     public Stage getStage() {return stage;}
 
     public void launchWindow(Scene scene) {
+        launchWindow(scene,null);
+    }
+
+    public void launchWindow(Parent node) {
+        Stage stage = new Stage();
+        stage.setScene(new Scene(node));
+        if(node instanceof StageHolder stageHolder) {
+            stageHolder.setStage(stage);
+        }
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+    }
+
+    public void launchWindow(Scene scene, StageHolder stageHolder) {
         Stage stage = new Stage();
         stage.setScene(scene);
+        if(stageHolder != null) {
+            stageHolder.setStage(stage);
+        }
 
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
