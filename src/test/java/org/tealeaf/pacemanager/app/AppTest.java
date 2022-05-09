@@ -1,74 +1,26 @@
 package org.tealeaf.pacemanager.app;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import test.org.tealeaf.pacemanager.UserInterfaceTest;
+import test.ApplicationWrapper;
 
-import java.util.Random;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class AppTest extends UserInterfaceTest {
-
-
-    int count;
-
-
-    @BeforeEach
-    void resetCount() {
-        count = 0;
-    }
-
+class AppTest extends ApplicationWrapper {
 
     @Test
-    void getListeners() {
-        assertNotNull(app.getListeners());
-        app.addListener(this);
-        assertTrue(app.getListeners().contains(this));
+    void testCorrectTitle() {
+        String name = randomName();
+        actionCreateNewPace(name);
+        assertTrue(getApp().getTitle().contains(name));
     }
 
     @Test
-    void addListener() {
-        app.addListener(this);
-        assertTrue(app.getListeners().contains(this));
-    }
-
-    @Test
-    void removeListener() {
-        app.addListener(this);
-        app.removeListener(this);
-        assertFalse(app.getListeners().contains(this));
-    }
-
-    @Test
-    void runEvent() {
-        final int createCount = new Random().nextInt(1, 1000);
-        int listenerCount = 0;
-        for(int i = 0; i < createCount; i++) {
-            if(Math.random() > 0.5) {
-                app.addListener(new TestClass());
-                listenerCount++;
-            } else {
-                app.addListener("");
-            }
-        }
-        app.runEvent(TestClass.class, TestInterface::execute);
-        assertEquals(listenerCount,count);
-    }
-
-    interface TestInterface {
-        void execute();
-    }
-
-    class TestClass implements TestInterface {
-
-        @Override
-        public boolean equals(Object obj) {
-            return false;
-        }
-
-        public void execute() {
-            count++;
-        }
+    void testOpenNewPace() {
+        actionCreateNewPace();
+        clickOn(Identity.APP_MENU_FILE, Identity.APP_MENU_FILE_NEW);
+        String text = randomName();
+        writeInto(Identity.DIALOG_CREATE_PACE_FIELD_NAME, text);
+        clickOn(Identity.DIALOG_CREATE_PACE_BUTTON_CREATE);
+        assertTrue(getApp().getTitle().contains(text));
     }
 }

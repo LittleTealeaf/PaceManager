@@ -28,7 +28,7 @@ tasks.withType(JavaCompile) {
 
 application {
     mainModule = 'org.tealeaf.pacemanager'
-    mainClass = 'org.tealeaf.pacemanager.app.PaceManager'
+    mainClass = 'org.tealeaf.pacemanager.app.Launcher'
 }
 
 javafx {
@@ -53,6 +53,7 @@ dependencies {
         exclude(group: 'org.openjfx')
     }
     implementation 'org.junit.jupiter:junit-jupiter:5.8.2'
+    implementation 'org.jetbrains:annotations:20.1.0'
 
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2")
 

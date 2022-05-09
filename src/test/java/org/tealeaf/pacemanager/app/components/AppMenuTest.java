@@ -1,34 +1,37 @@
 package org.tealeaf.pacemanager.app.components;
 
+import com.sun.webkit.dom.CSSRuleListImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import test.org.tealeaf.pacemanager.UserInterfaceTest;
-import org.tealeaf.pacemanager.app.layouts.App;
-import org.tealeaf.pacemanager.app.Identifier;
+import org.tealeaf.pacemanager.app.Identity;
+import test.ApplicationWrapper;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-class AppMenuTest extends UserInterfaceTest {
+class AppMenuTest extends ApplicationWrapper {
 
-    private App app;
     @BeforeEach
-    void getApp() {
-        app = get(App.class, lookup(Identifier.LAYOUT_APP));
+    void openNewPace() {
+        actionCreateNewPace();
     }
 
     @Test
     void testFile() {
-        clickOn(Identifier.MENU_FILE);
-        assertTrue(exists(Identifier.MENU_FILE_NEW));
-        assertTrue(exists(Identifier.MENU_FILE_OPEN));
-        assertTrue(exists(Identifier.MENU_FILE_SAVE));
-        assertTrue(exists(Identifier.MENU_FILE_SAVE_AS));
+        clickOn(Identity.APP_MENU_FILE);
+        assertTrue(exists(Identity.APP_MENU_FILE_NEW));
     }
 
     @Test
     void testFileNew() {
-        clickSequence(Identifier.MENU_FILE,Identifier.MENU_FILE_NEW);
-        assertTrue(exists(Identifier.LAYOUT_CONTENT_APP));
+        clickOn(Identity.APP_MENU_FILE,Identity.APP_MENU_FILE_NEW);
+        assertTrue(exists(Identity.DIALOG_CREATE_PACE));
+    }
+
+    @Test
+    void testFileClose() {
+        clickOn(Identity.APP_MENU_FILE,Identity.APP_MENU_FILE_CLOSE_PROJECT);
+        assertFalse(exists(Identity.APP_LAYOUT));
+        assertTrue(exists(Identity.LAUNCHER_LAYOUT));
     }
 
 }
