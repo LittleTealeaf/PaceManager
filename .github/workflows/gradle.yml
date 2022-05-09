@@ -40,7 +40,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install Required Packages
-        run: sudo apt install -y dbus-x11
+        run: |
+          sudo apt install -y dbus-x11 at-spi2-core
       - name: Checkout Repository
         uses: actions/checkout@v3
       - name: Set Up Java
