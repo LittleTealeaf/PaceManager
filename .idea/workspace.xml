@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b9a42fd-9f26-4d77-9a6e-5f621fbf7f2f" name="Changes" comment="Change gtk version">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/gradle.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/gradle.yml" afterDir="false" />
+    <list default="true" id="5b9a42fd-9f26-4d77-9a6e-5f621fbf7f2f" name="Changes" comment="Macos uses headless">
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/layouts/content/AppContentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/layouts/content/AppContentTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/org/tealeaf/pacemanager/UserInterfaceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/org/tealeaf/pacemanager/UserInterfaceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -628,7 +629,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652065917368</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Macos uses headless">
+      <created>1652065966900</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1652065966900</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -646,7 +654,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Oh, it's pre-installed" />
     <MESSAGE value="Double quotes to single quotes" />
     <MESSAGE value="Only build" />
     <MESSAGE value="Huh?" />
@@ -671,7 +678,8 @@
     <MESSAGE value="Fix stuff" />
     <MESSAGE value="Change Build" />
     <MESSAGE value="Change gtk version" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change gtk version" />
+    <MESSAGE value="Macos uses headless" />
+    <option name="LAST_COMMIT_MESSAGE" value="Macos uses headless" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

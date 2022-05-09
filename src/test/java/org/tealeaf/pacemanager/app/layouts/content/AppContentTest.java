@@ -15,7 +15,6 @@ class AppContentTest extends UserInterfaceTest implements RandomDataObjects {
     @Test
     void switchTabs(@TempDir Path tmpDir) throws IOException {
         actionOpenPaceFile(randomPace(new EventManager()), tmpDir.resolve("test.json"));
-
         get(AppContent.class,lookup(Identifier.LAYOUT_CONTENT_APP)).getTabs().forEach(tab -> clickOn(tab.getId()));
         get(AppContent.class,lookup(Identifier.LAYOUT_CONTENT_APP)).getTabs().forEach(tab -> clickOn(tab.getId()));
     }
