@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b9a42fd-9f26-4d77-9a6e-5f621fbf7f2f" name="Changes" comment="Added Sleeping">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/KeyManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/layouts/ManualFileEntry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/util/StageHolder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/Identifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/Identifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/layouts/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/layouts/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/layouts/content/OpenPaceContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/layouts/content/OpenPaceContent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/layouts/content/AppContentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/layouts/content/AppContentTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/layouts/content/OpenPaceContentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/layouts/content/OpenPaceContentTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test/org/tealeaf/pacemanager/UserInterfaceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/org/tealeaf/pacemanager/UserInterfaceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test/org/tealeaf/pacemanager/database/dataobjects/RandomDataObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/org/tealeaf/pacemanager/database/dataobjects/RandomDataObjects.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,21 +143,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ToolWindowRun.ShowToolbar": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "create.test.in.the.same.root": "true",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ToolWindowRun.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -196,7 +186,7 @@
       <command value="gradle build" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.AppContentTest.switchTabs">
+  <component name="RunManager" selected="Gradle.Tests in 'paceManager.test'">
     <configuration name="AppContentTest.switchTabs" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -320,8 +310,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.AppContentTest.switchTabs" />
         <item itemvalue="Gradle.Tests in 'paceManager.test'" />
+        <item itemvalue="Gradle.AppContentTest.switchTabs" />
         <item itemvalue="Gradle.OpenPaceContentTest.testOpen" />
         <item itemvalue="Gradle.TeamsTabTest.hasItems" />
         <item itemvalue="Gradle.TeamsTabTest.testContentVisible" />
