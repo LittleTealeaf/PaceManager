@@ -9,36 +9,89 @@ on:
 
 
 jobs:
-  build:
-    name: Build
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    runs-on: ${{matrix.os}}
+#  build:
+#    name: Build
+#
+#    strategy:
+#      matrix:
+#        os: [ubuntu-latest, windows-latest, macos-latest]
+#    runs-on: ${{matrix.os}}
+#    steps:
+##    sudo apt-get install dbus-x11
+#    - name: Checkout Repository
+#      uses: actions/checkout@v3
+#    - name: Set up Java
+#      uses: actions/setup-java@v3
+#      with:
+#        java-version: 18
+#        distribution: 'temurin'
+#        cache: 'gradle'
+#    - name: Make Gradlew Executable
+#      run: chmod +x gradlew
+#    - name: Headless Build with Gradle
+#      if: matrix.os != 'windows-latest'
+#      uses: GabrielBB/xvfb-action@v1
+#      with:
+#        run: gradle build --no-daemon
+#    - name: Build with Gradle
+#      if: matrix.os == 'windows-latest'
+#      run: gradle build --no-daemon
+  build-ubuntu:
+    runs-on: ubuntu-latest
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
-    - name: Set up Java
-      uses: actions/setup-java@v3
-      with:
-        java-version: 18
-        distribution: 'temurin'
-        cache: 'gradle'
-    - name: Make Gradlew Executable
-      run: chmod +x gradlew
-    - name: Headless Build with Gradle
-      if: matrix.os != 'windows-latest'
-      uses: GabrielBB/xvfb-action@v1
-      with:
+      - name: Install Required Packages
+        run: sudo apt install -y dbus-x11
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Set Up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 18
+          distribution: 'temurin'
+          cache: 'gradle'
+      - name: Make gradle executable
+        run: chmod +x gradlew
+      - name: Headless Build with Gradle
+        uses: GabrielBB/xvfb-action@v1
+        with:
+            run: gradle build --no-daemon
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Set Up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 18
+          distribution: 'temurin'
+          cache: 'gradle'
+      - name: Make gradle executable
+        run: chmod +x gradlew
+      - name: Build with Gradle
         run: gradle build --no-daemon
-    - name: Build with Gradle
-      if: matrix.os == 'windows-latest'
-      run: gradle build --no-daemon
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Set Up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 18
+          distribution: 'temurin'
+          cache: 'gradle'
+      - name: Make Gradle Executable
+        run: chmod +x gradlew
+      - name: Build with Gradle
+        run: gradle build --no-daemon
+
   tests:
     name: "Tests Completed"
     needs:
-      - build
+      - build-ubuntu
+      - build-macos
+      - build-windows
     runs-on: ubuntu-latest
     steps:
       - name: Completed Tests
