@@ -111,7 +111,7 @@ public class UserInterfaceTest extends ApplicationTest {
         GsonWrapper.write(pace, file);
         clickOn(Identifier.LAYOUT_CONTENT_OPEN_PACE_BUTTON);
         applyPath(file.getPath());
-        sleep(500);
+        sleep(200);
     }
 
     protected void actionOpenNewPace() {

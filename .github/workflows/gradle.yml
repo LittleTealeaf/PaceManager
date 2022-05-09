@@ -54,7 +54,7 @@ jobs:
       - name: Headless Build with Gradle
         uses: GabrielBB/xvfb-action@v1
         with:
-            run: gradle build --no-daemon -Djdk.gtk.version=2
+            run: gradle test --no-daemon -Djdk.gtk.version=2
   build-macos:
     runs-on: macos-latest
     steps:
@@ -71,7 +71,7 @@ jobs:
       - name: Headless Build with Gradle
         uses: GabrielBB/xvfb-action@v1
         with:
-          run: gradle build --no-daemon -Djdk.gtk.version=2
+          run: gradle test --no-daemon -Djdk.gtk.version=2
   build-windows:
     runs-on: windows-latest
     steps:
@@ -86,7 +86,7 @@ jobs:
       - name: Make Gradle Executable
         run: chmod +x gradlew
       - name: Build with Gradle
-        run: gradle build --no-daemon
+        run: gradle test --no-daemon
 
   tests:
     name: "Tests Completed"

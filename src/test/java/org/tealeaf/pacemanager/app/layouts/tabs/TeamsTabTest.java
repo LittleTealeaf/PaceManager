@@ -1,5 +1,6 @@
 package org.tealeaf.pacemanager.app.layouts.tabs;
 
+import javafx.scene.control.TableView;
 import javafx.scene.input.KeyCode;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -28,6 +29,7 @@ class TeamsTabTest extends UserInterfaceTest implements RandomDataObjects {
     void hasItems(@TempDir Path tmpdir) throws IOException {
         Pace pace = randomPace(new EventManager());
         actionOpenPaceFile(pace,tmpdir.resolve("test.json"));
-//        actionSelectItemTable(Identifier.TAB_TEAMS_CONTENT_TABLE,RANDOM.nextInt(pace.getTeams().size()));
+
+//        get(TableView.class,lookup(Identifier.TAB_TEAMS_CONTENT_TABLE)).
     }
 }
