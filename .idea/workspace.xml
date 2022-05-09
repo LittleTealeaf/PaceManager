@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b9a42fd-9f26-4d77-9a6e-5f621fbf7f2f" name="Changes" comment="Stuff">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/gradle.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/gradle.yml" afterDir="false" />
+    <list default="true" id="5b9a42fd-9f26-4d77-9a6e-5f621fbf7f2f" name="Changes" comment="macos use built in">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/layouts/content/OpenPaceContentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/layouts/content/OpenPaceContentTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,7 +187,7 @@
       <command value="gradle build" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.AppContentTest.switchTabs">
+  <component name="RunManager" selected="Gradle.OpenPaceContentTest.testOpen">
     <configuration name="AppContentTest.switchTabs" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -310,11 +311,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.AppContentTest.switchTabs" />
+        <item itemvalue="Gradle.OpenPaceContentTest.testOpen" />
         <item itemvalue="Gradle.Tests in 'paceManager.test'" />
+        <item itemvalue="Gradle.AppContentTest.switchTabs" />
         <item itemvalue="Gradle.TeamsTabTest.hasItems" />
         <item itemvalue="Gradle.TeamsTabTest.testContentVisible" />
-        <item itemvalue="Gradle.OpenPaceContentTest.testOpen" />
       </list>
     </recent_temporary>
   </component>
@@ -656,7 +657,21 @@
       <option name="project" value="LOCAL" />
       <updated>1652066786781</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="Changed Executions">
+      <created>1652066899137</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1652066899137</updated>
+    </task>
+    <task id="LOCAL-00049" summary="macos use built in">
+      <created>1652066946577</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1652066946577</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -674,8 +689,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="..." />
-    <MESSAGE value="Removed setup" />
     <MESSAGE value="Test Removing Dependencies" />
     <MESSAGE value="Oh, fix test" />
     <MESSAGE value="Implemented Menu Bar" />
@@ -699,7 +712,9 @@
     <MESSAGE value="Added Sleeps" />
     <MESSAGE value="Changed to Tests" />
     <MESSAGE value="Stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="Stuff" />
+    <MESSAGE value="Changed Executions" />
+    <MESSAGE value="macos use built in" />
+    <option name="LAST_COMMIT_MESSAGE" value="macos use built in" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
