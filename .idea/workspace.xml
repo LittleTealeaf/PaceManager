@@ -4,71 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b9a42fd-9f26-4d77-9a6e-5f621fbf7f2f" name="Changes" comment="What the hell">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/Identity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/Launcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/dialogs/CreatePaceDialog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/layouts/AppLayout.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/layouts/LauncherLayout.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/listeners/CloseProjectListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/listeners/OpenProjectListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/concurrency/ThreadManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/constants/ProjectNameRestrictions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/data/Project.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/system/JsonWrapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/system/Settings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/dialogs/CreateProjectDialogTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/layouts/LauncherLayoutWrapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/test/ApplicationWrapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/test/Randomizer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/test/UserInterfaceWrapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Launcher.xml" afterDir="false" />
+    <list default="true" id="5b9a42fd-9f26-4d77-9a6e-5f621fbf7f2f" name="Changes" comment="Oh man">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/Constants.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/Launcher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/Identifier.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/KeyManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/components/AppMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/components/AppMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/layouts/About.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/layouts/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/layouts/ManualFileEntry.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/layouts/content/AppContent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/layouts/content/OpenPaceContent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/layouts/tabs/DivisionsTab.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/layouts/tabs/StandingsTab.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/layouts/tabs/TeamsTab.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/util/StageHolder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/database/PaceHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/database/dataobjects/Division.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/database/dataobjects/EventTime.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/database/dataobjects/Pace.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/database/dataobjects/PaceComponent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/database/dataobjects/Team.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/events/EventCoordinator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/events/EventCoordinator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/events/EventManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/events/EventManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/system/AppData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/system/GsonWrapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/system/Preferences.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/threads/ThreadManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/util/Closable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/util/Identifiable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/AppTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/IdentifierTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/components/AppMenuTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/components/AppMenuTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/layouts/AboutTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/layouts/content/AppContentTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/layouts/content/OpenPaceContentTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/app/layouts/tabs/TeamsTabTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/database/PaceHandlerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/database/dataobjects/DivisionTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/tealeaf/pacemanager/events/EventManagerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test/org/tealeaf/pacemanager/RandomValues.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test/org/tealeaf/pacemanager/TestRandomValues.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test/org/tealeaf/pacemanager/UserInterfaceTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test/org/tealeaf/pacemanager/database/dataobjects/RandomDataObjects.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/App.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -250,7 +188,7 @@
       <command value="gradle build" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.Tests in 'paceManager.test'">
+  <component name="RunManager" selected="Application.Launcher">
     <configuration name="AppMenuTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -390,13 +328,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1651858064643</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Things look to be working">
-      <created>1651962574602</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1651962574602</updated>
     </task>
     <task id="LOCAL-00005" summary="Stuff">
       <created>1651962589408</created>
@@ -734,7 +665,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652121472472</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Oh man">
+      <created>1652135364053</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1652135364053</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -752,7 +690,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="No Daemon" />
     <MESSAGE value="Added Javadoc" />
     <MESSAGE value="Change to Javadoc" />
     <MESSAGE value="Fix Stuff" />
@@ -777,7 +714,8 @@
     <MESSAGE value="Fixed Test" />
     <MESSAGE value="Added Sleeping" />
     <MESSAGE value="What the hell" />
-    <option name="LAST_COMMIT_MESSAGE" value="What the hell" />
+    <MESSAGE value="Oh man" />
+    <option name="LAST_COMMIT_MESSAGE" value="Oh man" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

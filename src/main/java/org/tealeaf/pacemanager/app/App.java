@@ -22,7 +22,7 @@ public class App extends Stage implements EventCoordinator, OpenProjectListener,
         this.project = project;
         this.launcher = launcher;
 
-        setTitle(project.getName());
+        setTitle("Pace Manager - " + project.getName());
 
         setScene(new Scene(new AppLayout(this)));
         setOnCloseRequest(event -> run(OnClose.class,OnClose::onAppClose));
