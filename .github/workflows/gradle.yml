@@ -69,10 +69,12 @@ jobs:
           cache: 'gradle'
       - name: Make gradle executable
         run: chmod +x gradlew
-      - name: Headless Build with Gradle
-        uses: GabrielBB/xvfb-action@v1
-        with:
-          run: gradle test --no-daemon -Djdk.gtk.version=2
+      - name: Build with Gradle
+        run: gradle test
+#      - name: Headless Build with Gradle
+#        uses: GabrielBB/xvfb-action@v1
+#        with:
+#          run: gradle test --no-daemon -Djdk.gtk.version=2
   build-windows:
     runs-on: windows-latest
     steps:
