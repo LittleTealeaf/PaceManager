@@ -54,7 +54,7 @@ jobs:
       - name: Headless Build with Gradle
         uses: GabrielBB/xvfb-action@v1
         with:
-            run: gradle build --no-daemon
+            run: gradle build --no-daemon -Djdk.gtk.version=2
   build-macos:
     runs-on: macos-latest
     steps:
