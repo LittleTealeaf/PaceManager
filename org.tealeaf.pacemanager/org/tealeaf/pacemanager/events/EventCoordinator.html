@@ -93,7 +93,7 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Known Implementing Classes:</dt>
-<dd><code><a href="../app/App.html" title="class in org.tealeaf.pacemanager.app">App</a></code>, <code><a href="EventManager.html" title="class in org.tealeaf.pacemanager.events">EventManager</a></code></dd>
+<dd><code><a href="../app/App.html" title="class in org.tealeaf.pacemanager.app">App</a></code>, <code><a href="EventManager.html" title="class in org.tealeaf.pacemanager.events">EventManager</a></code>, <code><a href="../app/Launcher.html" title="class in org.tealeaf.pacemanager.app">Launcher</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">EventCoordinator</span></div>
@@ -110,7 +110,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Interface</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>static interface&nbsp;</code></div>
-<div class="col-second even-row-color"><code><a href="EventCoordinator.EventAction.html" class="type-name-link" title="interface in org.tealeaf.pacemanager.events">EventCoordinator.EventAction</a>&lt;<a href="EventCoordinator.EventAction.html" title="type parameter in EventCoordinator.EventAction">T</a>&gt;</code></div>
+<div class="col-second even-row-color"><code><a href="EventCoordinator.Event.html" class="type-name-link" title="interface in org.tealeaf.pacemanager.events">EventCoordinator.Event</a>&lt;<a href="EventCoordinator.Event.html" title="type parameter in EventCoordinator.Event">T</a>&gt;</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
@@ -126,18 +126,18 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#addListener(java.lang.Object)" class="member-name-link">addListener</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;object)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getListeners()" class="member-name-link">getListeners</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>boolean</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#removeListener(java.lang.Object)" class="member-name-link">removeListener</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;object)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>&lt;T&gt;&nbsp;void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#runEvent(java.lang.Class,org.tealeaf.pacemanager.events.EventCoordinator.EventAction)" class="member-name-link">runEvent</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;T&gt;&nbsp;listener,
- <a href="EventCoordinator.EventAction.html" title="interface in org.tealeaf.pacemanager.events">EventCoordinator.EventAction</a>&lt;T&gt;&nbsp;action)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#run(java.lang.Class,org.tealeaf.pacemanager.events.EventCoordinator.Event)" class="member-name-link">run</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;T&gt;&nbsp;listenerClass,
+ <a href="EventCoordinator.Event.html" title="interface in org.tealeaf.pacemanager.events">EventCoordinator.Event</a>&lt;T&gt;&nbsp;event)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 </div>
 </div>
@@ -154,28 +154,28 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="getListeners()">
-<h3>getListeners</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;</span>&nbsp;<span class="element-name">getListeners</span>()</div>
-</section>
-</li>
-<li>
 <section class="detail" id="addListener(java.lang.Object)">
 <h3>addListener</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">addListener</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;object)</span></div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">addListener</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;object)</span></div>
 </section>
 </li>
 <li>
 <section class="detail" id="removeListener(java.lang.Object)">
 <h3>removeListener</h3>
-<div class="member-signature"><span class="return-type">boolean</span>&nbsp;<span class="element-name">removeListener</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;object)</span></div>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">removeListener</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;object)</span></div>
 </section>
 </li>
 <li>
-<section class="detail" id="runEvent(java.lang.Class,org.tealeaf.pacemanager.events.EventCoordinator.EventAction)">
-<h3>runEvent</h3>
-<div class="member-signature"><span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">runEvent</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;T&gt;&nbsp;listener,
- <a href="EventCoordinator.EventAction.html" title="interface in org.tealeaf.pacemanager.events">EventCoordinator.EventAction</a>&lt;T&gt;&nbsp;action)</span></div>
+<section class="detail" id="run(java.lang.Class,org.tealeaf.pacemanager.events.EventCoordinator.Event)">
+<h3>run</h3>
+<div class="member-signature"><span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">run</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;T&gt;&nbsp;listenerClass,
+ <a href="EventCoordinator.Event.html" title="interface in org.tealeaf.pacemanager.events">EventCoordinator.Event</a>&lt;T&gt;&nbsp;event)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="getListeners()">
+<h3>getListeners</h3>
+<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;</span>&nbsp;<span class="element-name">getListeners</span>()</div>
 </section>
 </li>
 </ul>

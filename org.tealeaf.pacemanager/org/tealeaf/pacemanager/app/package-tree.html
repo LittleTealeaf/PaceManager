@@ -58,23 +58,16 @@ loadScripts(document, 'script');</script>
 <ul>
 <li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" class="type-name-link external-link" title="class or interface in java.lang">Object</a>
 <ul>
-<li class="circle">javafx.scene.Node (implements javafx.event.EventTarget, javafx.css.Styleable)
+<li class="circle">javafx.application.Application
 <ul>
-<li class="circle">javafx.scene.Parent
-<ul>
-<li class="circle">javafx.scene.layout.Region
-<ul>
-<li class="circle">javafx.scene.layout.Pane
-<ul>
-<li class="circle">javafx.scene.layout.BorderPane
-<ul>
-<li class="circle">org.tealeaf.pacemanager.app.<a href="App.html" class="type-name-link" title="class in org.tealeaf.pacemanager.app">App</a> (implements org.tealeaf.pacemanager.events.<a href="../events/EventCoordinator.html" title="interface in org.tealeaf.pacemanager.events">EventCoordinator</a>, org.tealeaf.pacemanager.<a href="../Launcher.OnClose.html" title="interface in org.tealeaf.pacemanager">Launcher.OnClose</a>, org.tealeaf.pacemanager.<a href="../Launcher.OnStop.html" title="interface in org.tealeaf.pacemanager">Launcher.OnStop</a>)</li>
+<li class="circle">org.tealeaf.pacemanager.app.<a href="Launcher.html" class="type-name-link" title="class in org.tealeaf.pacemanager.app">Launcher</a> (implements org.tealeaf.pacemanager.events.<a href="../events/EventCoordinator.html" title="interface in org.tealeaf.pacemanager.events">EventCoordinator</a>, org.tealeaf.pacemanager.app.listeners.<a href="listeners/OpenProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">OpenProjectListener</a>)</li>
 </ul>
 </li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="circle">javafx.stage.Window (implements javafx.event.EventTarget)
+<ul>
+<li class="circle">javafx.stage.Stage
+<ul>
+<li class="circle">org.tealeaf.pacemanager.app.<a href="App.html" class="type-name-link" title="class in org.tealeaf.pacemanager.app">App</a> (implements org.tealeaf.pacemanager.app.listeners.<a href="listeners/CloseProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">CloseProjectListener</a>, org.tealeaf.pacemanager.events.<a href="../events/EventCoordinator.html" title="interface in org.tealeaf.pacemanager.events">EventCoordinator</a>, org.tealeaf.pacemanager.app.listeners.<a href="listeners/OpenProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">OpenProjectListener</a>)</li>
 </ul>
 </li>
 </ul>
@@ -84,13 +77,19 @@ loadScripts(document, 'script');</script>
 </ul>
 </section>
 <section class="hierarchy">
+<h2 title="Interface Hierarchy">Interface Hierarchy</h2>
+<ul>
+<li class="circle">org.tealeaf.pacemanager.app.<a href="App.OnClose.html" class="type-name-link" title="interface in org.tealeaf.pacemanager.app">App.OnClose</a></li>
+</ul>
+</section>
+<section class="hierarchy">
 <h2 title="Enum Class Hierarchy">Enum Class Hierarchy</h2>
 <ul>
 <li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" class="type-name-link external-link" title="class or interface in java.lang">Object</a>
 <ul>
 <li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Enum.html" class="type-name-link external-link" title="class or interface in java.lang">Enum</a>&lt;E&gt; (implements java.lang.<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Comparable.html" title="class or interface in java.lang" class="external-link">Comparable</a>&lt;T&gt;, java.lang.constant.<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/constant/Constable.html" title="class or interface in java.lang.constant" class="external-link">Constable</a>, java.io.<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a>)
 <ul>
-<li class="circle">org.tealeaf.pacemanager.app.<a href="Identifier.html" class="type-name-link" title="enum class in org.tealeaf.pacemanager.app">Identifier</a> (implements org.tealeaf.pacemanager.util.<a href="../util/Identifiable.html" title="interface in org.tealeaf.pacemanager.util">Identifiable</a>)</li>
+<li class="circle">org.tealeaf.pacemanager.app.<a href="Identity.html" class="type-name-link" title="enum class in org.tealeaf.pacemanager.app">Identity</a></li>
 </ul>
 </li>
 </ul>
