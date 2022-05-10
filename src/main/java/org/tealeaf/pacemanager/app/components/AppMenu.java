@@ -6,6 +6,7 @@ import javafx.scene.control.MenuItem;
 import org.tealeaf.pacemanager.app.Identity;
 import org.tealeaf.pacemanager.app.dialogs.CreatePaceDialog;
 import org.tealeaf.pacemanager.app.listeners.CloseProjectListener;
+import org.tealeaf.pacemanager.app.listeners.RequestExitListener;
 import org.tealeaf.pacemanager.events.EventCoordinator;
 
 public class AppMenu extends MenuBar {
@@ -27,6 +28,10 @@ public class AppMenu extends MenuBar {
                 Identity.APP_MENU_FILE_CLOSE_PROJECT.set(this);
                 setText("Close Project");
                 setOnAction(event -> eventCoordinator.run(CloseProjectListener.class,CloseProjectListener::onCloseProject));
+            }}, new MenuItem() {{
+                Identity.APP_MENU_FILE_EXIT.set(this);
+                setText("Exit");
+                setOnAction(event -> eventCoordinator.run(RequestExitListener.class,RequestExitListener::onRequestExit));
             }});
         }});
     }

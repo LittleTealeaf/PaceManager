@@ -13,8 +13,8 @@ public class AppLayout extends BorderPane implements App.OnClose {
         this.app = app;
         app.addListener(this);
         Identity.APP_LAYOUT.set(this);
-        setMinWidth(500);
-        setMinHeight(500);
+        setMinWidth(700);
+        setMinHeight(700);
 
         setTop(new AppMenu(app));
     }

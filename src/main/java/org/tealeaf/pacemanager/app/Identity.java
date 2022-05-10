@@ -19,7 +19,8 @@ public enum Identity {
     DIALOG_CREATE_PACE_GRIDPANE,
     LAUNCHER_BUTTON_NEW,
     LAUNCHER_HBOX_TOP,
-    LAUNCHER_LAYOUT;
+    LAUNCHER_LAYOUT,
+    APP_MENU_FILE_EXIT;
 
     public String toID() {
         return "#%d".formatted(ordinal());

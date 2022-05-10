@@ -6,13 +6,14 @@ import javafx.stage.Stage;
 import org.tealeaf.pacemanager.app.layouts.AppLayout;
 import org.tealeaf.pacemanager.app.listeners.CloseProjectListener;
 import org.tealeaf.pacemanager.app.listeners.OpenProjectListener;
+import org.tealeaf.pacemanager.app.listeners.RequestExitListener;
 import org.tealeaf.pacemanager.data.Project;
 import org.tealeaf.pacemanager.events.EventCoordinator;
 import org.tealeaf.pacemanager.events.EventManager;
 
 import java.util.Set;
 
-public class App extends Stage implements EventCoordinator, OpenProjectListener, CloseProjectListener {
+public class App extends Stage implements EventCoordinator, OpenProjectListener, CloseProjectListener, RequestExitListener {
 
     private final EventCoordinator eventCoordinator = new EventManager(this);
     private final Launcher launcher;
@@ -61,6 +62,16 @@ public class App extends Stage implements EventCoordinator, OpenProjectListener,
     public void onCloseProject() {
         close();
         launcher.show();
+    }
+
+    @Override
+    public void onRequestExit() {
+        try {
+            close();
+            launcher.stop();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public interface OnClose {
