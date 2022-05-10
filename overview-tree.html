@@ -53,13 +53,14 @@ loadScripts(document, 'script');</script>
 <li><a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/package-tree.html">org.tealeaf.pacemanager.app</a>, </li>
 <li><a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/components/package-tree.html">org.tealeaf.pacemanager.app.components</a>, </li>
 <li><a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/dialogs/package-tree.html">org.tealeaf.pacemanager.app.dialogs</a>, </li>
-<li><a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/layouts/package-tree.html">org.tealeaf.pacemanager.app.layouts</a>, </li>
 <li><a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/listeners/package-tree.html">org.tealeaf.pacemanager.app.listeners</a>, </li>
+<li><a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/stages/package-tree.html">org.tealeaf.pacemanager.app.stages</a>, </li>
 <li><a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/concurrency/package-tree.html">org.tealeaf.pacemanager.concurrency</a>, </li>
 <li><a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/constants/package-tree.html">org.tealeaf.pacemanager.constants</a>, </li>
 <li><a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/data/package-tree.html">org.tealeaf.pacemanager.data</a>, </li>
 <li><a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/events/package-tree.html">org.tealeaf.pacemanager.events</a>, </li>
-<li><a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/system/package-tree.html">org.tealeaf.pacemanager.system</a></li>
+<li><a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/system/package-tree.html">org.tealeaf.pacemanager.system</a>, </li>
+<li><a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/util/package-tree.html">org.tealeaf.pacemanager.util</a></li>
 </ul>
 </div>
 <section class="hierarchy">
@@ -72,6 +73,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">org.tealeaf.pacemanager.app.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/Launcher.html" class="type-name-link" title="class in org.tealeaf.pacemanager.app">Launcher</a> (implements org.tealeaf.pacemanager.events.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/events/EventCoordinator.html" title="interface in org.tealeaf.pacemanager.events">EventCoordinator</a>, org.tealeaf.pacemanager.app.listeners.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/listeners/OpenProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">OpenProjectListener</a>)</li>
 </ul>
 </li>
+<li class="circle">org.tealeaf.pacemanager.data.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/data/Division.html" class="type-name-link" title="class in org.tealeaf.pacemanager.data">Division</a> (implements org.tealeaf.pacemanager.util.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/util/Identifiable.html" title="interface in org.tealeaf.pacemanager.util">Identifiable</a>)</li>
 <li class="circle">org.tealeaf.pacemanager.events.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/events/EventManager.html" class="type-name-link" title="class in org.tealeaf.pacemanager.events">EventManager</a> (implements org.tealeaf.pacemanager.events.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/events/EventCoordinator.html" title="interface in org.tealeaf.pacemanager.events">EventCoordinator</a>)</li>
 <li class="circle">org.tealeaf.pacemanager.system.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/system/JsonWrapper.html" class="type-name-link" title="class in org.tealeaf.pacemanager.system">JsonWrapper</a></li>
 <li class="circle">javafx.scene.Node (implements javafx.event.EventTarget, javafx.css.Styleable)
@@ -84,7 +86,12 @@ loadScripts(document, 'script');</script>
 <ul>
 <li class="circle">javafx.scene.control.MenuBar
 <ul>
-<li class="circle">org.tealeaf.pacemanager.app.components.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/components/AppMenu.html" class="type-name-link" title="class in org.tealeaf.pacemanager.app.components">AppMenu</a></li>
+<li class="circle">org.tealeaf.pacemanager.app.components.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/components/MenuApp.html" class="type-name-link" title="class in org.tealeaf.pacemanager.app.components">MenuApp</a></li>
+</ul>
+</li>
+<li class="circle">javafx.scene.control.TableView&lt;S&gt;
+<ul>
+<li class="circle">org.tealeaf.pacemanager.app.components.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/components/TableTeams.html" class="type-name-link" title="class in org.tealeaf.pacemanager.app.components">TableTeams</a></li>
 </ul>
 </li>
 </ul>
@@ -93,8 +100,13 @@ loadScripts(document, 'script');</script>
 <ul>
 <li class="circle">javafx.scene.layout.BorderPane
 <ul>
-<li class="circle">org.tealeaf.pacemanager.app.layouts.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/layouts/AppLayout.html" class="type-name-link" title="class in org.tealeaf.pacemanager.app.layouts">AppLayout</a> (implements org.tealeaf.pacemanager.app.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/App.OnClose.html" title="interface in org.tealeaf.pacemanager.app">App.OnClose</a>)</li>
-<li class="circle">org.tealeaf.pacemanager.app.layouts.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/layouts/LauncherLayout.html" class="type-name-link" title="class in org.tealeaf.pacemanager.app.layouts">LauncherLayout</a></li>
+<li class="circle">org.tealeaf.pacemanager.app.stages.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/stages/AppLayout.html" class="type-name-link" title="class in org.tealeaf.pacemanager.app.stages">AppLayout</a> (implements org.tealeaf.pacemanager.app.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/App.OnClose.html" title="interface in org.tealeaf.pacemanager.app">App.OnClose</a>)</li>
+<li class="circle">org.tealeaf.pacemanager.app.stages.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/stages/LauncherLayout.html" class="type-name-link" title="class in org.tealeaf.pacemanager.app.stages">LauncherLayout</a></li>
+</ul>
+</li>
+<li class="circle">javafx.scene.layout.GridPane
+<ul>
+<li class="circle">org.tealeaf.pacemanager.app.dialogs.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/dialogs/EditTeamDialog.RidersNode.html" class="type-name-link" title="class in org.tealeaf.pacemanager.app.dialogs">EditTeamDialog.RidersNode</a> (implements javafx.collections.ListChangeListener&lt;E&gt;)</li>
 </ul>
 </li>
 </ul>
@@ -105,9 +117,21 @@ loadScripts(document, 'script');</script>
 </li>
 </ul>
 </li>
-<li class="circle">org.tealeaf.pacemanager.data.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/data/Project.html" class="type-name-link" title="class in org.tealeaf.pacemanager.data">Project</a></li>
+<li class="circle">org.tealeaf.pacemanager.data.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/data/Pace.html" class="type-name-link" title="class in org.tealeaf.pacemanager.data">Pace</a></li>
+<li class="circle">org.tealeaf.pacemanager.data.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/data/Project.html" class="type-name-link" title="class in org.tealeaf.pacemanager.data">Project</a> (implements org.tealeaf.pacemanager.app.dialogs.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/dialogs/EditTeamDialog.OnSaveTeam.html" title="interface in org.tealeaf.pacemanager.app.dialogs">EditTeamDialog.OnSaveTeam</a>)</li>
 <li class="circle">org.tealeaf.pacemanager.constants.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/constants/ProjectNameRestrictions.html" class="type-name-link" title="class in org.tealeaf.pacemanager.constants">ProjectNameRestrictions</a></li>
+<li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Record.html" class="type-name-link external-link" title="class or interface in java.lang">Record</a>
+<ul>
+<li class="circle">org.tealeaf.pacemanager.data.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/data/EventTime.html" class="type-name-link" title="class in org.tealeaf.pacemanager.data">EventTime</a></li>
+</ul>
+</li>
 <li class="circle">org.tealeaf.pacemanager.system.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/system/Settings.html" class="type-name-link" title="class in org.tealeaf.pacemanager.system">Settings</a></li>
+<li class="circle">javafx.scene.control.Tab (implements javafx.event.EventTarget, javafx.css.Styleable)
+<ul>
+<li class="circle">org.tealeaf.pacemanager.app.components.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/components/TabTeams.html" class="type-name-link" title="class in org.tealeaf.pacemanager.app.components">TabTeams</a></li>
+</ul>
+</li>
+<li class="circle">org.tealeaf.pacemanager.data.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/data/Team.html" class="type-name-link" title="class in org.tealeaf.pacemanager.data">Team</a> (implements org.tealeaf.pacemanager.util.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/util/Identifiable.html" title="interface in org.tealeaf.pacemanager.util">Identifiable</a>)</li>
 <li class="circle">org.tealeaf.pacemanager.concurrency.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/concurrency/ThreadManager.html" class="type-name-link" title="class in org.tealeaf.pacemanager.concurrency">ThreadManager</a></li>
 <li class="circle">javafx.stage.Window (implements javafx.event.EventTarget)
 <ul>
@@ -115,6 +139,7 @@ loadScripts(document, 'script');</script>
 <ul>
 <li class="circle">org.tealeaf.pacemanager.app.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/App.html" class="type-name-link" title="class in org.tealeaf.pacemanager.app">App</a> (implements org.tealeaf.pacemanager.app.listeners.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/listeners/CloseProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">CloseProjectListener</a>, org.tealeaf.pacemanager.events.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/events/EventCoordinator.html" title="interface in org.tealeaf.pacemanager.events">EventCoordinator</a>, org.tealeaf.pacemanager.app.listeners.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/listeners/OpenProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">OpenProjectListener</a>, org.tealeaf.pacemanager.app.listeners.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/listeners/RequestExitListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">RequestExitListener</a>)</li>
 <li class="circle">org.tealeaf.pacemanager.app.dialogs.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/dialogs/CreatePaceDialog.html" class="type-name-link" title="class in org.tealeaf.pacemanager.app.dialogs">CreatePaceDialog</a> (implements org.tealeaf.pacemanager.app.listeners.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/listeners/OpenProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">OpenProjectListener</a>)</li>
+<li class="circle">org.tealeaf.pacemanager.app.dialogs.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/dialogs/EditTeamDialog.html" class="type-name-link" title="class in org.tealeaf.pacemanager.app.dialogs">EditTeamDialog</a></li>
 </ul>
 </li>
 </ul>
@@ -128,8 +153,11 @@ loadScripts(document, 'script');</script>
 <ul>
 <li class="circle">org.tealeaf.pacemanager.app.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/App.OnClose.html" class="type-name-link" title="interface in org.tealeaf.pacemanager.app">App.OnClose</a></li>
 <li class="circle">org.tealeaf.pacemanager.app.listeners.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/listeners/CloseProjectListener.html" class="type-name-link" title="interface in org.tealeaf.pacemanager.app.listeners">CloseProjectListener</a></li>
+<li class="circle">org.tealeaf.pacemanager.app.dialogs.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/dialogs/EditTeamDialog.OnSaveTeam.html" class="type-name-link" title="interface in org.tealeaf.pacemanager.app.dialogs">EditTeamDialog.OnSaveTeam</a></li>
 <li class="circle">org.tealeaf.pacemanager.events.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/events/EventCoordinator.html" class="type-name-link" title="interface in org.tealeaf.pacemanager.events">EventCoordinator</a></li>
 <li class="circle">org.tealeaf.pacemanager.events.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/events/EventCoordinator.Event.html" class="type-name-link" title="interface in org.tealeaf.pacemanager.events">EventCoordinator.Event</a>&lt;T&gt;</li>
+<li class="circle">org.tealeaf.pacemanager.util.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/util/Identifiable.html" class="type-name-link" title="interface in org.tealeaf.pacemanager.util">Identifiable</a></li>
+<li class="circle">org.tealeaf.pacemanager.app.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/Identity.Holder.html" class="type-name-link" title="interface in org.tealeaf.pacemanager.app">Identity.Holder</a></li>
 <li class="circle">org.tealeaf.pacemanager.app.listeners.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/listeners/OpenProjectListener.html" class="type-name-link" title="interface in org.tealeaf.pacemanager.app.listeners">OpenProjectListener</a></li>
 <li class="circle">org.tealeaf.pacemanager.app.listeners.<a href="org.tealeaf.pacemanager/org/tealeaf/pacemanager/app/listeners/RequestExitListener.html" class="type-name-link" title="interface in org.tealeaf.pacemanager.app.listeners">RequestExitListener</a></li>
 </ul>

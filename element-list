@@ -2,10 +2,11 @@ module:org.tealeaf.pacemanager
 org.tealeaf.pacemanager.app
 org.tealeaf.pacemanager.app.components
 org.tealeaf.pacemanager.app.dialogs
-org.tealeaf.pacemanager.app.layouts
 org.tealeaf.pacemanager.app.listeners
+org.tealeaf.pacemanager.app.stages
 org.tealeaf.pacemanager.concurrency
 org.tealeaf.pacemanager.constants
 org.tealeaf.pacemanager.data
 org.tealeaf.pacemanager.events
 org.tealeaf.pacemanager.system
+org.tealeaf.pacemanager.util
