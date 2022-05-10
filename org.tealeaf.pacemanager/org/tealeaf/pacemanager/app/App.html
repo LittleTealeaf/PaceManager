@@ -100,12 +100,12 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code>javafx.event.EventTarget</code>, <code><a href="listeners/CloseProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">CloseProjectListener</a></code>, <code><a href="listeners/OpenProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">OpenProjectListener</a></code>, <code><a href="../events/EventCoordinator.html" title="interface in org.tealeaf.pacemanager.events">EventCoordinator</a></code></dd>
+<dd><code>javafx.event.EventTarget</code>, <code><a href="listeners/CloseProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">CloseProjectListener</a></code>, <code><a href="listeners/OpenProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">OpenProjectListener</a></code>, <code><a href="listeners/RequestExitListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">RequestExitListener</a></code>, <code><a href="../events/EventCoordinator.html" title="interface in org.tealeaf.pacemanager.events">EventCoordinator</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">App</span>
 <span class="extends-implements">extends javafx.stage.Stage
-implements <a href="../events/EventCoordinator.html" title="interface in org.tealeaf.pacemanager.events">EventCoordinator</a>, <a href="listeners/OpenProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">OpenProjectListener</a>, <a href="listeners/CloseProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">CloseProjectListener</a></span></div>
+implements <a href="../events/EventCoordinator.html" title="interface in org.tealeaf.pacemanager.events">EventCoordinator</a>, <a href="listeners/OpenProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">OpenProjectListener</a>, <a href="listeners/CloseProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">CloseProjectListener</a>, <a href="listeners/RequestExitListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">RequestExitListener</a></span></div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -174,15 +174,18 @@ implements <a href="../events/EventCoordinator.html" title="interface in org.tea
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onCloseProject()" class="member-name-link">onCloseProject</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#openProject(org.tealeaf.pacemanager.data.Project)" class="member-name-link">openProject</a><wbr>(<a href="../data/Project.html" title="class in org.tealeaf.pacemanager.data">Project</a>&nbsp;project)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onRequestExit()" class="member-name-link">onRequestExit</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeListener(java.lang.Object)" class="member-name-link">removeListener</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;object)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#openProject(org.tealeaf.pacemanager.data.Project)" class="member-name-link">openProject</a><wbr>(<a href="../data/Project.html" title="class in org.tealeaf.pacemanager.data">Project</a>&nbsp;project)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>&lt;T&gt;&nbsp;void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#run(java.lang.Class,org.tealeaf.pacemanager.events.EventCoordinator.Event)" class="member-name-link">run</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;T&gt;&nbsp;listenerClass,
- <a href="../events/EventCoordinator.Event.html" title="interface in org.tealeaf.pacemanager.events">EventCoordinator.Event</a>&lt;T&gt;&nbsp;event)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeListener(java.lang.Object)" class="member-name-link">removeListener</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;object)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>&lt;T&gt;&nbsp;void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#run(java.lang.Class,org.tealeaf.pacemanager.events.EventCoordinator.Event)" class="member-name-link">run</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;T&gt;&nbsp;listenerClass,
+ <a href="../events/EventCoordinator.Event.html" title="interface in org.tealeaf.pacemanager.events">EventCoordinator.Event</a>&lt;T&gt;&nbsp;event)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -279,6 +282,16 @@ implements <a href="../events/EventCoordinator.html" title="interface in org.tea
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="listeners/CloseProjectListener.html#onCloseProject()">onCloseProject</a></code>&nbsp;in interface&nbsp;<code><a href="listeners/CloseProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">CloseProjectListener</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="onRequestExit()">
+<h3>onRequestExit</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onRequestExit</span>()</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="listeners/RequestExitListener.html#onRequestExit()">onRequestExit</a></code>&nbsp;in interface&nbsp;<code><a href="listeners/RequestExitListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">RequestExitListener</a></code></dd>
 </dl>
 </section>
 </li>
