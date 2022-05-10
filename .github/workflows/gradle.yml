@@ -36,45 +36,45 @@ jobs:
 #    - name: Build with Gradle
 #      if: matrix.os == 'windows-latest'
 #      run: gradle build --no-daemon
-  build-ubuntu:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Install Required Packages
-        run: |
-          sudo apt install -y dbus-x11 at-spi2-core
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-      - name: Set Up Java
-        uses: actions/setup-java@v3
-        with:
-          java-version: 18
-          distribution: 'temurin'
-          cache: 'gradle'
-      - name: Make gradle executable
-        run: chmod +x gradlew
-      - name: Headless Build with Gradle
-        uses: GabrielBB/xvfb-action@v1
-        with:
-            run: gradle test
-  build-macos:
-    runs-on: macos-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-      - name: Set Up Java
-        uses: actions/setup-java@v3
-        with:
-          java-version: 18
-          distribution: 'temurin'
-          cache: 'gradle'
-      - name: Make gradle executable
-        run: chmod +x gradlew
-      - name: Build with Gradle
-        run: gradle test
+#  build-ubuntu:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Install Required Packages
+#        run: |
+#          sudo apt install -y dbus-x11 at-spi2-core
+#      - name: Checkout Repository
+#        uses: actions/checkout@v3
+#      - name: Set Up Java
+#        uses: actions/setup-java@v3
+#        with:
+#          java-version: 18
+#          distribution: 'temurin'
+#          cache: 'gradle'
+#      - name: Make gradle executable
+#        run: chmod +x gradlew
 #      - name: Headless Build with Gradle
 #        uses: GabrielBB/xvfb-action@v1
 #        with:
-#          run: gradle test --no-daemon -Djdk.gtk.version=2
+#            run: gradle test
+#  build-macos:
+#    runs-on: macos-latest
+#    steps:
+#      - name: Checkout Repository
+#        uses: actions/checkout@v3
+#      - name: Set Up Java
+#        uses: actions/setup-java@v3
+#        with:
+#          java-version: 18
+#          distribution: 'temurin'
+#          cache: 'gradle'
+#      - name: Make gradle executable
+#        run: chmod +x gradlew
+#      - name: Build with Gradle
+#        run: gradle test
+##      - name: Headless Build with Gradle
+##        uses: GabrielBB/xvfb-action@v1
+##        with:
+##          run: gradle test --no-daemon -Djdk.gtk.version=2
   build-windows:
     runs-on: windows-latest
     steps:
@@ -94,8 +94,8 @@ jobs:
   tests:
     name: "Tests Completed"
     needs:
-      - build-ubuntu
-      - build-macos
+#      - build-ubuntu
+#      - build-macos
       - build-windows
     runs-on: ubuntu-latest
     steps:
