@@ -53,7 +53,7 @@ dependencies {
         exclude(group: 'org.openjfx')
     }
     implementation 'org.junit.jupiter:junit-jupiter:5.8.2'
-    implementation 'org.jetbrains:annotations:20.1.0'
+    implementation 'org.jetbrains:annotations:23.0.0'
 
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2")
 
