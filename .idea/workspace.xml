@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b9a42fd-9f26-4d77-9a6e-5f621fbf7f2f" name="Changes" comment="Oh man">
+    <list default="true" id="5b9a42fd-9f26-4d77-9a6e-5f621fbf7f2f" name="Changes" comment="Renamed Title">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/tealeaf/pacemanager/app/App.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +187,7 @@
       <command value="gradle build" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.Launcher">
+  <component name="RunManager" selected="Gradle.Tests in 'paceManager.test'">
     <configuration name="AppMenuTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -258,29 +257,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="CreateProjectDialogTest.testIllegalCharacters" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;org.tealeaf.pacemanager.app.dialogs.CreateProjectDialogTest.testIllegalCharacters&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <configuration name="Tests in 'paceManager.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -302,21 +278,42 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="paceManager [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Application.Launcher" />
       <item itemvalue="Gradle.AppMenuTest" />
       <item itemvalue="Gradle.AppMenuTest.testFileClose" />
       <item itemvalue="Gradle.AppMenuTest.testFileNew" />
-      <item itemvalue="Gradle.CreateProjectDialogTest.testIllegalCharacters" />
+      <item itemvalue="Gradle.paceManager [build]" />
       <item itemvalue="Gradle.Tests in 'paceManager.test'" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.Tests in 'paceManager.test'" />
+        <item itemvalue="Gradle.paceManager [build]" />
         <item itemvalue="Gradle.AppMenuTest.testFileClose" />
         <item itemvalue="Gradle.AppMenuTest.testFileNew" />
         <item itemvalue="Gradle.AppMenuTest" />
-        <item itemvalue="Gradle.CreateProjectDialogTest.testIllegalCharacters" />
       </list>
     </recent_temporary>
   </component>
@@ -328,13 +325,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1651858064643</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Stuff">
-      <created>1651962589408</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1651962589408</updated>
     </task>
     <task id="LOCAL-00006" summary="Things to work on: DATABASE">
       <created>1651962966137</created>
@@ -672,7 +662,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652135364053</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Renamed Title">
+      <created>1652135553506</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1652135553506</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -690,7 +687,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Added Javadoc" />
     <MESSAGE value="Change to Javadoc" />
     <MESSAGE value="Fix Stuff" />
     <MESSAGE value="Added label to tests" />
@@ -715,7 +711,8 @@
     <MESSAGE value="Added Sleeping" />
     <MESSAGE value="What the hell" />
     <MESSAGE value="Oh man" />
-    <option name="LAST_COMMIT_MESSAGE" value="Oh man" />
+    <MESSAGE value="Renamed Title" />
+    <option name="LAST_COMMIT_MESSAGE" value="Renamed Title" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
