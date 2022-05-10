@@ -89,7 +89,7 @@ jobs:
       - name: Make Gradle Executable
         run: chmod +x gradlew
       - name: Build with Gradle
-        run: gradle test --no-daemon
+        run: gradle build --no-daemon
 
   tests:
     name: "Tests Completed"
