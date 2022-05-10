@@ -1,4 +1,4 @@
-package org.tealeaf.pacemanager.app.layouts;
+package org.tealeaf.pacemanager.app.stages;
 
 import org.junit.jupiter.api.Test;
 import org.tealeaf.pacemanager.app.Identity;

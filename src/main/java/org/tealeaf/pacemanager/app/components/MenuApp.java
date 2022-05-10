@@ -9,10 +9,10 @@ import org.tealeaf.pacemanager.app.listeners.CloseProjectListener;
 import org.tealeaf.pacemanager.app.listeners.RequestExitListener;
 import org.tealeaf.pacemanager.events.EventCoordinator;
 
-public class AppMenu extends MenuBar {
+public class MenuApp extends MenuBar {
 
 
-    public AppMenu(EventCoordinator eventCoordinator) {
+    public MenuApp(EventCoordinator eventCoordinator) {
         getMenus().addAll(new Menu() {{
             setText("File");
             Identity.APP_MENU_FILE.set(this);

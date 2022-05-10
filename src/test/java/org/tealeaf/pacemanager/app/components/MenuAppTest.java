@@ -8,7 +8,7 @@ import test.ApplicationWrapper;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AppMenuTest extends ApplicationWrapper {
+class MenuAppTest extends ApplicationWrapper {
 
     @BeforeEach
     void openNewPace() {

@@ -3,9 +3,8 @@ package org.tealeaf.pacemanager.app;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.tealeaf.pacemanager.app.layouts.LauncherLayout;
+import org.tealeaf.pacemanager.app.stages.LauncherLayout;
 import org.tealeaf.pacemanager.app.listeners.OpenProjectListener;
-import org.tealeaf.pacemanager.concurrency.ThreadManager;
 import org.tealeaf.pacemanager.data.Project;
 import org.tealeaf.pacemanager.events.EventCoordinator;
 import org.tealeaf.pacemanager.events.EventManager;
@@ -18,6 +17,10 @@ public class Launcher extends Application implements EventCoordinator, OpenProje
 
     private Stage stage;
 
+    public static void main(String[] args) {
+        launch();
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
         this.stage = stage;
@@ -29,6 +32,7 @@ public class Launcher extends Application implements EventCoordinator, OpenProje
 
 
         stage.setScene(scene);
+
 
         stage.show();
     }

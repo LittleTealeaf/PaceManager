@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import org.tealeaf.pacemanager.app.Identity;
 import org.tealeaf.pacemanager.app.listeners.OpenProjectListener;
 import org.tealeaf.pacemanager.constants.ProjectNameRestrictions;
+import org.tealeaf.pacemanager.data.Pace;
 import org.tealeaf.pacemanager.data.Project;
 import org.tealeaf.pacemanager.events.EventCoordinator;
 
@@ -91,7 +92,7 @@ public class CreatePaceDialog extends Stage implements OpenProjectListener {
 
                     setOnAction(event -> {
 
-                        Project project = new Project(nameField.getText());
+                        Project project = new Project(new Pace(nameField.getText()));
 
                         eventCoordinator.run(OpenProjectListener.class, l -> l.openProject(project));
                         eventCoordinator.removeListener(this);

@@ -53,6 +53,10 @@ public class UserInterfaceWrapper extends ApplicationTest {
         return lookup(identity.toID());
     }
 
+    public NodeQuery lookup(Identity identity, int i) {
+        return lookup(identity.toID(i));
+    }
+
     @Override
     public NodeQuery lookup(String query) {
         return lookup(node -> query.equals(node.getId()));
@@ -60,6 +64,10 @@ public class UserInterfaceWrapper extends ApplicationTest {
 
     public void clickOn(Identity identity) {
         clickOn(identity.toID());
+    }
+
+    public void clickOn(Identity identity, int i) {
+        clickOn(identity.toID(i));
     }
 
     public void clickOn(Identity... identities) {
@@ -76,6 +84,14 @@ public class UserInterfaceWrapper extends ApplicationTest {
         return lookup(identity).tryQuery().isPresent();
     }
 
+    public boolean exists(Identity identity, int i) {
+        return lookup(identity,i).tryQuery().isPresent();
+    }
+
+    public <T> T get(Class<T> tClass, Identity identity, int i) {
+        return get(tClass,lookup(identity,i));
+    }
+
     public <T> T get(Class<T> tClass, Identity identity) {
         return get(tClass,lookup(identity));
     }
@@ -87,6 +103,19 @@ public class UserInterfaceWrapper extends ApplicationTest {
     public void writeInto(Identity identity, String text) {
         clickOn(identity);
         write(text);
+    }
+
+    public void writeInto(Identity identity, int i, String text) {
+        clickOn(identity,i);
+        write(text);
+    }
+
+    public int getIdentityCount(Identity identity) {
+        int count = 0;
+        while(exists(identity,count)) {
+            count++;
+        }
+        return count;
     }
 
     public void keystroke(KeyCode... keyCodes) {
