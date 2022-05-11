@@ -129,8 +129,11 @@ implements <a href="../listeners/OpenProjectListener.html" title="interface in o
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.tealeaf.pacemanager.events.EventCoordinator)" class="member-name-link">CreatePaceDialog</a><wbr>(<a href="../../events/EventCoordinator.html" title="interface in org.tealeaf.pacemanager.events">EventCoordinator</a>&nbsp;eventCoordinator)</code></div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.tealeaf.pacemanager.app.Context)" class="member-name-link">CreatePaceDialog</a><wbr>(<a href="../Context.html" title="interface in org.tealeaf.pacemanager.app">Context</a>&nbsp;context)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(org.tealeaf.pacemanager.app.Context,boolean)" class="member-name-link">CreatePaceDialog</a><wbr>(<a href="../Context.html" title="interface in org.tealeaf.pacemanager.app">Context</a>&nbsp;context,
+ boolean&nbsp;quickAdd)</code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -145,9 +148,30 @@ implements <a href="../listeners/OpenProjectListener.html" title="interface in o
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#openProject(org.tealeaf.pacemanager.data.Project)" class="member-name-link">openProject</a><wbr>(<a href="../../data/Project.html" title="class in org.tealeaf.pacemanager.data">Project</a>&nbsp;project)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected javafx.scene.Node</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#buildButtonCancel()" class="member-name-link">buildButtonCancel</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected javafx.scene.Node</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#buildButtonCreate()" class="member-name-link">buildButtonCreate</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected javafx.scene.Parent</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#buildLayout()" class="member-name-link">buildLayout</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected javafx.scene.Node</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#buildLayoutBottom()" class="member-name-link">buildLayoutBottom</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected javafx.scene.Node</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#buildLayoutCenter()" class="member-name-link">buildLayoutCenter</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected javafx.scene.control.TextField</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#buildNameField()" class="member-name-link">buildNameField</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#eventCreate(javafx.event.ActionEvent)" class="member-name-link">eventCreate</a><wbr>(javafx.event.ActionEvent&nbsp;event)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#openProject(org.tealeaf.pacemanager.data.Project)" class="member-name-link">openProject</a><wbr>(<a href="../../data/Project.html" title="class in org.tealeaf.pacemanager.data">Project</a>&nbsp;project)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -172,9 +196,16 @@ implements <a href="../listeners/OpenProjectListener.html" title="interface in o
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(org.tealeaf.pacemanager.events.EventCoordinator)">
+<section class="detail" id="&lt;init&gt;(org.tealeaf.pacemanager.app.Context)">
 <h3>CreatePaceDialog</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">CreatePaceDialog</span><wbr><span class="parameters">(<a href="../../events/EventCoordinator.html" title="interface in org.tealeaf.pacemanager.events">EventCoordinator</a>&nbsp;eventCoordinator)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">CreatePaceDialog</span><wbr><span class="parameters">(<a href="../Context.html" title="interface in org.tealeaf.pacemanager.app">Context</a>&nbsp;context)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="&lt;init&gt;(org.tealeaf.pacemanager.app.Context,boolean)">
+<h3>CreatePaceDialog</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">CreatePaceDialog</span><wbr><span class="parameters">(<a href="../Context.html" title="interface in org.tealeaf.pacemanager.app">Context</a>&nbsp;context,
+ boolean&nbsp;quickAdd)</span></div>
 </section>
 </li>
 </ul>
@@ -185,6 +216,48 @@ implements <a href="../listeners/OpenProjectListener.html" title="interface in o
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
+<li>
+<section class="detail" id="buildLayout()">
+<h3>buildLayout</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">javafx.scene.Parent</span>&nbsp;<span class="element-name">buildLayout</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="buildLayoutCenter()">
+<h3>buildLayoutCenter</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">javafx.scene.Node</span>&nbsp;<span class="element-name">buildLayoutCenter</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="buildLayoutBottom()">
+<h3>buildLayoutBottom</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">javafx.scene.Node</span>&nbsp;<span class="element-name">buildLayoutBottom</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="buildNameField()">
+<h3>buildNameField</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">javafx.scene.control.TextField</span>&nbsp;<span class="element-name">buildNameField</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="buildButtonCancel()">
+<h3>buildButtonCancel</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">javafx.scene.Node</span>&nbsp;<span class="element-name">buildButtonCancel</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="buildButtonCreate()">
+<h3>buildButtonCreate</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">javafx.scene.Node</span>&nbsp;<span class="element-name">buildButtonCreate</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="eventCreate(javafx.event.ActionEvent)">
+<h3>eventCreate</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">eventCreate</span><wbr><span class="parameters">(javafx.event.ActionEvent&nbsp;event)</span></div>
+</section>
+</li>
 <li>
 <section class="detail" id="openProject(org.tealeaf.pacemanager.data.Project)">
 <h3>openProject</h3>

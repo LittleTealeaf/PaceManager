@@ -60,14 +60,14 @@ loadScripts(document, 'script');</script>
 <ul>
 <li class="circle">javafx.application.Application
 <ul>
-<li class="circle">org.tealeaf.pacemanager.app.<a href="Launcher.html" class="type-name-link" title="class in org.tealeaf.pacemanager.app">Launcher</a> (implements org.tealeaf.pacemanager.events.<a href="../events/EventCoordinator.html" title="interface in org.tealeaf.pacemanager.events">EventCoordinator</a>, org.tealeaf.pacemanager.app.listeners.<a href="listeners/OpenProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">OpenProjectListener</a>)</li>
+<li class="circle">org.tealeaf.pacemanager.app.<a href="Launcher.html" class="type-name-link" title="class in org.tealeaf.pacemanager.app">Launcher</a> (implements org.tealeaf.pacemanager.app.<a href="Context.html" title="interface in org.tealeaf.pacemanager.app">Context</a>, org.tealeaf.pacemanager.app.listeners.<a href="listeners/OpenProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">OpenProjectListener</a>)</li>
 </ul>
 </li>
 <li class="circle">javafx.stage.Window (implements javafx.event.EventTarget)
 <ul>
 <li class="circle">javafx.stage.Stage
 <ul>
-<li class="circle">org.tealeaf.pacemanager.app.<a href="App.html" class="type-name-link" title="class in org.tealeaf.pacemanager.app">App</a> (implements org.tealeaf.pacemanager.app.listeners.<a href="listeners/CloseProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">CloseProjectListener</a>, org.tealeaf.pacemanager.events.<a href="../events/EventCoordinator.html" title="interface in org.tealeaf.pacemanager.events">EventCoordinator</a>, org.tealeaf.pacemanager.app.listeners.<a href="listeners/OpenProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">OpenProjectListener</a>, org.tealeaf.pacemanager.app.listeners.<a href="listeners/RequestExitListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">RequestExitListener</a>)</li>
+<li class="circle">org.tealeaf.pacemanager.app.<a href="App.html" class="type-name-link" title="class in org.tealeaf.pacemanager.app">App</a> (implements org.tealeaf.pacemanager.app.listeners.<a href="listeners/CloseProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">CloseProjectListener</a>, org.tealeaf.pacemanager.app.<a href="Context.html" title="interface in org.tealeaf.pacemanager.app">Context</a>, org.tealeaf.pacemanager.app.listeners.<a href="listeners/OpenProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">OpenProjectListener</a>, org.tealeaf.pacemanager.app.listeners.<a href="listeners/RequestExitListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">RequestExitListener</a>)</li>
 </ul>
 </li>
 </ul>
@@ -80,7 +80,17 @@ loadScripts(document, 'script');</script>
 <h2 title="Interface Hierarchy">Interface Hierarchy</h2>
 <ul>
 <li class="circle">org.tealeaf.pacemanager.app.<a href="App.OnClose.html" class="type-name-link" title="interface in org.tealeaf.pacemanager.app">App.OnClose</a></li>
+<li class="circle">org.tealeaf.pacemanager.events.<a href="../events/EventCoordinator.html" class="type-name-link" title="interface in org.tealeaf.pacemanager.events">EventCoordinator</a>
+<ul>
+<li class="circle">org.tealeaf.pacemanager.app.<a href="Context.html" class="type-name-link" title="interface in org.tealeaf.pacemanager.app">Context</a> (also extends org.tealeaf.pacemanager.app.key.<a href="key/KeyTracker.html" title="interface in org.tealeaf.pacemanager.app.key">KeyTracker</a>)</li>
+</ul>
+</li>
 <li class="circle">org.tealeaf.pacemanager.app.<a href="Identity.Holder.html" class="type-name-link" title="interface in org.tealeaf.pacemanager.app">Identity.Holder</a></li>
+<li class="circle">org.tealeaf.pacemanager.app.key.<a href="key/KeyTracker.html" class="type-name-link" title="interface in org.tealeaf.pacemanager.app.key">KeyTracker</a>
+<ul>
+<li class="circle">org.tealeaf.pacemanager.app.<a href="Context.html" class="type-name-link" title="interface in org.tealeaf.pacemanager.app">Context</a> (also extends org.tealeaf.pacemanager.events.<a href="../events/EventCoordinator.html" title="interface in org.tealeaf.pacemanager.events">EventCoordinator</a>)</li>
+</ul>
+</li>
 </ul>
 </section>
 <section class="hierarchy">

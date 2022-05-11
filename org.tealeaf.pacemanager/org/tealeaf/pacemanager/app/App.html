@@ -100,12 +100,12 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code>javafx.event.EventTarget</code>, <code><a href="listeners/CloseProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">CloseProjectListener</a></code>, <code><a href="listeners/OpenProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">OpenProjectListener</a></code>, <code><a href="listeners/RequestExitListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">RequestExitListener</a></code>, <code><a href="../events/EventCoordinator.html" title="interface in org.tealeaf.pacemanager.events">EventCoordinator</a></code></dd>
+<dd><code>javafx.event.EventTarget</code>, <code><a href="Context.html" title="interface in org.tealeaf.pacemanager.app">Context</a></code>, <code><a href="key/KeyTracker.html" title="interface in org.tealeaf.pacemanager.app.key">KeyTracker</a></code>, <code><a href="listeners/CloseProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">CloseProjectListener</a></code>, <code><a href="listeners/OpenProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">OpenProjectListener</a></code>, <code><a href="listeners/RequestExitListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">RequestExitListener</a></code>, <code><a href="../events/EventCoordinator.html" title="interface in org.tealeaf.pacemanager.events">EventCoordinator</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">App</span>
 <span class="extends-implements">extends javafx.stage.Stage
-implements <a href="../events/EventCoordinator.html" title="interface in org.tealeaf.pacemanager.events">EventCoordinator</a>, <a href="listeners/OpenProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">OpenProjectListener</a>, <a href="listeners/CloseProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">CloseProjectListener</a>, <a href="listeners/RequestExitListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">RequestExitListener</a></span></div>
+implements <a href="Context.html" title="interface in org.tealeaf.pacemanager.app">Context</a>, <a href="listeners/OpenProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">OpenProjectListener</a>, <a href="listeners/CloseProjectListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">CloseProjectListener</a>, <a href="listeners/RequestExitListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">RequestExitListener</a></span></div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -172,6 +172,12 @@ implements <a href="../events/EventCoordinator.html" title="interface in org.tea
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../data/Project.html" title="class in org.tealeaf.pacemanager.data">Project</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getProject()" class="member-name-link">getProject</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isKeyPressed(javafx.scene.input.KeyCode)" class="member-name-link">isKeyPressed</a><wbr>(javafx.scene.input.KeyCode&nbsp;keyCode)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#keyEvent(javafx.scene.input.KeyEvent)" class="member-name-link">keyEvent</a><wbr>(javafx.scene.input.KeyEvent&nbsp;keyEvent)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onCloseProject()" class="member-name-link">onCloseProject</a>()</code></div>
@@ -295,6 +301,26 @@ implements <a href="../events/EventCoordinator.html" title="interface in org.tea
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="listeners/RequestExitListener.html#onRequestExit()">onRequestExit</a></code>&nbsp;in interface&nbsp;<code><a href="listeners/RequestExitListener.html" title="interface in org.tealeaf.pacemanager.app.listeners">RequestExitListener</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="isKeyPressed(javafx.scene.input.KeyCode)">
+<h3>isKeyPressed</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isKeyPressed</span><wbr><span class="parameters">(javafx.scene.input.KeyCode&nbsp;keyCode)</span></div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="key/KeyTracker.html#isKeyPressed(javafx.scene.input.KeyCode)">isKeyPressed</a></code>&nbsp;in interface&nbsp;<code><a href="key/KeyTracker.html" title="interface in org.tealeaf.pacemanager.app.key">KeyTracker</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="keyEvent(javafx.scene.input.KeyEvent)">
+<h3>keyEvent</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">keyEvent</span><wbr><span class="parameters">(javafx.scene.input.KeyEvent&nbsp;keyEvent)</span></div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="key/KeyTracker.html#keyEvent(javafx.scene.input.KeyEvent)">keyEvent</a></code>&nbsp;in interface&nbsp;<code><a href="key/KeyTracker.html" title="interface in org.tealeaf.pacemanager.app.key">KeyTracker</a></code></dd>
 </dl>
 </section>
 </li>
