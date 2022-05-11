@@ -28,7 +28,7 @@ class CreateProjectDialogTest extends ApplicationWrapper {
 
     @Test
     void testCreateNewProject() {
-        actionCreateNewPace();
+        actionCreateNewPace("");
         assertTrue(exists(Identity.APP_LAYOUT));
     }
 

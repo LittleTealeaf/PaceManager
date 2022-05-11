@@ -1,5 +1,6 @@
 package test;
 
+import javafx.scene.input.KeyCode;
 import org.tealeaf.pacemanager.app.Identity;
 import org.tealeaf.pacemanager.data.EventTime;
 
@@ -13,7 +14,9 @@ public class ApplicationWrapper extends UserInterfaceWrapper implements Randomiz
     }
 
     protected void actionCreateNewPace() {
-        actionCreateNewPace(randomName());
+        press(KeyCode.CONTROL);
+        actionOpenCreatePace();
+        release(KeyCode.CONTROL);
     }
 
     protected void actionCreateNewPace(String name) {

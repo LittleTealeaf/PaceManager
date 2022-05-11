@@ -2,18 +2,26 @@ package org.tealeaf.pacemanager.app;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import org.tealeaf.pacemanager.app.api.Context;
+import org.tealeaf.pacemanager.app.key.KeyTracker;
+import org.tealeaf.pacemanager.app.key.KeyboardManager;
 import org.tealeaf.pacemanager.app.stages.LauncherLayout;
 import org.tealeaf.pacemanager.app.listeners.OpenProjectListener;
 import org.tealeaf.pacemanager.data.Project;
 import org.tealeaf.pacemanager.events.EventCoordinator;
 import org.tealeaf.pacemanager.events.EventManager;
 
+import java.security.Key;
 import java.util.Set;
 
-public class Launcher extends Application implements EventCoordinator, OpenProjectListener {
+public class Launcher extends Application implements Context, OpenProjectListener {
 
     private final EventManager eventManager = new EventManager(this);
+
+    private final KeyTracker keyTracker = new KeyboardManager();
 
     private Stage stage;
 
@@ -66,5 +74,15 @@ public class Launcher extends Application implements EventCoordinator, OpenProje
 
     public void show() {
         stage.show();
+    }
+
+    @Override
+    public boolean isKeyPressed(KeyCode keyCode) {
+        return keyTracker.isKeyPressed(keyCode);
+    }
+
+    @Override
+    public void keyEvent(KeyEvent keyEvent) {
+        keyTracker.keyEvent(keyEvent);
     }
 }

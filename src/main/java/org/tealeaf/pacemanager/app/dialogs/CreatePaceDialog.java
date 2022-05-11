@@ -15,6 +15,7 @@ import javafx.scene.layout.Priority;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.tealeaf.pacemanager.app.Identity;
+import org.tealeaf.pacemanager.app.api.Context;
 import org.tealeaf.pacemanager.app.listeners.OpenProjectListener;
 import org.tealeaf.pacemanager.constants.ProjectNameRestrictions;
 import org.tealeaf.pacemanager.data.Pace;
@@ -25,15 +26,19 @@ import java.util.function.UnaryOperator;
 
 public class CreatePaceDialog extends Stage implements OpenProjectListener {
 
+    public CreatePaceDialog(Context context) {
+        this(context,false);
+    }
 
-    public CreatePaceDialog(EventCoordinator eventCoordinator) {
-        eventCoordinator.addListener(this);
+    public CreatePaceDialog(Context context, boolean quickAdd) {
+
+        context.addListener(this);
         initModality(Modality.APPLICATION_MODAL);
         setTitle("Create New Pace");
 
         setMinWidth(400);
 
-        setOnCloseRequest(event -> eventCoordinator.removeListener(this));
+        setOnCloseRequest(event -> context.removeListener(this));
 
         setScene(new Scene(new BorderPane() {{
             Identity.DIALOG_CREATE_PACE.set(this);
@@ -94,8 +99,8 @@ public class CreatePaceDialog extends Stage implements OpenProjectListener {
 
                         Project project = new Project(new Pace(nameField.getText()));
 
-                        eventCoordinator.run(OpenProjectListener.class, l -> l.openProject(project));
-                        eventCoordinator.removeListener(this);
+                        context.run(OpenProjectListener.class, l -> l.openProject(project));
+                        context.removeListener(this);
                     });
                 }});
                 setAlignment(Pos.CENTER_RIGHT);
@@ -106,6 +111,9 @@ public class CreatePaceDialog extends Stage implements OpenProjectListener {
         }}));
 
         show();
+        if(quickAdd) {
+            context.run(OpenProjectListener.class,l -> l.openProject(new Project(new Pace("New Pace"))));
+        }
     }
 
 

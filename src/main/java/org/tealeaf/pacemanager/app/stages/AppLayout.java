@@ -1,6 +1,8 @@
 package org.tealeaf.pacemanager.app.stages;
 
+import javafx.event.EventHandler;
 import javafx.scene.control.TabPane;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import org.tealeaf.pacemanager.app.App;
 import org.tealeaf.pacemanager.app.Identity;

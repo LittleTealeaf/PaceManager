@@ -111,6 +111,8 @@ public class Team implements Identifiable {
 
     }
 
+
+
     public String getName() {
         return nameProperty.get();
     }
@@ -123,6 +125,10 @@ public class Team implements Identifiable {
 
     public StringProperty nameProperty() {
         return nameProperty;
+    }
+
+    public State getState() {
+        return startTimeProperty.isNull().get() ? State.NOT_STARTED : endTimeProperty.isNull().get() ? State.IN_PROGRESS : State.COMPLETED;
     }
 
     @Override
@@ -141,6 +147,20 @@ public class Team implements Identifiable {
         team.getRiders().parallelStream().filter(i -> !ridersProperty.contains(i)).sequential().forEach(ridersProperty::add);
 
         return this;
+    }
+
+    public enum State {
+        NOT_STARTED("In"), IN_PROGRESS("Out"), COMPLETED("Done");
+
+        State(String string) {
+            this.string = string;
+        }
+        private final String string;
+
+        @Override
+        public String toString() {
+            return string;
+        }
     }
 
 }

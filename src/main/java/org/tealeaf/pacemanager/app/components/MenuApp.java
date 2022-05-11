@@ -1,9 +1,12 @@
 package org.tealeaf.pacemanager.app.components;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import org.tealeaf.pacemanager.app.Identity;
+import org.tealeaf.pacemanager.app.api.Context;
 import org.tealeaf.pacemanager.app.dialogs.CreatePaceDialog;
 import org.tealeaf.pacemanager.app.listeners.CloseProjectListener;
 import org.tealeaf.pacemanager.app.listeners.RequestExitListener;
@@ -11,28 +14,32 @@ import org.tealeaf.pacemanager.events.EventCoordinator;
 
 public class MenuApp extends MenuBar {
 
+    public MenuApp(Context context) {
+        getMenus().addAll(fileMenu(context));
+    }
 
-    public MenuApp(EventCoordinator eventCoordinator) {
-        getMenus().addAll(new Menu() {{
-            setText("File");
-            Identity.APP_MENU_FILE.set(this);
+    protected Menu fileMenu(Context context) {
 
-            getItems().addAll(new MenuItem() {{
-                Identity.APP_MENU_FILE_NEW.set(this);
-                setText("New");
-                setOnAction(event -> new CreatePaceDialog(eventCoordinator));
-            }}, new MenuItem() {{
-                Identity.APP_MENU_FILE_OPEN.set(this);
-                setText("Open");
-            }}, new MenuItem() {{
-                Identity.APP_MENU_FILE_CLOSE_PROJECT.set(this);
-                setText("Close Project");
-                setOnAction(event -> eventCoordinator.run(CloseProjectListener.class,CloseProjectListener::onCloseProject));
-            }}, new MenuItem() {{
-                Identity.APP_MENU_FILE_EXIT.set(this);
-                setText("Exit");
-                setOnAction(event -> eventCoordinator.run(RequestExitListener.class,RequestExitListener::onRequestExit));
-            }});
-        }});
+        Menu menu = new Menu("File");
+        Identity.APP_MENU_FILE.set(menu);
+
+        addMenuItem(menu, "New", Identity.APP_MENU_FILE_NEW, event -> new CreatePaceDialog(context));
+        addMenuItem(menu, "Open", Identity.APP_MENU_FILE_OPEN, event -> {});
+        addMenuItem(
+                menu, "Close Project", Identity.APP_MENU_FILE_CLOSE_PROJECT, event -> context.run(CloseProjectListener.class, CloseProjectListener::onCloseProject));
+        addMenuItem(menu, "Exit", Identity.APP_MENU_FILE_EXIT, event -> context.run(RequestExitListener.class, RequestExitListener::onRequestExit));
+
+        return menu;
+    }
+
+    protected void addMenuItem(Menu menu, String text, Identity identity, EventHandler<ActionEvent> eventHandler) {
+        menu.getItems().add(createMenuItem(text, identity, eventHandler));
+    }
+
+    protected MenuItem createMenuItem(String text, Identity identity, EventHandler<ActionEvent> eventHandler) {
+        MenuItem menuItem = new MenuItem(text);
+        identity.set(menuItem);
+        menuItem.setOnAction(eventHandler);
+        return menuItem;
     }
 }
