@@ -14,14 +14,6 @@ public class KeyboardManager implements KeyTracker {
 
     }
 
-    public void keyEvent(KeyEvent keyEvent) {
-        if(keyEvent.getEventType() == KeyEvent.KEY_PRESSED) {
-            keysDown.add(keyEvent.getCode());
-        } else if(keyEvent.getEventType() == KeyEvent.KEY_RELEASED) {
-            keysDown.remove(keyEvent.getCode());
-        }
-    }
-
     public void resetKeyPresses() {
         keysDown.clear();
     }
@@ -29,5 +21,13 @@ public class KeyboardManager implements KeyTracker {
     @Override
     public boolean isKeyPressed(KeyCode keyCode) {
         return false;
+    }
+
+    public void keyEvent(KeyEvent keyEvent) {
+        if (keyEvent.getEventType() == KeyEvent.KEY_PRESSED) {
+            keysDown.add(keyEvent.getCode());
+        } else if (keyEvent.getEventType() == KeyEvent.KEY_RELEASED) {
+            keysDown.remove(keyEvent.getCode());
+        }
     }
 }

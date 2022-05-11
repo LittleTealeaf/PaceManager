@@ -1,7 +1,5 @@
 package org.tealeaf.pacemanager.util;
 
-import org.tealeaf.pacemanager.app.Identity;
-
 import java.util.UUID;
 
 public interface Identifiable {
@@ -11,11 +9,11 @@ public interface Identifiable {
         return UUID.randomUUID().toString();
     }
 
-    String getId();
-
-    void setId(String id);
-
     default boolean idEquals(Identifiable other) {
         return other.getId().equals(getId());
     }
+
+    String getId();
+
+    void setId(String id);
 }

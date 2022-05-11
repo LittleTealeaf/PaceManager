@@ -15,7 +15,6 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.tealeaf.pacemanager.app.Identity;
-import org.tealeaf.pacemanager.constants.ProjectNameRestrictions;
 import org.tealeaf.pacemanager.data.EventTime;
 import org.tealeaf.pacemanager.data.Team;
 import org.tealeaf.pacemanager.events.EventCoordinator;
@@ -41,7 +40,6 @@ public class EditTeamDialog extends Stage {
         this.eventCoordinator = eventCoordinator;
         isNew = inputTeam == null;
         team = isNew ? new Team() : inputTeam.clone();
-
 
         initModality(Modality.APPLICATION_MODAL);
         setTitle(isNew ? "New Team" : "Edit Team");
@@ -69,69 +67,17 @@ public class EditTeamDialog extends Stage {
     protected Node buildLayoutLeft() {
         return new GridPane() {{
 
-
-
-            add(new Label("Team Name"),0,0);
+            add(new Label("Team Name"), 0, 0);
             add(new TextField() {{
                 Identity.DIALOG_EDIT_TEAM_INPUT_NAME.set(this);
                 setText(team.getName());
                 team.nameProperty().bind(textProperty());
                 setPromptText("Team Name");
-            }},1,0);
-            add(new Label("Riders"),0,1);
-            add(new RidersNode(),1,1);
+            }}, 1, 0);
+            add(new Label("Riders"), 0, 1);
+            add(new RidersNode(), 1, 1);
         }};
     }
-
-
-
-    protected Node buildLayoutRight() {
-        return new GridPane() {{
-
-            add(new Label("Start Time"),0,0);
-            add(new TextField() {{
-                Identity.DIALOG_EDIT_TEAM_INPUT_TIME_START.set(this);
-                setText(team.getStartTime() == null ? "" : team.getStartTime().toString());
-                textProperty().addListener((e,o,n) -> team.setStartTime(new EventTime(Long.parseLong(n))));
-                setTextFormatter(new TextFormatter<>(change -> {
-                    if (!change.isContentChange()) {
-                        return change;
-                    }
-                    String text = change.getControlNewText();
-                    try {
-                        Long.parseLong(text);
-                    } catch(Exception e) {
-                        return null;
-                    }
-                    return change;
-                }));
-                setPromptText("Time");
-            }},1,0);
-            add(new Label("End Time"),0,1);
-            add(new TextField() {{
-                Identity.DIALOG_EDIT_TEAM_INPUT_TIME_END.set(this);
-                setPromptText("Time");
-                setText(team.getEndTime() == null ? "" : team.getEndTime().toString());
-                textProperty().addListener((e,o,n) -> team.setEndTime(n.equals("") ? null : new EventTime(Long.parseLong(n))));
-                setTextFormatter(new TextFormatter<>(change -> {
-                    if (!change.isContentChange()) {
-                        return change;
-                    }
-                    String text = change.getControlNewText();
-                    try {
-                        Long.parseLong(text);
-                    } catch(Exception e) {
-                        return null;
-                    }
-                    return change;
-                }));
-
-
-            }},1,1);
-        }};
-    }
-
-
 
     protected Node buildLayoutBottom() {
         return new HBox(buildSaveButton()) {{
@@ -140,27 +86,76 @@ public class EditTeamDialog extends Stage {
         }};
     }
 
+    protected Node buildLayoutRight() {
+        return new GridPane() {{
+
+            add(new Label("Start Time"), 0, 0);
+            add(new TextField() {{
+                Identity.DIALOG_EDIT_TEAM_INPUT_TIME_START.set(this);
+                setText(team.getStartTime() == null ? "" : team.getStartTime().toString());
+                textProperty().addListener((e, o, n) -> team.setStartTime(new EventTime(Long.parseLong(n))));
+                setTextFormatter(new TextFormatter<>(change -> {
+                    if (!change.isContentChange()) {
+                        return change;
+                    }
+                    String text = change.getControlNewText();
+                    try {
+                        Long.parseLong(text);
+                    } catch (Exception e) {
+                        return null;
+                    }
+                    return change;
+                }));
+                setPromptText("Time");
+            }}, 1, 0);
+            add(new Label("End Time"), 0, 1);
+            add(new TextField() {{
+                Identity.DIALOG_EDIT_TEAM_INPUT_TIME_END.set(this);
+                setPromptText("Time");
+                setText(team.getEndTime() == null ? "" : team.getEndTime().toString());
+                textProperty().addListener((e, o, n) -> team.setEndTime(n.equals("") ? null : new EventTime(Long.parseLong(n))));
+                setTextFormatter(new TextFormatter<>(change -> {
+                    if (!change.isContentChange()) {
+                        return change;
+                    }
+                    String text = change.getControlNewText();
+                    try {
+                        Long.parseLong(text);
+                    } catch (Exception e) {
+                        return null;
+                    }
+                    return change;
+                }));
+            }}, 1, 1);
+        }};
+    }
+
     protected Node buildSaveButton() {
         return new Button(isNew ? "Create" : "Save") {{
             Identity.DIALOG_EDIT_TEAM_BUTTON_SAVE.set(this);
             setOnAction(event -> {
-                eventCoordinator.run(OnSaveTeam.class,i -> i.onSaveTeam(team));
+                eventCoordinator.run(OnSaveTeam.class, i -> i.onSaveTeam(team));
                 close();
             });
         }};
     }
 
+    public interface OnSaveTeam {
+
+        void onSaveTeam(Team team);
+    }
+
     protected class RidersNode extends GridPane implements ListChangeListener<String> {
 
-        int size = 0;
         private final List<Button> buttons = new LinkedList<>();
         private final List<TextField> textFields = new LinkedList<>();
-
-        private boolean updating = false;
-        Button addButton = new Button() {{setText("Add");
-           Identity.DIALOG_EDIT_TEAM_BUTTON_ADD_RIDER.set(this);
-           setOnAction(event -> team.getRiders().add(""));
+        int size = 0;
+        Button addButton = new Button() {{
+            setText("Add");
+            Identity.DIALOG_EDIT_TEAM_BUTTON_ADD_RIDER.set(this);
+            setOnAction(event -> team.getRiders().add(""));
         }};
+        private boolean updating = false;
 
         RidersNode() {
 
@@ -170,7 +165,7 @@ public class EditTeamDialog extends Stage {
         }
 
         void updateRows() {
-            while(size < team.getRiders().size()) {
+            while (size < team.getRiders().size()) {
                 final int i = size;
                 Button button = new Button("Remove") {{
                     Identity.DIALOG_EDIT_TEAM_BUTTON_REMOVE_RIDER.set(this, size);
@@ -178,8 +173,8 @@ public class EditTeamDialog extends Stage {
                 }};
                 TextField textField = new TextField() {{
                     Identity.DIALOG_EDIT_TEAM_INPUT_RIDER_NAME.set(this, size);
-                    textProperty().addListener((e,o,n) -> {
-                        if(!updating) {
+                    textProperty().addListener((e, o, n) -> {
+                        if (!updating) {
                             team.getRiders().set(i, n);
                         }
                     });
@@ -188,19 +183,19 @@ public class EditTeamDialog extends Stage {
                 buttons.add(button);
                 textFields.add(textField);
 
-                add(textField,1,size);
-                add(button,0,size);
+                add(textField, 1, size);
+                add(button, 0, size);
 
                 size++;
             }
-            while(size > team.getRiders().size()) {
+            while (size > team.getRiders().size()) {
                 size--;
                 TextField textField = textFields.remove(size);
                 getChildren().remove(buttons.remove(size));
                 getChildren().remove(textField);
             }
             updating = true;
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 textFields.get(i).setText(team.getRiders().get(i));
             }
             updating = false;
@@ -208,21 +203,14 @@ public class EditTeamDialog extends Stage {
             updateAddButton();
         }
 
+        void updateAddButton() {
+            getChildren().remove(addButton);
+            add(addButton, 2, Math.max(0, team.getRiders().size() - 1));
+        }
 
         @Override
         public void onChanged(Change<? extends String> c) {
             updateRows();
         }
-
-        void updateAddButton() {
-            getChildren().remove(addButton);
-            add(addButton,2,Math.max(0,team.getRiders().size() - 1));
-        }
-
-    }
-
-    public interface OnSaveTeam {
-
-        void onSaveTeam(Team team);
     }
 }

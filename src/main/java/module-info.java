@@ -10,6 +10,7 @@ module org.tealeaf.pacemanager {
     opens org.tealeaf.pacemanager.data to com.google.gson;
 
     exports org.tealeaf.pacemanager.app;
+
     exports org.tealeaf.pacemanager.app.dialogs;
     exports org.tealeaf.pacemanager.app.stages;
     exports org.tealeaf.pacemanager.data;

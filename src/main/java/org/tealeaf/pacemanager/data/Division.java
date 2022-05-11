@@ -6,15 +6,12 @@ import org.tealeaf.pacemanager.util.Identifiable;
 
 public class Division implements Identifiable {
 
+    private final StringProperty name = new SimpleStringProperty("");
     private String id;
-
-    private final StringProperty name = new SimpleStringProperty("");;
 
     public Division() {
         id = randomId();
     }
-
-
 
     @Override
     public String getId() {

@@ -17,16 +17,16 @@ public class Project implements EditTeamDialog.OnSaveTeam {
 
     }
 
+    public Project(Pace pace) {
+        this.pace = pace;
+    }
+
     public void registerEventCoordinator(EventCoordinator eventCoordinator) {
         eventCoordinator.addListener(this);
     }
 
     public Pace getPace() {
         return pace;
-    }
-
-    public Project(Pace pace) {
-        this.pace = pace;
     }
 
     public String getName() {

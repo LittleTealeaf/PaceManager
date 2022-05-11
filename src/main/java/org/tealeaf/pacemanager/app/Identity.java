@@ -43,12 +43,12 @@ public enum Identity {
         object.setId(toID(i));
     }
 
-    public String toID() {
-        return convert(ordinal());
-    }
-
     public String toID(int i) {
         return "%s-%s".formatted(toID(), convert(i));
+    }
+
+    public String toID() {
+        return convert(ordinal());
     }
 
     private static String convert(int id) {

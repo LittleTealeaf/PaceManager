@@ -5,10 +5,9 @@ import javafx.collections.ObservableList;
 
 public class Pace {
 
-    private String name;
     private final ObservableList<Division> divisions = FXCollections.observableArrayList();
     private final ObservableList<Team> teams = FXCollections.observableArrayList();
-
+    private String name;
 
     public Pace() {
 
@@ -34,14 +33,14 @@ public class Pace {
         return teams;
     }
 
-    public void addTeam(Team team) {
-        teams.add(team);
-    }
-
     public Team newTeam() {
         Team team = new Team();
         addTeam(team);
         return team;
+    }
+
+    public void addTeam(Team team) {
+        teams.add(team);
     }
 
     public void removeTeam(Team team) {

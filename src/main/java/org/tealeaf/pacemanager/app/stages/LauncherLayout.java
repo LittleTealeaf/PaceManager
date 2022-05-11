@@ -1,10 +1,7 @@
 package org.tealeaf.pacemanager.app.stages;
 
-import javafx.animation.KeyValue;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import org.tealeaf.pacemanager.app.Identity;
@@ -23,8 +20,7 @@ public class LauncherLayout extends BorderPane {
                 Identity.LAUNCHER_BUTTON_NEW.set(this);
                 setText("New");
 
-
-                setOnMouseClicked(event -> new CreatePaceDialog(launcher,event.isControlDown()));
+                setOnMouseClicked(event -> new CreatePaceDialog(launcher, event.isControlDown()));
             }});
         }});
     }

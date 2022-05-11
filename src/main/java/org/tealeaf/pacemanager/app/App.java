@@ -4,8 +4,6 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import org.tealeaf.pacemanager.app.api.Context;
-import org.tealeaf.pacemanager.app.dialogs.EditTeamDialog;
 import org.tealeaf.pacemanager.app.key.KeyTracker;
 import org.tealeaf.pacemanager.app.key.KeyboardManager;
 import org.tealeaf.pacemanager.app.listeners.CloseProjectListener;
@@ -13,7 +11,6 @@ import org.tealeaf.pacemanager.app.listeners.OpenProjectListener;
 import org.tealeaf.pacemanager.app.listeners.RequestExitListener;
 import org.tealeaf.pacemanager.app.stages.AppLayout;
 import org.tealeaf.pacemanager.data.Project;
-import org.tealeaf.pacemanager.data.Team;
 import org.tealeaf.pacemanager.events.EventCoordinator;
 import org.tealeaf.pacemanager.events.EventManager;
 
@@ -93,12 +90,12 @@ public class App extends Stage implements Context, OpenProjectListener, ClosePro
         keyTracker.keyEvent(keyEvent);
     }
 
+    public Project getProject() {
+        return project;
+    }
+
     public interface OnClose {
 
         void onAppClose();
-    }
-
-    public Project getProject() {
-        return project;
     }
 }

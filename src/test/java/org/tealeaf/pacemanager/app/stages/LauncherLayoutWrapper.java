@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.tealeaf.pacemanager.app.Identity;
 import test.ApplicationWrapper;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LauncherLayoutWrapper extends ApplicationWrapper {
 

@@ -1,7 +1,6 @@
 package org.tealeaf.pacemanager.app.components;
 
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.BorderPane;
@@ -12,7 +11,7 @@ import org.tealeaf.pacemanager.app.dialogs.EditTeamDialog;
 
 public class TabTeams extends Tab {
 
-    private App app;
+    private final App app;
 
     public TabTeams(App app) {
         this.app = app;
@@ -25,17 +24,15 @@ public class TabTeams extends Tab {
 
             setCenter(new TableTeams(app));
 
-            setTop(new HBox(
-                    new Button("Add Team") {{
-                        Identity.APP_TAB_TEAMS_BUTTON_ADD_TEAM.set(this);
-                        setOnAction(event -> new EditTeamDialog(app));
-                    }}
+            setTop(new HBox(new Button("Add Team") {{
+                Identity.APP_TAB_TEAMS_BUTTON_ADD_TEAM.set(this);
+                setOnAction(event -> new EditTeamDialog(app));
+            }}
 
             ) {{
                 setSpacing(10);
-                setPadding(new Insets(0,5,0,5));
+                setPadding(new Insets(0, 5, 0, 5));
             }});
-
         }});
     }
 }

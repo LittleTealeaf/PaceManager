@@ -11,8 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CreateProjectDialogTest extends ApplicationWrapper {
 
-
-
     @BeforeEach
     void openCreatePaceDialog() {
         actionOpenCreatePace();
@@ -42,12 +40,12 @@ class CreateProjectDialogTest extends ApplicationWrapper {
     @Test
     void testNameRestrictionsIllegalCharacters() {
         writeInto(Identity.DIALOG_CREATE_PACE_FIELD_NAME, ProjectNameRestrictions.ILLEGAL_CHARACTERS);
-        assertEquals("",get(TextField.class,Identity.DIALOG_CREATE_PACE_FIELD_NAME).getText());
+        assertEquals("", get(TextField.class, Identity.DIALOG_CREATE_PACE_FIELD_NAME).getText());
     }
 
     @Test
     void testNameRestrictionsLength() {
-        writeInto(Identity.DIALOG_CREATE_PACE_FIELD_NAME,"a".repeat(ProjectNameRestrictions.MAX_LENGTH + 1));
-        assertEquals(ProjectNameRestrictions.MAX_LENGTH,get(TextField.class,Identity.DIALOG_CREATE_PACE_FIELD_NAME).getText().length());
+        writeInto(Identity.DIALOG_CREATE_PACE_FIELD_NAME, "a".repeat(ProjectNameRestrictions.MAX_LENGTH + 1));
+        assertEquals(ProjectNameRestrictions.MAX_LENGTH, get(TextField.class, Identity.DIALOG_CREATE_PACE_FIELD_NAME).getText().length());
     }
 }

@@ -26,12 +26,12 @@ public class EventManager implements EventCoordinator {
     }
 
     @Override
-    public Set<Object> getListeners() {
-        return new HashSet<>(listeners);
+    public <T> void run(Class<T> listenerClass, Event<T> event) {
+        getListeners().parallelStream().filter(listenerClass::isInstance).map(listenerClass::cast).sequential().forEach(event::run);
     }
 
     @Override
-    public <T> void run(Class<T> listenerClass, Event<T> event) {
-        getListeners().parallelStream().filter(listenerClass::isInstance).map(listenerClass::cast).sequential().forEach(event::run);
+    public Set<Object> getListeners() {
+        return new HashSet<>(listeners);
     }
 }

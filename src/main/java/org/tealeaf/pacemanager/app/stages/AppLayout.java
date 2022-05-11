@@ -1,8 +1,6 @@
 package org.tealeaf.pacemanager.app.stages;
 
-import javafx.event.EventHandler;
 import javafx.scene.control.TabPane;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import org.tealeaf.pacemanager.app.App;
 import org.tealeaf.pacemanager.app.Identity;
@@ -11,7 +9,7 @@ import org.tealeaf.pacemanager.app.components.TabTeams;
 
 public class AppLayout extends BorderPane implements App.OnClose {
 
-    private App app;
+    private final App app;
 
     public AppLayout(App app) {
         this.app = app;

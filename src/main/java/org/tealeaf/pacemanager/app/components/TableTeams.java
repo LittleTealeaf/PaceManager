@@ -1,11 +1,8 @@
 package org.tealeaf.pacemanager.app.components;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyCode;
-import javafx.util.Callback;
 import org.tealeaf.pacemanager.app.App;
 import org.tealeaf.pacemanager.app.Identity;
 import org.tealeaf.pacemanager.app.dialogs.EditTeamDialog;
@@ -26,7 +23,7 @@ public class TableTeams extends TableView<Team> {
             }
         });
         setOnKeyPressed(event -> {
-            if(event.getCode() == KeyCode.ENTER) {
+            if (event.getCode() == KeyCode.ENTER) {
                 openTeam();
             }
         });
@@ -36,7 +33,7 @@ public class TableTeams extends TableView<Team> {
         getColumns().add(new TableColumn<Team, String>("ID") {{
             setCellValueFactory(param -> param.getValue().nameProperty());
         }});
-        getColumns().add(new TableColumn<Team,String>("Riders") {{
+        getColumns().add(new TableColumn<Team, String>("Riders") {{
             setCellValueFactory(param -> param.getValue().getPrintRidersProperty());
         }});
         getColumns().add(new TableColumn<Team, String>("Start Time") {{
