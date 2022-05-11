@@ -55,6 +55,14 @@ public class UserInterfaceWrapper extends ApplicationTest {
         }
     }
 
+    public void doubleClickOn(Identity identity) {
+        doubleClickOn(identity.toID());
+    }
+
+    public void doubleClickOn(Identity identity, int i) {
+        doubleClickOn(identity.toID(i));
+    }
+
     public FxRobotInterface clickOn(@NotNull Identity identity, MouseButton... mouseButtons) {
         return clickOn(identity.toID(), mouseButtons);
     }

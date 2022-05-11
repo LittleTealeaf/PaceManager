@@ -31,10 +31,19 @@ class EditTeamDialogTest extends ApplicationWrapper {
     }
 
     void shortcutReopen() {
+        shortcutReopen(0);
+    }
+
+    void shortcutReopen(int index) {
         clickOn(Identity.DIALOG_EDIT_TEAM_BUTTON_SAVE);
-        clickOn(Identity.APP_TAB_TEAMS_TABLE);
-        keystroke(KeyCode.HOME);
-        keystroke(KeyCode.ENTER);
+        doubleClickOn(Identity.TABLE_TEAMS_CELL_TEAM_NAME,index);
+//        clickOn(Identity.APP_TAB_TEAMS_TABLE);
+//        keystroke(KeyCode.HOME);
+//        keystroke(KeyCode.ENTER);
+//        clickOn(Identity.DIALOG_EDIT_TEAM_BUTTON_SAVE);
+//        clickOn(Identity.APP_TAB_TEAMS_TABLE);
+//        keystroke(KeyCode.HOME);
+//        keystroke(KeyCode.ENTER);
     }
 
     @Test

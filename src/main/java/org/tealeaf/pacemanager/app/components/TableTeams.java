@@ -1,11 +1,14 @@
 package org.tealeaf.pacemanager.app.components;
 
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.text.Text;
 import org.tealeaf.pacemanager.app.App;
 import org.tealeaf.pacemanager.app.Identity;
 import org.tealeaf.pacemanager.app.dialogs.EditTeamDialog;
+import org.tealeaf.pacemanager.app.wrappers.IdentifiableTableCell;
 import org.tealeaf.pacemanager.data.Team;
 
 public class TableTeams extends TableView<Team> {
@@ -30,19 +33,28 @@ public class TableTeams extends TableView<Team> {
 
         setItems(app.getProject().getPace().getTeams());
 
-        getColumns().add(new TableColumn<Team, String>("ID") {{
+        getColumns().add(new TableColumn<Team, String>("Team Name") {{
+            setCellFactory(params -> new IdentifiableTableCell.IdentifiableStringCell<>(Identity.TABLE_TEAMS_CELL_TEAM_NAME));
             setCellValueFactory(param -> param.getValue().nameProperty());
         }});
-        getColumns().add(new TableColumn<Team, String>("Riders") {{
+
+        getColumns().add(new TableColumn<Team,String>("Riders") {{
+            setCellFactory(params -> new IdentifiableTableCell.IdentifiableStringCell<>(Identity.TABLE_TEAMS_CELL_RIDERS));
             setCellValueFactory(param -> param.getValue().getPrintRidersProperty());
         }});
-        getColumns().add(new TableColumn<Team, String>("Start Time") {{
+
+        getColumns().add(new TableColumn<Team,String>("Start Time") {{
+            setCellFactory(params -> new IdentifiableTableCell.IdentifiableStringCell<>(Identity.TABLE_TEAMS_CELL_START_TIME));
             setCellValueFactory(param -> param.getValue().startTimeProperty().asString());
         }});
-        getColumns().add(new TableColumn<Team, String>("End Time") {{
+
+        getColumns().add(new TableColumn<Team,String>("End Time") {{
+            setCellFactory(params -> new IdentifiableTableCell.IdentifiableStringCell<>(Identity.TABLE_TEAMS_CELL_END_TIME));
             setCellValueFactory(param -> param.getValue().endTimeProperty().asString());
         }});
     }
+
+
 
     private void openTeam() {
         int index = getSelectionModel().getSelectedIndex();

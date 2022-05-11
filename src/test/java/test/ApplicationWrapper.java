@@ -3,6 +3,7 @@ package test;
 import javafx.scene.input.KeyCode;
 import org.tealeaf.pacemanager.app.Identity;
 import org.tealeaf.pacemanager.data.EventTime;
+import org.tealeaf.pacemanager.data.Team;
 
 /**
  * Wraps steps used for different tests
@@ -26,18 +27,18 @@ public class ApplicationWrapper extends UserInterfaceWrapper implements Randomiz
     }
 
     protected void actionAddRandomTeam() {
+        actionAddTeam(randomTeam());
+    }
+
+    protected void actionAddTeam(Team team) {
         clickOn(Identity.APP_TAB_TEAMS, Identity.APP_TAB_TEAMS_BUTTON_ADD_TEAM);
-        writeInto(Identity.DIALOG_EDIT_TEAM_INPUT_NAME, randomName());
-        int count = RANDOM.nextInt(1, 5);
-        for (int i = 0; i < count; i++) {
-            actionDialogEditTeamAddRider();
+        writeInto(Identity.DIALOG_EDIT_TEAM_INPUT_NAME, team.getName());
+        team.getRiders().forEach(this::actionDialogEditTeamAddRider);
+        if(team.getStartTime() != null) {
+            writeInto(Identity.DIALOG_EDIT_TEAM_INPUT_TIME_START, team.getStartTime().toString());
         }
-        if (RANDOM.nextBoolean()) {
-            long time = Math.abs(RANDOM.nextLong() / 2);
-            writeInto(Identity.DIALOG_EDIT_TEAM_INPUT_TIME_START, new EventTime(time).toString());
-            if (RANDOM.nextBoolean()) {
-                writeInto(Identity.DIALOG_EDIT_TEAM_INPUT_TIME_END, new EventTime(RANDOM.nextLong(time, Long.MAX_VALUE)).toString());
-            }
+        if(team.getEndTime() != null) {
+            writeInto(Identity.DIALOG_EDIT_TEAM_INPUT_TIME_END, team.getStartTime().toString());
         }
         clickOn(Identity.DIALOG_EDIT_TEAM_BUTTON_SAVE);
     }
