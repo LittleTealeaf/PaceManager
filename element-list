@@ -5,6 +5,7 @@ org.tealeaf.pacemanager.app.dialogs
 org.tealeaf.pacemanager.app.key
 org.tealeaf.pacemanager.app.listeners
 org.tealeaf.pacemanager.app.stages
+org.tealeaf.pacemanager.app.wrappers
 org.tealeaf.pacemanager.concurrency
 org.tealeaf.pacemanager.constants
 org.tealeaf.pacemanager.data
