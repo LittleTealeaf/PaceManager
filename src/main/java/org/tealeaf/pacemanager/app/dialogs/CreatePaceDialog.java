@@ -60,7 +60,7 @@ public class CreatePaceDialog extends Stage implements OpenProjectListener {
         final TextField nameField = buildNameField();
 
         return new GridPane() {{
-            Identity.DIALOG_CREATE_PACE_GRIDPANE.set(this);
+            Identity.DIALOG_CREATE_PACE_GRID_PANE.set(this);
             setPadding(new Insets(5));
             setHgrow(nameField, Priority.ALWAYS);
             add(new Label("Project Name"), 0, 1);
