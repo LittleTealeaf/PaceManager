@@ -54,7 +54,7 @@ dependencies {
     implementation('eu.hansolo:tilesfx:17.1.15') {
         exclude(group: 'org.openjfx')
     }
-    implementation 'org.junit.jupiter:junit-jupiter:5.8.2'
+    implementation 'org.junit.jupiter:junit-jupiter:5.9.0'
     implementation 'org.jetbrains:annotations:23.0.0'
 
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2")
