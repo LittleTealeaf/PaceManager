@@ -37,7 +37,7 @@ javafx {
 }
 
 dependencies {
-    implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'com.google.code.gson:gson:2.9.1'
     implementation 'org.hildan.fxgson:fx-gson:4.0.1'
 
 
