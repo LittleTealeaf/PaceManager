@@ -3,7 +3,7 @@ plugins {
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.12'
     id 'org.beryx.jlink' version '2.25.0'
-    id 'org.javamodularity.moduleplugin' version '1.8.11'
+    id 'org.javamodularity.moduleplugin' version '1.8.12'
 }
 
 plugins.withType(JavaPlugin).configureEach {
