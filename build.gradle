@@ -38,7 +38,7 @@ javafx {
 
 dependencies {
     implementation 'com.google.code.gson:gson:2.10'
-    implementation 'org.hildan.fxgson:fx-gson:4.0.1'
+    implementation 'org.hildan.fxgson:fx-gson:4.1.0'
 
 
     implementation 'net.harawata:appdirs:1.2.1'
