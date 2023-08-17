@@ -51,7 +51,7 @@ dependencies {
     }
     implementation('org.kordamp.ikonli:ikonli-javafx:12.3.1')
     implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
-    implementation('eu.hansolo:tilesfx:17.1.25') {
+    implementation('eu.hansolo:tilesfx:17.1.27') {
         exclude(group: 'org.openjfx')
     }
     implementation 'org.junit.jupiter:junit-jupiter:5.10.0'
